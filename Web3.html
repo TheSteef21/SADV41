@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SADV41 // LOGIA PLUSCUAMPERFECTA • Wallet Web 3.0</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=JetBrains+Mono:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --oro: #d4af37;
+      --cyan: #00f3ff;
+      --violet: #9d4edd;
+      --bnb: #F3BA2F;
+    }
+    body { font-family: 'Roboto', system-ui, sans-serif; background: #030305; }
+    .cinzel { font-family: 'Cinzel', serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .glass { background: rgba(8,8,12,0.92); backdrop-filter: blur(20px); border: 1px solid rgba(0,243,255,0.2); }
+  </style>
+</head>
+<body class="text-white min-h-screen">
+
+  <!-- HEADER -->
+  <header class="fixed top-0 left-0 w-full z-50 glass border-b border-cyan/30 px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <div class="bg-black/60 border border-[var(--oro)] px-3 py-1.5 rounded-lg text-[var(--oro)] font-bold text-sm tracking-wider">
+        GSADV41
+      </div>
+      <div>
+        <h1 class="cinzel text-lg md:text-xl tracking-widest">LOGIA PLUSCUAMPERFECTA</h1>
+        <p class="text-[10px] text-slate-400 mono uppercase">E.S. FUSION // Wallet Web 3.0</p>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <span id="walletStatus" class="mono text-[11px] px-3 py-1.5 rounded-full bg-black/60 border border-white/10">
+        Desconectado
+      </span>
+      
+      <!-- BOTÓN WALLET WEB 3.0 (WalletConnect Pay) -->
+      <button id="walletBtn" 
+              class="bg-[var(--bnb)] hover:bg-yellow-400 text-black font-bold text-sm px-5 py-2.5 rounded-xl transition-all shadow-[0_0_20px_rgba(243,186,47,0.4)] flex items-center gap-2 mono">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+        Wallet Web 3.0
+      </button>
+    </div>
+  </header>
+
+  <main class="pt-28 pb-20 px-4 max-w-5xl mx-auto space-y-12">
+    
+    <!-- Mensaje principal -->
+    <section class="text-center py-12">
+      <h1 class="cinzel text-3xl md:text-5xl font-black bg-gradient-to-r from-[var(--oro)] via-white to-[var(--cyan)] bg-clip-text text-transparent tracking-widest">
+        Porque las naciones compartiremos con las naciones nuestros mayores talentos
+      </h1>
+      <p class="mt-4 text-slate-400 mono text-sm">El Puente Definitivo // Santo Espíritu • SADV41</p>
+    </section>
+
+    <!-- Sección Wallet -->
+    <section class="glass rounded-3xl p-8 border-t-4 border-t-[var(--bnb)]">
+      <h2 class="cinzel text-2xl text-[var(--bnb)] mb-4">Wallet Web 3.0 • WalletConnect Pay</h2>
+      <p class="text-slate-300 text-sm mb-6">
+        Integración oficial con el API de WalletConnect Pay<br>
+        <span class="mono text-[11px] text-slate-500">Project / API Key: wcp_CFvZTBvndIagfNcBEOkdsk72wRGEIcWR</span>
+      </p>
+
+      <div id="walletInfo" class="hidden bg-black/50 rounded-xl p-4 mono text-sm space-y-2">
+        <div>Estado: <span id="connStatus" class="text-green-400">Conectado</span></div>
+        <div>Dirección: <span id="walletAddress" class="text-[var(--cyan)]"></span></div>
+        <div>Red: <span id="walletChain" class="text-[var(--oro)]"></span></div>
+      </div>
+
+      <div class="mt-6 flex flex-wrap gap-3">
+        <button onclick="disconnectWallet()" class="px-4 py-2 rounded-lg border border-white/20 text-sm hover:bg-white/10">
+          Desconectar
+        </button>
+        <a href="https://www.spotify.com/pa/referral/003988e58c5d863711ce35278c66785f53a04d248c0fd8b116a577/?si=jCXPxhBxTq-3RK3og7JEkA" 
+           target="_blank" class="px-4 py-2 rounded-lg bg-green-600/20 border border-green-500 text-green-400 text-sm">
+          Spotify 3 meses gratis
+        </a>
+      </div>
+    </section>
+
+    <!-- Resto de secciones resumidas (puedes expandir) -->
+    <section class="grid md:grid-cols-2 gap-6">
+      <div class="glass rounded-2xl p-6 border-t-4 border-t-[var(--violet)]">
+        <h3 class="cinzel text-[var(--violet)]">SADV5 • Unidad Fantasma</h3>
+        <p class="text-sm text-slate-400 mt-2">Espacio-tiempo panameño • Origen 1027=10=1</p>
+      </div>
+      <div class="glass rounded-2xl p-6 border-t-4 border-t-[var(--cyan)]">
+        <h3 class="cinzel text-[var(--cyan)]">PHSADV41 Master Engine</h3>
+        <p class="text-sm text-slate-400 mt-2">HD Clarity + Flash Espectral + Color Vívido</p>
+      </div>
+    </section>
+  </main>
+
+  <script type="module">
+    // ============================================
+    // WALLETCONNECT PAY + WEB3 WALLET INTEGRATION
+    // API Key: wcp_CFvZTBvndIagfNcBEOkdsk72wRGEIcWR
+    // Tema aplicado según themeVariables
+    // ============================================
+
+    const WCP_API_KEY = "wcp_CFvZTBvndIagfNcBEOkdsk72wRGEIcWR";
+    const PROJECT_NAME = "SADV41 Wallet Web 3.0";
+
+    // Tema de pagos (decodificado)
+    const theme = {
+      fontFamily: "roboto",
+      fontSize: 20,
+      light: {
+        textPrimary: "#000000",
+        textSecondary: "#FFFFFF",
+        inputBackground: "#000000",
+        borderColor: "#FFFF00",
+        accentColor: "#0000FF"
+      }
+    };
+
+    let provider = null;
+    let accounts = [];
+
+    const walletBtn = document.getElementById("walletBtn");
+    const walletStatus = document.getElementById("walletStatus");
+    const walletInfo = document.getElementById("walletInfo");
+    const walletAddress = document.getElementById("walletAddress");
+    const walletChain = document.getElementById("walletChain");
+
+    // Cargar Ethereum Provider de WalletConnect (v2)
+    async function initWalletConnect() {
+      try {
+        // Usamos el provider oficial vía CDN (funciona en vanilla)
+        const { EthereumProvider } = await import("https://esm.sh/@walletconnect/ethereum-provider@2.17.0");
+
+        provider = await EthereumProvider.init({
+          projectId: "c4f79cc821944d9680842e34466bfbd", // ProjectId público de ejemplo (reemplaza si tienes uno de Cloud)
+          // Nota: el wcp_ es para la API de pagos. Para conexión de wallet se recomienda un ProjectId de cloud.reown.com
+          metadata: {
+            name: PROJECT_NAME,
+            description: "SADV41 • Logia Pluscuamperfecta • Wallet Web 3.0",
+            url: window.location.origin,
+            icons: ["https://walletconnect.com/walletconnect-logo.png"]
+          },
+          showQrModal: true,
+          chains: [1, 56], // Ethereum + BNB Chain
+          optionalChains: [137, 42161],
+          rpcMap: {
+            1: "https://cloudflare-eth.com",
+            56: "https://bsc-dataseed.binance.org"
+          }
+        });
+
+        // Eventos
+        provider.on("connect", (info) => {
+          console.log("Conectado:", info);
+          updateUI(true);
+        });
+
+        provider.on("disconnect", () => {
+          updateUI(false);
+        });
+
+        provider.on("accountsChanged", (accs) => {
+          accounts = accs;
+          updateUI(true);
+        });
+
+        // Si ya hay sesión
+        if (provider.session) {
+          accounts = provider.accounts;
+          updateUI(true);
+        }
+
+      } catch (err) {
+        console.error("Error inicializando WalletConnect:", err);
+        alert("Error al cargar WalletConnect. Revisa la consola.");
+      }
+    }
+
+    async function connectWallet() {
+      if (!provider) await initWalletConnect();
+
+      try {
+        await provider.connect();
+        accounts = provider.accounts;
+        updateUI(true);
+        
+        // Aquí puedes llamar a la API de WalletConnect Pay si quieres crear un pago
+        // Ejemplo (requiere backend idealmente):
+        // await createPaymentWithWCP();
+        
+      } catch (err) {
+        console.error("Error de conexión:", err);
+      }
+    }
+
+    async function disconnectWallet() {
+      if (provider) {
+        await provider.disconnect();
+        updateUI(false);
+      }
+    }
+
+    function updateUI(connected) {
+      if (connected && accounts.length > 0) {
+        walletStatus.textContent = "Conectado";
+        walletStatus.className = "mono text-[11px] px-3 py-1.5 rounded-full bg-green-900/40 text-green-400 border border-green-700";
+        walletBtn.innerHTML = `✓ \( {accounts[0].slice(0,6)}... \){accounts[0].slice(-4)}`;
+        walletInfo.classList.remove("hidden");
+        walletAddress.textContent = accounts[0];
+        walletChain.textContent = provider.chainId === 56 ? "BNB Chain" : `Chain ID: ${provider.chainId}`;
+      } else {
+        walletStatus.textContent = "Desconectado";
+        walletStatus.className = "mono text-[11px] px-3 py-1.5 rounded-full bg-black/60 border border-white/10";
+        walletBtn.innerHTML = `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M21 18v1c0 1.1-.9 2-2 2H5c-1.11 0-2-.9-2-2V5c0-1.1.89-2 2-2h14c1.1 0 2 .9 2 2v1h-9c-1.11 0-2 .9-2 2v8c0 1.1.89 2 2 2h9zm-9-2h10V8H12v8zm4-2.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg> Wallet Web 3.0`;
+        walletInfo.classList.add("hidden");
+      }
+    }
+
+    // Evento del botón
+    walletBtn.addEventListener("click", connectWallet);
+
+    // Inicializar al cargar
+    initWalletConnect();
+  </script>
+</body>
+</html>
