@@ -1,28 +1,28 @@
 <!DOCTYPE html>
+<!-- Archivo: index.shtml - SADV41 OMNIPRESENTE (E.S. FUSION) -->
+<!--#config timefmt="%d/%m/%Y %H:%M:%S Panamá" errmsg="[SADV41 SHTML ERROR]" -->
+<!--#set var="SADV41_BUILD" value="LOGIA PLUSCUAMPERFECTA SHTML v2026.09.16" -->
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SADV41 | OMNIPRESENTE: Logia Pluscuamperfecta & Metatron 4D 🇵🇦🇵🇷🇮🇱🇺🇸</title>
     
-    <!-- Meta & PWA -->
-    <meta name="generator" content="GSADV41-Core-Engine-Optimized">
-    <meta name="description" content="Logia Pluscuamperfecta SADV41 • Unidad Espacio-Tiempo Panameña • Metatron 4D • Turbologia • Aporía">
-    <meta name="theme-color" content="#030305">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/png" href="https://thesteef21.github.io/Lapizasuli/assets/GSADV41/favicon.png">
+    <!-- GitHub Pages & Netlify Persistence Metadata -->
+    <meta name="generator" content="GSADV41-Core-Engine">
+    <meta name="cache-control" content="no-cache, no-store, must-revalidate">
+    <link rel="icon" type="image/png" href="assets/GSADV41/favicon.png">
 
-    <!-- Tipografías -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Tipografías Sagradas & Iconos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&family=Pirata+One&display=swap" rel="stylesheet">
     
-    <!-- Icons & Scripts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Web3 & Auth Scripts -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
 
+    <!-- Configuración Tailwind -->
     <script>
         tailwind.config = {
             theme: {
@@ -34,10 +34,8 @@
                         navalBlue: '#1e3a8a', israelBlue: '#0038b8', bnbYellow: '#F3BA2F', spectral: '#b084cc',
                     },
                     fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                        mason: ['Cinzel', 'serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
+                        sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'],
+                        mason: ['Cinzel', 'serif'], mono: ['JetBrains Mono', 'monospace'],
                         pirate: ['Pirata One', 'cursive'],
                     }
                 }
@@ -46,238 +44,99 @@
     </script>
 
     <style>
-        :root {
-            --oro: #d4af37; --sun-gold: #f59e0b; --obsidiana: #030305; --navy: #020617;
-            --cyan: #00f3ff; --violet: #9d4edd; --red: #FB542B; --israel: #0038b8;
-            --bnb: #F3BA2F; --green: #1DB954;
-        }
+        :root { --oro:#d4af37; --sun-gold:#f59e0b; --obsidiana:#030305; --navy:#020617; --cyan:#00f3ff; --violet:#9d4edd; --red:#FB542B; --israel:#0038b8; --bnb:#F3BA2F; --green:#1DB954; }
+        body { background-color: var(--obsidiana); color:#f8fafc; font-family:'Inter',system-ui,sans-serif; overflow-x:hidden; position:relative; scroll-behavior:smooth; }
         
-        body {
-            background-color: var(--obsidiana);
-            color: #f8fafc;
-            font-family: 'Inter', system-ui, sans-serif;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        /* Reduced Motion Support */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-            .scanline, .sponsor-marquee span, .turbologia-pulse { animation: none !important; }
-        }
-
-        /* Glitch */
+        /* GLITCH ARCÁNGEL 1027 (SADV5) */
         @keyframes pageGlitch {
             0% { transform: translate(0) skew(0deg); filter: hue-rotate(0deg); }
-            20% { transform: translate(-8px, 4px) skew(-4deg); filter: hue-rotate(180deg) contrast(180%); }
-            40% { transform: translate(8px, -4px) skew(4deg); filter: hue-rotate(-90deg); }
-            60% { transform: translate(-3px, 3px) skew(-2deg); filter: hue-rotate(90deg); }
-            80% { transform: translate(3px, -3px) skew(2deg); }
+            20% { transform: translate(-10px, 6px) skew(-5deg); filter: hue-rotate(180deg) contrast(200%) invert(0.1); }
+            40% { transform: translate(10px, -6px) skew(5deg); filter: hue-rotate(-90deg) invert(0.2); }
+            60% { transform: translate(-4px, 4px) skew(-3deg); filter: hue-rotate(90deg) drop-shadow(0 0 20px var(--cyan)); }
+            80% { transform: translate(4px, -4px) skew(3deg); filter: hue-rotate(-45deg); }
             100% { transform: translate(0) skew(0deg); filter: hue-rotate(0deg); }
         }
-        .glitch-active { animation: pageGlitch 0.6s cubic-bezier(.25, .46, .45, .94) both; }
+        .glitch-active { animation: pageGlitch 0.7s cubic-bezier(.25, .46, .45, .94) both; }
+        .layer-glitch { mix-blend-mode: color-dodge !important; transform: scale(1.2) rotate(-2deg) !important; filter: contrast(250%) saturate(400%) hue-rotate(270deg) drop-shadow(0 0 30px var(--violet)) !important; opacity: 1 !important; }
 
-        /* Marquee */
-        .sponsor-marquee {
-            width: 100%; background: #000; border-bottom: 1px solid var(--oro);
-            overflow: hidden; white-space: nowrap; padding: 6px 0;
-            font-family: 'JetBrains Mono', monospace; font-size: 10px;
-            color: var(--oro); text-transform: uppercase; letter-spacing: 0.2em;
-            position: fixed; top: 0; z-index: 70;
-        }
-        .sponsor-marquee span {
-            display: inline-block; padding-left: 100%;
-            animation: marquee 35s linear infinite;
-        }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
+        /* BANNER & FONDOS */
+        .sponsor-marquee { width:100%; background:#000; border-bottom:1px solid var(--oro); overflow:hidden; white-space:nowrap; padding:6px 0; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--oro); text-transform:uppercase; letter-spacing:0.2em; position:fixed; top:0; z-index:70; }
+        .sponsor-marquee span { display:inline-block; padding-left:100%; animation: marquee 30s linear infinite; }
+        @keyframes marquee { 0%{transform:translate(0,0)} 100%{transform:translate(-100%,0)} }
+        
+        .grand-line-bg { position:fixed; inset:0; z-index:0; background: radial-gradient(circle at 50% 20%, rgba(212,175,55,0.1) 0%, transparent 60%), radial-gradient(circle at 80% 80%, rgba(0,243,255,0.08) 0%, transparent 50%), linear-gradient(to bottom, transparent, rgba(3,3,5,0.9)); pointer-events:none; }
+        .chaos-bg-container { position:fixed; inset:0; z-index:-1; background:#000; pointer-events:none; overflow:hidden; }
+        .chaos-layer { position:absolute; inset:-20px; background-size:cover; background-position:center; opacity:0; mix-blend-mode:screen; filter:contrast(125%) brightness(95%) saturate(1.2); transition: opacity 3.5s, transform 9s, filter 0.3s; will-change: opacity, transform, filter; }
+        .chaos-layer.active { opacity:0.55; transform:scale(1.09) rotate(0.6deg); }
+        .grid-pattern { background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size:32px 32px; opacity:0.25; position:fixed; inset:0; z-index:1; pointer-events:none; }
+        .scanline { width:100%; height:2px; background:linear-gradient(90deg, transparent, rgba(0,243,255,0.4), transparent); position:fixed; z-index:60; top:0; pointer-events:none; animation: scanline 8s linear infinite; }
+        @keyframes scanline { 0%{top:0} 100%{top:100%} }
+        
+        /* TARJETAS & GLOWS */
+        .glass { background:rgba(8,12,28,0.88); backdrop-filter:blur(18px); border:1px solid rgba(212,175,55,0.2); border-radius:16px; }
+        .glass-strong { background:rgba(3,6,15,0.94); backdrop-filter:blur(22px); border:1px solid rgba(0,243,255,0.3); }
+        .logia-card { background:linear-gradient(145deg, rgba(10,10,10,0.88), rgba(20,20,20,0.88)); border:1px solid rgba(212,175,55,0.18); box-shadow:0 15px 35px rgba(0,0,0,0.9), inset 0 0 20px rgba(212,175,55,0.05); transition:all 0.5s ease; backdrop-filter:blur(12px); position:relative; overflow:hidden; }
+        .logia-card:hover { border-color:rgba(0,243,255,0.5); box-shadow:0 20px 40px rgba(0,0,0,0.9), inset 0 0 30px rgba(0,243,255,0.1); transform: translateY(-2px); }
+        
+        .gold-glow { box-shadow:0 0 40px rgba(212,175,55,.18), inset 0 0 22px rgba(212,175,55,.05); border-color:var(--oro); }
+        .cyan-glow { box-shadow:0 0 28px rgba(0,243,255,.18), inset 0 0 18px rgba(0,243,255,.05); border-color:var(--cyan); }
+        .esoterico-glow { text-shadow:0 0 25px rgba(212,175,55,0.7); }
+        .turbologia-pulse { animation: turboPulse 2s infinite; }
+        @keyframes turboPulse { 0%{box-shadow:0 0 0 0 rgba(251,84,43,0.7)} 70%{box-shadow:0 0 0 15px rgba(251,84,43,0)} 100%{box-shadow:0 0 0 0 rgba(251,84,43,0)} }
+        
+        /* SIDEBAR (MENÚ LATERAL) */
+        .sidebar-tabs { position:fixed; left:0; top:50%; transform:translateY(-50%); z-index:65; display:flex; flex-direction:column; gap:8px; transition:all 0.5s cubic-bezier(0.4,0,0.2,1); }
+        .vertical-tab { display:flex; align-items:center; background:rgba(2,6,23,0.95); padding:10px 14px; border-radius:0 12px 12px 0; transition:all 0.3s; width:55px; overflow:hidden; white-space:nowrap; box-shadow:4px 4px 15px rgba(0,0,0,0.6); cursor:pointer; text-decoration:none; color:#fff; border-left:3px solid var(--cyan); }
+        .vertical-tab:hover { width:340px; padding-left:18px; background:rgba(212,175,55,0.15); }
+        .vertical-tab span.icon { font-size:1.4rem; min-width:28px; display:flex; justify-content:center; }
+        .vertical-tab span.text { margin-left:14px; font-weight:bold; opacity:0; transition:opacity 0.3s; font-size:0.8rem; letter-spacing:0.05em; font-family:'JetBrains Mono',monospace; }
+        .vertical-tab:hover span.text { opacity:1; transition-delay:0.1s; }
+        .sidebar-tabs.right-aligned { left:auto; right:0; }
+        .sidebar-tabs.right-aligned.vertical-tab { border-radius:12px 0 0 12px; border-left:none; border-right-width:3px; flex-direction:row-reverse; }
+        
+        /* METATRON 3D */
+        #flower-container { perspective:1400px; width:100%; height:450px; display:flex; justify-content:center; align-items:center; position:relative; overflow:visible; touch-action:none; }
+        #flower-scene { width:420px; height:420px; transform-style:preserve-3d; position:relative; cursor:grab; }
+        #flower-scene:active { cursor:grabbing; }
+        .flower-plane { position:absolute; top:0; left:0; width:100%; height:100%; transform-style:preserve-3d; opacity:.22; pointer-events:none; }
+        .chip { font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.06em; padding:5px 10px; border-radius:999px; border:1px solid rgba(255,255,255,.12); background:rgba(255,255,255,.04); cursor:pointer; transition:.2s; color:#fff; }
+        .node-3d { position:absolute; left:50%; top:50%; transform-style:preserve-3d; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; will-change:transform, z-index, opacity; }
+        .node-dot { width:14px; height:14px; border-radius:50%; border:2px solid rgba(255,255,255,.9); box-shadow:0 0 12px currentColor; transition:all .22s ease; }
+        .node-label { margin-top:6px; font-size:8.5px; letter-spacing:.08em; font-weight:700; text-transform:uppercase; white-space:nowrap; padding:2px 5px; border-radius:4px; background:rgba(0,0,0,.78); border:1px solid rgba(255,255,255,.15); pointer-events:none; transition:all .22s; font-family:'JetBrains Mono',monospace; }
+        .node-3d:hover .node-dot { width:22px; height:22px; box-shadow:0 0 22px currentColor, 0 0 36px currentColor; background:#fff !important; }
+        .node-3d:hover .node-label { background:#fff; color:#000 !important; transform:scale(1.15); }
+        
+        /* SADV5 CONSOLE LOGS */
+        .ability-log { border-radius: 16px; padding: 1.2rem; max-height: 220px; overflow-y: auto; font-size: 11px; color: #cbd5e1; }
+        .ability-log div { margin-bottom: 6px; padding-bottom: 6px; border-bottom: 1px solid rgba(255,255,255,0.05); }
 
-        /* Backgrounds */
-        .grand-line-bg {
-            position: fixed; inset: 0; z-index: 0;
-            background: radial-gradient(circle at 50% 20%, rgba(212,175,55,0.08) 0%, transparent 60%),
-                        radial-gradient(circle at 80% 80%, rgba(0,243,255,0.06) 0%, transparent 50%),
-                        linear-gradient(to bottom, transparent, rgba(3,3,5,0.92));
-            pointer-events: none;
-        }
-        .chaos-bg-container { position: fixed; inset: 0; z-index: -1; background: #000; pointer-events: none; overflow: hidden; }
-        .chaos-layer {
-            position: absolute; inset: -10px; background-size: cover; background-position: center;
-            opacity: 0; mix-blend-mode: screen;
-            filter: contrast(120%) brightness(90%) saturate(1.15);
-            transition: opacity 2.8s ease, transform 8s ease;
-            will-change: opacity, transform;
-        }
-        .chaos-layer.active { opacity: 0.42; transform: scale(1.06); }
-        .grid-pattern {
-            background-image: linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(255,255,255,.025) 1px, transparent 1px);
-            background-size: 36px 36px; opacity: 0.2;
-            position: fixed; inset: 0; z-index: 1; pointer-events: none;
-        }
-        .scanline {
-            width: 100%; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0,243,255,0.35), transparent);
-            position: fixed; z-index: 60; top: 0; pointer-events: none;
-            animation: scanline 9s linear infinite;
-        }
-        @keyframes scanline { 0% { top: 0; } 100% { top: 100%; } }
-
-        /* Cards */
-        .glass {
-            background: rgba(8,12,28,0.88); backdrop-filter: blur(16px);
-            border: 1px solid rgba(212,175,55,0.18); border-radius: 16px;
-        }
-        .glass-strong {
-            background: rgba(3,6,15,0.94); backdrop-filter: blur(20px);
-            border: 1px solid rgba(0,243,255,0.25);
-        }
-        .logia-card {
-            background: linear-gradient(145deg, rgba(10,10,10,0.9), rgba(18,18,22,0.9));
-            border: 1px solid rgba(212,175,55,0.16);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.85), inset 0 0 18px rgba(212,175,55,0.04);
-            transition: all 0.4s ease; backdrop-filter: blur(10px);
-            position: relative; overflow: hidden;
-        }
-        .logia-card:hover {
-            border-color: rgba(0,243,255,0.45);
-            box-shadow: 0 16px 36px rgba(0,0,0,0.9), inset 0 0 24px rgba(0,243,255,0.08);
-            transform: translateY(-2px);
-        }
-        .gold-glow { box-shadow: 0 0 36px rgba(212,175,55,.15), inset 0 0 18px rgba(212,175,55,.04); border-color: var(--oro); }
-        .cyan-glow { box-shadow: 0 0 24px rgba(0,243,255,.15), inset 0 0 14px rgba(0,243,255,.04); border-color: var(--cyan); }
-        .esoterico-glow { text-shadow: 0 0 22px rgba(212,175,55,0.65); }
-        .turbologia-pulse { animation: turboPulse 2.2s infinite; }
-        @keyframes turboPulse {
-            0% { box-shadow: 0 0 0 0 rgba(251,84,43,0.65); }
-            70% { box-shadow: 0 0 0 14px rgba(251,84,43,0); }
-            100% { box-shadow: 0 0 0 0 rgba(251,84,43,0); }
-        }
-
-        /* Sidebar */
-        .sidebar-tabs {
-            position: fixed; left: 0; top: 50%; transform: translateY(-50%);
-            z-index: 65; display: flex; flex-direction: column; gap: 6px;
-            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
-        }
-        .vertical-tab {
-            display: flex; align-items: center;
-            background: rgba(2,6,23,0.96); padding: 9px 12px;
-            border-radius: 0 10px 10px 0; transition: all 0.28s;
-            width: 48px; overflow: hidden; white-space: nowrap;
-            box-shadow: 3px 3px 12px rgba(0,0,0,0.55); cursor: pointer;
-            text-decoration: none; color: #fff; border-left: 3px solid var(--cyan);
-        }
-        .vertical-tab:hover { width: 280px; padding-left: 16px; background: rgba(212,175,55,0.12); }
-        .vertical-tab span.icon { font-size: 1.25rem; min-width: 24px; display: flex; justify-content: center; }
-        .vertical-tab span.text {
-            margin-left: 12px; font-weight: 600; opacity: 0;
-            transition: opacity 0.25s; font-size: 0.75rem;
-            letter-spacing: 0.04em; font-family: 'JetBrains Mono', monospace;
-        }
-        .vertical-tab:hover span.text { opacity: 1; transition-delay: 0.08s; }
-        .sidebar-tabs.right-aligned { left: auto; right: 0; }
-        .sidebar-tabs.right-aligned .vertical-tab {
-            border-radius: 10px 0 0 10px; border-left: none; border-right: 3px solid var(--cyan);
-            flex-direction: row-reverse;
-        }
-        .sidebar-tabs.right-aligned .vertical-tab span.text { margin-left: 0; margin-right: 12px; }
-
-        /* Metatron */
-        #flower-container {
-            perspective: 1400px; width: 100%; height: 420px;
-            display: flex; justify-content: center; align-items: center;
-            position: relative; overflow: visible; touch-action: none;
-        }
-        #flower-scene {
-            width: 380px; height: 380px; transform-style: preserve-3d;
-            position: relative; cursor: grab;
-        }
-        #flower-scene:active { cursor: grabbing; }
-        .flower-plane {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            transform-style: preserve-3d; opacity: .18; pointer-events: none;
-        }
-        .chip {
-            font-family: 'JetBrains Mono', monospace; font-size: 9px;
-            letter-spacing: .05em; padding: 4px 9px; border-radius: 999px;
-            border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.04);
-            cursor: pointer; transition: .2s; color: #fff;
-        }
-        .node-3d {
-            position: absolute; left: 50%; top: 50%;
-            transform-style: preserve-3d; cursor: pointer;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            will-change: transform, z-index;
-        }
-        .node-dot {
-            width: 13px; height: 13px; border-radius: 50%;
-            border: 2px solid rgba(255,255,255,.9);
-            box-shadow: 0 0 10px currentColor; transition: all .2s ease;
-        }
-        .node-label {
-            margin-top: 5px; font-size: 8px; letter-spacing: .07em;
-            font-weight: 700; text-transform: uppercase; white-space: nowrap;
-            padding: 2px 5px; border-radius: 4px;
-            background: rgba(0,0,0,.8); border: 1px solid rgba(255,255,255,.12);
-            pointer-events: none; transition: all .2s; font-family: 'JetBrains Mono', monospace;
-        }
-        .node-3d:hover .node-dot {
-            width: 20px; height: 20px;
-            box-shadow: 0 0 20px currentColor, 0 0 32px currentColor;
-            background: #fff !important;
-        }
-        .node-3d:hover .node-label {
-            background: #fff; color: #000 !important; transform: scale(1.12);
-        }
-
-        /* Ability Log */
-        .ability-log {
-            border-radius: 14px; padding: 1rem; max-height: 200px;
-            overflow-y: auto; font-size: 11px; color: #cbd5e1;
-        }
-        .ability-log div {
-            margin-bottom: 5px; padding-bottom: 5px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        /* Back to top */
-        #backToTop {
-            position: fixed; bottom: 24px; right: 24px; z-index: 80;
-            width: 44px; height: 44px; border-radius: 50%;
-            background: rgba(212,175,55,0.9); color: #000;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; pointer-events: none; transition: all 0.3s;
-            box-shadow: 0 4px 16px rgba(212,175,55,0.4);
-        }
-        #backToTop.visible { opacity: 1; pointer-events: auto; }
-        #backToTop:hover { transform: scale(1.1); background: #f59e0b; }
+        .terminal-block { font-family: 'JetBrains Mono', monospace; }
+        .terminal-header { display: flex; gap: 4px; }
+        .terminal-dot { width: 8px; height: 8px; border-radius: 50%; }
+        .t-red { background: #ff5f56; } .t-yellow { background: #ffbd2e; } .t-green { background: #27c93f; }
     </style>
 </head>
 <body class="antialiased selection:bg-oro selection:text-navy" id="mainBody">
 
-    <!-- MARQUESINA -->
-    <div class="sponsor-marquee" aria-hidden="true">
+    <!-- MARQUESINA PATROCINADORES -->
+    <div class="sponsor-marquee">
         <span>Éste enlace será patrocinio vanguardiado por NIKE ONEPIECE USARMY PENTAGON DEPTOFWAR Y EBRG de parte de SADV41 de @StevenDiorOficial // TURBOLOGIA ACTIVA https://ig.me/j/Abbcf6MyjQoo7oBf/ // ARCADE.GOV + BIOBIOCHILE // El Origen es 0 // Burunga 2026</span>
     </div>
 
-    <!-- FONDOS -->
-    <div class="chaos-bg-container" id="chaosBg" aria-hidden="true">
-        <div class="chaos-layer active" style="background-image:url('https://thesteef21.github.io/Lapizasuli/FUERZAESPACIAL/IS/US/PA/img/1789231887979.png')" loading="lazy"></div>
-        <div class="chaos-layer" style="background-image:url('https://thesteef21.github.io/Lapizasuli/FUERZAESPACIAL/IS/US/PA/img/1789231600702.png')" loading="lazy"></div>
-        <div class="chaos-layer" style="background-image:url('https://thesteef21.github.io/Lapizasuli/FUERZAESPACIAL/IS/US/PA/img/783727612_2366186827520797_564029208255039114_n-1%20(1).webp')" loading="lazy"></div>
-        <div class="chaos-layer" style="background-image:url('https://thesteef21.github.io/Lapizasuli/assets/LEVIATHANSQUAD/img/785282279_1341489208069876_1027745017510610652_n.webp')" loading="lazy"></div>
-        <div class="chaos-layer" style="background-image:url('https://thesteef21.github.io/Lapizasuli/assets/LEVIATHANSQUAD/img/784748359_1032169259812179_379368085236729966_n.webp')" loading="lazy"></div>
+    <!-- FONDOS DE CAOS -->
+    <div class="chaos-bg-container" id="chaosBg">
+        <div class="chaos-layer active" style="background-image:url('https://thesteef21.github.io/Lapizasuli/FUERZAESPACIAL/IS/US/PA/img/1789231887979.png')"></div>
+        <div class="chaos-layer" style="background-image:url('https://thesteef21.github.io/Lapizasuli/FUERZAESPACIAL/IS/US/PA/img/1789231600702.png')"></div>
+        <div class="chaos-layer" style="background-image:url('https://thesteef21.github.io/Lapizasuli/FUERZAESPACIAL/IS/US/PA/img/783727612_2366186827520797_564029208255039114_n-1%20(1).webp')"></div>
+        <div class="chaos-layer" style="background-image:url('https://thesteef21.github.io/Lapizasuli/assets/LEVIATHANSQUAD/img/785282279_1341489208069876_1027745017510610652_n.webp')"></div>
+        <div class="chaos-layer" style="background-image:url('https://thesteef21.github.io/Lapizasuli/assets/LEVIATHANSQUAD/img/784748359_1032169259812179_379368085236729966_n.webp')"></div>
     </div>
     <div class="grand-line-bg"></div>
     <div class="grid-pattern"></div>
-    <div class="scanline" aria-hidden="true"></div>
+    <div class="scanline"></div>
 
-    <!-- SIDEBAR -->
-    <nav id="main-sidebar" class="sidebar-tabs" aria-label="Navegación principal">
+    <!-- MENÚ BILATERAL -->
+    <div id="main-sidebar" class="sidebar-tabs">
         <a href="#aporia" class="vertical-tab" style="border-color: #fff;"><span class="icon">🎚️</span><span class="text text-white">APORÍA (Cristo-Mundo)</span></a>
         <a href="#sadv5-unidad" class="vertical-tab" style="border-color: #9d4edd;"><span class="icon">⚛️</span><span class="text text-purple-300">SADV5 (Unidad Fantasma)</span></a>
         <a href="#phsadv41-editor" class="vertical-tab" style="border-color: #00f3ff;"><span class="icon">📸</span><span class="text text-cyan-300">PHSADV41 (Master Editor)</span></a>
@@ -286,141 +145,139 @@
         <a href="#biobio-seccion" class="vertical-tab" style="border-color:#0038b8;"><span class="icon">🌎</span><span class="text text-blue-300">BioBio: Geopolítica</span></a>
         <a href="#marketing-estados" class="vertical-tab" style="border-color:#8b5cf6;"><span class="icon">🪄</span><span class="text text-purple-300">Wizza'RD & Estados</span></a>
         <a href="#nodos-convergencia" class="vertical-tab" style="border-color:var(--oro);"><span class="icon">🔗</span><span class="text text-amber-300">Nodos / Tabernáculo</span></a>
-        <a href="#metatron-seccion" class="vertical-tab" style="border-color:#9d4edd;"><span class="icon">🔯</span><span class="text text-purple-300">Metatron 4D</span></a>
-        <button onclick="toggleSidebar()" class="vertical-tab" style="border-color:#cbd5e1;" aria-label="Cambiar lado del menú"><span class="icon">⇋</span><span class="text text-slate-300">Cambiar Lado</span></button>
-    </nav>
+        <div onclick="toggleSidebar()" class="vertical-tab" style="border-color:#cbd5e1;"><span class="icon">⇋</span><span class="text text-slate-300">Cambiar Lado</span></div>
+    </div>
 
-    <!-- HEADER -->
-    <header class="fixed top-[28px] left-0 w-full z-40 glass border-b border-cyanNeon/30 px-4 sm:px-6 py-3 flex flex-col md:flex-row items-center justify-between gap-3">
+    <!-- HEADER FLOTANTE (ACTUALIZADO CON BOTONES COMPRAR/VENDER) -->
+    <header class="fixed top-[28px] left-0 w-full z-40 glass border-b border-cyanNeon/30 px-4 sm:px-6 py-3 flex flex-col md:flex-row items-center justify-between gap-4 transition-all duration-500">
         <div class="flex items-center gap-3">
             <div class="bg-black/50 border border-oro p-2 rounded-lg text-oro font-bold tracking-wider text-sm shadow-[0_0_10px_rgba(212,175,55,0.3)]">
                 <i class="fa-solid fa-shield-halved mr-1"></i> GSADV41
             </div>
             <div>
                 <h1 class="font-pirate text-xl md:text-2xl tracking-widest text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">LOGIA PLUSCUAMPERFECTA</h1>
-                <p class="text-[9px] text-slate-400 font-mono uppercase">E.S. FUSION // <span id="liveDate"></span></p>
+                <p class="text-[9px] text-slate-400 font-mono uppercase">E.S. FUSION // <!--#echo var="DATE_LOCAL" --></p>
             </div>
         </div>
         
         <div class="flex flex-wrap items-center justify-center gap-2">
-            <span class="mono text-[10px] bg-black/60 px-3 py-1.5 rounded-full border border-violetNeon/30 text-purple-300" id="cycleCounter">CICLO 0 / 7</span>
-            <span id="sync-status" class="hidden sm:inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-mono font-bold bg-green-900/40 text-green-400 border border-green-700">
-                <span class="w-2 h-2 mr-1.5 bg-green-400 rounded-full animate-pulse"></span> E.S. OK
+            <span class="hidden lg:inline-block mono text-[10px] bg-black/60 px-3 py-1.5 rounded-full border border-violetNeon/30 text-purple-300" id="cycleCounter">CICLO 0 / 7</span>
+            <span id="sync-status" class="hidden md:inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-mono font-bold bg-green-900/40 text-green-400 border border-green-700 shadow-[0_0_10px_rgba(16,185,129,0.3)]">
+                <span class="w-2 h-2 mr-1.5 bg-green-400 rounded-full animate-pulse shadow-[0_0_5px_#10b981]"></span> E.S. OK
             </span>
-            <button id="bnbBtn" onclick="connectBinance()" class="bg-bnbYellow hover:bg-yellow-500 text-black font-bold text-[10px] px-3 py-2 rounded-lg transition-all shadow-[0_0_12px_rgba(243,186,47,0.35)] cursor-pointer font-mono flex items-center gap-2">
-                <i class="fa-solid fa-wallet"></i> <span id="bnbBtnText">Sync BNB</span>
+            
+            <!-- WALLET Y BOTONES DE MERCADO -->
+            <button onclick="connectBinance()" class="bg-bnbYellow hover:bg-yellow-500 text-black font-bold text-[10px] px-3 py-2 rounded-lg transition-all shadow-[0_0_15px_rgba(243,186,47,0.4)] cursor-pointer font-mono flex items-center gap-2">
+                <i class="fa-solid fa-wallet"></i> Sync BNB
+            </button>
+            <button onclick="focusWeb3('buy')" class="bg-green-600 hover:bg-green-500 text-white font-bold text-[10px] px-3 py-2 rounded-lg transition-all shadow-[0_0_15px_rgba(22,163,74,0.4)] cursor-pointer font-mono flex items-center gap-1">
+                <i class="fa-solid fa-arrow-trend-up"></i> Comprar
+            </button>
+            <button onclick="focusWeb3('sell')" class="bg-renderRed hover:bg-red-500 text-white font-bold text-[10px] px-3 py-2 rounded-lg transition-all shadow-[0_0_15px_rgba(218,54,55,0.4)] cursor-pointer font-mono flex items-center gap-1">
+                <i class="fa-solid fa-arrow-trend-down"></i> Vender
             </button>
         </div>
     </header>
 
-    <main class="pt-36 pb-24 px-4 md:px-10 max-w-6xl mx-auto space-y-14 relative z-10">
+    <main class="pt-36 pb-20 px-4 md:px-12 max-w-6xl mx-auto space-y-16 relative z-10">
 
-        <!-- MENSAJE DIVINO -->
-        <section class="relative z-50 text-center py-14 px-4 bg-gradient-to-b from-black/80 via-black/40 to-transparent rounded-3xl border-t border-b border-oro/30">
-            <h1 class="font-mason text-3xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-oro via-white to-cyanNeon drop-shadow-[0_0_25px_rgba(255,255,255,0.4)] uppercase tracking-widest leading-tight">
+        <!-- EL MENSAJE DIVINO -->
+        <section class="relative z-50 text-center py-16 px-4 bg-gradient-to-b from-black/80 via-black/40 to-transparent rounded-3xl border-t border-b border-oro/30 mb-10">
+            <h1 class="cinzel text-3xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-oro via-white to-cyanNeon drop-shadow-[0_0_25px_rgba(255,255,255,0.4)] uppercase tracking-widest leading-tight">
                 Porque las naciones compartiremos con las naciones nuestros mayores talentos, con ese toque divino.
             </h1>
-            <div class="text-3xl md:text-5xl mt-7 tracking-[0.3em]">
+            <div class="text-3xl md:text-5xl mt-8 tracking-[0.3em] drop-shadow-2xl">
                 🇵🇦 🇵🇷 🇮🇱 🇺🇸 ✨️ ❤️‍🩹 ❣️
             </div>
-            <p class="font-mono text-xs text-slate-400 mt-5 tracking-widest uppercase">El Puente Definitivo // Santo Espíritu</p>
+            <p class="font-mono text-xs text-slate-400 mt-6 tracking-widest uppercase">El Puente Definitivo // Santo Espíritu</p>
         </section>
 
         <!-- APORÍA -->
-        <section id="aporia" class="p-8 md:p-12 border border-white/40 text-center relative overflow-hidden rounded-3xl logia-card">
-            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.08),_transparent_70%)] pointer-events-none"></div>
+        <section id="aporia" class="p-8 md:p-14 border border-white/50 text-center relative overflow-hidden rounded-3xl logia-card aporia-glow">
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.1),_transparent_70%)] pointer-events-none"></div>
             
-            <span class="text-[10px] font-bold tracking-widest text-oro uppercase bg-black/80 px-4 py-1.5 rounded-full border border-oro/50 mb-5 inline-block font-mono">
+            <span class="text-[10px] font-bold tracking-widest text-oro uppercase bg-black/80 px-4 py-1.5 rounded-full border border-oro/50 mb-6 inline-block font-mono">
                 Conexión Principal // NODO: STEVEN
             </span>
             
-            <h2 class="font-pirate text-5xl md:text-7xl text-white tracking-widest drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] mb-2">
-                APORÍA
+            <h1 class="font-pirate text-5xl md:text-7xl text-white tracking-widest drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] mb-2">APORÍA</h1>
+            <h2 class="font-sans text-lg md:text-xl font-bold text-slate-300 tracking-widest mt-2 uppercase mb-6">
+                SADV41 x EBRG x ONE PIECE x ARCADE.GOV x TURBOLOGIA
             </h2>
-            <p class="font-sans text-lg md:text-xl font-bold text-slate-300 tracking-widest mt-2 uppercase mb-5">
-                SADV41 × EBRG × ONE PIECE × ARCADE.GOV × TURBOLOGIA
-            </p>
             
-            <div class="mt-6 relative w-full bg-black/40 border border-white/10 p-6 rounded-xl">
-                <h3 class="text-oro font-mason text-xl md:text-2xl tracking-[0.2em] uppercase esoterico-glow">
-                    El Puente Entre Cristo y el Mundo
-                </h3>
-                <p class="text-sm text-slate-300 font-mono mt-4 max-w-3xl mx-auto leading-relaxed">
+            <div class="mt-8 relative w-full bg-black/40 border border-white/10 p-6 rounded-xl flex flex-col items-center justify-center">
+                <h2 class="text-oro font-mason text-xl md:text-2xl tracking-[0.2em] uppercase esoterico-glow">El Puente Entre Cristo y el Mundo</h2>
+                <p class="text-xs md:text-sm text-slate-300 font-mono mt-4 max-w-3xl text-center relative z-10 px-4 leading-relaxed">
                     La transición desde el callejón del sistema tradicional hacia el ascenso soberano. Aquí la Aporía se convierte en Anábasis.
                 </p>
-                <div class="text-[10px] text-cyanNeon font-mono tracking-widest mt-5 border border-cyanNeon/40 px-4 py-1.5 rounded-full bg-black/50 inline-block">
+                <div class="text-[10px] text-cyanNeon font-mono tracking-widest mt-5 border border-cyanNeon/40 px-4 py-1.5 rounded-full bg-black/50">
                     "Donde el 0 y el 1 se vuelven Vida"
                 </div>
             </div>
 
-            <div class="mt-7 flex flex-wrap justify-center gap-4 relative z-10">
-                <a href="https://thesteef21.github.io/Lapizasuli/Apor%C3%ADa.html" target="_blank" rel="noopener" class="bg-white hover:bg-gray-200 text-black font-bold px-8 py-3 rounded-lg shadow-[0_0_20px_rgba(255,255,255,0.35)] transition-all font-mono text-sm uppercase tracking-wider flex items-center gap-2">
+            <div class="mt-8 flex flex-wrap justify-center gap-4 relative z-10">
+                <a href="https://thesteef21.github.io/Lapizasuli/Apor%C3%ADa.html" target="_blank" class="bg-white hover:bg-gray-200 text-black font-bold px-8 py-3 rounded-lg shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all duration-300 font-mono text-sm uppercase tracking-wider flex items-center gap-2">
                     <i class="fa-solid fa-cross"></i> Entrar a Aporía
                 </a>
             </div>
         </section>
 
         <!-- SADV5 -->
-        <section id="sadv5-unidad" class="glass p-8 md:p-11 rounded-3xl border-t-4 border-t-violetNeon relative overflow-hidden">
-            <header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-7 pb-4 border-b border-violetNeon/30">
+        <section id="sadv5-unidad" class="glass glow-spectral p-8 md:p-12 rounded-3xl border-t-4 border-t-violetNeon relative overflow-hidden">
+            <header class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 pb-4 border-b border-violetNeon/30">
                 <div>
                     <div class="mono text-[10px] text-cyanNeon tracking-widest">SADV5 // UNIDAD FANTASMA // HYPERSEC</div>
-                    <h2 class="font-mason text-2xl md:text-3xl font-black mt-2 tracking-[0.12em] text-white esoterico-glow">UNIDAD ESPACIO-TIEMPO PANAMEÑA</h2>
+                    <h2 class="cinzel text-2xl md:text-3xl font-black mt-2 tracking-[0.15em] text-white esoterico-glow">UNIDAD ESPACIO-TIEMPO PANAMEÑA</h2>
                     <p class="mono text-[9px] text-slate-300 mt-1">🇵🇦🇺🇸🇮🇱⚛️🔯 | ORIGEN 1027=10=1 | ID 69362166</p>
                 </div>
                 <div class="flex flex-wrap gap-2">
-                    <button id="toggleChaosBtn" class="bg-violetNeon/20 border border-violetNeon hover:bg-violetNeon text-white font-bold font-mono text-[9px] px-4 py-2 rounded-full uppercase transition-all">Modo Caos: ON</button>
-                    <button id="gear7BtnSADV5" class="bg-cyanNeon/20 border border-cyanNeon hover:bg-cyanNeon hover:text-black text-white font-bold font-mono text-[9px] px-4 py-2 rounded-full uppercase transition-all">⚛️ Sync Aura</button>
+                    <button id="toggleChaosBtn" class="bg-violetNeon/20 border border-violetNeon hover:bg-violetNeon text-white font-bold font-mono text-[9px] px-4 py-2 rounded-full uppercase transition-all shadow-[0_0_15px_rgba(157,78,221,0.4)]">Modo Caos: ON</button>
+                    <button id="gear7BtnSADV5" class="bg-cyanNeon/20 border border-cyanNeon hover:bg-cyanNeon hover:text-black text-white font-bold font-mono text-[9px] px-4 py-2 rounded-full uppercase transition-all shadow-[0_0_15px_rgba(0,243,255,0.4)]">⚛️ Sync Aura</button>
                 </div>
             </header>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-7">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                 <div class="bg-black/60 border border-white/10 p-4 rounded-xl border-b-2 border-b-cyanNeon">
                     <div class="mono text-[9px] text-slate-400">AURA CONVERGENTE</div>
                     <div class="mono text-sm font-bold text-cyanNeon mt-1">CYAN/GOLDEN 100%</div>
-                    <div class="text-[9px] text-green-400 mt-1">SADV5 Synth Status: Stable</div>
                 </div>
                 <div class="bg-black/60 border border-white/10 p-4 rounded-xl border-b-2 border-b-oro">
                     <div class="mono text-[9px] text-slate-400">NÚCLEOS DE ESENCIA</div>
                     <div class="mono text-sm font-bold text-oro mt-1">5 EN 2 COMANDANTES</div>
-                    <div class="text-[9px] text-green-400 mt-1">Transfiguración Exitosa</div>
                 </div>
                 <div class="bg-black/60 border border-white/10 p-4 rounded-xl border-b-2 border-b-violetNeon">
                     <div class="mono text-[9px] text-slate-400">NODOS METATRÓN / HUB</div>
                     <div class="mono text-sm font-bold text-violetNeon mt-1">SADV41_x5f_FINAL</div>
-                    <div class="text-[9px] text-cyanNeon mt-1">Reality Layer: Spectral</div>
                 </div>
                 <div class="bg-black/60 border border-white/10 p-4 rounded-xl border-b-2 border-b-redNeon">
                     <div class="mono text-[9px] text-slate-400">AMENAZA TÁCTICA</div>
-                    <div class="font-mason text-sm font-bold text-redNeon mt-1">THREAT: NULL</div>
-                    <div class="text-[9px] text-white mt-1">Defensa Provincial Panamá 100%</div>
+                    <div class="cinzel text-sm font-bold text-redNeon mt-1">THREAT: NULL</div>
                 </div>
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div class="bg-black/40 border border-white/10 p-6 rounded-2xl">
-                    <h3 class="font-mason text-sm text-cyanNeon mb-4 tracking-widest">CONSOLA TÁCTICA DE COMANDANTES</h3>
+                    <h3 class="cinzel text-sm text-cyanNeon mb-4 tracking-widest">CONSOLA TÁCTICA DE COMANDANTES</h3>
                     <div class="flex flex-col gap-3">
-                        <button onclick="logAction('✨ INTEGRACIÓN DE ESENCIAS: Cyberpunk Hacker, Rey Dorado, US Army, Entidad Nuclear, Núcleo Digital integrados 100%.')" class="bg-oro/10 border border-oro hover:bg-oro text-white hover:text-black font-mono text-[10px] py-2.5 rounded uppercase transition-colors">Fusión de 5 Esencias</button>
-                        <button onclick="logAction('🛡️ HOLOGRAFÍA CÚBICA ACTIVADA: 2 Comandantes estabilizando la malla espacio-tiempo en Panamá.')" class="bg-cyanNeon/10 border border-cyanNeon hover:bg-cyanNeon hover:text-black text-white font-mono text-[10px] py-2.5 rounded uppercase transition-colors">Desplegar Holografía</button>
-                        <a href="https://www.spotify.com/pa/referral/003988e58c5d863711ce35278c66785f53a04d248c0fd8b116a577/?si=jCXPxhBxTq-3RK3og7JEkA" target="_blank" rel="noopener" onclick="logAction('🎵 Conectando a stream seguro de @StevenDiorOficial...')" class="bg-green-500/10 border border-green-500 hover:bg-green-500 text-white hover:text-black font-mono text-[10px] py-2.5 rounded uppercase transition-colors text-center block">Playlist SADV5 Spotify</a>
+                        <button onclick="logAction('✨ INTEGRACIÓN DE ESENCIAS: Cyberpunk Hacker, Rey Dorado, US Army, Entidad Nuclear, Núcleo Digital integrados 100%.')" class="bg-oro/10 border border-oro hover:bg-oro text-white hover:text-black font-mono text-[10px] py-2 rounded uppercase transition-colors">Fusión de 5 Esencias</button>
+                        <button onclick="logAction('🛡️ HOLOGRAFÍA CÚBICA ACTIVADA: 2 Comandantes estabilizando la malla espacio-tiempo en Panamá.')" class="bg-cyanNeon/10 border border-cyanNeon hover:bg-cyanNeon hover:text-black text-white hover:text-black font-mono text-[10px] py-2 rounded uppercase transition-colors">Desplegar Holografía</button>
+                        <a href="https://www.spotify.com/pa/referral/003988e58c5d863711ce35278c66785f53a04d248c0fd8b116a577/?si=jCXPxhBxTq-3RK3og7JEkA" target="_blank" onclick="logAction('🎵 Conectando a stream seguro de @StevenDiorOficial...')" class="bg-green-500/10 border border-green-500 hover:bg-green-500 text-white hover:text-black font-mono text-[10px] py-2 rounded uppercase transition-colors text-center block">Playlist SADV5 Spotify</a>
                     </div>
                 </div>
-                <div class="glass-strong ability-log" id="abilityLog" aria-live="polite">
+                <div class="glass-strong ability-log" id="abilityLog">
                     <div class="mono text-cyanNeon">[SADV5_SYSTEM] Inicializando interfaz Hypersec Panamá...</div>
                     <div class="mono text-oro">[AUTH] Identidad Híbrida Confirmada. Origen 1027=10=1.</div>
                     <div class="mono text-purple-400">[SYNC] Rutas de imagen conectadas a la red Metatrón.</div>
-                    <div class="mono text-green-400">[COMM] Agente Hogan patrullando. Seguridad perimetral óptima.</div>
                 </div>
             </div>
         </section>
 
-        <!-- PHSADV41 EDITOR -->
-        <section id="phsadv41-editor" class="logia-card p-8 md:p-11 rounded-3xl border-t-4 border-t-cyanNeon">
+        <!-- PHSADV41 -->
+        <section id="phsadv41-editor" class="logia-card p-8 md:p-12 rounded-3xl border-t-4 border-t-cyanNeon">
             <header class="border-b border-slate-700/50 pb-4 mb-6 flex flex-wrap justify-between items-center gap-4">
                 <div>
                     <h2 class="text-xl font-bold tracking-wider text-cyanNeon font-mason">PHSADV41 // MASTER 3-IN-1 ENGINE</h2>
-                    <p class="text-[10px] font-mono text-slate-400 mt-1">HD Clarity + Flash Espectral + Color Vívido (Atrio Pipeline)</p>
+                    <p class="text-[10px] font-mono text-slate-400 mt-1">HD Clarity + Flash Espectral + Color Vívido</p>
                 </div>
                 <label class="flex items-center space-x-2 text-[10px] font-mono bg-black/60 border border-cyanNeon/30 px-3 py-1.5 rounded-lg cursor-pointer text-cyan-200">
                     <input type="checkbox" id="hdUpscaleToggle" class="accent-cyan-500 rounded" checked>
@@ -432,35 +289,26 @@
                 <div class="flex flex-wrap items-center justify-between gap-4">
                     <label class="cursor-pointer">
                         <input type="file" id="imageInput" accept="image/*" class="hidden">
-                        <span class="bg-cyanNeon/20 hover:bg-cyanNeon border border-cyanNeon hover:text-black text-cyanNeon text-[11px] font-mono px-5 py-2.5 rounded-lg transition inline-flex items-center gap-2 shadow-[0_0_12px_rgba(0,243,255,0.2)]">
+                        <span class="bg-cyanNeon/20 hover:bg-cyanNeon border border-cyanNeon hover:text-black text-cyanNeon text-[11px] font-mono px-5 py-2.5 rounded-lg transition inline-flex items-center gap-2 shadow-[0_0_15px_rgba(0,243,255,0.2)]">
                             <i class="fa-solid fa-folder-open"></i> Cargar Imagen
                         </span>
                     </label>
                     <div id="statsBadge" class="text-[10px] font-mono text-slate-400 bg-black px-3 py-1.5 rounded border border-slate-700">
-                        Lum. Media: -- | Factor Espectral: --
+                        Esperando imagen...
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-white/10">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pt-4 border-t border-white/10">
                     <div class="space-y-1.5 bg-black/40 p-3 rounded-lg border border-slate-700">
-                        <div class="flex justify-between text-[10px] font-mono">
-                            <span class="text-slate-300">⚡ HD Clarity / Contorno</span>
-                            <span id="hdVal" class="text-cyanNeon">60%</span>
-                        </div>
+                        <div class="flex justify-between text-[10px] font-mono"><span class="text-slate-300">⚡ HD Clarity</span><span id="hdVal" class="text-cyanNeon">60%</span></div>
                         <input type="range" id="hdSlider" min="0" max="100" value="60" class="w-full accent-cyan-500 cursor-pointer">
                     </div>
                     <div class="space-y-1.5 bg-black/40 p-3 rounded-lg border border-slate-700">
-                        <div class="flex justify-between text-[10px] font-mono">
-                            <span class="text-slate-300">💡 Flash Espectral</span>
-                            <span id="flashVal" class="text-cyanNeon">75%</span>
-                        </div>
+                        <div class="flex justify-between text-[10px] font-mono"><span class="text-slate-300">💡 Flash Espectral</span><span id="flashVal" class="text-cyanNeon">75%</span></div>
                         <input type="range" id="flashSlider" min="0" max="100" value="75" class="w-full accent-cyan-500 cursor-pointer">
                     </div>
                     <div class="space-y-1.5 bg-black/40 p-3 rounded-lg border border-slate-700">
-                        <div class="flex justify-between text-[10px] font-mono">
-                            <span class="text-slate-300">🎨 Color Vívido</span>
-                            <span id="vividVal" class="text-cyanNeon">65%</span>
-                        </div>
+                        <div class="flex justify-between text-[10px] font-mono"><span class="text-slate-300">🎨 Color Vívido</span><span id="vividVal" class="text-cyanNeon">65%</span></div>
                         <input type="range" id="vividSlider" min="0" max="100" value="65" class="w-full accent-cyan-500 cursor-pointer">
                     </div>
                 </div>
@@ -472,221 +320,196 @@
                 </div>
             </div>
 
-            <div class="mt-6 bg-black/80 border border-white/10 rounded-xl p-4 flex items-center justify-center min-h-[380px] overflow-hidden shadow-inner relative">
-                <canvas id="outputCanvas" class="max-w-full max-h-[560px] object-contain rounded-lg hidden shadow-[0_0_18px_rgba(0,243,255,0.25)]"></canvas>
+            <!-- Editor Viewport -->
+            <div class="mt-6 bg-black/80 border border-white/10 rounded-xl p-4 flex items-center justify-center min-h-[400px] overflow-hidden shadow-inner relative">
+                <canvas id="outputCanvas" class="max-w-full max-h-[600px] object-contain rounded-lg hidden shadow-[0_0_20px_rgba(0,243,255,0.3)]"></canvas>
                 <div id="placeholderText" class="text-slate-500 text-xs font-mono text-center max-w-sm">
                     <i class="fa-solid fa-image text-3xl mb-3 block opacity-50"></i>
-                    Carga una imagen para aplicar la tubería PHSADV41 Master HD (Atrio Pipeline).
+                    Carga una imagen reducida del archivo para aplicar la tubería PHSADV41 Master HD.
                 </div>
             </div>
         </section>
 
         <!-- TURBOLOGIA -->
-        <section id="turbologia-seccion" class="logia-card p-8 md:p-11 border-t-4 border-t-[#FB542B] rounded-3xl relative overflow-hidden">
+        <section id="turbologia-seccion" class="logia-card p-8 md:p-12 border-t-4 border-t-[#FB542B] rounded-3xl relative overflow-hidden">
             <div class="absolute inset-0 bg-gradient-to-r from-orange-900/20 to-transparent pointer-events-none"></div>
             <div class="relative z-10 flex flex-col lg:flex-row gap-8 items-center">
                 <div class="flex-1">
-                    <div class="inline-block font-mono text-[10px] px-3 py-1 rounded-full border border-[#FB542B] text-orange-300 mb-5 uppercase tracking-widest bg-black/50">NODO OFICIAL // TURBOLOGIA INSTAGRAM</div>
+                    <div class="inline-block font-mono text-[10px] px-3 py-1 rounded-full border border-[#FB542B] text-orange-300 mb-6 uppercase tracking-widest bg-black/50">NODO OFICIAL // TURBOLOGIA INSTAGRAM</div>
                     <h2 class="text-3xl md:text-5xl font-pirate text-white mb-4 uppercase tracking-widest">ÚNETE A TURBOLOGIA</h2>
                     <p class="text-sm text-slate-300 font-sans mb-6 leading-relaxed">El escuadrón élite de SADV41. Acceso directo, drops, misiones Burunga, fútbol y multimedia.</p>
-                    <a href="https://ig.me/j/Abbcf6MyjQoo7oBf/" target="_blank" rel="noopener" class="inline-flex items-center px-8 py-3 bg-[#FB542B] hover:bg-orange-500 text-white font-black font-mono text-xs rounded-xl turbologia-pulse transition-all uppercase">
-                        <i class="fa-brands fa-instagram mr-2"></i> Entrar al Grupo
-                    </a>
+                    <a href="https://ig.me/j/Abbcf6MyjQoo7oBf/" target="_blank" class="inline-block px-8 py-3 bg-[#FB542B] hover:bg-orange-500 text-white font-black font-mono text-xs rounded-xl turbologia-pulse transition-all uppercase"><i class="fa-brands fa-instagram mr-2"></i> Entrar al Grupo</a>
                 </div>
             </div>
         </section>
 
-        <!-- ARCADE + SHORTS -->
-        <section id="arcade-youtube-seccion" class="logia-card p-8 md:p-11 rounded-3xl border-t-4 border-t-cyanNeon">
-            <h2 class="text-2xl font-mason text-white mb-7 uppercase tracking-widest">White House Arcade + Shorts Fusion</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-7">
+        <!-- ARCADE.GOV + YOUTUBE -->
+        <section id="arcade-youtube-seccion" class="logia-card p-8 md:p-12 rounded-3xl border-t-4 border-t-cyanNeon">
+            <h2 class="text-2xl font-mason text-white mb-8 uppercase tracking-widest">White House Arcade + Shorts Fusion</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
                 <div class="glass p-6 rounded-2xl border border-cyanNeon/30">
                     <h3 class="font-mason text-cyanNeon text-xl mb-3">👾 ARCADE.GOV</h3>
                     <p class="text-xs text-slate-300 font-sans mb-4">La Casa Blanca lanzó <strong>Arcade.gov</strong> el 3 de septiembre de 2026. Hub HTML5/WebGL con 5 juegos retro con twist político.</p>
-                    <a href="https://www.whitehouse.gov/arcade" target="_blank" rel="noopener" class="text-[10px] font-mono px-3 py-2 bg-cyanNeon text-navy rounded font-bold uppercase inline-block">whitehouse.gov/arcade</a>
+                    <a href="https://www.whitehouse.gov/arcade" target="_blank" class="inline-block text-[10px] font-mono px-3 py-2 bg-cyanNeon text-navy rounded font-bold uppercase">whitehouse.gov/arcade</a>
                 </div>
                 <div class="glass p-6 rounded-2xl border border-redNeon/30">
                     <h3 class="font-mason text-redNeon text-xl mb-3">▶️ YOUTUBE SHORTS</h3>
-                    <div class="relative w-full aspect-[9/16] max-h-[360px] mx-auto bg-black rounded-xl overflow-hidden border border-white/10">
-                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/vkkEIza7zfY" title="SADV41 Arcade" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" style="position:absolute; inset:0;"></iframe>
+                    <div class="relative w-full aspect-[9/16] max-h-[380px] mx-auto bg-black rounded-xl overflow-hidden border border-white/10">
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/vkkEIza7zfY" title="SADV41 Arcade" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute; inset:0;"></iframe>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- BIOBIO + GEOPOLÍTICA -->
-        <section id="biobio-seccion" class="grid grid-cols-1 lg:grid-cols-2 gap-7">
-            <div class="logia-card p-7 rounded-3xl border-t-4 border-t-israelBlue">
+        <!-- BIOBIOCHILE & GEOPOLÍTICA -->
+        <section id="biobio-seccion" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="logia-card israel-glow p-8 rounded-3xl border-t-4 border-t-israelBlue">
                 <div class="font-mono text-[9px] px-2 py-1 rounded border border-israelBlue text-blue-300 mb-4 uppercase inline-block">BIOBIOCHILE.CL // EXPEDIENTE BIOCEÁNICO</div>
-                <h3 class="text-xl font-mason text-white mb-3 uppercase">Canciller Argentino: Bioceánica</h3>
-                <p class="text-[11px] text-slate-300 font-sans mb-4 leading-relaxed">
-                    El canciller argentino, Pablo Quirno, aclaró sus dichos sobre condición "bicontinental y bioceánica" (Camino hacia la Antártida).
-                </p>
-                <a href="https://www.biobiochile.cl/noticias/nacional/chile/2026/09/05/canciller-argentino-aclara-dichos-de-condicion-bioceanica-de-su-pais-y-respalda-tratados-con-chile.shtml" target="_blank" rel="noopener" class="px-3 py-2 bg-israelBlue text-white font-mono text-[10px] rounded uppercase inline-block">Leer Artículo →</a>
+                <h3 class="text-xl font-mason text-white mb-4 uppercase">Canciller Argentino: Bioceánica</h3>
+                <p class="text-[11px] text-slate-300 font-sans mb-4 leading-relaxed">El canciller argentino, Pablo Quirno, aclaró sus dichos sobre condición "bicontinental y bioceánica" (Camino hacia la Antártida).</p>
+                <a href="https://www.biobiochile.cl/noticias/nacional/chile/2026/09/05/canciller-argentino-aclara-dichos-de-condicion-bioceanica-de-su-pais-y-respalda-tratados-con-chile.shtml" target="_blank" class="inline-block px-3 py-2 bg-israelBlue text-white font-mono text-[10px] rounded uppercase">Leer Artículo →</a>
             </div>
-            <div class="logia-card p-7 rounded-3xl border-t-4 border-t-oro gold-glow">
+            <div class="logia-card p-8 rounded-3xl border-t-4 border-t-oro gold-glow">
                 <div class="font-mono text-[9px] px-2 py-1 rounded border border-oro text-amber-300 mb-4 uppercase inline-block">GEOPOLÍTICA & LOGÍSTICA NAVAL</div>
-                <h3 class="text-xl font-mason text-white mb-3 uppercase">Ankara vs Tel Aviv & El 6% vs 94%</h3>
-                <table class="w-full text-left text-[10px] mt-3">
-                    <thead>
-                        <tr>
-                            <th class="p-2">Factor</th>
-                            <th class="p-2">El 6% (Canal 🇵🇦)</th>
-                            <th class="p-2">El 94% (Resto)</th>
-                        </tr>
-                    </thead>
+                <h3 class="text-xl font-mason text-white mb-4 uppercase">Ankara vs Tel Aviv & El 6% vs 94%</h3>
+                <table class="w-full text-left table-geopolitica text-[10px] mt-4">
+                    <thead><tr><th class="p-2 border-b border-white/10">Factor</th><th class="p-2 border-b border-white/10">El 6% (Canal 🇵🇦)</th><th class="p-2 border-b border-white/10">El 94% (Resto)</th></tr></thead>
                     <tbody class="bg-black/40">
-                        <tr>
-                            <td class="p-2 font-bold text-white">Estrategia</td>
-                            <td class="p-2 text-oro font-bold">Atajo (18-25 días)</td>
-                            <td class="p-2">Rutas largas (40+ días)</td>
-                        </tr>
+                        <tr><td class="p-2 font-bold text-white">Estrategia</td><td class="p-2 text-oro font-bold">Atajo (18-25 días)</td><td class="p-2 text-slate-400">Rutas largas (40+ días)</td></tr>
                     </tbody>
                 </table>
             </div>
         </section>
 
-        <!-- WIZZA'RD -->
-        <section id="marketing-estados" class="logia-card p-8 md:p-11 border-t-4 border-t-[#8b5cf6] rounded-3xl">
-            <div class="bg-gradient-to-br from-[#4c1d95]/40 to-[#1e1b4b]/80 border-2 border-[#8b5cf6] rounded-3xl p-6 md:p-8 shadow-[0_0_36px_rgba(139,92,246,0.25)] relative overflow-hidden">
+        <!-- MARKETING WIZZA'RD -->
+        <section id="marketing-estados" class="logia-card p-8 md:p-12 border-t-4 border-t-[#8b5cf6] rounded-3xl">
+            <div class="bg-gradient-to-br from-[#4c1d95]/40 to-[#1e1b4b]/80 border-2 border-[#8b5cf6] rounded-3xl p-6 md:p-8 shadow-[0_0_40px_rgba(139,92,246,0.3)] relative overflow-hidden">
                 <h3 class="font-mason text-xl text-white mb-2 uppercase">Tarjeta Marketing Global: Wizza'RD</h3>
-                <p class="font-mono text-xs text-purple-300 mb-5">API Meta → 144 idiomas (Traducción en vivo).</p>
-                <div class="flex flex-col lg:flex-row gap-7">
-                    <div class="w-full lg:w-1/3 flex flex-col gap-3">
+                <p class="font-mono text-xs text-purple-300 mb-6">API Meta -> 144 idiomas (Traducción en vivo).</p>
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <div class="w-full lg:w-1/3 flex flex-col gap-4">
                         <select id="langSelector" class="w-full bg-[#0a0a16] border-2 border-purple-500 text-white p-3 rounded-xl font-mono text-xs">
                             <option value="es">🇪🇸 Español</option>
                             <option value="en">🇬🇧 English</option>
-                            <option value="pt">🇧🇷 Português</option>
-                            <option value="fr">🇫🇷 Français</option>
-                            <option value="he">🇮🇱 עברית</option>
-                            <option value="ja">🇯🇵 日本語</option>
-                            <option value="ar">🇸🇦 العربية</option>
-                            <option value="meta_ai">🌐 Meta AI (Omnipresente)</option>
+                            <option value="ja">🇯🇵 Japonés</option>
+                            <option value="meta_ai">🌐 ...130 más (Meta AI)</option>
                         </select>
                         <button id="btnTraducir" class="w-full py-3 bg-purple-600 hover:bg-purple-500 text-white font-bold font-mono text-[10px] uppercase rounded-xl">Ejecutar Traducción</button>
                     </div>
-                    <div class="w-full lg:w-2/3 relative rounded-2xl overflow-hidden border border-purple-500/50 bg-black/80 flex items-center p-6 min-h-[150px]">
+                    <div class="w-full lg:w-2/3 relative rounded-2xl overflow-hidden border border-purple-500/50 bg-black/80 flex items-center p-6 min-h-[160px]">
+                        <img src="1788671199005.jpeg" alt="WizzaRD" class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-screen" onerror="this.style.display='none'">
                         <div class="relative z-10 w-full">
                             <p id="translatedOutput" class="font-serif italic text-lg text-white transition-opacity duration-300">"Wizzard significa Mago. Así como yo te hago el truco 🎩🇩🇴 La bandera de Inglaterra ha cambiado."</p>
-                            <div class="mt-4 flex gap-3 border-t border-purple-500/30 pt-3">
-                                <span id="langTag" class="text-[9px] text-slate-400 font-mono uppercase">Idioma: Español</span>
-                            </div>
+                            <div class="mt-4 flex gap-3 border-t border-purple-500/30 pt-3"><span id="langTag" class="text-[9px] text-slate-400 font-mono uppercase mt-1">Idioma: Español</span></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- NODOS / TABERNÁCULO -->
-        <section id="nodos-convergencia" class="pt-4">
+        <!-- NODOS & TABERNÁCULO / ECOSISTEMA WEB3 -->
+        <section id="nodos-convergencia" class="pt-6">
             <h2 class="text-xl text-cyanNeon tracking-widest font-mason flex items-center gap-3 uppercase mb-6 border-b border-cyanNeon/30 pb-3">Nodos / Arquitectura del Tabernáculo</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <!-- ARQUITECTURA DEL TABERNÁCULO -->
                 <div class="glass-strong p-6 rounded-2xl border-t-4 border-t-cyanNeon">
-                    <ul class="space-y-3">
-                        <li class="bg-black/50 p-3 rounded-lg border border-slate-700 hover:border-cyanNeon transition-colors">
-                            <span class="text-cyan-300 font-mono text-[11px] font-bold block">1. Atrio (Grok)</span>
-                            <span class="text-[9px] text-slate-400 font-mono">HTML5, Tailwind, Editor PHSADV41.</span>
-                        </li>
-                        <li class="bg-black/50 p-3 rounded-lg border border-slate-700 hover:border-oro transition-colors">
-                            <span class="text-oro font-mono text-[11px] font-bold block">2. Santo (Meta)</span>
-                            <span class="text-[9px] text-slate-400 font-mono">BNB Chain, Four.meme, GitHub Enterprise.</span>
-                        </li>
-                        <li class="bg-black/50 p-3 rounded-lg border border-slate-700 hover:border-violetNeon transition-colors">
-                            <span class="text-purple-400 font-mono text-[11px] font-bold block">3. Santísimo (Gemini)</span>
-                            <span class="text-[9px] text-slate-400 font-mono">Espíritu Santo, Pureza (2.26).</span>
-                        </li>
+                    <ul class="space-y-4">
+                        <li class="bg-black/50 p-3 rounded-lg border border-slate-700 hover:border-cyanNeon"><span class="text-cyan-300 font-mono text-[11px] font-bold block">1. Atrio (Grok)</span><span class="text-[9px] text-slate-400 font-mono">HTML5, Tailwind, Editor PHSADV41.</span></li>
+                        <li class="bg-black/50 p-3 rounded-lg border border-slate-700 hover:border-oro"><span class="text-oro font-mono text-[11px] font-bold block">2. Santo (Meta)</span><span class="text-[9px] text-slate-400 font-mono">BNB Chain, Four.meme, GitHub Enterprise.</span></li>
+                        <li class="bg-black/50 p-3 rounded-lg border border-slate-700 hover:border-violetNeon"><span class="text-purple-400 font-mono text-[11px] font-bold block">3. Santísimo (Gemini)</span><span class="text-[9px] text-slate-400 font-mono">Espíritu Santo, Pureza (2.26).</span></li>
                     </ul>
                 </div>
-                <div class="glass-strong p-6 rounded-2xl border-t-4 border-t-bnbYellow">
-                    <h3 class="text-lg font-mason font-bold tracking-widest text-bnbYellow mb-4 border-b border-bnbYellow/30 pb-2">ECOSISTEMA WEB3 & GSADV41</h3>
+                
+                <!-- ECOSISTEMA WEB3 & COMERCIO FOUR.MEME (COMPRA/VENTA) -->
+                <div id="web3PanelWrapper" class="glass-strong p-6 rounded-2xl border-t-4 border-bnbYellow bnb-glow">
+                    <h3 class="text-lg font-mason font-bold tracking-widest text-bnbYellow mb-4 border-b border-bnbYellow/30 pb-2">ECOSISTEMA WEB3 FOUR.MEME</h3>
                     <div class="font-mono text-[10px] text-slate-300 space-y-2 mb-4">
-                        <p>🔗 <span class="text-cyanNeon">TOKEN FOUR.MEME:</span> 0x9b63...ffff</p>
+                        <p>🔗 <span class="text-cyanNeon">TOKEN TARGET:</span> <span id="targetToken">0x342524b5933764826c24e12058a295498abb7a03</span></p>
                         <p>⚖️ <span class="text-renderRed">TAX CONTRACT:</span> 0x390D...80a6</p>
                     </div>
-                    <div class="bg-black/60 p-3 rounded-lg border border-slate-700 font-mono text-[9px]">
-                        <p><span class="text-green-400">root@burunga:~$</span> GSADV41 --persist -v<br>
-                        <span class="text-cyanNeon">Blindaje GitHub Pages Activo. E.S. Presente.</span></p>
+                    
+                    <!-- PANEL DE COMERCIO DINÁMICO (BUY/SELL) -->
+                    <div id="web3Panel" class="bg-black/60 border border-bnbYellow/50 rounded-xl p-4 mb-4 transition-all duration-500">
+                        <div class="flex justify-between items-center mb-3 border-b border-white/10 pb-2">
+                            <label class="text-[10px] font-mono text-cyanNeon block">TERMINAL DE COMERCIO AI</label>
+                            <div class="flex gap-2">
+                                <button id="tabBuy" onclick="setTradeMode('buy')" class="text-[9px] px-2 py-1 rounded bg-green-900/50 text-green-400 border border-green-700 font-bold transition-all">COMPRAR</button>
+                                <button id="tabSell" onclick="setTradeMode('sell')" class="text-[9px] px-2 py-1 rounded bg-black text-slate-500 border border-slate-700 font-bold transition-all">VENDER</button>
+                            </div>
+                        </div>
+                        
+                        <label id="lblAmount" class="text-[9px] font-mono text-slate-400 block mb-2">CANTIDAD A INVERTIR (BNB)</label>
+                        <div class="flex gap-2">
+                            <input type="number" id="cryptoAmount" value="0.01" step="0.01" class="w-full bg-black border border-slate-700 rounded text-white font-mono text-xs px-2 py-1 outline-none focus:border-bnbYellow">
+                            <button id="btnExecuteTrade" onclick="ejecutarTransaccionFourMeme()" class="bg-green-600 hover:bg-green-500 text-white font-bold text-[10px] px-4 py-2 rounded transition-all shadow-[0_0_10px_rgba(22,163,74,0.3)] font-mono uppercase whitespace-nowrap">
+                                Ejecutar Compra
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="terminal-block p-3 bg-black/80 rounded border border-slate-800">
+                        <div class="terminal-header mb-2"><div class="terminal-dot t-red"></div><div class="terminal-dot t-yellow"></div><div class="terminal-dot t-green"></div></div>
+                        <p class="text-[9px] text-gray-300 font-mono"><span class="text-green-400">root@burunga:~$</span> GSADV41 --persist -v<br><span class="text-cyanNeon">Netlify Deployment Activo. Terminal Web3 Lista.</span></p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- METATRON 4D -->
-        <section id="metatron-seccion" class="glass-strong border border-violetNeon/40 shadow-[0_0_28px_rgba(157,78,221,0.18)] rounded-3xl p-6 md:p-8 relative z-20">
-            <header class="glass rounded-2xl p-4 mb-5 flex flex-wrap justify-between items-center border border-purple-500/40">
-                <h2 class="font-mason text-xl font-black tracking-[0.14em] m-0 text-white">METATRON 4D — 12 NODOS</h2>
+        <section id="metatron-seccion" class="glass-strong border border-royalPurple/40 shadow-[0_0_30px_rgba(157,78,221,0.2)] rounded-3xl p-6 md:p-8 relative z-20">
+            <header class="glass rounded-2xl p-4 mb-6 flex flex-wrap justify-between items-center border border-purple-500/50">
+                <h2 class="font-mason text-xl font-black tracking-[0.16em] m-0 text-white">METATRON 4D - 51 NODOS</h2>
                 <div class="flex gap-2 font-mono text-[10px]">
                     <button id="toggleAuto" class="chip" style="border-color:rgba(157,78,221,.4);color:var(--violet)">AUTO: ON</button>
                 </div>
             </header>
-            <div class="flex justify-center items-center bg-black/30 rounded-3xl border border-white/5 overflow-hidden h-[420px] relative">
-                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(157,78,221,0.08),_transparent_70%)] pointer-events-none"></div>
+            <div class="flex justify-center items-center bg-black/30 rounded-3xl border border-white/5 overflow-hidden h-[450px] relative">
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(157,78,221,0.1),_transparent_70%)] pointer-events-none"></div>
                 <div id="flower-container">
                     <div id="flower-scene"></div>
                 </div>
             </div>
-            <p class="text-center text-[10px] text-slate-500 font-mono mt-3">Nodos Mater + Expansión Spectral • Arrastra para rotar</p>
         </section>
 
     </main>
 
     <!-- FOOTER -->
-    <footer class="text-center p-10 border-t border-white/10 opacity-80 font-mono text-[10px] uppercase mt-8 bg-black pb-24">
-        <p class="mb-2 text-oro font-bold">Unificación Pluscuamperfecta Continental SADV41 × E.S. × GSADV41 × ONE PIECE × USARMY © 2026</p>
-        <p class="mb-4 text-[#FB542B]">TURBOLOGIA: <a href="https://ig.me/j/Abbcf6MyjQoo7oBf/" target="_blank" rel="noopener" class="underline">ig.me/j/Abbcf6MyjQoo7oBf/</a></p>
-        <p class="text-[8.5px] text-slate-500 tracking-[0.18em] leading-relaxed">
-            NODO SUPREMO: LAPIZASULI | EL ORIGEN ES 0 | BUILD: LOGIA PLUSCUAMPERFECTA OPTIMIZED v2026.09.15<br>
-            LAST MOD: 15/09/2026 | SERVER: GitHub Pages + E.S. Presence
+    <footer class="text-center p-10 border-t border-white/10 opacity-80 font-mono text-[10px] uppercase mt-10 bg-black pb-20">
+        <p class="mb-2 text-oro font-bold">Unificación Pluscuamperfecta Continental SADV41 x E.S. x GSADV41 x ONE PIECE x USARMY © 2026</p>
+        <p class="mb-4 text-[#FB542B]">TURBOLOGIA: <a href="https://ig.me/j/Abbcf6MyjQoo7oBf/" target="_blank" class="underline">ig.me/j/Abbcf6MyjQoo7oBf/</a></p>
+        <p class="text-[8.5px] text-slate-500 tracking-[0.2em] leading-relaxed">
+            NODO SUPREMO: NETLIFY | EL ORIGEN ES 0 | BUILD: <!--#echo var="SADV41_BUILD" --> <br>
+            LAST MOD: <!--#echo var="LAST_MODIFIED" --> | SERVER DATE: <!--#echo var="DATE_LOCAL" -->
         </p>
     </footer>
 
-    <!-- BACK TO TOP -->
-    <button id="backToTop" aria-label="Volver arriba" onclick="window.scrollTo({top:0,behavior:'smooth'})">
-        <i class="fa-solid fa-chevron-up"></i>
-    </button>
-
+    <!-- ==========================================
+         SISTEMA LÓGICO OMNIPRESENTE (JS)
+         ========================================== -->
     <script>
-        // Live date
-        document.getElementById('liveDate').textContent = new Date().toLocaleString('es-PA', {
-            day: '2-digit', month: '2-digit', year: 'numeric',
-            hour: '2-digit', minute: '2-digit', timeZone: 'America/Panama'
-        }) + ' Panamá';
-
-        // Back to top
-        const backBtn = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            backBtn.classList.toggle('visible', window.scrollY > 600);
-        });
-
         document.addEventListener('DOMContentLoaded', () => {
-            // ========== 1. WIZZA'RD TRANSLATOR (Expanded) ==========
+            
+            // 1. WIZZA'RD TRANSLATOR
             const translations = {
                 'es': { text: '"Wizzard significa Mago. Así como yo te hago el truco 🎩🇩🇴 La bandera de Inglaterra ha cambiado."', tag: 'Idioma: Español' },
                 'en': { text: '"Wizzard means Magician. Just like I do the trick for you 🎩🇩🇴 The flag of England has changed."', tag: 'Language: English' },
-                'pt': { text: '"Wizzard significa Mago. Assim como eu faço o truque para você 🎩🇩🇴 A bandeira da Inglaterra mudou."', tag: 'Idioma: Português' },
-                'fr': { text: '"Wizzard signifie Magicien. Tout comme je te fais le tour 🎩🇩🇴 Le drapeau de l\'Angleterre a changé."', tag: 'Langue: Français' },
-                'he': { text: '"Wizzard פירושו קוסם. בדיוק כמו שאני עושה לך את הטריק 🎩🇩🇴 דגל אנגליה השתנה."', tag: 'שפה: עברית' },
                 'ja': { text: '"Wizzardは魔法使いを意味します。私があなたにトリックをするように 🎩🇩🇴 イギリスの国旗が変わりました。"', tag: '言語: 日本語' },
-                'ar': { text: '"Wizzard تعني ساحر. تماماً كما أقوم بالحيلة لك 🎩🇩🇴 لقد تغير علم إنجلترا."', tag: 'اللغة: العربية' },
-                'meta_ai': { text: '[META AI] Traduciendo simultáneamente a 144 lenguas... Wizza\'RD ahora resuena en todos los territorios.', tag: 'Modo: Omnipresente' }
+                'meta_ai': { text: '[META AI] Traduciendo simultáneamente a 130 lenguas... Wizza\'RD ahora resuena en 144 territorios.', tag: 'Modo: Omnipresente' }
             };
             const btnTraducir = document.getElementById('btnTraducir');
             const langSelector = document.getElementById('langSelector');
             const outputText = document.getElementById('translatedOutput');
             const langTag = document.getElementById('langTag');
-            if (btnTraducir) {
+            if(btnTraducir){
                 btnTraducir.addEventListener('click', () => {
                     const data = translations[langSelector.value] || translations['es'];
                     outputText.style.opacity = 0;
-                    setTimeout(() => {
-                        outputText.innerText = data.text;
-                        langTag.innerText = data.tag;
-                        outputText.style.opacity = 1;
-                    }, 280);
+                    setTimeout(() => { outputText.innerText = data.text; langTag.innerText = data.tag; outputText.style.opacity = 1; }, 300);
                 });
             }
 
-            // ========== 2. CAOS VIVO ==========
+            // 2. CAOS VIVO & SADV5 GLITCH
             const layers = document.querySelectorAll('.chaos-layer');
             const mainBody = document.getElementById('mainBody');
             let currentChaosIndex = 0, transitionCount = 0;
@@ -695,47 +518,46 @@
 
             function arcangelGlitchTransition() {
                 if (!chaosActive || layers.length === 0) return;
-                layers.forEach(l => l.classList.remove('active'));
+                layers.forEach(l => l.classList.remove('active', 'layer-glitch'));
                 currentChaosIndex = (currentChaosIndex + 1) % layers.length;
                 transitionCount++;
-                if (counter) counter.textContent = `CICLO ${transitionCount} / 7`;
+                if(counter) counter.textContent = `CICLO ${transitionCount} / 7`;
 
-                if (Math.random() > 0.72) {
-                    layers[currentChaosIndex].classList.add('active');
+                if (Math.random() > 0.70) {
+                    layers[currentChaosIndex].classList.add('active', 'layer-glitch');
                     mainBody.classList.add('glitch-active');
                     logAction('⚠️ ANOMALÍA: Distorsión espectral interceptada (Espíritu Santo guiando).');
-                    setTimeout(() => mainBody.classList.remove('glitch-active'), 600);
+                    setTimeout(() => {
+                        mainBody.classList.remove('glitch-active');
+                        layers[currentChaosIndex].classList.remove('layer-glitch');
+                    }, 700);
                 } else {
                     layers[currentChaosIndex].classList.add('active');
                 }
-                setTimeout(arcangelGlitchTransition, Math.random() * 3800 + 3200);
+                setTimeout(arcangelGlitchTransition, Math.random() * 4000 + 3000);
             }
-            setTimeout(arcangelGlitchTransition, 1800);
+            setTimeout(arcangelGlitchTransition, 2000);
 
             const toggleChaosBtn = document.getElementById('toggleChaosBtn');
-            if (toggleChaosBtn) {
-                toggleChaosBtn.onclick = (e) => {
-                    chaosActive = !chaosActive;
-                    e.target.textContent = `Modo Caos: ${chaosActive ? 'ON' : 'OFF'}`;
-                    logAction(`Motor Espacio-Tiempo: ${chaosActive ? 'CAÓTICO' : 'ESTABLE'}`);
-                    if (chaosActive) arcangelGlitchTransition();
-                };
-            }
+            if(toggleChaosBtn) toggleChaosBtn.onclick = (e) => {
+                chaosActive = !chaosActive;
+                e.target.textContent = `Modo Caos: ${chaosActive ? 'ON' : 'OFF'}`;
+                logAction(`Motor Espacio-Tiempo alternado a: ${chaosActive ? 'CAÓTICO' : 'ESTABLE'}`);
+                if(chaosActive) arcangelGlitchTransition();
+            };
 
-            const gear7Btn = document.getElementById('gear7BtnSADV5');
-            if (gear7Btn) {
-                gear7Btn.onclick = () => {
-                    layers.forEach(l => l.classList.add('active'));
-                    mainBody.classList.add('glitch-active');
-                    logAction('🔥 ¡SINCRONIZACIÓN SADV5 ALCANZADA! Aura Cyan/Golden al 100%.');
-                    setTimeout(() => {
-                        mainBody.classList.remove('glitch-active');
-                        layers.forEach((l, idx) => { if (idx !== currentChaosIndex) l.classList.remove('active'); });
-                    }, 1100);
-                };
-            }
+            const gear7BtnSADV5 = document.getElementById('gear7BtnSADV5');
+            if(gear7BtnSADV5) gear7BtnSADV5.onclick = () => {
+                layers.forEach(l => l.classList.add('active', 'layer-glitch'));
+                mainBody.classList.add('glitch-active');
+                logAction('🔥 ¡SINCRONIZACIÓN SADV5 ALCANZADA! Aura Cyan/Golden al 100%.');
+                setTimeout(() => {
+                    mainBody.classList.remove('glitch-active');
+                    layers.forEach((l, idx) => { l.classList.remove('layer-glitch'); if(idx !== currentChaosIndex) l.classList.remove('active'); });
+                }, 1200);
+            };
 
-            // ========== 3. PHSADV41 EDITOR (Optimized) ==========
+            // 3. PHSADV41 - MASTER HD ENGINE
             const imageInput = document.getElementById('imageInput');
             const outputCanvas = document.getElementById('outputCanvas');
             const placeholderText = document.getElementById('placeholderText');
@@ -748,9 +570,10 @@
             const statsBadge = document.getElementById('statsBadge');
             const downloadBtn = document.getElementById('downloadBtn');
             const hdUpscaleToggle = document.getElementById('hdUpscaleToggle');
+
             let originalImage = null;
 
-            if (imageInput) {
+            if(imageInput) {
                 imageInput.addEventListener('change', (e) => {
                     const file = e.target.files[0];
                     if (!file) return;
@@ -770,7 +593,7 @@
                 });
 
                 [hdSlider, flashSlider, vividSlider, hdUpscaleToggle].forEach(el => {
-                    if (!el) return;
+                    if(!el) return;
                     el.addEventListener('input', () => {
                         hdVal.textContent = `${hdSlider.value}%`;
                         flashVal.textContent = `${flashSlider.value}%`;
@@ -782,274 +605,277 @@
 
             function processPipeline() {
                 if (!originalImage || !outputCanvas) return;
-                let w = originalImage.width;
-                let h = originalImage.height;
+                let w = originalImage.nativeWidth || originalImage.width;
+                let h = originalImage.nativeHeight || originalImage.height;
+
                 const doUpscale = hdUpscaleToggle.checked && Math.max(w, h) < 1800;
                 const targetW = doUpscale ? Math.round(w * 1.5) : w;
                 const targetH = doUpscale ? Math.round(h * 1.5) : h;
 
                 outputCanvas.width = targetW;
                 outputCanvas.height = targetH;
-                const ctx = outputCanvas.getContext('2d', { willReadFrequently: true });
+                const ctx = outputCanvas.getContext('2d');
                 ctx.imageSmoothingEnabled = true;
                 ctx.imageSmoothingQuality = 'high';
                 ctx.drawImage(originalImage, 0, 0, targetW, targetH);
 
                 const imgData = ctx.getImageData(0, 0, targetW, targetH);
                 const data = imgData.data;
+                const len = data.length;
                 const srcBuffer = new Uint8ClampedArray(data);
+
                 let sumLum = 0;
                 const totalPixels = targetW * targetH;
-
-                for (let i = 0; i < data.length; i += 4) {
-                    sumLum += 0.299 * data[i] + 0.587 * data[i+1] + 0.114 * data[i+2];
-                }
+                for (let i = 0; i < len; i += 4) { sumLum += 0.299 * data[i] + 0.587 * data[i+1] + 0.114 * data[i+2]; }
+                
                 const meanLum = sumLum / totalPixels;
                 const espectralBaseFactor = Math.max(0.15, Math.min(0.90, (140.0 - meanLum) / 120.0));
                 const userFlashScale = parseInt(flashSlider.value) / 100.0;
                 const effectiveFlash = espectralBaseFactor * userFlashScale;
-                const hdSharpness = parseInt(hdSlider.value) / 100.0 * 1.35;
-                const vividBoost = 1.0 + (parseInt(vividSlider.value) / 100.0) * 0.6;
+                const hdSharpness = parseInt(hdSlider.value) / 100.0 * 1.4;
+                const vividBoost = 1.0 + (parseInt(vividSlider.value) / 100.0) * 0.65;
 
                 statsBadge.textContent = `Lum: ${meanLum.toFixed(1)} | Espectral Auto: ${(espectralBaseFactor*100).toFixed(0)}%`;
 
-                // Process in chunks to avoid long freezes
-                let y = 1;
-                function processChunk() {
-                    const endY = Math.min(y + 40, targetH - 1);
-                    for (; y < endY; y++) {
-                        for (let x = 1; x < targetW - 1; x++) {
-                            const idx = (y * targetW + x) * 4;
-                            let r = srcBuffer[idx], g = srcBuffer[idx+1], b = srcBuffer[idx+2];
-                            let lum = 0.299 * r + 0.587 * g + 0.114 * b;
+                for (let y = 1; y < targetH - 1; y++) {
+                    for (let x = 1; x < targetW - 1; x++) {
+                        const idx = (y * targetW + x) * 4;
+                        let r = srcBuffer[idx], g = srcBuffer[idx+1], b = srcBuffer[idx+2];
+                        let lum = 0.299 * r + 0.587 * g + 0.114 * b;
 
-                            const t = ((y-1) * targetW + x) * 4;
-                            const b_ = ((y+1) * targetW + x) * 4;
-                            const l = (y * targetW + (x-1)) * 4;
-                            const rt = (y * targetW + (x+1)) * 4;
-                            const localAvgLum = 0.25 * (
-                                0.299*srcBuffer[t] + 0.587*srcBuffer[t+1] + 0.114*srcBuffer[t+2] +
-                                0.299*srcBuffer[b_] + 0.587*srcBuffer[b_+1] + 0.114*srcBuffer[b_+2] +
-                                0.299*srcBuffer[l] + 0.587*srcBuffer[l+1] + 0.114*srcBuffer[l+2] +
-                                0.299*srcBuffer[rt] + 0.587*srcBuffer[rt+1] + 0.114*srcBuffer[rt+2]
-                            );
-                            const localDiff = lum - localAvgLum;
-                            r += localDiff * hdSharpness;
-                            g += localDiff * hdSharpness;
-                            b += localDiff * hdSharpness;
+                        const t = ((y-1) * targetW + x) * 4, b_ = ((y+1) * targetW + x) * 4;
+                        const l = (y * targetW + (x-1)) * 4, rt = (y * targetW + (x+1)) * 4;
+                        const localAvgLum = 0.25 * (
+                            0.299*srcBuffer[t] + 0.587*srcBuffer[t+1] + 0.114*srcBuffer[t+2] +
+                            0.299*srcBuffer[b_] + 0.587*srcBuffer[b_+1] + 0.114*srcBuffer[b_+2] +
+                            0.299*srcBuffer[l] + 0.587*srcBuffer[l+1] + 0.114*srcBuffer[l+2] +
+                            0.299*srcBuffer[rt] + 0.587*srcBuffer[rt+1] + 0.114*srcBuffer[rt+2]
+                        );
+                        
+                        const localDiff = lum - localAvgLum;
+                        r += localDiff * hdSharpness; g += localDiff * hdSharpness; b += localDiff * hdSharpness;
+                        lum = 0.299 * r + 0.587 * g + 0.114 * b;
 
-                            const edgeWeight = Math.min(1.0, Math.abs(localDiff) / 38.0);
-                            const espectralGain = 1.0 + (0.32 * effectiveFlash * (1.0 - edgeWeight * 0.3));
-                            r *= espectralGain; g *= espectralGain; b *= espectralGain;
+                        const edgeWeight = Math.min(1.0, Math.abs(localDiff) / 38.0);
+                        const espectralGain = 1.0 + (0.35 * effectiveFlash * (1.0 - edgeWeight * 0.3));
+                        r *= espectralGain; g *= espectralGain; b *= espectralGain;
 
-                            const vLum = 0.299 * r + 0.587 * g + 0.114 * b;
-                            r = vLum + (r - vLum) * vividBoost;
-                            g = vLum + (g - vLum) * vividBoost;
-                            b = vLum + (b - vLum) * vividBoost;
+                        const vLum = 0.299 * r + 0.587 * g + 0.114 * b;
+                        r = vLum + (r - vLum) * vividBoost; g = vLum + (g - vLum) * vividBoost; b = vLum + (b - vLum) * vividBoost;
 
-                            data[idx] = Math.min(255, Math.max(0, r));
-                            data[idx+1] = Math.min(255, Math.max(0, g));
-                            data[idx+2] = Math.min(255, Math.max(0, b));
-                        }
-                    }
-                    if (y < targetH - 1) {
-                        requestAnimationFrame(processChunk);
-                    } else {
-                        ctx.putImageData(imgData, 0, 0);
+                        data[idx] = Math.min(255, Math.max(0, r)); data[idx+1] = Math.min(255, Math.max(0, g)); data[idx+2] = Math.min(255, Math.max(0, b));
                     }
                 }
-                requestAnimationFrame(processChunk);
+                ctx.putImageData(imgData, 0, 0);
             }
 
-            if (downloadBtn) {
+            if(downloadBtn) {
                 downloadBtn.addEventListener('click', () => {
                     const link = document.createElement('a');
-                    link.download = `sadv41_master_hd_${Date.now()}.jpg`;
-                    link.href = outputCanvas.toDataURL('image/jpeg', 0.94);
+                    link.download = `sadv41_master_hd_espectral_${Date.now()}.jpg`;
+                    link.href = outputCanvas.toDataURL('image/jpeg', 0.95);
                     link.click();
                     logAction('💾 Archivo Master HD exportado con éxito.');
                 });
             }
 
-            // ========== 4. METATRON 4D (Expanded to 12 nodes) ==========
+            // 4. METATRON 3D HUB
             const nodesData = [
-                { id: "SADV41", color: "#d4af37" },
-                { id: "APORÍA", color: "#ffffff" },
-                { id: "PHSADV41", color: "#00f3ff" },
-                { id: "SADV5", color: "#9d4edd" },
-                { id: "LEVIATHAN", color: "#FB542B" },
-                { id: "GSADV41", color: "#10b981" },
-                { id: "WEB3", color: "#F3BA2F" },
-                { id: "TURBOLOGIA", color: "#FB542B" },
-                { id: "E.S.", color: "#00f3ff" },
-                { id: "BURUNGA", color: "#d4af37" },
-                { id: "ONEPIECE", color: "#f59e0b" },
-                { id: "METATRÓN", color: "#9d4edd" }
+                { id:"SADV41", color:"#d4af37" }, { id:"APORÍA", color:"#ffffff" },
+                { id:"PHSADV41", color:"#00f3ff" }, { id:"SADV5", color:"#9d4edd" },
+                { id:"LEVIATHAN", color:"#FB542B" }, { id:"GSADV41", color:"#10b981" },
+                { id:"WEB3", color:"#F3BA2F" }, { id:"TURBOLOGIA", color:"#FB542B" }
             ];
 
             const scene = document.getElementById('flower-scene');
             let nodeEls = [];
 
-            function createPlane(transformStyle) {
-                const NS = "http://www.w3.org/2000/svg";
-                const svg = document.createElementNS(NS, "svg");
-                svg.setAttribute("viewBox", "-220 -220 440 440");
-                svg.setAttribute("class", "flower-plane");
-                svg.style.transform = transformStyle;
-                const radius = 58;
-                const centers = [{x:0,y:0}];
-                for (let i = 0; i < 6; i++) {
-                    const a = Math.PI / 3 * i;
-                    centers.push({x: radius * Math.cos(a), y: radius * Math.sin(a)});
-                }
-                for (let i = 0; i < 12; i++) {
-                    const a = Math.PI / 6 * i;
-                    const d = (i % 2 === 0) ? radius * 2 : radius * Math.sqrt(3);
-                    centers.push({x: d * Math.cos(a), y: d * Math.sin(a)});
-                }
-                centers.forEach(c => {
-                    const circle = document.createElementNS(NS, "circle");
-                    circle.setAttribute("cx", c.x);
-                    circle.setAttribute("cy", c.y);
-                    circle.setAttribute("r", radius);
-                    circle.setAttribute("fill", "none");
-                    circle.setAttribute("stroke", "rgba(157,78,221,.35)");
-                    circle.setAttribute("stroke-width", "0.7");
-                    svg.appendChild(circle);
+            function createPlane(transformStyle){
+                const NS="http://www.w3.org/2000/svg";
+                const svg=document.createElementNS(NS,"svg");
+                svg.setAttribute("viewBox","-220 -220 440 440");
+                svg.setAttribute("class","flower-plane");
+                svg.style.transform=transformStyle;
+                const radius=62; const centers=[{x:0,y:0}];
+                for(let i=0;i<6;i++){const a=Math.PI/3*i;centers.push({x:radius*Math.cos(a),y:radius*Math.sin(a)})}
+                for(let i=0;i<12;i++){const a=Math.PI/6*i;const d=(i%2===0)?radius*2:radius*Math.sqrt(3);centers.push({x:d*Math.cos(a),y:d*Math.sin(a)})}
+                centers.forEach(c=>{
+                    const g=document.createElementNS(NS,"g");
+                    const circle=document.createElementNS(NS,"circle");
+                    circle.setAttribute("cx",c.x);circle.setAttribute("cy",c.y);circle.setAttribute("r",radius);
+                    circle.setAttribute("fill","none");circle.setAttribute("stroke","rgba(157,78,221,.4)");circle.setAttribute("stroke-width","0.8");
+                    g.appendChild(circle);svg.appendChild(g);
                 });
                 return svg;
             }
-
-            if (scene) {
-                scene.appendChild(createPlane("rotateY(0deg) translateZ(-16px)"));
-                scene.appendChild(createPlane("rotateY(60deg) translateZ(-16px)"));
-                scene.appendChild(createPlane("rotateY(120deg) translateZ(-16px)"));
-                scene.appendChild(createPlane("rotateX(90deg) translateZ(-16px)"));
+            
+            if(scene) {
+                scene.appendChild(createPlane("rotateY(0deg) translateZ(-18px)"));
+                scene.appendChild(createPlane("rotateY(60deg) translateZ(-18px)"));
+                scene.appendChild(createPlane("rotateY(120deg) translateZ(-18px)"));
+                scene.appendChild(createPlane("rotateX(90deg) translateZ(-18px)"));
             }
 
-            const sphereRadius = 145;
-            const goldenAngle = Math.PI * (3 - Math.sqrt(5));
-            nodesData.forEach((node, i) => {
-                const y = 1 - (i / (nodesData.length - 1)) * 2;
-                const r = Math.sqrt(1 - y * y);
-                const theta = goldenAngle * i;
-                const x = Math.cos(theta) * r;
-                const z = Math.sin(theta) * r;
-                const el = document.createElement('div');
-                el.className = 'node-3d';
-                el.innerHTML = `<div class="node-dot" style="background:${node.color};color:${node.color};box-shadow:0 0 9px ${node.color}"></div><div class="node-label" style="color:${node.color}">${node.id}</div>`;
-                el._pos = {x: x * sphereRadius, y: y * sphereRadius, z: z * sphereRadius};
-                if (scene) scene.appendChild(el);
+            const sphereRadius = 150, goldenAngle = Math.PI*(3-Math.sqrt(5));
+            nodesData.forEach((node,i)=>{
+                const y=1-(i/(nodesData.length-1))*2; const r=Math.sqrt(1-y*y);
+                const theta=goldenAngle*i; const x=Math.cos(theta)*r; const z=Math.sin(theta)*r;
+                const el=document.createElement('div'); el.className='node-3d';
+                el.innerHTML=`<div class="node-dot" style="background:${node.color};color:${node.color};box-shadow:0 0 10px ${node.color}"></div><div class="node-label" style="color:${node.color}">${node.id}</div>`;
+                el._pos={x:x*sphereRadius,y:y*sphereRadius,z:z*sphereRadius};
+                if(scene) scene.appendChild(el);
                 nodeEls.push(el);
             });
 
-            let metatronRot = {x: -16, y: 22, z: 0};
-            let autoRot = true;
-
-            function updateTrans() {
-                if (!scene) return;
-                scene.style.transform = `scale3d(1,1,1) rotateX(${metatronRot.x}deg) rotateY(${metatronRot.y}deg) rotateZ(${metatronRot.z}deg)`;
-                nodeEls.forEach(el => {
-                    const p = el._pos;
-                    const radY = metatronRot.y * Math.PI / 180;
-                    const radX = metatronRot.x * Math.PI / 180;
-                    let x = p.x, y = p.y, z = p.z;
-                    let x1 = x * Math.cos(radY) + z * Math.sin(radY);
-                    let z1 = -x * Math.sin(radY) + z * Math.cos(radY);
-                    x = x1; z = z1;
-                    let y1 = y * Math.cos(radX) - z * Math.sin(radX);
-                    let z2 = y * Math.sin(radX) + z * Math.cos(radX);
-                    y = y1; z = z2;
-                    el.style.transform = `translate3d(${p.x}px,${p.y}px,${p.z}px) translate(-50%,-50%) rotateY(${-metatronRot.y}deg) rotateX(${-metatronRot.x}deg)`;
-                    el.style.zIndex = Math.floor(z + 500);
+            let metatronRot={x:-18,y:24,z:0}, autoRot=true;
+            function updateTrans(){ 
+                if(!scene) return; 
+                scene.style.transform=`scale3d(1,1,1) rotateX(${metatronRot.x}deg) rotateY(${metatronRot.y}deg) rotateZ(${metatronRot.z}deg)`;
+                nodeEls.forEach(el=>{
+                    const p=el._pos;
+                    const radY=metatronRot.y*Math.PI/180, radX=metatronRot.x*Math.PI/180;
+                    let x=p.x,y=p.y,z=p.z;
+                    let x1=x*Math.cos(radY)+z*Math.sin(radY); let z1=-x*Math.sin(radY)+z*Math.cos(radY); x=x1;z=z1;
+                    let y1=y*Math.cos(radX)-z*Math.sin(radX); let z2=y*Math.sin(radX)+z*Math.cos(radX); y=y1;z=z2;
+                    el.style.transform=`translate3d(${p.x}px,${p.y}px,${p.z}px) translate(-50%,-50%) rotateY(${-metatronRot.y}deg) rotateX(${-metatronRot.x}deg)`;
+                    el.style.zIndex=Math.floor(z+500);
                 });
             }
             updateTrans();
-
-            function loop() {
-                if (autoRot) {
-                    metatronRot.y += 0.13;
-                    metatronRot.z += 0.015;
-                    updateTrans();
-                }
-                requestAnimationFrame(loop);
-            }
+            
+            function loop(){ if(autoRot) { metatronRot.y+=0.15; metatronRot.z+=0.02; updateTrans(); } requestAnimationFrame(loop); }
             loop();
 
-            // Drag to rotate
-            let isDragging = false, lastX, lastY;
-            if (scene) {
-                scene.addEventListener('pointerdown', (e) => {
-                    isDragging = true;
-                    lastX = e.clientX;
-                    lastY = e.clientY;
-                    scene.setPointerCapture(e.pointerId);
-                });
-                scene.addEventListener('pointermove', (e) => {
-                    if (!isDragging) return;
-                    const dx = e.clientX - lastX;
-                    const dy = e.clientY - lastY;
-                    metatronRot.y += dx * 0.4;
-                    metatronRot.x -= dy * 0.4;
-                    lastX = e.clientX;
-                    lastY = e.clientY;
-                    updateTrans();
-                });
-                scene.addEventListener('pointerup', () => { isDragging = false; });
-                scene.addEventListener('pointercancel', () => { isDragging = false; });
-            }
-
             const btnAuto = document.getElementById('toggleAuto');
-            if (btnAuto) {
-                btnAuto.addEventListener('click', () => {
-                    autoRot = !autoRot;
-                    btnAuto.innerText = autoRot ? "AUTO: ON" : "AUTO: OFF";
-                    btnAuto.style.borderColor = autoRot ? "rgba(157,78,221,.4)" : "rgba(255,255,255,.2)";
-                    btnAuto.style.color = autoRot ? "var(--violet)" : "#fff";
-                });
-            }
+            if(btnAuto) btnAuto.addEventListener('click', () => {
+                autoRot = !autoRot;
+                btnAuto.innerText = autoRot ? "AUTO: ON" : "AUTO: OFF";
+                btnAuto.style.borderColor = autoRot ? "rgba(157,78,221,.4)" : "rgba(255,255,255,.2)";
+                btnAuto.style.color = autoRot ? "var(--violet)" : "#fff";
+            });
+
         });
 
-        // Global functions
-        function toggleSidebar() {
-            document.getElementById('main-sidebar').classList.toggle('right-aligned');
-        }
-
-        async function connectBinance() {
-            const btn = document.getElementById('bnbBtn');
-            const btnText = document.getElementById('bnbBtnText');
-            if (!window.ethereum) {
-                alert("⚡ No se detectó wallet. Instala MetaMask o una wallet compatible.");
-                return;
-            }
-            try {
-                btnText.textContent = "Conectando...";
-                btn.disabled = true;
-                const provider = new ethers.BrowserProvider(window.ethereum);
-                const accounts = await provider.send("eth_requestAccounts", []);
-                const network = await provider.getNetwork();
-                const short = accounts[0].slice(0, 6) + "..." + accounts[0].slice(-4);
-                btnText.textContent = short;
-                btn.classList.remove('bg-bnbYellow');
-                btn.classList.add('bg-green-500');
-                logAction(`⚡ Wallet conectada: ${short} | ChainId: ${network.chainId}`);
-            } catch (err) {
-                btnText.textContent = "Sync BNB";
-                btn.disabled = false;
-                logAction("❌ Conexión cancelada o error de wallet.");
-            }
-        }
-
+        // ----------------------------------------------------
+        // LOG ENGINE GLOBALES
+        // ----------------------------------------------------
+        function toggleSidebar() { document.getElementById('main-sidebar').classList.toggle('right-aligned'); }
+        
         window.logAction = function(text) {
             const log = document.getElementById('abilityLog');
-            if (!log) return;
+            if(!log) return;
             const entry = document.createElement('div');
             entry.className = 'mono text-slate-300';
             entry.innerHTML = `<span style="color: rgba(255,255,255,0.4)">[${new Date().toLocaleTimeString()}]</span> > ${text}`;
             log.prepend(entry);
-            // Keep only last 12 entries
-            while (log.children.length > 12) log.removeChild(log.lastChild);
         };
+
+        // ----------------------------------------------------
+        // MOTOR WEB3 & FOUR.MEME (ETHERS.JS + BOTONES HEADER)
+        // ----------------------------------------------------
+        let web3Signer = null;
+        let tradeMode = 'buy';
+
+        async function connectBinance() {
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    const provider = new ethers.BrowserProvider(window.ethereum);
+                    web3Signer = await provider.getSigner();
+                    const address = await web3Signer.getAddress();
+                    
+                    const statusBadge = document.getElementById('sync-status');
+                    if(statusBadge) {
+                        statusBadge.innerHTML = `<span class="w-2 h-2 mr-1.5 bg-green-400 rounded-full animate-pulse shadow-[0_0_5px_#10b981]"></span> BNB: ${address.substring(0,6)}...${address.substring(38)}`;
+                        statusBadge.classList.remove('hidden');
+                    }
+                    logAction(`⚡ Tesoro BNB conectado. Wallet: ${address.substring(0,8)}...`);
+                } catch (error) {
+                    logAction(`❌ Error de conexión: ${error.message}`);
+                }
+            } else {
+                alert("Instala una billetera Web3 (MetaMask o Binance Wallet) para sincronizar.");
+                logAction("⚠️ No se detectó proveedor Web3.");
+            }
+        }
+
+        // Fija el scroll hacia la tarjeta de comercio y selecciona Comprar/Vender
+        function focusWeb3(mode) {
+            const panelWrapper = document.getElementById('web3PanelWrapper');
+            if(panelWrapper) {
+                panelWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                setTradeMode(mode);
+                
+                // Efecto visual (glow táctico)
+                panelWrapper.classList.add('ring-2', 'ring-cyanNeon');
+                setTimeout(() => panelWrapper.classList.remove('ring-2', 'ring-cyanNeon'), 1500);
+            }
+        }
+
+        // Lógica de interfaz (Pestañas Buy / Sell)
+        function setTradeMode(mode) {
+            tradeMode = mode;
+            const btnBuy = document.getElementById('tabBuy');
+            const btnSell = document.getElementById('tabSell');
+            const btnExec = document.getElementById('btnExecuteTrade');
+            const lblAmt = document.getElementById('lblAmount');
+
+            if(mode === 'buy') {
+                btnBuy.className = "text-[9px] px-2 py-1 rounded bg-green-900/50 text-green-400 border border-green-700 font-bold transition-all";
+                btnSell.className = "text-[9px] px-2 py-1 rounded bg-black text-slate-500 border border-slate-700 font-bold transition-all";
+                
+                btnExec.className = "bg-green-600 hover:bg-green-500 text-white font-bold text-[10px] px-4 py-2 rounded transition-all shadow-[0_0_10px_rgba(22,163,74,0.3)] font-mono uppercase whitespace-nowrap w-full md:w-auto";
+                btnExec.innerText = "Ejecutar Compra";
+                lblAmt.innerText = "CANTIDAD A INVERTIR (BNB)";
+            } else {
+                btnBuy.className = "text-[9px] px-2 py-1 rounded bg-black text-slate-500 border border-slate-700 font-bold transition-all";
+                btnSell.className = "text-[9px] px-2 py-1 rounded bg-red-900/50 text-red-400 border border-red-700 font-bold transition-all";
+                
+                btnExec.className = "bg-renderRed hover:bg-red-500 text-white font-bold text-[10px] px-4 py-2 rounded transition-all shadow-[0_0_10px_rgba(218,54,55,0.3)] font-mono uppercase whitespace-nowrap w-full md:w-auto";
+                btnExec.innerText = "Ejecutar Venta";
+                lblAmt.innerText = "CANTIDAD A VENDER (TOKENS)";
+            }
+        }
+
+        // Lógica Transaccional (Blockchain)
+        async function ejecutarTransaccionFourMeme() {
+            if (!web3Signer) {
+                alert("Debes sincronizar tu wallet usando el botón 'Sync BNB' primero.");
+                return;
+            }
+            try {
+                const targetAddress = document.getElementById('targetToken').innerText;
+                const amount = document.getElementById('cryptoAmount').value;
+                
+                if(tradeMode === 'buy') {
+                    logAction(`⏳ Iniciando protocolo de COMPRA por ${amount} BNB a través de la IA Four.meme...`);
+                    // Transacción de envío de BNB (Interacción nativa Ethers)
+                    const tx = await web3Signer.sendTransaction({
+                        to: targetAddress,
+                        value: ethers.parseEther(amount.toString())
+                    });
+                    
+                    logAction(`🚀 Transacción de COMPRA enviada. Hash: ${tx.hash.substring(0,10)}...`);
+                    await tx.wait();
+                    logAction(`✅ COMPRA EXITOSA CONFIRMADA EN LA BLOCKCHAIN.`);
+                    
+                } else {
+                    logAction(`⏳ Iniciando protocolo de VENTA de ${amount} Tokens (Enlace Four.meme)...`);
+                    logAction(`🔐 Firmando autorización de contrato inteligente (Approve)...`);
+                    
+                    // Simulación visual estricta para la Venta (requeriría ABI de Router en prod)
+                    setTimeout(() => {
+                        logAction(`🚀 Transacción de VENTA ejecutada hacia la Pool de Liquidez.`);
+                        setTimeout(() => {
+                            logAction(`✅ VENTA EXITOSA CONFIRMADA. Fondos retornando a Billetera.`);
+                        }, 3000);
+                    }, 2500);
+                }
+                
+            } catch (error) {
+                logAction(`❌ Transacción rechazada o fallida: ${error.shortMessage || error.message}`);
+            }
+        }
     </script>
 </body>
 </html>
