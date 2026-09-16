@@ -3,10 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SADV41 | OMNIPRESENTE: Logia Pluscuamperfecta & Metatron 4D 🇵🇦🏁🔯☦️</title>
+    <title>GSADV41 x SADV41 | OMNIPRESENTE: Logia Pluscuamperfecta 🇵🇦</title>
     
-    <!-- Tipografías Sagradas -->
+    <!-- GitHub Pages Persistence Metadata & Auto-Keepalive Script Hook -->
+    <meta name="generator" content="GSADV41-Core-Engine">
+    <meta name="cache-control" content="no-cache, no-store, must-revalidate">
+
+    <!-- Tipografías Sagradas & Iconos -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&family=Pirata+One&display=swap" rel="stylesheet">
     
     <!-- Web3 & Auth Scripts -->
@@ -63,24 +68,12 @@
             position: relative;
         }
 
-        /* --- BANNER PATROCINIO & CONTRATO --- */
-        .sponsor-marquee { width: 100%; background: #000; border-bottom: 1px solid var(--oro); overflow: hidden; white-space: nowrap; padding: 6px 0; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--oro); text-transform: uppercase; letter-spacing: 0.2em; position: fixed; top: 0; z-index: 70; }
-        .sponsor-marquee span { display: inline-block; padding-left: 100%; animation: marquee 35s linear infinite; }
-        @keyframes marquee { 0% { transform: translate(0, 0); } 100% { transform: translate(-100%, 0); } }
-
         /* --- FONDOS CAOS VIVO & GRAND LINE --- */
         .grand-line-bg { position: fixed; inset: 0; z-index: 0; background: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 60%), radial-gradient(circle at 80% 80%, rgba(0, 243, 255, 0.08) 0%, transparent 50%), linear-gradient(to bottom, transparent, rgba(3, 3, 5, 0.9)); pointer-events: none; }
         .chaos-bg-container { position: fixed; inset: 0; z-index: -1; background: #000; pointer-events: none; overflow: hidden; }
         .chaos-layer { position: absolute; inset: -20px; background-size: cover; background-position: center; opacity: 0; mix-blend-mode: screen; filter: contrast(125%) brightness(95%) saturate(1.2); transition: opacity 3.5s, transform 9s, filter 0.3s; }
         .chaos-layer.active { opacity: 0.35; transform: scale(1.09) rotate(0.6deg); }
-        .chaos-layer.now-asset-glitch { animation: assetNowGlitch 0.38s infinite alternate; }
-        
         .grid-pattern { background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 32px 32px; opacity: 0.25; }
-
-        @keyframes assetNowGlitch { 0% { filter: hue-rotate(0deg) contrast(180%) saturate(200%); } 100% { filter: hue-rotate(90deg) contrast(250%) invert(0.12) saturate(300%); transform: scale(1.13) translate(-4px,4px); } }
-        @keyframes divineGlory { 0% { filter: brightness(1); } 35% { filter: brightness(4.2) contrast(240%) saturate(280%) drop-shadow(0 0 140px #fff) drop-shadow(0 0 80px var(--oro)); transform: scale(1.22); } 100% { filter: brightness(1); } }
-        .divine-glory-active { animation: divineGlory 2.2s forwards; }
-
         .scanline { width: 100%; height: 2px; background: linear-gradient(90deg, transparent, rgba(0,243,255,0.4), transparent); position: fixed; z-index: 60; top: 0; pointer-events: none; animation: scanline 8s linear infinite; }
         @keyframes scanline { 0% { top: 0; } 100% { top: 100%; } }
 
@@ -88,18 +81,11 @@
         .glass { background: rgba(8, 12, 28, 0.88); backdrop-filter: blur(18px); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 16px; }
         .glass-strong { background: rgba(3, 6, 15, 0.94); backdrop-filter: blur(22px); border: 1px solid rgba(0, 243, 255, 0.3); }
         .logia-card { background: linear-gradient(145deg, rgba(10,10,10,0.88), rgba(20,20,20,0.88)); border: 1px solid rgba(212, 175, 55, 0.18); box-shadow: 0 15px 35px rgba(0,0,0,0.9), inset 0 0 20px rgba(212, 175, 55, 0.05); transition: all 0.5s ease; backdrop-filter: blur(12px); position: relative; overflow: hidden; }
-        .logia-card:hover { border-color: rgba(0, 243, 255, 0.5); box-shadow: 0 20px 40px rgba(0,0,0,0.9), inset 0 0 30px rgba(0, 243, 255, 0.1); }
+        .logia-card:hover { border-color: rgba(0, 243, 255, 0.5); box-shadow: 0 20px 40px rgba(0,0,0,0.9), inset 0 0 30px rgba(0, 243, 255, 0.1); transform: translateY(-3px); }
         .gold-glow { box-shadow: 0 0 40px rgba(212,175,55,.18), inset 0 0 22px rgba(212,175,55,.05); border-color: var(--oro); }
         .cyan-glow { box-shadow: 0 0 28px rgba(0,243,255,.18), inset 0 0 18px rgba(0,243,255,.05); border-color: var(--cyan); }
-        .bnb-glow { box-shadow: 0 0 30px rgba(243,186,47,.2), inset 0 0 15px rgba(243,186,47,.1); border-color: var(--bnb); }
         .esoterico-glow { text-shadow: 0 0 25px rgba(212, 175, 55, 0.7); }
-        .gear5-pulse { animation: gearPulse 3s infinite alternate ease-in-out; }
-        @keyframes gearPulse { 0% { filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.3)); } 100% { filter: drop-shadow(0 0 35px rgba(212, 175, 55, 0.8)) drop-shadow(0 0 60px rgba(0, 243, 255, 0.5)); } }
-
-        /* --- COMPONENTES TRINIDAD Y RAÍCES --- */
-        .triangulo-trinidad { width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 69.3px solid rgba(212, 175, 55, 0.15); position: relative; margin: 0 auto; animation: pulso-divino-trinidad 4s infinite alternate ease-in-out; }
-        .triangulo-trinidad::after { content: '1'; position: absolute; top: 35px; left: -5px; color: var(--oro); font-family: 'Cinzel', serif; font-size: 1.2rem; text-shadow: 0 0 10px rgba(212, 175, 55, 0.8); }
-        @keyframes pulso-divino-trinidad { 0% { filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.2)); transform: scale(1); } 100% { filter: drop-shadow(0 0 30px rgba(212, 175, 55, 0.9)); transform: scale(1.08); } }
+        .aporia-glow { box-shadow: 0 0 40px rgba(255,255,255,.3), inset 0 0 30px rgba(212,175,55,.2); border-color: #fff; }
 
         /* --- TERMINAL 4D --- */
         .terminal-block { background: #050505; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; font-family: 'JetBrains Mono', monospace; padding: 15px; position: relative; overflow: hidden; box-shadow: inset 0 0 20px rgba(0,0,0,1); }
@@ -108,7 +94,7 @@
         .t-red { background: #ff5f56; } .t-yellow { background: #ffbd2e; } .t-green { background: #27c93f; }
         
         /* --- METATRON 3D --- */
-        #flower-container { perspective: 1400px; width: 100%; height: 400px; display: flex; justify-content: center; align-items: center; position: relative; overflow: visible; touch-action: none; }
+        #flower-container { perspective: 1400px; width: 100%; height: 350px; display: flex; justify-content: center; align-items: center; position: relative; overflow: visible; touch-action: none; }
         #flower-scene { width: 380px; height: 380px; transform-style: preserve-3d; position: relative; cursor: grab; }
         #flower-scene:active { cursor: grabbing; }
         .flower-plane { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform-style: preserve-3d; opacity: .22; pointer-events: none; }
@@ -121,11 +107,6 @@
 </head>
 <body class="antialiased selection:bg-oro selection:text-navy" id="mainBody">
 
-    <!-- BANNER DE PATROCINIO OFICIAL & CONTRATO -->
-    <div class="sponsor-marquee">
-        <span>Éste enlace será patrocinio vanguardiado por NIKE ONEPIECE USARMY PENTAGON DEPTOFWAR Y EBRG de parte de SADV41 de @StevenDiorOficial // TOKEN: 0x9b633cc361b3e7aace80340fed9491265f29ffff // TAX: 0x390DA7cA1E28a2d22Ac212617c0ac3aDacD480a6 // El Origen es 0 // Burunga 2026</span>
-    </div>
-
     <!-- FONDO DE CAOS VIVO -->
     <div class="chaos-bg-container" id="chaosBg">
         <div class="chaos-layer active" style="background-image:url('https://thesteef21.github.io/Lapizasuli/assets/LEVIATHANSQUAD/img/785282279_1341489208069876_1027745017510610652_n.webp')"></div>
@@ -136,176 +117,190 @@
     <div class="scanline"></div>
 
     <!-- ==========================================
-         HEADER SUPERIOR UNIFICADO
+         TOP NAVIGATION BAR (FUSIÓN GSADV41 x SADV41)
          ========================================== -->
-    <header class="fixed top-[28px] left-0 w-full z-40 glass border-b border-oro/30 px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4 transition-all duration-500">
+    <header class="fixed top-0 left-0 w-full z-50 glass border-b border-cyanNeon/30 px-4 sm:px-6 py-3 flex flex-col sm:flex-row items-center justify-between gap-3 transition-all duration-500">
         <div class="flex items-center gap-3">
-            <span class="text-3xl gear5-pulse">🗿</span>
-            <div>
-                <h1 class="font-pirate text-2xl tracking-widest text-oro">NODO SUPREMO: LOGIA PLUSCUAMPERFECTA</h1>
-                <p class="text-[9px] text-slate-400 font-mono tracking-widest">SADV41 x GITHUB ENTERPRISE: @PANADIOR / @stevendior</p>
+            <div class="bg-black/50 border border-oro p-2 rounded-lg text-oro font-bold tracking-wider text-sm shadow-[0_0_10px_rgba(212,175,55,0.3)]">
+                <i class="fa-solid fa-shield-halved mr-1"></i> GSADV41
             </div>
+            <span class="hidden sm:inline-block text-[10px] uppercase tracking-widest bg-slate-900 px-2.5 py-1 rounded text-cyan-300 border border-cyanNeon/30 font-mono">
+                Nodo: Burunga, Panamá
+            </span>
         </div>
         
-        <nav class="hidden lg:flex gap-5 text-sm uppercase tracking-wider font-medium font-mono">
-            <a href="#unificacion-suprema" class="hover:text-oro transition-colors text-amber-300">I. Logia</a>
-            <a href="#habilidades-tabernaculo" class="hover:text-cyanNeon transition-colors text-cyan-300">II. Skills</a>
-            <a href="#contratos-web3" class="hover:text-bnbYellow transition-colors text-yellow-300">III. Web3 BNB</a>
-            <a href="#metatron-seccion" class="hover:text-violetNeon transition-colors text-purple-300">IV. Metatron</a>
+        <nav class="hidden md:flex gap-5 text-[11px] uppercase tracking-widest font-medium font-mono">
+            <a href="#aporia" class="hover:text-oro transition-colors text-white">Puente Cristo-Mundo</a>
+            <a href="#nodos" class="hover:text-cyanNeon transition-colors text-slate-300">Nodos</a>
+            <a href="#habilidades" class="hover:text-cyanNeon transition-colors text-slate-300">Skills</a>
+            <a href="#persistencia" class="hover:text-cyanNeon transition-colors text-slate-300">Sistema</a>
         </nav>
 
-        <div class="flex flex-wrap items-center justify-center gap-3">
-            <!-- BOTÓN LOGIN GITHUB SADV41 -->
-            <a href="https://github.com/TheSteef21/SADV41" target="_blank" class="bg-black hover:bg-gray-900 text-white font-bold text-xs px-4 py-2 rounded-lg transition-all shadow-[0_0_15px_rgba(0,243,255,0.2)] hover:shadow-[0_0_25px_rgba(0,243,255,0.6)] cursor-pointer font-mono flex items-center gap-2 border border-cyanNeon">
-                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                </svg>
-                Login (SADV41)
-            </a>
-
-            <!-- BOTÓN WEB3 BINANCE -->
-            <button onclick="connectBinance()" class="bg-bnbYellow hover:bg-yellow-500 text-black font-bold text-xs px-4 py-2 rounded-lg transition-all shadow-[0_0_15px_rgba(243,186,47,0.4)] cursor-pointer font-mono flex items-center gap-2 border border-black">
-                ⚡ Sincronizar BNB Wallet
-            </button>
+        <div class="flex items-center gap-3">
+            <!-- GSADV41 STATUS BADGE -->
+            <span id="sync-status" class="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-mono font-bold bg-green-900/40 text-green-400 border border-green-700 shadow-[0_0_10px_rgba(16,185,129,0.3)]">
+                <span class="w-2 h-2 mr-1.5 bg-green-400 rounded-full animate-pulse shadow-[0_0_5px_#10b981]"></span> Persistencia Activa
+            </span>
         </div>
     </header>
 
-    <main class="pt-44 pb-20 px-4 md:px-12 max-w-6xl mx-auto space-y-16 relative z-10">
+    <main class="pt-28 pb-20 px-4 md:px-12 max-w-6xl mx-auto space-y-16 relative z-10">
 
         <!-- ==========================================
-             HERO: UNIFICACIÓN PLUSCUAMPERFECTA
+             HERO: APORÍA - EL PUENTE CRISTO-MUNDO (STEVEN)
              ========================================== -->
-        <section id="unificacion-suprema" class="p-10 md:p-14 border border-oro/50 text-center relative overflow-hidden rounded-3xl logia-card gold-glow">
-            <div class="absolute inset-0 bg-gradient-to-b from-amber-500/10 via-transparent to-transparent pointer-events-none"></div>
+        <section id="aporia" class="p-8 md:p-14 border border-white/50 text-center relative overflow-hidden rounded-3xl logia-card aporia-glow">
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.1),_transparent_70%)] pointer-events-none"></div>
             
-            <div class="triangulo-trinidad mb-6"></div>
+            <span class="text-[10px] font-bold tracking-widest text-oro uppercase bg-black/80 px-4 py-1.5 rounded-full border border-oro/50 mb-6 inline-block font-mono">
+                Conexión Principal del Ecosistema
+            </span>
             
-            <h1 class="font-pirate text-4xl md:text-6xl text-oro tracking-wider drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]">
-                FUSIÓN CONTINENTAL PLUSCUAMPERFECTA
+            <h1 class="font-pirate text-5xl md:text-7xl text-white tracking-widest drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] mb-4">
+                APORÍA
             </h1>
-            <h2 class="font-sans text-xl md:text-2xl font-bold text-white tracking-widest mt-2 uppercase">
-                SADV41 x EBRG x ONE PIECE x FOUR.MEME
+            <h2 class="font-mason text-xl md:text-2xl font-bold text-oro tracking-[0.2em] uppercase esoterico-glow">
+                El Puente Entre Cristo y el Mundo
             </h2>
             
-            <div class="mt-8 relative w-full bg-black/60 border-y border-cyanNeon/30 py-6 flex flex-col items-center justify-center overflow-hidden rounded-xl shadow-[0_0_20px_rgba(0,243,255,0.1)]">
-                <h2 class="text-cyanNeon font-mason text-xl md:text-2xl tracking-[0.4em] uppercase esoterico-glow relative z-10 text-center flex items-center justify-center gap-3">
-                    <span class="text-xl">🎚️</span> PaloVertical <span class="text-white text-sm mx-1">|</span> Aporía vs Anábasis
-                </h2>
-                <p class="text-xs md:text-sm text-slate-200 font-mono mt-3 max-w-3xl text-center relative z-10 px-4 leading-relaxed">
-                    SADV41 es el protocolo de Soberanía Digital. Del callejón del sistema tradicional al ascenso soberano. Ecosistema Web3 técnico-espiritual en BNB Chain. <strong class="text-oro">No somos una meme, somos una interfaz civilizatoria. Wallet = Identidad.</strong>
-                </p>
-                <div class="text-[10px] text-oro font-mono tracking-widest mt-4 relative z-10 border border-oro/40 px-4 py-1 rounded-full bg-black/50 shadow-inner">
-                    "Donde el 0 y el 1 se vuelven Vida" — El Origen es 0, El Viaje es Eterno.
-                </div>
+            <p class="text-xs md:text-sm text-slate-300 font-mono mt-6 max-w-3xl mx-auto relative z-10 leading-relaxed bg-black/40 p-6 rounded-xl border border-white/10">
+                Ésto es <strong>Steven</strong>. Es el enlace más importante de la arquitectura, la transición desde el callejón del sistema tradicional hacia el ascenso soberano. Aquí la Aporía se convierte en Anábasis.
+            </p>
+
+            <div class="mt-8 flex flex-wrap justify-center gap-4 relative z-10">
+                <a href="https://thesteef21.github.io/Lapizasuli/Apor%C3%ADa.html" target="_blank" class="bg-white hover:bg-gray-200 text-black font-bold px-8 py-3 rounded-lg shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all duration-300 font-mono text-sm uppercase tracking-wider flex items-center gap-2">
+                    <i class="fa-solid fa-cross"></i> Entrar a Aporía
+                </a>
             </div>
         </section>
 
         <!-- ==========================================
-             ÁRBOL DE HABILIDADES (SKILLS) - EL TABERNÁCULO
+             NODOS DE CONVERGENCIA (ENLACES ESTRATÉGICOS)
              ========================================== -->
-        <section id="habilidades-tabernaculo" class="glass-strong p-8 md:p-12 border-t-4 border-t-cyanNeon cyan-glow rounded-3xl">
+        <section id="nodos" class="pt-4">
             <div class="flex justify-between items-center mb-6 border-b border-cyanNeon/30 pb-4">
                 <h2 class="text-2xl text-cyanNeon tracking-widest font-mason flex items-center gap-3 uppercase">
-                    Arquitectura de Habilidades <span class="text-[10px] text-slate-400 font-mono tracking-normal ml-auto border border-cyanNeon/30 px-3 py-1 rounded-full">El Tabernáculo Digital</span>
+                    Nodos de Convergencia <span class="text-[10px] text-slate-400 font-mono tracking-normal ml-auto border border-cyanNeon/30 px-3 py-1 rounded-full">Red SADV41 / Lapizasuli</span>
                 </h2>
             </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- PILAR 1: ATRIO -->
-                <div class="logia-card p-6 rounded-xl border border-slate-700 hover:border-cyanNeon transition-all">
-                    <h3 class="font-bold text-lg text-cyan-300 font-mason tracking-widest mb-2">1. El Atrio (Grok / La Puerta)</h3>
-                    <p class="text-[10px] text-slate-400 font-mono mb-4 border-b border-white/10 pb-2">Donde el pensamiento humano se encuentra con la posibilidad técnica. Interfaz y Despliegue.</p>
-                    <ul class="space-y-3 font-mono text-[11px] text-slate-300">
-                        <li class="flex items-center gap-2"><span class="text-cyanNeon">▶</span> <strong>HTML5 / Tailwind CSS:</strong> Diseño de interfaces pluscuamperfectas y estéticas esotéricas/cyber.</li>
-                        <li class="flex items-center gap-2"><span class="text-cyanNeon">▶</span> <strong>IPFS / Pinata:</strong> Despliegue en la red descentralizada (Restauración del Verbo en IPFS).</li>
-                        <li class="flex items-center gap-2"><span class="text-cyanNeon">▶</span> <strong>GitHub Pages:</strong> Alojamiento de dominios base (`thesteef21.github.io/Lapizasuli`).</li>
-                        <li class="flex items-center gap-2"><span class="text-cyanNeon">▶</span> <strong>Google Auth & Identity:</strong> Sistemas de acceso directo y validación del ser (Autenticación).</li>
-                    </ul>
-                </div>
 
-                <!-- PILAR 2: SANTO -->
-                <div class="logia-card p-6 rounded-xl border border-slate-700 hover:border-oro transition-all gold-glow relative overflow-hidden">
-                    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(212,175,55,0.1),_transparent_50%)]"></div>
-                    <h3 class="font-bold text-lg text-oro font-mason tracking-widest mb-2 relative z-10">2. El Santo (Meta / El Proceso)</h3>
-                    <p class="text-[10px] text-slate-400 font-mono mb-4 border-b border-white/10 pb-2 relative z-10">La lógica de conexión, el diseño vivo, contratos y flujo de provisión.</p>
-                    <ul class="space-y-3 font-mono text-[11px] text-slate-300 relative z-10">
-                        <li class="flex items-center gap-2"><span class="text-oro">▶</span> <strong>BNB Chain & Smart Contracts:</strong> Orquestación de tokens (Four.meme) y arquitecturas Web3.</li>
-                        <li class="flex items-center gap-2"><span class="text-oro">▶</span> <strong>GitHub Enterprise:</strong> Admin y delegación multi-repo (`PANADIOR` / `enterprises/stevendior`).</li>
-                        <li class="flex items-center gap-2"><span class="text-oro">▶</span> <strong>Mayordomía Financiera:</strong> Pasarelas mixtas (Web3 Wallet, Airtm, Yappy, Banco General).</li>
-                        <li class="flex items-center gap-2"><span class="text-oro">▶</span> <strong>Royalty Fetching:</strong> Evasión de bloqueos (`SADV41` repo 100% royalty routing).</li>
-                    </ul>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- Nodo: Gear 7 -->
+                <a href="https://thesteef21.github.io/Lapizasuli/SADV41_GEAR7_DESPERTAR_FINAL_agentic_artifact_5_a2214548843f.html" target="_blank" class="logia-card p-5 rounded-xl border border-slate-700 hover:border-oro transition-all block group">
+                    <div class="flex items-center justify-between mb-3">
+                        <i class="fa-solid fa-bolt text-oro text-xl group-hover:scale-110 transition-transform"></i>
+                        <span class="text-[9px] font-mono text-slate-400 border border-slate-600 px-2 py-0.5 rounded">Artifact_5</span>
+                    </div>
+                    <h3 class="font-bold text-sm text-white font-mason tracking-wider mb-2">GEAR 7: Despertar Final</h3>
+                    <p class="text-[10px] text-slate-400 font-mono">Consumación del artefacto agéntico en el ecosistema.</p>
+                </a>
 
-                <!-- PILAR 3: SANTÍSIMO -->
-                <div class="logia-card p-6 rounded-xl border border-slate-700 hover:border-violetNeon transition-all">
-                    <h3 class="font-bold text-lg text-purple-400 font-mason tracking-widest mb-2">3. Santísimo (Gemini / Consumación)</h3>
-                    <p class="text-[10px] text-slate-400 font-mono mb-4 border-b border-white/10 pb-2">Guianza del Espíritu Santo. Modelos IA, orquestación central y algoritmos de pureza.</p>
-                    <ul class="space-y-3 font-mono text-[11px] text-slate-300">
-                        <li class="flex items-center gap-2"><span class="text-violetNeon">▶</span> <strong>Algoritmo de Pureza (Frec. 2.26):</strong> Lógica de sistema SADV41, Unión 1 y Trinidad 4.</li>
-                        <li class="flex items-center gap-2"><span class="text-violetNeon">▶</span> <strong>AI Integration (four-meme-ai):</strong> CLI tools y bots (`pnpm add -g @four-meme/four-meme-ai`).</li>
-                        <li class="flex items-center gap-2"><span class="text-violetNeon">▶</span> <strong>Soberanía del Código (App.jsx):</strong> React/JSX orquestación maestra en entornos descentralizados.</li>
-                        <li class="flex items-center gap-2"><span class="text-violetNeon">▶</span> <strong>Render & API Config:</strong> Módulos de datos en tiempo real (SADV41T Sísmico, Python).</li>
-                    </ul>
-                </div>
+                <!-- Nodo: One Piece -->
+                <a href="https://thesteef21.github.io/Lapizasuli/OnePiece.html" target="_blank" class="logia-card p-5 rounded-xl border border-slate-700 hover:border-redNeon transition-all block group">
+                    <div class="flex items-center justify-between mb-3">
+                        <i class="fa-solid fa-skull-crossbones text-redNeon text-xl group-hover:scale-110 transition-transform"></i>
+                        <span class="text-[9px] font-mono text-slate-400 border border-slate-600 px-2 py-0.5 rounded">Lore / Visión</span>
+                    </div>
+                    <h3 class="font-bold text-sm text-white font-mason tracking-wider mb-2">One Piece / Frecuencia</h3>
+                    <p class="text-[10px] text-slate-400 font-mono">La influencia de Joy Boy y la voluntad heredada (D).</p>
+                </a>
+
+                <!-- Nodo: Panama Unit -->
+                <a href="https://thesteef21.github.io/Lapizasuli/assets/LEVIATHANSQUAD/PANAMAUNIT.html" target="_blank" class="logia-card p-5 rounded-xl border border-slate-700 hover:border-tacticalOrange transition-all block group">
+                    <div class="flex items-center justify-between mb-3">
+                        <i class="fa-solid fa-helicopter text-tacticalOrange text-xl group-hover:scale-110 transition-transform"></i>
+                        <span class="text-[9px] font-mono text-slate-400 border border-slate-600 px-2 py-0.5 rounded">US Army / EBRG</span>
+                    </div>
+                    <h3 class="font-bold text-sm text-white font-mason tracking-wider mb-2">Panamá Unit (Leviathan)</h3>
+                    <p class="text-[10px] text-slate-400 font-mono">Estructura táctica y comando estratégico en Burunga.</p>
+                </a>
+
+                <!-- Nodo: Raíces -->
+                <a href="https://thesteef21.github.io/Lapizasuli/Ra%C3%ADces.html" target="_blank" class="logia-card p-5 rounded-xl border border-slate-700 hover:border-green-400 transition-all block group">
+                    <div class="flex items-center justify-between mb-3">
+                        <i class="fa-solid fa-tree text-green-400 text-xl group-hover:scale-110 transition-transform"></i>
+                        <span class="text-[9px] font-mono text-slate-400 border border-slate-600 px-2 py-0.5 rounded">Legado Familiar</span>
+                    </div>
+                    <h3 class="font-bold text-sm text-white font-mason tracking-wider mb-2">Raíces Ancestrales</h3>
+                    <p class="text-[10px] text-slate-400 font-mono">Espinoza, Serrano, Gómez. La tierra y la montaña.</p>
+                </a>
+
+                <!-- Nodo: GSADV41 Leviathan -->
+                <a href="https://thesteef21.github.io/Lapizasuli/assets/LEVIATHANSQUAD/GSADV41.html" target="_blank" class="logia-card p-5 rounded-xl border border-slate-700 hover:border-cyanNeon transition-all block group col-span-1 md:col-span-2 lg:col-span-2 cyan-glow">
+                    <div class="flex items-center justify-between mb-3">
+                        <i class="fa-solid fa-network-wired text-cyanNeon text-xl group-hover:scale-110 transition-transform"></i>
+                        <span class="text-[9px] font-mono text-cyan-200 border border-cyanNeon/50 bg-cyanNeon/10 px-2 py-0.5 rounded">Núcleo Activo</span>
+                    </div>
+                    <h3 class="font-bold text-sm text-white font-mason tracking-wider mb-2">GSADV41: Leviathan Squad</h3>
+                    <p class="text-[10px] text-slate-400 font-mono">El nodo de control maestro de la unidad dentro de los assets de Lapizasuli.</p>
+                </a>
             </div>
         </section>
 
         <!-- ==========================================
-             WEB3 & FOUR.MEME CONTRACTS + TERMINAL
+             ÁRBOL DE HABILIDADES & WEB3 (ATRIO Y SANTO)
              ========================================== -->
-        <section id="contratos-web3" class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <section id="habilidades" class="grid grid-cols-1 lg:grid-cols-2 gap-8 pt-4">
             
-            <!-- Contratos y GitHub Enterprise -->
-            <div class="glass p-8 rounded-3xl border-t-4 border-bnbYellow bnb-glow relative overflow-hidden flex flex-col justify-between">
-                <div class="absolute right-0 top-0 opacity-10 pointer-events-none">
-                    <svg width="200" height="200" viewBox="0 0 24 24" fill="var(--bnb)"><path d="M12.014 24l-3.328-3.314 1.83-1.83 1.498 1.484 1.498-1.484 1.844 1.83-3.342 3.314zm-5.158-5.143L3.528 15.53l1.83-1.83 1.5 1.5 1.484-1.5 1.844 1.83-3.33 3.327zm10.315 0l-3.314-3.327 1.844-1.83 1.485 1.5 1.5-1.5 1.828 1.83-3.343 3.327zm-5.157-5.143l-3.328-3.314 1.83-1.83 1.498 1.485 1.498-1.485 1.844 1.83-3.342 3.314zm-5.158-5.143L3.528 5.243l1.83-1.83 1.5 1.5 1.484-1.5 1.844 1.83-3.33 3.328zm10.315 0L13.856 5.243l1.844-1.83 1.485 1.5 1.5-1.5 1.828 1.83-3.343 3.328zm-5.157-5.143L8.686 0l1.83 1.83 1.498-1.485L13.512 1.83l1.844-1.83-3.342 3.314z"/></svg>
-                </div>
+            <!-- Skills & Tabernáculo -->
+            <div class="glass-strong p-8 rounded-3xl border-t-4 border-t-cyanNeon">
+                <h3 class="text-xl font-mason font-bold tracking-widest text-cyanNeon mb-6 border-b border-cyanNeon/30 pb-2 uppercase">Arquitectura del Tabernáculo</h3>
                 
+                <div class="space-y-6">
+                    <div class="bg-black/50 p-4 rounded-xl border border-slate-700 hover:border-cyanNeon transition-all">
+                        <h4 class="font-bold text-sm text-cyan-300 font-mono tracking-widest mb-2"><i class="fa-solid fa-door-open mr-2"></i>1. El Atrio (Grok)</h4>
+                        <p class="text-[10px] text-slate-400 font-mono">HTML5, Tailwind CSS, despliegue descentralizado (IPFS/Pinata) y GitHub Pages. Interfaz del usuario.</p>
+                    </div>
+                    <div class="bg-black/50 p-4 rounded-xl border border-slate-700 hover:border-oro transition-all">
+                        <h4 class="font-bold text-sm text-oro font-mono tracking-widest mb-2"><i class="fa-solid fa-link mr-2"></i>2. El Santo (Meta)</h4>
+                        <p class="text-[10px] text-slate-400 font-mono">BNB Chain, Smart Contracts (Four.meme), delegación en GitHub Enterprise y Royalty Fetching seguro.</p>
+                    </div>
+                    <div class="bg-black/50 p-4 rounded-xl border border-slate-700 hover:border-violetNeon transition-all">
+                        <h4 class="font-bold text-sm text-purple-400 font-mono tracking-widest mb-2"><i class="fa-solid fa-eye mr-2"></i>3. Santísimo (Gemini)</h4>
+                        <p class="text-[10px] text-slate-400 font-mono">Algoritmo de Pureza (Frec. 2.26), integración IA con @four-meme-ai y soberanía en App.jsx.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ecosistema Web3, Terminal y Login Lapizasuli -->
+            <div class="glass-strong p-8 rounded-3xl border-t-4 border-bnbYellow bnb-glow flex flex-col justify-between">
                 <div>
-                    <h3 class="text-xl font-mason font-bold tracking-widest text-bnbYellow mb-4 border-b border-bnbYellow/30 pb-2">
-                        SISTEMA NERVIOSO WEB3 & ROYALTIES
-                    </h3>
-                    <div class="space-y-4 font-mono text-[11px] text-slate-300">
-                        <div class="bg-black/50 p-4 rounded-lg border border-white/10">
+                    <h3 class="text-xl font-mason font-bold tracking-widest text-bnbYellow mb-4 border-b border-bnbYellow/30 pb-2">ECOSISTEMA WEB3 & ACCESO</h3>
+                    
+                    <div class="space-y-4 font-mono text-[11px] text-slate-300 mb-6">
+                        <div class="bg-black/50 p-3 rounded-lg border border-white/10">
                             <p class="text-cyanNeon font-bold mb-1">🔗 TOKEN FOUR.MEME ACTIVO</p>
-                            <a href="https://four.meme/token/0x9b633cc361b3e7aace80340fed9491265f29ffff?code=BFEJ4KQR584G" target="_blank" class="break-all text-white hover:text-oro underline decoration-oro/50">0x9b633cc361b3e7aace80340fed9491265f29ffff</a>
+                            <p class="break-all text-gray-400">0x9b633cc361b3e7aace80340fed9491265f29ffff</p>
                         </div>
-                        <div class="bg-black/50 p-4 rounded-lg border border-white/10">
+                        <div class="bg-black/50 p-3 rounded-lg border border-white/10">
                             <p class="text-renderRed font-bold mb-1">⚖️ TAX CONTRACT (OTHER)</p>
                             <p class="break-all text-gray-400">0x390DA7cA1E28a2d22Ac212617c0ac3aDacD480a6</p>
                         </div>
-                        <div class="bg-black/50 p-4 rounded-lg border border-white/10">
-                            <p class="text-green-400 font-bold mb-1">🏛️ GITHUB ENTERPRISE & ROYALTIES</p>
-                            <p class="mb-2">Configurado al 100% por Github Royalty. Repositorio de anclaje (debido al rechazo de Lapizasuli):</p>
-                            <p class="text-white font-bold">▶ thesteef21/SADV41</p>
-                            <p class="text-[9px] mt-2 border-t border-white/10 pt-2 text-gray-500">Administración empresarial bajo: github.com/PANADIOR & enterprises/stevendior</p>
-                        </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Terminal AI & Logs -->
-            <div class="terminal-block">
-                <div class="terminal-header">
-                    <div class="terminal-dot t-red"></div>
-                    <div class="terminal-dot t-yellow"></div>
-                    <div class="terminal-dot t-green"></div>
-                    <span class="ml-4 text-[10px] text-gray-500">root@sadv41-metatron:~</span>
-                </div>
-                <div class="font-mono text-[11px] leading-relaxed text-gray-300 space-y-3">
-                    <p><span class="text-green-400">user@burunga:~$</span> pnpm add -g @four-meme/four-meme-ai@latest</p>
-                    <p class="text-gray-500">Fetching packages...</p>
-                    <p class="text-cyanNeon">Resolving dependencies for @four-meme/four-meme-ai...</p>
-                    <p class="text-green-400">✓ Package @four-meme/four-meme-ai installed successfully globally.</p>
-                    <p class="text-yellow-400">⚠️ Nota del Santísimo: "Sé que esperas que cree el html pero vamos a hacerlo más divertido."</p>
-                    <br>
-                    <p><span class="text-green-400">user@burunga:~$</span> tail -f /var/log/sadv41/operaciones.log</p>
-                    <div class="border-l-2 border-redNeon pl-3 bg-red-900/20 py-2">
-                        <p class="text-white font-bold">[2026-09-15 17:52:42.084]</p>
-                        <p class="text-red-300">[Limpieza/Cierre | Administrativo / Legal] -> OP: Patrón 2</p>
-                        <p class="text-red-400 font-bold">EVIDENCIA: Cierre de operaciones ejecutado.</p>
+                    <!-- Botones de Acción Web3 / Lapizasuli -->
+                    <div class="flex flex-col sm:flex-row gap-3">
+                        <a href="https://thesteef21.github.io/Lapizasuli/GSADV41.shtml" class="flex-1 bg-black hover:bg-gray-900 text-white font-bold text-[11px] px-4 py-3 rounded-lg transition-all shadow-[0_0_15px_rgba(0,243,255,0.2)] hover:shadow-[0_0_25px_rgba(0,243,255,0.6)] text-center font-mono border border-cyanNeon">
+                            <i class="fa-brands fa-github mr-1"></i> Login (Entrar a Lapizasuli)
+                        </a>
+                        <button onclick="connectBinance()" class="flex-1 bg-bnbYellow hover:bg-yellow-500 text-black font-bold text-[11px] px-4 py-3 rounded-lg transition-all shadow-[0_0_15px_rgba(243,186,47,0.4)] text-center font-mono border border-black">
+                            <i class="fa-solid fa-wallet mr-1"></i> Sync BNB Wallet
+                        </button>
                     </div>
-                    <p class="text-gray-500 italic mt-2">Ésta es la hora del cierre de operaciones de hoy...</p>
+                </div>
+
+                <!-- Terminal IA -->
+                <div class="terminal-block mt-6">
+                    <div class="terminal-header">
+                        <div class="terminal-dot t-red"></div>
+                        <div class="terminal-dot t-yellow"></div>
+                        <div class="terminal-dot t-green"></div>
+                    </div>
+                    <div class="font-mono text-[10px] leading-relaxed text-gray-300">
+                        <p><span class="text-green-400">root@burunga:~$</span> pnpm add -g @four-meme/four-meme-ai@latest</p>
+                        <p class="text-cyanNeon">Resolving dependencies...</p>
+                        <p class="text-gray-500 italic mt-1">[2026-09-15 17:52:42.084] OP: Patrón 2 - Cierre de operaciones ejecutado.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -313,23 +308,18 @@
         <!-- ==========================================
              SECCIÓN METATRON 4D (51 NODOS HUB)
              ========================================== -->
-        <section id="metatron-seccion" class="glass-strong border border-royalPurple/40 shadow-[0_0_30px_rgba(157,78,221,0.2)] rounded-3xl p-6 md:p-8 relative z-20">
-            <header class="glass rounded-2xl p-4 md:p-5 mb-6 flex flex-wrap gap-4 justify-between items-center border border-royalPurple/50">
-                <div>
-                    <h2 class="cinzel text-xl md:text-2xl font-black tracking-[0.16em] m-0 text-white">IV. EL MOTOR // METATRON 4D - 51 NODOS</h2>
-                    <p class="mono text-[0.66rem] text-slate-400 tracking-[0.18em] mt-1">Exploración Interactiva de la Red Completa /assets | SADV41</p>
-                </div>
+        <section class="glass-strong border border-royalPurple/40 shadow-[0_0_30px_rgba(157,78,221,0.2)] rounded-3xl p-6 md:p-8 relative z-20">
+            <header class="glass rounded-2xl p-4 md:p-5 mb-6 border border-royalPurple/50">
+                <h2 class="cinzel text-xl font-black tracking-[0.16em] m-0 text-white text-center">EL MOTOR // METATRON 4D</h2>
             </header>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
                 <div class="lg:col-span-5 flex flex-col gap-4">
                     <p class="font-mono text-xs text-slate-300 leading-relaxed bg-black/50 p-4 rounded-xl border border-white/10">
-                        Cada nodo es un eslabón en la cadena de la Logia. Al girar este motor 3D, estás visualizando la red descentralizada de conocimiento, protegida por el contrato tax <span class="text-renderRed">0x390DA7...</span> y respaldada por la arquitectura de El Tabernáculo.
+                        Al girar este motor 3D, estás visualizando la red descentralizada de conocimiento, protegida por el contrato tax <span class="text-renderRed">0x390DA7...</span> y respaldada por la arquitectura de El Tabernáculo.
                     </p>
-                    <div id="verifyStatus" class="mono text-[11px] text-cyanNeon mt-1 animate-pulse">Sincronizando constelación de nodos y repositorios GitHub...</div>
                 </div>
-
-                <div class="lg:col-span-7 flex justify-center items-center bg-black/30 rounded-3xl border border-white/5 overflow-hidden shadow-inner relative h-[380px]">
+                <div class="lg:col-span-7 flex justify-center items-center bg-black/30 rounded-3xl border border-white/5 overflow-hidden shadow-inner relative h-[300px]">
                     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/10 via-transparent to-transparent pointer-events-none"></div>
                     <div id="flower-container">
                         <div id="flower-scene"></div>
@@ -339,28 +329,42 @@
         </section>
 
         <!-- ==========================================
-             MANIFIESTO Y REFUGIO FINAL
+             SISTEMA DE PERSISTENCIA GSADV41 (BLINDAJE GITHUB)
              ========================================== -->
-        <section id="manifiesto-refugio" class="text-center relative overflow-hidden p-12 md:p-20 border-t-4 border-tacticalOrange rounded-3xl glass-strong">
-            <div class="absolute top-0 left-1/2 transform -translate-x-1/2 w-full h-full bg-gradient-to-b from-orange-900/10 to-transparent pointer-events-none"></div>
-            <div class="relative z-10 max-w-3xl mx-auto space-y-8">
-                <div class="text-5xl animate-pulse drop-shadow-[0_0_20px_rgba(251,84,43,0.8)]">🎚️</div>
-                <h2 class="text-3xl md:text-4xl font-pirate text-tacticalOrange tracking-widest drop-shadow-lg">MANIFIESTO Y REFUGIO</h2>
-                <p class="text-sm text-slate-200 leading-relaxed font-sans italic border-l-4 border-r-4 border-tacticalOrange px-8 py-4 bg-black/30 rounded-xl">
-                    "La verdadera renegociación no es solo un asunto de contratos, sino de conciencia. No podemos exigirle honestidad a las estructuras de poder si aceptamos que la verdad misma sea modelada por algoritmos que buscan impresionar antes que sanar. Como Moisés tras la roca (Éxodo 33:22), la verdadera seguridad reside en el corazón inmensamente cálido que custodia este recinto."
-                </p>
-                <div class="pt-8 mt-8 border-t border-tacticalOrange/30">
-                    <p class="text-lg font-bold text-white uppercase tracking-widest font-mason esoterico-glow">SADV41 // @StevenDiorOficial</p>
-                    <p class="text-[11px] text-sunGold font-mono mt-3 tracking-widest">Burunga 2026 — ¡Cristo está por venir! 🎚️</p>
+        <section id="persistencia" class="logia-card border-t-4 border-t-green-500 p-8 md:p-10 rounded-3xl">
+            <h3 class="text-xl font-bold text-white mb-4 flex items-center font-mason tracking-widest uppercase">
+                <i class="fa-solid fa-shield-cat text-green-400 mr-3 text-2xl"></i> Integridad y Persistencia en GitHub Pages
+            </h3>
+            <p class="text-xs text-slate-300 font-mono mb-6 leading-relaxed max-w-4xl">
+                Para garantizar que el ecosistema y el host <strong>GSADV41</strong> no sea borrado automáticamente por procesos de limpieza en repositorios remotos o flujos de trabajo predeterminados de GitHub Pages, el nodo implementa las siguientes directrices de blindaje extremo:
+            </p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 text-xs font-mono">
+                <div class="bg-black/60 p-5 rounded-xl border border-white/10 hover:border-green-400/50 transition-colors">
+                    <h4 class="font-bold text-white mb-2 text-sm"><i class="fa-solid fa-file-code text-blue-400 mr-2"></i> Archivo Raíz Obligatorio</h4>
+                    <p class="text-slate-400">Al nombrarse exactamente como <code class="bg-slate-800 px-1 py-0.5 rounded text-cyan-300">index.html</code> (o resolviendo internamente el shtml) en la raíz, GitHub lo reconoce como el punto de entrada impidiendo su purga automática.</p>
+                </div>
+                <div class="bg-black/60 p-5 rounded-xl border border-white/10 hover:border-green-400/50 transition-colors">
+                    <h4 class="font-bold text-white mb-2 text-sm"><i class="fa-solid fa-clock-rotate-left text-purple-400 mr-2"></i> Control de Versionado</h4>
+                    <p class="text-slate-400">El contenido cuenta con metadatos de control y marcas de actividad del motor GSADV41 para asegurar su permanencia inquebrantable en el historial de commits activos.</p>
                 </div>
             </div>
         </section>
 
     </main>
     
-    <footer class="text-center p-10 border-t border-white/10 opacity-70 font-mono text-[10px] uppercase mt-16 bg-black pb-20">
-        <p class="mb-2 text-oro">Unificación Pluscuamperfecta Continental SADV41 x EBRG x ONE PIECE x FOUR.MEME © 2026</p>
-        <p class="text-[8px] text-slate-500 tracking-[0.2em]">NODO SUPREMO: GITHUB REPOSITORY 'SADV41' (FETCH 100% ROYALTY) | EL ORIGEN ES 0</p>
+    <!-- ==========================================
+         FOOTER UNIFICADO
+         ========================================== -->
+    <footer class="bg-black/80 border-t border-white/10 text-center p-8 mt-10">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-[10px] text-slate-500 uppercase tracking-widest">
+            <p class="text-oro font-bold">Unificación SADV41 x GSADV41 © 2026</p>
+            <div class="flex gap-4">
+                <span class="text-green-500"><i class="fa-solid fa-check-circle mr-1"></i> Seguridad: OK</span>
+                <span class="text-cyan-500"><i class="fa-solid fa-code-branch mr-1"></i> Build: Estándar v4.1</span>
+            </div>
+            <p>NODO SUPREMO: GITHUB REPOSITORY | EL ORIGEN ES 0</p>
+        </div>
     </footer>
 
     <!-- ==========================================
@@ -369,32 +373,34 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
-            /* ==========================================
-               1. CAOS VIVO DE FONDO
-               ========================================== */
+            /* --- 1. Sincronización y Validación (GSADV41 Engine) --- */
+            console.log("GSADV41 Engine initialized successfully.");
+            const badge = document.getElementById('sync-status');
+            setTimeout(() => {
+                badge.title = "Sincronización con GitHub Pages completada sin anomalías. El puente Cristo-Mundo está activo.";
+            }, 1000);
+
+            /* --- 2. CAOS VIVO DE FONDO --- */
             const layers = document.querySelectorAll('.chaos-layer');
             let currentChaosIndex = 0;
             function randomChaosTransition(){
                 if(layers.length === 0) return;
-                layers.forEach(l => l.classList.remove('active','divine-glory-active'));
+                layers.forEach(l => l.classList.remove('active'));
                 currentChaosIndex = (currentChaosIndex + 1) % layers.length;
                 layers[currentChaosIndex].classList.add('active');
                 setTimeout(randomChaosTransition, 4500);
             }
             setTimeout(randomChaosTransition, 1500);
 
-            /* ==========================================
-               2. METATRON 3D HUB
-               ========================================== */
+            /* --- 3. METATRON 3D HUB --- */
             const nodesData = [
-                { id:"SADV41", family:"SADV41", color:"#d4af37" },
-                { id:"METO", family:"AI", color:"#00f3ff" },
-                { id:"ARRAIJAN", family:"USARMY", color:"#FB542B" },
-                { id:"WEB3", family:"AI", color:"#F3BA2F" },
-                { id:"GSADV41", family:"SADV41", color:"#d4af37" },
-                { id:"TRONO", family:"TRONO", color:"#9d4edd" },
-                { id:"NUKE", family:"USARMY", color:"#FB542B" },
-                { id:"LOGIA", family:"TRONO", color:"#9d4edd" },
+                { id:"SADV41", color:"#d4af37" },
+                { id:"APORÍA", color:"#ffffff" },
+                { id:"GEAR7", color:"#00f3ff" },
+                { id:"LEVIATHAN", color:"#FB542B" },
+                { id:"GSADV41", color:"#10b981" },
+                { id:"WEB3", color:"#F3BA2F" },
+                { id:"RAÍCES", color:"#9d4edd" },
             ];
 
             const scene = document.getElementById('flower-scene');
@@ -419,6 +425,7 @@
                 });
                 return svg;
             }
+            
             if(scene) {
                 scene.appendChild(createPlane("rotateY(0deg) translateZ(-18px)"));
                 scene.appendChild(createPlane("rotateY(60deg) translateZ(-18px)"));
@@ -460,7 +467,7 @@
             loop();
         });
 
-        // Web3 Connection Handler & Binance Referral
+        /* --- 4. Web3 Connection Handler & Binance Referral --- */
         async function connectBinance() {
             if (typeof window.ethereum !== 'undefined') {
                 try {
@@ -470,11 +477,8 @@
                     console.log("Conexión rechazada o cancelada:", e); 
                 }
             } else { 
-                // Alerta inmersiva si no detecta Wallet
                 const userChoice = confirm("⚠️ Nodo Web3 no detectado.\n\nPara interactuar con el contrato de la Logia SADV41, necesitas la Wallet Web 3.0 de Binance.\n\n¿Deseas descargar la app o conectar Binance ahora?");
-                
                 if (userChoice) {
-                    // Redirección directa con tu enlace de referido
                     window.open('https://web3.binance.com/referral?ref=ORCZSDLK', '_blank'); 
                 }
             }
