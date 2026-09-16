@@ -1,0 +1,26 @@
+{
+  "name": "SADV41 | Logia Pluscuamperfecta",
+  "short_name": "SADV41",
+  "description": "Logia Pluscuamperfecta • Unidad Espacio-Tiempo Panameña • Metatron 4D • Turbologia",
+  "start_url": "./GSADV41.html",
+  "display": "standalone",
+  "background_color": "#030305",
+  "theme_color": "#030305",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "https://thesteef21.github.io/Lapizasuli/assets/GSADV41/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://thesteef21.github.io/Lapizasuli/assets/GSADV41/favicon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["lifestyle", "social", "utilities"],
+  "lang": "es"
+}
