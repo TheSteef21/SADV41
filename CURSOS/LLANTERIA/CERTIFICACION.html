@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADV41 - Expedición de Certificados (Entorno TSX)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body { font-family: 'Times New Roman', serif; background-color: #121212; color: #e5e5e5; }
+        .certificate-box { background-color: #fbfaf6; color: #111; }
+        @media print {
+            body { background-color: white; }
+            .no-print { display: none; }
+            .certificate-box { border: none !important; box-shadow: none !important; width: 100% !important; max-width: 100% !important; padding: 0 !important; }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- Componente TSX transpilado en tiempo real por Babel -->
+    <script type="text/babel" data-type="module">
+        const { useState } = React;
+
+        function CertificadoSADV41() {
+            // Estado inicial basado en los hechos de la diligencia actual
+            const [alumno, setAlumno] = useState('Johnathan Coronado');
+            const [curso, setCurso] = useState('Llantería Operacional');
+            const [fecha, setFecha] = useState('2026-09-18');
+            const [horaInicio, setHoraInicio] = useState('13:00');
+            const [horaFin, setHoraFin] = useState('17:00');
+
+            const calcularHoras = () => {
+                const inicio = parseInt(horaInicio.split(':')[0]);
+                const fin = parseInt(horaFin.split(':')[0]);
+                return fin - inicio;
+            };
+
+            const handlePrint = () => {
+                window.print();
+            };
+
+            return (
+                <div className="min-h-screen p-8 flex flex-col items-center">
+                    <div className="no-print w-full max-w-4xl">
+                        <h1 className="text-3xl font-bold mb-2 text-gray-200">Defensoría Técnica SADV41</h1>
+                        <p className="text-gray-400 mb-6 font-sans">Módulo de Acreditación y Expedientes (React/TSX)</p>
+                        
+                        <div className="mb-8 p-6 bg-gray-800 rounded-lg border border-gray-600 shadow-lg font-sans">
+                            <h2 className="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Auto de Instrucción - Ingreso de Datos</h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-black">
+                                <div>
+                                    <label className="text-gray-300 text-sm font-bold block mb-1">Nombre del Asistido/Alumno</label>
+                                    <input className="w-full p-2 rounded bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" value={alumno} onChange={e => setAlumno(e.target.value)} />
+                                </div>
+                                <div>
+                                    <label className="text-gray-300 text-sm font-bold block mb-1">Materia de Especialidad</label>
+                                    <input className="w-full p-2 rounded bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" value={curso} onChange={e => setCurso(e.target.value)} />
+                                </div>
+                                <div>
+                                    <label className="text-gray-300 text-sm font-bold block mb-1">Fecha de la Diligencia</label>
+                                    <input className="w-full p-2 rounded bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" type="date" value={fecha} onChange={e => setFecha(e.target.value)} />
+                                </div>
+                                <div>
+                                    <label className="text-gray-300 text-sm font-bold block mb-1">Hora de Inicio</label>
+                                    <input className="w-full p-2 rounded bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" type="time" value={horaInicio} onChange={e => setHoraInicio(e.target.value)} />
+                                </div>
+                                <div>
+                                    <label className="text-gray-300 text-sm font-bold block mb-1">Hora de Finalización</label>
+                                    <input className="w-full p-2 rounded bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" type="time" value={horaFin} onChange={e => setHoraFin(e.target.value)} />
+                                </div>
+                            </div>
+                            <div className="mt-6 flex justify-end">
+                                <button onClick={handlePrint} className="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded shadow">
+                                    Emitir y Guardar Acta (PDF)
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* El Documento a Imprimir */}
+                    <div className="certificate-box w-full max-w-[900px] p-12 border-[10px] border-double border-gray-800 shadow-2xl relative bg-white">
+                        <div className="absolute top-6 left-6 text-xs font-bold text-gray-500 font-sans tracking-widest">
+                            EXPEDIENTE: SADV41-{Math.floor(Math.random() * 10000)}
+                        </div>
+                        <div className="absolute top-6 right-6 text-xs font-bold text-gray-500 font-sans tracking-widest">
+                            {fecha}
+                        </div>
+                        
+                        <div className="text-center mb-12 mt-8">
+                            <h1 className="text-4xl font-extrabold uppercase tracking-widest border-b-2 border-black pb-4 mb-4 text-black">
+                                Certificación Oficial de Instrucción
+                            </h1>
+                            <h2 className="text-xl font-bold tracking-wide text-gray-800">
+                                JURISDICCIÓN TÉCNICA SADV41
+                            </h2>
+                        </div>
+                        
+                        <div className="text-xl text-justify leading-relaxed mb-16 px-6 text-black">
+                            <p className="mb-6 indent-8">
+                                Por medio de la presente acta probatoria y obrando en pleno derecho de sus facultades periciales, el Instructor Técnico y especialista <strong>Steven Gómez Serrano</strong> (C.I.P. 8-901-2251), <strong>HACE CONSTAR</strong> que el ciudadano:
+                            </p>
+                            
+                            <p className="text-center text-3xl font-extrabold my-10 uppercase tracking-widest text-black">
+                                {alumno}
+                            </p>
+                            
+                            <p className="mb-6 indent-8">
+                                Ha agotado satisfactoriamente los plazos de instrucción intensiva en la materia de <strong>{curso}</strong>. Dicha diligencia de capacitación fue ejecutada el día <strong>{fecha}</strong>, abarcando una jornada presencial que dio inicio a las <strong>{horaInicio}</strong> y concluyó a las <strong>{horaFin}</strong>, sumando una carga probatoria de <strong>{calcularHoras()} horas</strong> de instrucción directa.
+                            </p>
+                            
+                            <p className="indent-8">
+                                Esta certificación se expide en Burunga, Panamá Oeste, bajo los principios de actuación de la iniciativa SADV41 para resguardar las garantías de idoneidad y competencia técnica del titular ante cualquier instancia laboral o profesional.
+                            </p>
+                        </div>
+
+                        <div className="flex justify-between items-end mt-24 px-10 text-black">
+                            <div className="text-center w-5/12">
+                                <div className="border-t-2 border-black w-full mb-2"></div>
+                                <p className="font-bold text-lg">Steven Gómez Serrano</p>
+                                <p className="text-sm font-semibold">Instructor Perito</p>
+                                <p className="text-sm">Iniciativa SADV41</p>
+                            </div>
+                            <div className="text-center w-5/12">
+                                <div className="border-t-2 border-black w-full mb-2"></div>
+                                <p className="font-bold text-lg">Johnathan Coronado</p>
+                                <p className="text-sm font-semibold">Firma del Asistido/Aprendiz</p>
+                                <p className="text-sm">Recepción Conforme</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<CertificadoSADV41 />);
+    </script>
+</body>
+</html>
