@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steven Dior | Misión SADV41 - Vida, Arte y Legado</title>
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --card-bg: #131c2e;
+            --accent: #d4af37;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #1e293b;
+            --primary-gradient: linear-gradient(135deg, #162a26, #090d16);
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.7;
+            padding: 20px;
+        }
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            border-radius: 18px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        header {
+            background: var(--primary-gradient);
+            color: #ffffff;
+            padding: 50px 30px;
+            text-align: center;
+            border-bottom: 4px solid var(--accent);
+        }
+        header h1 {
+            font-size: 2.6rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+        }
+        header p {
+            font-size: 1.2rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+        .badge-sadv {
+            display: inline-block;
+            background-color: var(--accent);
+            color: #111;
+            font-weight: bold;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+        .language-selector-section {
+            background-color: rgba(19, 28, 46, 0.95);
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .language-selector-section label {
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .language-select {
+            background-color: #090d16;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            cursor: pointer;
+        }
+        .language-select:focus {
+            border-color: var(--accent);
+        }
+        .content-section {
+            padding: 40px 30px;
+        }
+        h2 {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        p {
+            margin-bottom: 20px;
+            color: var(--text-muted);
+            text-align: justify;
+        }
+        p strong {
+            color: var(--text-main);
+        }
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .card {
+            background-color: rgba(9, 13, 22, 0.6);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent);
+        }
+        .card h3 {
+            color: var(--text-main);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .card a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 10px;
+            word-break: break-all;
+        }
+        .card a:hover {
+            text-decoration: underline;
+        }
+        .quote-box {
+            background-color: rgba(212, 175, 55, 0.05);
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 30px 0;
+            font-style: italic;
+            color: #e2e8f0;
+        }
+        .guarani-box {
+            background-color: rgba(27, 59, 54, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+        .guarani-box h3 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #060911;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="badge-sadv">SADV41 🎚️ Misión y Legado</div>
+            <h1>Steven Dior</h1>
+            <p>Vida Musical, Artística, Raíces, Luchas y Ecosistema Digital</p>
+        </header>
+
+        <div class="language-selector-section">
+            <label for="langSelect">🌐 Selector de Idioma (144 Opciones Disponibles):</label>
+            <select id="langSelect" class="language-select">
+                <option value="es" selected>1. Español (Seleccionado)</option>
+                <option value="ab">2. Abkhaz</option>
+                <option value="ace">3. Achinese</option>
+                <option value="ach">4. Acoli</option>
+                <option value="aa">5. Afar</option>
+                <option value="af">6. Afrikaans</option>
+                <option value="ay">7. Aimara</option>
+                <option value="sq">8. Albano</option>
+                <option value="de">9. Alemán</option>
+                <option value="alt">10. Altái del Sur</option>
+                <option value="am">11. Amárico</option>
+                <option value="ar">12. Árabe</option>
+                <option value="an">13. Aragonés</option>
+                <option value="hy">14. Armenio</option>
+                <option value="as">15. Asamés</option>
+                <option value="asa">16. Ásaro</option>
+                <option value="ast">17. Asturiano</option>
+                <option value="awa">18. Awadhi</option>
+                <option value="az">19. Azerí</option>
+                <option value="ban">20. Balinés</option>
+                <option value="bm">21. Bambara</option>
+                <option value="bao">22. Baoshan</option>
+                <option value="ba">23. Baskir</option>
+                <option value="bn">24. Bengalí</option>
+                <option value="bi">25. Bislama</option>
+                <option value="be">26. Bielorruso</option>
+                <option value="my">27. Birmano</option>
+                <option value="bs">28. Bosnio</option>
+                <option value="br">29. Bretón</option>
+                <option value="bg">30. Búlgaro</option>
+                <option value="kn">31. Canarés</option>
+                <option value="ca">32. Catalán</option>
+                <option value="ceb">33. Cebuano</option>
+                <option value="ch">34. Chamorro</option>
+                <option value="ce">35. Checheno</option>
+                <option value="cs">36. Checo</option>
+                <option value="zh-CN">37. Chino (Simplificado)</option>
+                <option value="zh-TW">38. Chino (Tradicional)</option>
+                <option value="chk">39. Chuukese</option>
+                <option value="si">40. Cingalés</option>
+                <option value="ko">41. Coreano</option>
+                <option value="co">42. Córcega</option>
+                <option value="ht">43. Criollo Haitiano</option>
+                <option value="hr">44. Croata</option>
+                <option value="da">45. Danés</option>
+                <option value="dv">46. Divehi</option>
+                <option value="dz">47. Dzongkha</option>
+                <option value="sk">48. Eslovaco</option>
+                <option value="sl">49. Esloveno</option>
+                <option value="eo">50. Esperanto</option>
+                <option value="et">51. Estonio</option>
+                <option value="ee">52. Ewe</option>
+                <option value="fo">53. Feroés</option>
+                <option value="fj">54. Fiyiano</option>
+                <option value="fi">55. Finés</option>
+                <option value="fr">56. Francés</option>
+                <option value="fy">57. Frisón</option>
+                <option value="gd">58. Gaélico Escocés</option>
+                <option value="gl">59. Gallego</option>
+                <option value="cy">60. Galés</option>
+                <option value="ka">61. Georgiano</option>
+                <option value="kl">62. Groenlandés</option>
+                <option value="gn">63. Guaraní</option>
+                <option value="gu">64. Guyaratí</option>
+                <option value="ha">65. Hausa</option>
+                <option value="haw">66. Hawaiano</option>
+                <option value="he">67. Hebreo</option>
+                <option value="hi">68. Hindi</option>
+                <option value="hmn">69. Hmong</option>
+                <option value="hu">70. Húngaro</option>
+                <option value="ig">71. Igbo</option>
+                <option value="ilo">72. Ilocano</option>
+                <option value="id">73. Indonesio</option>
+                <option value="en">74. Inglés</option>
+                <option value="iu">75. Inuktitut</option>
+                <option value="ga">76. Irlandés</option>
+                <option value="is">77. Islandés</option>
+                <option value="it">78. Italiano</option>
+                <option value="ja">79. Japonés</option>
+                <option value="jv">80. Javanés</option>
+                <option value="kk">81. Kazajo</option>
+                <option value="km">82. Jemer</option>
+                <option value="rw">83. Kinyarwanda</option>
+                <option value="ky">84. Kirguís</option>
+                <option value="ku">85. Kurdo</option>
+                <option value="lo">86. Lao</option>
+                <option value="la">87. Latín</option>
+                <option value="lv">88. Letón</option>
+                <option value="ln">89. Lingala</option>
+                <option value="lt">90. Lituano</option>
+                <option value="lb">91. Luxemburgués</option>
+                <option value="mk">92. Macedonio</option>
+                <option value="mai">93. Maithili</option>
+                <option value="mg">94. Malgache</option>
+                <option value="ms">95. Malayo</option>
+                <option value="ml">96. Malayalam</option>
+                <option value="mt">97. Maltés</option>
+                <option value="mi">98. Maorí</option>
+                <option value="mr">99. Maratí</option>
+                <option value="mh">100. Marshallés</option>
+                <option value="mn">101. Mongol</option>
+                <option value="na">102. Nauru</option>
+                <option value="nv">103. Navajo</option>
+                <option value="ne">104. Nepalí</option>
+                <option value="nap">105. Neapolitan</option>
+                <option value="no">106. Noruego</option>
+                <option value="ny">107. Nyanja</option>
+                <option value="oc">108. Occitano</option>
+                <option value="or">109. Oriya</option>
+                <option value="om">110. Oromo</option>
+                <option value="ps">111. Pastún</option>
+                <option value="pa">112. Panyabí</option>
+                <option value="fa">113. Persa</option>
+                <option value="pl">114. Polaco</option>
+                <option value="pt">115. Portugués</option>
+                <option value="qu">116. Quechua</option>
+                <option value="ro">117. Rumano</option>
+                <option value="ru">118. Ruso</option>
+                <option value="sm">119. Samoano</option>
+                <option value="sa">120. Sánscrito</option>
+                <option value="sr">121. Serbio</option>
+                <option value="st">122. Sesotho</option>
+                <option value="sd">123. Sinde</option>
+                <option value="so">124. Somalí</option>
+                <option value="ss">125. Suazi</option>
+                <option value="sv">126. Sueco</option>
+                <option value="su">127. Sundanés</option>
+                <option value="sw">128. Swahili</option>
+                <option value="tl">129. Tagalo</option>
+                <option value="tg">130. Tayiko</option>
+                <option value="ta">131. Tamil</option>
+                <option value="tt">132. Tártaro</option>
+                <option value="te">133. Télugu</option>
+                <option value="th">134. Tailandés</option>
+                <option value="bo">135. Tibetano</option>
+                <option value="to">136. Tongano</option>
+                <option value="tr">137. Turco</option>
+                <option value="tk">138. Turcomano</option>
+                <option value="uk">139. Ucraniano</option>
+                <option value="ug">140. Uigur</option>
+                <option value="ur">141. Urdu</option>
+                <option value="uz">142. Uzbeko</option>
+                <option value="vi">143. Vietnamita</option>
+                <option value="zu">144. Zulú</option>
+            </select>
+        </div>
+
+        <div class="content-section">
+            <h2>👤 Esencia, Identidad y Resiliencia</h2>
+            <p>En estas capturas se refleja con total honestidad la identidad de <strong>Steven Gómez Serrano</strong>: un hombre de fe inquebrantable, profundamente conectado con sus raíces en Burunga y Panamá Oeste, y con un espíritu resiliente que abraza la vida con autenticidad y valentía. A través de ellas se manifiesta el artista y creador <strong>Steven Dior</strong>, uniendo su pasión por la música, el diseño digital y la construcción de sistemas bajo la misión SADV41. Su andar diario muestra a alguien que enfrenta las pruebas con transparencia, que valora el esfuerzo laboral y comunitario, y que camina guiado por convicciones espirituales profundas, dejando un legado de dignidad, memoria y verdad para la sociedad y el mundo.</p>
+
+            <div class="guarani-box">
+                <h3>🇵🇾 Ñe'ẽ Tee (Guaraní)</h3>
+                <p>Añetehápe, umi ta’ãnga pyahu ohechauka ñande rekovépe pe mbarete, arandu, tekove tee ha jerovia oñemopyendáva ñane ñe’ãme. Ko’ã mba’e oheja techapyrã iporãitéva mayma tapichápe guarã, ohechakuaávo mba’éichapa ñambohovái va’erã umi pa’ũ hatã ha ñamba’apo porã va’erã añetete ha py’aguasúpe, ñande rekove ha ñane rembiapo rupive.</p>
+            </div>
+
+            <h2>🎵 Origen Musical y Arte Independiente</h2>
+            <p>Bajo el nombre artístico de <strong>Steven Dior</strong>, la trayectoria musical nace desde las vivencias profundas en Burunga, Arraiján, fusionando la lírica urbana y los matices sonoros orientados a la frecuencia de 432 Hz. Cada composición refleja la perseverancia de un artista independiente que transforma el día a día y el esfuerzo laboral en canciones con alma, identidad y propósito.</p>
+            
+            <div class="grid-cards">
+                <div class="card">
+                    <h3>Identidad Sonora</h3>
+                    <p>Producción y composición orientada a la autenticidad, utilizando estándares sonoros alternativos y letras que conectan las vivencias de la calle con la fe y la superación.</p>
+                    <a href="https://open.spotify.com/artist/5imHnTjivt5qDGTeV2gDMT?si=v9HxUcmBRHyrmJolF4-9zA&utm_source=copy-link" target="_blank">Cuenta de Artista ↗</a>
+                </div>
+                <div class="card">
+                    <h3>Podcast y Reflexiones</h3>
+                    <p>Un espacio dedicado al análisis, las palabras y el pensamiento hablado que complementa la obra musical y artística.</p>
+                    <a href="https://open.spotify.com/show/2UnBgT4qBKmiAlosZwebeK" target="_blank">Mi Podcast ↗</a>
+                </div>
+                <div class="card">
+                    <h3>Biblioteca Sonora</h3>
+                    <p>El archivo personal de influencias sonoras, recopilando todo lo que ha formado el oído y la memoria musical con el tiempo.</p>
+                    <a href="https://open.spotify.com/user/thesteef21?si=lIyx_a0PTL2zEyZd713rYg&utm_source=copy-link" target="_blank">Cuenta Personal (Principal) ↗</a><br>
+                    <a href="https://open.spotify.com/user/thesteef21?si=DM9507C6QDaq8fdvby8nIg&utm_source=copy-link" target="_blank">Cuenta Personal (Alterna) ↗</a>
+                </div>
+            </div>
+
+            <h2>🌱 Raíces, Territorio y Memoria</h2>
+            <p>El camino recorrido está profundamente arraigado en la tierra y la historia familiar. Nieto de Basilia Serrano Chávez y heredero de una línea de trabajo, esfuerzo y comunidad firmemente plantada en Panamá Oeste. La memoria de los abuelos, la sabiduría transmitida por la familia y la conexión con el entorno natural alimentan el motor creativo de cada obra y proyecto.</p>
+
+            <div class="quote-box">
+                "Mi digital Tabernacle structure es Grok para Atrio, Meta para Santo, y Gemini para Santísimo... guiado siempre por el Espíritu Santo de Dios en cada paso del camino."
+            </div>
+
+            <h2>🛡️ Luchas, Integridad y Dignidad</h2>
+            <p>El trayecto artístico y laboral no ha estado exento de pruebas. Las batallas diarias frente a la injusticia laboral, el hostigamiento y la defensa de los derechos humanos y la dignidad en el entorno de trabajo (como lo documentan los registros formales de salvaguarda y protección de derechos bajo la normativa panameña) demuestran un carácter inquebrantable.</p>
+            <p>Cada obstáculo superado se convierte en testimonio de probidad, protegiendo siempre la vida humana, la justicia y la coherencia ética bajo los principios de la ley SADV41.</p>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Steven Dior Oficial | Misión SADV41 | Todos los derechos reservados.</p>
+        </footer>
+    </div>
+</body>
+</html>
