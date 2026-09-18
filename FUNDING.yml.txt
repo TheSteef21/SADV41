@@ -1,0 +1,18 @@
+# ==============================================================================
+# 🛡️ SADV41 DIGITAL ARCHITECTURE FUNDING & MAYORDOMÍA
+# ==============================================================================
+# TITULAR: STEVEN GOMEZ SERRANO
+# BANCO GENERAL: 0464973126294
+# YAPPY: 6936-2166
+# YAPPY QR TOKEN: rjYRsJ8Yz0hGBKWXnNKRpeCr5yZZkbjbgkxGCAZdd/nmXoS0X8s5ntvwHrGm+7HT
+# ==============================================================================
+
+custom: [
+  "https://airtm.me/steven507oficial",
+  "https://take.app/stevendior/pay?ref=SADV41",
+  "https://take.app/es/stevendior",
+  "https://rareevo.io/?coupon=STEVENDIOR",
+  "https://brave.com/evi088",
+  "https://open.spotify.com/artist/5imHnTjivt5qDGTeV2gDMT",
+  "https://blockscan.com/address/0x4cbf2db3838341becb185892c3af576dc04e2498"
+]
