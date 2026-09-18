@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SADV41 GEAR 5 HAKI - Filtro Oficial</title>
+    <style>
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #000; }
+        #ar-camera { width: 100%; height: 100%; object-fit: cover; position: absolute; z-index: 1; }
+        #sadv41-overlay { position: absolute; top: 20px; right: 20px; z-index: 10; color: #00FFFF; font-family: monospace; font-weight: bold; text-shadow: 0 0 5px #00FFFF; }
+        .capture-btn { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); z-index: 10; padding: 15px 30px; background: rgba(0, 255, 255, 0.2); border: 2px solid #00FFFF; color: #FFF; border-radius: 50px; font-weight: bold; cursor: pointer; backdrop-filter: blur(5px); }
+    </style>
+</head>
+<body>
+    <!-- Sello de Autenticidad -->
+    <div id="sadv41-overlay">SADV41 VERIFIED ✔</div>
+
+    <!-- Feed de la Cámara -->
+    <video id="ar-camera" autoplay playsinline></video>
+
+    <!-- UI del Filtro -->
+    <button class="capture-btn" onclick="iniciarTransformacion()">Activar Gear 5</button>
+
+    <script>
+        // Inicializar cámara trasera
+        async function setupCamera() {
+            const video = document.getElementById('ar-camera');
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({
+                    video: { facingMode: 'user' } // 'user' para selfie, 'environment' para trasera
+                });
+                video.srcObject = stream;
+            } catch (err) {
+                console.error("Error al acceder a la cámara: ", err);
+                alert("Se necesita acceso a la cámara para el Haki.");
+            }
+        }
+
+        function iniciarTransformacion() {
+            // Aquí inyectaremos la lógica del SDK AR (DeepAR/Banuba) para cargar el modelo 3D del pelo y las texturas
+            console.log("Activando Busoshoku Haki y Pelo Nika...");
+        }
+
+        setupCamera();
+    </script>
+</body>
+</html>
