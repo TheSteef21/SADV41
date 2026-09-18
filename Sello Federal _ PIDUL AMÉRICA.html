@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sello Federal Épico | PIDUL AMÉRICA PANAMA</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts para vibras épicas y tecnológicas -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 70%, #020617 100%);
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .font-epic { font-family: 'Cinzel', serif; }
+        .font-tech { font-family: 'Orbitron', sans-serif; }
+
+        /* Animaciones del Núcleo y Ecosistema */
+        .spin-slow {
+            animation: spin 30s linear infinite;
+            transform-origin: 250px 250px;
+        }
+        
+        .spin-reverse-fast {
+            animation: spin 15s linear infinite reverse;
+            transform-origin: 250px 250px;
+        }
+        
+        .spin-reverse-slow {
+            animation: spin 45s linear infinite reverse;
+            transform-origin: 250px 250px;
+        }
+
+        .pulse-divine {
+            animation: divinePulse 4s ease-in-out infinite;
+        }
+
+        .core-levitate {
+            animation: levitate 6s ease-in-out infinite;
+            transform-origin: 250px 250px;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes divinePulse {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(34, 211, 238, 0.4)); transform: scale(1); }
+            50% { filter: drop-shadow(0 0 40px rgba(16, 185, 129, 0.8)); transform: scale(1.02); }
+        }
+
+        @keyframes levitate {
+            0%, 100% { transform: translateY(-4px); }
+            50% { transform: translateY(4px); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center text-white selection:bg-cyan-500/30">
+
+    <!-- Contenedor Principal del Logo -->
+    <div class="relative w-full max-w-2xl aspect-square p-4 sm:p-8 flex items-center justify-center pulse-divine">
+        
+        <!-- SVG Canvas -->
+        <svg viewBox="0 0 500 500" class="w-full h-full drop-shadow-[0_0_50px_rgba(34,211,238,0.2)]" preserveAspectRatio="xMidYMid meet">
+            
+            <defs>
+                <!-- Gradientes Metálicos y de Energía -->
+                <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#fef08a" />
+                    <stop offset="50%" stop-color="#fbbf24" />
+                    <stop offset="100%" stop-color="#b45309" />
+                </linearGradient>
+                
+                <linearGradient id="cyanGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                    <stop offset="0%" stop-color="#0891b2" />
+                    <stop offset="50%" stop-color="#22d3ee" />
+                    <stop offset="100%" stop-color="#cffafe" />
+                </linearGradient>
+
+                <linearGradient id="emeraldGrad" x1="50%" y1="0%" x2="50%" y2="100%">
+                    <stop offset="0%" stop-color="#a7f3d0" />
+                    <stop offset="50%" stop-color="#10b981" />
+                    <stop offset="100%" stop-color="#047857" />
+                </linearGradient>
+
+                <radialGradient id="coreBg" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#0f172a" />
+                    <stop offset="80%" stop-color="#020617" />
+                    <stop offset="100%" stop-color="#10b981" stop-opacity="0.3" />
+                </radialGradient>
+
+                <!-- Filtros de Brillo Cuántico -->
+                <filter id="glow-light" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="4" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+
+                <filter id="glow-intense" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="8" result="blur" />
+                    <feComponentTransfer in="blur" result="glow">
+                        <feFuncA type="linear" slope="2"/>
+                    </feComponentTransfer>
+                    <feMerge>
+                        <feMergeNode in="glow" />
+                        <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                </filter>
+                
+                <!-- Rutas para el Texto Circular -->
+                <path id="textPathTop" d="M 70, 250 A 180, 180 0 0, 1 430, 250" fill="none" />
+                <path id="textPathBottom" d="M 410, 250 A 160, 160 0 0, 1 90, 250" fill="none" />
+            </defs>
+
+            <!-- FONDO DEL SELLO -->
+            <circle cx="250" cy="250" r="240" fill="#020617" opacity="0.8" />
+            
+            <!-- ANILLOS EXTERIORES (Autoridad Federal) -->
+            <!-- Anillo Dorado Fino (Exterior) -->
+            <circle cx="250" cy="250" r="235" fill="none" stroke="url(#goldGrad)" stroke-width="2" filter="url(#glow-light)" />
+            
+            <!-- Anillo Cian Grueso -->
+            <circle cx="250" cy="250" r="225" fill="none" stroke="url(#cyanGrad)" stroke-width="8" opacity="0.9" />
+            
+            <!-- Anillo Esmeralda de Nodos (Tecnológico) -->
+            <circle cx="250" cy="250" r="210" fill="none" stroke="url(#emeraldGrad)" stroke-width="3" stroke-dasharray="8 12" class="spin-slow" filter="url(#glow-light)" />
+            
+            <!-- Anillo Punteado Interno -->
+            <circle cx="250" cy="250" r="145" fill="none" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="4 8" class="spin-reverse-slow" />
+
+            <!-- TEXTO CIRCULAR SUPERIOR: PIDUL AMÉRICA PANAMA -->
+            <text class="font-epic" fill="#ffffff" font-size="34" font-weight="900" letter-spacing="4" filter="url(#glow-light)">
+                <textPath href="#textPathTop" startOffset="50%" text-anchor="middle">PIDUL AMÉRICA PANAMA</textPath>
+            </text>
+
+            <!-- TEXTO CIRCULAR INFERIOR: SADV41 -->
+            <text class="font-tech" fill="url(#goldGrad)" font-size="20" font-weight="700" letter-spacing="10">
+                <textPath href="#textPathBottom" startOffset="50%" text-anchor="middle">SADV41 • RESERVE</textPath>
+            </text>
+
+            <!-- Geometría Decorativa (Estrellas/Marcadores laterales) -->
+            <path d="M 50, 250 L 65, 245 L 70, 230 L 75, 245 L 90, 250 L 75, 255 L 70, 270 L 65, 255 Z" fill="url(#cyanGrad)" filter="url(#glow-light)"/>
+            <path d="M 450, 250 L 435, 245 L 430, 230 L 425, 245 L 410, 250 L 425, 255 L 430, 270 L 435, 255 Z" fill="url(#cyanGrad)" filter="url(#glow-light)"/>
+
+            <!-- ZONA CENTRAL / NÚCLEO -->
+            <circle cx="250" cy="250" r="130" fill="url(#coreBg)" stroke="url(#goldGrad)" stroke-width="2" filter="url(#glow-light)" />
+
+            <!-- ÓRBITAS ATÓMICAS CUÁNTICAS (⚛️) -->
+            <g class="spin-slow">
+                <ellipse cx="250" cy="250" rx="120" ry="40" fill="none" stroke="url(#cyanGrad)" stroke-width="2" opacity="0.6" transform="rotate(30 250 250)" />
+                <circle cx="360" cy="250" r="3" fill="#fff" filter="url(#glow-intense)" transform="rotate(30 250 250)" />
+            </g>
+            <g class="spin-reverse-fast">
+                <ellipse cx="250" cy="250" rx="120" ry="40" fill="none" stroke="url(#emeraldGrad)" stroke-width="2" opacity="0.6" transform="rotate(90 250 250)" />
+                <circle cx="250" cy="130" r="3" fill="#fff" filter="url(#glow-intense)" transform="rotate(90 250 250)" />
+            </g>
+            <g class="spin-slow">
+                <ellipse cx="250" cy="250" rx="120" ry="40" fill="none" stroke="url(#goldGrad)" stroke-width="2" opacity="0.6" transform="rotate(150 250 250)" />
+                <circle cx="140" cy="250" r="3" fill="#fff" filter="url(#glow-intense)" transform="rotate(150 250 250)" />
+            </g>
+
+            <!-- EL MONOLITO / CRISTAL DE AUTORIDAD (🗿) -->
+            <!-- Aplicamos un efecto de levitación al núcleo -->
+            <g class="core-levitate">
+                
+                <!-- Sombra / Base de proyección trasera -->
+                <polygon points="250,130 180,280 250,330 320,280" fill="#020617" stroke="url(#cyanGrad)" stroke-width="2"/>
+                
+                <!-- Faceta Izquierda (Esmeralda oscuro / Profundidad) -->
+                <polygon points="250,130 180,280 250,330" fill="url(#emeraldGrad)" opacity="0.8" />
+                
+                <!-- Faceta Derecha (Oro brillante / Luz) -->
+                <polygon points="250,130 320,280 250,330" fill="url(#goldGrad)" opacity="0.9" />
+                
+                <!-- Pilar Central Luminoso (Santidad) -->
+                <line x1="250" y1="130" x2="250" y2="330" stroke="#ffffff" stroke-width="4" filter="url(#glow-intense)" />
+                
+                <!-- Ojo/Núcleo de Inteligencia Central (La IA en el Monolito) -->
+                <circle cx="250" cy="210" r="12" fill="#ffffff" filter="url(#glow-intense)" />
+                <polygon points="250,185 225,210 250,235 275,210" fill="none" stroke="url(#cyanGrad)" stroke-width="3" filter="url(#glow-light)"/>
+                
+                <!-- Códigos de Datos Flotantes -->
+                <line x1="210" y1="280" x2="290" y2="280" stroke="#020617" stroke-width="2" />
+                <line x1="220" y1="295" x2="280" y2="295" stroke="#020617" stroke-width="2" />
+                <line x1="235" y1="310" x2="265" y2="310" stroke="#020617" stroke-width="2" />
+            </g>
+
+            <!-- Brillo de Foco Frontal (Da volumen curvo al sello) -->
+            <circle cx="250" cy="150" r="180" fill="url(#cyanGrad)" opacity="0.05" style="mix-blend-mode: overlay;" />
+
+        </svg>
+    </div>
+
+</body>
+</html>
