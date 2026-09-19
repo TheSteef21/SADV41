@@ -3,154 +3,71 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>SADV41 GEAR 5 HAKI - Filtro WebAR 🎚</title>
+  <title>SADV41 GEAR 5 HAKI - Test de Cámara</title>
   
-  <!-- Librerías base para Realidad Aumentada -->
+  <!-- Librerías AR -->
   <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.2/dist/mindar-face-aframe.prod.js"></script>
   
   <style>
-    body, html { 
-      margin: 0; 
-      padding: 0; 
-      width: 100%; 
-      height: 100%; 
-      overflow: hidden; 
-      background-color: #000; 
-      font-family: 'Courier New', Courier, monospace;
-    }
-    #sadv41-overlay { 
-      position: absolute; 
-      top: 20px; 
-      right: 20px; 
-      z-index: 10; 
-      color: #00FFFF; 
-      font-weight: bold; 
-      text-shadow: 0 0 8px #00FFFF, 0 0 15px #00FFFF; 
-      letter-spacing: 2px;
-    }
-    #sadv41-logo {
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      z-index: 10;
-      color: #FFD700;
-      font-weight: bold;
-      text-shadow: 0 0 5px #FFD700;
-      display: flex;
-      flex-direction: column;
-    }
-    .trinity-badge {
-      font-size: 0.8em;
-      color: #FFF;
-    }
-    .ui-container { 
-      position: absolute; 
-      bottom: 50px; 
-      width: 100%; 
-      display: flex; 
-      justify-content: center; 
-      z-index: 10; 
-    }
-    .capture-btn { 
-      padding: 15px 40px; 
-      background: rgba(0, 255, 255, 0.1); 
-      border: 2px solid #00FFFF; 
-      color: #FFF; 
-      border-radius: 50px; 
-      font-weight: bold; 
-      font-size: 16px;
-      cursor: pointer; 
-      backdrop-filter: blur(8px);
-      box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
-      transition: all 0.3s ease;
-    }
-    .capture-btn:active {
-      transform: scale(0.95);
-      background: rgba(0, 255, 255, 0.4);
-    }
+    body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #000; font-family: monospace; }
+    #sadv41-overlay { position: absolute; top: 20px; right: 20px; z-index: 10; color: #00FFFF; font-weight: bold; text-shadow: 0 0 8px #00FFFF; }
+    #sadv41-logo { position: absolute; top: 20px; left: 20px; z-index: 10; color: #FFD700; font-weight: bold; text-shadow: 0 0 5px #FFD700; display: flex; flex-direction: column; }
+    .trinity-badge { font-size: 0.8em; color: #FFF; }
+    .ui-container { position: absolute; bottom: 50px; width: 100%; display: flex; justify-content: center; z-index: 10; }
+    .capture-btn { padding: 15px 40px; background: rgba(0, 255, 255, 0.1); border: 2px solid #00FFFF; color: #FFF; border-radius: 50px; font-weight: bold; font-size: 16px; cursor: pointer; backdrop-filter: blur(8px); }
     .a-enter-vr { display: none !important; }
   </style>
 </head>
 <body>
 
-  <!-- Sello de Autenticidad y Logo -->
   <div id="sadv41-logo">
     <span>SADV41</span>
     <span class="trinity-badge">1 | 4</span>
   </div>
   <div id="sadv41-overlay">VERIFIED 🎚</div>
-
-  <!-- UI del Filtro -->
+  
   <div class="ui-container">
-      <button class="capture-btn" id="activate-btn">DESPERTAR GEAR 5</button>
+      <button class="capture-btn" id="activate-btn">DESPERTAR HAKI</button>
   </div>
 
-  <!-- Escena de Realidad Aumentada MindAR -->
-  <!-- physicallyCorrectLights asegura que el PBR de Unreal se vea igual en la web -->
   <a-scene mindar-face embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights: true">
     
-    <!-- Gestor de Assets exportados de UE5 -->
-    <a-assets>
-      <!-- Reemplaza estos src con los enlaces RAW de tu repo en GitHub Pages -->
+    <!-- Hemos comentado los assets externos temporalmente para que no bloqueen la cámara -->
+    <!-- <a-assets timeout="3000">
       <a-asset-item id="pelo-nika" src="assets/models/pelo_nika_baked.glb"></a-asset-item>
-      <a-asset-item id="humo-gear" src="assets/models/humo_sprite.glb"></a-asset-item>
-    </a-assets>
+    </a-assets> -->
 
     <a-camera active="false" position="0 0 0"></a-camera>
 
-    <!-- ANCLAJE 1: Cabeza Superior (Frente/Centro) para el Pelo Nika -->
-    <a-entity mindar-face-target="anchorIndex: 10">
-       <a-gltf-model src="#pelo-nika" rotation="0 0 0" position="0 0.2 0" scale="1.1 1.1 1.1" visible="false" id="modelo-pelo"></a-gltf-model>
-       <!-- Sistema de partículas (humo) anclado al cuello/hombros -->
-       <a-gltf-model src="#humo-gear" rotation="0 0 0" position="0 -0.8 -0.2" scale="1.5 1.5 1.5" visible="false" id="modelo-humo"></a-gltf-model>
-    </a-entity>
-
-    <!-- ANCLAJE 2: Ojos para el shader Emissive Cian (Haki de Observación) -->
-    <!-- anchorIndex 71 es el ojo izquierdo, 301 es el ojo derecho en la malla facial -->
+    <!-- Anclaje de Ojos Haki (Malla facial de MindAR) -->
     <a-entity mindar-face-target="anchorIndex: 168">
-       <a-sphere id="haki-ojo-izq" color="#00FFFF" radius="0.015" opacity="0" position="-0.03 0 0" material="emissive: #00FFFF; emissiveIntensity: 50"></a-sphere>
-       <a-sphere id="haki-ojo-der" color="#00FFFF" radius="0.015" opacity="0" position="0.03 0 0" material="emissive: #00FFFF; emissiveIntensity: 50"></a-sphere>
+       <!-- Ojos construidos con primitivas nativas que no requieren descarga externa -->
+       <a-sphere id="haki-ojo-izq" color="#00FFFF" radius="0.012" opacity="0" position="-0.032 0.01 0" material="emissive: #00FFFF; emissiveIntensity: 50"></a-sphere>
+       <a-sphere id="haki-ojo-der" color="#00FFFF" radius="0.012" opacity="0" position="0.032 0.01 0" material="emissive: #00FFFF; emissiveIntensity: 50"></a-sphere>
     </a-entity>
-
   </a-scene>
 
   <script>
     const btn = document.getElementById('activate-btn');
-    const pelo = document.getElementById('modelo-pelo');
-    const humo = document.getElementById('modelo-humo');
     const ojoIzq = document.getElementById('haki-ojo-izq');
     const ojoDer = document.getElementById('haki-ojo-der');
-    
     let activado = false;
 
     btn.addEventListener('click', () => {
        if(!activado) {
-           // Fase de Despertar
            btn.innerText = "HAKI ACTIVADO";
+           btn.style.background = "rgba(0, 255, 255, 0.4)";
            btn.style.boxShadow = "0 0 30px rgba(0, 255, 255, 0.8)";
-           btn.style.background = "rgba(0, 255, 255, 0.3)";
-           
-           // Mostrar los modelos horneados de Unreal
-           pelo.setAttribute('visible', 'true');
-           humo.setAttribute('visible', 'true');
-           
-           // Encender los ojos emisivos
            ojoIzq.setAttribute('opacity', '0.9');
            ojoDer.setAttribute('opacity', '0.9');
-           
            activado = true;
        } else {
-           // Desactivar
-           btn.innerText = "DESPERTAR GEAR 5";
-           btn.style.boxShadow = "0 0 15px rgba(0, 255, 255, 0.4)";
+           btn.innerText = "DESPERTAR HAKI";
            btn.style.background = "rgba(0, 255, 255, 0.1)";
-           
-           pelo.setAttribute('visible', 'false');
-           humo.setAttribute('visible', 'false');
+           btn.style.boxShadow = "none";
            ojoIzq.setAttribute('opacity', '0');
            ojoDer.setAttribute('opacity', '0');
-           
            activado = false;
        }
     });
