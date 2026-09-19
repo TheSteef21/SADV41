@@ -3,19 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>SADV41 GEAR 5 HAKI - Test de Cámara</title>
+  <title>SADV41 GEAR 5 HAKI - Oficial</title>
   
-  <!-- Librerías AR -->
   <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.2/dist/mindar-face-aframe.prod.js"></script>
   
   <style>
     body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: #000; font-family: monospace; }
-    #sadv41-overlay { position: absolute; top: 20px; right: 20px; z-index: 10; color: #00FFFF; font-weight: bold; text-shadow: 0 0 8px #00FFFF; }
-    #sadv41-logo { position: absolute; top: 20px; left: 20px; z-index: 10; color: #FFD700; font-weight: bold; text-shadow: 0 0 5px #FFD700; display: flex; flex-direction: column; }
-    .trinity-badge { font-size: 0.8em; color: #FFF; }
+    
+    #sadv41-logo { position: absolute; top: 20px; left: 20px; z-index: 10; color: #FFD700; font-weight: bold; text-shadow: 0 0 5px #FFD700; display: flex; flex-direction: column; font-size: 18px; }
+    .trinity-badge { font-size: 0.7em; color: #00FFFF; text-shadow: 0 0 5px #00FFFF; margin-top: 2px; }
+    #sadv41-overlay { position: absolute; top: 20px; right: 20px; z-index: 10; color: #00FFFF; font-weight: bold; text-shadow: 0 0 8px #00FFFF; letter-spacing: 1px; }
+    
     .ui-container { position: absolute; bottom: 50px; width: 100%; display: flex; justify-content: center; z-index: 10; }
-    .capture-btn { padding: 15px 40px; background: rgba(0, 255, 255, 0.1); border: 2px solid #00FFFF; color: #FFF; border-radius: 50px; font-weight: bold; font-size: 16px; cursor: pointer; backdrop-filter: blur(8px); }
+    .capture-btn { padding: 15px 40px; background: rgba(0, 255, 255, 0.1); border: 2px solid #00FFFF; color: #FFF; border-radius: 50px; font-weight: bold; font-size: 16px; cursor: pointer; backdrop-filter: blur(8px); transition: 0.3s; }
     .a-enter-vr { display: none !important; }
   </style>
 </head>
@@ -28,21 +29,32 @@
   <div id="sadv41-overlay">VERIFIED 🎚</div>
   
   <div class="ui-container">
-      <button class="capture-btn" id="activate-btn">DESPERTAR HAKI</button>
+      <button class="capture-btn" id="activate-btn">DESPERTAR GEAR 5</button>
   </div>
 
   <a-scene mindar-face embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights: true">
     
-    <!-- Hemos comentado los assets externos temporalmente para que no bloqueen la cámara -->
-    <!-- <a-assets timeout="3000">
-      <a-asset-item id="pelo-nika" src="assets/models/pelo_nika_baked.glb"></a-asset-item>
-    </a-assets> -->
+    <a-assets timeout="10000">
+      <!-- Aquí cargas tus modelos 3D -->
+      <a-asset-item id="pelo-nika" src="./models/pelo_nika_baked.glb"></a-asset-item>
+      
+      <!-- NUEVO: Aquí cargas tu imagen 2D (PNG transparente o JPG) -->
+      <!-- Puedes subir una textura del Haki o tu logo a la misma carpeta -->
+      <img id="textura-logo" src="./models/tu_logo_sadv41.png" crossorigin="anonymous">
+    </a-assets>
 
     <a-camera active="false" position="0 0 0"></a-camera>
 
-    <!-- Anclaje de Ojos Haki (Malla facial de MindAR) -->
+    <!-- ANCLAJE: Cabeza y Elementos -->
+    <a-entity mindar-face-target="anchorIndex: 10">
+       <a-gltf-model src="#pelo-nika" rotation="0 0 0" position="0 0.2 0" scale="1.1 1.1 1.1" visible="false" id="modelo-pelo"></a-gltf-model>
+       
+       <!-- NUEVO: La imagen 2D proyectada como un plano holográfico en la frente -->
+       <a-image src="#textura-logo" position="0 0.1 0.1" scale="0.15 0.15 0.15" visible="false" id="imagen-holograma" material="alphaTest: 0.5; transparent: true; emissive: #00FFFF; emissiveIntensity: 2"></a-image>
+    </a-entity>
+
+    <!-- ANCLAJE: Ojos Haki de Observación -->
     <a-entity mindar-face-target="anchorIndex: 168">
-       <!-- Ojos construidos con primitivas nativas que no requieren descarga externa -->
        <a-sphere id="haki-ojo-izq" color="#00FFFF" radius="0.012" opacity="0" position="-0.032 0.01 0" material="emissive: #00FFFF; emissiveIntensity: 50"></a-sphere>
        <a-sphere id="haki-ojo-der" color="#00FFFF" radius="0.012" opacity="0" position="0.032 0.01 0" material="emissive: #00FFFF; emissiveIntensity: 50"></a-sphere>
     </a-entity>
@@ -50,8 +62,11 @@
 
   <script>
     const btn = document.getElementById('activate-btn');
+    const pelo = document.getElementById('modelo-pelo');
+    const holograma = document.getElementById('imagen-holograma');
     const ojoIzq = document.getElementById('haki-ojo-izq');
     const ojoDer = document.getElementById('haki-ojo-der');
+    
     let activado = false;
 
     btn.addEventListener('click', () => {
@@ -59,15 +74,23 @@
            btn.innerText = "HAKI ACTIVADO";
            btn.style.background = "rgba(0, 255, 255, 0.4)";
            btn.style.boxShadow = "0 0 30px rgba(0, 255, 255, 0.8)";
+           
+           if(pelo) pelo.setAttribute('visible', 'true');
+           if(holograma) holograma.setAttribute('visible', 'true'); // Enciende la imagen 2D
            ojoIzq.setAttribute('opacity', '0.9');
            ojoDer.setAttribute('opacity', '0.9');
+           
            activado = true;
        } else {
-           btn.innerText = "DESPERTAR HAKI";
+           btn.innerText = "DESPERTAR GEAR 5";
            btn.style.background = "rgba(0, 255, 255, 0.1)";
            btn.style.boxShadow = "none";
+           
+           if(pelo) pelo.setAttribute('visible', 'false');
+           if(holograma) holograma.setAttribute('visible', 'false');
            ojoIzq.setAttribute('opacity', '0');
            ojoDer.setAttribute('opacity', '0');
+           
            activado = false;
        }
     });
