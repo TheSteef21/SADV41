@@ -24,13 +24,11 @@
     .capture-btn { padding: 15px 40px; background: rgba(0, 255, 255, 0.1); border: 2px solid #00FFFF; color: #FFF; border-radius: 50px; font-weight: bold; font-size: 16px; cursor: pointer; backdrop-filter: blur(8px); transition: 0.3s; text-transform: uppercase; letter-spacing: 2px;}
     .a-enter-vr { display: none !important; }
     
-    /* Video oculto necesario para que MediaPipe procese el cuerpo */
     #input_video { display: none; }
   </style>
 </head>
 <body>
 
-  <!-- Interfaz 2D SADV41 -->
   <div id="sadv41-logo-ui">
     <span>SADV41</span>
     <span class="trinity-badge">1 | 4</span>
@@ -41,12 +39,13 @@
       <button class="capture-btn" id="activate-btn">DESPERTAR GEAR 5</button>
   </div>
 
-  <video id="input_video"></video>
+  <video id="input_video" autoplay playsinline></video>
 
   <!-- Escena AR Híbrida -->
   <a-scene mindar-face embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights: true" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
     
-    <a-assets timeout="10000">
+    <a-assets timeout="15000">
+      <!-- Rutas absolutas para asegurar carga directa en GitHub Pages -->
       <img id="tex-logo" src="./models/sadv41_logo.png" crossorigin="anonymous">
       <img id="tex-humo" src="./models/humo_divino.png" crossorigin="anonymous">
       <img id="tex-brazo" src="./models/haki_brazos.png" crossorigin="anonymous">
@@ -54,21 +53,23 @@
 
     <a-camera active="false" position="0 0 0"></a-camera>
 
-    <!-- CAPA 2: Ojos Haki de Observación (MindAR) -->
+    <!-- CAPA 2: Ojos Haki de Observación (MindAR Face Tracking) -->
     <a-entity mindar-face-target="anchorIndex: 168">
        <a-sphere id="haki-ojo-izq" color="#00FFFF" radius="0.012" opacity="0" position="-0.032 0.01 0" material="emissive: #00FFFF; emissiveIntensity: 50"></a-sphere>
        <a-sphere id="haki-ojo-der" color="#00FFFF" radius="0.012" opacity="0" position="0.032 0.01 0" material="emissive: #00FFFF; emissiveIntensity: 50"></a-sphere>
     </a-entity>
 
-    <!-- CAPAS 3, 4 y 5: Plataforma de Body Tracking -->
-    <a-entity id="body-rig" position="0 0 -1">
-      <!-- Logo Pecho -->
-      <a-image id="haki-logo-pecho" src="#tex-logo" position="0 0 0" scale="0.4 0.4 0.4" visible="false" material="alphaTest: 0.1; transparent: true; emissive: #00FFFF; emissiveIntensity: 1.5"></a-image>
-      <!-- Humo Cuello -->
-      <a-image id="haki-humo-cuello" src="#tex-humo" position="0 0 0" scale="1.2 0.8 1" visible="false" material="alphaTest: 0.1; transparent: true; blending: additive"></a-image>
-      <!-- Brazos -->
-      <a-image id="haki-brazo-izq" src="#tex-brazo" position="0 0 0" scale="0.5 0.8 1" visible="false" material="alphaTest: 0.1; transparent: true"></a-image>
-      <a-image id="haki-brazo-der" src="#tex-brazo" position="0 0 0" scale="0.5 0.8 1" visible="false" material="alphaTest: 0.1; transparent: true"></a-image>
+    <!-- CAPAS 3, 4 y 5: Anclaje Visual Directo (Head/Body Rig central) -->
+    <a-entity id="body-rig" position="0 0 -0.8">
+      <!-- Logo Pecho (Ajustado al centro visible) -->
+      <a-image id="haki-logo-pecho" src="#tex-logo" position="0 -0.2 0" scale="0.45 0.45 0.45" visible="false" material="shader: flat; transparent: true; alphaTest: 0.05"></a-image>
+      
+      <!-- Humo Cuello (Ajustado sobre los hombros) -->
+      <a-image id="haki-humo-cuello" src="#tex-humo" position="0 0.25 -0.05" scale="1.1 0.7 1" visible="false" material="shader: flat; transparent: true; alphaTest: 0.05"></a-image>
+      
+      <!-- Brazos Haki (Izquierdo y Derecho fijos al torso para garantizar despliegue inmediato) -->
+      <a-image id="haki-brazo-izq" src="#tex-brazo" position="-0.4 -0.1 0" scale="0.45 0.7 1" visible="false" material="shader: flat; transparent: true; alphaTest: 0.05"></a-image>
+      <a-image id="haki-brazo-der" src="#tex-brazo" position="0.4 -0.1 0" scale="0.45 0.7 1" visible="false" material="shader: flat; transparent: true; alphaTest: 0.05"></a-image>
     </a-entity>
   </a-scene>
 
@@ -76,6 +77,7 @@
     const btn = document.getElementById('activate-btn');
     const ojoIzq = document.getElementById('haki-ojo-izq');
     const ojoDer = document.getElementById('haki-ojo-der');
+    
     const logoPecho = document.getElementById('haki-logo-pecho');
     const humoCuello = document.getElementById('haki-humo-cuello');
     const brazoIzq = document.getElementById('haki-brazo-izq');
@@ -85,7 +87,6 @@
     let activado = false;
     let mediapipeIniciado = false;
 
-    // Configuración de MediaPipe Holistic para Body Tracking
     const holistic = new Holistic({locateFile: (file) => {
       return `https://cdn.jsdelivr.net/npm/@mediapipe/holistic/${file}`;
     }});
@@ -102,38 +103,33 @@
     holistic.onResults((results) => {
       if (!activado || !results.poseLandmarks) return;
 
-      // Hombros: Indices 11 (Izq) y 12 (Der)
-      // Codos: Indices 13 (Izq) y 14 (Der)
       const hombroIzq = results.poseLandmarks[11];
       const hombroDer = results.poseLandmarks[12];
       const codoIzq = results.poseLandmarks[13];
       const codoDer = results.poseLandmarks[14];
 
-      // Calcular centro del pecho para el Logo y Humo
+      // Dinámica de seguimiento si MediaPipe detecta el cuerpo
       if (hombroIzq && hombroDer) {
-        const pechoX = ((hombroIzq.x + hombroDer.x) / 2 - 0.5) * 2;
-        const pechoY = -((hombroIzq.y + hombroDer.y) / 2 - 0.5) * 2;
+        const pechoX = ((hombroIzq.x + hombroDer.x) / 2 - 0.5) * 1.5;
+        const pechoY = -((hombroIzq.y + hombroDer.y) / 2 - 0.5) * 1.5;
         
-        logoPecho.setAttribute('position', `${pechoX} ${pechoY - 0.2} 0`);
-        humoCuello.setAttribute('position', `${pechoX} ${pechoY + 0.3} -0.1`);
+        logoPecho.setAttribute('position', `${pechoX} ${pechoY - 0.15} 0`);
+        humoCuello.setAttribute('position', `${pechoX} ${pechoY + 0.3} -0.05`);
       }
 
-      // Posicionar Brazo Izquierdo (Mapeo desde el hombro al codo)
       if (hombroIzq && codoIzq) {
-        const brazoIzqX = (codoIzq.x - 0.5) * 2;
-        const brazoIzqY = -(codoIzq.y - 0.5) * 2;
-        brazoIzq.setAttribute('position', `${brazoIzqX} ${brazoIzqY} 0.1`);
+        const bX = (codoIzq.x - 0.5) * 1.5;
+        const bY = -(codoIzq.y - 0.5) * 1.5;
+        brazoIzq.setAttribute('position', `${bX} ${bY} 0`);
       }
 
-      // Posicionar Brazo Derecho
       if (hombroDer && codoDer) {
-        const brazoDerX = (codoDer.x - 0.5) * 2;
-        const brazoDerY = -(codoDer.y - 0.5) * 2;
-        brazoDer.setAttribute('position', `${brazoDerX} ${brazoDerY} 0.1`);
+        const bX = (codoDer.x - 0.5) * 1.5;
+        const bY = -(codoDer.y - 0.5) * 1.5;
+        brazoDer.setAttribute('position', `${bX} ${bY} 0`);
       }
     });
 
-    // Iniciar cámara web para MediaPipe independientemente de MindAR
     const camera = new Camera(videoElement, {
       onFrame: async () => {
         if (activado) {
@@ -150,9 +146,11 @@
            btn.style.background = "rgba(0, 255, 255, 0.4)";
            btn.style.boxShadow = "0 0 30px rgba(0, 255, 255, 0.8)";
            
+           // Encender Ojos
            ojoIzq.setAttribute('opacity', '0.9');
            ojoDer.setAttribute('opacity', '0.9');
            
+           // Forzar visibilidad inmediata de los assets PNG
            logoPecho.setAttribute('visible', 'true');
            humoCuello.setAttribute('visible', 'true');
            brazoIzq.setAttribute('visible', 'true');
@@ -160,7 +158,6 @@
            
            activado = true;
 
-           // Encender el motor de Body Tracking la primera vez
            if(!mediapipeIniciado) {
                camera.start();
                mediapipeIniciado = true;
