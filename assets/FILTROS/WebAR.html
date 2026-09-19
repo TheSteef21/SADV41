@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>SADV41 GEAR 5 HAKI - Oficial (Cámara Activa)</title>
+  <title>SADV41 GEAR 5 HAKI - Oficial</title>
   
   <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.2/dist/mindar-face-aframe.prod.js"></script>
   
   <style>
-    /* CAMBIO CRÍTICO: Fondo transparente para permitir que la cámara de MindAR se vea */
-    body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background: transparent; font-family: monospace; }
+    /* Forzado absoluto de transparencia para evitar bloqueos del motor */
+    body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: transparent !important; font-family: monospace; }
     
     #sadv41-logo { position: absolute; top: 20px; left: 20px; z-index: 10; color: #FFD700; font-weight: bold; text-shadow: 0 0 5px #FFD700; display: flex; flex-direction: column; font-size: 18px; }
     .trinity-badge { font-size: 0.7em; color: #00FFFF; text-shadow: 0 0 5px #00FFFF; margin-top: 2px; }
@@ -18,8 +18,6 @@
     
     .ui-container { position: absolute; bottom: 50px; width: 100%; display: flex; justify-content: center; z-index: 10; }
     .capture-btn { padding: 15px 40px; background: rgba(0, 255, 255, 0.1); border: 2px solid #00FFFF; color: #FFF; border-radius: 50px; font-weight: bold; font-size: 16px; cursor: pointer; backdrop-filter: blur(8px); transition: 0.3s; }
-    
-    /* Ocultamos los botones VR de A-Frame que no necesitamos */
     .a-enter-vr { display: none !important; }
   </style>
 </head>
@@ -35,16 +33,12 @@
       <button class="capture-btn" id="activate-btn">DESPERTAR GEAR 5</button>
   </div>
 
-  <!-- Agregamos transparent="true" y aseguramos que vr-mode-ui esté deshabilitado -->
-  <a-scene mindar-face embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights: true, alpha: true" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+  <a-scene mindar-face embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights: true" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
     
-    <a-assets timeout="10000">
-    </a-assets>
-
     <a-camera active="false" position="0 0 0"></a-camera>
 
+    <!-- Ojos Haki de Observación -->
     <a-entity mindar-face-target="anchorIndex: 168">
-       <!-- Ojos Haki de Observación (Malla Izquierda y Derecha) -->
        <a-sphere id="haki-ojo-izq" color="#00FFFF" radius="0.012" opacity="0" position="-0.032 0.01 0" material="emissive: #00FFFF; emissiveIntensity: 50"></a-sphere>
        <a-sphere id="haki-ojo-der" color="#00FFFF" radius="0.012" opacity="0" position="0.032 0.01 0" material="emissive: #00FFFF; emissiveIntensity: 50"></a-sphere>
     </a-entity>
@@ -54,7 +48,6 @@
     const btn = document.getElementById('activate-btn');
     const ojoIzq = document.getElementById('haki-ojo-izq');
     const ojoDer = document.getElementById('haki-ojo-der');
-    
     let activado = false;
 
     btn.addEventListener('click', () => {
@@ -62,19 +55,15 @@
            btn.innerText = "HAKI ACTIVADO";
            btn.style.background = "rgba(0, 255, 255, 0.4)";
            btn.style.boxShadow = "0 0 30px rgba(0, 255, 255, 0.8)";
-           
            ojoIzq.setAttribute('opacity', '0.9');
            ojoDer.setAttribute('opacity', '0.9');
-           
            activado = true;
        } else {
            btn.innerText = "DESPERTAR GEAR 5";
            btn.style.background = "rgba(0, 255, 255, 0.1)";
            btn.style.boxShadow = "none";
-           
            ojoIzq.setAttribute('opacity', '0');
            ojoDer.setAttribute('opacity', '0');
-           
            activado = false;
        }
     });
