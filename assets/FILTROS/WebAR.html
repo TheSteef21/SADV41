@@ -8,14 +8,14 @@
   <!-- Motor AR Facial -->
   <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.2/dist/mindar-face-aframe.prod.js"></script>
-  <!-- Motor AR Corporal (MediaPipe Holistic) -->
-  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic/holistic.js"></script>
+  
+  <!-- Motor AR Corporal (MediaPipe) -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic/holistic.js" crossorigin="anonymous"></script>
   
   <style>
-    /* Forzado absoluto de transparencia para evitar bloqueos del motor en Brave/IG */
     body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: transparent !important; font-family: monospace; }
     
-    /* UI del Tabernáculo SADV41 */
     #sadv41-logo-ui { position: absolute; top: 20px; left: 20px; z-index: 10; color: #FFD700; font-weight: bold; text-shadow: 0 0 5px #FFD700; display: flex; flex-direction: column; font-size: 18px; }
     .trinity-badge { font-size: 0.7em; color: #00FFFF; text-shadow: 0 0 5px #00FFFF; margin-top: 2px; }
     #sadv41-overlay { position: absolute; top: 20px; right: 20px; z-index: 10; color: #00FFFF; font-weight: bold; text-shadow: 0 0 8px #00FFFF; letter-spacing: 1px; }
@@ -23,11 +23,14 @@
     .ui-container { position: absolute; bottom: 50px; width: 100%; display: flex; justify-content: center; z-index: 10; }
     .capture-btn { padding: 15px 40px; background: rgba(0, 255, 255, 0.1); border: 2px solid #00FFFF; color: #FFF; border-radius: 50px; font-weight: bold; font-size: 16px; cursor: pointer; backdrop-filter: blur(8px); transition: 0.3s; text-transform: uppercase; letter-spacing: 2px;}
     .a-enter-vr { display: none !important; }
+    
+    /* Video oculto necesario para que MediaPipe procese el cuerpo */
+    #input_video { display: none; }
   </style>
 </head>
 <body>
 
-  <!-- Interfaz 2D -->
+  <!-- Interfaz 2D SADV41 -->
   <div id="sadv41-logo-ui">
     <span>SADV41</span>
     <span class="trinity-badge">1 | 4</span>
@@ -38,11 +41,12 @@
       <button class="capture-btn" id="activate-btn">DESPERTAR GEAR 5</button>
   </div>
 
+  <video id="input_video"></video>
+
   <!-- Escena AR Híbrida -->
   <a-scene mindar-face embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights: true" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
     
     <a-assets timeout="10000">
-      <!-- Carga de las texturas PNG transparentes generadas -->
       <img id="tex-logo" src="./models/sadv41_logo.png" crossorigin="anonymous">
       <img id="tex-humo" src="./models/humo_divino.png" crossorigin="anonymous">
       <img id="tex-brazo" src="./models/haki_brazos.png" crossorigin="anonymous">
@@ -50,41 +54,95 @@
 
     <a-camera active="false" position="0 0 0"></a-camera>
 
-    <!-- CAPA 2: Ojos Haki de Observación (MindAR Face Tracking) -->
+    <!-- CAPA 2: Ojos Haki de Observación (MindAR) -->
     <a-entity mindar-face-target="anchorIndex: 168">
        <a-sphere id="haki-ojo-izq" color="#00FFFF" radius="0.012" opacity="0" position="-0.032 0.01 0" material="emissive: #00FFFF; emissiveIntensity: 50"></a-sphere>
        <a-sphere id="haki-ojo-der" color="#00FFFF" radius="0.012" opacity="0" position="0.032 0.01 0" material="emissive: #00FFFF; emissiveIntensity: 50"></a-sphere>
     </a-entity>
 
     <!-- CAPAS 3, 4 y 5: Plataforma de Body Tracking -->
-    <!-- Por ahora anclado estáticamente al centro-abajo frente a la cámara, listo para que MediaPipe lo mueva -->
-    <a-entity id="body-rig" position="0 -0.5 -1">
-      
-      <!-- Logo SADV41 (Camiseta virtual en el pecho) -->
-      <a-image id="haki-logo-pecho" src="#tex-logo" position="0 0.1 0" scale="0.4 0.4 0.4" visible="false" material="alphaTest: 0.1; transparent: true; emissive: #00FFFF; emissiveIntensity: 1.5"></a-image>
-
-      <!-- Humo Divino Gear 5 (Bufanda en hombros/cuello) -->
-      <a-image id="haki-humo-cuello" src="#tex-humo" position="0 0.5 -0.2" scale="1.2 0.8 1" visible="false" material="alphaTest: 0.1; transparent: true; blending: additive"></a-image>
-
-      <!-- Brazos Busoshoku Haki -->
-      <a-image id="haki-brazo-izq" src="#tex-brazo" position="-0.5 -0.2 0.1" scale="0.5 0.8 1" visible="false" material="alphaTest: 0.1; transparent: true"></a-image>
-      <a-image id="haki-brazo-der" src="#tex-brazo" position="0.5 -0.2 0.1" scale="0.5 0.8 1" visible="false" material="alphaTest: 0.1; transparent: true"></a-image>
-      
+    <a-entity id="body-rig" position="0 0 -1">
+      <!-- Logo Pecho -->
+      <a-image id="haki-logo-pecho" src="#tex-logo" position="0 0 0" scale="0.4 0.4 0.4" visible="false" material="alphaTest: 0.1; transparent: true; emissive: #00FFFF; emissiveIntensity: 1.5"></a-image>
+      <!-- Humo Cuello -->
+      <a-image id="haki-humo-cuello" src="#tex-humo" position="0 0 0" scale="1.2 0.8 1" visible="false" material="alphaTest: 0.1; transparent: true; blending: additive"></a-image>
+      <!-- Brazos -->
+      <a-image id="haki-brazo-izq" src="#tex-brazo" position="0 0 0" scale="0.5 0.8 1" visible="false" material="alphaTest: 0.1; transparent: true"></a-image>
+      <a-image id="haki-brazo-der" src="#tex-brazo" position="0 0 0" scale="0.5 0.8 1" visible="false" material="alphaTest: 0.1; transparent: true"></a-image>
     </a-entity>
   </a-scene>
 
   <script>
-    // Control de Interfaz y Activación del Despertar
     const btn = document.getElementById('activate-btn');
     const ojoIzq = document.getElementById('haki-ojo-izq');
     const ojoDer = document.getElementById('haki-ojo-der');
-    
     const logoPecho = document.getElementById('haki-logo-pecho');
     const humoCuello = document.getElementById('haki-humo-cuello');
     const brazoIzq = document.getElementById('haki-brazo-izq');
     const brazoDer = document.getElementById('haki-brazo-der');
-
+    const videoElement = document.getElementById('input_video');
+    
     let activado = false;
+    let mediapipeIniciado = false;
+
+    // Configuración de MediaPipe Holistic para Body Tracking
+    const holistic = new Holistic({locateFile: (file) => {
+      return `https://cdn.jsdelivr.net/npm/@mediapipe/holistic/${file}`;
+    }});
+    
+    holistic.setOptions({
+      modelComplexity: 1,
+      smoothLandmarks: true,
+      enableSegmentation: false,
+      refineFaceLandmarks: false,
+      minDetectionConfidence: 0.5,
+      minTrackingConfidence: 0.5
+    });
+
+    holistic.onResults((results) => {
+      if (!activado || !results.poseLandmarks) return;
+
+      // Hombros: Indices 11 (Izq) y 12 (Der)
+      // Codos: Indices 13 (Izq) y 14 (Der)
+      const hombroIzq = results.poseLandmarks[11];
+      const hombroDer = results.poseLandmarks[12];
+      const codoIzq = results.poseLandmarks[13];
+      const codoDer = results.poseLandmarks[14];
+
+      // Calcular centro del pecho para el Logo y Humo
+      if (hombroIzq && hombroDer) {
+        const pechoX = ((hombroIzq.x + hombroDer.x) / 2 - 0.5) * 2;
+        const pechoY = -((hombroIzq.y + hombroDer.y) / 2 - 0.5) * 2;
+        
+        logoPecho.setAttribute('position', `${pechoX} ${pechoY - 0.2} 0`);
+        humoCuello.setAttribute('position', `${pechoX} ${pechoY + 0.3} -0.1`);
+      }
+
+      // Posicionar Brazo Izquierdo (Mapeo desde el hombro al codo)
+      if (hombroIzq && codoIzq) {
+        const brazoIzqX = (codoIzq.x - 0.5) * 2;
+        const brazoIzqY = -(codoIzq.y - 0.5) * 2;
+        brazoIzq.setAttribute('position', `${brazoIzqX} ${brazoIzqY} 0.1`);
+      }
+
+      // Posicionar Brazo Derecho
+      if (hombroDer && codoDer) {
+        const brazoDerX = (codoDer.x - 0.5) * 2;
+        const brazoDerY = -(codoDer.y - 0.5) * 2;
+        brazoDer.setAttribute('position', `${brazoDerX} ${brazoDerY} 0.1`);
+      }
+    });
+
+    // Iniciar cámara web para MediaPipe independientemente de MindAR
+    const camera = new Camera(videoElement, {
+      onFrame: async () => {
+        if (activado) {
+          await holistic.send({image: videoElement});
+        }
+      },
+      width: 640,
+      height: 480
+    });
 
     btn.addEventListener('click', () => {
        if(!activado) {
@@ -92,25 +150,29 @@
            btn.style.background = "rgba(0, 255, 255, 0.4)";
            btn.style.boxShadow = "0 0 30px rgba(0, 255, 255, 0.8)";
            
-           // Encender Ojos
            ojoIzq.setAttribute('opacity', '0.9');
            ojoDer.setAttribute('opacity', '0.9');
            
-           // Manifestar Armadura, Logo y Aura
            logoPecho.setAttribute('visible', 'true');
            humoCuello.setAttribute('visible', 'true');
            brazoIzq.setAttribute('visible', 'true');
            brazoDer.setAttribute('visible', 'true');
            
            activado = true;
+
+           // Encender el motor de Body Tracking la primera vez
+           if(!mediapipeIniciado) {
+               camera.start();
+               mediapipeIniciado = true;
+           }
        } else {
            btn.innerText = "DESPERTAR GEAR 5";
            btn.style.background = "rgba(0, 255, 255, 0.1)";
            btn.style.boxShadow = "none";
            
-           // Apagar todo
            ojoIzq.setAttribute('opacity', '0');
            ojoDer.setAttribute('opacity', '0');
+           
            logoPecho.setAttribute('visible', 'false');
            humoCuello.setAttribute('visible', 'false');
            brazoIzq.setAttribute('visible', 'false');
@@ -119,13 +181,6 @@
            activado = false;
        }
     });
-
-    // =======================================================
-    // ESPACIO RESERVADO PARA INYECCIÓN DE MEDIAPIPE HOLISTIC
-    // Aquí el script leerá las coordenadas de los codos/hombros
-    // y actualizará el atributo 'position' y 'rotation' de 
-    // haki-brazo-izq, haki-brazo-der, haki-logo-pecho en tiempo real.
-    // =======================================================
   </script>
 </body>
 </html>
