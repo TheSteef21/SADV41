@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADV41 - Hub de Contenido</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        h1 {
+            text-align: center;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #e1e8ed;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            margin: 12px 0;
+            padding: 10px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+        li:hover {
+            background: #e9ecef;
+        }
+        a {
+            color: #0066cc;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+        }
+        a:hover {
+            text-decoration: underline;
+            color: #004c99;
+        }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Centro de Enlaces y Contenido</h1>
+
+        <!-- Sección de Proyectos Web -->
+        <h2>🌐 Proyectos SADV41</h2>
+        <ul>
+            <li><a href="https://thesteef21.github.io/SADV41/Artist.html" target="_blank">SADV41 - Artist</a></li>
+            <li><a href="https://thesteef21.github.io/SADV41/REMIX.html" target="_blank">SADV41 - Remix</a></li>
+        </ul>
+
+        <!-- Sección de Videos (Incrustados para poder verlos directamente) -->
+        <h2>▶️ Contenido de YouTube</h2>
+        <div class="video-grid">
+            <div class="video-wrapper">
+                <!-- Short 1 -->
+                <iframe src="https://www.youtube.com/embed/uLw3R-CcUnw" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video-wrapper">
+                <!-- Video Principal -->
+                <iframe src="https://www.youtube.com/embed/spw6uEdmV-I" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="video-wrapper">
+                <!-- Short 2 -->
+                <iframe src="https://www.youtube.com/embed/lBUL7MRBA_E" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+
+        <!-- Sección de Colaboraciones en YouTube Studio -->
+        <h2>🤝 Enlaces de Colaboración (YouTube Studio)</h2>
+        <ul>
+            <li><a href="https://studio.youtube.com/channel/UCefBhh70GxGOi89otNmji_Q/collaboration/UCmskix8mAddOYIKcjmCwVgw?si=qV469V-_s0r1PVZn" target="_blank">Invitación de Colaboración 1</a></li>
+            <li><a href="https://studio.youtube.com/channel/UCBtln7sL3FYAY6ePguz9sNg/collaboration/UCmskix8mAddOYIKcjmCwVgw?si=mk_80JQj9k8Ql3iV" target="_blank">Invitación de Colaboración 2</a></li>
+            <li><a href="https://studio.youtube.com/channel/UCBYpEIgqByL9n0VBnEC5SLQ/collaboration/UCmskix8mAddOYIKcjmCwVgw?si=SkghO4j2WR0gvq89" target="_blank">Invitación de Colaboración 3</a></li>
+            <li><a href="https://studio.youtube.com/channel/UCHO1BdBZw927UtUGhxYOGwA/collaboration/UCmskix8mAddOYIKcjmCwVgw?si=1ClMhq_pw8krBDs_" target="_blank">Invitación de Colaboración 4</a></li>
+        </ul>
+
+        <!-- Sección de Juegos -->
+        <h2>🎱 Juegos</h2>
+        <ul>
+            <li>¡Juguemos una partida de 8 Ball Pool! <a href="https://8bp.co/2CCLEO9" target="_blank">Únete aquí (https://8bp.co/2CCLEO9)</a></li>
+        </ul>
+    </div>
+
+</body>
+</html>
