@@ -66,6 +66,85 @@
             text-transform: uppercase;
             letter-spacing: 1.2px;
         }
+        
+        /* Estilos de la Tienda Promocional */
+        .promo-banner {
+            background: linear-gradient(90deg, rgba(19,28,46,1) 0%, rgba(22,42,38,1) 50%, rgba(19,28,46,1) 100%);
+            border: 1px solid var(--accent);
+            padding: 20px 30px;
+            text-align: center;
+            margin: 0;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        .promo-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(circle at center, rgba(212,175,55,0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+        .promo-banner h3 {
+            color: var(--text-main);
+            margin-bottom: 8px;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .promo-banner p {
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+            text-align: center;
+        }
+        .promo-btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: #090d16 !important;
+            font-weight: 800;
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
+        }
+        .promo-btn:hover {
+            background-color: #fce38a;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+        }
+        .promo-discount {
+            background-color: rgba(9, 13, 22, 0.8);
+            border: 1px dashed var(--accent);
+            color: var(--text-main);
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 2;
+        }
+        .promo-discount span {
+            color: var(--accent);
+            font-weight: bold;
+        }
+        .promo-discount a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 2px;
+            transition: color 0.3s ease;
+        }
+        .promo-discount a:hover {
+            color: #fce38a;
+            border-bottom-color: #fce38a;
+        }
+
         .language-selector-section {
             background-color: rgba(19, 28, 46, 0.95);
             padding: 20px 30px;
@@ -194,15 +273,12 @@
             background-color: rgba(212, 175, 55, 0.15);
             color: var(--accent) !important;
             border: 1px solid var(--accent);
-            /* Relleno reducido para hacer el botón menos voluminoso */
             padding: 3px 8px; 
             border-radius: 6px;
             text-decoration: none !important;
             font-family: monospace;
             transition: all 0.3s ease;
-            /* Margen ajustado a 2px en todos los lados para juntarlos uniformemente */
             margin: 2px; 
-            /* Tamaño de fuente ligeramente ajustado para encajar mejor en el estilo compacto */
             font-size: 0.9em; 
         }
         .support-btn:hover {
@@ -227,6 +303,18 @@
             <h1>Steven Dior</h1>
             <p>Vida Musical, Artística, Raíces, Luchas y Ecosistema Digital</p>
         </header>
+
+        <!-- Tienda Oficial Superior -->
+        <div class="promo-banner">
+            <h3>🛍️ Tienda Oficial de Artículos Promocionales SADV41</h3>
+            <p>Apoya la misión equipándote para eventos nacionales e internacionales con mercancía exclusiva.</p>
+            <a href="https://stevendior-shop.fourthwall.com/" class="promo-btn" target="_blank">Explorar Catálogo</a>
+            <br>
+            <div class="promo-discount">
+                ⚡ <span>¡7% de descuento para compras al por mayor para tus eventos!</span><br>
+                Activa la promoción aquí: <a href="https://stevendior-shop.fourthwall.com/promo/GSADV41-2026" target="_blank">GSADV41-2026</a>
+            </div>
+        </div>
 
         <div class="language-selector-section">
             <label for="langSelect">🌐 Selector de Idioma (144 Opciones Disponibles):</label>
@@ -418,6 +506,18 @@ custom: [
   <a href="https://thesteef21.github.io/Lapizasuli/NikeXOnePiece/" class="support-btn" target="_blank">Nike Nika Concept</a>
 ]
 </pre>
+            </div>
+        </div>
+
+        <!-- Tienda Oficial Inferior -->
+        <div class="promo-banner" style="border-top: 1px solid var(--border); border-bottom: none; border-radius: 0 0 18px 18px;">
+            <h3>🛡️ Viste el Legado de la Misión SADV41</h3>
+            <p>Descubre la línea oficial de artículos promocionales y fortalece la presencia en cada evento.</p>
+            <a href="https://stevendior-shop.fourthwall.com/" class="promo-btn" target="_blank">Visitar Tienda Oficial</a>
+            <br>
+            <div class="promo-discount">
+                ⚡ <span>7% OFF en pedidos corporativos o al por mayor:</span><br>
+                <a href="https://stevendior-shop.fourthwall.com/promo/GSADV41-2026" target="_blank">Aplicar Promoción GSADV41-2026</a>
             </div>
         </div>
 
