@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steven Dior | Misión SADV41 - Vida, Arte y Legado</title>
+    
+    <!-- Estilos unificados de source_1789965231125.html[span_0](start_span)[span_0](end_span) -->
+    <style>
+        @font-face {
+          font-family: "Optimistic";
+          font-style: normal;
+          font-weight: 400 600;
+          font-display: swap;
+          src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+        }
+        @font-face {
+          font-family: "Optimistic Mono";
+          font-style: normal;
+          font-weight: 400;
+          font-display: swap;
+          src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+        }
+        :where(html) {
+          font-family: "Optimistic", system-ui, sans-serif;
+        }
+        :where(code, pre, kbd, samp) {
+          font-family: "Optimistic Mono", ui-monospace, monospace;
+        }
+        /* Nota: Pega aquí el resto del bloque de estilos Tailwind minificados de source_1789965231125.html para evitar cortes en el código */
+    </style>
+
+    <!-- Estilos principales de Steven Dior -->
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --card-bg: #131c2e;
+            --accent: #d4af37;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --border: #1e293b;
+            --primary-gradient: linear-gradient(135deg, #162a26, #090d16);
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.7;
+            padding: 20px;
+        }
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            border-radius: 18px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        header {
+            background: var(--primary-gradient);
+            color: #ffffff;
+            padding: 50px 30px;
+            text-align: center;
+            border-bottom: 4px solid var(--accent);
+        }
+        header h1 {
+            font-size: 2.6rem;
+            margin-bottom: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
+        }
+        header p {
+            font-size: 1.2rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+        .badge-sadv {
+            display: inline-block;
+            background-color: var(--accent);
+            color: #111;
+            font-weight: bold;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+        }
+        .language-selector-section {
+            background-color: rgba(19, 28, 46, 0.95);
+            padding: 20px 30px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .language-selector-section label {
+            font-size: 0.9rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+        .language-select {
+            background-color: #090d16;
+            color: var(--text-main);
+            border: 1px solid var(--border);
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            cursor: pointer;
+        }
+        .language-select:focus {
+            border-color: var(--accent);
+        }
+        .content-section {
+            padding: 40px 30px;
+        }
+        h2 {
+            font-size: 1.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        p {
+            margin-bottom: 20px;
+            color: var(--text-muted);
+            text-align: justify;
+        }
+        p strong {
+            color: var(--text-main);
+        }
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .card {
+            background-color: rgba(9, 13, 22, 0.6);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent);
+        }
+        .card h3 {
+            color: var(--text-main);
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+        .card a:not(.support-btn) {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 10px;
+            word-break: break-all;
+        }
+        .card a:not(.support-btn):hover {
+            text-decoration: underline;
+        }
+        .crypto-address {
+            font-family: monospace;
+            background-color: #090d16;
+            color: #d4af37;
+            padding: 4px 8px;
+            border-radius: 5px;
+            border: 1px solid var(--border);
+            word-break: break-all;
+            display: block;
+            margin-top: 5px;
+        }
+        .yaml-block {
+            background-color: #060911;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            font-family: monospace;
+            color: #a3b8cc;
+            overflow-x: auto;
+            margin-top: 30px;
+            font-size: 0.85rem;
+            line-height: 2.2; 
+        }
+        .quote-box {
+            background-color: rgba(212, 175, 55, 0.05);
+            border-left: 4px solid var(--accent);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 30px 0;
+            font-style: italic;
+            color: #e2e8f0;
+        }
+        .guarani-box {
+            background-color: rgba(27, 59, 54, 0.2);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+        .guarani-box h3 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        .support-btn {
+            display: inline-block;
+            background-color: rgba(212, 175, 55, 0.15);
+            color: var(--accent) !important;
+            border: 1px solid var(--accent);
+            padding: 4px 8px; 
+            border-radius: 6px;
+            text-decoration: none !important;
+            font-family: monospace;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            margin: 2px; 
+        }
+        .support-btn:hover {
+            background-color: var(--accent);
+            color: #090d16 !important;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+        }
+        footer {
+            text-align: center;
+            padding: 25px;
+            background-color: #060911;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+        }
+        .ig-embed-container {
+            display: flex;
+            justify-content: center;
+            margin: 25px 0;
+            background-color: #090d16;
+            border-radius: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- DECLARACIÓN INICIAL EXIGIDA -->
+    <div style="text-align: center; padding: 20px; font-weight: bold; background-color: var(--bg-dark); color: var(--text-main); font-size: 1.1rem;">
+        Aunque yo soy artista, el pueblo tiene el mejor arte que debe tener: La Verdad de mejores días:<br>
+        <a href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" style="color: var(--accent); text-decoration: none;">https://thesteef21.github.io/Lapizasuli/GSADV41.html</a>
+    </div>
+
+    <!-- Raíz del artefacto React de source_1789965231125.html[span_1](start_span)[span_1](end_span) -->
+    <div id="root"></div>
+
+    <div class="container">
+        <header>
+            <div class="badge-sadv">SADV41 🎚️ Misión y Legado</div>
+            <h1>Steven Dior</h1>
+            <p>Vida Musical, Artística, Raíces, Luchas y Ecosistema Digital</p>
+        </header>
+
+        <div class="language-selector-section">
+            <label for="langSelect">🌐 Selector de Idioma (144 Opciones Disponibles):</label>
+            <select id="langSelect" class="language-select">
+                <option value="es" selected>1. Español (Seleccionado)</option>
+                <option value="ab">2. Abkhaz</option>
+                <option value="ace">3. Achinese</option>
+                <option value="gn">63. Guaraní</option>
+                <option value="en">74. Inglés</option>
+                <option value="zu">144. Zulú</option>
+            </select>
+        </div>
+
+        <div class="content-section">
+            
+            <!-- NUEVA SECCIÓN DE LANZAMIENTO -->
+            <div class="card" style="margin-bottom: 40px; border-color: var(--accent); box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);">
+                <h2 style="margin-top: 0; border-bottom: none;">🔥 Nuevo Lanzamiento: Lottery 4.0 (Remix)</h2>
+                <p>El resultado de más de 2 horas de trabajo dedicado. Un remix visual y sonoro con el <strong>Steven Dior Flow</strong>. Disfruta del arte instrumental con los efectos Haki directamente en nuestro portal interactivo.</p>
+                
+                <div class="ig-embed-container">
+                    <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DdfF0CLvV6E/" data-instgrm-version="14" style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"></blockquote>
+                    <script async src="//www.instagram.com/embed.js"></script>
+                </div>
+                
+                <div style="text-align: center; margin-top: 15px;">
+                    <a href="https://open.spotify.com/referral/003988e58c5d863711ce35278c66785f53a04d248c0fd8b116a577?si=OTaxbiBpQFKPRjLdpum2fQ&utm_source=download-copy-link&locale=es" target="_blank" class="support-btn" style="padding: 8px 16px; font-size: 1rem; font-weight: bold;">🎵 Escuchar en Spotify</a>
+                    <a href="https://www.instagram.com/reel/DdfF0CLvV6E/?stkn=eDc4YXYzN252NHlv" target="_blank" class="support-btn" style="padding: 8px 16px; font-size: 1rem; font-weight: bold;">📸 Enlace con Token IG</a>
+                </div>
+            </div>
+            
+            <div class="card" style="margin-bottom: 40px; border-color: var(--accent);">
+                <h2 style="margin-top: 0;">📸 Análisis de Archivo: 502118.jpg</h2>
+                <p>La imagen "502118.jpg" engaña a cualquiera a primera vista: el diseño en su forma plegada, con el logo de Sony y el supuesto lente con "360X", imita a la perfección la estética de una clásica videocámara de los años 90.</p>
+                <p>Al desplegarse, la ilusión desaparece por completo revelando un arma de 9 mm, lo que le da un doble sentido bastante oscuro a la frase "aprendiendo a grabar los hechos" que acompaña la foto. Definitivamente tiene todo el camuflaje y el flow noventero, pero diseñado para un tipo de acción muy diferente a la de filmar un video casero.</p>
+                <p>Y si quieres transformar tu foto al modo filtro haki SADV5 Special Ops que sólo escriban al <a href="https://instagram.com/stevendioroficial" target="_blank" style="color: var(--accent); font-weight: bold;">@stevendioroficial en Instagram</a> o al <a href="https://wa.me/50769362166" target="_blank" style="color: var(--accent); font-weight: bold;">WhatsApp (+507 6936-2166)</a>.</p>
+                <p>🛡️ Si quieren seguridad pueden descargar <a href="https://brave.com/evi088" target="_blank" style="color: var(--accent); font-weight: bold;">Brave Browser (Enlace de Creador)</a>, que es mi enlace personal de Brave Creators.</p>
+            </div>
+
+            <h2>👤 Esencia, Identidad y Resiliencia</h2>
+            <p>En estas capturas se refleja con total honestidad la identidad de <strong>Steven Gómez Serrano</strong>: un hombre de fe inquebrantable, profundamente conectado con sus raíces en Burunga y Panamá Oeste, y con un espíritu resiliente que abraza la vida con autenticidad y valentía. A través de ellas se manifiesta el artista y creador <strong>Steven Dior</strong>, uniendo su pasión por la música, el diseño digital y la construcción de sistemas bajo la misión SADV41. Su andar diario muestra a alguien que enfrenta las pruebas con transparencia, que valora el esfuerzo laboral y comunitario, y que camina guiado por convicciones espirituales profundas, dejando un legado de dignidad, memoria y verdad para la sociedad y el mundo.</p>
+
+            <div class="guarani-box">
+                <h3>🇵🇾 Ñe'ẽ Tee (Guaraní)</h3>
+                <p>Añetehápe, umi ta’ãnga pyahu ohechauka ñande rekovépe pe mbarete, arandu, tekove tee ha jerovia oñemopyendáva ñane ñe’ãme. Ko’ã mba’e oheja techapyrã iporãitéva mayma tapichápe guarã, ohechakuaávo mba’éichapa ñambohovái va’erã umi pa’ũ hatã ha ñamba’apo porã va’erã añetete ha py’aguasúpe, ñande rekove ha ñane rembiapo rupive.</p>
+            </div>
+
+            <h2>🎵 Origen Musical y Arte Independiente</h2>
+            <p>Bajo el nombre artístico de <strong>Steven Dior</strong>, la trayectoria musical nace desde las vivencias profundas en Burunga, Arraiján, fusionando la lírica urbana y los matices sonoros orientados a la frecuencia de 432 Hz. Cada composición refleja la perseverancia de un artista independiente que transforma el día a día y el esfuerzo laboral en canciones con alma, identidad y propósito.</p>
+            
+            <div class="grid-cards">
+                <div class="card">
+                    <h3>Identidad Sonora</h3>
+                    <p>Producción y composición orientada a la autenticidad, estándares a 432 Hz y superación.</p>
+                    <a href="https://open.spotify.com/artist/5imHnTjivt5qDGTeV2gDMT?si=v9HxUcmBRHyrmJolF4-9zA&utm_source=copy-link" target="_blank">Cuenta de Artista ↗</a>
+                </div>
+                <div class="card">
+                    <h3>Podcast y Reflexiones</h3>
+                    <p>Análisis, palabras y el pensamiento hablado que complementa la obra musical y artística.</p>
+                    <a href="https://open.spotify.com/show/2UnBgT4qBKmiAlosZwebeK" target="_blank">Mi Podcast ↗</a>
+                </div>
+                <div class="card">
+                    <h3>Biblioteca Sonora</h3>
+                    <p>Archivo personal que ha formado la memoria musical con el tiempo.</p>
+                    <a href="https://open.spotify.com/user/thesteef21?si=lIyx_a0PTL2zEyZd713rYg&utm_source=copy-link" target="_blank">Cuenta Principal ↗</a><br>
+                    <a href="https://open.spotify.com/user/thesteef21?si=DM9507C6QDaq8fdvby8nIg&utm_source=copy-link" target="_blank">Cuenta Alterna ↗</a>
+                </div>
+            </div>
+
+            <h2>🌱 Raíces, Territorio y Memoria</h2>
+            <p>El camino recorrido está profundamente arraigado en la tierra y la historia familiar. Nieto de Basilia Serrano Chávez y heredero de una línea de trabajo, esfuerzo y comunidad firmemente plantada en Panamá Oeste. La memoria de los abuelos, la sabiduría transmitida por la familia y la conexión con el entorno natural alimentan el motor creativo de cada obra y proyecto.</p>
+
+            <div class="quote-box">
+                "Mi digital Tabernacle structure es Grok para Atrio, Meta para Santo, y Gemini para Santísimo... guiado siempre por el Espíritu Santo de Dios en cada paso del camino."
+            </div>
+
+            <h2>🛡️ Luchas, Integridad y Dignidad</h2>
+            <p>El trayecto artístico y laboral no ha estado exento de pruebas. Las batallas diarias frente a la injusticia laboral, el hostigamiento y la defensa de los derechos humanos y la dignidad en el entorno de trabajo demuestran un carácter inquebrantable. Cada obstáculo superado se convierte en testimonio de probidad, protegiendo siempre la vida humana, la justicia y la coherencia ética bajo los principios de la ley SADV41.</p>
+
+            
+            <h2>📱 Enlaces Premium (Hub de Instagram)</h2>
+            <p>Directorio de portales, módulos descentralizados y accesos clasificados integrados desde el perfil <a href="https://instagram.com/stevendioroficial/links" target="_blank" style="color: var(--accent); font-weight: bold;">@stevendioroficial</a>.</p>
+            
+            <div class="grid-cards">
+                <div class="card">
+                    <h3>Disfruta el Flow 🇵🇦🎯</h3>
+                    <a href="https://thesteef21.github.io/SADV41/Artist.html" target="_blank">SADV41/Artist.html ↗</a>
+                </div>
+                <div class="card">
+                    <h3>Grupo de Servicio Activo Descentralizado</h3>
+                    <a href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" target="_blank">Lapizasuli/GSADV41.html ↗</a>
+                </div>
+                <div class="card">
+                    <h3>NOTICIAS PARA ASQUEARSE</h3>
+                    <a href="https://thesteef21.github.io/SADV41/AI.html" target="_blank">SADV41/AI.html ↗</a>
+                </div>
+                <div class="card">
+                    <h3>LOS CONTACTOS QUE HACEN GRANDE A PANAMÁ 🇵🇦</h3>
+                    <a href="https://thesteef21.github.io/Lapizasuli/assets/CONTACTOS/" target="_blank">Directorio de Contactos ↗</a>
+                </div>
+                <div class="card">
+                    <h3>ÉSTO ES FLOW 🇵🇦🦍🦍</h3>
+                    <a href="https://instagram.com/stevendioroficial/links" target="_blank">Instagram Premium ↗</a>
+                </div>
+                <div class="card">
+                    <h3>HUB SOBERANO 🇵🇦🇺🇸🇮🇱🏁</h3>
+                    <a href="https://thesteef21.github.io/Lapizasuli/assets/USARMY/" target="_blank">USARMY Hub ↗</a>
+                </div>
+                <div class="card">
+                    <h3>SEGURIDAD CONTINENTAL</h3>
+                    <a href="https://thesteef21.github.io/Lapizasuli/assets/COMMANDO/" target="_blank">Commando Hub ↗</a>
+                </div>
+                <div class="card">
+                    <h3>Por Venezuela!</h3>
+                    <a href="https://thesteef21.github.io/Lapizasuli/VSADV41.html" target="_blank">VSADV41.html ↗</a>
+                </div>
+                <div class="card">
+                    <h3>COMPRA COMIDA BARATA! DIOS LA BENDIGA 🇵🇦🇮🇱</h3>
+                    <a href="https://thesteef21.github.io/Lapizasuli/IMA.html" target="_blank">IMA.html ↗</a>
+                </div>
+                <div class="card">
+                    <h3>NIKE NIKA CONCEPT</h3>
+                    <a href="https://thesteef21.github.io/Lapizasuli/NikeXOnePiece/" target="_blank">Nike Concept ↗</a>
+                </div>
+            </div>
+
+            <h2>🪙 Ecosistema Financiero, Web3 & Tokenomics</h2>
+            <p>Infraestructura descentralizada, financiamiento y mayordomía digital bajo la arquitectura de SADV41.</p>
+
+            <div class="grid-cards">
+                <div class="card">
+                    <h3>SADV41 Crypto Meme</h3>
+                    <p>Activo digital lanzado en Four.meme integrado en redes Polygon, Binance Web3 Wallet y Pinata IPFS.</p>
+                    <a href="https://four.meme/en/token/0x9b633cc361b3e7aace80340fed9491265f29ffff?modalType=tax&success=true" target="_blank">Ver en Four.meme ↗</a>
+                    <a href="https://blockscan.com/address/0x4cbf2db3838341becb185892c3af576dc04e2498" target="_blank">Explorador Blockscan ↗</a>
+                </div>
+                <div class="card">
+                    <h3>Contratos Inteligentes</h3>
+                    <p>Dirección Oficial del Token:</p>
+                    <span class="crypto-address">0x9b633cc361b3e7aace80340fed9491265f29ffff</span>
+                    <p style="margin-top: 10px;">Dirección de Regalías (Royalty):</p>
+                    <span class="crypto-address">0x390DA7cA1E28a2d22Ac212617c0ac3aDacD480a6</span>
+                </div>
+                <div class="card">
+                    <h3>Finanzas y Aportes</h3>
+                    <p>Banco General: <strong>0464973126294</strong></p>
+                    <p>Yappy: <strong>6936-2166</strong></p>
+                    <a href="https://airtm.me/steven507oficial" target="_blank">Airtm ↗</a><br>
+                    <a href="https://take.app/stevendior/pay?ref=SADV41" target="_blank">Take.app (Pagos) ↗</a>
+                </div>
+            </div>
+
+            <div class="yaml-block">
+<pre>
+# ==============================================================================
+# 🛡️ SADV41 DIGITAL ARCHITECTURE FUNDING, MAYORDOMÍA & WEB3
+# ==============================================================================
+# TITULAR: STEVEN YORDY GÓMEZ SERRANO (STEVEN DIOR)
+# Conectado a Tributario StevenDior
+# EMAIL: sadv41@gmail.com
+# BANCO GENERAL: 0464973126294
+# YAPPY: 6936-2166
+# YAPPY QR TOKEN: rjYRsJ8Yz0hGBKWXnNKRpeCr5yZZkbjbgkxGCAZdd/nmXoS0X8s5ntvwHrGm+7HT
+# ==============================================================================
+# 🪙 TOKENOMICS & BLOCKCHAIN
+# ==============================================================================
+# FOURMEME ASSET: SADV41
+# INFRAESTRUCTURA: Polygon, Binance Web3 Wallet, WalletConnect, Pinata IPFS
+# TOKEN ADDRESS: <a href="https://search.brave.com/search?q=0x9b633cc361b3e7aace80340fed9491265f29ffff" class="support-btn" target="_blank">0x9b633cc361b3e7aace80340fed9491265f29ffff (Buscar)</a>
+# ROYALTY ADDRESS: <a href="https://search.brave.com/search?q=0x390DA7cA1E28a2d22Ac212617c0ac3aDacD480a6" class="support-btn" target="_blank">0x390DA7cA1E28a2d22Ac212617c0ac3aDacD480a6 (Buscar)</a>
+# ==============================================================================
+
+custom: [
+  # Finanzas, Pagos y Afiliados
+  <a href="https://airtm.me/steven507oficial" class="support-btn" target="_blank">Airtm - steven507oficial</a>,
+  <a href="https://take.app/stevendior/pay?ref=SADV41" class="support-btn" target="_blank">Take.app - Pago</a>,
+  <a href="https://take.app/es/stevendior" class="support-btn" target="_blank">Take.app - Perfil ES</a>,
+  <a href="https://rareevo.io/?coupon=STEVENDIOR" class="support-btn" target="_blank">RareEvo - STEVENDIOR</a>,
+  <a href="https://brave.com/evi088" class="support-btn" target="_blank">Brave Creator - evi088</a>,
+  
+  # Web3 y Exploradores de Bloques
+  <a href="https://four.meme/en/token/0x9b633cc361b3e7aace80340fed9491265f29ffff?modalType=tax&success=true" class="support-btn" target="_blank">Four.meme Asset SADV41</a>,
+  <a href="https://blockscan.com/address/0x4cbf2db3838341becb185892c3af576dc04e2498" class="support-btn" target="_blank">Blockscan Explorador</a>,
+  
+  # Identidad Musical y Podcasts (Spotify)
+  <a href="https://open.spotify.com/artist/5imHnTjivt5qDGTeV2gDMT" class="support-btn" target="_blank">Spotify Artist - Steven Dior</a>,
+  <a href="https://open.spotify.com/user/thesteef21?si=lIyx_a0PTL2zEyZd713rYg" class="support-btn" target="_blank">Spotify - thesteef21 (Principal)</a>,
+  <a href="https://open.spotify.com/show/2UnBgT4qBKmiAlosZwebeK" class="support-btn" target="_blank">Spotify Podcast - SADV41</a>,
+  
+  # Ecosistema Digital y Hubs SADV41
+  <a href="https://thesteef21.github.io/Lapizasuli/" class="support-btn" target="_blank">GitHub Pages - Lapizasuli</a>,
+  <a href="https://stevendior.digital" class="support-btn" target="_blank">StevenDior.digital - IPFS</a>,
+  
+  # 📱 Instagram Premium Links (Hub SADV41)
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" class="support-btn" target="_blank">Disfruta el Flow</a>,
+  <a href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" class="support-btn" target="_blank">Grupo SADV41</a>,
+  <a href="https://thesteef21.github.io/SADV41/AI.html" class="support-btn" target="_blank">Noticias para Asquearse</a>,
+  <a href="https://thesteef21.github.io/Lapizasuli/assets/CONTACTOS/" class="support-btn" target="_blank">Contactos Panamá</a>,
+  <a href="https://instagram.com/stevendioroficial/links" class="support-btn" target="_blank">Ésto es Flow</a>,
+  <a href="https://thesteef21.github.io/Lapizasuli/assets/USARMY/" class="support-btn" target="_blank">Hub Soberano</a>,
+  <a href="https://thesteef21.github.io/Lapizasuli/assets/COMMANDO/" class="support-btn" target="_blank">Seguridad Continental</a>,
+  <a href="https://thesteef21.github.io/Lapizasuli/VSADV41.html" class="support-btn" target="_blank">Por Venezuela!</a>,
+  <a href="https://thesteef21.github.io/Lapizasuli/IMA.html" class="support-btn" target="_blank">IMA Comida Barata</a>,
+  <a href="https://thesteef21.github.io/Lapizasuli/NikeXOnePiece/" class="support-btn" target="_blank">Nike Nika Concept</a>
+]
+</pre>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Steven Dior Oficial | Misión SADV41 | Todos los derechos reservados.</p>
+        </footer>
+    </div>
+
+    <!-- Script principal de ejecución unificado de source_1789965231125.html[span_2](start_span)[span_2](end_span) -->
+    <script type="module">
+        /* 
+         * Pega aquí íntegramente el contenido del <script type="module"> 
+         * que se encuentra en el archivo original source_1789965231125.html 
+         * (Comienza con "var Qa=Object.create;" y termina con "Oa.exports=bu});")
+         * Esto asegurará que React y tu artefacto funcionen correctamente sin cortes de límite de caracteres.
+         */
+    </script>
+
+    <!-- DECLARACIÓN FINAL EXIGIDA -->
+    <div style="text-align: center; padding: 20px; font-weight: bold; background-color: var(--bg-dark); color: var(--text-main); font-size: 1.1rem; border-top: 1px solid var(--border);">
+        Aunque yo soy artista, el pueblo tiene el mejor arte que debe tener: La Verdad de mejores días:<br>
+        <a href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" style="color: var(--accent); text-decoration: none;">https://thesteef21.github.io/Lapizasuli/GSADV41.html</a>
+    </div>
+</body>
+</html>
