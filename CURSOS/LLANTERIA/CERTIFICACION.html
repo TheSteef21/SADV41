@@ -3,132 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SADV41 - Expedición de Certificados (Entorno TSX)</title>
+    <title>SADV41 - Matriz de Certificación Empresarial</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
-        body { font-family: 'Times New Roman', serif; background-color: #121212; color: #e5e5e5; }
+        body { font-family: 'Times New Roman', serif; background-color: #050505; color: #e5e5e5; }
         .certificate-box { background-color: #fbfaf6; color: #111; }
         @media print {
             body { background-color: white; }
-            .no-print { display: none; }
-            .certificate-box { border: none !important; box-shadow: none !important; width: 100% !important; max-width: 100% !important; padding: 0 !important; }
+            .no-print { display: none !important; }
+            .certificate-box { border: none !important; box-shadow: none !important; width: 100% !important; max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
         }
     </style>
 </head>
-<body>
+<body style="background-image: radial-gradient(circle at center, #111827 0%, #000000 100%)">
     <div id="root"></div>
 
-    <!-- Componente TSX transpilado en tiempo real por Babel -->
     <script type="text/babel" data-type="module">
-        const { useState } = React;
+        const { useState, useEffect } = React;
 
-        function CertificadoSADV41() {
-            // Estado inicial basado en los hechos de la diligencia actual
-            const [alumno, setAlumno] = useState('Johnathan Coronado');
-            const [curso, setCurso] = useState('Llantería Operacional');
-            const [fecha, setFecha] = useState('2026-09-18');
-            const [horaInicio, setHoraInicio] = useState('13:00');
-            const [horaFin, setHoraFin] = useState('17:00');
+        function MotorCertificacionSADV41() {
+            const [receptor, setReceptor] = useState('');
+            const [empresa, setEmpresa] = useState('Llantería Turbo Tire');
+            const [fecha, setFecha] = useState(() => new Date().toISOString().split('T')[0]);
+            const [razon, setRazon] = useState('');
 
-            const calcularHoras = () => {
-                const inicio = parseInt(horaInicio.split(':')[0]);
-                const fin = parseInt(horaFin.split(':')[0]);
-                return fin - inicio;
-            };
+            // Generador automático de razón según la entidad
+            useEffect(() => {
+                switch(empresa) {
+                    case 'Llantería Turbo Tire':
+                        setRazon('Por la demostración de competencias técnicas en operación de equipo, manejo de inventario SADV41TT, vulcanización y atención al cliente en el sector automotriz e instalación de neumáticos.');
+                        break;
+                    case 'Academia Rubén Guerra':
+                        setRazon('Por haber completado satisfactoriamente los ciclos de disciplina física, técnica de combate y preparación mental bajo los estándares de la Mora de Gracia.');
+                        break;
+                    case 'Las Cobras de Burunga':
+                        setRazon('Por su participación activa y destacado rendimiento deportivo, elevando los valores de trabajo en equipo y disciplina juvenil en la comunidad.');
+                        break;
+                    case 'Gestión Comunitaria / Apoyo Local':
+                        setRazon('Por su invaluable contribución en el desarrollo de iniciativas locales, logística de eventos comunitarios y apoyo técnico en proyectos de la jurisdicción de Panamá Oeste.');
+                        break;
+                    default:
+                        setRazon('Por la culminación exitosa de los requisitos de formación, demostrando idoneidad, ética y capacidad técnica aplicable a sus funciones.');
+                }
+            }, [empresa]);
 
             const handlePrint = () => {
                 window.print();
             };
 
             return (
-                <div className="min-h-screen p-8 flex flex-col items-center">
-                    <div className="no-print w-full max-w-4xl">
-                        <h1 className="text-3xl font-bold mb-2 text-gray-200">Defensoría Técnica SADV41</h1>
-                        <p className="text-gray-400 mb-6 font-sans">Módulo de Acreditación y Expedientes (React/TSX)</p>
+                <div className="min-h-screen p-4 md:p-8 flex flex-col items-center">
+                    
+                    {/* Panel de Control (No se imprime) */}
+                    <div className="no-print w-full max-w-5xl mb-12">
+                        <header className="mb-8 text-center">
+                            <h1 className="text-3xl md:text-5xl font-black tracking-tighter uppercase mb-2 text-white" 
+                                style={{ textShadow: '2px 0 #ff0000, -2px 0 #0000ff' }}>
+                                ACREDITACIÓN <span className="text-[#d4af37]">SADV41</span>
+                            </h1>
+                            <p className="text-blue-400 italic font-mono tracking-[0.2em] uppercase text-xs">
+                                Matriz Operacional StevenDior
+                            </p>
+                        </header>
                         
-                        <div className="mb-8 p-6 bg-gray-800 rounded-lg border border-gray-600 shadow-lg font-sans">
-                            <h2 className="text-xl font-semibold mb-4 text-white border-b border-gray-600 pb-2">Auto de Instrucción - Ingreso de Datos</h2>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-black">
+                        <div className="p-6 bg-gray-900/80 rounded-lg border-t-4 border-[#d4af37] shadow-2xl backdrop-blur-sm font-sans">
+                            <h2 className="text-xl font-semibold mb-4 text-[#d4af37] border-b border-gray-700 pb-2 uppercase tracking-wide">
+                                Parámetros del Certificado
+                            </h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-white">
                                 <div>
-                                    <label className="text-gray-300 text-sm font-bold block mb-1">Nombre del Asistido/Alumno</label>
-                                    <input className="w-full p-2 rounded bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" value={alumno} onChange={e => setAlumno(e.target.value)} />
+                                    <label className="text-gray-400 text-xs uppercase font-bold block mb-2">Nombre del Receptor / Nodo</label>
+                                    <input 
+                                        className="w-full p-3 rounded bg-black border border-gray-800 focus:border-[#d4af37] outline-none transition-all uppercase" 
+                                        type="text" 
+                                        placeholder="Ej. Johnathan Coronado"
+                                        value={receptor} 
+                                        onChange={e => setReceptor(e.target.value)} 
+                                    />
                                 </div>
                                 <div>
-                                    <label className="text-gray-300 text-sm font-bold block mb-1">Materia de Especialidad</label>
-                                    <input className="w-full p-2 rounded bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" type="text" value={curso} onChange={e => setCurso(e.target.value)} />
+                                    <label className="text-gray-400 text-xs uppercase font-bold block mb-2">Entidad / Empresa Vinculada</label>
+                                    <select 
+                                        className="w-full p-3 rounded bg-black border border-gray-800 focus:border-[#d4af37] outline-none transition-all"
+                                        value={empresa} 
+                                        onChange={e => setEmpresa(e.target.value)}
+                                    >
+                                        <option value="Llantería Turbo Tire">Llantería Turbo Tire</option>
+                                        <option value="Academia Rubén Guerra">Academia de Boxeo Rubén Guerra</option>
+                                        <option value="Las Cobras de Burunga">Equipo de Béisbol Las Cobras</option>
+                                        <option value="Gestión Comunitaria / Apoyo Local">Gestión Comunitaria / Apoyo Local</option>
+                                        <option value="Otra Entidad Privada">Otra Entidad Privada</option>
+                                    </select>
                                 </div>
                                 <div>
-                                    <label className="text-gray-300 text-sm font-bold block mb-1">Fecha de la Diligencia</label>
-                                    <input className="w-full p-2 rounded bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" type="date" value={fecha} onChange={e => setFecha(e.target.value)} />
+                                    <label className="text-gray-400 text-xs uppercase font-bold block mb-2">Fecha de Expedición</label>
+                                    <input 
+                                        className="w-full p-3 rounded bg-black border border-gray-800 focus:border-[#d4af37] outline-none transition-all" 
+                                        type="date" 
+                                        value={fecha} 
+                                        onChange={e => setFecha(e.target.value)} 
+                                    />
                                 </div>
                                 <div>
-                                    <label className="text-gray-300 text-sm font-bold block mb-1">Hora de Inicio</label>
-                                    <input className="w-full p-2 rounded bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" type="time" value={horaInicio} onChange={e => setHoraInicio(e.target.value)} />
-                                </div>
-                                <div>
-                                    <label className="text-gray-300 text-sm font-bold block mb-1">Hora de Finalización</label>
-                                    <input className="w-full p-2 rounded bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500" type="time" value={horaFin} onChange={e => setHoraFin(e.target.value)} />
+                                    <label className="text-gray-400 text-xs uppercase font-bold block mb-2">Razón Específica de Acreditación</label>
+                                    <textarea 
+                                        className="w-full p-3 rounded bg-black border border-gray-800 focus:border-[#d4af37] outline-none transition-all text-sm h-24" 
+                                        value={razon} 
+                                        onChange={e => setRazon(e.target.value)} 
+                                    />
                                 </div>
                             </div>
-                            <div className="mt-6 flex justify-end">
-                                <button onClick={handlePrint} className="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded shadow">
-                                    Emitir y Guardar Acta (PDF)
+                            <div className="mt-8 flex justify-end">
+                                <button onClick={handlePrint} className="bg-red-900/30 border border-red-700 hover:bg-red-700 text-white font-black uppercase tracking-widest py-3 px-8 rounded transition-all shadow-[0_0_15px_rgba(220,38,38,0.4)]">
+                                    Ejecutar e Imprimir Sello
                                 </button>
                             </div>
                         </div>
                     </div>
 
-                    {/* El Documento a Imprimir */}
-                    <div className="certificate-box w-full max-w-[900px] p-12 border-[10px] border-double border-gray-800 shadow-2xl relative bg-white">
-                        <div className="absolute top-6 left-6 text-xs font-bold text-gray-500 font-sans tracking-widest">
-                            EXPEDIENTE: SADV41-{Math.floor(Math.random() * 10000)}
+                    {/* El Documento a Imprimir (Vista Previa Real) */}
+                    <div className="certificate-box w-full max-w-[950px] p-12 border-[12px] border-double border-gray-900 shadow-2xl relative bg-white">
+                        
+                        <div className="absolute top-8 left-8 text-xs font-bold text-gray-500 font-sans tracking-widest">
+                            FOLIO: SADV41-{Math.floor(Math.random() * 90000) + 10000}
                         </div>
-                        <div className="absolute top-6 right-6 text-xs font-bold text-gray-500 font-sans tracking-widest">
-                            {fecha}
+                        <div className="absolute top-8 right-8 text-xs font-bold text-gray-500 font-sans tracking-widest uppercase">
+                            ENTIDAD: {empresa}
                         </div>
                         
-                        <div className="text-center mb-12 mt-8">
-                            <h1 className="text-4xl font-extrabold uppercase tracking-widest border-b-2 border-black pb-4 mb-4 text-black">
-                                Certificación Oficial de Instrucción
-                            </h1>
-                            <h2 className="text-xl font-bold tracking-wide text-gray-800">
-                                JURISDICCIÓN TÉCNICA SADV41
+                        <div className="text-center mb-10 mt-12 flex flex-col items-center">
+                            {/* Logo de Maestría (Cargado desde el archivo PNG) */}
+                            <img src="1789761046600.png" alt="Logo de Maestría Aprobada" className="w-32 h-auto mb-6 object-contain" />
+                            
+                            <h2 className="text-xl font-bold tracking-widest text-gray-800 mb-2">
+                                REPÚBLICA DE PANAMÁ
                             </h2>
+                            <h1 className="text-3xl md:text-4xl font-black uppercase tracking-widest border-b-2 border-black pb-4 mb-4 text-black">
+                                Certificación de Idoneidad y Competencia
+                            </h1>
+                            <p className="text-sm font-bold tracking-widest text-gray-600 uppercase mt-2">
+                                Respaldado por STEVENDIOR - RUC: 8-901-2251 DV 83
+                            </p>
                         </div>
                         
-                        <div className="text-xl text-justify leading-relaxed mb-16 px-6 text-black">
+                        <div className="text-xl text-justify leading-relaxed mb-16 px-8 text-black">
+                            <p className="mb-8 indent-8">
+                                La presente acreditación se expide bajo la jurisdicción técnica de la iniciativa <strong>SADV41</strong>, actuando en calidad de ente certificador independiente. Por medio del presente documento, se hace constar de manera oficial que el/la ciudadano(a):
+                            </p>
+                            
+                            <div className="text-center my-12">
+                                <p className="text-3xl md:text-5xl font-black uppercase tracking-widest text-black border-b border-gray-400 inline-block px-12 pb-2">
+                                    {receptor || "___________________________"}
+                                </p>
+                            </div>
+                            
                             <p className="mb-6 indent-8">
-                                Por medio de la presente acta probatoria y obrando en pleno derecho de sus facultades periciales, el Instructor Técnico y especialista <strong>Steven Gómez Serrano</strong> (C.I.P. 8-901-2251), <strong>HACE CONSTAR</strong> que el ciudadano:
+                                Ha sido evaluado(a) y validado(a) en favor de las operaciones correspondientes a <strong>{empresa}</strong>. Esta certificación se otorga expresamente por la siguiente razón:
                             </p>
+
+                            <div className="bg-gray-100 p-6 border-l-4 border-black mb-8 italic text-lg">
+                                "{razon}"
+                            </div>
                             
-                            <p className="text-center text-3xl font-extrabold my-10 uppercase tracking-widest text-black">
-                                {alumno}
-                            </p>
-                            
-                            <p className="mb-6 indent-8">
-                                Ha agotado satisfactoriamente los plazos de instrucción intensiva en la materia de <strong>{curso}</strong>. Dicha diligencia de capacitación fue ejecutada el día <strong>{fecha}</strong>, abarcando una jornada presencial que dio inicio a las <strong>{horaInicio}</strong> y concluyó a las <strong>{horaFin}</strong>, sumando una carga probatoria de <strong>{calcularHoras()} horas</strong> de instrucción directa.
-                            </p>
-                            
-                            <p className="indent-8">
-                                Esta certificación se expide en Burunga, Panamá Oeste, bajo los principios de actuación de la iniciativa SADV41 para resguardar las garantías de idoneidad y competencia técnica del titular ante cualquier instancia laboral o profesional.
+                            <p className="indent-8 text-lg">
+                                Dado en Burunga, distrito de Arraiján, provincia de Panamá Oeste, a los <strong>{new Date(fecha).getDate()}</strong> días del mes de <strong>{new Date(fecha).toLocaleString('es-ES', { month: 'long' })}</strong> del año <strong>{new Date(fecha).getFullYear()}</strong>, validando su capacidad operativa ante cualquier entidad que requiera constancia de esta formación.
                             </p>
                         </div>
 
-                        <div className="flex justify-between items-end mt-24 px-10 text-black">
+                        <div className="flex justify-between items-end mt-24 px-12 text-black">
                             <div className="text-center w-5/12">
                                 <div className="border-t-2 border-black w-full mb-2"></div>
                                 <p className="font-bold text-lg">Steven Gómez Serrano</p>
-                                <p className="text-sm font-semibold">Instructor Perito</p>
-                                <p className="text-sm">Iniciativa SADV41</p>
+                                <p className="text-sm font-semibold uppercase">Firma Autorizada</p>
+                                <p className="text-xs">SADV41 / RUC: 8-901-2251 DV 83</p>
+                            </div>
+                            <div className="flex justify-center pb-4 opacity-75">
+                                {/* Sello Oficial Inferior */}
+                                <img src="1789761046600.png" alt="Sello SADV41" className="w-28 h-28 object-contain drop-shadow-md" />
                             </div>
                             <div className="text-center w-5/12">
                                 <div className="border-t-2 border-black w-full mb-2"></div>
-                                <p className="font-bold text-lg">Johnathan Coronado</p>
-                                <p className="text-sm font-semibold">Firma del Asistido/Aprendiz</p>
-                                <p className="text-sm">Recepción Conforme</p>
+                                <p className="font-bold text-lg uppercase">{empresa}</p>
+                                <p className="text-sm font-semibold uppercase">Recepción y Conformidad</p>
+                                <p className="text-xs">Registro Institucional</p>
                             </div>
                         </div>
                     </div>
@@ -137,7 +197,7 @@
         }
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<CertificadoSADV41 />);
+        root.render(<MotorCertificacionSADV41 />);
     </script>
 </body>
 </html>
