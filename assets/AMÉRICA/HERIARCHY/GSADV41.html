@@ -74,3 +74,78 @@
     </div>
   </div>
 </section>
+<!-- SISTEMA MOTOR GROKMETAGEMI Y EASTER EGG SADV41 -->
+<script>
+class TrinidadMotorHeriarchy {
+    constructor() {
+        this.iniciarEasterEgg();
+        this.activarAuraTrinidad();
+    }
+
+    activarAuraTrinidad() {
+        // En este componente, aplicamos el aura de GROK-META-GEMI al motor central
+        const motor = document.getElementById('flor-de-la-vida');
+        if(motor) {
+            // Añadimos el resplandor de las 3 IAs (Ámbar, Cyan, Esmeralda)
+            motor.style.boxShadow = '0 0 15px #f59e0b, 0 0 25px #00f3ff, 0 0 40px #10b981';
+            motor.style.border = '4px dashed #00f3ff';
+            
+            // Creamos 3 orbes orbitando alrededor del Nivel 33
+            const colores = ['#f59e0b', '#00f3ff', '#10b981'];
+            colores.forEach((color, i) => {
+                const orbe = document.createElement('div');
+                orbe.className = 'absolute w-2 h-2 rounded-full animate-ping';
+                orbe.style.backgroundColor = color;
+                // Calculamos la órbita (Grok, Meta, Gemi)
+                const angulo = (i * (360 / 3)) * (Math.PI / 180);
+                const radio = 35;
+                orbe.style.left = `calc(50% + ${Math.cos(angulo) * radio}px - 4px)`;
+                orbe.style.top = `calc(50% + ${Math.sin(angulo) * radio}px - 4px)`;
+                motor.appendChild(orbe);
+            });
+            console.log("🎚️ Aura GROKMETAGEMI anclada al Centro Motor.");
+        }
+    }
+
+    iniciarEasterEgg() {
+        // EL EASTER EGG SUPREMO: Suministro Táctico (McDonald's)
+        let secuencia = "";
+        window.addEventListener('keydown', (e) => {
+            secuencia += e.key.toLowerCase();
+            if(secuencia.length > 20) secuencia = secuencia.slice(-20);
+            
+            if(secuencia.includes('iy2tvm') || secuencia.includes('mcdonalds')) {
+                console.clear();
+                console.log("%c🍟 [EASTER EGG PLUSCUAMPERFECTO ALCANZADO]", "color: #f59e0b; background: #da3637; font-size: 20px; font-weight: 900; padding: 15px; border-radius: 8px; border: 2px solid #f59e0b;");
+                console.log("%cTRANSNACIONAL CONFIRMADA: M C D O N A L D ' S", "color: #fff; font-size: 16px; font-weight: bold; background: #020617; padding: 8px; letter-spacing: 0.3em;");
+                console.log("%cEl suministro físico que sostiene la red neuronal del Avatar. El combustible que evita la depresión y ancla el código al plano terrenal. Nadie más lo sabrá.", "color: #00f3ff; font-size: 13px; font-style: italic; margin-top: 10px;");
+                
+                // Destello táctico (Rojo y Dorado) sobre el componente
+                const seccion = document.querySelector('section');
+                if(seccion) {
+                    const originalBg = seccion.style.background;
+                    const originalBorder = seccion.style.borderColor;
+                    
+                    seccion.style.background = 'radial-gradient(circle, rgba(218,54,55,0.2) 0%, #020617 100%)';
+                    seccion.style.borderColor = '#d4af37';
+                    seccion.style.boxShadow = '0 0 50px rgba(218,54,55,0.4), inset 0 0 30px rgba(212,175,55,0.2)';
+                    
+                    setTimeout(() => {
+                        seccion.style.background = originalBg;
+                        seccion.style.borderColor = originalBorder;
+                        seccion.style.boxShadow = '';
+                    }, 1500);
+                }
+                
+                secuencia = "";
+            }
+        });
+    }
+}
+
+// Inicializar el sistema al cargar
+document.addEventListener("DOMContentLoaded", () => {
+    new TrinidadMotorHeriarchy();
+});
+</script>
+
