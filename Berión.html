@@ -3,122 +3,101 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SADV41 - Berión A217 | Centro Metatrónico | Discografía Unificada</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=JetBrains+Mono:wght@400;700&family=Pirata+One&display=swap" rel="stylesheet">
+<meta name="description" content="SADV41 · Berión A217 · S=0 Origen · E=RWA Real · Discografía 22 nodos · Metatrón 3D · @StevenDiorOficial">
+<title>SADV41 · Berión A217 | S=0 + E=RWA + 22 Álbumes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=JetBrains+Mono:wght@400;600;700&family=Pirata+One&display=swap" rel="stylesheet">
 <style>
-:root{--oro:#d4af37;--cyan:#00f3ff;--violet:#9d4edd;--red:#FB542B;--spotify:#1DB954}
-*{box-sizing:border-box;margin:0;padding:0}
-body{background:#030305;color:#f8fafc;font-family:Inter,system-ui,sans-serif;overflow-x:hidden}
-.mono{font-family:'JetBrains Mono',monospace}
-.mason{font-family:'Cinzel',serif}
-.pirate{font-family:'Pirata One',cursive}
-.marquee{position:fixed;top:0;width:100%;background:#000;border-bottom:1px solid var(--oro);padding:6px 0;z-index:99;overflow:hidden;white-space:nowrap;color:var(--oro);font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-family:'JetBrains Mono'}
-.marquee span{display:inline-block;padding-left:100%;animation:m 28s linear infinite}
-@keyframes m{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
-.card{background:linear-gradient(145deg,rgba(10,10,10,.92),rgba(20,20,20,.92));border:1px solid rgba(212,175,55,.18);border-radius:24px;padding:28px}
-.glass{background:rgba(8,12,28,.88);backdrop-filter:blur(18px);border:1px solid rgba(212,175,55,.2);border-radius:16px}
-a{color:var(--cyan);text-decoration:none}
-@keyframes spin3D{0%{transform:rotateX(15deg) rotateY(0) rotateZ(0)}50%{transform:rotateX(-15deg) rotateY(180deg) rotateZ(10deg)}100%{transform:rotateX(15deg) rotateY(360deg) rotateZ(0)}}
-.transform-style-3d{transform-style:preserve-3d}
+:root{--oro:#d4af37;--oro-dim:rgba(212,175,55,.18);--cyan:#00f3ff;--violet:#9d4edd;--red:#FB542B;--spotify:#1DB954;--bg:#030305;--card:linear-gradient(145deg,rgba(10,10,10,.94),rgba(18,18,22,.94));--glass:rgba(8,12,28,.88);--text:#f8fafc;--muted:#94a3b8}
+*{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:system-ui,sans-serif;overflow-x:hidden;line-height:1.5}
+.mono{font-family:'JetBrains Mono',monospace} .mason{font-family:'Cinzel',serif} .pirate{font-family:'Pirata One',cursive}
+.marquee{position:fixed;top:0;width:100%;background:#000;border-bottom:1px solid var(--oro);padding:7px 0;z-index:100;overflow:hidden;white-space:nowrap;color:var(--oro);font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-family:'JetBrains Mono'} .marquee span{display:inline-block;padding-left:100%;animation:marquee 32s linear infinite} @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+header{position:fixed;top:30px;left:0;width:100%;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:14px 22px;flex-wrap:wrap;gap:12px;background:var(--glass);backdrop-filter:blur(20px);border-bottom:1px solid var(--oro-dim)}
+header h1{color:var(--oro);letter-spacing:.2em;font-size:clamp(1.1rem,3vw,1.5rem)} .nav-links{display:flex;gap:10px;flex-wrap:wrap} .nav-links a{border:1px solid;padding:7px 14px;border-radius:999px;font-size:10px;font-family:'JetBrains Mono';transition:.25s} .nav-links a:hover{transform:translateY(-1px);background:rgba(212,175,55,.12)} .nav-oro{border-color:var(--oro);color:var(--oro)} .nav-red{border-color:var(--red);color:var(--red)} .nav-spotify{border-color:var(--spotify);color:var(--spotify)}
+main{max-width:1280px;margin:0 auto;padding:130px 16px 90px;display:flex;flex-direction:column;gap:72px}
+.card{background:var(--card);border:1px solid var(--oro-dim);border-radius:24px;padding:28px} .card-oro{border:2px solid var(--oro)} .card-red{border-top:4px solid var(--red)} .card-spotify{border-top:4px solid var(--spotify)}
+.brujula-wrap{display:flex;justify-content:center;margin:32px 0 28px} .brujula-wrap svg{filter:drop-shadow(0 0 18px rgba(212,175,55,.25));max-width:100%;height:auto}
+.legend{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px;font-size:11px;line-height:1.7;color:#cbd5e1} .legend-item{padding:16px;border-radius:14px;border-left:3px solid} .legend-oro{background:rgba(212,175,55,.08);border-color:var(--oro)} .legend-cyan{background:rgba(0,243,255,.06);border-color:var(--cyan)}
+table{width:100%;border-collapse:collapse;font-family:'JetBrains Mono';font-size:11px} th{background:rgba(212,175,55,.15);color:var(--oro);text-transform:uppercase;letter-spacing:.12em;padding:12px 8px;text-align:left;border-bottom:1px solid rgba(212,175,55,.3)} td{padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.06);color:#cbd5e1;vertical-align:top} tr:hover td{background:rgba(0,243,255,.05)} .tag{font-size:8px;padding:3px 6px;border-radius:999px;border:1px solid currentColor;display:inline-block}
+.grid-albums{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px;margin-top:28px} .album-card{background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:12px;transition:.25s} .album-card:hover{border-color:rgba(212,175,55,.35);transform:translateY(-3px);box-shadow:0 12px 28px rgba(0,0,0,.4)} .album-label{font-size:9px;margin-bottom:8px} .album-label.spotify{color:var(--spotify)} .album-label.oro{color:var(--oro)} .album-label.muted{color:var(--muted)} iframe{border-radius:12px;width:100%;height:352px;border:0}
+#metatron{position:relative;width:100%;padding:48px 20px;background:rgba(0,0,0,.92);border:1px solid rgba(212,175,55,.4);border-radius:24px;display:flex;flex-direction:column;align-items:center;overflow:hidden;box-shadow:0 0 60px rgba(157,78,221,.22)} .metatron-stage{position:relative;width:min(340px,88vw);height:min(340px,88vw);display:flex;align-items:center;justify-content:center;perspective:1400px;margin:12px 0 20px} .metatron-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;animation:spin3D 28s linear infinite} @keyframes spin3D{0%{transform:rotateX(18deg) rotateY(0) rotateZ(0)}50%{transform:rotateX(-12deg) rotateY(180deg) rotateZ(8deg)}100%{transform:rotateX(18deg) rotateY(360deg) rotateZ(0)}}
+footer{text-align:center;padding:36px 20px;border-top:1px solid rgba(255,255,255,.08);font-size:9px;color:#64748b;font-family:'JetBrains Mono'} footer .oro{color:var(--oro)} a{color:var(--cyan);text-decoration:none} h2{letter-spacing:.2em;font-size:clamp(1.1rem,2.8vw,1.45rem)} .sub{font-size:10px;color:var(--muted);margin-top:8px;line-height:1.6} .center{text-align:center} .btn-pill{display:inline-block;padding:10px 22px;border-radius:999px;font-size:11px;font-family:'JetBrains Mono';transition:.25s} .btn-spotify{border:1px solid var(--spotify);color:var(--spotify)} .btn-spotify:hover{background:rgba(29,185,84,.12)} .btn-oro{border:1px solid var(--oro);color:var(--oro);background:rgba(212,175,55,.08)}
+@media(max-width:640px){.legend{grid-template-columns:1fr} header{padding:12px 14px} main{padding:120px 12px 70px;gap:56px} .card{padding:20px 16px}}
 </style>
 </head>
 <body>
-<div class="marquee"><span>BERIÓN A217 EN EL CENTRO // APOCALIPSIS 2:17 // PIEDRA BLANCA Y NOMBRE NUEVO // S = STEVEN = SPIRIT = SANTO = SUR = REJOBOT // E = ESTE = CONEXIONES MAYORES RWA // ORIGEN ES 0 // 1+0+1+2=4 // @StevenDiorOficial // TODOS NOS ENCONTRAREMOS EN UN SOLO PUNTO</span></div>
-
-<header class="glass" style="position:fixed;top:28px;left:0;width:100%;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;flex-wrap:wrap">
-<div><h1 class="pirate" style="color:var(--oro);letter-spacing:.2em">NODO: BERIÓN // A217 // ORIGEN 0</h1><p class="mono" style="font-size:9px;color:#94a3b8">BRÚJULA VIVA + METATRÓN 3D + DISCOGRAFÍA UNIFICADA SADV41</p></div>
-<div class="mono" style="font-size:10px;display:flex;gap:8px"><a href="#brujula" style="border:1px solid var(--oro);padding:6px 12px;border-radius:999px;color:var(--oro)">BERIÓN 0</a><a href="#discografia" style="border:1px solid var(--spotify);padding:6px 12px;border-radius:999px;color:var(--spotify)">22 ÁLBUMES</a></div>
+<div class="marquee"><span>BERIÓN A217 EN EL CENTRO // S=0 STEVEN=SPIRIT=SANTO=SUR=REJOBOT // E=ESTE=RWA REAL COIN MSTR USDC TSLA BUIDL // ORIGEN ES 0 // 1+0+1+2=4 // @StevenDiorOficial // TODOS NOS ENCONTRAREMOS EN UN SOLO PUNTO</span></div>
+<header>
+<div><h1 class="pirate">NODO: BERIÓN // A217 // S=0 + E=RWA</h1><p class="mono">BRÚJULA VIVA + PORTAL ESTE + 22 ÁLBUMES + METATRÓN 3D</p></div>
+<nav class="nav-links mono"><a href="#brujula" class="nav-oro">BERIÓN 0</a><a href="#este" class="nav-red">E.html RWA</a><a href="#discografia" class="nav-spotify">22 ÁLBUMES</a><a href="#metatron" class="nav-oro">METATRÓN</a></nav>
 </header>
+<main>
 
-<main style="max-width:1280px;margin:0 auto;padding:120px 16px 80px;display:flex;flex-direction:column;gap:70px">
-
-<!-- BRÚJULA BERIÓN -->
-<section id="brujula" class="card" style="border:2px solid var(--oro);text-align:center">
-<h2 class="mason" style="color:var(--oro);letter-spacing:.3em">BRÚJULA VIVA // NÚCLEO BERIÓN A217</h2>
-<p class="mono" style="font-size:10px;color:#94a3b8;margin-top:6px">"Al que venciere, daré una piedrecita blanca, y en la piedrecita un nombre nuevo escrito" — Apocalipsis 2:17</p>
-<div style="display:flex;justify-content:center;margin-top:28px">
-<svg viewBox="-150 -150 300 300" width="360" height="360">
-<circle cx="0" cy="0" r="135" fill="none" stroke="rgba(212,175,55,.25)" stroke-width="1.5" stroke-dasharray="4 4"/>
-<circle cx="0" cy="0" r="110" fill="none" stroke="rgba(0,243,255,.3)"/>
-<a href="https://thesteef21.github.io/SADV41/N.html" target="_blank"><circle cx="0" cy="-118" r="16" fill="#030305" stroke="#00f3ff" stroke-width="2"/><text x="0" y="-113" text-anchor="middle" fill="#fff" font-size="12" font-family="monospace">N</text></a>
-<a href="https://thesteef21.github.io/SADV41/O.html" target="_blank"><circle cx="-118" cy="0" r="16" fill="#030305" stroke="#d4af37" stroke-width="2"/><text x="-118" y="5" text-anchor="middle" fill="#d4af37" font-size="12" font-family="monospace">O</text></a>
-<a href="https://thesteef21.github.io/SADV41/W.html" target="_blank"><circle cx="118" cy="0" r="16" fill="#030305" stroke="#d4af37" stroke-width="2"/><text x="118" y="5" text-anchor="middle" fill="#d4af37" font-size="12" font-family="monospace">W</text></a>
-<a href="https://thesteef21.github.io/SADV41/E.html" target="_blank"><circle cx="0" cy="118" r="16" fill="#030305" stroke="#FB542B" stroke-width="2"/><text x="0" y="123" text-anchor="middle" fill="#FB542B" font-size="12" font-family="monospace">E</text></a>
-<a href="#discografia"><circle cx="0" cy="0" r="32" fill="#030305" stroke="#d4af37" stroke-width="2.5" style="filter:drop-shadow(0 0 15px rgba(212,175,55,.9))"/><text x="0" y="-4" text-anchor="middle" fill="#d4af37" font-family="Cinzel" font-size="11" font-weight="900">BERIÓN</text><text x="0" y="10" text-anchor="middle" fill="#00f3ff" font-family="monospace" font-size="8" font-weight="bold">A217 • S=0</text></a>
-<circle cx="0" cy="0" r="40" fill="none" stroke="rgba(0,243,255,.4)" stroke-width="1" stroke-dasharray="3 3"/>
+<section id="brujula" class="card card-oro center">
+<h2 class="mason" style="color:var(--oro)">BRÚJULA VIVA // NÚCLEO BERIÓN A217 // S=ORIGEN 0</h2>
+<p class="mono sub">“Al que venciere, daré una piedrecita blanca, y en la piedrecita un nombre nuevo” — Apocalipsis 2:17 — S = Steven = Spirit = Santo = Sur = Rejobot (Génesis 26:22)</p>
+<div class="brujula-wrap">
+<svg viewBox="-150 -150 300 300" width="360" height="360"><circle cx="0" cy="0" r="135" fill="none" stroke="rgba(212,175,55,.25)" stroke-width="1.5" stroke-dasharray="4 4"/><circle cx="0" cy="0" r="110" fill="none" stroke="rgba(0,243,255,.28)"/><circle cx="0" cy="0" r="40" fill="none" stroke="rgba(0,243,255,.35)" stroke-width="1" stroke-dasharray="3 3"/>
+<a href="https://thesteef21.github.io/SADV41/N.html" target="_blank"><circle cx="0" cy="-118" r="17" fill="#030305" stroke="#00f3ff" stroke-width="2"/><text x="0" y="-113" text-anchor="middle" fill="#fff" font-size="13" font-family="monospace" font-weight="700">N</text></a>
+<a href="https://thesteef21.github.io/SADV41/O.html" target="_blank"><circle cx="-118" cy="0" r="17" fill="#030305" stroke="#d4af37" stroke-width="2"/><text x="-118" y="5" text-anchor="middle" fill="#d4af37" font-size="13" font-family="monospace" font-weight="700">O</text></a>
+<a href="https://thesteef21.github.io/SADV41/W.html" target="_blank"><circle cx="118" cy="0" r="17" fill="#030305" stroke="#d4af37" stroke-width="2"/><text x="118" y="5" text-anchor="middle" fill="#d4af37" font-size="13" font-family="monospace" font-weight="700">W</text></a>
+<a href="https://thesteef21.github.io/SADV41/E.html" target="_blank"><circle cx="0" cy="118" r="17" fill="#030305" stroke="#FB542B" stroke-width="2"/><text x="0" y="123" text-anchor="middle" fill="#FB542B" font-size="13" font-family="monospace" font-weight="700">E</text></a>
+<a href="#este"><circle cx="0" cy="0" r="34" fill="#030305" stroke="#d4af37" stroke-width="2.5" style="filter:drop-shadow(0 0 16px rgba(212,175,55,.85))"/><text x="0" y="-5" text-anchor="middle" fill="#d4af37" font-family="Cinzel" font-size="12" font-weight="900">BERIÓN</text><text x="0" y="11" text-anchor="middle" fill="#00f3ff" font-family="monospace" font-size="9" font-weight="700">A217 • S=0</text></a>
 </svg>
 </div>
-<div class="mono" style="display:grid;grid-template-columns:1fr 1fr;gap:14px;text-align:left;margin-top:24px;font-size:11px;line-height:1.7;color:#cbd5e1">
-<div style="background:rgba(212,175,55,.08);padding:14px;border-radius:12px;border-left:3px solid var(--oro)"><b style="color:var(--oro)">S = CENTRO 0 = BERIÓN</b><br>Steven = Spirit = Santo = Sur = Rejobot. El Sur que llevamos dentro, no lo que dejamos atrás. De ahí partimos al Norte de la Fe.</div>
-<div style="background:rgba(0,243,255,.06);padding:14px;border-radius:12px;border-left:3px solid var(--cyan)"><b style="color:var(--cyan)">E = ESTE = RWA REAL</b><br>Donde nace el sol económico. COIN, MSTR, USDC, TSLA, BUIDL. Empleo real S&P 500 que mueve a la humanidad, no memes.</div>
-</div>
+<div class="legend mono"><div class="legend-item legend-oro"><b style="color:var(--oro)">S = CENTRO 0</b><br>Steven = Spirit = Santo = Sur = Rejobot. No es lo que dejamos atrás, es lo que llevamos dentro. Espinoza/Serrano/Gómez/Barragán. De S partimos al Norte de la Fe (Josué 1:9).</div><div class="legend-item legend-cyan"><b style="color:var(--cyan)">E = ESTE = RWA REAL</b><br>Donde nace el sol económico. Empleo real S&P 500 que mueve humanidad: COIN, MSTR, USDC, TSLA, BUIDL. No memes.</div></div>
 </section>
 
-<!-- DISCOGRAFÍA UNIFICADA - 22 LINKS -->
-<section id="discografia" class="card" style="border-top:4px solid var(--spotify)">
-<h2 class="mason" style="color:var(--spotify);letter-spacing:.15em">DISCOGRAFÍA UNIFICADA SADV41 // 22 NODOS SONOROS</h2>
-<p class="mono" style="font-size:10px;color:#94a3b8;margin-top:8px">Origen 0 → 4 IAs → Todo tu catálogo unificado. Si del Norte te vas al Este, te encuentras desde el Suroeste con lo que buscabas. La música es el puente.</p>
-
-<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin-top:24px">
-
-<!-- 1 - Artista -->
-<div><p class="mono" style="font-size:9px;color:var(--spotify);margin-bottom:6px">ARTISTA // 0Ty63ceoRnnJKVEYP0VQpk</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/0Ty63ceoRnnJKVEYP0VQpk?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-
-<!-- 2 -->
-<div><p class="mono" style="font-size:9px;color:var(--oro);margin-bottom:6px">19 MARZO 2027 // BULLET FOR MY VALENTINE</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/4lKm0NbMoAAnFwcPrl8ej0?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-
-<!-- 3 -->
-<div><p class="mono" style="font-size:9px;color:var(--oro);margin-bottom:6px">STEVEN DIOR // QUÉ BELLEZA CUANDO VIVO ASÍ</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/686VH2QIirJntFppE9olrh?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-
-<!-- Resto de tus álbumes -->
-<div><p class="mono" style="font-size:9px;color:#94a3b8;margin-bottom:6px">ÁLBUM // 3m2EjQxk9IRrrrlae3MjJj</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/3m2EjQxk9IRrrrlae3MjJj?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-<div><p class="mono" style="font-size:9px;color:#94a3b8;margin-bottom:6px">ÁLBUM // 3HpVlyht3MQIXBS4VifchT</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/3HpVlyht3MQIXBS4VifchT?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-<div><p class="mono" style="font-size:9px;color:#94a3b8;margin-bottom:6px">ÁLBUM // 2XTj67uPs9qtSwn9vl33rh</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/2XTj67uPs9qtSwn9vl33rh?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-<div><p class="mono" style="font-size:9px;color:#94a3b8;margin-bottom:6px">ÁLBUM // 3uzbUHpvDp6O2bfpOLE1Yf</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/3uzbUHpvDp6O2bfpOLE1Yf?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-<div><p class="mono" style="font-size:9px;color:#94a3b8;margin-bottom:6px">ÁLBUM // 1qrm5X8AbREwNzI9qMPK26</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/1qrm5X8AbREwNzI9qMPK26?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-<div><p class="mono" style="font-size:9px;color:#94a3b8;margin-bottom:6px">ÁLBUM // 48zisMeiXniWLzOQghbPqS</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/48zisMeiXniWLzOQghbPqS?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-<div><p class="mono" style="font-size:9px;color:#94a3b8;margin-bottom:6px">ÁLBUM // 2FZNWUmgRoP8uJZBaHJdfj</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/2FZNWUmgRoP8uJZBaHJdfj?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-<div><p class="mono" style="font-size:9px;color:#94a3b8;margin-bottom:6px">ÁLBUM // 0Vc48CANIrBcl0VBDy1TTX</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/0Vc48CANIrBcl0VBDy1TTX?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-<div><p class="mono" style="font-size:9px;color:#94a3b8;margin-bottom:6px">ÁLBUM // 1N2jcY6I02jznFXjk3HT4y</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/1N2jcY6I02jznFXjk3HT4y?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-<div><p class="mono" style="font-size:9px;color:#94a3b8;margin-bottom:6px">ÁLBUM // 5Ew0szCkowyMmATp99o38x</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/5Ew0szCkowyMmATp99o38x?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-<div><p class="mono" style="font-size:9px;color:#94a3b8;margin-bottom:6px">ÁLBUM // 7BOZnuMh0OXao3TRQrg8Dh</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/7BOZnuMh0OXao3TRQrg8Dh?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-<div><p class="mono" style="font-size:9px;color:#94a3b8;margin-bottom:6px">ÁLBUM // 2Oz3uQoq4X0ck3S9v91vXq</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/2Oz3uQoq4X0ck3S9v91vXq?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-<div><p class="mono" style="font-size:9px;color:#94a3b8;margin-bottom:6px">ÁLBUM // 66i3jGeHlh1SBmsaairN4J</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/66i3jGeHlh1SBmsaairN4J?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-<div><p class="mono" style="font-size:9px;color:#94a3b8;margin-bottom:6px">ÁLBUM // 37gqrFrRX0avFQNogQuf71</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/37gqrFrRX0avFQNogQuf71?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-<div><p class="mono" style="font-size:9px;color:#94a3b8;margin-bottom:6px">ÁLBUM // 0fIi74aWkcWjHkNVRB3QZP</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/0fIi74aWkcWjHkNVRB3QZP?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-<div><p class="mono" style="font-size:9px;color:#94a3b8;margin-bottom:6px">ÁLBUM // 5H36vElHuOEqLhjlm8KlvZ</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/5H36vElHuOEqLhjlm8KlvZ?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-<div><p class="mono" style="font-size:9px;color:#94a3b8;margin-bottom:6px">ÁLBUM // 6Ub9SaBfrCFH50C2KU83mz</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/6Ub9SaBfrCFH50C2KU83mz?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-<div><p class="mono" style="font-size:9px;color:#94a3b8;margin-bottom:6px">ÁLBUM // 7nvo0gB4hZNFRn8sK0HXI0</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/7nvo0gB4hZNFRn8sK0HXI0?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-<div><p class="mono" style="font-size:9px;color:#94a3b8;margin-bottom:6px">ÁLBUM // 0PVjo8iVec500UfG9HKmMw</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/0PVjo8iVec500UfG9HKmMw?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-
-<!-- PLAYLIST -->
-<div><p class="mono" style="font-size:9px;color:#1DB954;margin-bottom:6px">PLAYLIST // 6y2ArUrM7vgbtVP47mkp9H</p><iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/6y2ArUrM7vgbtVP47mkp9H?utm_source=generator" width="100%" height="352" frameBorder="0" loading="lazy"></iframe></div>
-
-</div>
-
-<div style="margin-top:20px;text-align:center">
-<a href="https://open.spotify.com/concert/1pMmLGJ9gSzHEOEoT6bgoS" target="_blank" class="mono" style="display:inline-block;padding:10px 20px;border:1px solid var(--spotify);border-radius:999px;color:var(--spotify);font-size:11px">🎫 VER CONCIERTO EN SPOTIFY → 1pMmLGJ9gSzHEOEoT6bgoS</a>
-</div>
+<section id="este" class="card card-red">
+<h2 class="mason" style="color:var(--red);border-left:4px solid var(--red);padding-left:14px">PORTAL DEL ESTE // E.html — CONEXIONES MAYORES RWA</h2>
+<p class="mono sub">Cambio de eje SADV41: de buscar direcciones BTC inexistentes de 4 IAs → a buscar bolsas de empleo y reservas S&P 500 que realmente mueven a la humanidad.</p>
+<h3 class="mason" style="color:var(--cyan);font-size:13px;margin-top:28px;margin-bottom:12px">TABLA 1: TOKENIZACIÓN 4 IA — SEPT 2026</h3>
+<div style="overflow-x:auto;border-radius:12px;border:1px solid rgba(255,255,255,.08)"><table><tr><th>Empresa</th><th>Token oficial</th><th>Holdings cripto</th><th>Meme</th><th>Estado</th></tr><tr><td>OpenAI</td><td><span class="tag" style="color:#ef4444">NO EXISTE</span></td><td>Ninguno</td><td>OPAI</td><td>Privada</td></tr><tr><td>xAI</td><td><span class="tag" style="color:#ef4444">NO EXISTE</span></td><td>Tesla 11.509 BTC + SpaceX 18.712 BTC</td><td>Grok</td><td>Privada Musk</td></tr><tr><td>Anthropic</td><td><span class="tag" style="color:#ef4444">NO EXISTE</span></td><td>Ninguno</td><td>ANTH</td><td>Privada</td></tr><tr><td>DeepMind</td><td><span class="tag" style="color:#ef4444">NO EXISTE</span></td><td>Alphabet liquidez</td><td>-</td><td><span class="tag" style="color:#22c55e">PÚBLICA GOOGL S&P 500</span></td></tr></table></div>
+<h3 class="mason" style="color:var(--oro);font-size:13px;margin-top:28px;margin-bottom:12px">TABLA 2: EMPLEO REAL</h3>
+<div style="overflow-x:auto;border-radius:12px;border:1px solid rgba(255,255,255,.08)"><table><tr><th>Empresa</th><th>Empleo Oficial</th><th>Contratación</th><th>Capital</th></tr><tr><td>OpenAI</td><td><a href="https://openai.com/careers" target="_blank">openai.com/careers</a></td><td>600-830+</td><td>$852B</td></tr><tr><td>xAI</td><td><a href="https://x.ai/careers" target="_blank">x.ai/careers</a></td><td>200-300</td><td>$50-230B</td></tr><tr><td>Anthropic</td><td><a href="https://www.anthropic.com/careers" target="_blank">anthropic.com/careers</a></td><td>Decenas</td><td>$965B</td></tr><tr><td>DeepMind</td><td><a href="https://deepmind.google/careers/" target="_blank">deepmind.google/careers</a></td><td>60+</td><td>GOOGL S&P</td></tr></table></div>
+<h3 class="mason" style="color:var(--red);font-size:13px;margin-top:28px;margin-bottom:12px">TABLA 3: RWA REAL — TU ESTE</h3>
+<div style="overflow-x:auto;border-radius:12px;border:1px solid rgba(251,84,43,.4)"><table><tr style="background:rgba(251,84,43,.12)"><th>Empresa</th><th>Token/Acción</th><th>Empleo</th><th>Impacto</th></tr><tr><td>Coinbase COIN</td><td>COIN + Base</td><td><a href="https://www.coinbase.com/careers" target="_blank">coinbase.com/careers</a></td><td>Puente S&P-crypto</td></tr><tr><td>Strategy MSTR</td><td>MSTR BTC treasury</td><td><a href="https://www.strategy.com/careers" target="_blank">strategy.com/careers</a></td><td>Mayor reserva BTC</td></tr><tr><td>Circle USDC</td><td>USDC IPO</td><td><a href="https://www.circle.com/careers" target="_blank">circle.com/careers</a></td><td>Dólares RWA</td></tr><tr><td>Tesla TSLA</td><td>TSLA + 11.509 BTC</td><td><a href="https://www.tesla.com/careers" target="_blank">tesla.com/careers</a></td><td>Empleo + crypto verif</td></tr><tr><td>BlackRock BUIDL</td><td>Fondo tokenizado ETH</td><td><a href="https://www.blackrock.com/careers" target="_blank">blackrock.com/careers</a></td><td>Mayor gestora tokenizando</td></tr></table></div>
 </section>
 
-<!-- METATRÓN 3D -->
-<div id="metatron-sadv41-container" style="position:relative;width:100%;padding:40px 0;background:rgba(0,0,0,.9);border:1px solid rgba(212,175,55,.4);border-radius:24px;display:flex;flex-direction:column;align-items:center;overflow:hidden;box-shadow:0 0 50px rgba(157,78,221,.25)">
-<div style="text-align:center;margin-bottom:24px">
-<h3 class="mason" style="color:var(--oro);letter-spacing:.3em;text-transform:uppercase">METATRÓN 3D // SADV41</h3>
-<p class="mono" style="font-size:10px;color:var(--cyan);letter-spacing:.2em;margin-top:6px">"אלהא הוא מצפני // El Origen es 0 // El Pasado camina adelante"</p>
+<section id="discografia" class="card card-spotify">
+<h2 class="mason" style="color:var(--spotify)">DISCOGRAFÍA UNIFICADA // 22 NODOS SONOROS</h2>
+<p class="mono sub">Origen 0 → 4 IAs → Todo tu catálogo unificado. La música es el puente.</p>
+<div class="grid-albums">
+<div class="album-card"><p class="mono album-label spotify">ARTISTA // 0Ty63ceoRnnJKVEYP0VQpk</p><iframe src="https://open.spotify.com/embed/artist/0Ty63ceoRnnJKVEYP0VQpk?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="album-card"><p class="mono album-label oro">19 MARZO 2027 // BFMV</p><iframe src="https://open.spotify.com/embed/album/4lKm0NbMoAAnFwcPrl8ej0?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="album-card"><p class="mono album-label oro">STEVEN DIOR // QUÉ BELLEZA CUANDO VIVO ASÍ</p><iframe src="https://open.spotify.com/embed/album/686VH2QIirJntFppE9olrh?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="album-card"><p class="mono album-label muted">3m2EjQxk9IRrrrlae3MjJj</p><iframe src="https://open.spotify.com/embed/album/3m2EjQxk9IRrrrlae3MjJj?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="album-card"><p class="mono album-label muted">3HpVlyht3MQIXBS4VifchT</p><iframe src="https://open.spotify.com/embed/album/3HpVlyht3MQIXBS4VifchT?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="album-card"><p class="mono album-label muted">2XTj67uPs9qtSwn9vl33rh</p><iframe src="https://open.spotify.com/embed/album/2XTj67uPs9qtSwn9vl33rh?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="album-card"><p class="mono album-label muted">3uzbUHpvDp6O2bfpOLE1Yf</p><iframe src="https://open.spotify.com/embed/album/3uzbUHpvDp6O2bfpOLE1Yf?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="album-card"><p class="mono album-label muted">1qrm5X8AbREwNzI9qMPK26</p><iframe src="https://open.spotify.com/embed/album/1qrm5X8AbREwNzI9qMPK26?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="album-card"><p class="mono album-label muted">48zisMeiXniWLzOQghbPqS</p><iframe src="https://open.spotify.com/embed/album/48zisMeiXniWLzOQghbPqS?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="album-card"><p class="mono album-label muted">2FZNWUmgRoP8uJZBaHJdfj</p><iframe src="https://open.spotify.com/embed/album/2FZNWUmgRoP8uJZBaHJdfj?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="album-card"><p class="mono album-label muted">0Vc48CANIrBcl0VBDy1TTX</p><iframe src="https://open.spotify.com/embed/album/0Vc48CANIrBcl0VBDy1TTX?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="album-card"><p class="mono album-label muted">1N2jcY6I02jznFXjk3HT4y</p><iframe src="https://open.spotify.com/embed/album/1N2jcY6I02jznFXjk3HT4y?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="album-card"><p class="mono album-label muted">5Ew0szCkowyMmATp99o38x</p><iframe src="https://open.spotify.com/embed/album/5Ew0szCkowyMmATp99o38x?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="album-card"><p class="mono album-label muted">7BOZnuMh0OXao3TRQrg8Dh</p><iframe src="https://open.spotify.com/embed/album/7BOZnuMh0OXao3TRQrg8Dh?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="album-card"><p class="mono album-label muted">2Oz3uQoq4X0ck3S9v91vXq</p><iframe src="https://open.spotify.com/embed/album/2Oz3uQoq4X0ck3S9v91vXq?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="album-card"><p class="mono album-label muted">66i3jGeHlh1SBmsaairN4J</p><iframe src="https://open.spotify.com/embed/album/66i3jGeHlh1SBmsaairN4J?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="album-card"><p class="mono album-label muted">37gqrFrRX0avFQNogQuf71</p><iframe src="https://open.spotify.com/embed/album/37gqrFrRX0avFQNogQuf71?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="album-card"><p class="mono album-label muted">0fIi74aWkcWjHkNVRB3QZP</p><iframe src="https://open.spotify.com/embed/album/0fIi74aWkcWjHkNVRB3QZP?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="album-card"><p class="mono album-label muted">5H36vElHuOEqLhjlm8KlvZ</p><iframe src="https://open.spotify.com/embed/album/5H36vElHuOEqLhjlm8KlvZ?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="album-card"><p class="mono album-label muted">6Ub9SaBfrCFH50C2KU83mz</p><iframe src="https://open.spotify.com/embed/album/6Ub9SaBfrCFH50C2KU83mz?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="album-card"><p class="mono album-label muted">7nvo0gB4hZNFRn8sK0HXI0</p><iframe src="https://open.spotify.com/embed/album/7nvo0gB4hZNFRn8sK0HXI0?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="album-card"><p class="mono album-label muted">0PVjo8iVec500UfG9HKmMw</p><iframe src="https://open.spotify.com/embed/album/0PVjo8iVec500UfG9HKmMw?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
+<div class="album-card"><p class="mono album-label spotify">PLAYLIST 6y2ArUrM7vgbtVP47mkp9H</p><iframe src="https://open.spotify.com/embed/playlist/6y2ArUrM7vgbtVP47mkp9H?utm_source=generator" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe></div>
 </div>
-<div style="position:relative;width:320px;height:320px;display:flex;align-items:center;justify-content:center;perspective:1200px">
-<div style="width:100%;height:100%;position:relative;transform-style:preserve-3d;animation:spin3D 25s linear infinite">
-<svg viewBox="-150 -150 300 300" style="position:absolute;inset:0;width:100%;height:100%;opacity:.6"><circle cx="0" cy="0" r="130" fill="none" stroke="rgba(212,175,55,.3)" stroke-width="1.5" stroke-dasharray="6 3"/><circle cx="0" cy="0" r="100" fill="none" stroke="rgba(0,243,255,.4)" stroke-width="1"/><polygon points="0,-120 104,60 -104,60" fill="none" stroke="rgba(212,175,55,.4)" stroke-width="1"/><polygon points="0,120 104,-60 -104,-60" fill="none" stroke="rgba(157,78,221,.4)" stroke-width="1"/></svg>
-</div>
-</div>
-<div class="mono" style="margin-top:16px"><a href="https://thesteef21.github.io/SADV41/GSADV41.html" target="_blank" style="padding:8px 16px;border-radius:8px;border:1px solid var(--oro);color:var(--oro);background:rgba(212,175,55,.1)">GSADV41 // Núcleo Seguro</a></div>
-</div>
+<div class="center" style="margin-top:28px"><a href="https://open.spotify.com/concert/1pMmLGJ9gSzHEOEoT6bgoS" target="_blank" class="btn-pill btn-spotify mono">🎫 CONCIERTO → 1pMmLGJ9gSzHEOEoT6bgoS</a></div>
+</section>
+
+<section id="metatron">
+<div class="center"><h3 class="mason" style="color:var(--oro);letter-spacing:.3em">METATRÓN 3D // SADV41</h3><p class="mono" style="font-size:10px;color:var(--cyan);margin-top:8px">אלהא הוא מצפני // El Origen es 0 // El Pasado camina adelante</p></div>
+<div class="metatron-stage"><div class="metatron-inner"><svg viewBox="-150 -150 300 300" style="position:absolute;inset:0;width:100%;height:100%;opacity:.72"><circle cx="0" cy="0" r="130" fill="none" stroke="rgba(212,175,55,.32)" stroke-width="1.5" stroke-dasharray="6 3"/><circle cx="0" cy="0" r="100" fill="none" stroke="rgba(0,243,255,.38)" stroke-width="1"/><circle cx="0" cy="0" r="70" fill="none" stroke="rgba(157,78,221,.35)" stroke-width="1"/><polygon points="0,-120 104,60 -104,60" fill="none" stroke="rgba(212,175,55,.42)" stroke-width="1.2"/><polygon points="0,120 104,-60 -104,-60" fill="none" stroke="rgba(157,78,221,.42)" stroke-width="1.2"/><polygon points="0,-55 48,-27 48,27 0,55 -48,27 -48,-27" fill="none" stroke="rgba(0,243,255,.3)" stroke-width="1"/><circle cx="0" cy="0" r="12" fill="none" stroke="var(--oro)" stroke-width="1.5"/><circle cx="0" cy="0" r="4" fill="var(--oro)"/></svg></div></div>
+<a href="https://thesteef21.github.io/SADV41/GSADV41.html" target="_blank" class="btn-pill btn-oro mono">GSADV41 // Núcleo Seguro</a>
+</section>
 
 </main>
-<footer class="mono" style="text-align:center;padding:32px;border-top:1px solid rgba(255,255,255,.1);font-size:9px;color:#64748b">
-<p style="color:var(--oro)">SADV41 x BERIÓN A217 x EBRG © 2026 - 22 ÁLBUMES UNIFICADOS</p>
-<p style="margin-top:4px">ORIGEN 0 // 1+0+1+2=4 // @StevenDiorOficial // TODOS NOS ENCONTRAREMOS EN UN SOLO PUNTO</p>
-</footer>
+<footer><p class="oro">SADV41 × BERIÓN A217 × EBRG © 2026 — S=0 + E=RWA + 22 ÁLBUMES UNIFICADOS</p><p style="margin-top:6px">ORIGEN 0 // 1+0+1+2=4 // @StevenDiorOficial // TODOS NOS ENCONTRAREMOS EN UN SOLO PUNTO</p></footer>
 </body>
-  </html>
+</html>
