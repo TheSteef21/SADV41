@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>StevenDior | Qué belleza cuando vivo así</title>
+<meta name="description" content="Nuevo sencillo de StevenDior. Escúchalo, apoya y únete a SADV41.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Syne:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050505;--panel:#0f0e0a;--line:rgba(255,191,0,.18);--gold:#ffbf00;--gold2:#cc9900;--txt:#f3f4f6;--mut:#9ca3af}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,system-ui,sans-serif;background:var(--bg) radial-gradient(circle at 50% 0,#1a1500,#050505 70%) no-repeat;color:var(--txt);line-height:1.6}
+h1,h2,h3{font-family:Syne,sans-serif;margin:0}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid var(--line)}
+nav b{font-family:Syne;font-size:1.2rem;letter-spacing:.12em}
+nav div a{margin-left:22px;text-decoration:none;color:var(--mut);font-size:.9rem}
+nav div a:hover{color:var(--gold)}
+section{margin:56px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:28px}
+.hero{display:grid;grid-template-columns:1fr;gap:28px}
+@media(min-width:800px){.hero{grid-template-columns:320px 1fr;align-items:center}}
+.cover{aspect-ratio:1;border-radius:16px;border:1px solid var(--line);background:linear-gradient(140deg,#000,#1c1600 60%,#5a4200);display:flex;align-items:flex-end;padding:16px;font-size:.8rem;color:var(--gold)}
+h2.big{font-size:clamp(2rem,6vw,3.4rem);line-height:1.05}
+h2.big em{font-style:normal;color:var(--gold);text-shadow:0 0 18px rgba(255,191,0,.35)}
+.lead{color:var(--mut);font-weight:300;max-width:60ch}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;border-radius:999px;border:1px solid #444;background:#1a1a1a;color:var(--txt);font:600 .95rem Inter;text-decoration:none;cursor:pointer}
+.btn:hover{border-color:var(--gold)}
+.btn.gold{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:0}
+.btn.off{opacity:.45;cursor:not-allowed}
+.btn:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.row{display:flex;flex-wrap:wrap;gap:12px;margin-top:20px}
+.bars{display:flex;align-items:flex-end;gap:4px;height:36px;margin-top:22px}
+.bars i{width:4px;height:8px;background:var(--gold);border-radius:2px}
+.playing .bars i{animation:p .9s infinite alternate ease-in-out}
+.bars i:nth-child(2n){animation-delay:.25s!important}.bars i:nth-child(3n){animation-delay:.5s!important}
+@keyframes p{to{height:34px}}
+@media(prefers-reduced-motion:reduce){.playing .bars i{animation:none;height:20px}}
+.grid3{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.k{color:var(--mut);font-size:.85rem}
+.v{font:800 2rem Syne}
+code{font-size:.85rem;word-break:break-all;color:#ddd}
+.steps{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-top:20px}
+.steps div{border-left:2px solid var(--gold);padding-left:14px}
+.steps b{display:block}
+form{display:grid;gap:12px}
+input,textarea{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #333;background:#0a0a0a;color:var(--txt);font:inherit}
+.msg{min-height:1.4em;font-size:.9rem;color:var(--gold)}
+.node{text-decoration:none;display:block}
+.node:hover{border-color:var(--gold)}
+.node.off{opacity:.55}
+footer{text-align:center;padding:40px 0;border-top:1px solid var(--line);color:var(--mut);font-size:.85rem}
+footer p.f{font:600 1.1rem Syne;color:var(--gold);letter-spacing:.25em}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<nav>
+  <b>STEVENDIOR</b>
+  <div><a href="#musica">Música</a><a href="#protocolo">Protocolo 131</a><a href="#apoyo">Apoyo</a><a href="#ecosistema">Ecosistema</a><a href="#unete">Contacto</a></div>
+</nav>
+
+<!-- MÚSICA -->
+<section id="musica" class="card hero">
+  <div class="cover">432 Hz</div>
+  <div id="player">
+    <h2 class="big">Qué belleza<br><em>cuando vivo así</em></h2>
+    <p class="lead">Nuevo sencillo de StevenDior, desde Arraiján para el mundo. Escúchalo donde prefieras.</p>
+    <audio id="aud" preload="none"></audio>
+    <div class="row">
+      <button class="btn gold" id="playBtn">▶ Escuchar ahora</button>
+      <a class="btn" data-link="amuse" target="_blank" rel="noopener">Ver en Amuse</a>
+      <a class="btn" data-link="spotify" target="_blank" rel="noopener">Spotify</a>
+      <a class="btn" data-link="apple" target="_blank" rel="noopener">Apple Music</a>
+      <a class="btn" data-link="youtube" target="_blank" rel="noopener">YouTube Music</a>
+    </div>
+    <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+</section>
+
+<!-- PROTOCOLO 131 + MIA -->
+<section id="protocolo" class="card">
+  <h2>Protocolo 131</h2>
+  <p class="lead">Ciento treinta y un años de seguridad, de 1895 a 2026: de lo oculto a lo verificable. Esta página sigue esa línea: lo que se publica se puede comprobar.</p>
+  <div class="steps">
+    <div><b>1895</b><span class="k">Se protege escondiendo.</span></div>
+    <div><b>Hoy</b><span class="k">Se protege verificando, con criptografía abierta.</span></div>
+    <div><b>Web3</b><span class="k">La obra y sus regalías quedan registradas en cadena.</span></div>
+  </div>
+  <div class="row">
+    <a class="btn gold" data-link="mia" target="_blank" rel="noopener">Abrir MIA Agent</a>
+    <a class="btn" data-link="pinata" target="_blank" rel="noopener">Ver esta página en IPFS</a>
+  </div>
+  <p class="k" style="margin-top:14px">MIA es la Mesa de Inteligencias Artificiales, alojada en Pinata.</p>
+</section>
+
+<!-- FINANZAS / APOYO -->
+<section id="apoyo" class="grid3">
+  <div class="card">
+    <div class="k">Regalías acumuladas (Amuse)</div>
+    <div class="v" id="roy">$0.00</div>
+    <div class="k" id="royNote">Se actualiza cuando cargas el monto en CONFIG.</div>
+  </div>
+  <div class="card">
+    <div class="k">Contrato inteligente</div>
+    <p><code id="ctr">Sin publicar</code></p>
+    <div class="row" style="margin-top:8px">
+      <button class="btn" id="copyBtn">Copiar dirección</button>
+      <button class="btn" id="walletBtn">Conectar billetera</button>
+    </div>
+    <div class="msg" id="walletMsg" role="status"></div>
+  </div>
+  <div class="card">
+    <div class="k">Apoyo directo</div>
+    <p style="margin:6px 0 0">Tu aporte financia la música y la Academia Burunga.</p>
+    <div class="row"><a class="btn gold" data-link="stripe" target="_blank" rel="noopener">Apoyar con Stripe</a></div>
+  </div>
+</section>
+
+<!-- ECOSISTEMA -->
+<section id="ecosistema">
+  <h2 style="margin-bottom:16px">Nodos de impacto</h2>
+  <div class="grid3">
+    <a class="card node" data-link="burunga" target="_blank" rel="noopener"><h3>Academia Burunga</h3><p class="k">Motivación y disciplina para la próxima generación.</p></a>
+    <a class="card node" data-link="mia" target="_blank" rel="noopener"><h3>MIA Agent</h3><p class="k">Mesa de Inteligencias Artificiales, en Pinata.</p></a>
+    <a class="card node" data-link="sadv41tt" target="_blank" rel="noopener"><h3>SADV41TT</h3><p class="k">Control logístico y gestión integral.</p></a>
+  </div>
+</section>
+
+<!-- CONTACTO Y COMUNIDAD -->
+<section id="unete" class="grid3">
+  <div class="card">
+    <h3>Únete a SADV41</h3>
+    <p class="k">Recibe el lanzamiento y las novedades en tu correo.</p>
+    <form id="fJoin" data-kind="Suscripción">
+      <input type="email" name="email" placeholder="Tu correo" required aria-label="Tu correo">
+      <button class="btn gold" type="submit">Unirme</button>
+      <div class="msg" role="status"></div>
+    </form>
+  </div>
+  <div class="card">
+    <h3>Escríbenos</h3>
+    <form id="fContact" data-kind="Contacto">
+      <input name="nombre" placeholder="Nombre" required aria-label="Nombre">
+      <input type="email" name="email" placeholder="Correo" required aria-label="Correo">
+      <textarea name="mensaje" rows="3" placeholder="Mensaje" required aria-label="Mensaje"></textarea>
+      <button class="btn" type="submit">Enviar mensaje</button>
+      <div class="msg" role="status"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <p class="f">CRISTO ESTÁ POR VENIR</p>
+  <p>Operando bajo la guianza del Santísimo Espíritu de Dios.</p>
+  <p>Contacto: <a href="mailto:sadv41@gmail.com">sadv41@gmail.com</a> · © 2026 StevenDior</p>
+</footer>
+</div>
+
+<script>
+/* ===== CONECTORES: rellena aquí y todo se activa solo ===== */
+const CONFIG = {
+  email: 'sadv41@gmail.com',
+  audioSrc: '',      // URL de tu MP3 (p. ej. en Pinata/IPFS)
+  amuse: '',         // enlace del sencillo en Amuse
+  spotify: '',
+  apple: '',
+  youtube: '',
+  stripe: '',        // Payment Link de Stripe
+  formEndpoint: '',  // p. ej. https://formspree.io/f/XXXX (envía a sadv41@gmail.com)
+  contract: '',      // dirección 0x... del contrato
+  pinata: '',        // URL del gateway de Pinata de esta página
+  mia: '',           // URL de MIA Agent
+  burunga: '',
+  sadv41tt: '',
+  royalties: '0.00'  // monto manual desde tu panel de Amuse
+};
+
+/* Enlaces: activos si tienen URL, "Próximamente" si no */
+document.querySelectorAll('[data-link]').forEach(a=>{
+  const u = CONFIG[a.dataset.link];
+  if(u){ a.href = u; }
+  else { a.classList.add('off'); a.setAttribute('aria-disabled','true'); a.title='Próximamente'; a.addEventListener('click',e=>e.preventDefault()); }
+});
+
+/* Reproductor */
+const aud = document.getElementById('aud'), pb = document.getElementById('playBtn'), pl = document.getElementById('player');
+if(CONFIG.audioSrc){ aud.src = CONFIG.audioSrc; }
+else { pb.classList.add('off'); pb.textContent = 'Audio próximamente'; }
+pb.addEventListener('click',()=>{
+  if(!CONFIG.audioSrc) return;
+  aud.paused ? aud.play() : aud.pause();
+});
+aud.addEventListener('play',()=>{pl.classList.add('playing');pb.textContent='❚❚ Pausar'});
+aud.addEventListener('pause',()=>{pl.classList.remove('playing');pb.textContent='▶ Escuchar ahora'});
+aud.addEventListener('ended',()=>{pl.classList.remove('playing');pb.textContent='▶ Escuchar ahora'});
+
+/* Regalías */
+document.getElementById('roy').textContent = '$' + Number(CONFIG.royalties).toLocaleString('es-PA',{minimumFractionDigits:2});
+if(Number(CONFIG.royalties)>0) document.getElementById('royNote').textContent = 'Monto cargado desde tu panel de Amuse.';
+
+/* Contrato y billetera */
+const ctr = document.getElementById('ctr'), wm = document.getElementById('walletMsg');
+if(CONFIG.contract) ctr.textContent = CONFIG.contract;
+document.getElementById('copyBtn').addEventListener('click',async()=>{
+  if(!CONFIG.contract){ wm.textContent='Aún no hay contrato publicado.'; return; }
+  try{ await navigator.clipboard.writeText(CONFIG.contract); wm.textContent='Dirección copiada.'; }
+  catch(e){ wm.textContent='No se pudo copiar. Selecciónala manualmente.'; }
+});
+document.getElementById('walletBtn').addEventListener('click',async()=>{
+  if(!window.ethereum){ wm.textContent='No se detectó una billetera. Instala MetaMask o similar.'; return; }
+  try{
+    const [acc] = await window.ethereum.request({method:'eth_requestAccounts'});
+    wm.textContent = 'Conectada: ' + acc.slice(0,6) + '…' + acc.slice(-4);
+  }catch(e){ wm.textContent='Conexión cancelada.'; }
+});
+
+/* Formularios: con endpoint envían sin salir de la página; sin él abren tu correo */
+document.querySelectorAll('form').forEach(f=>{
+  f.addEventListener('submit',async e=>{
+    e.preventDefault();
+    const out = f.querySelector('.msg'), data = new FormData(f);
+    data.append('tipo', f.dataset.kind);
+    if(CONFIG.formEndpoint){
+      try{
+        const r = await fetch(CONFIG.formEndpoint,{method:'POST',body:data,headers:{Accept:'application/json'}});
+        if(!r.ok) throw 0;
+        out.textContent='Listo, recibimos tu mensaje.'; f.reset();
+      }catch(err){ out.textContent='No se pudo enviar. Escríbenos a ' + CONFIG.email; }
+    } else {
+      const body = [...data].filter(([k])=>k!=='tipo').map(([k,v])=>k+': '+v).join('\n');
+      location.href = 'mailto:'+CONFIG.email+'?subject='+encodeURIComponent('SADV41 - '+f.dataset.kind)+'&body='+encodeURIComponent(body);
+      out.textContent='Se abrió tu app de correo para enviar el mensaje.';
+    }
+  });
+});
+</script>
+</body>
+</html>
