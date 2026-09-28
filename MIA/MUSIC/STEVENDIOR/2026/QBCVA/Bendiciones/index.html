@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StevenDior | QUÉ BELLEZA CUANDO VIVO ASÍ - Nodo SADV41</title>
+    <meta name="description" content="Lanzamiento oficial del sencillo QUÉ BELLEZA CUANDO VIVO ASÍ por StevenDior. Distribución verificable vía Amuse.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Syne:wght@500;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+            background-image: radial-gradient(circle at 50% 0%, #1a1500 0%, #050505 80%);
+            color: #f3f4f6;
+        }
+        h1, h2, h3, .font-syne { font-family: 'Syne', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        
+        .glass-panel {
+            background: rgba(15, 15, 15, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 191, 0, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+        }
+        
+        .gold-glow {
+            color: #ffbf00;
+            text-shadow: 0 0 15px rgba(255, 191, 0, 0.5);
+        }
+        
+        .btn-gold {
+            background: linear-gradient(135deg, #ffbf00 0%, #cc9900 100%);
+            color: #000;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .btn-gold:hover {
+            box-shadow: 0 0 25px rgba(255, 191, 0, 0.5);
+            transform: translateY(-2px);
+        }
+        .btn-off {
+            opacity: 0.45;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .data-row {
+            transition: background-color 0.2s;
+        }
+        .data-row:hover {
+            background-color: rgba(255, 191, 0, 0.05);
+        }
+
+        @keyframes spin-slow {
+            100% { transform: rotate(360deg); }
+        }
+        .syncing i {
+            animation: spin-slow 3s linear infinite;
+        }
+
+        .bars i {
+            display: inline-block;
+            width: 4px;
+            height: 8px;
+            background: #ffbf00;
+            border-radius: 2px;
+            margin: 0 2px;
+            transition: height 0.2s;
+        }
+        .playing .bars i { animation: p 0.9s infinite alternate ease-in-out; }
+        .bars i:nth-child(2n) { animation-delay: 0.25s !important; }
+        .bars i:nth-child(3n) { animation-delay: 0.5s !important; }
+        @keyframes p { to { height: 34px; } }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-center p-4 md:p-8 antialiased selection:bg-amber-500 selection:text-black">
+
+    <main class="max-w-4xl w-full space-y-8 relative z-10">
+        
+        <!-- Header -->
+        <header class="text-center space-y-4 pt-4">
+            <div class="inline-flex items-center justify-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 text-xs font-bold tracking-widest uppercase mb-2">
+                <i class="fas fa-satellite-dish animate-pulse"></i> Lanzamiento Global Activo
+            </div>
+            <h1 class="text-5xl md:text-6xl font-syne font-bold tracking-tight text-white uppercase drop-shadow-xl">
+                QUÉ BELLEZA <br><span class="gold-glow">CUANDO VIVO ASÍ</span>
+            </h1>
+            <p class="text-gray-400 tracking-[0.2em] uppercase text-sm font-semibold">StevenDior Oficial</p>
+        </header>
+
+        <!-- Contenedor Principal Glass -->
+        <div class="glass-panel rounded-3xl overflow-hidden shadow-2xl">
+            
+            <!-- Hero CTA / Player -->
+            <div id="player" class="p-8 md:p-12 text-center border-b border-gray-800 relative overflow-hidden">
+                <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 mix-blend-overlay"></div>
+                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl z-0"></div>
+                
+                <div class="relative z-10">
+                    <div class="mb-4 inline-block px-4 py-1 border border-amber-500/30 rounded-full bg-black/50 text-amber-500 text-xs tracking-widest">
+                        432 Hz • STEREO
+                    </div>
+                    <p class="text-gray-300 mb-8 max-w-xl mx-auto font-light leading-relaxed">
+                        Desde Arraiján para el mundo. Una obra canalizada bajo la guianza perfecta.
+                    </p>
+                    
+                    <audio id="aud" preload="none"></audio>
+                    
+                    <div class="flex flex-wrap justify-center gap-4 mb-6">
+                        <button id="playBtn" class="btn-gold inline-flex items-center gap-3 px-8 py-3 rounded-full font-bold text-sm uppercase tracking-wider">
+                            <i class="fas fa-play"></i> Escuchar ahora
+                        </button>
+                        <a data-link="amuse" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-3 rounded-full font-bold text-sm uppercase tracking-wider border border-gray-600 bg-gray-900 hover:border-amber-500 transition-colors">
+                            Ver en Amuse
+                        </a>
+                    </div>
+                    
+                    <div class="bars flex justify-center h-10 items-end" aria-hidden="true">
+                        <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard de Datos -->
+            <div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-gray-800">
+                
+                <!-- Registro Técnico (Estilo Ledger Protocolo 131) -->
+                <div class="p-8 space-y-6 bg-black/40">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-syne font-bold text-white uppercase tracking-wider">Registro Técnico</h3>
+                        <i class="fas fa-fingerprint text-amber-500/50 text-xl"></i>
+                    </div>
+                    
+                    <div class="space-y-1">
+                        <div class="data-row flex justify-between items-center py-3 border-b border-gray-800/50">
+                            <span class="text-xs text-gray-500 uppercase tracking-wider">UPC Code</span>
+                            <div class="flex items-center gap-2">
+                                <span class="font-mono text-amber-400 font-bold tracking-wider">7333595850228</span>
+                                <button id="copyUpcBtn" class="text-gray-600 hover:text-amber-500 transition-colors" title="Copiar UPC">
+                                    <i class="far fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="data-row flex justify-between items-center py-3 border-b border-gray-800/50">
+                            <span class="text-xs text-gray-500 uppercase tracking-wider">Release ID</span>
+                            <div class="flex items-center gap-2">
+                                <span class="font-mono text-gray-300">5046778</span>
+                            </div>
+                        </div>
+                        <div class="data-row flex justify-between items-center py-3 border-b border-gray-800/50">
+                            <span class="text-xs text-gray-500 uppercase tracking-wider">Contrato Web3</span>
+                            <div class="flex items-center gap-2">
+                                <span id="ctr" class="font-mono text-gray-400 text-xs">Sin publicar</span>
+                                <button id="copyCtrBtn" class="text-gray-600 hover:text-amber-500 transition-colors" title="Copiar Contrato">
+                                    <i class="far fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="data-row flex justify-between items-center py-3">
+                            <span class="text-xs text-gray-500 uppercase tracking-wider">Lanzamiento</span>
+                            <span class="text-sm font-bold text-white">23 Sep 2026</span>
+                        </div>
+                        <div id="systemMsg" class="text-amber-500 text-xs font-mono mt-2 h-4"></div>
+                    </div>
+                </div>
+
+                <!-- Estado de Nodos de Distribución -->
+                <div class="p-8 space-y-8 bg-black/20">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_#22c55e]"></div>
+                                <h4 class="text-xs text-gray-400 uppercase tracking-widest font-semibold">Nodos Sincronizados</h4>
+                            </div>
+                            <button id="walletBtn" class="text-xs border border-gray-700 bg-gray-900 px-3 py-1 rounded hover:border-amber-500 transition-colors">Conectar Billetera</button>
+                        </div>
+                        <div class="grid grid-cols-3 gap-4">
+                            <a data-link="spotify" target="_blank" class="flex flex-col items-center gap-2 p-3 rounded-xl bg-gray-900/50 border border-gray-800 hover:border-green-500/30 transition-colors">
+                                <i class="fab fa-spotify text-2xl text-[#1DB954]"></i>
+                                <span class="text-[10px] text-gray-500 uppercase tracking-wider">Spotify</span>
+                            </a>
+                            <a data-link="apple" target="_blank" class="flex flex-col items-center gap-2 p-3 rounded-xl bg-gray-900/50 border border-gray-800 hover:border-green-500/30 transition-colors">
+                                <i class="fab fa-apple text-2xl text-white"></i>
+                                <span class="text-[10px] text-gray-500 uppercase tracking-wider">Apple Music</span>
+                            </a>
+                            <a data-link="youtube" target="_blank" class="flex flex-col items-center gap-2 p-3 rounded-xl bg-gray-900/50 border border-gray-800 hover:border-green-500/30 transition-colors">
+                                <i class="fab fa-youtube text-2xl text-[#FF0000]"></i>
+                                <span class="text-[10px] text-gray-500 uppercase tracking-wider">YouTube</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-gray-800/50">
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_8px_#ffbf00] animate-pulse"></div>
+                            <h4 class="text-xs text-gray-400 uppercase tracking-widest font-semibold">Protocolo 131</h4>
+                        </div>
+                        <div class="flex flex-wrap gap-4">
+                            <a data-link="mia" target="_blank" class="syncing flex items-center gap-3 px-4 py-2 rounded-lg bg-gray-800/30 border border-gray-700/50 text-gray-300 text-sm hover:border-amber-500/50 transition-colors">
+                                <i class="fas fa-network-wired text-amber-500/70"></i> MIA Agent
+                            </a>
+                            <a data-link="pinata" target="_blank" class="syncing flex items-center gap-3 px-4 py-2 rounded-lg bg-gray-800/30 border border-gray-700/50 text-gray-300 text-sm hover:border-amber-500/50 transition-colors">
+                                <i class="fas fa-cube text-purple-500/70"></i> IPFS Pinata
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Ecosistema SADV41 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <a data-link="burunga" target="_blank" class="glass-panel p-6 rounded-2xl hover:border-amber-500 transition-colors block">
+                <h3 class="font-syne font-bold text-lg mb-2">Academia Burunga</h3>
+                <p class="text-xs text-gray-400">Motivación y disciplina para la próxima generación. Voleibol • Arraiján.</p>
+            </a>
+            <a data-link="sadv41tt" target="_blank" class="glass-panel p-6 rounded-2xl hover:border-amber-500 transition-colors block">
+                <h3 class="font-syne font-bold text-lg mb-2">SADV41TT</h3>
+                <p class="text-xs text-gray-400">Control logístico, transporte y gestión integral de la misión.</p>
+            </a>
+            <div class="glass-panel p-6 rounded-2xl">
+                <h3 class="font-syne font-bold text-lg mb-2">Regalías</h3>
+                <p id="roy" class="text-2xl font-bold text-amber-500 font-mono">$0.00</p>
+                <p class="text-[10px] text-gray-500 mt-1 uppercase">Fondo transparente</p>
+            </div>
+        </div>
+
+        <!-- Footer Ecosistema -->
+        <footer class="text-center pt-8 pb-4">
+            <p class="text-amber-500/80 font-syne text-sm tracking-[0.3em] mb-3">CRISTO ESTÁ POR VENIR</p>
+            <p class="text-gray-500 text-xs mb-4">Operando bajo la guianza del Santísimo Espíritu de Dios.</p>
+            <div class="flex flex-wrap items-center justify-center gap-4 text-xs text-gray-600 font-mono">
+                <span>© 2026 StevenDior</span>
+                <span>|</span>
+                <a href="mailto:sadv41@gmail.com" class="hover:text-amber-400 transition-colors">sadv41@gmail.com</a>
+                <span>|</span>
+                <span>Protocolo 131</span>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        /* ===== CONECTORES SADV41 ===== */
+        const CONFIG = {
+            email: 'sadv41@gmail.com',
+            audioSrc: '',      
+            amuse: 'https://share.amuse.io/track/steven-que-belleza-cuando-vivo-asi',
+            spotify: '',
+            apple: '',
+            youtube: '',
+            contract: '',      
+            pinata: '',        
+            mia: '',           
+            burunga: 'https://thesteef21.github.io/SADV41/CURSOS/DEPORTE/VOLEIBOL/MOTIVACIONAL.html',
+            sadv41tt: '',
+            royalties: '0.00'  
+        };
+
+        const sysMsg = document.getElementById('systemMsg');
+        const showMsg = (msg) => { sysMsg.textContent = msg; setTimeout(() => sysMsg.textContent = '', 3000); };
+
+        /* Inicialización de Enlaces */
+        document.querySelectorAll('[data-link]').forEach(a => {
+            const u = CONFIG[a.dataset.link];
+            if(u) { a.href = u; }
+            else { 
+                a.classList.add('btn-off'); 
+                a.setAttribute('aria-disabled', 'true'); 
+                a.title = 'Próximamente'; 
+                a.addEventListener('click', e => e.preventDefault()); 
+            }
+        });
+
+        /* Reproductor de Audio (432 Hz) */
+        const aud = document.getElementById('aud');
+        const pb = document.getElementById('playBtn');
+        const pl = document.getElementById('player');
+        
+        if(CONFIG.audioSrc) { aud.src = CONFIG.audioSrc; }
+        else { pb.classList.add('btn-off'); pb.innerHTML = '<i class="fas fa-lock"></i> Audio Próximamente'; }
+        
+        pb.addEventListener('click', () => {
+            if(!CONFIG.audioSrc) return;
+            aud.paused ? aud.play() : aud.pause();
+        });
+        
+        aud.addEventListener('play', () => { pl.classList.add('playing'); pb.innerHTML = '<i class="fas fa-pause"></i> Pausar'; });
+        aud.addEventListener('pause', () => { pl.classList.remove('playing'); pb.innerHTML = '<i class="fas fa-play"></i> Escuchar ahora'; });
+        aud.addEventListener('ended', () => { pl.classList.remove('playing'); pb.innerHTML = '<i class="fas fa-play"></i> Escuchar ahora'; });
+
+        /* Datos de Configuración Dinámica */
+        document.getElementById('roy').textContent = '$' + Number(CONFIG.royalties).toLocaleString('es-PA', {minimumFractionDigits: 2});
+        
+        const ctrNode = document.getElementById('ctr');
+        if(CONFIG.contract) ctrNode.textContent = CONFIG.contract.slice(0,6) + '...' + CONFIG.contract.slice(-4);
+
+        document.getElementById('copyUpcBtn').addEventListener('click', async () => {
+            try { await navigator.clipboard.writeText('7333595850228'); showMsg('UPC copiado al portapapeles.'); } catch(e) {}
+        });
+
+        document.getElementById('copyCtrBtn').addEventListener('click', async () => {
+            if(!CONFIG.contract) { showMsg('Contrato aún no desplegado.'); return; }
+            try { await navigator.clipboard.writeText(CONFIG.contract); showMsg('Contrato copiado.'); } catch(e) {}
+        });
+
+        document.getElementById('walletBtn').addEventListener('click', async () => {
+            if(!window.ethereum) { showMsg('No se detectó Web3 (MetaMask, etc).'); return; }
+            try {
+                const [acc] = await window.ethereum.request({method:'eth_requestAccounts'});
+                showMsg('Conectado: ' + acc.slice(0,6) + '…' + acc.slice(-4));
+            } catch(e) { showMsg('Conexión cancelada.'); }
+        });
+    </script>
+</body>
+</html>
