@@ -1,325 +1,159 @@
 <!DOCTYPE html>
+<!-- Archivo: stevendior.shtml - SADV41 OMNIPRESENTE (E.S. FUSION) -->
+<!--#config timefmt="%d/%m/%Y %H:%M:%S Panamá" errmsg="[SADV41 SHTML ERROR]" -->
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Steven Dior | Misión SADV41 - Vida, Arte y Legado</title>
-    <style>
-        :root {
-            --bg-dark: #090d16;
-            --card-bg: #131c2e;
-            --accent: #d4af37;
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
-            --border: #1e293b;
-            --primary-gradient: linear-gradient(135deg, #162a26, #090d16);
-        }
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.7;
-            padding: 20px;
-        }
-        .container {
-            max-width: 950px;
-            margin: 0 auto;
-            background-color: var(--card-bg);
-            border-radius: 18px;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.6);
-            overflow: hidden;
-            border: 1px solid var(--border);
-        }
-        header {
-            background: var(--primary-gradient);
-            color: #ffffff;
-            padding: 50px 30px;
-            text-align: center;
-            border-bottom: 4px solid var(--accent);
-        }
-        header h1 {
-            font-size: 2.6rem;
-            margin-bottom: 10px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.4);
-        }
-        header p {
-            font-size: 1.2rem;
-            color: var(--accent);
-            font-weight: 500;
-        }
-        .badge-sadv {
-            display: inline-block;
-            background-color: var(--accent);
-            color: #111;
-            font-weight: bold;
-            padding: 5px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-        }
-        
-        /* Estilos de la Tienda Promocional */
-        .promo-banner {
-            background: linear-gradient(90deg, rgba(19,28,46,1) 0%, rgba(22,42,38,1) 50%, rgba(19,28,46,1) 100%);
-            border: 1px solid var(--accent);
-            padding: 20px 30px;
-            text-align: center;
-            margin: 0;
-            border-bottom: 1px solid var(--border);
-            position: relative;
-            overflow: hidden;
-        }
-        .promo-banner::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at center, rgba(212,175,55,0.08) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .promo-banner h3 {
-            color: var(--text-main);
-            margin-bottom: 8px;
-            font-size: 1.3rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        .promo-banner p {
-            color: var(--text-muted);
-            margin-bottom: 15px;
-            font-size: 0.95rem;
-            text-align: center;
-        }
-        .promo-btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: #090d16 !important;
-            font-weight: 800;
-            padding: 10px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
-        }
-        .promo-btn:hover {
-            background-color: #fce38a;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-        }
-        .promo-discount {
-            background-color: rgba(9, 13, 22, 0.8);
-            border: 1px dashed var(--accent);
-            color: var(--text-main);
-            padding: 10px 20px;
-            border-radius: 8px;
-            display: inline-block;
-            margin-top: 15px;
-            font-size: 0.95rem;
-            position: relative;
-            z-index: 2;
-        }
-        .promo-discount span {
-            color: var(--accent);
-            font-weight: bold;
-        }
-        .promo-discount a {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: bold;
-            border-bottom: 1px solid var(--accent);
-            padding-bottom: 2px;
-            transition: color 0.3s ease;
-        }
-        .promo-discount a:hover {
-            color: #fce38a;
-            border-bottom-color: #fce38a;
-        }
+    
+    <!-- Meta & Icon -->
+    <meta name="generator" content="GSADV41-Core-Engine">
+    <link rel="icon" type="image/png" href="assets/GSADV41/favicon.png">
 
-        .language-selector-section {
-            background-color: rgba(19, 28, 46, 0.95);
-            padding: 20px 30px;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+    <!-- Tipografías Sagradas & Iconos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&family=Pirata+One&display=swap" rel="stylesheet">
+    
+    <!-- Web3 Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
+
+    <!-- Configuración Tailwind (Paleta SADV41 OMNIPRESENTE) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#020617', obsidiana: '#030305', oro: '#d4af37', sunGold: '#f59e0b',
+                        blanco: '#f8fafc', cyanNeon: '#00f3ff', violetNeon: '#9d4edd', redNeon: '#FB542B',
+                        guaraniGreen: '#1b3b36', bnbYellow: '#F3BA2F', spotify: '#1DB954',
+                    },
+                    fontFamily: {
+                        mason: ['Cinzel', 'serif'],
+                        pirate: ['Pirata One', 'cursive'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
         }
-        .language-selector-section label {
-            font-size: 0.9rem;
-            color: var(--accent);
-            font-weight: 600;
-            text-transform: uppercase;
+    </script>
+
+    <style>
+        :root { --oro:#d4af37; --sun-gold:#f59e0b; --obsidiana:#030305; --navy:#020617; --cyan:#00f3ff; --violet:#9d4edd; --bnb:#F3BA2F; --spotify:#1DB954; }
+        body { background-color: var(--obsidiana); color:#f8fafc; font-family:'Inter',system-ui,sans-serif; overflow-x:hidden; position:relative; scroll-behavior:smooth; }
+        
+        /* GLITCH Y FONDOS DE CAOS */
+        @keyframes pageGlitch {
+            0% { transform: translate(0) skew(0deg); filter: hue-rotate(0deg); }
+            20% { transform: translate(-10px, 6px) skew(-5deg); filter: hue-rotate(180deg) contrast(200%) invert(0.1); }
+            40% { transform: translate(10px, -6px) skew(5deg); filter: hue-rotate(-90deg) invert(0.2); }
+            60% { transform: translate(-4px, 4px) skew(-3deg); filter: hue-rotate(90deg) drop-shadow(0 0 20px var(--cyan)); }
+            80% { transform: translate(4px, -4px) skew(3deg); filter: hue-rotate(-45deg); }
+            100% { transform: translate(0) skew(0deg); filter: hue-rotate(0deg); }
         }
-        .language-select {
-            background-color: #090d16;
-            color: var(--text-main);
-            border: 1px solid var(--border);
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 1rem;
-            outline: none;
-            cursor: pointer;
-        }
-        .language-select:focus {
-            border-color: var(--accent);
-        }
-        .content-section {
-            padding: 40px 30px;
-        }
-        h2 {
-            font-size: 1.5rem;
-            color: var(--accent);
-            margin-bottom: 20px;
-            border-bottom: 2px solid var(--border);
-            padding-bottom: 8px;
-            margin-top: 30px;
-        }
-        p {
-            margin-bottom: 20px;
-            color: var(--text-muted);
-            text-align: justify;
-        }
-        p strong {
-            color: var(--text-main);
-        }
-        .grid-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        .card {
-            background-color: rgba(9, 13, 22, 0.6);
-            border: 1px solid var(--border);
-            border-radius: 10px;
-            padding: 20px;
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-        .card:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent);
-        }
-        .card h3 {
-            color: var(--text-main);
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-        }
-        .card a:not(.support-btn) {
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-block;
-            margin-top: 10px;
-            word-break: break-all;
-        }
-        .card a:not(.support-btn):hover {
-            text-decoration: underline;
-        }
-        .crypto-address {
-            font-family: monospace;
-            background-color: #090d16;
-            color: #d4af37;
-            padding: 4px 8px;
-            border-radius: 5px;
-            border: 1px solid var(--border);
-            word-break: break-all;
-            display: block;
-            margin-top: 5px;
-        }
-        .yaml-block {
-            background-color: #060911;
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
-            font-family: monospace;
-            color: #a3b8cc;
-            overflow-x: auto;
-            margin-top: 30px;
-            font-size: 0.85rem;
-        }
-        .quote-box {
-            background-color: rgba(212, 175, 55, 0.05);
-            border-left: 4px solid var(--accent);
-            padding: 20px;
-            border-radius: 0 8px 8px 0;
-            margin: 30px 0;
-            font-style: italic;
-            color: #e2e8f0;
-        }
-        .guarani-box {
-            background-color: rgba(27, 59, 54, 0.2);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 20px;
-            margin-bottom: 30px;
-        }
-        .guarani-box h3 {
-            color: var(--accent);
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-        .support-btn {
-            display: inline-block;
-            background-color: rgba(212, 175, 55, 0.15);
-            color: var(--accent) !important;
-            border: 1px solid var(--accent);
-            padding: 3px 8px; 
-            border-radius: 6px;
-            text-decoration: none !important;
-            font-family: monospace;
-            transition: all 0.3s ease;
-            margin: 2px; 
-            font-size: 0.9em; 
-        }
-        .support-btn:hover {
-            background-color: var(--accent);
-            color: #090d16 !important;
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
-        }
-        footer {
-            text-align: center;
-            padding: 25px;
-            background-color: #060911;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            border-top: 1px solid var(--border);
-        }
+        .glitch-active { animation: pageGlitch 0.7s cubic-bezier(.25, .46, .45, .94) both; }
+        .layer-glitch { mix-blend-mode: color-dodge !important; transform: scale(1.2) rotate(-2deg) !important; filter: contrast(250%) saturate(400%) hue-rotate(270deg) drop-shadow(0 0 30px var(--violet)) !important; opacity: 1 !important; }
+
+        .sponsor-marquee { width:100%; background:#000; border-bottom:1px solid var(--oro); overflow:hidden; white-space:nowrap; padding:6px 0; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--oro); text-transform:uppercase; letter-spacing:0.2em; position:fixed; top:0; z-index:70; }
+        .sponsor-marquee span { display:inline-block; padding-left:100%; animation: marquee 30s linear infinite; }
+        @keyframes marquee { 0%{transform:translate(0,0)} 100%{transform:translate(-100%,0)} }
+        
+        .grand-line-bg { position:fixed; inset:0; z-index:0; background: radial-gradient(circle at 50% 20%, rgba(212,175,55,0.08) 0%, transparent 60%), radial-gradient(circle at 80% 80%, rgba(0,243,255,0.05) 0%, transparent 50%), linear-gradient(to bottom, transparent, rgba(3,3,5,0.95)); pointer-events:none; }
+        .grid-pattern { background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size:32px 32px; opacity:0.25; position:fixed; inset:0; z-index:1; pointer-events:none; }
+        .scanline { width:100%; height:2px; background:linear-gradient(90deg, transparent, rgba(212,175,55,0.4), transparent); position:fixed; z-index:60; top:0; pointer-events:none; animation: scanline 8s linear infinite; }
+        @keyframes scanline { 0%{top:0} 100%{top:100%} }
+        
+        /* TARJETAS & GLOWS (Logia Pluscuamperfecta) */
+        .glass { background:rgba(8,12,28,0.88); backdrop-filter:blur(18px); border:1px solid rgba(212,175,55,0.2); border-radius:16px; }
+        .glass-strong { background:rgba(3,6,15,0.94); backdrop-filter:blur(22px); border:1px solid rgba(0,243,255,0.3); }
+        .logia-card { background:linear-gradient(145deg, rgba(10,10,10,0.88), rgba(20,20,20,0.88)); border:1px solid rgba(212,175,55,0.18); box-shadow:0 15px 35px rgba(0,0,0,0.9), inset 0 0 20px rgba(212,175,55,0.05); transition:all 0.5s ease; backdrop-filter:blur(12px); position:relative; overflow:hidden; }
+        .logia-card:hover { border-color:rgba(212,175,55,0.5); box-shadow:0 20px 40px rgba(0,0,0,0.9), inset 0 0 30px rgba(212,175,55,0.1); transform: translateY(-2px); }
+        
+        .gold-glow { box-shadow:0 0 40px rgba(212,175,55,.18), inset 0 0 22px rgba(212,175,55,.05); border-color:var(--oro); }
+        .cyan-glow { box-shadow:0 0 28px rgba(0,243,255,.18), inset 0 0 18px rgba(0,243,255,.05); border-color:var(--cyan); }
+        .esoterico-glow { text-shadow:0 0 25px rgba(212,175,55,0.7); }
+        
+        /* SIDEBAR (MENÚ LATERAL) */
+        .sidebar-tabs { position:fixed; left:0; top:50%; transform:translateY(-50%); z-index:65; display:flex; flex-direction:column; gap:8px; transition:all 0.5s cubic-bezier(0.4,0,0.2,1); }
+        .vertical-tab { display:flex; align-items:center; background:rgba(2,6,23,0.95); padding:10px 14px; border-radius:0 12px 12px 0; transition:all 0.3s; width:55px; overflow:hidden; white-space:nowrap; box-shadow:4px 4px 15px rgba(0,0,0,0.6); cursor:pointer; text-decoration:none; color:#fff; border-left:3px solid var(--cyan); }
+        .vertical-tab:hover { width:340px; padding-left:18px; background:rgba(212,175,55,0.15); }
+        .vertical-tab span.icon { font-size:1.4rem; min-width:28px; display:flex; justify-content:center; }
+        .vertical-tab span.text { margin-left:14px; font-weight:bold; opacity:0; transition:opacity 0.3s; font-size:0.8rem; letter-spacing:0.05em; font-family:'JetBrains Mono',monospace; }
+        .vertical-tab:hover span.text { opacity:1; transition-delay:0.1s; }
+        .sidebar-tabs.right-aligned { left:auto; right:0; }
+        .sidebar-tabs.right-aligned.vertical-tab { border-radius:12px 0 0 12px; border-left:none; border-right-width:3px; flex-direction:row-reverse; }
+
+        /* YAML TERMINAL BLOCK */
+        .terminal-block { font-family: 'JetBrains Mono', monospace; background-color: #060911; border: 1px solid rgba(0,243,255,0.3); }
+        .terminal-header { display: flex; gap: 4px; padding-bottom: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 10px; }
+        .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
+        .t-red { background: #ff5f56; } .t-yellow { background: #ffbd2e; } .t-green { background: #27c93f; }
+        
+        /* 3D METATRON HUB */
+        #flower-container { perspective:1400px; width:100%; height:400px; display:flex; justify-content:center; align-items:center; position:relative; overflow:visible; touch-action:none; }
+        #flower-scene { width:380px; height:380px; transform-style:preserve-3d; position:relative; cursor:grab; }
+        #flower-scene:active { cursor:grabbing; }
+        .flower-plane { position:absolute; top:0; left:0; width:100%; height:100%; transform-style:preserve-3d; opacity:.22; pointer-events:none; }
+        .node-3d { position:absolute; left:50%; top:50%; transform-style:preserve-3d; cursor:pointer; display:flex; flex-direction:column; align-items:center; justify-content:center; will-change:transform, z-index, opacity; }
+        .node-dot { width:14px; height:14px; border-radius:50%; border:2px solid rgba(255,255,255,.9); box-shadow:0 0 12px currentColor; transition:all .22s ease; }
+        .node-label { margin-top:6px; font-size:9px; letter-spacing:.08em; font-weight:700; text-transform:uppercase; white-space:nowrap; padding:2px 5px; border-radius:4px; background:rgba(0,0,0,.78); border:1px solid rgba(255,255,255,.15); pointer-events:none; transition:all .22s; font-family:'JetBrains Mono',monospace; }
+        .node-3d:hover .node-dot { width:22px; height:22px; box-shadow:0 0 22px currentColor, 0 0 36px currentColor; background:#fff !important; }
+        .node-3d:hover .node-label { background:#fff; color:#000 !important; transform:scale(1.15); }
     </style>
 </head>
-<body>
-    <div class="container">
-        <header>
-            <div class="badge-sadv">SADV41 🎚️ Misión y Legado</div>
-            <h1>Steven Dior</h1>
-            <p>Vida Musical, Artística, Raíces, Luchas y Ecosistema Digital</p>
-        </header>
+<body class="antialiased selection:bg-oro selection:text-navy" id="mainBody">
 
-        <!-- Tienda Oficial Superior -->
-        <div class="promo-banner">
-            <h3>🛍️ Tienda Oficial de Artículos Promocionales SADV41</h3>
-            <p>Apoya la misión equipándote para eventos nacionales e internacionales con mercancía exclusiva.</p>
-            <a href="https://stevendior-shop.fourthwall.com/" class="promo-btn" target="_blank">Explorar Catálogo</a>
-            <br>
-            <div class="promo-discount">
-                ⚡ <span>¡7% de descuento para compras al por mayor para tus eventos!</span><br>
-                Activa la promoción aquí: <a href="https://stevendior-shop.fourthwall.com/promo/GSADV41-2026" target="_blank">GSADV41-2026</a>
+    <!-- MARQUESINA PATROCINADORES Y PROMOCIONES -->
+    <div class="sponsor-marquee">
+        <span>🛍️ TIENDA OFICIAL DE ARTÍCULOS PROMOCIONALES SADV41 // APOYA LA MISIÓN EQUIPÁNDOTE PARA EVENTOS // ⚡ ¡7% DE DESCUENTO AL POR MAYOR! CÓDIGO: GSADV41-2026 // VISITA STEVENDIOR-SHOP.FOURTHWALL.COM // EL ORIGEN ES 0 // BURUNGA 2026</span>
+    </div>
+
+    <!-- FONDOS Y EFECTOS -->
+    <div class="grand-line-bg"></div>
+    <div class="grid-pattern"></div>
+    <div class="scanline"></div>
+
+    <!-- MENÚ BILATERAL OMNIPRESENTE -->
+    <div id="main-sidebar" class="sidebar-tabs">
+        <a href="#analisis-archivo" class="vertical-tab" style="border-color: #00f3ff;"><span class="icon">📸</span><span class="text text-cyan-300">ARCHIVO 502118.jpg</span></a>
+        <a href="#esencia-identidad" class="vertical-tab" style="border-color: #d4af37;"><span class="icon">👤</span><span class="text text-amber-300">ESENCIA Y RAÍCES</span></a>
+        <a href="#origen-musical" class="vertical-tab" style="border-color: #1DB954;"><span class="icon">🎵</span><span class="text text-green-300">ORIGEN MUSICAL</span></a>
+        <a href="#hub-premium" class="vertical-tab" style="border-color: #9d4edd;"><span class="icon">🔗</span><span class="text text-purple-300">ENLACES PREMIUM</span></a>
+        <a href="#ecosistema-financiero" class="vertical-tab" style="border-color: #F3BA2F;"><span class="icon">🪙</span><span class="text text-yellow-300">ECOSISTEMA WEB3</span></a>
+        <a href="https://stevendior-shop.fourthwall.com/" target="_blank" class="vertical-tab" style="border-color: #FB542B;"><span class="icon">🛍️</span><span class="text text-orange-300">TIENDA SADV41</span></a>
+        <div onclick="toggleSidebar()" class="vertical-tab" style="border-color:#cbd5e1;"><span class="icon">⇋</span><span class="text text-slate-300">Cambiar Lado</span></div>
+    </div>
+
+    <!-- HEADER FLOTANTE TÁCTICO -->
+    <header class="fixed top-[28px] left-0 w-full z-40 glass border-b border-oro/30 px-4 sm:px-6 py-3 flex flex-col md:flex-row items-center justify-between gap-4 transition-all duration-500">
+        <div class="flex items-center gap-3">
+            <div class="bg-black/50 border border-oro p-2 rounded-lg text-oro font-bold tracking-wider text-sm shadow-[0_0_10px_rgba(212,175,55,0.3)]">
+                <i class="fa-solid fa-cross mr-1"></i> SADV41
+            </div>
+            <div>
+                <h1 class="font-pirate text-xl md:text-2xl tracking-widest text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.8)]">STEVEN DIOR</h1>
+                <p class="text-[9px] text-slate-400 font-mono uppercase">Misión y Legado // 1027=10=1</p>
             </div>
         </div>
-
-        <div class="language-selector-section">
-            <label for="langSelect">🌐 Selector de Idioma (144 Opciones Disponibles):</label>
-            <select id="langSelect" class="language-select">
-                <option value="es" selected>1. Español (Seleccionado)</option>
+        
+        <div class="flex flex-wrap items-center justify-center gap-2">
+            <span id="sync-status" class="hidden md:inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-mono font-bold bg-green-900/40 text-green-400 border border-green-700 shadow-[0_0_10px_rgba(16,185,129,0.3)]">
+                <span class="w-2 h-2 mr-1.5 bg-green-400 rounded-full animate-pulse shadow-[0_0_5px_#10b981]"></span> E.S. OK
+            </span>
+            
+            <!-- WALLET Y TIENDA -->
+            <button onclick="connectBinance()" class="bg-bnbYellow hover:bg-yellow-500 text-black font-bold text-[10px] px-3 py-2 rounded-lg transition-all shadow-[0_0_15px_rgba(243,186,47,0.4)] cursor-pointer font-mono flex items-center gap-2">
+                <i class="fa-solid fa-wallet"></i> Sync BNB
+            </button>
+            <a href="https://stevendior-shop.fourthwall.com/" target="_blank" class="bg-violetNeon hover:bg-purple-500 text-white font-bold text-[10px] px-3 py-2 rounded-lg transition-all shadow-[0_0_15px_rgba(157,78,221,0.4)] cursor-pointer font-mono flex items-center gap-1">
+                <i class="fa-solid fa-store"></i> Tienda
+            </a>
+            
+            <!-- SELECTOR DE IDIOMAS TÁCTICO -->
+            <select class="bg-black text-cyanNeon border border-cyanNeon/50 text-[10px] font-mono px-2 py-2 rounded-lg outline-none cursor-pointer">
+                <option value="es" selected>1. Español (Sel)</option>
                 <option value="ab">2. Abkhaz</option>
                 <option value="ace">3. Achinese</option>
                 <option value="gn">63. Guaraní</option>
@@ -327,209 +161,490 @@
                 <option value="zu">144. Zulú</option>
             </select>
         </div>
+    </header>
 
-        <div class="content-section">
+    <main class="pt-36 pb-20 px-4 md:px-12 max-w-6xl mx-auto space-y-12 relative z-10">
+
+        <!-- BANNER PROMOCIONAL SUPERIOR -->
+        <section class="relative z-50 w-full mb-[-1rem]">
+            <div class="block w-full bg-gradient-to-r from-obsidiana via-navy to-obsidiana border border-oro/50 rounded-xl p-6 text-center shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+                <h2 class="font-mason text-xl md:text-2xl text-white tracking-widest mb-2"><i class="fa-solid fa-bag-shopping mr-2 text-oro"></i>Tienda Oficial de Artículos Promocionales</h2>
+                <p class="font-mono text-xs text-slate-300 tracking-wide mt-2 mb-4">Apoya la misión equipándote para eventos nacionales e internacionales con mercancía exclusiva.</p>
+                <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="https://stevendior-shop.fourthwall.com/" target="_blank" class="px-6 py-2.5 bg-oro hover:bg-yellow-400 text-black font-bold font-mono text-xs rounded-lg transition-all shadow-[0_0_15px_rgba(212,175,55,0.4)] uppercase">Explorar Catálogo</a>
+                    <div class="bg-black/60 border border-dashed border-oro px-4 py-2 rounded-lg text-xs font-mono text-slate-200">
+                        ⚡ <span class="text-oro font-bold">7% OFF al por mayor:</span> 
+                        <a href="https://stevendior-shop.fourthwall.com/promo/GSADV41-2026" target="_blank" class="text-cyanNeon hover:underline ml-1">GSADV41-2026</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EL MENSAJE DIVINO (TÍTULO PRINCIPAL) -->
+        <section class="relative z-40 text-center py-12 px-4 bg-gradient-to-b from-black/80 via-black/40 to-transparent rounded-3xl border-t border-b border-cyanNeon/30">
+            <h1 class="cinzel text-3xl md:text-5xl lg:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-oro via-white to-cyanNeon drop-shadow-[0_0_25px_rgba(255,255,255,0.4)] uppercase tracking-widest leading-tight">
+                Vida Musical, Artística, Raíces, Luchas y Ecosistema Digital
+            </h1>
+            <p class="font-mono text-xs text-slate-400 mt-6 tracking-widest uppercase">SADV41 🎚️ Misión y Legado // OMNIPRESENTE</p>
+        </section>
+
+        <!-- ARCHIVO 502118.jpg -->
+        <section id="analisis-archivo" class="logia-card cyan-glow p-8 md:p-10 rounded-3xl border-t-4 border-t-cyanNeon">
+            <div class="inline-block font-mono text-[10px] px-3 py-1 rounded-full border border-cyanNeon text-cyan-300 mb-6 uppercase tracking-widest bg-black/50">ARCHIVOS CLASIFICADOS</div>
+            <h2 class="text-2xl md:text-3xl font-mason text-white mb-6 uppercase tracking-widest">📸 Análisis de Archivo: 502118.jpg</h2>
             
-            <div class="card" style="margin-bottom: 40px; border-color: var(--accent);">
-                <h2 style="margin-top: 0;">📸 Análisis de Archivo: 502118.jpg</h2>
+            <div class="space-y-4 text-sm font-sans text-slate-300 text-justify leading-relaxed">
                 <p>La imagen "502118.jpg" engaña a cualquiera a primera vista: el diseño en su forma plegada, con el logo de Sony y el supuesto lente con "360X", imita a la perfección la estética de una clásica videocámara de los años 90.</p>
                 <p>Al desplegarse, la ilusión desaparece por completo revelando un arma de 9 mm, lo que le da un doble sentido bastante oscuro a la frase "aprendiendo a grabar los hechos" que acompaña la foto. Definitivamente tiene todo el camuflaje y el flow noventero, pero diseñado para un tipo de acción muy diferente a la de filmar un video casero.</p>
-                <p>Y si quieres transformar tu foto al modo filtro haki SADV5 Special Ops que sólo escriban al <a href="https://instagram.com/stevendioroficial" target="_blank" style="color: var(--accent); font-weight: bold;">@stevendioroficial en Instagram</a> o al <a href="https://wa.me/50769362166" target="_blank" style="color: var(--accent); font-weight: bold;">WhatsApp (+507 6936-2166)</a>.</p>
-                <p>🛡️ Si quieren seguridad pueden descargar <a href="https://brave.com/evi088" target="_blank" style="color: var(--accent); font-weight: bold;">Brave Browser (Enlace de Creador)</a>, que es mi enlace personal de Brave Creators.</p>
+                
+                <div class="bg-cyanNeon/10 border-l-4 border-cyanNeon p-4 mt-6 rounded-r-lg text-xs font-mono">
+                    <p class="mb-2">Y si quieres transformar tu foto al modo filtro haki SADV5 Special Ops, escribe a:</p>
+                    <a href="https://instagram.com/stevendioroficial" target="_blank" class="text-cyanNeon font-bold hover:underline block"><i class="fa-brands fa-instagram mr-2"></i>@stevendioroficial en Instagram</a>
+                    <a href="https://wa.me/50769362166" target="_blank" class="text-green-400 font-bold hover:underline block mt-1"><i class="fa-brands fa-whatsapp mr-2"></i>WhatsApp (+507 6936-2166)</a>
+                </div>
+                
+                <div class="mt-4 pt-4 border-t border-white/10 flex items-center">
+                    <span class="text-xl mr-3">🛡️</span>
+                    <p class="text-xs">Si quieren seguridad pueden descargar <a href="https://brave.com/evi088" target="_blank" class="text-oro font-bold font-mono hover:underline">Brave Browser (Enlace de Creador)</a>, que es mi enlace personal de Brave Creators.</p>
+                </div>
             </div>
+        </section>
 
-            <h2>👤 Esencia, Identidad y Resiliencia</h2>
-            <p>En estas capturas se refleja con total honestidad la identidad de <strong>Steven Gómez Serrano</strong>: un hombre de fe inquebrantable, profundamente conectado con sus raíces en Burunga y Panamá Oeste, y con un espíritu resiliente que abraza la vida con autenticidad y valentía. A través de ellas se manifiesta el artista y creador <strong>Steven Dior</strong>, uniendo su pasión por la música, el diseño digital y la construcción de sistemas bajo la misión SADV41. Su andar diario muestra a alguien que enfrenta las pruebas con transparencia, que valora el esfuerzo laboral y comunitario, y que camina guiado por convicciones espirituales profundas, dejando un legado de dignidad, memoria y verdad para la sociedad y el mundo.</p>
-
-            <div class="guarani-box">
-                <h3>🇵🇾 Ñe'ẽ Tee (Guaraní)</h3>
-                <p>Añetehápe, umi ta’ãnga pyahu ohechauka ñande rekovépe pe mbarete, arandu, tekove tee ha jerovia oñemopyendáva ñane ñe’ãme. Ko’ã mba’e oheja techapyrã iporãitéva mayma tapichápe guarã, ohechakuaávo mba’éichapa ñambohovái va’erã umi pa’ũ hatã ha ñamba’apo porã va’erã añetete ha py’aguasúpe, ñande rekove ha ñane rembiapo rupive.</p>
-            </div>
-
-            <h2>🎵 Origen Musical y Arte Independiente</h2>
-            <p>Bajo el nombre artístico de <strong>Steven Dior</strong>, la trayectoria musical nace desde las vivencias profundas en Burunga, Arraiján, fusionando la lírica urbana y los matices sonoros orientados a la frecuencia de 432 Hz. Cada composición refleja la perseverancia de un artista independiente que transforma el día a día y el esfuerzo laboral en canciones con alma, identidad y propósito.</p>
+        <!-- ESENCIA Y RAÍCES (Incluye Guaraní) -->
+        <section id="esencia-identidad" class="logia-card gold-glow p-8 md:p-10 rounded-3xl border-t-4 border-t-oro relative overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(212,175,55,0.1),_transparent_60%)] pointer-events-none"></div>
             
-            <div class="grid-cards">
-                <div class="card">
-                    <h3>Identidad Sonora</h3>
-                    <p>Producción y composición orientada a la autenticidad, estándares a 432 Hz y superación.</p>
-                    <a href="https://open.spotify.com/artist/5imHnTjivt5qDGTeV2gDMT?si=v9HxUcmBRHyrmJolF4-9zA&utm_source=copy-link" target="_blank">Cuenta de Artista ↗</a>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 relative z-10">
+                <!-- Esencia y Raíces -->
+                <div>
+                    <h2 class="text-2xl font-mason text-white mb-4 uppercase esoterico-glow"><i class="fa-solid fa-user-shield mr-2 text-oro"></i>Esencia e Identidad</h2>
+                    <p class="text-sm text-slate-300 font-sans mb-6 leading-relaxed text-justify">En estas capturas se refleja con total honestidad la identidad de <strong class="text-white">Steven Gómez Serrano</strong>: un hombre de fe inquebrantable, profundamente conectado con sus raíces en Burunga y Panamá Oeste, y con un espíritu resiliente que abraza la vida con autenticidad y valentía. A través de ellas se manifiesta el artista y creador <strong class="text-white">Steven Dior</strong>, uniendo su pasión por la música, el diseño digital y la construcción de sistemas bajo la misión SADV41.</p>
+                    
+                    <h3 class="text-lg font-mason text-oro mb-2 mt-6 uppercase">🌱 Raíces y Memoria</h3>
+                    <p class="text-sm text-slate-300 font-sans leading-relaxed text-justify">Nieto de Basilia Serrano Chávez y heredero de una línea de trabajo, esfuerzo y comunidad firmemente plantada en Panamá Oeste. La memoria de los abuelos y la conexión con el entorno natural alimentan el motor creativo de cada obra y proyecto.</p>
                 </div>
-                <div class="card">
-                    <h3>Podcast y Reflexiones</h3>
-                    <p>Análisis, palabras y el pensamiento hablado que complementa la obra musical y artística.</p>
-                    <a href="https://open.spotify.com/show/2UnBgT4qBKmiAlosZwebeK" target="_blank">Mi Podcast ↗</a>
-                </div>
-                <div class="card">
-                    <h3>Biblioteca Sonora</h3>
-                    <p>Archivo personal que ha formado la memoria musical con el tiempo.</p>
-                    <a href="https://open.spotify.com/user/thesteef21?si=lIyx_a0PTL2zEyZd713rYg&utm_source=copy-link" target="_blank">Cuenta Principal ↗</a><br>
-                    <a href="https://open.spotify.com/user/thesteef21?si=DM9507C6QDaq8fdvby8nIg&utm_source=copy-link" target="_blank">Cuenta Alterna ↗</a>
+
+                <!-- Guaraní Box & Luchas -->
+                <div class="flex flex-col gap-6">
+                    <div class="bg-guaraniGreen/60 border border-green-700 p-6 rounded-2xl shadow-[0_0_20px_rgba(27,59,54,0.8)] relative">
+                        <div class="absolute -top-3 -right-3 text-3xl opacity-20">🇵🇾</div>
+                        <h3 class="font-mason text-green-400 text-lg mb-3 tracking-widest">Ñe'ẽ Tee (Guaraní)</h3>
+                        <p class="text-xs text-green-100 font-sans italic leading-relaxed">Añetehápe, umi ta’ãnga pyahu ohechauka ñande rekovépe pe mbarete, arandu, tekove tee ha jerovia oñemopyendáva ñane ñe’ãme. Ko’ã mba’e oheja techapyrã iporãitéva mayma tapichápe guarã, ohechakuaávo mba’éichapa ñambohovái va’erã umi pa’ũ hatã ha ñamba’apo porã va’erã añetete ha py’aguasúpe, ñande rekove ha ñane rembiapo rupive.</p>
+                    </div>
+
+                    <div class="bg-black/50 border border-white/10 p-5 rounded-2xl border-l-4 border-l-redNeon">
+                        <h3 class="font-mason text-white text-md mb-2 uppercase">🛡️ Luchas y Dignidad</h3>
+                        <p class="text-xs text-slate-400 leading-relaxed">Las batallas diarias frente a la injusticia laboral y la defensa de los derechos humanos demuestran un carácter inquebrantable. Cada obstáculo superado es testimonio de probidad, protegiendo siempre la vida y la coherencia ética bajo la ley SADV41.</p>
+                    </div>
                 </div>
             </div>
 
-            <h2>🌱 Raíces, Territorio y Memoria</h2>
-            <p>El camino recorrido está profundamente arraigado en la tierra y la historia familiar. Nieto de Basilia Serrano Chávez y heredero de una línea de trabajo, esfuerzo y comunidad firmemente plantada en Panamá Oeste. La memoria de los abuelos, la sabiduría transmitida por la familia y la conexión con el entorno natural alimentan el motor creativo de cada obra y proyecto.</p>
-
-            <div class="quote-box">
-                "Mi digital Tabernacle structure es Grok para Atrio, Meta para Santo, y Gemini para Santísimo... guiado siempre por el Espíritu Santo de Dios en cada paso del camino."
+            <!-- Tabernacle Quote -->
+            <div class="mt-10 bg-gradient-to-r from-oro/10 via-black to-cyanNeon/10 border-l-4 border-oro border-r-4 border-cyanNeon p-6 rounded-lg text-center relative z-10 shadow-[0_0_20px_rgba(255,255,255,0.05)]">
+                <i class="fa-solid fa-quote-left text-2xl text-oro/40 absolute top-4 left-4"></i>
+                <p class="font-mono text-sm text-slate-200 italic leading-relaxed px-8">
+                    "Mi digital Tabernacle structure es Grok para Atrio, Meta para Santo, y Gemini para Santísimo... guiado siempre por el Espíritu Santo de Dios en cada paso del camino."
+                </p>
+                <i class="fa-solid fa-quote-right text-2xl text-cyanNeon/40 absolute bottom-4 right-4"></i>
             </div>
+        </section>
 
-            <h2>🛡️ Luchas, Integridad y Dignidad</h2>
-            <p>El trayecto artístico y laboral no ha estado exento de pruebas. Las batallas diarias frente a la injusticia laboral, el hostigamiento y la defensa de los derechos humanos y la dignidad en el entorno de trabajo demuestran un carácter inquebrantable. Cada obstáculo superado se convierte en testimonio de probidad, protegiendo siempre la vida humana, la justicia y la coherencia ética bajo los principios de la ley SADV41.</p>
+        <!-- ORIGEN MUSICAL & SPOTIFY -->
+        <section id="origen-musical" class="logia-card p-8 md:p-12 rounded-3xl border-t-4 border-t-spotify relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-green-900/20 to-black/80 pointer-events-none"></div>
+            <div class="relative z-10 flex flex-col lg:flex-row gap-8 items-center">
+                <div class="w-full lg:w-1/2">
+                    <div class="inline-block font-mono text-[10px] px-3 py-1 rounded-full border border-spotify text-green-400 mb-6 uppercase tracking-widest bg-black/50">ARTE INDEPENDIENTE 432 HZ</div>
+                    <h2 class="text-3xl md:text-4xl font-pirate text-white mb-4 uppercase tracking-widest drop-shadow-[0_0_15px_rgba(29,185,84,0.5)]">Origen Musical</h2>
+                    <p class="text-sm text-slate-300 font-sans mb-6 leading-relaxed">Bajo el nombre artístico de <strong>Steven Dior</strong>, la trayectoria musical nace en Burunga, Arraiján, fusionando la lírica urbana y los matices sonoros orientados a la frecuencia de 432 Hz. Canciones con alma, identidad y propósito.</p>
+                    
+                    <div class="flex flex-col gap-3">
+                        <a href="https://open.spotify.com/artist/5imHnTjivt5qDGTeV2gDMT?si=v9HxUcmBRHyrmJolF4-9zA&utm_source=copy-link" target="_blank" class="px-5 py-3 bg-black/60 hover:bg-spotify/20 border border-white/10 hover:border-spotify text-white font-mono text-xs rounded-xl transition-all flex items-center justify-between group">
+                            <span><i class="fa-solid fa-microphone-lines text-spotify mr-2"></i> Identidad Sonora (Artista)</span> <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform text-spotify"></i>
+                        </a>
+                        <a href="https://open.spotify.com/show/2UnBgT4qBKmiAlosZwebeK" target="_blank" class="px-5 py-3 bg-black/60 hover:bg-purple-500/20 border border-white/10 hover:border-purple-500 text-white font-mono text-xs rounded-xl transition-all flex items-center justify-between group">
+                            <span><i class="fa-solid fa-podcast text-purple-400 mr-2"></i> Podcast y Reflexiones</span> <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform text-purple-400"></i>
+                        </a>
+                        <div class="flex gap-2">
+                            <a href="https://open.spotify.com/user/thesteef21?si=lIyx_a0PTL2zEyZd713rYg&utm_source=copy-link" target="_blank" class="flex-1 px-4 py-2 bg-black/60 hover:bg-cyanNeon/20 border border-white/10 hover:border-cyanNeon text-slate-300 text-center font-mono text-[10px] rounded-xl transition-all">Cuenta Principal ↗</a>
+                            <a href="https://open.spotify.com/user/thesteef21?si=DM9507C6QDaq8fdvby8nIg&utm_source=copy-link" target="_blank" class="flex-1 px-4 py-2 bg-black/60 hover:bg-cyanNeon/20 border border-white/10 hover:border-cyanNeon text-slate-300 text-center font-mono text-[10px] rounded-xl transition-all">Cuenta Alterna ↗</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="w-full lg:w-1/2 bg-black/60 p-4 rounded-2xl border border-white/10 shadow-[0_0_20px_rgba(0,0,0,0.8)] relative z-20">
+                    <div class="text-[10px] font-mono text-spotify mb-3 uppercase tracking-widest flex justify-between items-center">
+                        <span><i class="fa-brands fa-spotify mr-2"></i>Transmisión Activa</span>
+                        <span class="animate-pulse w-2 h-2 bg-spotify rounded-full"></span>
+                    </div>
+                    <!-- Iframe Genérico para ilustrar, basado en el diseño OMNIPRESENTE -->
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/6xuRwYdSe5LCsZcsGEuuFa?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
 
+        <!-- DIRECTORIOS Y ENLACES PREMIUM -->
+        <section id="hub-premium" class="logia-card p-8 md:p-12 rounded-3xl border-t-4 border-t-violetNeon relative overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(157,78,221,0.1),_transparent_70%)] pointer-events-none"></div>
             
-            <h2>📱 Enlaces Premium (Hub de Instagram)</h2>
-            <p>Directorio de portales, módulos descentralizados y accesos clasificados integrados desde el perfil <a href="https://instagram.com/stevendioroficial/links" target="_blank" style="color: var(--accent); font-weight: bold;">@stevendioroficial</a>.</p>
+            <div class="text-center mb-10 relative z-10">
+                <h2 class="text-3xl md:text-4xl font-mason text-white uppercase tracking-widest esoterico-glow">📱 Hub de Enlaces Premium</h2>
+                <p class="text-xs text-slate-400 font-mono mt-3">Directorio de portales, módulos descentralizados y accesos integrados desde <a href="https://instagram.com/stevendioroficial/links" target="_blank" class="text-violetNeon hover:underline font-bold">@stevendioroficial</a>.</p>
+            </div>
             
-            <div class="grid-cards">
-                <div class="card">
-                    <h3>Disfruta el Flow 🇵🇦🎯</h3>
-                    <a href="https://thesteef21.github.io/SADV41/Artist.html" target="_blank">SADV41/Artist.html ↗</a>
-                </div>
-                <div class="card">
-                    <h3>Grupo de Servicio Activo Descentralizado</h3>
-                    <a href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" target="_blank">Lapizasuli/GSADV41.html ↗</a>
-                </div>
-                <div class="card">
-                    <h3>NOTICIAS PARA ASQUEARSE</h3>
-                    <a href="https://thesteef21.github.io/SADV41/AI.html" target="_blank">SADV41/AI.html ↗</a>
-                </div>
-                <div class="card">
-                    <h3>LOS CONTACTOS QUE HACEN GRANDE A PANAMÁ 🇵🇦</h3>
-                    <a href="https://thesteef21.github.io/Lapizasuli/assets/CONTACTOS/" target="_blank">Directorio de Contactos ↗</a>
-                </div>
-                <div class="card">
-                    <h3>ÉSTO ES FLOW 🇵🇦🦍🦍</h3>
-                    <a href="https://instagram.com/stevendioroficial/links" target="_blank">Instagram Premium ↗</a>
-                </div>
-                <div class="card">
-                    <h3>HUB SOBERANO 🇵🇦🇺🇸🇮🇱🏁</h3>
-                    <a href="https://thesteef21.github.io/Lapizasuli/assets/USARMY/" target="_blank">USARMY Hub ↗</a>
-                </div>
-                <div class="card">
-                    <h3>SEGURIDAD CONTINENTAL</h3>
-                    <a href="https://thesteef21.github.io/Lapizasuli/assets/COMMANDO/" target="_blank">Commando Hub ↗</a>
-                </div>
-                <div class="card">
-                    <h3>Por Venezuela!</h3>
-                    <a href="https://thesteef21.github.io/Lapizasuli/VSADV41.html" target="_blank">VSADV41.html ↗</a>
-                </div>
-                <div class="card">
-                    <h3>COMPRA COMIDA BARATA! DIOS LA BENDIGA 🇵🇦🇮🇱</h3>
-                    <a href="https://thesteef21.github.io/Lapizasuli/IMA.html" target="_blank">IMA.html ↗</a>
-                </div>
-                <div class="card">
-                    <h3>NIKE NIKA CONCEPT</h3>
-                    <a href="https://thesteef21.github.io/Lapizasuli/NikeXOnePiece/" target="_blank">Nike Concept ↗</a>
-                </div>
-                <!-- Nueva Tarjeta: Motivacional Voleibol -->
-                <div class="card">
-                    <h3>JUVENTUD DEPORTISTA 🏐</h3>
-                    <a href="https://thesteef21.github.io/SADV41/CURSOS/DEPORTE/VOLEIBOL/MOTIVACIONAL.html" target="_blank">Motivacional Voleibol ↗</a>
-                </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 relative z-10">
+                <!-- Disfruta el Flow -->
+                <a href="https://thesteef21.github.io/SADV41/Artist.html" target="_blank" class="bg-black/60 p-4 rounded-xl border border-white/10 hover:border-cyanNeon hover:shadow-[0_0_15px_rgba(0,243,255,0.2)] transition-all group">
+                    <h3 class="font-bold text-white text-xs uppercase tracking-wider mb-2 group-hover:text-cyan-300"><i class="fa-solid fa-compact-disc mr-1 text-cyanNeon"></i> Disfruta el Flow 🇵🇦</h3>
+                    <div class="text-[9px] text-slate-500 font-mono truncate">SADV41/Artist.html ↗</div>
+                </a>
+                
+                <!-- GSADV41 -->
+                <a href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" target="_blank" class="bg-black/60 p-4 rounded-xl border border-white/10 hover:border-oro hover:shadow-[0_0_15px_rgba(212,175,55,0.2)] transition-all group">
+                    <h3 class="font-bold text-white text-xs uppercase tracking-wider mb-2 group-hover:text-yellow-300"><i class="fa-solid fa-users mr-1 text-oro"></i> Grupo de Servicio</h3>
+                    <div class="text-[9px] text-slate-500 font-mono truncate">Lapizasuli/GSADV41.html ↗</div>
+                </a>
+                
+                <!-- Noticias AI -->
+                <a href="https://thesteef21.github.io/SADV41/AI.html" target="_blank" class="bg-black/60 p-4 rounded-xl border border-white/10 hover:border-redNeon hover:shadow-[0_0_15px_rgba(251,84,43,0.2)] transition-all group">
+                    <h3 class="font-bold text-white text-xs uppercase tracking-wider mb-2 group-hover:text-red-300"><i class="fa-solid fa-newspaper mr-1 text-redNeon"></i> Noticias SADV41</h3>
+                    <div class="text-[9px] text-slate-500 font-mono truncate">SADV41/AI.html ↗</div>
+                </a>
+                
+                <!-- Contactos -->
+                <a href="https://thesteef21.github.io/Lapizasuli/assets/CONTACTOS/" target="_blank" class="bg-black/60 p-4 rounded-xl border border-white/10 hover:border-green-400 hover:shadow-[0_0_15px_rgba(74,222,128,0.2)] transition-all group">
+                    <h3 class="font-bold text-white text-xs uppercase tracking-wider mb-2 group-hover:text-green-300"><i class="fa-solid fa-address-book mr-1 text-green-400"></i> Contactos Panamá 🇵🇦</h3>
+                    <div class="text-[9px] text-slate-500 font-mono truncate">Directorio de Contactos ↗</div>
+                </a>
+                
+                <!-- Ésto es Flow / Instagram Premium -->
+                <a href="https://instagram.com/stevendioroficial/links" target="_blank" class="bg-black/60 p-4 rounded-xl border border-white/10 hover:border-pink-500 hover:shadow-[0_0_15px_rgba(236,72,153,0.2)] transition-all group">
+                    <h3 class="font-bold text-white text-xs uppercase tracking-wider mb-2 group-hover:text-pink-300"><i class="fa-brands fa-instagram mr-1 text-pink-500"></i> Ésto es Flow 🦍</h3>
+                    <div class="text-[9px] text-slate-500 font-mono truncate">Instagram Premium ↗</div>
+                </a>
+                
+                <!-- USARMY Hub -->
+                <a href="https://thesteef21.github.io/Lapizasuli/assets/USARMY/" target="_blank" class="bg-black/60 p-4 rounded-xl border border-white/10 hover:border-blue-500 hover:shadow-[0_0_15px_rgba(59,130,246,0.2)] transition-all group">
+                    <h3 class="font-bold text-white text-xs uppercase tracking-wider mb-2 group-hover:text-blue-300"><i class="fa-solid fa-shield-halved mr-1 text-blue-500"></i> Hub Soberano 🇺🇸</h3>
+                    <div class="text-[9px] text-slate-500 font-mono truncate">USARMY Hub ↗</div>
+                </a>
+                
+                <!-- Commando Hub -->
+                <a href="https://thesteef21.github.io/Lapizasuli/assets/COMMANDO/" target="_blank" class="bg-black/60 p-4 rounded-xl border border-white/10 hover:border-gray-400 hover:shadow-[0_0_15px_rgba(156,163,175,0.2)] transition-all group">
+                    <h3 class="font-bold text-white text-xs uppercase tracking-wider mb-2 group-hover:text-gray-300"><i class="fa-solid fa-jet-fighter mr-1 text-gray-400"></i> Seg. Continental</h3>
+                    <div class="text-[9px] text-slate-500 font-mono truncate">Commando Hub ↗</div>
+                </a>
+                
+                <!-- VSADV41 -->
+                <a href="https://thesteef21.github.io/Lapizasuli/VSADV41.html" target="_blank" class="bg-black/60 p-4 rounded-xl border border-white/10 hover:border-yellow-500 hover:shadow-[0_0_15px_rgba(234,179,8,0.2)] transition-all group">
+                    <h3 class="font-bold text-white text-xs uppercase tracking-wider mb-2 group-hover:text-yellow-300"><i class="fa-solid fa-flag mr-1 text-yellow-500"></i> Por Venezuela! 🇻🇪</h3>
+                    <div class="text-[9px] text-slate-500 font-mono truncate">VSADV41.html ↗</div>
+                </a>
+                
+                <!-- IMA -->
+                <a href="https://thesteef21.github.io/Lapizasuli/IMA.html" target="_blank" class="bg-black/60 p-4 rounded-xl border border-white/10 hover:border-cyanNeon hover:shadow-[0_0_15px_rgba(0,243,255,0.2)] transition-all group">
+                    <h3 class="font-bold text-white text-xs uppercase tracking-wider mb-2 group-hover:text-cyan-300"><i class="fa-solid fa-basket-shopping mr-1 text-cyanNeon"></i> IMA Comida 🇵🇦</h3>
+                    <div class="text-[9px] text-slate-500 font-mono truncate">IMA.html ↗</div>
+                </a>
+                
+                <!-- Nike Concept -->
+                <a href="https://thesteef21.github.io/Lapizasuli/NikeXOnePiece/" target="_blank" class="bg-black/60 p-4 rounded-xl border border-white/10 hover:border-orange-500 hover:shadow-[0_0_15px_rgba(249,115,22,0.2)] transition-all group">
+                    <h3 class="font-bold text-white text-xs uppercase tracking-wider mb-2 group-hover:text-orange-300"><i class="fa-solid fa-shoe-prints mr-1 text-orange-500"></i> Nike Nika Concept</h3>
+                    <div class="text-[9px] text-slate-500 font-mono truncate">NikeXOnePiece/ ↗</div>
+                </a>
+                
+                <!-- Voleibol -->
+                <a href="https://thesteef21.github.io/SADV41/CURSOS/DEPORTE/VOLEIBOL/MOTIVACIONAL.html" target="_blank" class="bg-black/60 p-4 rounded-xl border border-white/10 hover:border-violetNeon hover:shadow-[0_0_15px_rgba(157,78,221,0.2)] transition-all group">
+                    <h3 class="font-bold text-white text-xs uppercase tracking-wider mb-2 group-hover:text-purple-300"><i class="fa-solid fa-volleyball mr-1 text-violetNeon"></i> Juventud Deporte 🏐</h3>
+                    <div class="text-[9px] text-slate-500 font-mono truncate">Motivacional Voleibol ↗</div>
+                </a>
             </div>
+        </section>
 
-            <h2>🪙 Ecosistema Financiero, Web3 & Tokenomics</h2>
-            <p>Infraestructura descentralizada, financiamiento y mayordomía digital bajo la arquitectura de SADV41.</p>
-
-            <div class="grid-cards">
-                <div class="card">
-                    <h3>SADV41 Crypto Meme</h3>
-                    <p>Activo digital lanzado en Four.meme integrado en redes Polygon, Binance Web3 Wallet y Pinata IPFS.</p>
-                    <a href="https://four.meme/en/token/0x9b633cc361b3e7aace80340fed9491265f29ffff?modalType=tax&success=true" target="_blank">Ver en Four.meme ↗</a>
-                    <a href="https://blockscan.com/address/0x4cbf2db3838341becb185892c3af576dc04e2498" target="_blank">Explorador Blockscan ↗</a>
-                </div>
-                <div class="card">
-                    <h3>Contratos Inteligentes</h3>
-                    <p>Dirección Oficial del Token:</p>
-                    <span class="crypto-address">0x9b633cc361b3e7aace80340fed9491265f29ffff</span>
-                    <p style="margin-top: 10px;">Dirección de Regalías (Royalty):</p>
-                    <span class="crypto-address">0x390DA7cA1E28a2d22Ac212617c0ac3aDacD480a6</span>
-                </div>
-                <div class="card">
-                    <h3>Finanzas y Aportes</h3>
-                    <p>Banco General: <strong>0464973126294</strong></p>
-                    <p>Yappy: <strong>6936-2166</strong></p>
-                    <a href="https://airtm.me/steven507oficial" target="_blank">Airtm ↗</a><br>
-                    <a href="https://take.app/stevendior/pay?ref=SADV41" target="_blank">Take.app (Pagos) ↗</a>
-                </div>
-            </div>
-
-            <!-- Manifiesto YAML Técnico -->
-            <div class="yaml-block">
-<pre>
-# ==============================================================================
-# 🛡️ SADV41 DIGITAL ARCHITECTURE FUNDING, MAYORDOMÍA & WEB3
-# ==============================================================================
-# TITULAR: STEVEN YORDY GÓMEZ SERRANO (STEVEN DIOR)
-# Conectado a Tributario StevenDior
-# EMAIL: sadv41@gmail.com
-# BANCO GENERAL: 0464973126294
-# YAPPY: 6936-2166
-# YAPPY QR TOKEN: rjYRsJ8Yz0hGBKWXnNKRpeCr5yZZkbjbgkxGCAZdd/nmXoS0X8s5ntvwHrGm+7HT
-# ==============================================================================
+        <!-- ECOSISTEMA WEB3 & FINANZAS (Y YAML) -->
+        <section id="ecosistema-financiero" class="pt-6">
+            <h2 class="text-2xl text-bnbYellow tracking-widest font-mason flex items-center gap-3 uppercase mb-6 border-b border-bnbYellow/30 pb-3">🪙 Ecosistema Financiero, Web3 & Tokenomics</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                
+                <!-- YAML Terminal Manifesto -->
+                <div class="terminal-block p-5 rounded-2xl flex flex-col h-full shadow-[0_0_20px_rgba(0,243,255,0.1)]">
+                    <div class="terminal-header"><div class="terminal-dot t-red"></div><div class="terminal-dot t-yellow"></div><div class="terminal-dot t-green"></div></div>
+                    <div class="overflow-x-auto text-[9px] sm:text-[10px] text-slate-300 font-mono leading-relaxed flex-1">
+<pre class="text-cyan-400"># ==========================================
+# 🛡️ SADV41 DIGITAL ARCHITECTURE FUNDING
+# ==========================================</pre>
+<pre>TITULAR: STEVEN YORDY GÓMEZ SERRANO 
+EMAIL: sadv41@gmail.com
+BANCO GENERAL: <span class="text-oro font-bold">0464973126294</span>
+YAPPY: <span class="text-oro font-bold">6936-2166</span></pre>
+<pre class="text-cyan-400 mt-2"># ==========================================
 # 🪙 TOKENOMICS & BLOCKCHAIN
-# ==============================================================================
-# FOURMEME ASSET: SADV41
-# INFRAESTRUCTURA: Polygon, Binance Web3 Wallet, WalletConnect, Pinata IPFS
-# TOKEN ADDRESS: <a href="https://search.brave.com/search?q=0x9b633cc361b3e7aace80340fed9491265f29ffff" class="support-btn" target="_blank">0x9b633cc361b3e7aace80340fed9491265f29ffff (Buscar)</a>
-# ROYALTY ADDRESS: <a href="https://search.brave.com/search?q=0x390DA7cA1E28a2d22Ac212617c0ac3aDacD480a6" class="support-btn" target="_blank">0x390DA7cA1E28a2d22Ac212617c0ac3aDacD480a6 (Buscar)</a>
-# ==============================================================================
+# ==========================================</pre>
+<pre>ASSET: SADV41 (Four.meme, Polygon, Binance)
+TOKEN ADDRESS: <a href="https://search.brave.com/search?q=0x9b633cc361b3e7aace80340fed9491265f29ffff" target="_blank" class="text-violetNeon hover:underline">0x9b633cc361b3e7aace80340fed9491265f29ffff</a>
+ROYALTY: <a href="https://search.brave.com/search?q=0x390DA7cA1E28a2d22Ac212617c0ac3aDacD480a6" target="_blank" class="text-violetNeon hover:underline">0x390DA7cA1E28a2d22Ac212617c0ac3aDacD480a6</a></pre>
+<pre class="text-cyan-400 mt-2"># ==========================================
+# ENLACES DE PAGO Y AFILIADOS
+# ==========================================</pre>
+<pre><a href="https://airtm.me/steven507oficial" target="_blank" class="text-green-400 hover:underline">Airtm - steven507oficial</a>
+<a href="https://take.app/stevendior/pay?ref=SADV41" target="_blank" class="text-green-400 hover:underline">Take.app - Pagos Directos</a>
+<a href="https://four.meme/en/token/0x9b633cc361b3e7aace80340fed9491265f29ffff?modalType=tax&success=true" target="_blank" class="text-purple-400 hover:underline">Four.meme Asset SADV41</a>
+<a href="https://blockscan.com/address/0x4cbf2db3838341becb185892c3af576dc04e2498" target="_blank" class="text-purple-400 hover:underline">Blockscan Explorador</a></pre>
+                    </div>
+                </div>
 
-custom: [
-  # Finanzas, Pagos y Afiliados
-  <a href="https://airtm.me/steven507oficial" class="support-btn" target="_blank">Airtm - steven507oficial</a>,
-  <a href="https://take.app/stevendior/pay?ref=SADV41" class="support-btn" target="_blank">Take.app - Pago</a>,
-  <a href="https://take.app/es/stevendior" class="support-btn" target="_blank">Take.app - Perfil ES</a>,
-  <a href="https://rareevo.io/?coupon=STEVENDIOR" class="support-btn" target="_blank">RareEvo - STEVENDIOR</a>,
-  <a href="https://brave.com/evi088" class="support-btn" target="_blank">Brave Creator - evi088</a>,
-  
-  # Web3 y Exploradores de Bloques
-  <a href="https://four.meme/en/token/0x9b633cc361b3e7aace80340fed9491265f29ffff?modalType=tax&success=true" class="support-btn" target="_blank">Four.meme Asset SADV41</a>,
-  <a href="https://blockscan.com/address/0x4cbf2db3838341becb185892c3af576dc04e2498" class="support-btn" target="_blank">Blockscan Explorador</a>,
-  
-  # Identidad Musical y Podcasts (Spotify)
-  <a href="https://open.spotify.com/artist/5imHnTjivt5qDGTeV2gDMT" class="support-btn" target="_blank">Spotify Artist - Steven Dior</a>,
-  <a href="https://open.spotify.com/user/thesteef21?si=lIyx_a0PTL2zEyZd713rYg" class="support-btn" target="_blank">Spotify - thesteef21 (Principal)</a>,
-  <a href="https://open.spotify.com/show/2UnBgT4qBKmiAlosZwebeK" class="support-btn" target="_blank">Spotify Podcast - SADV41</a>,
-  
-  # Ecosistema Digital y Hubs SADV41
-  <a href="https://thesteef21.github.io/Lapizasuli/" class="support-btn" target="_blank">GitHub Pages - Lapizasuli</a>,
-  <a href="https://stevendior.digital" class="support-btn" target="_blank">StevenDior.digital - IPFS</a>,
-  
-  # 📱 Instagram Premium Links (Hub SADV41)
-  <a href="https://thesteef21.github.io/SADV41/Artist.html" class="support-btn" target="_blank">Disfruta el Flow</a>,
-  <a href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" class="support-btn" target="_blank">Grupo SADV41</a>,
-  <a href="https://thesteef21.github.io/SADV41/AI.html" class="support-btn" target="_blank">Noticias para Asquearse</a>,
-  <a href="https://thesteef21.github.io/Lapizasuli/assets/CONTACTOS/" class="support-btn" target="_blank">Contactos Panamá</a>,
-  <a href="https://instagram.com/stevendioroficial/links" class="support-btn" target="_blank">Ésto es Flow</a>,
-  <a href="https://thesteef21.github.io/Lapizasuli/assets/USARMY/" class="support-btn" target="_blank">Hub Soberano</a>,
-  <a href="https://thesteef21.github.io/Lapizasuli/assets/COMMANDO/" class="support-btn" target="_blank">Seguridad Continental</a>,
-  <a href="https://thesteef21.github.io/Lapizasuli/VSADV41.html" class="support-btn" target="_blank">Por Venezuela!</a>,
-  <a href="https://thesteef21.github.io/Lapizasuli/IMA.html" class="support-btn" target="_blank">IMA Comida Barata</a>,
-  <a href="https://thesteef21.github.io/Lapizasuli/NikeXOnePiece/" class="support-btn" target="_blank">Nike Nika Concept</a>,
-  <a href="https://thesteef21.github.io/SADV41/CURSOS/DEPORTE/VOLEIBOL/MOTIVACIONAL.html" class="support-btn" target="_blank">Juventud Voleibol</a>
-]
-</pre>
+                <!-- Web3 Trading Panel -->
+                <div id="web3PanelWrapper" class="glass-strong p-6 rounded-2xl border-t-4 border-bnbYellow flex flex-col h-full relative">
+                    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(243,186,47,0.05),_transparent_70%)] pointer-events-none"></div>
+                    
+                    <h3 class="text-lg font-mason font-bold tracking-widest text-bnbYellow mb-4 border-b border-bnbYellow/30 pb-2 relative z-10">ECOSISTEMA FOUR.MEME</h3>
+                    <div class="font-mono text-[10px] text-slate-300 space-y-2 mb-4 relative z-10">
+                        <p>🔗 <span class="text-cyanNeon">TOKEN SADV41:</span> <span id="targetToken" class="break-all">0x9b633cc361b3e7aace80340fed9491265f29ffff</span></p>
+                        <p>⚖️ <span class="text-renderRed">ROYALTY ADDR:</span> <span class="break-all">0x390DA7cA1E28a2d22Ac212617c0ac3aDacD480a6</span></p>
+                    </div>
+                    
+                    <!-- PANEL DE COMERCIO DINÁMICO (BUY/SELL) -->
+                    <div id="web3Panel" class="bg-black/80 border border-bnbYellow/50 rounded-xl p-5 mb-4 flex-1 relative z-10">
+                        <div class="flex justify-between items-center mb-4 border-b border-white/10 pb-3">
+                            <label class="text-[10px] font-mono text-cyanNeon block">TERMINAL DE COMERCIO AI</label>
+                            <div class="flex gap-2">
+                                <button id="tabBuy" onclick="setTradeMode('buy')" class="text-[9px] px-3 py-1.5 rounded bg-green-900/50 text-green-400 border border-green-700 font-bold transition-all">COMPRAR</button>
+                                <button id="tabSell" onclick="setTradeMode('sell')" class="text-[9px] px-3 py-1.5 rounded bg-black text-slate-500 border border-slate-700 font-bold transition-all">VENDER</button>
+                            </div>
+                        </div>
+                        
+                        <label id="lblAmount" class="text-[9px] font-mono text-slate-400 block mb-2">CANTIDAD A INVERTIR (BNB)</label>
+                        <div class="flex flex-col sm:flex-row gap-3">
+                            <input type="number" id="cryptoAmount" value="0.01" step="0.01" class="w-full bg-black/60 border border-slate-700 rounded-lg text-white font-mono text-sm px-3 py-2 outline-none focus:border-bnbYellow">
+                            <button id="btnExecuteTrade" onclick="ejecutarTransaccionFourMeme()" class="bg-green-600 hover:bg-green-500 text-white font-bold text-[11px] px-5 py-2 rounded-lg transition-all shadow-[0_0_15px_rgba(22,163,74,0.4)] font-mono uppercase whitespace-nowrap">
+                                Ejecutar Compra
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="text-[9px] font-mono text-slate-500 mt-2 text-center">Protocolo conectado a redes Polygon y Binance Web3 Wallet.</div>
+                </div>
             </div>
+        </section>
+
+        <!-- NODO VISUAL 3D (Metatron para el Ecosistema) -->
+        <section id="metatron-seccion" class="glass-strong border border-cyanNeon/40 shadow-[0_0_30px_rgba(0,243,255,0.1)] rounded-3xl p-6 md:p-8 relative z-20">
+            <header class="glass rounded-2xl p-4 mb-6 flex flex-wrap justify-between items-center border border-cyanNeon/50">
+                <h2 class="font-mason text-xl font-black tracking-[0.16em] m-0 text-white">ESTRUCTURA DEL TABERNÁCULO 4D</h2>
+                <div class="flex gap-2 font-mono text-[10px]">
+                    <button id="toggleAuto" class="chip" style="border-color:rgba(0,243,255,.4);color:var(--cyan)">AUTO: ON</button>
+                </div>
+            </header>
+            <div class="flex justify-center items-center bg-black/50 rounded-3xl border border-white/5 overflow-hidden h-[350px] relative">
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,243,255,0.1),_transparent_70%)] pointer-events-none"></div>
+                <div id="flower-container">
+                    <div id="flower-scene"></div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="text-center p-10 border-t border-white/10 opacity-90 font-mono text-[10px] uppercase mt-10 bg-black pb-20">
+        
+        <!-- BANNER PROMOCIONAL INFERIOR -->
+        <div class="max-w-3xl mx-auto mb-10 border border-oro/40 bg-black/60 p-6 rounded-2xl shadow-[0_0_25px_rgba(212,175,55,0.15)] relative overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(212,175,55,0.15),_transparent_70%)] pointer-events-none"></div>
+            <h3 class="text-xl font-mason text-white mb-2 tracking-[0.15em] relative z-10"><i class="fa-solid fa-shield-halved text-oro mr-2"></i>Viste el Legado de la Misión SADV41</h3>
+            <p class="text-slate-300 text-[11px] normal-case tracking-wide mb-5 relative z-10">Descubre la línea oficial de artículos promocionales y fortalece la presencia en cada evento.</p>
+            <a href="https://stevendior-shop.fourthwall.com/" target="_blank" class="inline-block px-8 py-3 bg-oro hover:bg-yellow-500 text-black font-bold rounded-xl transition-all shadow-[0_0_15px_rgba(212,175,55,0.4)] relative z-10">
+                VISITAR TIENDA OFICIAL
+            </a>
+            <div class="mt-4 text-[9px] text-cyanNeon font-bold relative z-10">Promoción Corporativa: <a href="https://stevendior-shop.fourthwall.com/promo/GSADV41-2026" target="_blank" class="hover:underline">GSADV41-2026 (7% OFF)</a></div>
         </div>
 
-        <!-- Tienda Oficial Inferior -->
-        <div class="promo-banner" style="border-top: 1px solid var(--border); border-bottom: none; border-radius: 0 0 18px 18px;">
-            <h3>🛡️ Viste el Legado de la Misión SADV41</h3>
-            <p>Descubre la línea oficial de artículos promocionales y fortalece la presencia en cada evento.</p>
-            <a href="https://stevendior-shop.fourthwall.com/" class="promo-btn" target="_blank">Visitar Tienda Oficial</a>
-            <br>
-            <div class="promo-discount">
-                ⚡ <span>7% OFF en pedidos corporativos o al por mayor:</span><br>
-                <a href="https://stevendior-shop.fourthwall.com/promo/GSADV41-2026" target="_blank">Aplicar Promoción GSADV41-2026</a>
-            </div>
-        </div>
+        <p class="mb-2 text-oro font-bold">&copy; 2026 Steven Dior Oficial | Misión SADV41 | Todos los derechos reservados.</p>
+        <p class="mb-4 text-[#FB542B]">CONTACTO CENTRAL: sadv41@gmail.com</p>
+        <p class="text-[8.5px] text-slate-500 tracking-[0.2em] leading-relaxed">
+            NODO SUPREMO: NETLIFY | EL ORIGEN ES 0 | BUILD: OMNIPRESENTE v2026<br>
+            SERVER DATE: <!--#echo var="DATE_LOCAL" -->
+        </p>
+    </footer>
 
-        <footer>
-            <p>&copy; 2026 Steven Dior Oficial | Misión SADV41 | Todos los derechos reservados.</p>
-        </footer>
-    </div>
+    <!-- ==========================================
+         SISTEMA LÓGICO OMNIPRESENTE (JS)
+         ========================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. GLITCH DE FONDO
+            const mainBody = document.getElementById('mainBody');
+            
+            function randomGlitch() {
+                if (Math.random() > 0.85) {
+                    mainBody.classList.add('glitch-active');
+                    setTimeout(() => {
+                        mainBody.classList.remove('glitch-active');
+                    }, 700);
+                }
+                setTimeout(randomGlitch, Math.random() * 5000 + 4000);
+            }
+            setTimeout(randomGlitch, 3000);
+
+            // 2. METATRON 3D HUB (Adaptado a tu ecosistema)
+            const nodesData = [
+                { id:"STEVEN DIOR", color:"#d4af37" }, { id:"MÚSICA 432HZ", color:"#1DB954" },
+                { id:"SADV41", color:"#00f3ff" }, { id:"WEB3 TOKEN", color:"#F3BA2F" },
+                { id:"BURUNGA", color:"#ffffff" }, { id:"GSADV41", color:"#10b981" },
+                { id:"TABERNÁCULO", color:"#9d4edd" }, { id:"TIENDA", color:"#FB542B" }
+            ];
+
+            const scene = document.getElementById('flower-scene');
+            let nodeEls = [];
+
+            function createPlane(transformStyle){
+                const NS="http://www.w3.org/2000/svg";
+                const svg=document.createElementNS(NS,"svg");
+                svg.setAttribute("viewBox","-220 -220 440 440");
+                svg.setAttribute("class","flower-plane");
+                svg.style.transform=transformStyle;
+                const radius=62; const centers=[{x:0,y:0}];
+                for(let i=0;i<6;i++){const a=Math.PI/3*i;centers.push({x:radius*Math.cos(a),y:radius*Math.sin(a)})}
+                for(let i=0;i<12;i++){const a=Math.PI/6*i;const d=(i%2===0)?radius*2:radius*Math.sqrt(3);centers.push({x:d*Math.cos(a),y:d*Math.sin(a)})}
+                centers.forEach(c=>{
+                    const g=document.createElementNS(NS,"g");
+                    const circle=document.createElementNS(NS,"circle");
+                    circle.setAttribute("cx",c.x);circle.setAttribute("cy",c.y);circle.setAttribute("r",radius);
+                    circle.setAttribute("fill","none");circle.setAttribute("stroke","rgba(0,243,255,.4)");circle.setAttribute("stroke-width","0.8");
+                    g.appendChild(circle);svg.appendChild(g);
+                });
+                return svg;
+            }
+            
+            if(scene) {
+                scene.appendChild(createPlane("rotateY(0deg) translateZ(-18px)"));
+                scene.appendChild(createPlane("rotateY(60deg) translateZ(-18px)"));
+                scene.appendChild(createPlane("rotateY(120deg) translateZ(-18px)"));
+                scene.appendChild(createPlane("rotateX(90deg) translateZ(-18px)"));
+            }
+
+            const sphereRadius = 130, goldenAngle = Math.PI*(3-Math.sqrt(5));
+            nodesData.forEach((node,i)=>{
+                const y=1-(i/(nodesData.length-1))*2; const r=Math.sqrt(1-y*y);
+                const theta=goldenAngle*i; const x=Math.cos(theta)*r; const z=Math.sin(theta)*r;
+                const el=document.createElement('div'); el.className='node-3d';
+                el.innerHTML=`<div class="node-dot" style="background:${node.color};color:${node.color};box-shadow:0 0 10px ${node.color}"></div><div class="node-label" style="color:${node.color}">${node.id}</div>`;
+                el._pos={x:x*sphereRadius,y:y*sphereRadius,z:z*sphereRadius};
+                if(scene) scene.appendChild(el);
+                nodeEls.push(el);
+            });
+
+            let metatronRot={x:-18,y:24,z:0}, autoRot=true;
+            function updateTrans(){ 
+                if(!scene) return; 
+                scene.style.transform=`scale3d(1,1,1) rotateX(${metatronRot.x}deg) rotateY(${metatronRot.y}deg) rotateZ(${metatronRot.z}deg)`;
+                nodeEls.forEach(el=>{
+                    const p=el._pos;
+                    const radY=metatronRot.y*Math.PI/180, radX=metatronRot.x*Math.PI/180;
+                    let x=p.x,y=p.y,z=p.z;
+                    let x1=x*Math.cos(radY)+z*Math.sin(radY); let z1=-x*Math.sin(radY)+z*Math.cos(radY); x=x1;z=z1;
+                    let y1=y*Math.cos(radX)-z*Math.sin(radX); let z2=y*Math.sin(radX)+z*Math.cos(radX); y=y1;z=z2;
+                    el.style.transform=`translate3d(${p.x}px,${p.y}px,${p.z}px) translate(-50%,-50%) rotateY(${-metatronRot.y}deg) rotateX(${-metatronRot.x}deg)`;
+                    el.style.zIndex=Math.floor(z+500);
+                });
+            }
+            updateTrans();
+            
+            function loop(){ if(autoRot) { metatronRot.y+=0.15; metatronRot.z+=0.02; updateTrans(); } requestAnimationFrame(loop); }
+            loop();
+
+            const btnAuto = document.getElementById('toggleAuto');
+            if(btnAuto) btnAuto.addEventListener('click', () => {
+                autoRot = !autoRot;
+                btnAuto.innerText = autoRot ? "AUTO: ON" : "AUTO: OFF";
+                btnAuto.style.borderColor = autoRot ? "rgba(0,243,255,.4)" : "rgba(255,255,255,.2)";
+                btnAuto.style.color = autoRot ? "var(--cyan)" : "#fff";
+            });
+        });
+
+        // Toggle Sidebar Lateral
+        function toggleSidebar() { document.getElementById('main-sidebar').classList.toggle('right-aligned'); }
+
+        // ----------------------------------------------------
+        // MOTOR WEB3 & FOUR.MEME (ETHERS.JS)
+        // ----------------------------------------------------
+        let web3Signer = null;
+        let tradeMode = 'buy';
+
+        async function connectBinance() {
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    const provider = new ethers.BrowserProvider(window.ethereum);
+                    web3Signer = await provider.getSigner();
+                    const address = await web3Signer.getAddress();
+                    
+                    const statusBadge = document.getElementById('sync-status');
+                    if(statusBadge) {
+                        statusBadge.innerHTML = `<span class="w-2 h-2 mr-1.5 bg-green-400 rounded-full animate-pulse shadow-[0_0_5px_#10b981]"></span> WALLET: ${address.substring(0,6)}...${address.substring(38)}`;
+                        statusBadge.classList.remove('hidden');
+                    }
+                    alert(`⚡ Wallet Conectada Exitosamente: ${address}`);
+                } catch (error) {
+                    alert(`❌ Error de conexión: ${error.message}`);
+                }
+            } else {
+                alert("Instala una billetera Web3 (MetaMask o Binance Wallet) para sincronizar.");
+            }
+        }
+
+        // Lógica de interfaz (Pestañas Buy / Sell)
+        function setTradeMode(mode) {
+            tradeMode = mode;
+            const btnBuy = document.getElementById('tabBuy');
+            const btnSell = document.getElementById('tabSell');
+            const btnExec = document.getElementById('btnExecuteTrade');
+            const lblAmt = document.getElementById('lblAmount');
+
+            if(mode === 'buy') {
+                btnBuy.className = "text-[9px] px-3 py-1.5 rounded bg-green-900/50 text-green-400 border border-green-700 font-bold transition-all";
+                btnSell.className = "text-[9px] px-3 py-1.5 rounded bg-black text-slate-500 border border-slate-700 font-bold transition-all";
+                
+                btnExec.className = "bg-green-600 hover:bg-green-500 text-white font-bold text-[11px] px-5 py-2 rounded-lg transition-all shadow-[0_0_15px_rgba(22,163,74,0.4)] font-mono uppercase whitespace-nowrap";
+                btnExec.innerText = "Ejecutar Compra";
+                lblAmt.innerText = "CANTIDAD A INVERTIR (BNB)";
+            } else {
+                btnBuy.className = "text-[9px] px-3 py-1.5 rounded bg-black text-slate-500 border border-slate-700 font-bold transition-all";
+                btnSell.className = "text-[9px] px-3 py-1.5 rounded bg-red-900/50 text-red-400 border border-red-700 font-bold transition-all";
+                
+                btnExec.className = "bg-renderRed hover:bg-red-500 text-white font-bold text-[11px] px-5 py-2 rounded-lg transition-all shadow-[0_0_15px_rgba(218,54,55,0.4)] font-mono uppercase whitespace-nowrap";
+                btnExec.innerText = "Ejecutar Venta";
+                lblAmt.innerText = "CANTIDAD A VENDER (SADV41)";
+            }
+        }
+
+        // Lógica Transaccional
+        async function ejecutarTransaccionFourMeme() {
+            if (!web3Signer) {
+                alert("Debes sincronizar tu wallet usando el botón 'Sync BNB' en la parte superior primero.");
+                return;
+            }
+            try {
+                const targetAddress = document.getElementById('targetToken').innerText;
+                const amount = document.getElementById('cryptoAmount').value;
+                
+                if(tradeMode === 'buy') {
+                    const tx = await web3Signer.sendTransaction({
+                        to: targetAddress,
+                        value: ethers.parseEther(amount.toString())
+                    });
+                    alert(`🚀 Transacción de COMPRA enviada. Esperando confirmación...\nHash: ${tx.hash}`);
+                    await tx.wait();
+                    alert(`✅ COMPRA EXITOSA CONFIRMADA EN LA BLOCKCHAIN.`);
+                } else {
+                    alert(`⏳ Iniciando protocolo de VENTA de ${amount} Tokens...\nEn un entorno de producción, esto interactuaría con el Router Contract.`);
+                }
+            } catch (error) {
+                alert(`❌ Transacción rechazada o fallida: ${error.shortMessage || error.message}`);
+            }
+        }
+    </script>
 </body>
 </html>
