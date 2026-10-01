@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Enlaces | Turbo Tire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .stealth-bg {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        .neon-accent {
+            color: #a855f7; /* Tono púrpura/neón representando el entorno de redes sociales */
+            text-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+        }
+        /* Contenedor responsivo para videos verticales (Reels/TikTok) */
+        .embed-vertical {
+            position: relative;
+            width: 100%;
+            padding-bottom: 177.77%; /* Proporción 9:16 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.5rem;
+        }
+        .embed-vertical iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body class="stealth-bg text-gray-200 font-sans antialiased min-h-screen flex flex-col">
+
+    <!-- Navbar Minimalista -->
+    <nav class="bg-gray-900 border-b border-gray-700 py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <span class="font-bold text-xl tracking-wider text-white">TURBO <span class="text-red-500">TIRE</span> <span class="text-gray-500 text-sm">| EMBED</span></span>
+            </div>
+            <!-- Botón de regreso a la raíz de TT -->
+            <a href="../index.html" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2 text-sm font-bold">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                Volver a la Central
+            </a>
+        </div>
+    </nav>
+
+    <!-- Header de la Galería -->
+    <header class="py-10 px-4 text-center">
+        <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight uppercase">
+            Transmisiones <span class="neon-accent">Externas</span>
+        </h1>
+        <p class="mt-2 text-gray-400 max-w-xl mx-auto">
+            Enlaces directos y contenido incrustado desde nuestras redes oficiales.
+        </p>
+    </header>
+
+    <!-- Main Content: Grid de Embeds -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-12 w-full">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            
+            <!-- Tarjeta 1: Cuenta Principal -->
+            <div class="bg-gray-800 rounded-lg p-4 border border-gray-700 shadow-lg">
+                <div class="flex items-center gap-2 mb-4 border-b border-gray-700 pb-2">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    <h3 class="font-bold text-white text-sm">@llanteria_turbotire</h3>
+                </div>
+                <!-- Contenedor del Iframe -->
+                <div class="embed-vertical bg-gray-900 flex items-center justify-center">
+                    <!-- Pega aquí el código "Insertar" (Embed) que te da Instagram o TikTok -->
+                    <!-- Ejemplo de cómo se vería la etiqueta: -->
+                    <!-- <iframe src="URL_DEL_VIDEO" scrolling="no" allowtransparency="true"></iframe> -->
+                    <p class="text-gray-600 text-xs text-center px-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">Espacio para Iframe de Reel</p>
+                </div>
+            </div>
+
+            <!-- Tarjeta 2: Cuenta Extreme -->
+            <div class="bg-gray-800 rounded-lg p-4 border border-gray-700 shadow-lg">
+                <div class="flex items-center gap-2 mb-4 border-b border-gray-700 pb-2">
+                    <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                    <h3 class="font-bold text-white text-sm">@turbotirextreme</h3>
+                </div>
+                <!-- Contenedor del Iframe -->
+                <div class="embed-vertical bg-gray-900 flex items-center justify-center">
+                    <!-- Pega aquí el código "Insertar" (Embed) -->
+                    <p class="text-gray-600 text-xs text-center px-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">Espacio para Iframe de Acción 4x4</p>
+                </div>
+            </div>
+
+            <!-- Tarjeta 3: Otro Enlace o YouTube -->
+            <div class="bg-gray-800 rounded-lg p-4 border border-gray-700 shadow-lg">
+                <div class="flex items-center gap-2 mb-4 border-b border-gray-700 pb-2">
+                    <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                    <h3 class="font-bold text-white text-sm">Contenido Destacado</h3>
+                </div>
+                <!-- Contenedor del Iframe -->
+                <div class="embed-vertical bg-gray-900 flex items-center justify-center">
+                    <!-- Pega aquí el código "Insertar" (Embed) -->
+                    <p class="text-gray-600 text-xs text-center px-4 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">Espacio para Iframe Adicional</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-6 text-center mt-auto">
+        <p class="text-gray-500 text-xs">Módulo Embed SADV41 | Transmisiones Descentralizadas</p>
+    </footer>
+
+</body>
+</html>
