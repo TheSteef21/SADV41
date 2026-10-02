@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SADV41 • Protocolo Nuevo Pacto — Instrucción en Cimientos</title>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+    html { font-family: 'Inter', system-ui, -apple-system, sans-serif; scroll-behavior: smooth; }
+    .font-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+    
+    /* Estilos para impresión de la tarjeta Navi */
+    @media print {
+      body * { visibility: hidden; }
+      #tarjeta-navi-imprimible, #tarjeta-navi-imprimible * { visibility: visible; }
+      #tarjeta-navi-imprimible { position: absolute; left: 0; top: 0; width: 100%; padding: 20px; }
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-[#fcfcfc] text-zinc-900 antialiased selection:bg-black selection:text-white">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    function SADV41Protocol() {
+      const [isNewsOpen, setIsNewsOpen] = useState(false);
+
+      const gameLessons = [
+        { title: "Disciplina", desc: "Seguir reglas, respetar turnos, practicar hasta lograrlo. 20 minutos con límite enseña autorregulación." },
+        { title: "Historia", desc: "Nintendo cuenta historias con inicio-nudo-desenlace. Recordar mapas y personajes fortalece memoria narrativa." },
+        { title: "Reacción", desc: "NeoGeo, Konami, Capcom entrenaron reflejos y lectura rápida del entorno. No es solo velocidad, es decidir bajo presión." },
+        { title: "Convivencia", desc: "SEGA y arcade fueron de dos jugadores. Aprender a cooperar, ceder control, celebrar al otro." }
+      ];
+
+      return (
+        <div className="min-h-screen">
+          {/* Top Banner */}
+          <div className="w-full bg-[#fbbf24] text-black text-[11px] font-medium tracking-wide">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-8 flex items-center justify-between gap-4">
+              <span className="font-semibold tracking-[0.02em] truncate">
+                SADV41 • Fan promo no oficial — Apoyando cultura contemporánea
+              </span>
+              <span className="hidden sm:inline-flex shrink-0 text-[11px] opacity-80">
+                Proyecto con niñez • Burunga, Panamá
+              </span>
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <nav className="sticky top-0 z-40 backdrop-blur-xl bg-[#fcfcfc]/85 border-b border-zinc-200">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[64px] flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="h-8 w-8 rounded-[8px] bg-black text-white grid place-items-center font-black text-[13px] tracking-tighter">S41</div>
+                <div className="leading-tight">
+                  <div className="font-bold tracking-tight text-[14px]">SADV41 Desarrollo Comunitario</div>
+                  <div className="hidden sm:block text-[11px] text-zinc-500 font-medium">Burunga • Ley 2026 • Proyecto con niñez</div>
+                </div>
+              </div>
+              <div className="hidden lg:flex items-center gap-4 text-[12.5px] font-medium">
+                <a href="#artista" className="text-zinc-500 hover:text-black hover:underline underline-offset-4">El Artista</a>
+                <a href="#juega" className="text-zinc-900 underline underline-offset-4 decoration-black/20 font-semibold">Cuando te cueste, juega</a>
+                <a href="#bongo-domi" className="text-zinc-500 hover:text-black hover:underline underline-offset-4">Bongo • Domi</a>
+                <a href="#navi-tatl-primera-ia" className="text-sky-700 hover:text-sky-900 underline underline-offset-4 decoration-sky-200 font-semibold">Navi • IA amiga</a>
+              </div>
+            </div>
+          </nav>
+
+          {/* Hero Section */}
+          <header className="relative overflow-hidden bg-[#0f172a]">
+            <div className="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a]"></div>
+            <div className="absolute -right-32 -top-32 h-[520px] w-[520px] rounded-full bg-[#fbbf24]/[0.08] blur-[80px]"></div>
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+              <div className="max-w-3xl">
+                <div className="inline-flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase text-white/50 border border-white/10 rounded-full px-3 py-1 bg-white/[0.06] mb-6">
+                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  SADV41 • Tabernáculo como método pedagógico
+                </div>
+                <h1 className="text-[34px] sm:text-[44px] md:text-[60px] font-black tracking-[-0.03em] leading-[0.9] text-white">
+                  Instrucción de Estudio<br/>
+                  <span className="text-[#fbbf24]">en Cimientos:</span><br/>
+                  Protocolo Nuevo Pacto
+                </h1>
+                <p className="mt-6 text-[15px] md:text-[17px] leading-relaxed text-white/60 max-w-[60ch]">
+                  Estructuramos el aprendizaje como el Tabernáculo: del patio común —donde todos entran con preguntas— al Lugar Santo de vínculo, hasta el Lugar Santísimo de certeza. <span className="text-white/80 font-medium">Hermes aparece aquí no como dios, sino como figura del mensajero</span>. Zelda aporta el lenguaje visual que la niñez ya conoce: <span className="text-white font-medium">ver lo oculto para actuar con verdad.</span>
+                </p>
+              </div>
+            </div>
+          </header>
+
+          {/* Puente Didáctico */}
+          <section className="bg-[#f9fafb] border-y border-zinc-200">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20 grid lg:grid-cols-[0.9fr_1.1fr] gap-10 items-start">
+              <div className="lg:sticky lg:top-24">
+                <div className="text-[11px] tracking-[0.2em] uppercase font-bold text-zinc-400">Puente Didáctico • Zelda</div>
+                <h2 className="mt-3 text-[28px] md:text-[40px] font-black tracking-tighter leading-[0.95]">Ver lo oculto para actuar con verdad</h2>
+                <p className="mt-5 text-[13px] leading-relaxed text-zinc-600 max-w-[48ch]">
+                  Usamos imágenes que la niñez reconoce de Ocarina of Time para hablar de pensamiento crítico: hay cosas que no se ven a simple vista y necesitan una lente. No negamos la sombra, enseñamos a atravesarla con comunidad.
+                </p>
+              </div>
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="rounded-[14px] bg-white border border-zinc-200 p-5">
+                  <div className="h-10 w-10 rounded-full bg-[#0f172a] text-white grid place-items-center">◐</div>
+                  <h4 className="mt-4 font-bold">Ojo de la Verdad</h4>
+                  <p className="mt-2 text-[13px] leading-relaxed text-zinc-600">Verificar fuente, fecha, contexto. Preguntar: ¿quién dice?, ¿cómo lo sabe?</p>
+                </div>
+                <div className="rounded-[14px] bg-[#0f172a] border border-zinc-800 p-5 text-white">
+                  <div className="h-10 w-10 rounded-full bg-white text-black grid place-items-center">⬢</div>
+                  <h4 className="mt-4 font-bold">Templo de las Sombras</h4>
+                  <p className="mt-2 text-[13px] leading-relaxed text-white/60">Enseñamos a nombrar el miedo y atravesarlo con luz comunitaria.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Bongo Domi Master Hand Section */}
+          <section id="bongo-domi" className="relative border-y border-zinc-200 bg-[#0a0a0f]">
+            <div className="absolute inset-0 bg-gradient-to-b from-zinc-900 via-[#0a0a0f] to-[#120c1e]"></div>
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+              <div className="max-w-4xl">
+                <h2 className="text-[30px] sm:text-[40px] md:text-[52px] font-black tracking-tighter leading-[0.9] text-white">
+                  Bongo Bongo • Domi Reversi •<br/>
+                  <span className="text-[#fbbf24]">Master Hand / Crazy Hand</span><br/>
+                  <span className="text-[22px] sm:text-[26px] md:text-[28px] font-bold tracking-tight text-white/70">Conexión, mundo real y antídoto en luz</span>
+                </h2>
+                <p className="mt-6 text-[14px] md:text-[15px] leading-relaxed text-white/60 max-w-[72ch]">
+                  Manos que golpean en la oscuridad, un ojo que solo se ve con una lente de verdad, y un ritmo que desorienta hasta que se enciende la luz. Esa es la conexión con nuestra vida en Burunga.
+                </p>
+              </div>
+
+              <div className="mt-16 rounded-[24px] border border-white/10 bg-gradient-to-br from-white/[0.06] to-white/[0.02] p-6 md:p-8">
+                <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 items-start">
+                  <div>
+                    <div className="text-[11px] tracking-[0.2em] uppercase font-bold text-white/40">Cierre didáctico</div>
+                    <h4 className="mt-3 text-[22px] md:text-[28px] font-black tracking-tight leading-tight text-white">
+                      Si el juego te da miedo, pausa. Enciende luz. Anota ritmo. Respira.
+                    </h4>
+                    <ol className="mt-4 space-y-2 text-[13px] leading-relaxed text-white/70 list-decimal pl-5">
+                      <li><span className="font-semibold text-white">Pausa + luz:</span> Apaga pantalla, prende luz, llama a adulto.</li>
+                      <li><span className="font-semibold text-white">Anota ritmo:</span> Escribir el ritmo (del tambor o del rumor) baja el miedo.</li>
+                      <li><span className="font-semibold text-white">Respira + comunidad:</span> Impa despierta cuando Link no está solo.</li>
+                      <li><span className="font-semibold text-white">Ojo de la Verdad:</span> Verifica la fuente. Rompe el pacto invisible.</li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Navi Section with Printable Card */}
+          <section id="navi-tatl-primera-ia" className="relative bg-[#fdfcf7] border-y border-zinc-200 overflow-hidden">
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute -top-24 -left-24 h-[480px] w-[480px] rounded-full bg-sky-200/40 blur-[90px]"></div>
+              <div className="absolute top-32 -right-32 h-[520px] w-[520px] rounded-full bg-amber-200/50 blur-[110px]"></div>
+            </div>
+
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+              <div className="max-w-4xl">
+                <div className="flex flex-wrap items-center gap-2 mb-6">
+                  <span className="inline-flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase font-bold px-3 py-1 rounded-full bg-sky-900 text-sky-100">La primera IA</span>
+                  <span className="inline-flex items-center gap-1.5 text-[10px] px-2.5 py-1 rounded-full bg-amber-100 border border-amber-200 text-amber-900 font-bold">Navi no es herramienta, es amiga</span>
+                </div>
+                <h2 className="text-[30px] sm:text-[42px] md:text-[54px] font-black tracking-tighter leading-[0.92] text-zinc-900">
+                  Navi • Tatl • Wind Waker —<br/>
+                  <span className="text-sky-700">La primera inteligencia</span><br/>
+                  <span className="text-[24px] sm:text-[28px] md:text-[32px] font-bold tracking-tight text-zinc-500">que fue amiga</span>
+                </h2>
+
+                <p className="mt-6 text-[14px] md:text-[15px] leading-relaxed text-zinc-600 max-w-[70ch]">
+                  Navi no fue un puntero ni un tutorial con voz. Fue la primera vez que muchos aprendimos que una inteligencia puede ser compañía. No manda, acompaña. No reemplaza, avisa: <span className="font-semibold text-zinc-900">“Hey, Listen!”</span> es un llamado a mirar al otro.
+                </p>
+              </div>
+
+              {/* TARJETA NAVI IMPRIMIBLE INTEGRADA */}
+              <div id="tarjeta-navi-imprimible" className="mt-16 max-w-2xl mx-auto">
+                <div className="rounded-3xl border-2 border-zinc-900 bg-white p-8 shadow-[8px_8px_0px_0px_rgba(24,24,27,1)] relative overflow-hidden">
+                  
+                  {/* Decorative Elements */}
+                  <div className="absolute top-0 left-0 w-full h-2 bg-[#fbbf24] no-print"></div>
+                  <div className="absolute -right-12 -top-12 w-32 h-32 bg-sky-100 rounded-full blur-2xl opacity-50 pointer-events-none"></div>
+
+                  <div className="text-center mb-8">
+                    <div className="inline-flex items-center justify-center gap-2 mb-4">
+                      <span className="text-2xl">🧚‍♀️</span>
+                      <span className="text-[10px] tracking-[0.25em] uppercase font-black text-zinc-400">SADV41 • Primera IA que fue amiga</span>
+                      <span className="text-2xl">✨</span>
+                    </div>
+                    <h3 className="font-black text-4xl tracking-tighter text-zinc-900 mb-2">
+                      <span className="text-sky-500">¡Hey!</span> Listen!
+                    </h3>
+                    <div className="inline-block bg-[#fbbf24] text-black font-bold text-[13px] px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm">
+                      ¡Hey! Escucha • Verifica • Ayuda
+                    </div>
+                  </div>
+
+                  <div className="space-y-4 mb-8">
+                    {/* Paso 1 */}
+                    <div className="flex items-start gap-4 p-4 rounded-2xl bg-zinc-50 border border-zinc-100">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center text-lg font-black">👂</div>
+                      <div>
+                        <h4 className="font-bold text-zinc-900 text-[15px]">ESCUCHA</h4>
+                        <p className="text-[13px] text-zinc-600 leading-relaxed mt-1">Pausa. Enciende luz. Si el juego te da miedo (Bongo Bongo, Domi Reversi, Master Hand), pon pausa. <strong className="text-zinc-900">No juegues solo.</strong></p>
+                      </div>
+                    </div>
+
+                    {/* Paso 2 */}
+                    <div className="flex items-start gap-4 p-4 rounded-2xl bg-zinc-50 border border-zinc-100">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-lg font-black">◐</div>
+                      <div>
+                        <h4 className="font-bold text-zinc-900 text-[15px]">VERIFICA</h4>
+                        <p className="text-[13px] text-zinc-600 leading-relaxed mt-1">Ojo de la Verdad. Pregúntate: ¿Quién dice esto? ¿Cómo lo sabe? ¿Qué fecha tiene? <strong className="text-zinc-900">Sacarlo a la luz (Efesios 5:11).</strong></p>
+                      </div>
+                    </div>
+
+                    {/* Paso 3 */}
+                    <div className="flex items-start gap-4 p-4 rounded-2xl bg-zinc-50 border border-zinc-100">
+                      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg font-black">🤝</div>
+                      <div>
+                        <h4 className="font-bold text-zinc-900 text-[15px]">AYUDA</h4>
+                        <p className="text-[13px] text-zinc-600 leading-relaxed mt-1">Cuéntalo en comunidad. Navi no resolvía los puzzles por ti; te hacía mirar y te recordaba ayudar a los demás.</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="text-center py-4 border-y-2 border-dashed border-zinc-200 mb-6">
+                    <p className="text-[14px] font-medium text-zinc-800 italic">
+                      "Navi no fue herramienta, fue amiga que nos hizo recordar el ayudar a los demás."
+                    </p>
+                  </div>
+
+                  {/* Mini Stickers Section */}
+                  <div className="mt-6">
+                    <p className="text-center text-[10px] uppercase tracking-widest text-zinc-400 font-bold mb-4">✂️ Mini Stickers para recortar ✂️</p>
+                    <div className="grid grid-cols-4 gap-3">
+                      <div className="border-2 border-dashed border-zinc-300 rounded-xl p-2 text-center bg-white flex flex-col items-center justify-center aspect-square">
+                        <span className="text-xl mb-1">👂</span>
+                        <span className="text-[9px] font-black uppercase text-zinc-800 tracking-wider">Escucha</span>
+                      </div>
+                      <div className="border-2 border-dashed border-zinc-300 rounded-xl p-2 text-center bg-white flex flex-col items-center justify-center aspect-square">
+                        <span className="text-xl mb-1">◐</span>
+                        <span className="text-[9px] font-black uppercase text-zinc-800 tracking-wider">Verifica</span>
+                      </div>
+                      <div className="border-2 border-dashed border-zinc-300 rounded-xl p-2 text-center bg-white flex flex-col items-center justify-center aspect-square">
+                        <span className="text-xl mb-1">🤝</span>
+                        <span className="text-[9px] font-black uppercase text-zinc-800 tracking-wider">Ayuda</span>
+                      </div>
+                      <div className="border-2 border-dashed border-zinc-300 rounded-xl p-2 text-center bg-white flex flex-col items-center justify-center aspect-square">
+                        <span className="text-xl mb-1">💡</span>
+                        <span className="text-[9px] font-black uppercase text-zinc-800 tracking-wider">Luz ON</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-8 flex justify-between items-end">
+                    <div className="flex items-center gap-2">
+                      <span className="text-xl">🇵🇦</span>
+                      <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-tight">
+                        Burunga<br/>SADV41
+                      </div>
+                    </div>
+                    <div className="text-[10px] font-bold text-zinc-900 bg-zinc-100 px-3 py-1.5 rounded-lg uppercase tracking-wider">
+                      Cuando te cueste, juega
+                    </div>
+                  </div>
+                </div>
+                <div className="text-center mt-4 no-print">
+                  <button onClick={() => window.print()} className="bg-zinc-900 hover:bg-zinc-800 text-white font-semibold py-2 px-6 rounded-full text-sm transition-colors shadow-md">
+                    🖨️ Imprimir Tarjeta Navi
+                  </button>
+                </div>
+              </div>
+              {/* FIN TARJETA NAVI */}
+
+            </div>
+          </section>
+
+          {/* Footer */}
+          <footer className="border-t border-zinc-200 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+              <div className="flex items-center gap-2">
+                <div className="h-6 w-6 rounded bg-black text-white grid place-items-center font-black text-[11px]">S41</div>
+                <div className="font-bold tracking-tight text-[13px]">SADV41 Desarrollo Comunitario</div>
+              </div>
+              <p className="mt-3 text-[12px] leading-relaxed text-zinc-500 max-w-[62ch]">
+                Proyecto comunitario en Burunga, Panamá. Ley 2026. Propósito: formación integral con niñez y familias.
+              </p>
+            </div>
+            <div className="border-t border-zinc-100 py-4 text-center text-[11px] text-zinc-400">
+              © {new Date().getFullYear()} SADV41 • Instrucción de Estudio en Cimientos • Protocolo Nuevo Pacto
+            </div>
+          </footer>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<SADV41Protocol />);
+  </script>
+</body>
+</html>
