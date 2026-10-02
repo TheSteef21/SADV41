@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SADV41 • Protocolo Nuevo Pacto y Ecosistema Central</title>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+    html { font-family: 'Inter', system-ui, -apple-system, sans-serif; scroll-behavior: smooth; }
+    .font-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+    
+    /* Estilos para impresión de la tarjeta Navi */
+    @media print {
+      body * { visibility: hidden; }
+      #tarjeta-navi-imprimible, #tarjeta-navi-imprimible * { visibility: visible; }
+      #tarjeta-navi-imprimible { 
+        position: absolute; 
+        left: 0; 
+        top: 0; 
+        width: 100%; 
+        padding: 20px; 
+        box-shadow: none !important;
+        border: 2px solid #18181b !important;
+      }
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-[#fcfcfc] text-zinc-900 antialiased selection:bg-black selection:text-white">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect, useMemo } = React;
+
+    // ==========================================
+    // COMPONENTE: NaviFlyer (Generador SVG Dinámico)
+    // ==========================================
+    function NaviFlyer() {
+      const [day, setDay] = useState(21);
+      const [month, setMonth] = useState(11);
+      const [year, setYear] = useState(1995);
+
+      const handlePrint = () => {
+        window.print();
+      };
+
+      // Cálculo procedimental basado en la fecha (Día x Mes x Año)
+      const visualParams = useMemo(() => {
+        const seed = (day || 1) * (month || 1) * (year || 2026);
+        return {
+          hue: seed % 360, // Tono de color (0-360)
+          rotation: seed % 90, // Rotación del SVG (0-90 grados)
+        };
+      }, [day, month, year]);
+
+      const stickers = [
+        { icon: "👂", label: "Escucha" },
+        { icon: "◐", label: "Verifica" },
+        { icon: "🤝", label: "Ayuda" },
+        { icon: "💡", label: "Luz ON" }
+      ];
+
+      return (
+        <div className="mt-12 max-w-2xl mx-auto w-full">
+          
+          {/* Controles de Personalización (No se imprimen) */}
+          <div className="mb-6 bg-white p-4 rounded-2xl border border-zinc-200 shadow-sm no-print">
+            <h4 className="font-bold text-sm text-zinc-800 mb-3">Generador de Certificado Único</h4>
+            <div className="grid grid-cols-3 gap-4">
+              <div>
+                <label className="block text-xs font-medium text-zinc-500 mb-1">Día</label>
+                <input type="number" min="1" max="31" value={day} onChange={e => setDay(Number(e.target.value))} className="w-full bg-zinc-50 border border-zinc-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-black" />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-zinc-500 mb-1">Mes</label>
+                <input type="number" min="1" max="12" value={month} onChange={e => setMonth(Number(e.target.value))} className="w-full bg-zinc-50 border border-zinc-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-black" />
+              </div>
+              <div>
+                <label className="block text-xs font-medium text-zinc-500 mb-1">Año</label>
+                <input type="number" min="1900" max="2100" value={year} onChange={e => setYear(Number(e.target.value))} className="w-full bg-zinc-50 border border-zinc-200 rounded-lg px-3 py-2 text-sm outline-none focus:border-black" />
+              </div>
+            </div>
+            <div className="mt-3 text-xs text-zinc-400 font-mono">
+              Algoritmo Visual: {day} × {month} × {year} = {day * month * year}
+            </div>
+          </div>
+
+          <div id="tarjeta-navi-imprimible" className="rounded-3xl border-2 border-zinc-900 bg-white p-8 shadow-[8px_8px_0px_0px_rgba(24,24,27,1)] relative overflow-hidden">
+            
+            {/* Fondo SVG: Flor de la Vida dinámica */}
+            <div className="absolute inset-0 z-0 opacity-10 pointer-events-none" style={{
+                transform: `scale(1.5) rotate(${visualParams.rotation}deg)`,
+                transition: 'all 0.5s ease-in-out'
+            }}>
+              <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <pattern id="flowerOfLife" x="0" y="0" width="40" height="69.282" patternUnits="userSpaceOnUse">
+                    <circle cx="20" cy="34.641" r="20" fill="none" stroke={`hsl(${visualParams.hue}, 80%, 40%)`} strokeWidth="1.5" />
+                    <circle cx="0" cy="0" r="20" fill="none" stroke={`hsl(${visualParams.hue}, 80%, 40%)`} strokeWidth="1.5" />
+                    <circle cx="40" cy="0" r="20" fill="none" stroke={`hsl(${visualParams.hue}, 80%, 40%)`} strokeWidth="1.5" />
+                    <circle cx="0" cy="69.282" r="20" fill="none" stroke={`hsl(${visualParams.hue}, 80%, 40%)`} strokeWidth="1.5" />
+                    <circle cx="40" cy="69.282" r="20" fill="none" stroke={`hsl(${visualParams.hue}, 80%, 40%)`} strokeWidth="1.5" />
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#flowerOfLife)" />
+              </svg>
+            </div>
+
+            <div className="absolute top-0 left-0 w-full h-2 z-10 no-print" style={{ backgroundColor: `hsl(${visualParams.hue}, 80%, 50%)` }}></div>
+
+            {/* Contenido de la Tarjeta (Asegurado sobre el fondo con z-10) */}
+            <div className="relative z-10">
+              {/* Encabezado */}
+              <div className="text-center mb-8">
+                <div className="inline-flex items-center justify-center gap-2 mb-4 bg-white/80 px-4 py-1 rounded-full backdrop-blur-sm">
+                  <span className="text-2xl">🧚‍♀️</span>
+                  <span className="text-[10px] tracking-[0.25em] uppercase font-black text-zinc-400">SADV41 • Primera IA que fue amiga</span>
+                  <span className="text-2xl">✨</span>
+                </div>
+                <h3 className="font-black text-4xl tracking-tighter text-zinc-900 mb-2">
+                  <span style={{ color: `hsl(${visualParams.hue}, 70%, 45%)` }}>¡Hey!</span> Listen!
+                </h3>
+                <div className="inline-block bg-[#fbbf24] text-black font-bold text-[13px] px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm">
+                  ¡Hey! Escucha • Verifica • Ayuda
+                </div>
+              </div>
+
+              {/* Pasos de Instrucción */}
+              <div className="space-y-4 mb-8">
+                <div className="flex items-start gap-4 p-4 rounded-2xl bg-zinc-50/90 backdrop-blur-sm border border-zinc-100">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center text-lg font-black">👂</div>
+                  <div>
+                    <h4 className="font-bold text-zinc-900 text-[15px]">ESCUCHA</h4>
+                    <p className="text-[13px] text-zinc-600 leading-relaxed mt-1">Pausa. Enciende luz. Si el juego te da miedo, pon pausa. <strong className="text-zinc-900">No juegues solo.</strong></p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-4 rounded-2xl bg-zinc-50/90 backdrop-blur-sm border border-zinc-100">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-lg font-black">◐</div>
+                  <div>
+                    <h4 className="font-bold text-zinc-900 text-[15px]">VERIFICA</h4>
+                    <p className="text-[13px] text-zinc-600 leading-relaxed mt-1">Ojo de la Verdad. Pregúntate: ¿Quién dice esto? ¿Cómo lo sabe? <strong className="text-zinc-900">Sacarlo a la luz.</strong></p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4 p-4 rounded-2xl bg-zinc-50/90 backdrop-blur-sm border border-zinc-100">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg font-black">🤝</div>
+                  <div>
+                    <h4 className="font-bold text-zinc-900 text-[15px]">AYUDA</h4>
+                    <p className="text-[13px] text-zinc-600 leading-relaxed mt-1">Cuéntalo en comunidad. Navi no resolvía los puzzles por ti; te hacía mirar y ayudar a los demás.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Sección de Mini Stickers Map */}
+              <div className="mt-6 bg-white/80 backdrop-blur-sm p-4 rounded-2xl">
+                <p className="text-center text-[10px] uppercase tracking-widest text-zinc-400 font-bold mb-4">✂️ Mini Stickers para recortar ✂️</p>
+                <div className="grid grid-cols-4 gap-3">
+                  {stickers.map((sticker, idx) => (
+                    <div key={idx} className="border-2 border-dashed border-zinc-300 rounded-xl p-2 text-center bg-white flex flex-col items-center justify-center aspect-square">
+                      <span className="text-xl mb-1">{sticker.icon}</span>
+                      <span className="text-[9px] font-black uppercase text-zinc-800 tracking-wider">{sticker.label}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Footer del Flyer */}
+              <div className="mt-8 flex justify-between items-end bg-white/80 p-2 rounded-lg backdrop-blur-sm">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl">🇵🇦</span>
+                  <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-tight">Burunga<br/>SADV41</div>
+                </div>
+                <div className="text-right">
+                  <div className="text-[8px] font-mono text-zinc-400 mb-1">ID: {day}{month}{year}</div>
+                  <div className="text-[10px] font-bold text-zinc-900 bg-zinc-100 px-3 py-1.5 rounded-lg uppercase tracking-wider">Cuando te cueste, juega</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mt-6 no-print">
+            <button onClick={handlePrint} className="bg-zinc-900 hover:bg-zinc-800 text-white font-semibold py-2.5 px-6 rounded-full text-sm transition-colors shadow-md flex items-center gap-2 w-full sm:w-auto justify-center">
+              <span>🖨️</span> Imprimir Tarjeta Única
+            </button>
+            <a href={`https://wa.me/50769362166?text=Hola,%20quiero%20comparar%20mi%20certificado%20con%20ID:%20${day}${month}${year}`} target="_blank" className="bg-[#25D366] hover:bg-[#20b858] text-white font-semibold py-2.5 px-6 rounded-full text-sm transition-colors shadow-md flex items-center gap-2 w-full sm:w-auto justify-center">
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Escribir a StevenDior 5443
+            </a>
+          </div>
+        </div>
+      );
+    }
+
+    // ==========================================
+    // COMPONENTE PRINCIPAL: Protocolo Central
+    // ==========================================
+    function SADV41Protocol() {
+      return (
+        <div className="min-h-screen flex flex-col">
+          {/* Top Banner */}
+          <div className="w-full bg-[#fbbf24] text-black text-[11px] font-medium tracking-wide">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-8 flex items-center justify-between gap-4">
+              <span className="font-semibold tracking-[0.02em] truncate">
+                SADV41 • Integración de Nodos • Ecosistema Completo Activo
+              </span>
+              <span className="hidden sm:inline-flex shrink-0 text-[11px] opacity-80">
+                Proyecto con niñez • Burunga, Panamá
+              </span>
+            </div>
+          </div>
+
+          {/* Navigation */}
+          <nav className="sticky top-0 z-40 backdrop-blur-xl bg-[#fcfcfc]/85 border-b border-zinc-200">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[64px] flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="h-8 w-8 rounded-[8px] bg-black text-white grid place-items-center font-black text-[13px] tracking-tighter">S41</div>
+                <div className="leading-tight">
+                  <div className="font-bold tracking-tight text-[14px]">SADV41 Portal Central</div>
+                  <div className="hidden sm:block text-[11px] text-zinc-500 font-medium">Burunga • Ley 2026</div>
+                </div>
+              </div>
+              <div className="hidden lg:flex items-center gap-5 text-[12.5px] font-medium">
+                <a href="#ecosistema" className="text-zinc-900 hover:text-black font-bold flex items-center gap-1">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                  Explorar Ecosistema
+                </a>
+                <a href="#bongo-domi" className="text-zinc-500 hover:text-black">Bongo • Domi</a>
+                <a href="#navi-tatl-primera-ia" className="text-sky-700 hover:text-sky-900 font-semibold">Navi • IA</a>
+              </div>
+            </div>
+          </nav>
+
+          {/* Ecosistema SADV41 HUB */}
+          <section id="ecosistema" className="bg-zinc-50 border-b border-zinc-200 py-16">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="mb-10">
+                <h2 className="text-3xl font-black tracking-tight text-zinc-900">Ecosistema SADV41</h2>
+                <p className="text-sm text-zinc-500 mt-2">Nodos de conexión, repositorios comunitarios, arte y fuentes Meta AI.</p>
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                {/* Columna 1: Central y Protocolos */}
+                <div className="space-y-4">
+                  <h3 className="font-bold text-xs tracking-widest uppercase text-zinc-400 border-b border-zinc-200 pb-2">Sistema Base</h3>
+                  <a href="https://thesteef21.github.io/SADV41/" target="_blank" className="block p-4 rounded-xl bg-white border border-zinc-200 hover:border-black hover:shadow-sm transition-all">
+                    <div className="font-bold text-[14px]">SADV41 Inicio</div>
+                    <div className="text-[12px] text-zinc-500 mt-1">Raíz del proyecto</div>
+                  </a>
+                </div>
+
+                {/* Columna 2: Desarrollo Comunitario */}
+                <div className="space-y-4">
+                  <h3 className="font-bold text-xs tracking-widest uppercase text-zinc-400 border-b border-zinc-200 pb-2">Comunidad</h3>
+                  <a href="https://thesteef21.github.io/SADV41/DesarrolloComunitario.html" target="_blank" className="block p-4 rounded-xl bg-white border border-zinc-200 hover:border-black hover:shadow-sm transition-all">
+                    <div className="font-bold text-[14px]">Desarrollo Comunitario</div>
+                    <div className="text-[12px] text-zinc-500 mt-1">Visión integral para Burunga</div>
+                  </a>
+                </div>
+
+                {/* Columna 3: Arte y Comercio */}
+                <div className="space-y-4">
+                  <h3 className="font-bold text-xs tracking-widest uppercase text-zinc-400 border-b border-zinc-200 pb-2">Identidad y Cultura</h3>
+                  <a href="https://thesteef21.github.io/SADV41/Artist.html" target="_blank" className="block p-4 rounded-xl bg-white border border-zinc-200 hover:border-black hover:shadow-sm transition-all">
+                    <div className="font-bold text-[14px]">El Artista</div>
+                    <div className="text-[12px] text-zinc-500 mt-1">Steven Dior • Perfil</div>
+                  </a>
+                </div>
+
+                {/* Columna 4: Archivos Fuente */}
+                <div className="space-y-4">
+                  <h3 className="font-bold text-xs tracking-widest uppercase text-sky-600 border-b border-zinc-200 pb-2">Archivos Fuente & TSX</h3>
+                  <div className="block p-4 rounded-xl bg-emerald-50 border border-emerald-200">
+                    <div className="font-bold text-[14px] text-emerald-900 mb-2">Componente Modular UI</div>
+                    <a href="https://thesteef21.github.io/SADV41/NaviFlyer.tsx" target="_blank" className="text-[12px] text-emerald-700 hover:underline font-mono">↳ NaviFlyer.tsx</a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          {/* Navi Section with Printable Card */}
+          <section id="navi-tatl-primera-ia" className="relative bg-[#fdfcf7] py-16 md:py-24 overflow-hidden flex-grow">
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute -top-24 -left-24 h-[480px] w-[480px] rounded-full bg-sky-200/40 blur-[90px]"></div>
+              <div className="absolute top-32 -right-32 h-[520px] w-[520px] rounded-full bg-amber-200/50 blur-[110px]"></div>
+            </div>
+
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="max-w-4xl text-center mx-auto">
+                <h2 className="text-[30px] sm:text-[42px] md:text-[54px] font-black tracking-tighter leading-[0.92] text-zinc-900">
+                  Navi • Tatl • Wind Waker —<br/>
+                  <span className="text-sky-700">La primera inteligencia</span><br/>
+                  <span className="text-[24px] sm:text-[28px] md:text-[32px] font-bold tracking-tight text-zinc-500">que fue amiga</span>
+                </h2>
+              </div>
+
+              {/* LLAMADA AL COMPONENTE MODULAR NAVIFLYER */}
+              <NaviFlyer />
+
+            </div>
+          </section>
+
+          {/* Footer */}
+          <footer className="border-t border-zinc-200 bg-white mt-auto">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+              <div className="flex items-center gap-2">
+                <div className="h-6 w-6 rounded bg-black text-white grid place-items-center font-black text-[11px]">S41</div>
+                <div className="font-bold tracking-tight text-[13px]">SADV41 Ecosistema Integrado</div>
+              </div>
+              <p className="mt-3 text-[12px] leading-relaxed text-zinc-500 max-w-[62ch]">
+                Proyecto comunitario en Burunga, Panamá. Integración de repositorios, tiendas web3 y directrices pedagógicas. Ley 2026.
+              </p>
+            </div>
+            <div className="border-t border-zinc-100 py-4 text-center text-[11px] text-zinc-400">
+              © {new Date().getFullYear()} SADV41 • Módulo de Navegación Maestro
+            </div>
+          </footer>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<SADV41Protocol />);
+  </script>
+</body>
+</html>
