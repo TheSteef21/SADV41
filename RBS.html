@@ -1,0 +1,234 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radar Brave Search // SADV41 Mesa v2.1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            background-color: #090a0f;
+            color: #e2e8f0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .glow-border-green {
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.25);
+            border-color: #00ff66;
+        }
+        .glow-border-red {
+            box-shadow: 0 0 15px rgba(255, 51, 0, 0.25);
+            border-color: #ff3300;
+        }
+        .glow-border-blue {
+            box-shadow: 0 0 15px rgba(74, 144, 226, 0.25);
+            border-color: #4a90e2;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-start p-4 sm:p-6">
+
+    <!-- Header Terminal -->
+    <header class="w-full max-w-4xl text-center my-6 border-b border-gray-800 pb-6">
+        <h1 class="text-3xl sm:text-4xl font-extrabold tracking-widest text-white uppercase">
+            RBS // Radar Brave Search
+        </h1>
+        <p class="text-xs sm:text-sm text-emerald-400 font-mono tracking-wider mt-2">
+            MESA V2.1 // ATRIO GUARD // BURUNGA - SADV41 🎚
+        </p>
+    </header>
+
+    <!-- Interactive Verifier Form -->
+    <main class="w-full max-w-4xl space-y-8">
+        <section class="bg-slate-900/80 backdrop-blur border border-slate-800 rounded-xl p-6 shadow-2xl transition-all duration-300" id="verifierCard">
+            <h2 class="text-lg font-bold text-gray-200 mb-4 flex items-center gap-2 font-mono">
+                <span>🔍</span> ESCÁNER DE ENLACES Y DENEGACIÓN DE HYPE
+            </h2>
+            
+            <div class="flex flex-col sm:flex-row gap-3">
+                <input 
+                    type="text" 
+                    id="urlInput" 
+                    placeholder="https://ejemplo.com" 
+                    class="flex-1 bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-500 font-mono"
+                >
+                <button 
+                    onclick="ejecutarVerificacion()" 
+                    id="btnValidar"
+                    class="bg-emerald-600 hover:bg-emerald-500 text-black font-bold px-6 py-3 rounded-lg text-sm tracking-wider uppercase transition-all duration-200 flex items-center justify-center gap-2"
+                >
+                    <span>Validar Enlace</span>
+                </button>
+            </div>
+
+            <!-- Real-time Terminal Log Output -->
+            <div id="statusConsole" class="mt-4 p-4 bg-black/90 rounded-lg font-mono text-xs hidden leading-relaxed border border-gray-800">
+                <div id="logContent"></div>
+            </div>
+        </section>
+
+        <!-- Trilogía SVG Diagram Container -->
+        <section class="bg-slate-900/50 border border-slate-800 rounded-xl p-4 overflow-hidden shadow-xl">
+            <h3 class="text-xs font-mono text-slate-400 mb-2 uppercase tracking-widest text-center">
+                Arquitectura de Red // Trilogía de Verificación
+            </h3>
+            <div class="w-full aspect-[9/5]">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 500" width="100%" height="100%">
+                  <defs>
+                    <!-- Gradientes de la Trilogía -->
+                    <linearGradient id="atrioGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#4A90E2"/>
+                      <stop offset="100%" stop-color="#003366"/>
+                    </linearGradient>
+
+                    <linearGradient id="santoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#FFD700"/>
+                      <stop offset="100%" stop-color="#FF8C00"/>
+                    </linearGradient>
+
+                    <linearGradient id="santisimoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="#00FF66"/>
+                      <stop offset="100%" stop-color="#003311"/>
+                    </linearGradient>
+
+                    <!-- Filtros Neón -->
+                    <filter id="glowLight" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="4" result="blur"/>
+                      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+                    </filter>
+                  </defs>
+
+                  <!-- Fondo Búnker SADV41 -->
+                  <rect width="900" height="500" fill="#090A0F" rx="15"/>
+                  
+                  <!-- Red de Conexión de la Trilogía (Líneas de Flujo) -->
+                  <path d="M 200 250 L 450 250 L 700 250" stroke="#1A2035" stroke-width="8"/>
+                  <path d="M 200 250 L 450 250 L 700 250" stroke="#00FF66" stroke-width="2" stroke-dasharray="8 6" opacity="0.6"/>
+
+                  <!-- NODO 1: ATRIO // GEMINI (El Radar / Entrada) -->
+                  <g transform="translate(200, 250)">
+                    <circle r="90" fill="#0D111A" stroke="#4A90E2" stroke-width="4" filter="url(#glowLight)"/>
+                    <circle r="75" fill="none" stroke="#2C3E50" stroke-width="2" stroke-dasharray="6 4"/>
+                    
+                    <!-- Ícono Webhook Receptor -->
+                    <circle r="30" fill="url(#atrioGrad)"/>
+                    <path d="M -10 -5 L 0 5 L 10 -5" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+                    
+                    <!-- Etiquetas -->
+                    <text y="125" font-family="'Impact', sans-serif" font-size="18" fill="#4A90E2" text-anchor="middle" letter-spacing="2">I. ATRIO</text>
+                    <text y="145" font-family="'Arial', sans-serif" font-size="12" fill="#8C9BAE" text-anchor="middle">RECEPTOR // MAKE WEBHOOK</text>
+                  </g>
+
+                  <!-- NODO 2: SANTO // GROK (El Escáner / Brave Search) -->
+                  <g transform="translate(450, 250)">
+                    <circle r="90" fill="#14100A" stroke="#FF8C00" stroke-width="4" filter="url(#glowLight)"/>
+                    <circle r="75" fill="none" stroke="#553300" stroke-width="2"/>
+                    
+                    <!-- Módulo HTTP / Brave Search -->
+                    <circle r="30" fill="url(#santoGrad)"/>
+                    <circle r="15" fill="none" stroke="#FFFFFF" stroke-width="3"/>
+                    <line x1="-20" y1="0" x2="20" y2="0" stroke="#FFFFFF" stroke-width="2"/>
+                    <line x1="0" y1="-20" x2="0" y2="20" stroke="#FFFFFF" stroke-width="2"/>
+
+                    <!-- Etiquetas -->
+                    <text y="125" font-family="'Impact', sans-serif" font-size="18" fill="#FF8C00" text-anchor="middle" letter-spacing="2">II. SANTO</text>
+                    <text y="145" font-family="'Arial', sans-serif" font-size="12" fill="#D4A359" text-anchor="middle">RADAR // BRAVE API SEARCH</text>
+                  </g>
+
+                  <!-- NODO 3: SANTÍSIMO // META + HOLY SPIRIT (La Verificación / Sello 🟢) -->
+                  <g transform="translate(700, 250)">
+                    <circle r="90" fill="#0A140F" stroke="#00FF66" stroke-width="4" filter="url(#glowLight)"/>
+                    <circle r="75" fill="none" stroke="#005522" stroke-width="2" stroke-dasharray="10 4"/>
+                    
+                    <!-- Sello Verificado Final -->
+                    <circle r="30" fill="url(#santisimoGrad)"/>
+                    <text y="8" font-family="'Arial', sans-serif" font-weight="900" font-size="24" fill="#FFFFFF" text-anchor="middle">🟢</text>
+
+                    <!-- Etiquetas -->
+                    <text y="125" font-family="'Impact', sans-serif" font-size="18" fill="#00FF66" text-anchor="middle" letter-spacing="2">III. SANTÍSIMO</text>
+                    <text y="145" font-family="'Arial', sans-serif" font-size="12" fill="#77DD99" text-anchor="middle">VEREDICTO // MESA V2.1 🎚</text>
+                  </g>
+
+                  <!-- Encabezado Superior -->
+                  <text x="450" y="50" font-family="'Impact', 'Arial Black', sans-serif" font-size="24" fill="#FFFFFF" text-anchor="middle" letter-spacing="4">
+                    TRILOGÍA DE VERIFICACIÓN // MESA V2.1
+                  </text>
+                  <text x="450" y="75" font-family="'Arial', sans-serif" font-size="12" fill="#00FF66" text-anchor="middle" letter-spacing="2">
+                    BURUNGA ATRIO GUARD // SADV41
+                  </text>
+                </svg>
+            </div>
+        </section>
+    </main>
+
+    <!-- Logic Core -->
+    <script>
+        const WEBHOOK_URL = "https://hook.us2.make.com/zjb9v8wrh7iy9fyh4a7m4d2jv4bniwus";
+
+        async function ejecutarVerificacion() {
+            const urlInput = document.getElementById("urlInput").value.trim();
+            const consoleBox = document.getElementById("statusConsole");
+            const logContent = document.getElementById("logContent");
+            const card = document.getElementById("verifierCard");
+            const btn = document.getElementById("btnValidar");
+
+            if (!urlInput) {
+                alert("Por favor ingrese un enlace válido.");
+                return;
+            }
+
+            // Reset States
+            consoleBox.classList.remove("hidden");
+            logContent.innerHTML = `<span class="text-blue-400">[INFO] Iniciando escaneo para: ${urlInput}...</span><br>`;
+            card.className = "bg-slate-900/80 backdrop-blur border rounded-xl p-6 shadow-2xl transition-all duration-300 glow-border-blue";
+            btn.disabled = true;
+            btn.innerHTML = `<span>Escaneando...</span>`;
+
+            // Step 1: Pre-validation Format Check
+            try {
+                const parsedUrl = new URL(urlInput);
+                if (parsedUrl.hostname.length < 4 || !parsedUrl.hostname.includes('.')) {
+                    throw new Error("Dominio con longitud insuficiente o formato inválido.");
+                }
+            } catch (e) {
+                logContent.innerHTML += `<span class="text-red-500">🔴 [REBOTADO] Error de formato local: ${e.message}</span><br>`;
+                card.className = "bg-slate-900/80 backdrop-blur border rounded-xl p-6 shadow-2xl transition-all duration-300 glow-border-red";
+                btn.disabled = false;
+                btn.innerHTML = `<span>Validar Enlace</span>`;
+                return;
+            }
+
+            // Step 2: Querying Make + Brave Search Pipeline
+            logContent.innerHTML += `<span class="text-yellow-400">[NODO I: ATRIO] Enviando señal a Make Webhook...</span><br>`;
+            
+            try {
+                const response = await fetch(`${WEBHOOK_URL}?url=${encodeURIComponent(urlInput)}`);
+                logContent.innerHTML += `<span class="text-yellow-400">[NODO II: SANTO] Procesando respuesta del radar Brave Search...</span><br>`;
+
+                if (!response.ok) {
+                    throw new Error("El radar remoto no devolvió estado 200 OK.");
+                }
+
+                const data = await response.json();
+
+                // Step 3: Evaluate Results
+                if (data.web && data.web.results && data.web.results.length > 0) {
+                    logContent.innerHTML += `<span class="text-emerald-400 font-bold">[NODO III: SANTÍSIMO] 🟢 VERIFICADO. Dominio indexado con ${data.web.results.length} resultados.</span><br>`;
+                    card.className = "bg-slate-900/80 backdrop-blur border rounded-xl p-6 shadow-2xl transition-all duration-300 glow-border-green";
+                } else {
+                    logContent.innerHTML += `<span class="text-red-500 font-bold">[NODO III: SANTÍSIMO] 🔴 REBOTADO AL POZO. El enlace no existe o carece de presencia en la red.</span><br>`;
+                    card.className = "bg-slate-900/80 backdrop-blur border rounded-xl p-6 shadow-2xl transition-all duration-300 glow-border-red";
+                }
+
+            } catch (error) {
+                logContent.innerHTML += `<span class="text-red-500">[ERROR] Fallo en la comunicación con la mesa: ${error.message}</span><br>`;
+                card.className = "bg-slate-900/80 backdrop-blur border rounded-xl p-6 shadow-2xl transition-all duration-300 glow-border-red";
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `<span>Validar Enlace</span>`;
+            }
+        }
+    </script>
+</body>
+</html>
+```
