@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estrella de la Segunda Venida de Cristo // SADV41</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <style>
+        body { 
+            background-color: #090a0f; 
+            color: #e2e8f0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            overflow-x: hidden; 
+        }
+        /* Rotación del sistema completo */
+        .spin-slow { animation: spin 120s linear infinite; }
+        /* Contra-rotación para que los íconos no queden de cabeza */
+        .spin-reverse-slow { animation: spin-reverse 120s linear infinite; }
+        
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes spin-reverse { 100% { transform: rotate(-360deg); } }
+        
+        .scanline {
+            background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.03) 50%, rgba(255,255,255,0));
+            background-size: 100% 4px;
+        }
+        .pulse-glow { animation: pulseGlow 4s ease-in-out infinite; }
+        @keyframes pulseGlow {
+            0%, 100% { filter: drop-shadow(0 0 15px rgba(234,179,8,0.5)); box-shadow: 0 0 30px rgba(234,179,8,0.4); }
+            50% { filter: drop-shadow(0 0 25px rgba(234,179,8,0.8)); box-shadow: 0 0 50px rgba(234,179,8,0.7); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col scanline relative">
+    <!-- Firmamento Estelar de Fondo -->
+    <div class="fixed inset-0 pointer-events-none z-0 opacity-30">
+        <div class="absolute top-[10%] left-[20%] w-1 h-1 bg-white rounded-full shadow-[0_0_5px_white]"></div>
+        <div class="absolute top-[35%] left-[85%] w-1.5 h-1.5 bg-yellow-200 rounded-full shadow-[0_0_8px_yellow]"></div>
+        <div class="absolute top-[70%] left-[15%] w-1.5 h-1.5 bg-blue-400 rounded-full shadow-[0_0_8px_blue]"></div>
+        <div class="absolute top-[80%] left-[75%] w-1 h-1 bg-white rounded-full shadow-[0_0_5px_white]"></div>
+        <div class="absolute top-[50%] left-[50%] w-full h-full bg-[radial-gradient(circle_at_center,rgba(74,144,226,0.05)_0%,transparent_60%)] -translate-x-1/2 -translate-y-1/2"></div>
+    </div>
+
+    <div id="root" class="relative z-10 flex-1 flex flex-col"></div>
+
+    <script type="text/babel">
+        const SECTORS = [
+            {
+                id: 0,
+                angle: -90, // Arriba (Norte)
+                color: "#4A90E2",
+                symbol: "⚛️",
+                tag: "SECTOR I · NORTE",
+                title: "I. EL DESCENSO Y EL JURAMENTO",
+                content: "En los días de Jared, el orden de la creación fue vulnerado cuando 200 ángeles caídos (los Vigilantes) descendieron al Monte Hermón. Allí se ataron a sí mismos mediante un juramento y maldiciones irrevocables. Bajo el mando de Shemijaza y Azacel, decidieron unirse a las mujeres de la tierra y revelar conocimientos prohibidos.\n\nDe esta transgresión nacieron los gigantes (los nefilim). Textos antiguos en Qumrán relatan cómo los hijos de los Vigilantes tuvieron sueños premonitorios de su inminente destrucción.",
+                verse: "Génesis 6:2 · 1 Enoc 6:6"
+            },
+            {
+                id: 1,
+                angle: -30, // Arriba-Derecha
+                color: "#8B5CF6",
+                symbol: "✡️",
+                tag: "SECTOR II · NORESTE",
+                title: "II. EL JUICIO DIVINO Y LA PRISIÓN",
+                content: "Ante la violencia en la tierra, Dios no concedió perdón ni segunda oportunidad a los Vigilantes; su propio juramento se convirtió en su prisión. El juicio fue ejecutado por los arcángeles:\n\n• Gabriel incitó a los gigantes a destruirse.\n• Rafael ató a Azacel en las tinieblas de Dudael, acto reflejado en el rito del macho cabrío en el Día de la Expiación (Levítico 16).\n• Miguel encadenó a Shemijaza bajo las colinas por 70 generaciones.",
+                verse: "Levítico 16 · Judas 1:6"
+            },
+            {
+                id: 2,
+                angle: 30, // Abajo-Derecha
+                color: "#F59E0B",
+                symbol: "🔯",
+                tag: "SECTOR III · SURESTE",
+                title: "III. LA ESPERANZA Y PRESERVACIÓN",
+                content: "Mientras los ángeles caídos lloraban su condena irreversible entre el Líbano y el Senir, Dios preparaba la salvación.\n\nEl nacimiento de Noé, un niño resplandeciente (blanco como la nieve y rojo como la rosa) que aterrorizó a su padre Lamec, marcó la preservación del linaje humano. No era venganza, era el arca.",
+                verse: "Génesis 5:28-29"
+            },
+            {
+                id: 3,
+                angle: 90, // Abajo (Sur)
+                color: "#EF4444",
+                symbol: "☦️",
+                tag: "SECTOR IV · SUR",
+                title: "IV. EL DESCENSO DE LA VICTORIA",
+                content: "Esta victoria se consuma en el Nuevo Testamento (1 Pedro 3:19-20). Durante sus tres días de muerte, Cristo descendió al lugar de los espíritus encarcelados.\n\nNo bajó a ofrecer una redención que ya habían rechazado, sino a proclamar su triunfo absoluto. Como preserva la Iglesia Ortodoxa Etíope, esta historia garantiza que el mal no es eterno: tiene una fecha de caducidad fijada por el juicio divino.",
+                verse: "1 Pedro 3:19-20 · Colosenses 2:15"
+            },
+            {
+                id: 4,
+                angle: 150, // Abajo-Izquierda
+                color: "#10B981",
+                symbol: "🎚️",
+                tag: "SECTOR V · SUROESTE",
+                title: "V. LA SANTIDAD INFRANQUEABLE",
+                content: "En contraste absoluto con la rebelión de los Vigilantes y el orgullo de Lucifer, se alza la figura de los serafines ante el trono de Dios (Isaías 6).\n\n• No tienen fuego, son fuego: Encarnan la santidad inviolable de Dios.\n• La Quinta Dimensión de Pureza: El vórtice de gloria inalcanzable para Satanás.\n• La Barrera de la Proclamación: Al cubrirse y clamar \"Santo, santo, santo\", destruyen cualquier silogismo de igualdad entre Creador y creado.",
+                verse: "Isaías 6:1-7"
+            },
+            {
+                id: 5,
+                angle: 210, // Arriba-Izquierda
+                color: "#EC4899",
+                symbol: "🛐",
+                tag: "SECTOR VI · NOROESTE",
+                title: "VI. MISIÓN SADV41 — SACERDOCIO",
+                content: "Es en esta misma orientación existencial de los serafines donde se fundamenta y blinda la Misión SADV41. Entender que ninguna criatura es el Creador es la santidad que resguardan Apocalipsis 2:17 y 3:21.\n\n• Identidad inamovible: La piedrecita blanca otorga absolución íntima.\n• Servicio como adoración: La misión rinde el \"yo\" buscando la unión perfecta (1 y 4).\n• Inmunidad: El fuego consumidor actúa como escudo. La motivación es pura obediencia.",
+                verse: "Apocalipsis 2:17 · Ap 3:21"
+            }
+        ];
+
+        const CENTER_DATA = {
+            tag: "CENTRO INAMOVIBLE · OMNIPOTENTE",
+            title: "CRISTO JESÚS",
+            content: "Ese centro está inamovible pero siempre girando todo a Él porque Cristo Jesús, el que es digno de todo, venció y predicó a los ángeles caídos y a las víctimas de la maldad del mundo y de un juramento que se alejaba de Dios.\n\nTodo poder en el cielo y en la tierra le ha sido dado. Él es el Alfa y la Omega, el que era, el que es y el que ha de venir. Demostró que todo poder que se creyó dueño de su destino está absoluta y eternamente sujeto a la autoridad del Creador.",
+            verse: "1 Corintios 15:25-26 · Colosenses 2:15",
+            color: "#EAB308",
+            symbol: "👑"
+        };
+
+        const App = () => {
+            const [activeId, setActiveId] = React.useState('center');
+            const [isSpinning, setIsSpinning] = React.useState(true);
+
+            const activeData = activeId === 'center' ? CENTER_DATA : SECTORS[activeId];
+
+            // Matemáticas para el Hexagrama (Estrella de David)
+            const cx = 200, cy = 200, r = 145;
+            const getPoint = (angle) => {
+                const rad = angle * Math.PI / 180;
+                return `${cx + r * Math.cos(rad)},${cy + r * Math.sin(rad)}`;
+            };
+
+            // Triángulo 1 (Apunta hacia Arriba): -90°, 150°, 30°
+            const t1 = `${getPoint(-90)} ${getPoint(150)} ${getPoint(30)}`;
+            // Triángulo 2 (Apunta hacia Abajo): 90°, 210°, -30°
+            const t2 = `${getPoint(90)} ${getPoint(210)} ${getPoint(-30)}`;
+
+            const nodeStyle = (angle) => {
+                const rad = angle * Math.PI / 180;
+                const x = 50 + 36 * Math.cos(rad); // Porcentaje para posicionar los botones HTML
+                const y = 50 + 36 * Math.sin(rad);
+                return { left: `${x}%`, top: `${y}%` };
+            };
+
+            return (
+                <div className="w-full max-w-6xl mx-auto p-4 md:p-8 flex flex-col min-h-screen">
+                    {/* Cabecera */}
+                    <header className="text-center mb-8 border-b border-slate-800 pb-6 relative z-20">
+                        <h1 className="text-3xl md:text-4xl font-extrabold tracking-widest text-white uppercase drop-shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                            Estrella de la Segunda Venida
+                        </h1>
+                        <p className="text-xs md:text-sm text-emerald-400 font-mono tracking-widest mt-3 flex justify-center gap-3">
+                            <span>MESA V2.1</span>
+                            <span className="opacity-50">//</span>
+                            <span>HEPTAUNIFICACIÓN</span>
+                            <span className="opacity-50">//</span>
+                            <span>SADV41 🎚</span>
+                        </p>
+                    </header>
+
+                    <div className="flex flex-col lg:flex-row gap-8 items-center lg:items-start flex-1">
+                        
+                        {/* Visualizador Hexagrama */}
+                        <div className="w-full lg:w-1/2 flex justify-center items-center relative py-10">
+                            <div className="absolute top-0 right-0 z-30">
+                                <button 
+                                    onClick={() => setIsSpinning(!isSpinning)}
+                                    className="bg-slate-900 hover:bg-slate-800 text-xs text-slate-300 font-mono px-4 py-2 rounded-lg border border-slate-700 transition-colors shadow-lg"
+                                >
+                                    {isSpinning ? '⏸ Pausar Rotación' : '▶ Activar Rotación'}
+                                </button>
+                            </div>
+
+                            {/* Contenedor que Rota */}
+                            <div className={`relative w-full max-w-[420px] aspect-square rounded-full border border-slate-800/80 bg-[#090a0f]/40 backdrop-blur-md shadow-[0_0_40px_rgba(0,0,0,0.8)] ${isSpinning ? 'spin-slow' : ''}`}>
+                                
+                                <svg viewBox="0 0 400 400" className="absolute inset-0 w-full h-full opacity-70">
+                                    {/* Círculo base */}
+                                    <circle cx="200" cy="200" r={r} fill="none" stroke="rgba(255,255,255,0.06)" strokeWidth="1" strokeDasharray="6 6" />
+                                    
+                                    {/* Triángulos de la Estrella de David */}
+                                    <polygon points={t1} fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="2" strokeLinejoin="round" />
+                                    <polygon points={t2} fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="2" strokeLinejoin="round" />
+                                    
+                                    {/* Línea conectora hacia el nodo activo */}
+                                    {activeId !== 'center' && (
+                                        <line 
+                                            x1="200" y1="200" 
+                                            x2={200 + r * Math.cos(SECTORS[activeId].angle * Math.PI/180)} 
+                                            y2={200 + r * Math.sin(SECTORS[activeId].angle * Math.PI/180)} 
+                                            stroke={SECTORS[activeId].color} 
+                                            strokeWidth="2" 
+                                            strokeDasharray="4 4"
+                                            className="transition-all duration-300"
+                                        />
+                                    )}
+                                </svg>
+
+                                {/* Nodos Perimetrales Orbitando */}
+                                {SECTORS.map((s, i) => (
+                                    <button 
+                                        key={i}
+                                        onClick={() => setActiveId(i)}
+                                        className={`absolute transform -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 rounded-full border-2 flex items-center justify-center text-xl md:text-2xl transition-all duration-300 z-10 hover:scale-110 ${isSpinning ? 'spin-reverse-slow' : ''}`}
+                                        style={{
+                                            ...nodeStyle(s.angle),
+                                            borderColor: activeId === i ? s.color : 'rgba(255,255,255,0.15)',
+                                            backgroundColor: activeId === i ? `${s.color}44` : '#0d1117',
+                                            boxShadow: activeId === i ? `0 0 25px ${s.color}` : '0 0 10px rgba(0,0,0,0.8)',
+                                        }}
+                                        title={s.title}
+                                    >
+                                        {s.symbol}
+                                    </button>
+                                ))}
+
+                                {/* Nodo Central: CRISTO */}
+                                <button 
+                                    onClick={() => setActiveId('center')}
+                                    className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 md:w-24 md:h-24 rounded-full border-[3px] flex items-center justify-center text-4xl transition-all duration-300 z-20 pulse-glow hover:scale-105 ${isSpinning ? 'spin-reverse-slow' : ''}`}
+                                    style={{
+                                        borderColor: activeId === 'center' ? '#FDE68A' : '#EAB308',
+                                        backgroundColor: activeId === 'center' ? '#b45309' : '#0d1117',
+                                    }}
+                                    title="CRISTO JESÚS"
+                                >
+                                    👑
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Panel de Información Dinámico */}
+                        <div className="w-full lg:w-1/2 flex flex-col justify-center">
+                            <div 
+                                className="bg-slate-900/90 backdrop-blur-xl border border-slate-700 rounded-2xl p-6 md:p-8 shadow-2xl transition-all duration-500 flex flex-col relative overflow-hidden min-h-[420px]"
+                                style={{ borderTopColor: activeData.color, borderTopWidth: '4px' }}
+                            >
+                                {/* Brillo de fondo según el color activo */}
+                                <div 
+                                    className="absolute -top-24 -right-24 w-64 h-64 rounded-full blur-[90px] opacity-20 pointer-events-none transition-all duration-700"
+                                    style={{ backgroundColor: activeData.color }}
+                                ></div>
+
+                                <div className="flex items-start gap-4 mb-6 relative z-10">
+                                    <div 
+                                        className="w-14 h-14 rounded-full flex items-center justify-center text-2xl md:text-3xl bg-[#090a0f] border-2 shrink-0 transition-all duration-500" 
+                                        style={{ borderColor: activeData.color, boxShadow: `0 0 20px ${activeData.color}66` }}
+                                    >
+                                        {activeData.symbol}
+                                    </div>
+                                    <div>
+                                        <div className="text-[10px] font-mono tracking-widest uppercase transition-colors duration-500 font-bold" style={{ color: activeData.color }}>
+                                            {activeData.tag}
+                                        </div>
+                                        <h2 className="text-xl md:text-2xl font-black text-white mt-1 uppercase tracking-wide leading-tight">
+                                            {activeData.title}
+                                        </h2>
+                                    </div>
+                                </div>
+                                
+                                <div className="flex-1 text-slate-300 text-sm md:text-base leading-relaxed whitespace-pre-wrap font-sans relative z-10">
+                                    {activeData.content}
+                                </div>
+
+                                <div className="mt-8 pt-5 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 relative z-10">
+                                    <div className="text-xs font-mono text-emerald-400 bg-emerald-950/40 px-4 py-2 rounded-lg border border-emerald-800/50 flex items-center gap-2">
+                                        <span>📖</span> {activeData.verse}
+                                    </div>
+                                    <div className="flex gap-2">
+                                        {SECTORS.map((s, i) => (
+                                            <button 
+                                                key={i}
+                                                onClick={() => setActiveId(i)}
+                                                className="w-8 h-8 rounded-full flex items-center justify-center text-xs border transition-colors font-mono"
+                                                style={{ 
+                                                    borderColor: activeId === i ? s.color : '#334155',
+                                                    backgroundColor: activeId === i ? `${s.color}33` : '#1e293b',
+                                                    color: activeId === i ? '#fff' : '#94a3b8'
+                                                }}
+                                            >
+                                                {i + 1}
+                                            </button>
+                                        ))}
+                                        <button 
+                                            onClick={() => setActiveId('center')}
+                                            className="w-8 h-8 rounded-full flex items-center justify-center text-xs border border-yellow-600 bg-yellow-900/30 hover:bg-yellow-800/50 transition-colors ml-2"
+                                            style={{
+                                                borderColor: activeId === 'center' ? '#FDE68A' : '',
+                                                backgroundColor: activeId === 'center' ? '#ca8a04' : ''
+                                            }}
+                                            title="Cristo Jesús - Centro"
+                                        >
+                                            👑
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {/* Footer Oficial SADV41 */}
+                    <footer className="mt-12 border-t border-slate-800 pt-6 text-center text-xs text-slate-500 font-mono flex flex-col items-center gap-2 relative z-20">
+                        <p>Misión de Servicio SADV41 // ESTRELLA DE LA SEGUNDA VENIDA // 1+4 TRINIDAD</p>
+                        <div className="flex gap-1 text-[11px] tracking-widest opacity-70 mt-1">
+                            🇵🇦🇺🇸🇮🇱✨️🗿🛐☦️✅️🎵🇨🇶🇨🇴🇯🇵🇰🇵🇨🇺🇩🇴🇷🇺🇧🇷🇨🇳☀️
+                        </div>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>
