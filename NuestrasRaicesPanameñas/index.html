@@ -1,1 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestras Raíces Panameñas | SADV41</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        /* Contenedor del fondo dinámico */
+        #background-slider {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            transition: background-image 2s ease-in-out; /* Transición suave de 2 segundos */
+            z-index: -1; /* Mantiene la imagen de fondo detrás del contenido */
+        }
+
+        /* Capa oscura opcional para que cualquier texto que agregues sea legible */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); 
+            z-index: 0;
+        }
+
+        /* Contenedor para tu contenido futuro */
+        .content {
+            position: relative;
+            z-index: 1;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contenedor donde se inyectarán los fondos -->
+    <div id="background-slider"></div>
+    <div class="overlay"></div>
+
+    <div class="content">
+        <h1>Nuestras Raíces Panameñas</h1>
+        <p>Módulo SADV41</p>
+    </div>
+
+    <script>
+        // Array con las rutas exactas de tus imágenes
+        const images = [
+            'NuestrasRaicesPanameñas/unnamed (5).jpg',
+            'NuestrasRaicesPanameñas/descarga.webp',
+            'NuestrasRaicesPanameñas/AQN4uAQGM344IFG0-fcWnl2JLmPjoX8NhZNVokgW2U23okpnWfDHJ3Im_Eo_Qctx6AxTPsxd147cEDsBwFuEV1bb.jpg',
+            'NuestrasRaicesPanameñas/840923828_1909997656642353_4738451366814972973_n.webp',
+            'NuestrasRaicesPanameñas/832779916_1426089402819908_4478032055568905730_n.webp',
+            'NuestrasRaicesPanameñas/783452785_1869516164012118_6490546162878603454_n-2.webp.jpg',
+            'NuestrasRaicesPanameñas/781923861_1618131879939670_8387513255419274280_n-1.webp.jpg',
+            'NuestrasRaicesPanameñas/755870557_1306712551253606_5442326978744235614_n-2.webp.jpg'
+        ];
+
+        let currentIndex = 0;
+        const slider = document.getElementById('background-slider');
+
+        // Función para cambiar la imagen
+        function changeBackground() {
+            slider.style.backgroundImage = `url('${images[currentIndex]}')`;
+            currentIndex = (currentIndex + 1) % images.length;
+        }
+
+        // Establecer la primera imagen al cargar
+        changeBackground();
+
+        // Cambiar la imagen cada 6 segundos (6000 milisegundos)
+        setInterval(changeBackground, 6000);
+    </script>
+
+</body>
+</html>
 
