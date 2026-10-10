@@ -1,0 +1,57 @@
+<!-- Añadir en el <head> para cargar los estilos de Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<!-- Contenedor a integrar dentro de tu <div id="root"> o contenedor principal -->
+<div class="max-w-3xl mx-auto p-6 bg-[#1e293b] border border-slate-700/50 rounded-2xl shadow-lg mt-6">
+  
+  <!-- Mensaje Motivador y Enlaces de Artista -->
+  <div class="mb-6 text-center">
+    <h2 class="text-2xl font-bold text-[#f97316] mb-4">Misión SADV41</h2>
+    <p class="text-slate-300 text-lg leading-relaxed mb-4">
+      Sigue construyendo con disciplina y fe. Cada línea de código y cada nota musical expanden tu visión. El esfuerzo constante es la base de la grandeza.
+    </p>
+    <div class="bg-[#0f172a] p-4 rounded-xl border border-slate-800">
+      <p class="text-slate-200 font-mono text-sm md:text-base">
+        P<br>
+        <a href="https://thesteef21.github.io/SADV41/Artist.html" target="_blank" class="text-blue-400 hover:text-blue-300 transition-colors">https://thesteef21.github.io/SADV41/Artist.html</a><br>
+        Tiktok, Instagram y otras redes: <span class="font-bold text-emerald-400">@StevenDiorOficial</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- Enlace a Distquake -->
+  <div class="flex justify-center mb-6">
+    <a href="https://play.google.com/store/apps/details?id=com.finazzi.distquake" target="_blank" class="inline-flex items-center gap-2 bg-[#f97316] text-white px-6 py-3 rounded-xl font-bold hover:bg-orange-600 transition-colors shadow-[0_0_20px_rgba(249,115,22,0.3)]">
+      <span>Descargar Distquake</span>
+    </a>
+  </div>
+
+  <!-- Contenedor del Mapa Open Source -->
+  <h3 class="text-xl font-bold text-slate-200 mb-3">Puntos de Actividad / Monitoreo</h3>
+  <div id="sismo-map" class="w-full h-[400px] rounded-xl border border-slate-700 z-10"></div>
+
+</div>
+
+<!-- Añadir antes del cierre del <body> para inicializar el mapa -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar el mapa open-source centrado en Burunga/Arraiján
+    var map = L.map('sismo-map').setView([8.948, -79.676], 13); 
+
+    // Cargar la capa base de OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors',
+      maxZoom: 19
+    }).addTo(map);
+
+    // Añadir los puntos requeridos en el mapa
+    var punto1 = L.marker([8.948, -79.676]).addTo(map)
+      .bindPopup('<b class="text-slate-900">Punto Central</b><br>Burunga.');
+      
+    var punto2 = L.marker([8.955, -79.650]).addTo(map)
+      .bindPopup('<b class="text-slate-900">Arraiján</b><br>Zona de cobertura.');
+      
+    // Puedes seguir agregando las coordenadas de "todos estos puntos" copiando la variable marker
+  });
+</script>
