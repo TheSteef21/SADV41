@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADV41 - Sistema de Desintoxicación Natural</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0d1117; color: #c9d1d9; font-family: monospace; }
+       .hacker-text { color: #39d353; }
+       .card { background-color: #161b22; border: 1px solid #30363d; }
+       .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+       .accordion-content.open { max-height: 800px; transition: max-height 0.5s ease-in; }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-3xl mx-auto">
+        <header class="mb-8 border-b border-[#30363d] pb-6 text-center">
+            <h1 class="text-3xl font-bold hacker-text mb-2">🫪 Protocolo de Depuración Natural</h1>
+            <p class="text-sm text-gray-400">Apoya la función natural de desintoxicación. Hidratación + antioxidantes. Constancia sobre intensidad.</p>
+        </header>
+
+        <div class="space-y-3" id="accordion">
+
+            <!-- 1. HÍGADO -->
+            <div class="card rounded-md overflow-hidden">
+                <button class="w-full flex justify-between items-center p-5 text-left hover:bg-[#1c2128] transition" onclick="toggle('higado')">
+                    <div class="flex items-center gap-3">
+                        <span class="text-xl">🧬</span>
+                        <h2 class="text-lg font-bold text-white">Hígado — El Filtro Principal</h2>
+                    </div>
+                    <span id="icon-higado" class="text-xl hacker-text transition-transform">+</span>
+                </button>
+                <div id="higado" class="accordion-content">
+                    <div class="p-5 pt-0 text-sm text-gray-300 space-y-3 border-t border-[#21262d] mt-2">
+                        <p class="text-gray-400">Principal filtro del cuerpo. Ayuda a procesar toxinas:</p>
+                        <ul class="space-y-2 list-disc list-inside">
+                            <li><b class="text-white">Cardo Mariano:</b> Contiene silimarina, ayuda a reparar células hepáticas.</li>
+                            <li><b class="text-white">Cúrcuma:</b> Curcumina antiinflamatoria que estimula producción de bilis.</li>
+                            <li><b class="text-white">Infusión de Diente de León:</b> Tónico hepático que estimula vesícula y elimina desechos.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. RIÑONES -->
+            <div class="card rounded-md overflow-hidden">
+                <button class="w-full flex justify-between items-center p-5 text-left hover:bg-[#1c2128] transition" onclick="toggle('rinones')">
+                    <div class="flex items-center gap-3">
+                        <span class="text-xl">💧</span>
+                        <h2 class="text-lg font-bold text-white">Riñones — Lavado Renal</h2>
+                    </div>
+                    <span id="icon-rinones" class="text-xl hacker-text transition-transform">+</span>
+                </button>
+                <div id="rinones" class="accordion-content">
+                    <div class="p-5 pt-0 text-sm text-gray-300 space-y-3 border-t border-[#21262d] mt-2">
+                        <p class="text-gray-400">Basado en eliminar líquidos y prevenir cristales:</p>
+                        <ul class="space-y-2 list-disc list-inside">
+                            <li><b class="text-white">Agua con limón en ayunas:</b> El citrato previene formación de cálculos.</li>
+                            <li><b class="text-white">Té de Perejil o Cola de Caballo:</b> Diuréticos suaves que aumentan orina.</li>
+                            <li><b class="text-white">Jugo de Arándanos sin azúcar:</b> Evita que bacterias se adhieran al tracto urinario.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. PÁNCREAS -->
+            <div class="card rounded-md overflow-hidden">
+                <button class="w-full flex justify-between items-center p-5 text-left hover:bg-[#1c2128] transition" onclick="toggle('pancreas')">
+                    <div class="flex items-center gap-3">
+                        <span class="text-xl">⚖️</span>
+                        <h2 class="text-lg font-bold text-white">Páncreas — Regulador de Azúcar</h2>
+                    </div>
+                    <span id="icon-pancreas" class="text-xl hacker-text transition-transform">+</span>
+                </button>
+                <div id="pancreas" class="accordion-content">
+                    <div class="p-5 pt-0 text-sm text-gray-300 space-y-3 border-t border-[#21262d] mt-2">
+                        <p class="text-gray-400">Regula azúcar y produce enzimas. Requiere no sobrecargarlo:</p>
+                        <ul class="space-y-2 list-disc list-inside">
+                            <li><b class="text-white">Ajo:</b> Alicina y azufre apoyan salud de tejidos pancreáticos.</li>
+                            <li><b class="text-white">Té Verde:</b> Catequinas antioxidantes que protegen de inflamación.</li>
+                            <li><b class="text-white">Crucíferos (Brócoli, Coliflor, Repollo):</b> Desintoxican y previenen fatiga celular.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. TRACTO DIGESTIVO -->
+            <div class="card rounded-md overflow-hidden">
+                <button class="w-full flex justify-between items-center p-5 text-left hover:bg-[#1c2128] transition" onclick="toggle('digestivo')">
+                    <div class="flex items-center gap-3">
+                        <span class="text-xl">🌿</span>
+                        <h2 class="text-lg font-bold text-white">Tracto Digestivo — Estómago, Intestinos, Colon</h2>
+                    </div>
+                    <span id="icon-digestivo" class="text-xl hacker-text transition-transform">+</span>
+                </button>
+                <div id="digestivo" class="accordion-content">
+                    <div class="p-5 pt-0 text-sm text-gray-300 space-y-3 border-t border-[#21262d] mt-2">
+                        <p class="text-gray-400">Necesitas "barrer" desechos y calmar mucosa:</p>
+                        <ul class="space-y-2 list-disc list-inside">
+                            <li><b class="text-white">Aloe Vera (Sábila):</b> Calma inflamación y efecto laxante suave.</li>
+                            <li><b class="text-white">Jengibre:</b> Acelera vaciado gástrico y reduce hinchazón.</li>
+                            <li><b class="text-white">Chía o Linaza:</b> Forman gel mucilaginoso que arrastra toxinas del colon.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mt-8 p-4 rounded border-l-4 border-yellow-500 bg-[#161b22] text-xs text-gray-400">
+            <b class="text-yellow-400">Nota de seguridad:</b> Estos remedios apoyan la función natural, pero las "limpiezas extremas" pueden sobrecargar riñones o hígado. Prioriza la constancia sobre la intensidad. Consulta a un profesional de salud si tienes condiciones preexistentes.
+        </div>
+
+        <footer class="text-center text-[10px] text-gray-600 mt-8">SADV41 // Protocolo Natural • Panamá</footer>
+    </div>
+
+<script>
+function toggle(id) {
+    const content = document.getElementById(id);
+    const icon = document.getElementById('icon-' + id);
+    const isOpen = content.classList.contains('open');
+
+    // Cerrar todos
+    document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
+    document.querySelectorAll('[id^="icon-"]').forEach(i => { i.innerText = '+'; i.style.transform = 'rotate(0deg)'; });
+
+    // Abrir el seleccionado si estaba cerrado
+    if (!isOpen) {
+        content.classList.add('open');
+        icon.innerText = '−';
+        icon.style.transform = 'rotate(180deg)';
+    }
+}
+</script>
+</body>
+</html>
