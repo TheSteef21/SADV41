@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación SADV41 - Despliegue y USGS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background-color: #0d1117; color: #c9d1d9; font-family: monospace; }
+        .hacker-text { color: #39d353; }
+        .step-card { background-color: #161b22; border: 1px solid #30363d; }
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-4xl mx-auto">
+        <header class="mb-10 border-b border-[#30363d] pb-6">
+            <h1 class="text-4xl font-bold hacker-text mb-2">⚡ Protocolo de Despliegue y Estado del Proyecto</h1>
+            <p class="text-gray-400">Documentación oficial de los pasos para alojar la interfaz en GitHub Pages y el estado de conexión con la API de USGS.</p>
+        </header>
+
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold text-white mb-4">Fase 1: Preparación y Subida a GitHub</h2>
+            
+            <div class="space-y-4">
+                <div class="step-card p-5 rounded-md">
+                    <h3 class="text-lg font-bold hacker-text mb-2">1. Creación de Cuenta en GitHub</h3>
+                    <p class="text-sm text-gray-300">Si aún no lo has hecho, dirígete a <a href="https://github.com" target="_blank" class="text-blue-400 hover:underline">github.com</a> y regístrate. Solo necesitas un correo electrónico, un nombre de usuario (como <i>TheSteef21</i>) y una contraseña. Completa la verificación por correo.</p>
+                </div>
+
+                <div class="step-card p-5 rounded-md">
+                    <h3 class="text-lg font-bold hacker-text mb-2">2. Crear un Nuevo Repositorio</h3>
+                    <ul class="list-disc list-inside text-sm text-gray-300 space-y-1">
+                        <li>Inicia sesión y haz clic en el botón verde <strong>"New"</strong> (Nuevo repositorio).</li>
+                        <li>Nómbralo algo representativo, por ejemplo: <code>visor-landsat-usgs</code>.</li>
+                        <li>Asegúrate de marcarlo como <strong>"Public"</strong> (Público) para poder usar GitHub Pages gratis.</li>
+                        <li>Haz clic en <strong>"Create repository"</strong>.</li>
+                    </ul>
+                </div>
+
+                <div class="step-card p-5 rounded-md">
+                    <h3 class="text-lg font-bold hacker-text mb-2">3. Subir tus Archivos HTML</h3>
+                    <ul class="list-disc list-inside text-sm text-gray-300 space-y-1">
+                        <li>En la página de tu nuevo repositorio, haz clic en <strong>"uploading an existing file"</strong>.</li>
+                        <li>Arrastra o selecciona el archivo <code>github.html</code> (o tu index.html final) que creamos en Termux.</li>
+                        <li>Escribe un mensaje de "Commit" (ej. <i>"Versión inicial del dashboard"</i>) y presiona <strong>"Commit changes"</strong>.</li>
+                    </ul>
+                </div>
+
+                <div class="step-card p-5 rounded-md">
+                    <h3 class="text-lg font-bold hacker-text mb-2">4. Activar GitHub Pages (Hosting Gratuito)</h3>
+                    <ul class="list-disc list-inside text-sm text-gray-300 space-y-1">
+                        <li>Ve a la pestaña <strong>"Settings"</strong> (Configuración) de tu repositorio.</li>
+                        <li>En el menú lateral izquierdo, haz clic en <strong>"Pages"</strong>.</li>
+                        <li>Bajo "Source", selecciona la rama <strong>"main"</strong> y haz clic en "Save".</li>
+                        <li>En un par de minutos, GitHub te dará un enlace en vivo (ej. <i>https://thesteef21.github.io/visor-landsat-usgs</i>) donde tu web estará pública para todo el mundo.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="mb-10">
+            <h2 class="text-2xl font-bold text-white mb-4">Fase 2: El Bloqueo M2M y la Espera de USGS</h2>
+            <div class="step-card p-6 rounded-md border-l-4 border-yellow-500">
+                <h3 class="text-xl font-bold text-yellow-500 mb-3">Estado Actual: Pendiente (Pending)</h3>
+                <p class="text-sm text-gray-300 mb-3">
+                    Hasta este punto, hemos configurado con éxito un servidor local en <strong>Termux (Flask)</strong>, instalado la librería de Python <code>usgs</code> y establecido la conexión visual mediante la <strong>Fetch API</strong> de JavaScript.
+                </p>
+                <p class="text-sm text-gray-300 mb-3">
+                    Sin embargo, el hito final requiere la descarga de metadatos e imágenes satelitales (Landsat 8/9). Al intentar ejecutar comandos como <code>download-options</code>, nos topamos con un <strong>Error 403 (Forbidden)</strong>.
+                </p>
+                <p class="text-sm text-gray-300">
+                    <strong>¿Qué falta?</strong> Hemos enviado formalmente la solicitud de rol "Machine to Machine" (M2M) en el portal ERS del USGS. Este proceso de revisión es manual por parte del gobierno estadounidense y <strong>suele tardar un promedio de 1 a 3 días hábiles</strong>. Una vez que el estado cambie a "Approved", la API liberará el acceso y nuestro código JavaScript podrá consumir y renderizar las imágenes satelitales reales en este mismo panel.
+                </p>
+            </div>
+        </section>
+
+        <footer class="text-center text-xs text-gray-500 border-t border-[#30363d] pt-4">
+            <p>SADV41 - Monitoreo y Sistemas Distribuidos | Desarrollado por TheSteef21</p>
+        </footer>
+    </div>
+</body>
+</html>
