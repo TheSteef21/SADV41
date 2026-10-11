@@ -1,0 +1,348 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Convergencia de las Cuatro Placas</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;600;800&family=Chivo+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: cabecera con 4 datos verificados, escenario de animación 5:3, controles, panel de escena con insignias de origen del dato. */
+:root{
+  --bg:#eef0f1; --fg:#14191e; --muted:#58636c; --line:#cdd3d8; --panel:#ffffff;
+  --accent:#c2410c; --ver:#0f766e; --rep:#1d5fc4; --sym:#8a5f00;
+  --ver-bg:#d9f1ee; --rep-bg:#dde9fb; --sym-bg:#f6e8c4;
+  --font:'Chivo',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --mono:'Chivo Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0b0f13; --fg:#e8edf0; --muted:#97a3ad; --line:#26303a; --panel:#121920;
+  --accent:#ff7a45; --ver:#4cc9b8; --rep:#7fb0ff; --sym:#f0cf7a;
+  --ver-bg:#0f2a28; --rep-bg:#14233b; --sym-bg:#33290f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0b0f13; --fg:#e8edf0; --muted:#97a3ad; --line:#26303a; --panel:#121920;
+  --accent:#ff7a45; --ver:#4cc9b8; --rep:#7fb0ff; --sym:#f0cf7a;
+  --ver-bg:#0f2a28; --rep-bg:#14233b; --sym-bg:#33290f; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);padding-inline:16px;padding-block:20px 40px;line-height:1.5}
+.wrap{max-width:1040px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+header{display:flex;flex-direction:column;gap:14px}
+.kick{font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(28px,5vw,46px);line-height:1.05;font-weight:800;margin:0;text-wrap:balance;letter-spacing:-.01em}
+.sub{margin:0;color:var(--muted);max-width:62ch}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.stat{background:var(--panel);padding:12px 14px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.stat b{font:800 clamp(24px,4vw,32px)/1.1 var(--font);font-variant-numeric:tabular-nums}
+.stat span{font-size:13px;color:var(--muted)}
+.stat i{font:500 11px/1 var(--mono);letter-spacing:.08em;color:var(--ver);font-style:normal;margin-top:4px}
+.stage{border:1px solid var(--line);border-radius:6px;overflow:hidden;background:#0a1016}
+#cv{display:block;width:100%;aspect-ratio:5/3;background:#0a1016}
+.ctrl{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px;background:var(--panel);border-top:1px solid var(--line)}
+button{font:600 14px var(--font);color:var(--fg);background:transparent;border:1px solid var(--line);border-radius:4px;padding:8px 12px;cursor:pointer;min-height:40px}
+button:hover{border-color:var(--accent)}
+button:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+button[aria-pressed="true"],button.on{border-color:var(--accent);color:var(--accent)}
+.tabs{display:flex;flex-wrap:wrap;gap:6px;flex:1 1 320px}
+.tabs button{font-size:13px;padding:6px 10px;min-height:36px}
+.tabs button.sym.on{border-color:var(--sym);color:var(--sym)}
+input[type=range]{flex:1 1 140px;min-width:100px;accent-color:var(--accent)}
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
+.info>div{min-width:0}
+h2{font-size:22px;margin:0 0 6px;font-weight:800;text-wrap:balance}
+.info p{margin:0;max-width:60ch}
+ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+li{display:flex;gap:10px;align-items:flex-start;font-size:15px}
+.bd{flex:none;font:500 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:5px 7px;border-radius:3px;margin-top:2px;white-space:nowrap}
+.bd.v{background:var(--ver-bg);color:var(--ver)} .bd.r{background:var(--rep-bg);color:var(--rep)} .bd.s{background:var(--sym-bg);color:var(--sym)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13px;color:var(--muted);align-items:center;border-top:1px solid var(--line);padding-top:14px}
+.legend span{display:flex;gap:6px;align-items:center}
+footer{font-size:13px;color:var(--muted);display:flex;flex-direction:column;gap:6px}
+footer a{color:var(--accent)}
+@media (prefers-reduced-motion: reduce){*{scroll-behavior:auto!important}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="kick">SADV41 · TSEC · 9 de octubre de 2026</div>
+  <h1>Convergencia de las cuatro placas</h1>
+  <p class="sub">Animación del sismo de Azuero. Cada dato lleva una insignia que dice de dónde viene: medido por el USGS, reportado por una IA sin confirmar, o lectura simbólica de SADV41.</p>
+  <div class="stats" aria-label="Datos verificados del USGS">
+    <div class="stat"><b>M 7.7</b><span>Magnitud</span><i>VERIFICADO · USGS</i></div>
+    <div class="stat"><b>12,647 km</b><span>Profundidad</span><i>VERIFICADO · USGS</i></div>
+    <div class="stat"><b>12:56 p. m.</b><span>Hora de Panamá (17:56 UTC)</span><i>VERIFICADO · USGS</i></div>
+    <div class="stat"><b>13</b><span>Réplicas M≥5 en ~30 h</span><i>VERIFICADO · USGS</i></div>
+  </div>
+</header>
+
+<section class="stage" aria-label="Animación">
+  <canvas id="cv" role="img" aria-label="Animación del sismo de Azuero en cinco escenas"></canvas>
+  <div class="ctrl">
+    <button id="prev" aria-label="Escena anterior">◀</button>
+    <button id="play" aria-pressed="true">Pausa</button>
+    <button id="next" aria-label="Escena siguiente">▶</button>
+    <input id="seek" type="range" min="0" max="1000" value="0" aria-label="Avance de la escena">
+    <div class="tabs" id="tabs"></div>
+  </div>
+</section>
+
+<section class="info" aria-live="polite">
+  <div><h2 id="st"></h2><p id="sx"></p></div>
+  <ul id="sf"></ul>
+</section>
+
+<div class="legend">
+  <span><b class="bd v">Verificado · USGS</b> catálogo oficial</span>
+  <span><b class="bd r">Reportado · IA</b> sin confirmar</span>
+  <span><b class="bd s">Simbólico</b> lectura de SADV41</span>
+</div>
+
+<footer>
+  <div>Fuente de los datos medidos: <a href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000u18k" target="_blank" rel="noopener">USGS, evento us6000u18k</a>. Catálogo consultado el 10 de octubre de 2026 a las 18:45 hora de Panamá, eventos de magnitud 5.0 o más. Las cifras pueden ser revisadas.</div>
+  <div>Los dibujos de placas y fallas son esquemas, no mapas a escala.</div>
+</footer>
+</div>
+
+<script>
+(function(){
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d');
+const W=1000,H=600;
+const C={fg:'#e7ecef',dim:'#7f8c97',hot:'#ff7a45',gold:'#f0cf7a',white:'#fff7ea'};
+const MONO="'Chivo Mono',ui-monospace,Menlo,monospace",SANS="'Chivo',system-ui,sans-serif";
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const lerp=(a,b,t)=>a+(b-a)*t;
+const ss=(a,b,x)=>{const t=clamp((x-a)/(b-a),0,1);return t*t*(3-2*t)};
+
+function fit(){const r=cv.getBoundingClientRect();const d=Math.min(window.devicePixelRatio||1,2);cv.width=Math.max(1,Math.round(r.width*d));cv.height=Math.max(1,Math.round(r.width*H/W*d));}
+function txt(s,x,y,size,col,al,font,w){ctx.font=(w||'500')+' '+size+'px '+(font||SANS);ctx.fillStyle=col||C.fg;ctx.textAlign=al||'left';ctx.textBaseline='middle';ctx.fillText(s,x,y);}
+function poly(pts,fill,stroke,lw){ctx.beginPath();pts.forEach((p,i)=>i?ctx.lineTo(p[0],p[1]):ctx.moveTo(p[0],p[1]));ctx.closePath();if(fill){ctx.fillStyle=fill;ctx.fill();}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw||2;ctx.stroke();}}
+function arrow(x0,y0,x1,y1,col,T,lw){
+  const a=Math.atan2(y1-y0,x1-x0);ctx.strokeStyle=col;ctx.fillStyle=col;ctx.lineWidth=lw||5;ctx.lineCap='round';
+  ctx.beginPath();ctx.moveTo(x0,y0);ctx.lineTo(x1,y1);ctx.stroke();
+  ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x1-18*Math.cos(a-.45),y1-18*Math.sin(a-.45));ctx.lineTo(x1-18*Math.cos(a+.45),y1-18*Math.sin(a+.45));ctx.closePath();ctx.fill();
+  for(let i=0;i<3;i++){const ph=((T*.5)+i/3)%1;ctx.globalAlpha=Math.sin(ph*Math.PI)*.9;ctx.beginPath();ctx.arc(lerp(x0,x1,ph),lerp(y0,y1,ph),4,0,7);ctx.fill();}
+  ctx.globalAlpha=1;
+}
+function grad(x,y,r,stops){const g=ctx.createRadialGradient(x,y,0,x,y,r);stops.forEach(s=>g.addColorStop(s[0],s[1]));return g;}
+function tag(s,col){txt(s,24,30,22,col||C.dim,'left',MONO,'500');}
+
+/* Placas, vista en planta (esquema) */
+const PL={
+ carib:[[0,0],[1000,0],[1000,150],[900,170],[840,260],[700,250],[520,255],[330,250],[170,320],[0,350]],
+ cocos:[[0,600],[0,350],[170,320],[250,365],[380,380],[450,383],[450,600]],
+ nazca:[[450,600],[450,383],[520,385],[700,400],[830,340],[870,420],[1000,440],[1000,600]],
+ sud:[[830,340],[840,260],[900,170],[1000,150],[1000,440],[870,420]],
+ micro:[[170,320],[330,250],[520,255],[700,250],[840,260],[830,340],[700,400],[520,385],[380,380],[250,365]]
+};
+const COL={carib:'#2a2e55',cocos:'#1f3a5e',nazca:'#27474d',sud:'#443f30',micro:'#5a3226'};
+function plates(dim,glow,gold){
+  ctx.globalAlpha=dim;
+  ['carib','cocos','nazca','sud'].forEach(k=>poly(PL[k],COL[k],'rgba(255,255,255,.16)',2));
+  poly(PL.micro,gold?'#5b4a22':COL.micro,null);
+  ctx.globalAlpha=1;
+  if(glow>0){ctx.save();ctx.shadowColor=gold?C.gold:C.hot;ctx.shadowBlur=24*glow;poly(PL.micro,null,gold?`rgba(240,207,122,${.3+.6*glow})`:`rgba(255,122,69,${.25+.65*glow})`,3+5*glow);ctx.restore();}
+}
+function plateLabels(){
+  txt('PLACA DEL CARIBE',30,70,24,'#98a0d8','left',MONO);
+  txt('PLACA DE COCOS',30,560,24,'#7fa8d8','left',MONO);
+  txt('PLACA DE NAZCA',700,572,24,'#82b4ba','left',MONO);
+  txt('SUDAMERICANA',990,100,22,'#c9b98a','right',MONO);
+  txt('MICROPLACA DE PANAMÁ',520,322,26,C.white,'center',SANS,'800');
+}
+
+function s1(t,T){
+  plates(1,.25+.75*t);plateLabels();tag('VISTA EN PLANTA · ESQUEMA');
+  const k=1+.06*Math.sin(T*3);
+  arrow(110,540,110+150*k,540-100*k,'#7fb0ff',T);
+  arrow(600,575,600+55*k,575-105*k,'#7fd6dc',T);
+  arrow(420,60,430,60+130*k,'#aab2ff',T);
+  arrow(985,330,985-90*k,332,'#e6d49a',T);
+  const ex=380,ey=378,r=10+14*((T*.8)%1);
+  ctx.strokeStyle=`rgba(255,255,255,${1-((T*.8)%1)})`;ctx.lineWidth=3;ctx.beginPath();ctx.arc(ex,ey,r,0,7);ctx.stroke();
+  ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(ex,ey,7,0,7);ctx.fill();
+  txt('epicentro (posición aproximada)',ex+18,ey+34,20,C.white,'left',MONO);
+}
+
+function s2(t,T){
+  const y0=130,k=9,hx=560,hy=y0+12.647*k;
+  ctx.fillStyle='#12304a';ctx.fillRect(0,y0,W,24);
+  ctx.fillStyle='#232a33';ctx.fillRect(0,y0+24,W,30*k-24);
+  ctx.beginPath();ctx.moveTo(110,y0);for(let x=110;x<=1000;x+=10)ctx.lineTo(x,y0-8-9*Math.sin(x*.025)-5*Math.sin(x*.07+1));ctx.lineTo(1000,y0);ctx.closePath();ctx.fillStyle='#232a33';ctx.fill();
+  ctx.fillStyle='#2b2227';ctx.fillRect(0,y0+30*k,W,H-(y0+30*k));
+  poly([[0,150],[110,150],[1000,560],[1000,640],[130,222],[0,222]],'#35506f',null);
+  ctx.strokeStyle='rgba(255,255,255,.25)';ctx.setLineDash([8,8]);ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,y0+30*k);ctx.lineTo(W,y0+30*k);ctx.stroke();ctx.setLineDash([]);
+  txt('base de la corteza ≈ 30 km (valor típico)',990,y0+30*k+18,18,C.dim,'right',MONO);
+  // regla de profundidad
+  for(let d=0;d<=40;d+=10){const y=y0+d*k;if(y>H)break;ctx.strokeStyle='rgba(255,255,255,.4)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(16,y);ctx.stroke();txt(d+' km',22,y+(d?0:12),18,C.dim,'left',MONO);}
+  // 24 km del vídeo original
+  const y24=y0+24*k;ctx.strokeStyle='rgba(255,255,255,.28)';ctx.setLineDash([4,8]);ctx.beginPath();ctx.moveTo(90,y24);ctx.lineTo(hx,y24);ctx.stroke();ctx.setLineDash([]);
+  txt('24 km · cifra del vídeo original (incorrecta)',100,y24+16,20,C.dim,'left',MONO);
+  // deformación acumulada
+  const pr=.15+.55*t,rr=40+90*t+6*t*Math.sin(T*6);
+  ctx.fillStyle=grad(hx,hy,rr+30,[[0,`rgba(255,160,90,${pr+.2})`],[.5,`rgba(255,100,50,${pr*.5})`],[1,'rgba(255,100,50,0)']]);ctx.fillRect(hx-rr-40,hy-rr-40,2*rr+80,2*rr+80);
+  ctx.strokeStyle=`rgba(255,200,150,${.2+.5*t})`;ctx.lineWidth=2;for(let i=0;i<6;i++){const a=i*1.05+.3,l=20+50*t*(.6+.4*Math.sin(i*2+T*4));ctx.beginPath();ctx.moveTo(hx,hy);ctx.lineTo(hx+Math.cos(a)*l,hy+Math.sin(a)*l);ctx.stroke();}
+  // línea y marca del hipocentro
+  ctx.strokeStyle='#fff';ctx.lineWidth=2;ctx.setLineDash([2,6]);ctx.beginPath();ctx.moveTo(90,hy);ctx.lineTo(hx,hy);ctx.stroke();ctx.setLineDash([]);
+  txt('12,647 km · USGS',100,hy-14,22,'#fff','left',MONO,'500');
+  ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(hx,hy,8,0,7);ctx.fill();
+  txt('hipocentro',hx+18,hy+2,20,C.white,'left',MONO);
+  // empujes
+  const k2=1+.06*Math.sin(T*3);
+  arrow(230,248,230+110*k2,248+50*k2,'#7fb0ff',T);txt('Cocos / Nazca',120,215,20,'#9fc0ea','left',MONO);
+  arrow(960,175,960-110*k2,175,'#aab2ff',T);txt('Caribe · Sudamericana',985,150,20,'#aab2ff','right',MONO);
+  txt('SUR',24,100,20,C.dim,'left',MONO);txt('NORTE',976,100,20,C.dim,'right',MONO);
+  tag('CORTE SUR → NORTE · ESQUEMA');
+  txt('presión acumulada',hx,hy-rr-34,22,'#ffb48a','center',MONO);
+}
+
+const HX=440,HY=300,L=780;
+function s3(t,T){
+  const p0=.08,ph=clamp((t-p0)/.45,0,1),run=t>=p0;
+  const Rf=ph*470,maxS=36;
+  const shake=run&&t<.62?(1-ss(.3,.62,t))*6:0;
+  ctx.save();
+  if(shake)ctx.translate((Math.random()-.5)*shake,(Math.random()-.5)*shake);
+  ctx.fillStyle='#10171e';ctx.fillRect(-20,-20,W+40,H+40);
+  const d=x=>maxS*ss(0,80,Rf-Math.abs(x-HX))*(Math.abs(x-HX)<(x<HX?310:430)?1:0);
+  ctx.lineWidth=2;
+  for(let x=0;x<=W;x+=25){
+    const dx=d(x);
+    ctx.strokeStyle='rgba(180,200,215,.35)';ctx.beginPath();ctx.moveTo(x-dx,0);ctx.lineTo(x-dx,HY);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(x+dx,HY);ctx.lineTo(x+dx,H);ctx.stroke();
+  }
+  for(let y=50;y<H;y+=50){if(Math.abs(y-HY)<10)continue;ctx.strokeStyle='rgba(180,200,215,.18)';ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+  // falla
+  ctx.save();ctx.shadowColor=C.hot;ctx.shadowBlur=18;ctx.strokeStyle='rgba(255,255,255,.2)';ctx.lineWidth=3;ctx.beginPath();ctx.moveTo(HX-310,HY);ctx.lineTo(HX+430,HY);ctx.stroke();
+  if(run){ctx.strokeStyle=C.hot;ctx.lineWidth=7;ctx.beginPath();ctx.moveTo(Math.max(HX-310,HX-Rf),HY);ctx.lineTo(Math.min(HX+430,HX+Rf),HY);ctx.stroke();}
+  ctx.restore();
+  // ondas
+  if(run){
+    const e=t-p0;
+    [[1.0,'P','#ffd9a8'],[.58,'S','#ff7a45']].forEach(w=>{
+      const r=e*1500*w[0];if(r<2)return;
+      ctx.strokeStyle=w[2];ctx.globalAlpha=clamp(1-r/760,0,1)*.9;ctx.lineWidth=w[1]==='P'?3:5;ctx.beginPath();ctx.arc(HX,HY,r,0,7);ctx.stroke();ctx.globalAlpha=1;
+      if(r>40&&r<700)txt('onda '+w[1],HX+r*.707+8,HY-r*.707-8,20,w[2],'left',MONO);
+    });
+    if(t<.22){ctx.fillStyle=grad(HX,HY,160,[[0,`rgba(255,240,220,${1-(t-p0)/.14})`],[1,'rgba(255,200,150,0)']]);ctx.fillRect(HX-170,HY-170,340,340);}
+  }
+  ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(HX,HY,7,0,7);ctx.fill();
+  ctx.restore();
+  // etiquetas
+  const k=1+.06*Math.sin(T*3);
+  if(t<.7){arrow(900,230,900-60*k,230,'#e6d49a',T,4);arrow(100,370,100+60*k,370,'#e6d49a',T,4);}
+  txt('bloque norte → oeste',990,205,20,C.dim,'right',MONO);txt('bloque sur → este',24,408,20,C.dim,'left',MONO);
+  txt('falla de desplazamiento lateral (reportado)',24,HY-26,20,C.dim,'left',MONO);
+  tag('VISTA EN PLANTA · ESQUEMA');
+  const s=Math.round(35*ph);
+  txt('t = '+String(s).padStart(2,'0')+' s',976,30,30,'#fff','right',MONO,'500');
+  txt('ruptura de 35 s: reportado (IA)',976,580,18,C.dim,'right',MONO);
+}
+
+/* Réplicas M>=5, datos del USGS */
+const EV=[
+ ['2026-10-09T17:56:06Z',7.7],['2026-10-09T18:22:15Z',5.5],['2026-10-09T18:37:46Z',5.8],['2026-10-09T18:47:04Z',5.0],
+ ['2026-10-09T18:50:12Z',5.0],['2026-10-09T19:04:49Z',5.0],['2026-10-09T19:48:55Z',5.2],['2026-10-09T20:21:37Z',5.0],
+ ['2026-10-09T20:25:39Z',6.6],['2026-10-09T20:42:08Z',5.0],['2026-10-09T23:10:02Z',5.0],['2026-10-09T23:12:37Z',5.4],
+ ['2026-10-10T02:26:32Z',5.1],['2026-10-10T04:14:01Z',6.0]
+].map(e=>({h:(Date.parse(e[0])-Date.parse(EV0()))/36e5,m:e[1]}));
+function EV0(){return '2026-10-09T17:56:06Z'}
+const QH=(Date.parse('2026-10-10T23:45:00Z')-Date.parse(EV0()))/36e5;
+function s4(t,T){
+  const L0=96,R0=960,T0=96,B0=500,xm=30,y0=4.5,y1=8.2;
+  const X=h=>L0+h/xm*(R0-L0),Y=m=>B0-(m-y0)/(y1-y0)*(B0-T0);
+  ctx.strokeStyle='rgba(255,255,255,.12)';ctx.lineWidth=1;
+  [5,6,7,8].forEach(m=>{ctx.beginPath();ctx.moveTo(L0,Y(m));ctx.lineTo(R0,Y(m));ctx.stroke();txt('M'+m,L0-12,Y(m),22,C.dim,'right',MONO);});
+  for(let h=0;h<=30;h+=5){ctx.strokeStyle='rgba(255,255,255,.3)';ctx.beginPath();ctx.moveTo(X(h),B0);ctx.lineTo(X(h),B0+8);ctx.stroke();txt(h+' h',X(h),B0+30,20,C.dim,'center',MONO);}
+  txt('horas desde el sismo principal',(L0+R0)/2,B0+66,20,C.dim,'center',MONO);
+  ctx.strokeStyle='rgba(255,255,255,.4)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(L0,B0);ctx.lineTo(R0,B0);ctx.stroke();
+  const reach=clamp(t/.8,0,1)*QH;
+  let n=0;
+  EV.forEach((e,i)=>{
+    if(e.h>reach)return;if(i)n++;
+    const x=X(e.h),y=Y(e.m),r=5+(e.m-4.5)*5,main=i===0,age=clamp((reach-e.h)*3,0,1);
+    ctx.strokeStyle=main?'#fff':'rgba(255,122,69,.7)';ctx.lineWidth=main?4:2.5;ctx.beginPath();ctx.moveTo(x,B0);ctx.lineTo(x,y);ctx.stroke();
+    ctx.save();ctx.shadowColor=main?'#fff':C.hot;ctx.shadowBlur=14*(1-age)+4;ctx.fillStyle=main?'#fff':C.hot;ctx.beginPath();ctx.arc(x,y,r,0,7);ctx.fill();ctx.restore();
+    if(e.m>=6)txt('M'+e.m.toFixed(1),x+r+8,y-2,main?26:22,main?'#fff':'#ffb48a','left',MONO,'500');
+  });
+  const ex=X(QH);ctx.strokeStyle='rgba(127,176,255,.7)';ctx.setLineDash([6,8]);ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(ex,T0+10);ctx.lineTo(ex,B0);ctx.stroke();ctx.setLineDash([]);
+  if(reach>=QH-.5)txt('consulta',ex-8,T0+24,20,'#7fb0ff','right',MONO);
+  txt(n+' réplicas M≥5',24,34,30,'#fff','left',MONO,'500');
+  txt('USGS · hora UTC convertida a horas transcurridas',24,66,18,C.dim,'left',MONO);
+}
+
+function wing(sg){ctx.beginPath();ctx.moveTo(sg*8,-12);ctx.bezierCurveTo(sg*60,-80,sg*115,-45,sg*104,12);ctx.bezierCurveTo(sg*84,-4,sg*64,12,sg*48,28);ctx.bezierCurveTo(sg*34,10,sg*20,4,sg*8,10);ctx.closePath();}
+function angel(x,y,s,a,T,ph){
+  const by=Math.sin(T*1.6+ph)*5;
+  ctx.save();ctx.translate(x,y+by);ctx.scale(s,s);ctx.globalAlpha=a;
+  ctx.fillStyle=grad(0,0,120,[[0,'rgba(255,230,160,.55)'],[1,'rgba(255,230,160,0)']]);ctx.fillRect(-120,-120,240,240);
+  [-1,1].forEach(sg=>{wing(sg);ctx.fillStyle='rgba(255,248,230,.88)';ctx.fill();ctx.strokeStyle='rgba(240,207,122,.9)';ctx.lineWidth=2;ctx.stroke();});
+  ctx.beginPath();ctx.moveTo(-14,-8);ctx.lineTo(14,-8);ctx.lineTo(26,64);ctx.lineTo(-26,64);ctx.closePath();
+  const g=ctx.createLinearGradient(0,-8,0,64);g.addColorStop(0,'#fffaf0');g.addColorStop(1,'rgba(240,207,122,.5)');ctx.fillStyle=g;ctx.fill();
+  ctx.fillStyle='#fffaf0';ctx.beginPath();ctx.arc(0,-24,10,0,7);ctx.fill();
+  ctx.strokeStyle=C.gold;ctx.lineWidth=2.5;ctx.beginPath();ctx.ellipse(0,-42,13,4,0,0,7);ctx.stroke();
+  ctx.restore();
+}
+function s5(t,T){
+  plates(.5,.4+.6*ss(.2,.9,t),true);
+  const cx=520,cy=320;
+  ctx.fillStyle=grad(cx,cy,380,[[0,`rgba(240,207,122,${.38*ss(.25,.95,t)})`],[1,'rgba(240,207,122,0)']]);ctx.fillRect(0,0,W,H);
+  for(let i=0;i<3;i++){const r=((T*.25)+i/3)%1*340;ctx.strokeStyle=`rgba(240,207,122,${.5*(1-r/340)})`;ctx.lineWidth=3;ctx.beginPath();ctx.ellipse(cx,cy,r*1.5,r*.8,0,0,7);ctx.stroke();}
+  const A=[[500,95,'N',0],[500,515,'S',1.5],[930,310,'E',3],[80,310,'O',4.5]];
+  A.forEach((a,i)=>{
+    const f=ss(.1+i*.12,.35+i*.12,t);
+    if(f<=0)return;
+    const g=ctx.createLinearGradient(a[0],a[1],cx,cy);g.addColorStop(0,`rgba(255,235,170,${.55*f})`);g.addColorStop(1,'rgba(255,235,170,0)');
+    ctx.strokeStyle=g;ctx.lineWidth=18;ctx.lineCap='round';ctx.beginPath();ctx.moveTo(a[0],a[1]);ctx.lineTo(lerp(a[0],cx,.8),lerp(a[1],cy,.8));ctx.stroke();
+    angel(a[0],a[1],.82,f,T,a[3]);
+    txt(a[2],a[0],a[1]+(a[2]==='S'?-92:a[2]==='N'?92:96),24,C.gold,'center',MONO,'500');
+  });
+  tag('CAPA SIMBÓLICA · NO ES UN DATO CIENTÍFICO',C.gold);
+  txt('los cuatro ángeles bendicen el estrado',500,578,22,C.gold,'center',MONO);
+}
+
+const SC=[
+ {n:'Las cuatro placas',d:12,f:s1,tab:'1 · Placas',
+  x:'Panamá se asienta sobre una microplaca rodeada por las placas de Cocos, Nazca, Caribe y Sudamericana. Entre todas acumulan presión en los bordes de la microplaca.',
+  fa:[['r','Microplaca de Panamá rodeada por cuatro placas'],['r','Qué placa empuja más: las IAs no coinciden (una dijo Cocos, otra Nazca) y falta contrastarlo con el IGC-UP o el USGS']]},
+ {n:'Corte a 12,6 km de profundidad',d:12,f:s2,tab:'2 · Corte',
+  x:'Vista lateral de sur a norte. La presión se concentra alrededor del hipocentro. La cifra de 24 km del vídeo original queda marcada como incorrecta.',
+  fa:[['v','Profundidad del hipocentro: 12,647 km'],['v','Magnitud M 7.7, a 12 km al WSW de Pitaloza Arriba'],['r','Espesor de corteza ≈ 30 km es un valor típico, no medido aquí']]},
+ {n:'La ruptura y las ondas',d:15,f:s3,tab:'3 · Ruptura',
+  x:'Vista desde arriba. La falla se suelta y desplaza los bloques en sentidos opuestos. Las ondas P, más rápidas, salen antes que las S, que sacuden con más fuerza.',
+  fa:[['v','Inicio: 17:56:06 UTC, que son las 12:56 p. m. en Panamá'],['r','Ruptura de unos 35 s y más de 100 km: sin confirmar'],['r','Movimiento lateral izquierdo en el sistema Azuero-Soná: sin confirmar']]},
+ {n:'Las réplicas',d:14,f:s4,tab:'4 · Réplicas',
+  x:'Cada punto es una réplica de magnitud 5 o más. Casi todas llegaron en las primeras 11 horas.',
+  fa:[['v','13 réplicas M≥5 hasta la consulta, unas 30 h después'],['v','La mayor: M6.6 a las 15:25 hora local, a 14 km al oeste de Río Grande'],['v','Otra de M6.0 a las 23:14 del 9 de octubre, hora local'],['v','Desde ese momento no aparecen más de M≥5 en el catálogo consultado']]},
+ {n:'El estrado',d:14,f:s5,tab:'5 · Estrado',sym:1,
+  x:'Esta escena es la lectura de SADV41: cuatro ángeles en los cuatro puntos cardinales y una luz que desciende sobre el istmo. Va separada de los datos para que nadie la confunda con una medición.',
+  fa:[['s','Cuatro ángeles en los cuatro puntos cardinales, resonando con las cuatro placas'],['s','Luz dorada sobre la microplaca de Panamá como estrado'],['s','Ninguna parte de esta escena viene de una medición']]}
+];
+const BD={v:['Verificado · USGS','v'],r:['Reportado · IA','r'],s:['Simbólico','s']};
+
+let si=0,p=.3,playing=!matchMedia('(prefers-reduced-motion: reduce)').matches,last=0,T=0;
+if(!playing)p=.82;
+const $=id=>document.getElementById(id);
+const tabs=$('tabs');
+SC.forEach((s,i)=>{const b=document.createElement('button');b.textContent=s.tab;if(s.sym)b.className='sym';b.onclick=()=>go(i,0);tabs.appendChild(b);});
+function info(){
+  const s=SC[si];$('st').textContent=s.n;$('sx').textContent=s.x;
+  $('sf').innerHTML=s.fa.map(f=>`<li><span class="bd ${BD[f[0]][1]}">${BD[f[0]][0]}</span><span>${f[1]}</span></li>`).join('');
+  [...tabs.children].forEach((b,i)=>b.classList.toggle('on',i===si));
+}
+function go(i,pp){si=(i+SC.length)%SC.length;p=pp;info();draw();}
+function draw(){
+  const s=cv.width/W;ctx.setTransform(s,0,0,s,0,0);ctx.fillStyle='#0a1016';ctx.fillRect(0,0,W,H);
+  ctx.lineCap='butt';SC[si].f(p,T);
+  $('seek').value=Math.round(p*1000);
+}
+function loop(ts){
+  const dt=last?Math.min((ts-last)/1000,.1):0;last=ts;T+=dt;
+  if(playing){p+=dt/SC[si].d;if(p>=1)go(si+1,0);}
+  draw();requestAnimationFrame(loop);
+}
+$('play').onclick=()=>{playing=!playing;$('play').textContent=playing?'Pausa':'Reproducir';$('play').setAttribute('aria-pressed',playing);};
+$('prev').onclick=()=>go(si-1,0);$('next').onclick=()=>go(si+1,0);
+$('seek').oninput=e=>{p=e.target.value/1000;draw();};
+if(!playing){$('play').textContent='Reproducir';$('play').setAttribute('aria-pressed','false');}
+addEventListener('resize',()=>{fit();draw();});
+fit();info();draw();
+document.fonts&&document.fonts.ready.then(draw);
+window.__go=(i,pp)=>{go(i,pp);};
+requestAnimationFrame(loop);
+})();
+</script>
+
+</body></html>
