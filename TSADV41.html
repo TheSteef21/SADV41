@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>SADV41 - Telemetría Sísmica</title>
+</head>
+<body>
+    <div id="insignia-verificacion">
+        <!-- La insignia se ata dinámicamente al eventid -->
+    </div>
+    
+    <!-- Tu canvas HTML5 aquí -->
+    <canvas id="sismoCanvas" width="800" height="400"></canvas>
+
+    <script>
+        // Coordenadas aproximadas para el bounding box de Azuero
+        const urlUSGS = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-10-09&minmagnitude=5.0&minlatitude=7.0&maxlatitude=8.5&minlongitude=-81.5&maxlongitude=-80.0';
+
+        fetch(urlUSGS)
+            .then(response => response.json())
+            .then(data => {
+                // El USGS devuelve los eventos ordenados por tiempo (descendente por defecto)
+                // Invertimos para tener orden cronológico
+                const eventos = data.features.reverse();
+                
+                // Extraemos el evento principal (asumiendo que es el de mayor magnitud o el primero en la secuencia específica)
+                const evento_principal = eventos.find(e => e.id === 'us6000u18k') || eventos[0];
+                const replicas = eventos.filter(e => e.id !== evento_principal.id);
+
+                const horaPrincipal = evento_principal.properties.time;
+
+                // Construimos el array EV unificado que tu canvas necesita
+                const EV = [
+                    [new Date(horaPrincipal).toISOString(), evento_principal.properties.mag],
+                    ...replicas.map(r => [new Date(r.properties.time).toISOString(), r.properties.mag])
+                ];
+
+                // Renderizamos la insignia atada a la fuente primaria
+                document.getElementById('insignia-verificacion').innerHTML = `
+                    <span>VERIFICADO - FDSNWS Event ID: <a href="${evento_principal.properties.url}" target="_blank">${evento_principal.id}</a></span>
+                    <br><small>Última actualización automática: ${new Date().toISOString()}</small>
+                `;
+
+                // Aquí insertas tu lógica del canvas existente
+                // EV.forEach(...) usando (time - horaPrincipal) / 36e5 para X(horas_relativas)
+                console.log("Datos para Canvas listos:", EV);
+            })
+            .catch(error => console.error("Error consultando al USGS:", error));
+    </script>
+</body>
+</html>
