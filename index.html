@@ -1,616 +1,204 @@
-<section id="sismos-sadv41" style="border:1px solid #00e5ff; border-radius:16px; padding:18px; background:#0a0a0a; margin:20px 0;">
-  <h2 style="color:#00e5ff; letter-spacing:0.2em; font-size:13px;">SADV41 // SISMOS Y TERREMOTOS // USGS LIVE</h2>
-  <p style="color:#888; font-size:11px; margin:8px 0;">Feed oficial USGS • Protocolo Berión A217 • Panamá 7.0-9.8N / -83 a -77W</p>
-  
-  <iframe src="./SISMOS/index.html" style="width:100%; height:620px; border:0; border-radius:12px;"></iframe>
-  
-  <div style="margin-top:12px; display:flex; gap:10px;">
-    <a href="./SISMOS/index.html" style="padding:10px 16px; background:#00e5ff; color:#000; border-radius:8px; text-decoration:none; font-weight:800; font-size:12px;">ABRIR MAPA COMPLETO</a>
-    <a href="https://github.com/TheSteef21/usgs" style="padding:10px 16px; border:1px solid #222; color:#fff; border-radius:8px; text-decoration:none; font-size:12px;">VER CÓDIGO</a>
-  </div>
-</section>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSADV41 x SADV41 | OMNIPRESENTE: Logia y Sismos 🇵🇦</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SADV41 // OMNIPRESENTE</title>
+  
+  <style>
+    /* Tipografías Optimistic */
+    @font-face {
+      font-family: "Optimistic";
+      font-style: normal;
+      font-weight: 400 600;
+      font-display: swap;
+      src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Optimistic Mono";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+    }
     
-    <!-- GitHub Pages Persistence Metadata & Auto-Keepalive Script Hook -->
-    <meta name="generator" content="GSADV41-Core-Engine">
-    <meta name="cache-control" content="no-cache, no-store, must-revalidate">
-
-    <!-- Tipografías Sagradas & Iconos -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&family=Pirata+One&display=swap" rel="stylesheet">
+    /* Variables y Reset Base */
+    :where(html) {
+      font-family: "Optimistic", system-ui, sans-serif;
+      background-color: #030305;
+      color: #e8e8e8;
+    }
+    :where(code, pre, kbd, samp) {
+      font-family: "Optimistic Mono", ui-monospace, monospace;
+    }
+    body {
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
     
-    <!-- Leaflet CSS (Sismos) -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    /* Estilos para el visor de código */
+    .code-viewer {
+      width: 100%;
+      max-width: 1000px;
+      background: #0a0a0a;
+      border: 1px solid #222;
+      border-radius: 16px;
+      padding: 20px;
+      overflow-x: auto;
+    }
+    .code-container {
+      display: flex;
+      align-items: flex-start;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .line-numbers {
+      color: #555;
+      border-right: 1px solid #222;
+      padding-right: 16px;
+      margin-right: 16px;
+      text-align: right;
+      user-select: none;
+      min-width: 30px;
+    }
+    .shiki span { color: var(--shiki-dark); }
+  </style>
+</head>
+<body>
 
-    <!-- Web3 & Auth Scripts -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
+  <!-- MODULO SADV41 - SISMOS USGS - VERSION OPTIMIZADA PARA HTML PESADO -->
+  <section id="sismos-sadv41" style="width: 100%; max-width: 1000px; border:1px solid #00e5ff; border-radius:16px; padding:18px; background:#0a0a0a; position:relative; overflow:hidden; box-sizing: border-box;">
+    <!-- Brillo SADV41 -->
+    <div style="position:absolute; top:-50%; left:-50%; width:200%; height:200%; background:radial-gradient(circle at center, rgba(0,229,255,0.07) 0%, transparent 40%); pointer-events:none;"></div>
+    
+    <div style="position:relative; z-index:1;">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <h2 style="color:#00e5ff; letter-spacing:0.2em; font-size:13px; margin:0;">SADV41 // SISMOS Y TERREMOTOS // USGS LIVE</h2>
+        <span id="sadv41-sismos-status" style="font-size:10px; color:#555; border:1px solid #1a1a1a; padding:4px 8px; border-radius:20px;">● STANDBY - CARGANDO EN SCROLL</span>
+      </div>
+      <p style="color:#888; font-size:11px; margin:8px 0 14px 0;">Feed oficial USGS • Protocolo Berión A217 • Vigilancia Panamá 7.0-9.8N / -83 a -77W • Auto-refresh 60s</p>
+      
+      <!-- Contenedor con placeholder para no cargar mapa hasta que entre en viewport -->
+      <div id="sismos-loader" style="width:100%; height:620px; border-radius:12px; background:#111; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; border:1px dashed #222;">
+        <div style="width:40px; height:40px; border:2px solid #00e5ff; border-top-color:transparent; border-radius:50%; animation:spin 1s linear infinite;"></div>
+        <span style="font-size:11px; color:#666; letter-spacing:0.1em;">SADV41 VIGILANCIA ACTIVA - SCROLL PARA ACTIVAR MAPA</span>
+      </div>
 
-    <!-- Configuración Tailwind -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        navy: '#020617',
-                        obsidiana: '#030305',
-                        oro: '#d4af37',
-                        sunGold: '#f59e0b',
-                        blanco: '#f8fafc',
-                        cyanNeon: '#00f3ff',
-                        violetNeon: '#9d4edd',
-                        redNeon: '#FB542B',
-                        tacticalOrange: '#FB542B',
-                        borgona: '#4a0010',
-                        neonGreen: '#10b981',
-                        renderRed: '#da3637',
-                        bnbYellow: '#F3BA2F',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
-                        mason: ['Cinzel', 'serif'],
-                        mono: ['JetBrains Mono', 'monospace'],
-                        pirate: ['Pirata One', 'cursive'],
-                    }
-                }
-            }
-        }
-    </script>
+      <div id="sismos-iframe-wrap" style="display:none; width:100%; height:620px; border-radius:12px; overflow:hidden; background:#111; position:relative;">
+        <!-- El iframe se inyecta por JS solo cuando entra en viewport -->
+      </div>
+
+      <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+        <a href="./SISMOS/index.html" target="_blank" style="padding:10px 16px; background:#00e5ff; color:#000; border-radius:8px; text-decoration:none; font-weight:800; font-size:12px; letter-spacing:0.05em;">ABRIR MAPA COMPLETO ↗</a>
+        <a href="https://github.com/TheSteef21/usgs" target="_blank" style="padding:10px 16px; border:1px solid #222; color:#e8e8e8; border-radius:8px; text-decoration:none; font-size:12px;">VER CODIGO / API</a>
+        <span style="padding:10px 16px; border:1px solid #1a1a1a; color:#555; border-radius:8px; font-size:10px;">@sismosyterremotos • AUTO IG</span>
+      </div>
+    </div>
 
     <style>
-        :root { 
-            --oro: #d4af37; --sun-gold: #f59e0b;
-            --obsidiana: #030305; --navy: #020617;
-            --cyan: #00f3ff; --violet: #9d4edd;
-            --red: #FB542B; --green: #1DB954;
-            --blue: #7AF6FF; --orange: #FFC26A;
-            --bnb: #F3BA2F;
-        }
-
-        body {
-            background-color: var(--obsidiana);
-            color: #f8fafc;
-            font-family: 'Inter', system-ui, sans-serif;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* --- FONDOS CAOS VIVO & GRAND LINE --- */
-        .grand-line-bg { position: fixed; inset: 0; z-index: 0; background: radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.1) 0%, transparent 60%), radial-gradient(circle at 80% 80%, rgba(0, 243, 255, 0.08) 0%, transparent 50%), linear-gradient(to bottom, transparent, rgba(3, 3, 5, 0.9)); pointer-events: none; }
-        .chaos-bg-container { position: fixed; inset: 0; z-index: -1; background: #000; pointer-events: none; overflow: hidden; }
-        .chaos-layer { position: absolute; inset: -20px; background-size: cover; background-position: center; opacity: 0; mix-blend-mode: screen; filter: contrast(125%) brightness(95%) saturate(1.2); transition: opacity 3.5s, transform 9s, filter 0.3s; }
-        .chaos-layer.active { opacity: 0.35; transform: scale(1.09) rotate(0.6deg); }
-        .grid-pattern { background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px); background-size: 32px 32px; opacity: 0.25; }
-        .scanline { width: 100%; height: 2px; background: linear-gradient(90deg, transparent, rgba(0,243,255,0.4), transparent); position: fixed; z-index: 60; top: 0; pointer-events: none; animation: scanline 8s linear infinite; }
-        @keyframes scanline { 0% { top: 0; } 100% { top: 100%; } }
-
-        /* --- CRISTALES, GLOWS & EFECTOS --- */
-        .glass { background: rgba(8, 12, 28, 0.88); backdrop-filter: blur(18px); border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 16px; }
-        .glass-strong { background: rgba(3, 6, 15, 0.94); backdrop-filter: blur(22px); border: 1px solid rgba(0, 243, 255, 0.3); }
-        .logia-card { background: linear-gradient(145deg, rgba(10,10,10,0.88), rgba(20,20,20,0.88)); border: 1px solid rgba(212, 175, 55, 0.18); box-shadow: 0 15px 35px rgba(0,0,0,0.9), inset 0 0 20px rgba(212, 175, 55, 0.05); transition: all 0.5s ease; backdrop-filter: blur(12px); position: relative; overflow: hidden; }
-        .logia-card:hover { border-color: rgba(0, 243, 255, 0.5); box-shadow: 0 20px 40px rgba(0,0,0,0.9), inset 0 0 30px rgba(0, 243, 255, 0.1); transform: translateY(-3px); }
-        .gold-glow { box-shadow: 0 0 40px rgba(212,175,55,.18), inset 0 0 22px rgba(212,175,55,.05); border-color: var(--oro); }
-        .cyan-glow { box-shadow: 0 0 28px rgba(0,243,255,.18), inset 0 0 18px rgba(0,243,255,.05); border-color: var(--cyan); }
-        .esoterico-glow { text-shadow: 0 0 25px rgba(212, 175, 55, 0.7); }
-        .aporia-glow { box-shadow: 0 0 40px rgba(255,255,255,.3), inset 0 0 30px rgba(212,175,55,.2); border-color: #fff; }
-
-        /* --- ESTILOS DEL MAPA Y SISMOS --- */
-        #map { height: 400px; width: 100%; border-radius: 12px; border: 1px solid rgba(0, 243, 255, 0.2); z-index: 10; }
-        .mag { font-weight: 900; padding: 4px 8px; border-radius: 6px; background: #1a1a1a; display: inline-block; min-width: 45px; text-align: center; }
-        .mag.crit { background: var(--red); color: white; box-shadow: 0 0 10px rgba(251, 84, 43, 0.5); }
-        .mag.high { background: #ff9500; color: black; box-shadow: 0 0 10px rgba(255, 149, 0, 0.5); }
-        .mag.med { background: #ffcc00; color: black; }
-        .quake-row { border-bottom: 1px solid rgba(255,255,255,0.05); padding: 10px 0; }
-        .quake-row:last-child { border-bottom: none; }
-        .sismos-scroll { max-height: 300px; overflow-y: auto; padding-right: 10px; }
-        .sismos-scroll::-webkit-scrollbar { width: 6px; }
-        .sismos-scroll::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); border-radius: 10px; }
-        .sismos-scroll::-webkit-scrollbar-thumb { background: rgba(0, 243, 255, 0.3); border-radius: 10px; }
-
-        /* --- TERMINAL 4D --- */
-        .terminal-block { background: #050505; border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; font-family: 'JetBrains Mono', monospace; padding: 15px; position: relative; overflow: hidden; box-shadow: inset 0 0 20px rgba(0,0,0,1); }
-        .terminal-header { display: flex; gap: 6px; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; }
-        .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
-        .t-red { background: #ff5f56; } .t-yellow { background: #ffbd2e; } .t-green { background: #27c93f; }
-        
-        /* --- METATRON 3D --- */
-        #flower-container { perspective: 1400px; width: 100%; height: 350px; display: flex; justify-content: center; align-items: center; position: relative; overflow: visible; touch-action: none; }
-        #flower-scene { width: 380px; height: 380px; transform-style: preserve-3d; position: relative; cursor: grab; }
-        #flower-scene:active { cursor: grabbing; }
-        .flower-plane { position: absolute; top: 0; left: 0; width: 100%; height: 100%; transform-style: preserve-3d; opacity: .22; pointer-events: none; }
-        .node-3d { position: absolute; left: 50%; top: 50%; transform-style: preserve-3d; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; will-change: transform, z-index, opacity; }
-        .node-dot { width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgba(255,255,255,.9); box-shadow: 0 0 12px currentColor; transition: all .22s ease; }
-        .node-label { margin-top: 6px; font-size: 8.5px; letter-spacing: .08em; font-weight: 700; text-transform: uppercase; white-space: nowrap; padding: 2px 5px; border-radius: 4px; background: rgba(0,0,0,.78); border: 1px solid rgba(255,255,255,.15); pointer-events: none; transition: all .22s; font-family: 'JetBrains Mono', monospace; }
-        .node-3d:hover .node-dot { width: 22px; height: 22px; box-shadow: 0 0 22px currentColor, 0 0 36px currentColor; background: #fff !important; }
-        .node-3d:hover .node-label { background: #fff; color: #000 !important; transform: scale(1.15); }
+      @keyframes spin { to { transform: rotate(360deg); } }
     </style>
-</head>
-<body class="antialiased selection:bg-oro selection:text-navy" id="mainBody">
 
-    <!-- FONDO DE CAOS VIVO -->
-    <div class="chaos-bg-container" id="chaosBg">
-        <div class="chaos-layer active" style="background-image:url('https://thesteef21.github.io/Lapizasuli/assets/LEVIATHANSQUAD/img/785282279_1341489208069876_1027745017510610652_n.webp')"></div>
-        <div class="chaos-layer" style="background-image:url('https://thesteef21.github.io/Lapizasuli/assets/LEVIATHANSQUAD/img/783899130_4498246103827834_338786690266061800_n.webp')"></div>
-    </div>
-    <div class="grand-line-bg"></div>
-    <div style="position:fixed;inset:0;pointer-events:none;z-index:1;" class="grid-pattern"></div>
-    <div class="scanline"></div>
-
-    <!-- ==========================================
-         TOP NAVIGATION BAR (FUSIÓN GSADV41 x SADV41)
-         ========================================== -->
-    <header class="fixed top-0 left-0 w-full z-50 glass border-b border-cyanNeon/30 px-4 sm:px-6 py-3 flex flex-col sm:flex-row items-center justify-between gap-3 transition-all duration-500">
-        <div class="flex items-center gap-3">
-            <div class="bg-black/50 border border-oro p-2 rounded-lg text-oro font-bold tracking-wider text-sm shadow-[0_0_10px_rgba(212,175,55,0.3)]">
-                <i class="fa-solid fa-shield-halved mr-1"></i> GSADV41
-            </div>
-            <span class="hidden sm:inline-block text-[10px] uppercase tracking-widest bg-slate-900 px-2.5 py-1 rounded text-cyan-300 border border-cyanNeon/30 font-mono">
-                Nodo: Burunga, Panamá
-            </span>
-        </div>
-        
-        <nav class="hidden md:flex gap-4 lg:gap-5 text-[10px] lg:text-[11px] uppercase tracking-widest font-medium font-mono">
-            <a href="#aporia" class="hover:text-oro transition-colors text-white">Puente</a>
-            <a href="#sismos" class="hover:text-redNeon transition-colors text-slate-300">USGS Live</a>
-            <a href="#nodos" class="hover:text-cyanNeon transition-colors text-slate-300">Nodos</a>
-            <a href="#habilidades" class="hover:text-cyanNeon transition-colors text-slate-300">Skills</a>
-            <a href="#persistencia" class="hover:text-cyanNeon transition-colors text-slate-300">Sistema</a>
-        </nav>
-
-        <div class="flex items-center gap-3">
-            <span id="sync-status" class="inline-flex items-center px-3 py-1.5 rounded-full text-[10px] font-mono font-bold bg-green-900/40 text-green-400 border border-green-700 shadow-[0_0_10px_rgba(16,185,129,0.3)]">
-                <span class="w-2 h-2 mr-1.5 bg-green-400 rounded-full animate-pulse shadow-[0_0_5px_#10b981]"></span> Persistencia Activa
-            </span>
-        </div>
-    </header>
-
-    <main class="pt-28 pb-20 px-4 md:px-12 max-w-6xl mx-auto space-y-16 relative z-10">
-
-        <!-- ==========================================
-             HERO: APORÍA - EL PUENTE CRISTO-MUNDO (STEVEN)
-             ========================================== -->
-        <section id="aporia" class="p-8 md:p-14 border border-white/50 text-center relative overflow-hidden rounded-3xl logia-card aporia-glow">
-            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.1),_transparent_70%)] pointer-events-none"></div>
-            
-            <span class="text-[10px] font-bold tracking-widest text-oro uppercase bg-black/80 px-4 py-1.5 rounded-full border border-oro/50 mb-6 inline-block font-mono">
-                Conexión Principal del Ecosistema
-            </span>
-            
-            <h1 class="font-pirate text-5xl md:text-7xl text-white tracking-widest drop-shadow-[0_0_20px_rgba(255,255,255,0.8)] mb-4">
-                APORÍA
-            </h1>
-            <h2 class="font-mason text-xl md:text-2xl font-bold text-oro tracking-[0.2em] uppercase esoterico-glow">
-                El Puente Entre Cristo y el Mundo
-            </h2>
-            
-            <p class="text-xs md:text-sm text-slate-300 font-mono mt-6 max-w-3xl mx-auto relative z-10 leading-relaxed bg-black/40 p-6 rounded-xl border border-white/10">
-                Ésto es <strong>Steven</strong>. Es el enlace más importante de la arquitectura, la transición desde el callejón del sistema tradicional hacia el ascenso soberano. Aquí la Aporía se convierte en Anábasis.
-            </p>
-
-            <div class="mt-8 flex flex-wrap justify-center gap-4 relative z-10">
-                <a href="https://thesteef21.github.io/Lapizasuli/Apor%C3%ADa.html" target="_blank" class="bg-white hover:bg-gray-200 text-black font-bold px-8 py-3 rounded-lg shadow-[0_0_20px_rgba(255,255,255,0.4)] transition-all duration-300 font-mono text-sm uppercase tracking-wider flex items-center gap-2">
-                    <i class="fa-solid fa-cross"></i> Entrar a Aporía
-                </a>
-            </div>
-        </section>
-
-        <!-- ==========================================
-             NUEVA SECCIÓN: USGS LIVE FEED (SISMOS)
-             ========================================== -->
-        <section id="sismos" class="glass-strong p-6 md:p-8 rounded-3xl border-t-4 border-t-cyanNeon">
-            <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 border-b border-cyanNeon/30 pb-4 gap-4">
-                <h2 class="text-xl text-cyanNeon tracking-widest font-mason flex items-center gap-3 uppercase">
-                    <i class="fa-solid fa-satellite-dish animate-pulse"></i> USGS Live: Sismos y Terremotos
-                </h2>
-                <div class="text-[10px] font-mono bg-black/50 border border-white/10 px-3 py-1.5 rounded-lg text-slate-300">
-                    FEED: <span class="text-cyan-400">all_day.geojson</span> • AUTO REFRESH <span class="text-green-400">60s</span>
-                </div>
-            </div>
-
-            <!-- Mapa Leaflet -->
-            <div class="mb-6 shadow-[0_0_20px_rgba(0,0,0,0.8)]">
-                <div id="map"></div>
-            </div>
-
-            <!-- Paneles de Datos -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Panel Panamá -->
-                <div class="bg-black/40 border border-cyanNeon/20 p-5 rounded-2xl logia-card">
-                    <h3 class="text-[11px] font-bold text-cyan-400 tracking-widest mb-4 border-b border-white/10 pb-2 font-mono flex items-center justify-between">
-                        <span>PANAMÁ + CENTROAMÉRICA (Filtro SADV41)</span>
-                        <i class="fa-solid fa-location-crosshairs"></i>
-                    </h3>
-                    <div id="list-pa" class="font-mono text-xs sismos-scroll">
-                        <div class="text-slate-500 py-4 text-center">Iniciando telemetría...</div>
-                    </div>
-                    <div class="mt-4 text-[9px] text-slate-500 font-mono border-t border-white/5 pt-3 leading-relaxed">
-                        Bounding Box: 7.0-9.8N, -83 - -77W • Protocolo BERIÓN A217<br/>
-                        Fuente oficial: earthquake.usgs.gov • Solo visualización, no retención.
-                    </div>
-                </div>
-
-                <!-- Panel Global -->
-                <div class="bg-black/40 border border-slate-700 p-5 rounded-2xl logia-card">
-                    <h3 class="text-[11px] font-bold text-slate-300 tracking-widest mb-4 border-b border-white/10 pb-2 font-mono flex items-center justify-between">
-                        <span>ÚLTIMOS SISMOS - GLOBAL (USGS)</span>
-                        <i class="fa-solid fa-globe"></i>
-                    </h3>
-                    <div id="list" class="font-mono text-xs sismos-scroll">
-                        <div class="text-slate-500 py-4 text-center">Iniciando telemetría...</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==========================================
-             NODOS DE CONVERGENCIA (ENLACES ESTRATÉGICOS)
-             ========================================== -->
-        <section id="nodos" class="pt-4">
-            <div class="flex justify-between items-center mb-6 border-b border-cyanNeon/30 pb-4">
-                <h2 class="text-xl text-cyanNeon tracking-widest font-mason flex items-center gap-3 uppercase">
-                    Nodos de Convergencia <span class="hidden md:inline-block text-[10px] text-slate-400 font-mono tracking-normal ml-auto border border-cyanNeon/30 px-3 py-1 rounded-full">Red SADV41 / Lapizasuli</span>
-                </h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                <!-- Nodos anteriores ... -->
-                <a href="https://thesteef21.github.io/Lapizasuli/SADV41_GEAR7_DESPERTAR_FINAL_agentic_artifact_5_a2214548843f.html" target="_blank" class="logia-card p-5 rounded-xl border border-slate-700 hover:border-oro transition-all block group">
-                    <div class="flex items-center justify-between mb-3">
-                        <i class="fa-solid fa-bolt text-oro text-xl group-hover:scale-110 transition-transform"></i>
-                        <span class="text-[9px] font-mono text-slate-400 border border-slate-600 px-2 py-0.5 rounded">Artifact_5</span>
-                    </div>
-                    <h3 class="font-bold text-sm text-white font-mason tracking-wider mb-2">GEAR 7: Despertar Final</h3>
-                    <p class="text-[10px] text-slate-400 font-mono">Consumación del artefacto agéntico en el ecosistema.</p>
-                </a>
-                <a href="https://thesteef21.github.io/Lapizasuli/OnePiece.html" target="_blank" class="logia-card p-5 rounded-xl border border-slate-700 hover:border-redNeon transition-all block group">
-                    <div class="flex items-center justify-between mb-3">
-                        <i class="fa-solid fa-skull-crossbones text-redNeon text-xl group-hover:scale-110 transition-transform"></i>
-                        <span class="text-[9px] font-mono text-slate-400 border border-slate-600 px-2 py-0.5 rounded">Lore / Visión</span>
-                    </div>
-                    <h3 class="font-bold text-sm text-white font-mason tracking-wider mb-2">One Piece / Frecuencia</h3>
-                    <p class="text-[10px] text-slate-400 font-mono">La influencia de Joy Boy y la voluntad heredada (D).</p>
-                </a>
-                <a href="https://thesteef21.github.io/Lapizasuli/assets/LEVIATHANSQUAD/PANAMAUNIT.html" target="_blank" class="logia-card p-5 rounded-xl border border-slate-700 hover:border-tacticalOrange transition-all block group">
-                    <div class="flex items-center justify-between mb-3">
-                        <i class="fa-solid fa-helicopter text-tacticalOrange text-xl group-hover:scale-110 transition-transform"></i>
-                        <span class="text-[9px] font-mono text-slate-400 border border-slate-600 px-2 py-0.5 rounded">US Army / EBRG</span>
-                    </div>
-                    <h3 class="font-bold text-sm text-white font-mason tracking-wider mb-2">Panamá Unit (Leviathan)</h3>
-                    <p class="text-[10px] text-slate-400 font-mono">Estructura táctica y comando estratégico en Burunga.</p>
-                </a>
-            </div>
-        </section>
-
-        <!-- ==========================================
-             ÁRBOL DE HABILIDADES & WEB3 (ATRIO Y SANTO)
-             ========================================== -->
-        <section id="habilidades" class="grid grid-cols-1 lg:grid-cols-2 gap-8 pt-4">
-            <div class="glass-strong p-8 rounded-3xl border-t-4 border-t-cyanNeon">
-                <h3 class="text-xl font-mason font-bold tracking-widest text-cyanNeon mb-6 border-b border-cyanNeon/30 pb-2 uppercase">Arquitectura del Tabernáculo</h3>
-                <div class="space-y-6">
-                    <div class="bg-black/50 p-4 rounded-xl border border-slate-700 hover:border-cyanNeon transition-all">
-                        <h4 class="font-bold text-sm text-cyan-300 font-mono tracking-widest mb-2"><i class="fa-solid fa-door-open mr-2"></i>1. El Atrio (Grok)</h4>
-                        <p class="text-[10px] text-slate-400 font-mono">HTML5, Tailwind CSS, IPFS/Pinata y GitHub Pages.</p>
-                    </div>
-                    <div class="bg-black/50 p-4 rounded-xl border border-slate-700 hover:border-oro transition-all">
-                        <h4 class="font-bold text-sm text-oro font-mono tracking-widest mb-2"><i class="fa-solid fa-link mr-2"></i>2. El Santo (Meta)</h4>
-                        <p class="text-[10px] text-slate-400 font-mono">BNB Chain, Four.meme, GitHub Enterprise y Royalty Fetching.</p>
-                    </div>
-                    <div class="bg-black/50 p-4 rounded-xl border border-slate-700 hover:border-violetNeon transition-all">
-                        <h4 class="font-bold text-sm text-purple-400 font-mono tracking-widest mb-2"><i class="fa-solid fa-eye mr-2"></i>3. Santísimo (Gemini)</h4>
-                        <p class="text-[10px] text-slate-400 font-mono">Algoritmo de Pureza (Frec. 2.26) y soberanía en App.jsx.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Ecosistema Web3 -->
-            <div class="glass-strong p-8 rounded-3xl border-t-4 border-bnbYellow flex flex-col justify-between">
-                <div>
-                    <h3 class="text-xl font-mason font-bold tracking-widest text-bnbYellow mb-4 border-b border-bnbYellow/30 pb-2">ECOSISTEMA WEB3</h3>
-                    <div class="space-y-4 font-mono text-[11px] text-slate-300 mb-6">
-                        <div class="bg-black/50 p-3 rounded-lg border border-white/10">
-                            <p class="text-cyanNeon font-bold mb-1">🔗 TOKEN FOUR.MEME</p>
-                            <p class="break-all text-gray-400">0x9b633cc361b3e7aace80340fed9491265f29ffff</p>
-                        </div>
-                        <div class="bg-black/50 p-3 rounded-lg border border-white/10">
-                            <p class="text-renderRed font-bold mb-1">⚖️ TAX CONTRACT</p>
-                            <p class="break-all text-gray-400">0x390DA7cA1E28a2d22Ac212617c0ac3aDacD480a6</p>
-                        </div>
-                    </div>
-                    <div class="flex flex-col sm:flex-row gap-3">
-                        <a href="https://thesteef21.github.io/Lapizasuli/GSADV41.shtml" class="flex-1 bg-black hover:bg-gray-900 text-white font-bold text-[11px] px-4 py-3 rounded-lg transition-all shadow-[0_0_15px_rgba(0,243,255,0.2)] text-center font-mono border border-cyanNeon">
-                            <i class="fa-brands fa-github mr-1"></i> Login Lapizasuli
-                        </a>
-                        <button onclick="connectBinance()" class="flex-1 bg-bnbYellow hover:bg-yellow-500 text-black font-bold text-[11px] px-4 py-3 rounded-lg transition-all shadow-[0_0_15px_rgba(243,186,47,0.4)] text-center font-mono border border-black">
-                            <i class="fa-solid fa-wallet mr-1"></i> Sync BNB Wallet
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==========================================
-             SECCIÓN METATRON 4D (51 NODOS HUB)
-             ========================================== -->
-        <section class="glass-strong border border-royalPurple/40 shadow-[0_0_30px_rgba(157,78,221,0.2)] rounded-3xl p-6 md:p-8 relative z-20">
-            <header class="glass rounded-2xl p-4 md:p-5 mb-6 border border-royalPurple/50">
-                <h2 class="cinzel text-xl font-black tracking-[0.16em] m-0 text-white text-center">EL MOTOR // METATRON 4D</h2>
-            </header>
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-                <div class="lg:col-span-5 flex flex-col gap-4">
-                    <p class="font-mono text-xs text-slate-300 leading-relaxed bg-black/50 p-4 rounded-xl border border-white/10">
-                        Visualizando la red descentralizada de conocimiento, protegida por el contrato tax <span class="text-renderRed">0x390DA7...</span> y respaldada por la arquitectura de El Tabernáculo.
-                    </p>
-                </div>
-                <div class="lg:col-span-7 flex justify-center items-center bg-black/30 rounded-3xl border border-white/5 overflow-hidden shadow-inner relative h-[300px]">
-                    <div id="flower-container">
-                        <div id="flower-scene"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==========================================
-             SISTEMA DE PERSISTENCIA GSADV41 (BLINDAJE GITHUB)
-             ========================================== -->
-        <section id="persistencia" class="logia-card border-t-4 border-t-green-500 p-8 md:p-10 rounded-3xl">
-            <h3 class="text-xl font-bold text-white mb-4 flex items-center font-mason tracking-widest uppercase">
-                <i class="fa-solid fa-shield-cat text-green-400 mr-3 text-2xl"></i> Persistencia en GitHub Pages
-            </h3>
-            <p class="text-xs text-slate-300 font-mono mb-6 leading-relaxed max-w-4xl">
-                Implementa directrices de blindaje extremo para evitar purgas automáticas en repositorios remotos.
-            </p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 text-xs font-mono">
-                <div class="bg-black/60 p-5 rounded-xl border border-white/10 hover:border-green-400/50 transition-colors">
-                    <h4 class="font-bold text-white mb-2 text-sm"><i class="fa-solid fa-file-code text-blue-400 mr-2"></i> Archivo Raíz Obligatorio</h4>
-                    <p class="text-slate-400">Punto de entrada `index.html` asegurado contra procesos de limpieza.</p>
-                </div>
-                <div class="bg-black/60 p-5 rounded-xl border border-white/10 hover:border-green-400/50 transition-colors">
-                    <h4 class="font-bold text-white mb-2 text-sm"><i class="fa-solid fa-clock-rotate-left text-purple-400 mr-2"></i> Control de Versionado</h4>
-                    <p class="text-slate-400">Marcas de actividad del motor GSADV41 aseguran permanencia en commits activos.</p>
-                </div>
-            </div>
-        </section>
-
-    </main>
-    
-    <!-- ==========================================
-         FOOTER UNIFICADO
-         ========================================== -->
-    <footer class="bg-black/80 border-t border-white/10 text-center p-8 mt-10 relative z-10">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 font-mono text-[10px] text-slate-500 uppercase tracking-widest">
-            <p class="text-oro font-bold">Unificación SADV41 x GSADV41 © 2026</p>
-            <div class="flex gap-4">
-                <span class="text-green-500"><i class="fa-solid fa-check-circle mr-1"></i> Seguridad: OK</span>
-                <span class="text-cyan-500"><i class="fa-solid fa-code-branch mr-1"></i> Build: Integrada USGS</span>
-            </div>
-            <p>NODO SUPREMO: GITHUB REPOSITORY | EL ORIGEN ES 0</p>
-        </div>
-    </footer>
-
-    <!-- ==========================================
-         SISTEMA LÓGICO OMNIPRESENTE (JS: Leaflet, Web3, Metatron)
-         ========================================== -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            
-            /* --- 1. Sincronización y Validación (GSADV41 Engine) --- */
-            console.log("GSADV41 Engine initialized successfully.");
-            const badge = document.getElementById('sync-status');
-            setTimeout(() => {
-                badge.title = "Sincronización con GitHub Pages y USGS completada. Puente activo.";
-            }, 1000);
+      (function(){
+        const section = document.getElementById('sismos-sadv41');
+        const loader = document.getElementById('sismos-loader');
+        const wrap = document.getElementById('sismos-iframe-wrap');
+        const status = document.getElementById('sadv41-sismos-status');
+        let loaded = false;
 
-            /* --- 2. CAOS VIVO DE FONDO --- */
-            const layers = document.querySelectorAll('.chaos-layer');
-            let currentChaosIndex = 0;
-            function randomChaosTransition(){
-                if(layers.length === 0) return;
-                layers.forEach(l => l.classList.remove('active'));
-                currentChaosIndex = (currentChaosIndex + 1) % layers.length;
-                layers[currentChaosIndex].classList.add('active');
-                setTimeout(randomChaosTransition, 4500);
-            }
-            setTimeout(randomChaosTransition, 1500);
-
-            /* --- 3. METATRON 3D HUB --- */
-            const nodesData = [
-                { id:"SADV41", color:"#d4af37" }, { id:"APORÍA", color:"#ffffff" },
-                { id:"GEAR7", color:"#00f3ff" }, { id:"LEVIATHAN", color:"#FB542B" },
-                { id:"GSADV41", color:"#10b981" }, { id:"WEB3", color:"#F3BA2F" },
-                { id:"USGS", color:"#da3637" } // Nuevo nodo sísmico
-            ];
-
-            const scene = document.getElementById('flower-scene');
-            let nodeEls = [];
-
-            function createPlane(transformStyle){
-                const NS="http://www.w3.org/2000/svg";
-                const svg=document.createElementNS(NS,"svg");
-                svg.setAttribute("viewBox","-220 -220 440 440");
-                svg.setAttribute("class","flower-plane");
-                svg.style.transform=transformStyle;
-                const radius=62;
-                const centers=[{x:0,y:0}];
-                for(let i=0;i<6;i++){const a=Math.PI/3*i;centers.push({x:radius*Math.cos(a),y:radius*Math.sin(a)})}
-                for(let i=0;i<12;i++){const a=Math.PI/6*i;const d=(i%2===0)?radius*2:radius*Math.sqrt(3);centers.push({x:d*Math.cos(a),y:d*Math.sin(a)})}
-                centers.forEach(c=>{
-                    const g=document.createElementNS(NS,"g");
-                    const circle=document.createElementNS(NS,"circle");
-                    circle.setAttribute("cx",c.x);circle.setAttribute("cy",c.y);circle.setAttribute("r",radius);
-                    circle.setAttribute("fill","none");circle.setAttribute("stroke","rgba(212,175,55,.25)");circle.setAttribute("stroke-width","0.8");
-                    g.appendChild(circle);svg.appendChild(g);
-                });
-                return svg;
-            }
-            
-            if(scene) {
-                scene.appendChild(createPlane("rotateY(0deg) translateZ(-18px)"));
-                scene.appendChild(createPlane("rotateY(60deg) translateZ(-18px)"));
-                scene.appendChild(createPlane("rotateY(120deg) translateZ(-18px)"));
-                scene.appendChild(createPlane("rotateX(90deg) translateZ(-18px)"));
-            }
-
-            const sphereRadius = 140, goldenAngle = Math.PI*(3-Math.sqrt(5));
-            nodesData.forEach((node,i)=>{
-                const y=1-(i/(nodesData.length-1))*2;
-                const r=Math.sqrt(1-y*y);
-                const theta=goldenAngle*i;
-                const x=Math.cos(theta)*r;
-                const z=Math.sin(theta)*r;
-                const el=document.createElement('div');
-                el.className='node-3d';
-                el.innerHTML=`<div class="node-dot" style="background:${node.color};color:${node.color};box-shadow:0 0 10px ${node.color}"></div><div class="node-label" style="color:${node.color}">${node.id}</div>`;
-                el._pos={x:x*sphereRadius,y:y*sphereRadius,z:z*sphereRadius};
-                if(scene) scene.appendChild(el);
-                nodeEls.push(el);
-            });
-
-            let metatronRot={x:-18,y:24,z:0};
-            function updateTrans(){
-                if(!scene) return;
-                scene.style.transform=`scale3d(1,1,1) rotateX(${metatronRot.x}deg) rotateY(${metatronRot.y}deg) rotateZ(${metatronRot.z}deg)`;
-                nodeEls.forEach(el=>{
-                    const p=el._pos;
-                    const radY=metatronRot.y*Math.PI/180, radX=metatronRot.x*Math.PI/180;
-                    let x=p.x,y=p.y,z=p.z;
-                    let x1=x*Math.cos(radY)+z*Math.sin(radY); let z1=-x*Math.sin(radY)+z*Math.cos(radY); x=x1;z=z1;
-                    let y1=y*Math.cos(radX)-z*Math.sin(radX); let z2=y*Math.sin(radX)+z*Math.cos(radX); y=y1;z=z2;
-                    el.style.transform=`translate3d(${p.x}px,${p.y}px,${p.z}px) translate(-50%,-50%) rotateY(${-metatronRot.y}deg) rotateX(${-metatronRot.x}deg)`;
-                    el.style.zIndex=Math.floor(z+500);
-                });
-            }
-            updateTrans();
-            function loop(){ metatronRot.y+=0.15; metatronRot.z+=0.02; updateTrans(); requestAnimationFrame(loop); }
-            loop();
-
-            /* --- 4. USGS LIVE EARTHQUAKE MAP FEED --- */
-            const FEED_URL = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson';
-            // Configurar mapa apuntando a Panamá
-            const earthMap = L.map('map', {zoomControl: false}).setView([8.9, -80.2], 5);
-            L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-                attribution: '© USGS © CARTO'
-            }).addTo(earthMap);
-
-            function severity(m){
-                if(m>=7) return {cls:'crit',label:'CRÍTICO'};
-                if(m>=6) return {cls:'high',label:'ALTO'};
-                if(m>=5) return {cls:'med',label:'MEDIO'};
-                return {cls:'',label:'VIGILANCIA'};
-            }
-
-            function isPanama(lat,lon){
-                return lat>=7 && lat<=9.8 && lon>=-83 && lon<=-77;
-            }
-
-            async function loadEarthquakes(){
-                try{
-                    const r = await fetch(FEED_URL); 
-                    const data = await r.json();
-                    
-                    const listEl = document.getElementById('list'); 
-                    const listPAEl = document.getElementById('list-pa');
-                    
-                    listEl.innerHTML = ''; 
-                    listPAEl.innerHTML = '';
-                    
-                    // Limpiar marcadores viejos
-                    earthMap.eachLayer(l => { 
-                        if(l instanceof L.CircleMarker) earthMap.removeLayer(l); 
-                    });
-
-                    const panamaQuakes = [];
-
-                    // Ordenar por magnitud
-                    data.features.sort((a,b)=>b.properties.mag - a.properties.mag).forEach(f => {
-                        const [lon, lat, depth] = f.geometry.coordinates;
-                        const { mag, place, time } = f.properties;
-                        const sev = severity(mag);
-                        const date = new Date(time).toLocaleString('es-PA');
-                        
-                        // Añadir marcador
-                        L.circleMarker([lat,lon], {
-                            radius: Math.max(4, mag * 2.5),
-                            color: sev.cls === 'crit' ? '#ff3b30' : sev.cls === 'high' ? '#ff9500' : '#00f3ff',
-                            weight: 2, 
-                            fillOpacity: 0.6
-                        }).addTo(earthMap).bindPopup(`<div style="font-family:'JetBrains Mono',monospace;font-size:11px;"><b>M${mag} ${place}</b><br/>${date}<br/>Profundidad: ${depth}km<br/><span style="color:${sev.cls==='crit'?'#ff3b30':'#ff9500'}">${sev.label}</span></div>`);
-
-                        // Formatear fila para las listas
-                        const rowHTML = `
-                            <div class="quake-row flex justify-between items-center group hover:bg-white/5 transition-colors px-2 rounded">
-                                <div>
-                                    <span class="mag ${sev.cls}">M${mag}</span> 
-                                    <span class="text-slate-200 ml-2 group-hover:text-white transition-colors">${place}</span>
-                                    <div class="text-[9px] text-slate-500 mt-1 pl-12">${date} • Prof: ${depth}km</div>
-                                </div>
-                                <div class="text-[9px] font-bold text-slate-400 text-right uppercase tracking-wider">${sev.label}</div>
-                            </div>
-                        `;
-
-                        if(isPanama(lat,lon)) { 
-                            panamaQuakes.push(f); 
-                            listPAEl.innerHTML += rowHTML; 
-                        }
-                    });
-
-                    // Mostrar el top 25 global
-                    data.features.slice(0, 25).forEach(f => {
-                        const { mag, place, time } = f.properties;
-                        const sev = severity(mag);
-                        const date = new Date(time).toLocaleString('es-PA');
-                        
-                        listEl.innerHTML += `
-                            <div class="quake-row flex justify-between items-center group hover:bg-white/5 transition-colors px-2 rounded">
-                                <div>
-                                    <span class="mag ${sev.cls}">M${mag}</span> 
-                                    <span class="text-slate-300 ml-2 group-hover:text-white transition-colors">${place}</span>
-                                    <div class="text-[9px] text-slate-500 mt-1 pl-12">${date}</div>
-                                </div>
-                            </div>
-                        `;
-                    });
-
-                    if(panamaQuakes.length === 0) {
-                        listPAEl.innerHTML = '<div class="text-slate-500 py-6 text-center border border-dashed border-slate-700 rounded-lg">Sin eventos detectados en Bounding Box Panamá (24h).<br/><span class="text-green-500 mt-2 block"><i class="fa-solid fa-check"></i> Vigilancia ininterrumpida</span></div>';
-                    }
-
-                } catch(e) { 
-                    console.error("Error cargando USGS feed:", e); 
-                    document.getElementById('list').innerHTML = '<div class="text-red-500 py-4"><i class="fa-solid fa-triangle-exclamation"></i> Error conectando con API USGS</div>'; 
-                }
-            }
-            
-            // Ejecutar y establecer bucle de actualización
-            loadEarthquakes(); 
-            setInterval(loadEarthquakes, 60000);
-        });
-
-        /* --- 5. Web3 Connection Handler --- */
-        async function connectBinance() {
-            if (typeof window.ethereum !== 'undefined') {
-                try {
-                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-                    alert("⚡ Tesoro BNB Web3 sincronizado. Contrato de Four.meme enlazado a la wallet: " + accounts[0]);
-                } catch (e) { 
-                    console.log("Conexión rechazada o cancelada:", e); 
-                }
-            } else { 
-                const userChoice = confirm("⚠️ Nodo Web3 no detectado.\n\nPara interactuar con el contrato de la Logia SADV41, necesitas la Wallet Web 3.0 de Binance.\n\n¿Deseas descargar la app o conectar Binance ahora?");
-                if (userChoice) {
-                    window.open('https://web3.binance.com/referral?ref=ORCZSDLK', '_blank'); 
-                }
-            }
+        function loadMap(){
+          if(loaded) return;
+          loaded = true;
+          status.textContent = '● LIVE - USGS CONECTADO';
+          status.style.color = '#00e5ff';
+          status.style.borderColor = '#00e5ff';
+          
+          const iframe = document.createElement('iframe');
+          iframe.src = './SISMOS/index.html';
+          iframe.style.width = '100%';
+          iframe.style.height = '100%';
+          iframe.style.border = '0';
+          iframe.loading = 'lazy';
+          iframe.setAttribute('allowfullscreen','');
+          iframe.setAttribute('title','SADV41 USGS Live Map');
+          
+          // Mostrar iframe, ocultar loader
+          loader.style.display = 'none';
+          wrap.style.display = 'block';
+          wrap.appendChild(iframe);
         }
+
+        // Intersection Observer: carga solo cuando el usuario llega a la sección
+        if('IntersectionObserver' in window){
+          const io = new IntersectionObserver((entries)=>{
+            entries.forEach(e=>{
+              if(e.isIntersecting){
+                loadMap();
+                io.disconnect();
+              }
+            });
+          }, { rootMargin: '300px' }); 
+          io.observe(section);
+        } else {
+          // Fallback: carga a los 2s
+          setTimeout(loadMap, 2000);
+        }
+      })();
     </script>
+  </section>
+
+  <!-- WORKFLOW YAML VIEWER (Extraído de Next.js payload) -->
+  <section class="code-viewer">
+    <h2 style="color:#00e5ff; letter-spacing:0.2em; font-size:13px; margin:0 0 16px 0;">SADV41 // GITHUB ACTIONS WORKFLOW</h2>
+    <div class="code-container">
+      <div class="line-numbers" aria-hidden="true">
+        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div>
+        <div>11</div><div>12</div><div>13</div><div>14</div><div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div>
+        <div>21</div><div>22</div><div>23</div><div>24</div><div>25</div><div>26</div><div>27</div><div>28</div><div>29</div><div>30</div>
+        <div>31</div><div>32</div><div>33</div>
+      </div>
+      <code style="min-width:0; flex:1; white-space:pre;">
+        <pre class="shiki" style="--shiki-dark:#e1e4e8; margin:0;" tabindex="0"><code><span class="line"><span style="--shiki-dark:#85E89D">name</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">SADV41 Sismos Watch</span></span>
+<span class="line"><span style="--shiki-dark:#79B8FF">on</span><span style="--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-dark:#85E89D">  schedule</span><span style="--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-dark:#E1E4E8">    - </span><span style="--shiki-dark:#85E89D">cron</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">'*/15 * * * *'</span></span>
+<span class="line"><span style="--shiki-dark:#85E89D">  workflow_dispatch</span><span style="--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"></span>
+<span class="line"><span style="--shiki-dark:#85E89D">jobs</span><span style="--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-dark:#85E89D">  check</span><span style="--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-dark:#85E89D">    runs-on</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">ubuntu-latest</span></span>
+<span class="line"><span style="--shiki-dark:#85E89D">    permissions</span><span style="--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-dark:#85E89D">      contents</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">write</span></span>
+<span class="line"><span style="--shiki-dark:#85E89D">    steps</span><span style="--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-dark:#E1E4E8">      - </span><span style="--shiki-dark:#85E89D">uses</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">actions/checkout@v4</span></span>
+<span class="line"><span style="--shiki-dark:#E1E4E8">      - </span><span style="--shiki-dark:#85E89D">uses</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">actions/setup-python@v5</span></span>
+<span class="line"><span style="--shiki-dark:#85E89D">        with</span><span style="--shiki-dark:#E1E4E8">: { </span><span style="--shiki-dark:#85E89D">python-version</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">'3.11'</span><span style="--shiki-dark:#E1E4E8"> }</span></span>
+<span class="line"><span style="--shiki-dark:#E1E4E8">      - </span><span style="--shiki-dark:#85E89D">run</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">pip install requests Pillow</span></span>
+<span class="line"><span style="--shiki-dark:#E1E4E8">      - </span><span style="--shiki-dark:#85E89D">name</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">Check USGS Panama</span></span>
+<span class="line"><span style="--shiki-dark:#85E89D">        run</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">python instagram_bot.py --check-panama --min-mag 4.5</span></span>
+<span class="line"><span style="--shiki-dark:#85E89D">        env</span><span style="--shiki-dark:#E1E4E8">:</span></span>
+<span class="line"><span style="--shiki-dark:#85E89D">          FB_PAGE_ID</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">${{ secrets.FB_PAGE_ID }}</span></span>
+<span class="line"><span style="--shiki-dark:#85E89D">          IG_USER_ID</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">${{ secrets.IG_USER_ID }}</span></span>
+<span class="line"><span style="--shiki-dark:#85E89D">          ACCESS_TOKEN</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">${{ secrets.ACCESS_TOKEN }}</span></span>
+<span class="line"><span style="--shiki-dark:#85E89D">          IMAGE_PUBLIC_URL</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">https://thesteef21.github.io/usgs/latest.jpg</span></span>
+<span class="line"><span style="--shiki-dark:#E1E4E8">      - </span><span style="--shiki-dark:#85E89D">name</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">Commit latest image for Pages</span></span>
+<span class="line"><span style="--shiki-dark:#85E89D">        run</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#F97583">|</span></span>
+<span class="line"><span style="--shiki-dark:#9ECBFF">          if [ -f latest.jpg ]; then</span></span>
+<span class="line"><span style="--shiki-dark:#9ECBFF">            git config user.name "SADV41-BOT"</span></span>
+<span class="line"><span style="--shiki-dark:#9ECBFF">            git config user.email "bot@sadv41.io"</span></span>
+<span class="line"><span style="--shiki-dark:#9ECBFF">            git add latest.jpg || true</span></span>
+<span class="line"><span style="--shiki-dark:#9ECBFF">            git commit -m "auto: update latest sismo image [skip ci]" || true</span></span>
+<span class="line"><span style="--shiki-dark:#9ECBFF">            git push || true</span></span>
+<span class="line"><span style="--shiki-dark:#9ECBFF">          fi</span></span>
+<span class="line"></span></code></pre>
+      </code>
+    </div>
+  </section>
+
 </body>
 </html>
