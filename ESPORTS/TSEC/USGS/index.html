@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>USGS • SADV41 • SISMOS Y TERREMOTOS</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+  :root { --bg:#0a0a0a; --fg:#e8e8e8; --accent:#ff3b30; --sadv41:#00e5ff; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif}
+  header{padding:18px 20px;border-bottom:1px solid #222;display:flex;justify-content:space-between;align-items:center}
+  header h1{font-size:14px;letter-spacing:0.2em}
+  header h1 span{color:var(--sadv41)}
+  #map{height:62vh;width:100%;background:#111}
+  .panel{padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .card{border:1px solid #222;padding:14px;border-radius:12px;background:#0f0f0f}
+  .card h3{font-size:11px;letter-spacing:0.15em;color:#888;margin-bottom:8px}
+  .quake{padding:10px 0;border-bottom:1px solid #1a1a1a;display:flex;justify-content:space-between}
+  .quake:last-child{border:0}
+  .mag{font-weight:900;padding:4px 8px;border-radius:6px;background:#1a1a1a}
+  .mag.crit{background:var(--accent);color:white}
+  .mag.high{background:#ff9500;color:black}
+  .mag.med{background:#ffcc00;color:black}
+  .footer{padding:20px;text-align:center;font-size:11px;color:#666;letter-spacing:0.1em}
+  @media(max-width:800px){.panel{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header>
+  <h1>SADV41 // <span>USGS LIVE</span> // SISMOSYTERREMOTOS</h1>
+  <div style="font-size:10px;color:#888">FEED: all_day.geojson • AUTO REFRESH 60s</div>
+</header>
+<div id="map"></div>
+<div class="panel">
+  <div class="card">
+    <h3>ÚLTIMOS SISMOS - GLOBAL (USGS)</h3>
+    <div id="list">Cargando...</div>
+  </div>
+  <div class="card">
+    <h3>PANAMÁ + CENTROAMÉRICA - FILTRO SADV41</h3>
+    <div id="list-pa">Cargando...</div>
+    <div style="margin-top:14px;font-size:10px;color:#555">
+      Bounding: 7.0-9.8N, -83 - -77W • Protocolo BERIÓN A217<br/>
+      Fuente: earthquake.usgs.gov • No almacena, solo visualiza.
+    </div>
+  </div>
+</div>
+<div class="footer">STEVENDIOR OFICIAL • MISION SADV41 • thesteef21.github.io/SADV41 • 2026</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const FEED = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson';
+const map = L.map('map',{zoomControl:false}).setView([8.9,-80.2],5);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'© USGS © CARTO'}).addTo(map);
+
+function severity(m){
+ if(m>=7) return {cls:'crit',label:'CRITICO'};
+ if(m>=6) return {cls:'high',label:'ALTO'};
+ if(m>=5) return {cls:'med',label:'MEDIO'};
+ return {cls:'',label:'VIGILANCIA'};
+}
+function isPanama(lat,lon){
+ return lat>=7 && lat<=9.8 && lon>=-83 && lon<=-77;
+}
+
+async function load(){
+ try{
+  const r = await fetch(FEED); const data = await r.json();
+  const list = document.getElementById('list'); const listPA = document.getElementById('list-pa');
+  list.innerHTML=''; listPA.innerHTML='';
+  map.eachLayer(l=>{ if(l instanceof L.CircleMarker) map.removeLayer(l) });
+
+  const panamaQuakes = [];
+
+  data.features.sort((a,b)=>b.properties.mag-a.properties.mag).forEach(f=>{
+    const [lon,lat,depth] = f.geometry.coordinates;
+    const {mag,place,time} = f.properties;
+    const sev = severity(mag);
+    const date = new Date(time).toLocaleString('es-PA');
+    
+    const marker = L.circleMarker([lat,lon],{
+      radius: Math.max(4, mag*2.5),
+      color: sev.cls==='crit' ? '#ff3b30' : sev.cls==='high' ? '#ff9500' : '#00e5ff',
+      weight:2, fillOpacity:0.6
+    }).addTo(map).bindPopup(`<b>M${mag} ${place}</b><br/>${date}<br/>Prof: ${depth}km<br/>${sev.label}`);
+
+    const row = `<div class="quake"><div><span class="mag ${sev.cls}">M${mag}</span> ${place}<br/><span style="font-size:10px;color:#666">${date} • ${depth}km</span></div><div style="font-size:10px;color:#888">${sev.label}</div></div>`;
+
+    if(isPanama(lat,lon)) { panamaQuakes.push(f); listPA.innerHTML+=row; }
+  });
+
+  // Global list (top 20)
+  data.features.slice(0,20).forEach(f=>{
+    const {mag,place,time} = f.properties;
+    const sev = severity(mag);
+    const date = new Date(time).toLocaleString('es-PA');
+    list.innerHTML+= `<div class="quake"><div><span class="mag ${sev.cls}">M${mag}</span> ${place}<br/><span style="font-size:10px;color:#666">${date}</span></div><div style="font-size:10px">${sev.label}</div></div>`;
+  });
+
+  if(panamaQuakes.length===0) listPA.innerHTML='<div style="color:#666;padding:20px 0">Sin sismos en bounding Panamá últimas 24h. Vigilancia activa SADV41.</div>';
+
+ }catch(e){ console.error(e); document.getElementById('list').innerHTML='Error cargando USGS'; }
+}
+load(); setInterval(load,60000);
+</script>
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
+</html>
