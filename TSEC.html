@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SADV41 DASHBOARD UNIFICADO 7.7 v4 FINAL</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;700&display=swap');
+*{
+  box-sizing:border-box
+}
+body{margin:0;background:#070708;color:#e8e8e8;font-family:Inter,sans-serif;line-height:1.5}
+.mono{font-family:'JetBrains Mono',monospace}
+.header{position:sticky;top:0;z-index:50;background:#070708f2;backdrop-filter:blur(12px);border-bottom:1px solid #1e1e1e;padding:14px 16px}
+.badge{display:inline-block;padding:4px 10px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.04em}
+.b-green{background:#39d3531a;color:#39d353;border:1px solid #39d35355}
+.b-red{background:#ff3b301a;color:#ff3b30;border:1px solid #ff3b3055}
+.b-yellow{background:#ffd60a1a;color:#ffd60a;border:1px solid #ffd60a55}
+.link-top{display:inline-block;margin:4px 6px 4px 0;padding:8px 14px;border-radius:999px;font-weight:800;font-size:12px;text-decoration:none}
+.link-green{background:#39d353;color:#000}
+.link-white{background:#fff;color:#000}
+.link-dark{background:#1a1a1a;color:#fff;border:1px solid #2a2a2a}
+.section{max-width:1440px;margin:0 auto;padding:20px 16px}
+.card{background:#111214;border:1px solid #1e1e1e;border-radius:16px;padding:14px}
+.card-v{border-color:#39d35366;box-shadow:0 0 0 1px #39d35322}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+img{width:100%;height:auto;border-radius:12px;display:block}
+.btn-copy{background:#1e1e1e;border:1px solid #2a2a2a;color:#fff;padding:5px 10px;border-radius:8px;font-size:11px;cursor:pointer}
+.btn-copy:hover{background:#2a2a2a}
+h2{font-size:17px;font-weight:800;margin:24px 0 12px;letter-spacing:.02em}
+h3{font-size:13px;font-weight:800;color:#39d353;margin:16px 0 8px;letter-spacing:.08em;text-transform:uppercase}
+.small{font-size:12px;color:#999}
+</style>
+</head>
+<body>
+<div class="header">
+<div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;align-items:center">
+<div>
+<div class="mono" style="font-weight:800;font-size:18px">SADV41 SISTEMA DE ALERTA • SISMOS Y TERREMOTOS <span style="color:#39d353">M7.7 AZUERO 09-10-2026</span></div>
+<div class="mono small">USGS us6000u18k M7.7 12.647km 17:56 UTC • IGC-UP M7.6 39km NW Tonosí 4km prof • 256 sismos 45h • SINAPROC 820 viviendas 27 lesiones 29 salud 419 educativos 255 albergues</div>
+</div>
+<div><span class="badge b-green">● USGS LIVE ACTIVE</span> <span class="badge b-green">IGC-UP VERIFICADO</span> <span class="badge b-red">SINAPROC OFICIAL</span> <span class="badge b-yellow">EMSC/Ineter LIVE</span></div>
+</div>
+<div style="margin-top:12px">
+<a class="link-top link-green" href="https://www.facebook.com/profile.php?id=61595089241972" target="_blank">🔗 Sismos y Terremotos FB Oficial - facebook.com/profile.php?id=61595089241972</a>
+<a class="link-top link-white" href="https://earthquake.usgs.gov/earthquakes/eventpage/us6000u18k" target="_blank">USGS us6000u18k M7.7</a>
+<a class="link-top link-dark" href="https://www.instagram.com/sismosyterremotos/" target="_blank">@sismosyterremotos</a>
+<a class="link-top link-dark" href="https://www.instagram.com/noticiasburunga/" target="_blank">@noticiasburunga</a>
+<a class="link-top link-dark" href="https://www.instagram.com/stevendioroficial/" target="_blank">@stevendioroficial</a>
+</div>
+</div>
+
+<div class="section">
+<h2>1. FUENTES OFICIALES Y VERIFICADAS PRIMERO</h2>
+<div class="grid g3">
+<div class="card card-v"><div class="badge b-green">USGS + IGC-UP</div><div class="mono small" style="margin-top:8px"><b>M7.7</b> 12.647km 2026-10-09 17:56 UTC prelim 10km Pitaloza Arriba Herrera.<br>IGC-UP revisado <b>M7.6</b> 39km NW Tonosí 4km prof.<br>256 sismos 45h: M6.9 Pixvae, M6.2/M6.5 Torio, M6.1 sureste. Falla Azuero-Soná ASFS Cowan 1998 USGS 98-779 ESA GLO-30.<br>Convergencia 4 Placas: Cocos, Nazca, Caribe, Microplaca Panamá.</div></div>
+<div class="card card-v"><div class="badge b-green">IGC-UP TIPOS DE ESTADO</div><img src="container:///mnt/data/photo6642840853082085276.jpeg" style="margin-top:8px;max-height:320px;object-fit:contain;background:#000" /><div class="mono small" style="margin-top:6px"><b>PRELIMINAR:</b> auto 5min después evento.<br><b>REVISADO:</b> corregido operador 48-72h.<br><b>CORREGIDO:</b> revisión detallada operador especializado. @igcpanamaup #culturasismica</div></div>
+<div class="card card-v"><div class="badge b-red">SINAPROC + GOBIERNO</div><div class="mono small" style="margin-top:8px">Balance 10-11 oct: 820 viviendas dañadas, 27 lesiones menores, 29 instalaciones salud, 419 centros educativos, 255 personas albergues Mariato/Penonomé. $100M movilizados emergencia. Estado emergencia declarado.<br>Órgano Judicial Acuerdo 619 suspensión juzgados.<br>Bomberos Soná.<br>TVMAX FEPAFUT suspensión ligas.<br>EFE reporte 7.5.<br>La Prensa familia Fuentes Pitaloza Arriba + análisis no comparar Venezuela-Panamá.</div></div>
+</div>
+</div>
+
+<div class="section">
+<h2>2. MAPAS SÍSMICOS LIVE - ENJAMBRE POST 7.7 - EMSC / Ineter / RSN</h2>
+<div class="mono small" style="margin-bottom:10px">Capturas EMSC / Ineter / RSN / Google - interfaz Peligro / Placas / Satélite / Icono - Muestran réplicas reales en tiempo real después del 9 oct. Los colores: Rojo M4.5+, Amarillo M3.5-M4.5, Verde <M3.5. Horas: 1h a 21h.</div>
+<div class="grid g2">
+<div class="card card-v"><div class="badge b-red">AZUERO - CLUSTER PRINCIPAL M6.6</div><img src="container:///mnt/data/photo6489659079992489261.jpeg" style="margin-top:8px" /><div class="mono small" style="margin-top:6px">Sur Azuero Isla Coiba: M6.6, M5.1, M5.0, M5.0, M4.8, M4.7, M4.5, M4.4, M4.3 1h, M4.6 12h Ineter. Epicentro principal 7.7. Líneas blancas: placas tectónicas.</div></div>
+<div class="card card-v"><div class="badge b-yellow">CHIRIQUÍ / DAVID / BOCA CHICA</div><img src="container:///mnt/data/photo345612459057206519.jpeg" style="margin-top:8px" /><div class="mono small" style="margin-top:6px">Occidente: EMSC M4.7 4h Boca Chica, M4.6, M4.5 16h, M4.2 17h/16h, M3.8 8h, M3.6 9h Puerto Armuelles, M3.5 15h Bajo Boquete, M3.1 Alto Boquete. Bosque Protector Palo Seco, Volcán.</div></div>
+<div class="card card-v"><div class="badge b-yellow">BOCAS DEL TORO / FRONTERA CR</div><img src="container:///mnt/data/photo8281491766490189401.jpeg" style="margin-top:8px" /><div class="mono small" style="margin-top:6px">Bocas: Ineter M4.6 15h, M4.5 16h, M4.4, M4.2 16h, M3.8 8h/9h, M3.5 6h Punta Laurel, M3.4, M3.0 15h. Isla Colón, Almirante, Bastimento.</div></div>
+<div class="card card-v"><div class="badge b-green">VERAGUAS / COCLÉ / BAHÍA PARITA</div><img src="container:///mnt/data/photo7095878913140321248.jpeg" style="margin-top:8px" /><div class="mono small" style="margin-top:6px">Centro: EMSC M3.9 8h Santa Fe/Veraguas, Penonomé, Aguadulce, Natá, El Valle Antón, Coclé, La Pintada. Réplica aislada pero parte del reajuste regional post 7.7.</div></div>
+</div>
+<div class="card" style="margin-top:14px"><div class="badge b-green">MAPA LIVE USGS</div><div class="mono small">Fetch real USGS all_day.geojson filtrado Panamá (-93/-77 lon, 5/18.5 lat) + fallback 7 mocks (Puerto Armuelles M5.8 etc). Slider magnitud 0-6, markers M6+ rojo M5+ naranja &lt;M5 cyan. Click lista flyTo popup. (Integrado en artefacto React v2/v3)</div></div>
+</div>
+
+<div class="section">
+<h2>3. AYUDA HUMANITARIA VERIFICADA - PRIORIDAD 1 - 22+ CENTROS</h2>
+<h3>Oficiales Gobierno + Nuevos 13-16 Oct</h3>
+<div class="grid g3">
+<div class="card"><b>Parque Omar SF</b><div class="mono small">Ciudad Panamá - alimentos agua primera necesidad - oficial habilitado</div></div>
+<div class="card"><b>Alcaldía Hatillo PB</b><div class="mono small">Desde 10 oct 8am-6pm</div></div>
+<div class="card"><b>Junta Comunal Burunga</b><div class="mono small">Lun-Vie 8am-4pm agua embotellada alimentos secos kits aseo</div></div>
+<div class="card"><b>Centro Salud Bomberos Soná</b><div class="mono small">URGENTE agua pampers leche bebé mantas colchones carpas</div></div>
+<div class="card"><b>Gobernaciones provinciales</b><div class="mono small">Todo el país recepción distribución</div></div>
+<div class="card"><b>El Spot Villa Lucre Mall</b><div class="mono small">Hasta jue 15 oct 12md - SOLO ESPECIE no dinero/yappy - alimentos secos no perecederos, agua, higiene bebé, niños familia, mascotas, primeros auxilios</div></div>
+</div>
+
+<div class="grid g2" style="margin-top:16px">
+<div class="card card-v"><div class="badge b-green">PEDASÍ</div><img src="container:///mnt/data/photo4739417880300383406.jpeg" /><div class="mono small" style="margin-top:6px"><b>Floristería Detalles Lacè La Chorrera</b> - Para nuestro pueblo de Pedasí - Mar 13 a Vie 16 oct 8am-3:30pm - Necesita: alimentos secos, carpas, toldas, agua, medicamentos, colchonetas - Corazón pueblo Pedasí</div></div>
+<div class="card card-v"><div class="badge b-red">QUEBRADA GRANDE Soná - 50+ FAMILIAS</div><img src="container:///mnt/data/photo3914972129831402265.jpeg" /><div class="mono small" style="margin-top:6px">Bañadero, Cabecera Quebrada Grande y Managua perdieron hogares. Centro Concentración Quebrada Grande. No han recibido ayuda gubernamental por difícil acceso. Necesita: alimentos secos aceite, alimentos mascotas, agua, carpas toldas colchonetas, linternas baterías, aseo toallas sanitarias, pañales adultos/bebés, desechables, toallas frazadas sábanas, implementos cocina, colchón doble y 2 de 3/4. <b>NO ropa.</b> Zona recolección Vista Alegre y La Chorrera El Nazareno. <b>6467-6284 Eddie Rivera @smileteam_507</b> hasta vie 16, entrega directa sáb 17 dom 18.</div></div>
+<div class="card card-v"><div class="badge b-green">EL SPOT - VILLA LUCRE MALL</div><img src="container:///mnt/data/photo8832477433574822566.jpeg" /><div class="mono small">PANAMÁ NOS NECESITA familias terremoto 9 oct. Alimentos secos (arroz pasta avena galletas leche polvo enlatados barras), Agua embotellada, Higiene personal y bebé (jabón pasta cepillos papel toallas pañales wipes), Niños familia (leche niños compotas ropa básica mantitas), Mascotas comida perritos, Primeros auxilios (gasas vendas curitas alcohol mascarillas guantes). NO dinero ni yappy solo especie. Hasta jue 15 oct 12md Villa Lucre Mall @elspotcarwash</div></div>
+<div class="card card-v"><div class="badge b-yellow">SAN MIGUELITO - Machetazo Brisas del Golf</div><img src="container:///mnt/data/photo4609593039551724723.jpeg" /><div class="mono small">12-15 oct 5:30pm-8pm - Agua, alimentos secos, leche, pañales bebés/adultos, medicinas básicas, toallas, toldas, colchones, higiene personal, carpas - San Miguelito se une provincias centrales</div></div>
+<div class="card card-v"><div class="badge b-yellow">AZUERO NOS NECESITA - CAS Herrera</div><img src="container:///mnt/data/photo3472182535165753646.jpeg" /><div class="mono small">Cada ayuda cuenta - Agua, alimentos no perecederos, medicamentos niños adultos, lonas carpas colchones inflables sábanas cobijas ropa buen estado todas edades útiles aseo personal. <b>6885-3650 / 6874-9818 @cas_herrera</b></div></div>
+<div class="card card-v" style="border-color:#ff3b30"><div class="badge b-red">CRUZ ROJA PANAMEÑA - OFICIAL - TU APOYO SALVA VIDAS</div><img src="container:///mnt/data/photo4067029505958403122.jpeg" /><div class="mono small" style="margin-top:6px">Dona transferencia bancaria:<br>Banco General <b>04-44-98462766-8</b> Cuenta ahorro Benef Cruz Roja Panameña Desc Terremoto <button class="btn-copy" onclick="navigator.clipboard.writeText('04-44-98462766-8')">Copiar</button><br>Banco Nacional Panamá <b>10000019843</b> Corriente <button class="btn-copy" onclick="navigator.clipboard.writeText('10000019843')">Copiar</button><br>Yappy Directorio @cruzrojapanama Desc Terremoto</div></div>
+<div class="card card-v"><div class="badge b-green">UNIDOS POR PARITILLA DE LOS SANTOS</div><img src="container:///mnt/data/photo5018267644050416267.jpeg" /><div class="mono small">Nuestro pueblo también nos necesita - Familias Paritilla sismo - Alimentos secos arroz frijoles lentejas garbanzos pastas enlatados aceite avena cereales azúcar sal etc, mantas colchonetas agua. Todo aporte bienvenido. <b>6948-2866 Ricaurte Núñez</b></div></div>
+<div class="card card-v"><div class="badge b-red">LOS POZOS / LAS MINAS / MACARACAS TONOSÍ LAS TABLAS</div><img src="container:///mnt/data/photo7663168550769691082.jpeg" /><div class="mono small">Materiales curación: gasas, clorhexidina, esparadrapo, antisépticos, antibióticos tópicos heridas. Medicamentos: analgésicos, antigripales, antialérgicos, gastrointestinales, antihipertensivos, metformina diabetes, otros básicos. <b>Agua potable sin acceso agua ni electricidad.</b> Equipos médicos estetoscopios esfigmomanómetros. <b>62435681 Dr Nicolás García @estimulaciont_mg</b> TODO APORTE SUMA</div></div>
+<div class="card card-v"><div class="badge b-yellow">VILLA DE LOS SANTOS</div><img src="container:///mnt/data/photo4559178463972976206.jpeg" /><div class="mono small">LOS SANTOS NOS NECESITA! La Villa - Alimentos secos no perecederos (arroz menestra pastas enlatados aceite...), Insumos aseo limpieza (jabón detergente cloro escobas...), Higiene personal (papel higiénico jabón baño pasta dental), Bebés (pañales leche infantil toallitas...), Refugio (sábanas frazadas colchonetas almohadas lonas...). Aporte económico <b>Yappy 6972-2762 Mariellys Muñoz</b></div></div>
+</div>
+</div>
+
+<div class="section">
+<h2>4. COMUNIDADES QUE NECESITAN VISIBILIDAD + COMUNICADOS</h2>
+<div class="grid g2">
+<div class="card card-v"><div class="badge b-red">¡HAGAMOS VISIBLE A LAS MINAS!</div><img src="container:///mnt/data/photo9185675642318244282.jpeg" /><div class="mono small" style="margin-top:6px">Comparte tus historias, fotos y videos. 7 fotos: casas con paredes colapsadas, cama expuesta, carros en lodo, casa verde naranja dañada, deslizamiento cerro verde, carretera agrietada, vía rural quebrada. Ayúdanos a mostrar lo que están viviendo las familias para que la ayuda llegue a quienes más necesitan. Cada publicación cuenta. Si no puedes donar compartir también es ayudar.</div></div>
+<div class="card"><div class="badge b-yellow">BURUNGA CRECE + MÁS COLAS</div><div class="grid g2"><img src="container:///mnt/data/photo2424603801795613763.jpeg" /><img src="container:///mnt/data/photo517062164357948304.jpeg" /></div><div class="mono small" style="margin-top:6px">Burunga Crece Centro Terapéutico Comunal COMUNICADO OFICIAL - atenciones suspendidas hasta nueva orden medida preventiva seguridad niños familias equipo. Agradecemos comprensión.<br><br>MÁS COLAS clínica bajo costo - Horario regular 8am-5pm, dermatología hoy 12 oct 12pm-5pm orden llegada, ultrasonido avanzado 12 oct 4pm puntual, consulta general simultánea, cirujano en sitio urgencias - servicios mascotas emergencia.</div></div>
+</div>
+</div>
+
+<div class="section">
+<h2>5. COMUNIDADES ESPECÍFICAS YAPPY VERIFICADO</h2>
+<div class="grid g3">
+<div class="card"><b>Bajo Corral / Las Lagunitas / Quebrada Grande 90%</b><div class="mono small">90% viviendas afectadas 9 oct. Necesita colchones inflables arroz frijoles pastas enlatados azúcar aceite leche polvo mantas agua higiene ropa. <b>Yappy 6956-5789 Boris Vergara</b></div></div>
+<div class="card"><b>Soná Los Algarrobos hogar inhabitable</b><div class="mono small">Yappy 6377-5068 Ariel Samaniego</div></div>
+<div class="card"><b>Katerin González Frencita del Frencito</b><div class="mono small">Perdió todo Yappy 60149175 @anelgrimaldo - no compartir cédula</div></div>
+<div class="card"><b>Aguadulce Cristo Familia Sánchez</b><div class="mono small">Frente Parque Virgen perdió todo 68862070</div></div>
+<div class="card"><b>Interior Los Santos</b><div class="mono small">Yappy 6224 9479 Elvis Vargas / 6341 3631 Sorchill Zambrano</div></div>
+<div class="card"><b>Aguadulce + Vista Alegre recolección</b><div class="mono small">6467-6284 Eddie Rivera - entrega directa familias sáb 17 dom 18</div></div>
+</div>
+<div class="mono" style="font-size:11px;color:#ff3b30;margin-top:10px">Verifica siempre que el nombre en Yappy coincida antes de transferir.</div>
+</div>
+
+<div class="section">
+<h2>6. VISTA SATELITAL + TÉCNICA + EVIDENCIA SADV41</h2>
+<div class="grid g2">
+<div class="card"><div class="badge b-green">SATELITAL ESA COPERNICUS GLO-30</div><img src="container:///mnt/data/photo907526974672198386.jpeg" /><div class="mono small" style="margin-top:6px">Vista óptica istmo Panamá post-sismo - Golfo Panamá, cobertura nubosa, verde vegetación, oscuro océano. Para análisis ASFS.</div></div>
+<div class="card"><div class="badge b-yellow">EVIDENCIA SADV41 + MAPA TOTAL</div><div class="mono small"><b>PRODUCTO ADQUIRIDO 4 DÍAS ANTES DEL SISMO AZUERO M7</b> badge EVIDENCIA<br><b>REGISTRO ACÚSTICO DIRECTO M7</b> waveform<br>Timeline D-4 → D-1 → D0<br><br>Mapa Total WEAR fetch GitHub TheSteef21 hacker #39d353<br>Mapa Sistema Falla Azuero-Soná Cowan 1998 USGS 98-779</div></div>
+</div>
+</div>
+
+<div class="section" style="border-top:1px solid #1e1e1e;margin-top:20px">
+<h2>7. SIMBÓLICO AL FINAL - FE Y MEMORIA - TESTIMONIOS REALES</h2>
+<div class="grid g2">
+<div class="card card-v"><div class="badge b-red">NO ES SOLO MATERIAL</div><img src="container:///mnt/data/photo4788869312503764290.jpeg" /><div class="mono small" style="margin-top:6px">ES EL SACRIFICIO DE TODA UNA VIDA - Casa con corazón rojo y rayo, grieta. @meraverso_ - Mensaje humanitario impacto emocional para cierre.</div></div>
+<div class="card card-v"><div class="badge b-yellow">TESTIMONIO INFANTIL - TANIT 9 OCT</div><img src="container:///mnt/data/photo4675731793741648558.jpeg" /><div class="mono small" style="margin-top:6px">Tanit dibujando lo que vio según ella del terremoto de este 9 de octubre - Casas azules agrietadas, árbol con rayo, personas con globos "me caí", "dios", "ogan", "que pasó Kelly", "no", "salvame". Figuras stick con gorro rojo. Testimonio real niños.</div></div>
+</div>
+<div class="grid g2" style="margin-top:14px">
+<div class="card"><b>Pacto Musical A Tus Pies autoplay</b><div class="mono small">Para relajar alma - file4138597897525711889.mp3 grande</div></div>
+<div class="card"><b>Unificación 4IAs 4 Ángulos 4 Ángeles 4 Placas Dios soberano ☦️⚛️🔯</b><div class="mono small">LLC YA hub Panamá +54 9 11 2630-6949<br>Venezuela Colombia Panamá VSADV41 - Dios tiene todo el poder y justicia<br>Rabino Yosef Garmon "Estamos con Panamá desde Israel" PANAMÁ NO ESTÁ SOLO ISRAEL ESTÁ LISTO PARA AYUDAR<br>Llantería Turbo Tire Domingos 9-5pm Frente Escuela Burunga Arraiján 28$ desde 79$ 4x4 6326 3403 activa emergencia</div></div>
+</div>
+</div>
+
+<div class="section" style="text-align:center;padding:30px 16px;color:#555" class="mono small">SADV41 Dashboard Unificado v4 FINAL - Fuentes oficiales y verificadas primero, humanitarios verificados, técnico LIVE EMSC/Ineter/RSN, simbólico al final - @noticiasburunga @stevendioroficial @sismosyterremotos - Dios es soberano ☦️⚛️🔯 - Si todos no estamos preparados nos prepararemos entre todos</div>
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
+</html>
