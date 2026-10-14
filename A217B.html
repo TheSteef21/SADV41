@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SADV41 // TSEC ESPORTS // SISMOS Y TERREMOTOS</title>
+  <style>
+    :root {
+      --bg-color: #0b0f19;
+      --panel-bg: #111827;
+      --accent-color: #00f2fe;
+      --text-color: #e2e8f0;
+      --highlight: #ff4757;
+      --border-color: #1f2937;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    header {
+      border-bottom: 2px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    header h1 span {
+      color: var(--accent-color);
+    }
+
+    .subtitle {
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: var(--panel-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 15px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: var(--accent-color);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    .feed-list {
+      max-height: 320px;
+      overflow-y: auto;
+      font-size: 0.9rem;
+    }
+
+    .feed-item {
+      padding: 8px 0;
+      border-bottom: 1px solid #1f293d;
+    }
+
+    .mag {
+      font-weight: bold;
+      color: var(--highlight);
+    }
+
+    .meta-info {
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 10px;
+    }
+
+    details {
+      margin-top: 8px;
+      background: #1a2234;
+      padding: 8px;
+      border-radius: 4px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--accent-color);
+    }
+
+    footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #64748b;
+      border-top: 1px solid var(--border-color);
+      padding-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>SADV41 // <span>TSEC ESPORTS</span> // SISMOS Y TERREMOTOS</h1>
+    <div class="subtitle">GITHUB PAGES • STATIC FEED</div>
+  </header>
+
+  <div class="grid-container">
+    <!-- Panel Global Live -->
+    <div class="card">
+      <h3>ÚLTIMOS SISMOS - GLOBAL (USGS LIVE)</h3>
+      <div id="usgs-global" class="feed-list">Cargando datos globales...</div>
+    </div>
+
+    <!-- Panel Panamá + Centroamérica SADV41 -->
+    <div class="card">
+      <h3>PANAMÁ + CENTROAMÉRICA - FILTRO SADV41</h3>
+      <div id="usgs-panama" class="feed-list">Filtrando eventos de la región...</div>
+      <div class="meta-info">
+        Bounding: 6.5-10.0N, -83.5 - -76.5W • Protocolo BERIÓN A217<br>
+        Fuente: USGS API Live
+      </div>
+    </div>
+
+    <!-- Panel Landsat 9 (TSEC) -->
+    <div class="card">
+      <h3>🛰 PANEL GEOPOLÍTICO: LANDSAT 9 (TSEC)</h3>
+      <p style="font-size: 0.85rem; color: #94a3b8;">Monitoreo Espectral y Cobertura de Superficie</p>
+
+      <details>
+        <summary>🌏 Misión y Órbitas de Revisión <span>[+]</span></summary>
+        <div id="landsat-orbit" style="font-size: 0.85rem; margin-top: 5px;">
+          <strong>Órbita Sincrónica Solar:</strong> Gira alrededor de la Tierra a ~705 km.<br>
+          <strong>Ciclo de Repetición:</strong> Cobertura global cada 16 días.
+        </div>
+      </details>
+
+      <details>
+        <summary>📷 Instrumentos de Captura (OLI-2 &amp; TIRS-2) <span>[+]</span></summary>
+        <div id="landsat-instruments" style="font-size: 0.85rem; margin-top: 5px;">
+          <ul>
+            <li><strong>OLI-2:</strong> Captura luz reflejada en el espectro visible, NIR y SWIR.</li>
+            <li><strong>TIRS-2:</strong> Mide la emisión térmica de la superficie.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>📊 Resolución Espacial y Espectral <span>[+]</span></summary>
+        <div id="landsat-specs" style="font-size: 0.85rem; margin-top: 5px;">
+          <ul>
+            <li><strong>Multiespectral:</strong> Píxeles de 30m.</li>
+            <li><strong>Pancromática:</strong> Detalle de alta resolución a 15m.</li>
+            <li><strong>Profundidad Radiométrica:</strong> Codificación de 14 bits.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <footer>
+    STEVENDIOR OFICIAL • MISIÓN SADV41 • thesteef21.github.io
+  </footer>
+
+  <script>
+    // 1. Cargar datos del archivo tsec.json local
+    fetch('./tsec.json')
+      .then(res => {
+        if (!res.ok) throw new Error('Archivo tsec.json no detectado');
+        return res.json();
+      })
+      .then(data => {
+        console.log('✅ tsec.json cargado exitosamente:', data);
+        if (data.satellites && data.satellites[0]) {
+          const sat = data.satellites[0];
+          document.getElementById('landsat-orbit').innerHTML = `
+            <strong>${sat.orbit.type}:</strong> Altitud ~${sat.orbit.altitude_km} km.<br>
+            <strong>Ciclo de Repetición:</strong> Cobertura cada ${sat.orbit.revisit_cycle_days} días.
+          `;
+        }
+      })
+      .catch(err => {
+        console.warn('⚠️ Nota:', err.message);
+      });
+
+    // 2. Cargar feed en vivo de USGS
+    const USGS_FEED = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson';
+
+    fetch(USGS_FEED)
+      .then(res => res.json())
+      .then(geoData => {
+        const features = geoData.features || [];
+
+        // Panel Global (Últimos 10 eventos)
+        const globalContainer = document.getElementById('usgs-global');
+        if (features.length === 0) {
+          globalContainer.innerHTML = 'Sin sismos reportados hoy.';
+        } else {
+          globalContainer.innerHTML = features.slice(0, 10).map(f => `
+            <div class="feed-item">
+              <span class="mag">M ${f.properties.mag.toFixed(1)}</span> - ${f.properties.place}<br>
+              <small style="color:#64748b;">${new Date(f.properties.time).toLocaleTimeString()}</small>
+            </div>
+          `).join('');
+        }
+
+        // Panel Panamá + Centroamérica (Bounding Box SADV41: Lat 6.5 a 10.0 N, Lon -83.5 a -76.5 W)
+        const panamaContainer = document.getElementById('usgs-panama');
+        const panamaEvents = features.filter(f => {
+          const [lon, lat] = f.geometry.coordinates;
+          return lat >= 6.5 && lat <= 10.0 && lon >= -83.5 && lon <= -76.5;
+        });
+
+        if (panamaEvents.length === 0) {
+          panamaContainer.innerHTML = '<div style="color: #64748b; padding: 10px 0;">Sin actividad sísmica detectada en la cuadrícula de Panamá/Centroamérica en las últimas 24 hrs.</div>';
+        } else {
+          panamaContainer.innerHTML = panamaEvents.map(f => `
+            <div class="feed-item">
+              <span class="mag" style="color: #00f2fe;">M ${f.properties.mag.toFixed(1)}</span> - ${f.properties.place}<br>
+              <small style="color:#94a3b8;">Hora: ${new Date(f.properties.time).toLocaleTimeString()} | Prof: ${f.geometry.coordinates[2]} km</small>
+            </div>
+          `).join('');
+        }
+      })
+      .catch(err => {
+        console.error('Error cargando USGS Live API:', err);
+        document.getElementById('usgs-global').innerText = 'Error al consultar API en vivo.';
+        document.getElementById('usgs-panama').innerText = 'Error al consultar API en vivo.';
+      });
+  </script>
+</body>
+</html>
