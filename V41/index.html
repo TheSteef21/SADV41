@@ -1,1 +1,324 @@
+```html
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emprendedores V41 | El Cuarto Producto</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration & Custom Styles -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        lapiz: {
+                            900: '#0a1128', // Very dark blue
+                            800: '#121f47', // Deep lapislazuli
+                            600: '#1d4ed8', // Bright blue
+                            400: '#60a5fa', // Light blue accent
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #030712; /* Tailwind gray-950 */
+            color: #f8fafc;
+        }
+        
+        /* Glassmorphism utility */
+        .glass-card {
+            background: rgba(18, 31, 71, 0.3);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(96, 165, 250, 0.15);
+        }
+        
+        .glass-card:hover {
+            border-color: rgba(96, 165, 250, 0.4);
+            box-shadow: 0 0 30px rgba(29, 78, 216, 0.2);
+        }
 
+        /* Subtle scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e3a8a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
+        }
+    </style>
+</head>
+<body class="relative overflow-x-hidden selection:bg-lapiz-600 selection:text-white">
+
+    <!-- Ambient Background Glows -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-lapiz-600/20 blur-[150px] rounded-full pointer-events-none -z-10"></div>
+    <div class="absolute bottom-0 right-0 w-[600px] h-[400px] bg-purple-900/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+
+    <!-- Navigation -->
+    <nav class="absolute top-0 w-full z-50 py-6 px-6 lg:px-12 flex justify-between items-center opacity-0 animate-fade-in-up">
+        <div class="flex items-center gap-2">
+            <i class="ph-fill ph-hexagon text-lapiz-400 text-3xl"></i>
+            <span class="text-xl font-bold tracking-wider text-white">V41<span class="text-lapiz-400">.</span></span>
+        </div>
+        <ul class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+            <li><a href="#estrategias" class="hover:text-white transition-colors">Naming</a></li>
+            <li><a href="#portafolio" class="hover:text-white transition-colors">Portafolio</a></li>
+            <li><a href="#contacto" class="hover:text-white transition-colors">Contacto</a></li>
+        </ul>
+        <a href="#portafolio" class="hidden md:inline-block px-5 py-2 text-sm font-semibold rounded-full bg-white/10 hover:bg-white/20 border border-white/10 transition-all">
+            Ver Ecosistema
+        </a>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 px-6 lg:px-12 text-center">
+        <div class="max-w-4xl mx-auto z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lapiz-800/50 border border-lapiz-400/30 text-lapiz-400 text-xs font-semibold uppercase tracking-widest mb-8 opacity-0 animate-fade-in-up" style="animation-delay: 0.1s;">
+                <i class="ph ph-cpu"></i> Constante SADV41
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight opacity-0 animate-fade-in-up" style="animation-delay: 0.2s;">
+                Emprendedores V41: <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-lapiz-400 via-blue-400 to-cyan-300">El Cuarto Producto</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-3xl mx-auto opacity-0 animate-fade-in-up leading-relaxed" style="animation-delay: 0.3s;">
+                Orquestando un ecosistema donde <strong>3 motores de inteligencia artificial</strong> y <strong>3 niveles de servicio</strong> convergen en un vehículo comercial absoluto. No es solo una herramienta, es la agencia que procesa y sostiene toda tu operación digital.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-fade-in-up" style="animation-delay: 0.4s;">
+                <a href="#estrategias" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-lapiz-600 hover:bg-blue-600 text-white font-semibold transition-all shadow-[0_0_20px_rgba(29,78,216,0.4)] hover:shadow-[0_0_30px_rgba(29,78,216,0.6)]">
+                    Explorar Nomenclaturas
+                </a>
+                <a href="#portafolio" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card hover:bg-white/10 text-white font-semibold transition-all">
+                    Ver Portafolio de Servicios
+                </a>
+            </div>
+        </div>
+
+        <!-- Floating Abstract Element -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-gray-500 opacity-50">
+            <i class="ph ph-caret-down text-3xl"></i>
+        </div>
+    </section>
+
+    <!-- NAMING STRATEGIES SECTION -->
+    <section id="estrategias" class="py-24 px-6 lg:px-12 relative z-10 bg-lapiz-900/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Estrategias de Marca <span class="text-lapiz-400">Principal</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">El nombre de la marca paraguas debe proyectar arquitectura técnica y escalabilidad. Opciones basadas en la constante matemática SADV41.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Column 1: Fórmula y Constante -->
+                <div class="glass-card p-8 rounded-2xl transition-transform duration-300 transform hover:-translate-y-2 group">
+                    <div class="w-14 h-14 rounded-xl bg-lapiz-800 flex items-center justify-center mb-6 group-hover:bg-lapiz-600 transition-colors">
+                        <i class="ph ph-math-operations text-3xl text-lapiz-400 group-hover:text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-6 border-b border-white/10 pb-4">Fórmula y Constante</h3>
+                    <ul class="space-y-6">
+                        <li>
+                            <h4 class="text-lg font-semibold text-white mb-1"><i class="ph-fill ph-caret-right text-lapiz-400 text-sm mr-1"></i> Vértice 41</h4>
+                            <p class="text-sm text-gray-400 leading-relaxed">Punto exacto donde tres líneas (IA/Productos) forman una nueva estructura 3D. Transmite precisión y liderazgo.</p>
+                        </li>
+                        <li>
+                            <h4 class="text-lg font-semibold text-white mb-1"><i class="ph-fill ph-caret-right text-lapiz-400 text-sm mr-1"></i> PentaCore Digital</h4>
+                            <p class="text-sm text-gray-400 leading-relaxed">Refleja el resultado (5). Sugiere que la empresa es el "núcleo" que procesa desde el diseño básico hasta contratos en Web3.</p>
+                        </li>
+                        <li>
+                            <h4 class="text-lg font-semibold text-white mb-1"><i class="ph-fill ph-caret-right text-lapiz-400 text-sm mr-1"></i> 4D Tech</h4>
+                            <p class="text-sm text-gray-400 leading-relaxed">Posiciona el "cuarto producto", integrando automatización avanzada e IA más allá del desarrollo web tradicional (3D).</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Column 2: Unidad Tecnológica -->
+                <div class="glass-card p-8 rounded-2xl transition-transform duration-300 transform hover:-translate-y-2 group relative overflow-hidden">
+                    <!-- Highlight background for recommended column -->
+                    <div class="absolute inset-0 bg-gradient-to-b from-lapiz-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 rounded-xl bg-lapiz-800 flex items-center justify-center mb-6 group-hover:bg-lapiz-600 transition-colors">
+                            <i class="ph ph-stack text-3xl text-lapiz-400 group-hover:text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-6 border-b border-white/10 pb-4">Unidad Tecnológica</h3>
+                        <ul class="space-y-6">
+                            <li>
+                                <h4 class="text-lg font-semibold text-white mb-1"><i class="ph-fill ph-caret-right text-lapiz-400 text-sm mr-1"></i> TrinoStack</h4>
+                                <p class="text-sm text-gray-400 leading-relaxed">Fusiona la "Trinidad" con "Stack" (React, Node, Web3). Nombre altamente comercial para software B2B.</p>
+                            </li>
+                            <li>
+                                <h4 class="text-lg font-semibold text-white mb-1"><i class="ph-fill ph-caret-right text-lapiz-400 text-sm mr-1"></i> SADV41 Nexus</h4>
+                                <p class="text-sm text-gray-400 leading-relaxed">El puente definitivo que une interfaces gráficas, lógica de datos y la infraestructura blockchain.</p>
+                            </li>
+                            <li>
+                                <h4 class="text-lg font-semibold text-white mb-1"><i class="ph-fill ph-caret-right text-lapiz-400 text-sm mr-1"></i> Omni 41</h4>
+                                <p class="text-sm text-gray-400 leading-relaxed">Representa la capacidad de cubrir absolutamente todo el espectro digital, desde plantillas hasta telemetría.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Column 3: Agencia de Autor -->
+                <div class="glass-card p-8 rounded-2xl transition-transform duration-300 transform hover:-translate-y-2 group">
+                    <div class="w-14 h-14 rounded-xl bg-lapiz-800 flex items-center justify-center mb-6 group-hover:bg-lapiz-600 transition-colors">
+                        <i class="ph ph-pen-nib text-3xl text-lapiz-400 group-hover:text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-6 border-b border-white/10 pb-4">Agencia de Autor</h3>
+                    <ul class="space-y-6">
+                        <li>
+                            <h4 class="text-lg font-semibold text-white mb-1"><i class="ph-fill ph-caret-right text-lapiz-400 text-sm mr-1"></i> Lapizasuli Studio</h4>
+                            <p class="text-sm text-gray-400 leading-relaxed">Eleva el repositorio actual a una marca de agencia. Transmite la creatividad del azul intenso y rigor técnico para comercializar bajo una firma unificada.</p>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-12 p-4 bg-lapiz-800/50 rounded-xl border border-lapiz-400/20 text-center">
+                        <i class="ph-fill ph-lightbulb text-yellow-400 text-2xl mb-2"></i>
+                        <p class="text-xs text-gray-300">Este enfoque capitaliza los activos y repositorios existentes, dotándolos de un valor comercial inmediato.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICE TIERS SECTION -->
+    <section id="portafolio" class="py-24 px-6 lg:px-12 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">El Ecosistema Comercial</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">El despliegue de los 3 productos independientes que operan bajo la marca principal, orquestados por IA (Gemini, Meta, Grok).</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                
+                <!-- Nivel Básico -->
+                <div class="glass-card rounded-2xl flex flex-col relative overflow-hidden group">
+                    <div class="h-2 w-full bg-gray-500"></div>
+                    <div class="p-8 flex-grow flex flex-col">
+                        <span class="text-xs font-bold text-gray-400 tracking-wider uppercase mb-2">Producto 1</span>
+                        <h3 class="text-2xl font-bold mb-2">Nivel Básico</h3>
+                        <p class="text-lapiz-400 font-semibold mb-6">Herramientas Operativas y Visuales</p>
+                        
+                        <p class="text-gray-400 text-sm mb-8 flex-grow">
+                            Diseño de identidad gráfica, logotipos, arte promocional y desarrollo de herramientas web estáticas para controles internos (ej. registro de ventas local).
+                        </p>
+                        
+                        <div class="border-t border-white/10 pt-6">
+                            <div class="text-sm text-gray-400 mb-1">Valor Estimado:</div>
+                            <div class="text-2xl font-bold text-white">$150 - $350 <span class="text-sm font-normal text-gray-500">/proyecto</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nivel Profesional (Highlighted) -->
+                <div class="glass-card rounded-2xl flex flex-col relative overflow-hidden group transform md:-translate-y-4 shadow-[0_0_30px_rgba(29,78,216,0.15)] border-lapiz-400/40">
+                    <div class="absolute top-0 right-0 bg-lapiz-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg z-10">
+                        MÁS SOLICITADO
+                    </div>
+                    <div class="h-2 w-full bg-gradient-to-r from-lapiz-400 to-blue-500"></div>
+                    <div class="p-8 flex-grow flex flex-col bg-lapiz-900/40">
+                        <span class="text-xs font-bold text-lapiz-400 tracking-wider uppercase mb-2">Producto 2</span>
+                        <h3 class="text-2xl font-bold mb-2">Nivel Profesional</h3>
+                        <p class="text-blue-300 font-semibold mb-6">Aplicaciones Dinámicas y Automatización</p>
+                        
+                        <p class="text-gray-300 text-sm mb-8 flex-grow">
+                            Interfaces desarrolladas en React/FastAPI, consumo en tiempo real de API USGS (GeoJSON), flujos automatizados (Make.com), secuencias OpenCV y bots integrados.
+                        </p>
+                        
+                        <div class="border-t border-white/10 pt-6">
+                            <div class="text-sm text-gray-400 mb-1">Valor Estimado:</div>
+                            <div class="text-3xl font-bold text-white text-transparent bg-clip-text bg-gradient-to-r from-lapiz-400 to-cyan-300">$500 - $1,200 <span class="text-sm font-normal text-gray-500">/proyecto</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nivel Empresarial -->
+                <div class="glass-card rounded-2xl flex flex-col relative overflow-hidden group">
+                    <div class="h-2 w-full bg-gradient-to-r from-purple-500 to-pink-500"></div>
+                    <div class="p-8 flex-grow flex flex-col">
+                        <span class="text-xs font-bold text-purple-400 tracking-wider uppercase mb-2">Producto 3</span>
+                        <h3 class="text-2xl font-bold mb-2">Nivel Empresarial</h3>
+                        <p class="text-purple-300 font-semibold mb-6">Arquitectura Web3 y Sistemas Complejos</p>
+                        
+                        <p class="text-gray-400 text-sm mb-8 flex-grow">
+                            Implementación de autenticación criptográfica, despliegue de dApps (Reown AppKit) y arquitecturas en la nube que integran ecosistemas de pagos descentralizados.
+                        </p>
+                        
+                        <div class="border-t border-white/10 pt-6">
+                            <div class="text-sm text-gray-400 mb-1">Valor Estimado:</div>
+                            <div class="text-2xl font-bold text-white">$1,500 - $3,000+ <span class="text-sm font-normal text-gray-500">/proyecto</span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 mt-12 py-12 px-6 bg-[#02040a]">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <i class="ph-fill ph-hexagon text-lapiz-400 text-2xl"></i>
+                <span class="text-lg font-bold text-white">V41<span class="text-lapiz-400">.</span></span>
+            </div>
+            
+            <p class="text-gray-500 text-sm">
+                &copy; 2026. Arquitectura propulsada por la <span class="text-gray-300 font-semibold">Constante SADV41</span>.
+            </p>
+            
+            <div class="flex gap-4">
+                <a href="#" class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-gray-400 hover:text-white hover:bg-lapiz-600 transition-all">
+                    <i class="ph-fill ph-github-logo text-xl"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-gray-400 hover:text-white hover:bg-lapiz-600 transition-all">
+                    <i class="ph-fill ph-twitter-logo text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
+```
