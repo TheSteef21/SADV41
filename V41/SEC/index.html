@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emprendedores V41 | El Cuarto Producto</title>
+    
+    <!-- Meta-Enclave: Registro de Telemetría Ofuscado -->
+    <meta name="v41-sys-log" content="INIT_SEQ: Diciembre_Prev. Nodo Alfa [A1] experimenta caída por déficit de ancho de banda. Operación 'Cama' ejecutada. T-60_Días: Nodo Periférico [P2], previamente estable, se asocia a red P2P de alto riesgo (Troyano).">
+    <meta name="v41-lat-log" content="Anomalía de Red (Ping 2.6 / 4.5). Admin_V41 canaliza paquetes de soporte al clúster central.">
+    <meta name="v41-crit-log" content="Cese de nodo fundacional. Ataque de inyección a [A1]. Proxy Agresor [X3] desconectado por sobrecarga térmica. Nodo [P2] formateado; paquetes descartados en tránsito para evadir traceroute de Monitores.">
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration & Custom Styles -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        lapiz: {
+                            900: '#0a1128',
+                            800: '#121f47',
+                            600: '#1d4ed8',
+                            400: '#60a5fa',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #030712;
+            color: #f8fafc;
+        }
+        
+        .glass-card {
+            background: rgba(18, 31, 71, 0.3);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(96, 165, 250, 0.15);
+        }
+        
+        .glass-card:hover {
+            border-color: rgba(96, 165, 250, 0.4);
+            box-shadow: 0 0 30px rgba(29, 78, 216, 0.2);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e3a8a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
+        }
+    </style>
+</head>
+<body class="relative overflow-x-hidden selection:bg-lapiz-600 selection:text-white">
+
+    <!-- Ambient Background Glows con variables fantasma -->
+    <div data-status-admin="Admin_V41: Analizador de paquetes escaneando puertos no seguros. Enfrenta DDoS psicológico y bloqueo de Capa 7." class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-lapiz-600/20 blur-[150px] rounded-full pointer-events-none -z-10"></div>
+    <div data-status-capa7="Capa 7: Enrutador Maestro. Silencia logs, orquesta descarte de paquetes y coordina nodos vehiculares." class="absolute bottom-0 right-0 w-[600px] h-[400px] bg-purple-900/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+
+    <!-- Navigation -->
+    <nav class="absolute top-0 w-full z-50 py-6 px-6 lg:px-12 flex justify-between items-center opacity-0 animate-fade-in-up">
+        <div class="flex items-center gap-2">
+            <i class="ph-fill ph-hexagon text-lapiz-400 text-3xl"></i>
+            <span class="text-xl font-bold tracking-wider text-white">V41<span class="text-lapiz-400">.</span></span>
+        </div>
+        <ul class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
