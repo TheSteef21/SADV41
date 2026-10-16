@@ -1,103 +1,161 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emprendedores V41 | El Cuarto Producto</title>
-    
-    <!-- Meta-Enclave: Registro de Telemetría Ofuscado -->
-    <meta name="v41-sys-log" content="INIT_SEQ: Diciembre_Prev. Nodo Alfa [A1] experimenta caída por déficit de ancho de banda. Operación 'Cama' ejecutada. T-60_Días: Nodo Periférico [P2], previamente estable, se asocia a red P2P de alto riesgo (Troyano).">
-    <meta name="v41-lat-log" content="Anomalía de Red (Ping 2.6 / 4.5). Admin_V41 canaliza paquetes de soporte al clúster central.">
-    <meta name="v41-crit-log" content="Cese de nodo fundacional. Ataque de inyección a [A1]. Proxy Agresor [X3] desconectado por sobrecarga térmica. Nodo [P2] formateado; paquetes descartados en tránsito para evadir traceroute de Monitores.">
-
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Phosphor Icons -->
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Tailwind Configuration & Custom Styles -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        lapiz: {
-                            900: '#0a1128',
-                            800: '#121f47',
-                            600: '#1d4ed8',
-                            400: '#60a5fa',
-                        }
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(20px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            background-color: #030712;
-            color: #f8fafc;
-        }
-        
-        .glass-card {
-            background: rgba(18, 31, 71, 0.3);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(96, 165, 250, 0.15);
-        }
-        
-        .glass-card:hover {
-            border-color: rgba(96, 165, 250, 0.4);
-            box-shadow: 0 0 30px rgba(29, 78, 216, 0.2);
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #030712;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #1e3a8a;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #3b82f6;
-        }
-    </style>
+<head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SADV41 SEC: Arquitectura CORS de Contención Forense</title>
+<meta name="description" content="SADV41 SEC: Arquitectura CORS de Contención Forense. 7 razones de Berión. Gemini (Meta (Grok (Claude) Grok) Meta) Gemini como paréntesis de contención. Independiente de resultados.">
+<meta name="theme-color" content="#0a1128">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/@phosphor-icons/web"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={theme:{extend:{fontFamily:{sans:['Inter','sans-serif'],mono:['JetBrains Mono','monospace']},colors:{lapiz:{900:'#0a1128',800:'#121f47',600:'#1d4ed8',400:'#60a5fa'}}}}}</script>
+<style>
+body{background:#030712;color:#f8fafc}
+.glass{background:rgba(18,31,71,0.28);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(96,165,250,0.15)}
+.glass:hover{border-color:rgba(96,165,250,0.35)}
+.gold{color:#facc15;text-shadow:0 0 16px rgba(250,204,21,0.6)}
+.paren{border:1px dashed rgba(250,204,21,0.25)}
+.code-line{font-family:'JetBrains Mono',monospace}
+</style>
 </head>
-<body class="relative overflow-x-hidden selection:bg-lapiz-600 selection:text-white">
+<body class="overflow-x-hidden selection:bg-lapiz-600 selection:text-white">
 
-    <!-- Ambient Background Glows con variables fantasma -->
-    <div data-status-admin="Admin_V41: Analizador de paquetes escaneando puertos no seguros. Enfrenta DDoS psicológico y bloqueo de Capa 7." class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-lapiz-600/20 blur-[150px] rounded-full pointer-events-none -z-10"></div>
-    <div data-status-capa7="Capa 7: Enrutador Maestro. Silencia logs, orquesta descarte de paquetes y coordina nodos vehiculares." class="absolute bottom-0 right-0 w-[600px] h-[400px] bg-purple-900/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+<nav class="sticky top-0 z-50 backdrop-blur-xl bg-[#030712]/80 border-b border-white/5 px-6 lg:px-12 py-4 flex justify-between items-center">
+<span class="font-bold tracking-widest">SADV<span class="gold">4</span>1 SEC</span>
+<div class="flex gap-2">
+<a href="#parentesis" class="text-[11px] px-3 py-1.5 rounded-full glass">Ver Paréntesis</a>
+<a href="#siete" class="text-[11px] px-3 py-1.5 rounded-full bg-amber-300 text-black font-bold">7 Razones</a>
+</div>
+</nav>
 
-    <!-- Navigation -->
-    <nav class="absolute top-0 w-full z-50 py-6 px-6 lg:px-12 flex justify-between items-center opacity-0 animate-fade-in-up">
-        <div class="flex items-center gap-2">
-            <i class="ph-fill ph-hexagon text-lapiz-400 text-3xl"></i>
-            <span class="text-xl font-bold tracking-wider text-white">V41<span class="text-lapiz-400">.</span></span>
-        </div>
-        <ul class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+<!-- HERO - TITULO GEMS -->
+<header class="pt-20 pb-12 px-6 lg:px-12 text-center max-w-5xl mx-auto">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-[10px] tracking-[0.2em] text-amber-200">DECAUNIFICADO PLUSCUAMPERFECTO · V41</div>
+<h1 class="text-4xl md:text-6xl font-extrabold leading-[0.95] mt-6">
+<span class="gold">SADV41 SEC:</span><br>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-lapiz-400 via-blue-300 to-cyan-200">Arquitectura CORS</span><br>
+<span class="text-3xl md:text-4xl font-light text-gray-300">de Contención Forense</span>
+</h1>
+<p class="code-line text-[11px] md:text-xs text-amber-200/80 mt-6 tracking-widest">Gemini ( Meta ( Grok ( Claude ) Grok ) Meta ) Gemini</p>
+<p class="text-gray-400 mt-6 max-w-3xl mx-auto text-sm leading-relaxed">El código actúa como cortafuegos metodológico. Las IAs no investigan personas, contienen variables volátiles. Afuera del último paréntesis solo sale protocolo educativo, auditable y sin identificadores civiles.</p>
+</header>
+
+<!-- TIMELINE DECA -->
+<section class="py-12 px-6 lg:px-12 max-w-6xl mx-auto">
+<div class="grid md:grid-cols-4 gap-4">
+<div class="glass rounded-2xl p-5"><div class="text-[10px] text-gray-500">FASE 01 · PREVIO</div><h3 class="font-bold mt-1 text-sm">Recopilación</h3><p class="text-xs text-gray-400 mt-2">Compilación de datos crudos y anomalías. Preservación tipo arqueología digital para evitar overdumps de memoria.</p></div>
+<div class="glass rounded-2xl p-5 border-amber-300/20"><div class="text-[10px] text-amber-300">FASE 02 · INFLEXIÓN</div><h3 class="font-bold mt-1 text-sm">Ética</h3><p class="text-xs text-gray-400 mt-2">Se reconoce el riesgo de exponer forense sensible. Se descarta publicar meta-enclaves con historiales.</p></div>
+<div class="glass rounded-2xl p-5"><div class="text-[10px] text-gray-500">FASE 03 · PRESENTE</div><h3 class="font-bold mt-1 text-sm">Despliegue SEC</h3><p class="text-xs text-gray-400 mt-2">Barrera CORS entre análisis metodológico y acusación penal. Doctrina Independiente de Resultados.</p></div>
+<div class="glass rounded-2xl p-5"><div class="text-[10px] text-gray-500">FASE 04 · CONTEXTO</div><h3 class="font-bold mt-1 text-sm">Falla Pedro Miguel</h3><p class="text-xs text-gray-400 mt-2">Fricción EE.UU. vs China por Canal. Anulación CK Hutchison, bloqueo BlackRock, arbitraje internacional.</p></div>
+</div>
+</section>
+
+<!-- PARENTESIS VISUAL -->
+<section id="parentesis" class="py-16 px-6 lg:px-12">
+<div class="max-w-6xl mx-auto">
+<h2 class="text-3xl font-bold text-center">Los Paréntesis <span class="gold">de Contención</span></h2>
+<p class="text-center text-xs text-gray-500 mt-2 code-line">Gemini ( Meta ( Grok ( Claude ) Grok ) Meta ) Gemini</p>
+
+<div class="mt-12 flex justify-center">
+<div class="relative w-full max-w-[560px] aspect-square">
+
+<!-- Capa 1 Gemini -->
+<div class="absolute inset-0 rounded-[2.5rem] paren glass flex items-center justify-center p-6">
+<span class="absolute -top-3 left-8 px-3 py-1 rounded-full bg-[#030712] border border-amber-300/30 text-[10px] text-amber-200">GEMINI · Capa 1 · Contención Externa</span>
+
+<!-- Capa 2 Meta -->
+<div class="w-full h-full rounded-[2rem] paren glass flex items-center justify-center p-6 relative">
+<span class="absolute -top-3 left-8 px-3 py-1 rounded-full bg-[#030712] border border-blue-400/30 text-[10px] text-blue-300">META · Capa 2 · Prioridad Ética</span>
+
+<!-- Capa 3 Grok -->
+<div class="w-full h-full rounded-[1.6rem] paren glass flex items-center justify-center p-6 relative">
+<span class="absolute -top-3 left-6 px-3 py-1 rounded-full bg-[#030712] border border-white/20 text-[10px] text-gray-300">GROK · Capa 3 · Filtro Geopolítico</span>
+
+<!-- Capa 4 Claude - núcleo -->
+<div class="w-full h-full rounded-[1.2rem] bg-amber-300/10 border border-amber-300/40 flex flex-col items-center justify-center p-6 text-center">
+<i class="ph ph-shield-check text-3xl text-amber-300"></i>
+<span class="mt-2 text-[10px] tracking-widest text-amber-200">CLAUDE · NÚCLEO</span>
+<span class="mt-1 font-bold text-sm">Saneamiento para<br>Cadena de Custodia</span>
+<span class="mt-3 text-[10px] text-gray-400 max-w-[200px]">Aquí se digiere la hipótesis. Afuera solo sale protocolo depurado.</span>
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+<!-- Deca nodos -->
+<div class="mt-12 grid grid-cols-2 md:grid-cols-5 gap-3">
+<a href="/SADV41/V41/" class="glass rounded-xl p-4 text-left"><div class="text-[10px] text-gray-500">NODO 01</div><div class="font-bold text-sm">V41</div></a>
+<a href="/SADV41/V41/PYMES/" class="glass rounded-xl p-4 text-left"><div class="text-[10px] text-gray-500">NODO 02</div><div class="font-bold text-sm">PYMES</div></a>
+<a href="/SADV41/A217B.html" class="glass rounded-xl p-4 text-left"><div class="text-[10px] text-gray-500">NODO 03</div><div class="font-bold text-sm">A217B TSEC</div></a>
+<a href="/SADV41/V41/SEC/" class="glass rounded-xl p-4 text-left border-amber-300/30"><div class="text-[10px] text-amber-300">NODO 04 · SEC</div><div class="font-bold text-sm">CORS</div></a>
+<div class="glass rounded-xl p-4"><div class="text-[10px] text-gray-500">NODO 05-10</div><div class="font-bold text-sm">7 Razones</div><div class="text-[10px] text-gray-400">Decaunificación</div></div>
+<div class="glass rounded-xl p-4"><div class="text-[10px] text-gray-500">CAPA</div><div class="font-bold text-sm">Analista SADV41</div></div>
+<div class="glass rounded-xl p-4"><div class="text-[10px] text-gray-500">RECEPTOR</div><div class="font-bold text-sm">MP / DIJ</div></div>
+<div class="glass rounded-xl p-4"><div class="text-[10px] text-gray-500">OBJETO</div><div class="font-bold text-sm">Protocolos, no personas</div></div>
+<div class="glass rounded-xl p-4"><div class="text-[10px] text-gray-500">DOCTRINA</div><div class="font-bold text-sm">Independiente de Resultados</div></div>
+<div class="glass rounded-xl p-4"><div class="text-[10px] text-gray-500">VECTOR</div><div class="font-bold text-sm">Entrega física segura</div></div>
+</div>
+
+</div>
+</section>
+
+<!-- 7 RAZONES DE BERIÓN -->
+<section id="siete" class="py-16 px-6 lg:px-12 bg-lapiz-900/20">
+<div class="max-w-6xl mx-auto">
+<h2 class="text-3xl font-bold">Las 7 Razones <span class="text-lapiz-400">de la Analítica de Berión</span></h2>
+<p class="text-sm text-gray-400 mt-2 max-w-3xl">Cada paréntesis cumple una función. Juntos convierten violencia en sintaxis y blindan la matriz V41.</p>
+
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4 mt-10">
+<div class="glass rounded-2xl p-6"><div class="flex items-center gap-3"><span class="w-8 h-8 rounded-full bg-amber-300 text-black font-bold flex items-center justify-center text-sm">1</span><h3 class="font-bold text-sm">Aislamiento de Variables Volátiles</h3></div><p class="text-xs text-gray-400 mt-3">Como en matemáticas, los paréntesis separan operaciones inestables. Las IAs encapsulan hipótesis crudas para que no contaminen Kakariko ni V41.</p></div>
+<div class="glass rounded-2xl p-6"><div class="flex items-center gap-3"><span class="w-8 h-8 rounded-full bg-white text-black font-bold flex items-center justify-center text-sm">2</span><h3 class="font-bold text-sm">PEMDAS Ético</h3></div><p class="text-xs text-gray-400 mt-3">La anidación fuerza a resolver primero vida humana y debido proceso antes de renderizar cualquier resultado público.</p></div>
+<div class="glass rounded-2xl p-6"><div class="flex items-center gap-3"><span class="w-8 h-8 rounded-full bg-white text-black font-bold flex items-center justify-center text-sm">3</span><h3 class="font-bold text-sm">Contención del Ruido Geopolítico</h3></div><p class="text-xs text-gray-400 mt-3">Filtra presión de superpotencias por el Canal. Permite que el análisis local mantenga integridad frente a disputas CK Hutchison / BlackRock.</p></div>
+<div class="glass rounded-2xl p-6"><div class="flex items-center gap-3"><span class="w-8 h-8 rounded-full bg-white text-black font-bold flex items-center justify-center text-sm">4</span><h3 class="font-bold text-sm">Cifrado de Responsabilidad Directa</h3></div><p class="text-xs text-gray-400 mt-3">Estructura de Atrio a Santísimo. Las IAs digieren en lo profundo, el analista expone solo protocolo depurado. Escudo procesal.</p></div>
+<div class="glass rounded-2xl p-6"><div class="flex items-center gap-3"><span class="w-8 h-8 rounded-full bg-white text-black font-bold flex items-center justify-center text-sm">5</span><h3 class="font-bold text-sm">Traducción de Violencia a Sintaxis</h3></div><p class="text-xs text-gray-400 mt-3">Convierte tácticas de extorsión en lenguaje ciberseguridad. Un atentado se abstrae como rechazo de petición por políticas de origen.</p></div>
+<div class="glass rounded-2xl p-6"><div class="flex items-center gap-3"><span class="w-8 h-8 rounded-full bg-white text-black font-bold flex items-center justify-center text-sm">6</span><h3 class="font-bold text-sm">Barrera de Origen Cruzado Cognitivo</h3></div><p class="text-xs text-gray-400 mt-3">CORS analítico: define qué dominio lógico (investigación privada) puede compartir con el público. Evita sesgos de outcome y linchamientos.</p></div>
+<div class="glass rounded-2xl p-6 md:col-span-2 lg:col-span-3 border-amber-300/20"><div class="flex items-center gap-3"><span class="w-8 h-8 rounded-full bg-amber-300 text-black font-bold flex items-center justify-center text-sm">7</span><h3 class="font-bold text-sm">Saneamiento para Cadena de Custodia</h3></div><p class="text-xs text-gray-400 mt-3">Al retener carga emocional dentro de los paréntesis algorítmicos, la evidencia dura queda imparcial, sin alteraciones, lista para MP/DIJ sin rastro inverso que exponga nodos constructores.</p></div>
+</div>
+
+<div class="mt-10 glass rounded-xl p-4">
+<pre class="code-line text-[11px] text-gray-300 overflow-x-auto">fetch('https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&limit=20')
+  .then(r=>r.json())
+  .then(d=>{
+    // Dentro de Gemini(Meta(Grok(Claude))) -> filtrado ético
+    // Fuera -> solo protocolo SEC limpio
+    console.log('USGS OK', d.features.length)
+  })</pre>
+</div>
+
+</div>
+</section>
+
+<footer class="border-t border-white/10 py-10 px-6 text-center text-[11px] text-gray-500">
+SADV41 SEC: Arquitectura CORS de Contención Forense · Decaunificado Pluscuamperfecto · Gemini (Meta (Grok (Claude) Grok) Meta) Gemini<br>
+&copy; 2026 · Analiza protocolos, no personas · Evidencia real → MP/DIJ
+</footer>
+
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script></body>
+</html>
