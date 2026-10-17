@@ -7,7 +7,7 @@ import requests
 USGS = "https://earthquake.usgs.gov/fdsnws/event/1/query"
 STATE = "last_event.json"
 IMG = "latest.jpg"
-PAGES_IMG = "https://thesteef21.github.io/SADV41/latest.jpg"
+PAGES_IMG = os.getenv("IMAGE_PUBLIC_URL", "https://thesteef21.github.io/SADV41/latest.jpg")
 GRAPH = "https://graph.facebook.com/v21.0"
 PTY = timezone(timedelta(hours=-5))
 
@@ -78,7 +78,7 @@ def check(min_mag, no_image):
 
 
 def publish():
-    uid, tok = os.getenv("IG_USER_ID"), os.getenv("IG_ACCESS_TOKEN")
+    uid, tok = os.getenv("IG_USER_ID"), (os.getenv("ACCESS_TOKEN") or os.getenv("IG_ACCESS_TOKEN"))
     if not uid or not tok:
         print("Faltan IG_USER_ID / IG_ACCESS_TOKEN: se omite la publicación.")
         return 0
