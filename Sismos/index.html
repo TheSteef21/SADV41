@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SADV41 Sismos</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+  html,body{margin:0;height:100%;background:#0a0f14;color:#e8eef5;font-family:system-ui,sans-serif}
+  header{padding:10px 14px;display:flex;justify-content:space-between;align-items:center}
+  header h1{font-size:16px;margin:0}
+  header a{color:#5aa9ff;font-size:13px;text-decoration:none}
+  #map{height:62vh}
+  #info{padding:10px 14px;font-size:13px;max-height:28vh;overflow:auto}
+  #info div{padding:4px 0;border-bottom:1px solid #1c2733}
+  .m{font-weight:700}
+</style>
+</head>
+<body>
+<header>
+  <h1>SADV41 // Sismos Panamá</h1>
+  <a href="../A217B.html">← A217B</a>
+</header>
+<div id="map"></div>
+<div id="info">Cargando sismos…</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const map = L.map('map').setView([7.8, -80.5], 8);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+  {attribution:'© OpenStreetMap © CARTO', maxZoom:18}).addTo(map);
+const color = m => m>=6 ? '#ff3b30' : m>=5 ? '#ff9500' : m>=4 ? '#ffd60a' : '#32d4ff';
+const fmt = t => new Date(t).toLocaleString('es-PA',{timeZone:'America/Panama'});
+const reportes = [
+  {n:'Ineter M4.7, 13 km al norte de Macaracas (11:31 a.m.)', lat:7.85, lon:-80.55},
+  {n:'Sismo Detector M5.2 preliminar, 2 km de Las Tablas (11:24 a.m.)', lat:7.77, lon:-80.28}
+];
+reportes.forEach(r=>{
+  L.circleMarker([r.lat,r.lon],{radius:12,color:'#ffffff',weight:2,dashArray:'4',fillOpacity:0})
+   .addTo(map).bindPopup('<b>Reporte de app</b><br>'+r.n);
+});
+const fin = new Date(), ini = new Date(fin - 14*864e5);
+const url = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&minlatitude=6.5&maxlatitude=10&minlongitude=-84&maxlongitude=-77&minmagnitude=2.5&orderby=time&limit=400&starttime='+ini.toISOString();
+fetch(url).then(r=>r.json()).then(d=>{
+  d.features.forEach(f=>{
+    const [lon,lat]=f.geometry.coordinates, p=f.properties, m=p.mag;
+    L.circleMarker([lat,lon],{radius:3+m*2,color:color(m),fillColor:color(m),fillOpacity:.45,weight:1}).addTo(map).bindPopup('<b>M'+m+'</b> '+p.place+'<br>'+fmt(p.time));
+  });
+  document.getElementById('info').innerHTML='<b>'+d.features.length+' sismos (M2.5+) 14d</b><br>'+d.features.slice(0,25).map(f=>'<div><span class="m" style="color:'+color(f.properties.mag)+'">M'+f.properties.mag+'</span> '+f.properties.place+' · '+fmt(f.properties.time)+'</div>').join('');
+});
+</script>
+</body>
+</html>
