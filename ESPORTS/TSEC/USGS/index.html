@@ -73,7 +73,7 @@
 <script>
 const FEED = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson';
 const map = L.map('map',{zoomControl:false}).setView([8.9,-80.2],5);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'© USGS © CARTO'}).addTo(map);
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',{attribution:'© USGS © CARTO'}).addTo(map);
 
 function severity(m){
  if(m>=7) return {cls:'crit',label:'CRITICO'};

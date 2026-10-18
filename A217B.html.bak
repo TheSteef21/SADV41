@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SADV41 // TSEC ESPORTS // SISMOS Y TERREMOTOS</title>
+  <style>
+    :root {
+      --bg-color: #0b0f19;
+      --panel-bg: #111827;
+      --accent-color: #00f2fe;
+      --text-color: #e2e8f0;
+      --highlight: #ff4757;
+      --border-color: #1f2937;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    header {
+      border-bottom: 2px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    header h1 span {
+      color: var(--accent-color);
+    }
+
+    .subtitle {
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: var(--panel-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 15px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: var(--accent-color);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    .feed-list {
+      max-height: 320px;
+      overflow-y: auto;
+      font-size: 0.9rem;
+    }
+
+    .feed-item {
+      padding: 8px 0;
+      border-bottom: 1px solid #1f293d;
+    }
+
+    .mag {
+      font-weight: bold;
+      color: var(--highlight);
+    }
+
+    .meta-info {
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 10px;
+    }
+
+    details {
+      margin-top: 8px;
+      background: #1a2234;
+      padding: 8px;
+      border-radius: 4px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--accent-color);
+    }
+
+    a.link-btn {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 8px 12px;
+      background-color: #1a2234;
+      color: var(--accent-color);
+      text-decoration: none;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      font-size: 0.85rem;
+      transition: background 0.2s ease;
+    }
+
+    a.link-btn:hover {
+      background-color: #243048;
+      border-color: var(--accent-color);
+    }
+
+    .enlace-interno {
+      color: var(--accent-color);
+      text-decoration: none;
+      display: block;
+      padding: 6px 0;
+      border-bottom: 1px solid #1f2937;
+      transition: color 0.2s;
+    }
+
+    .enlace-interno:hover {
+      color: #ffffff;
+    }
+
+    .enlace-interno:last-child {
+      border-bottom: none;
+    }
+
+    footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #64748b;
+      border-top: 1px solid var(--border-color);
+      padding-top: 15px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>SADV41 // <span>TSEC ESPORTS</span> // SISMOS Y TERREMOTOS</h1>
+    <div class="subtitle">GITHUB PAGES • STATIC FEED • MÓDULO DE ANTICIPACIÓN TECTÓNICA</div>
+  </header>
+
+  <div class="grid-container">
+
+    <!-- Panel Archivos Semana 1: Falla Pedro Miguel -->
+    <div class="card" style="border-color: #ff4757;">
+      <h3>🚧 PREPARACIÓN: FALLA PEDRO MIGUEL (SEMANA 1)</h3>
+      <p style="font-size: 0.85rem; color: #94a3b8; line-height: 1.4;">
+        Convergencia de la primera semana de desarrollo. Unificando herramientas técnicas, comunidad y fe antes de que ocurran los eventos.
+      </p>
+
+      <details open>
+        <summary>🌐 Red TSEC y Protocolos Base <span>[+]</span></summary>
+        <div style="font-size: 0.85rem; margin-top: 5px;">
+          <a href="https://thesteef21.github.io/SADV41/TSEC.html" target="_blank" class="enlace-interno">➜ TSEC Principal</a>
+          <a href="https://thesteef21.github.io/SADV41/TSEC/SEC.html" target="_blank" class="enlace-interno">➜ Módulo SEC</a>
+          <a href="https://thesteef21.github.io/SADV41/A217B.html" target="_blank" class="enlace-interno">➜ Protocolo A217B</a>
+          <a href="https://thesteef21.github.io/SADV41/ESPORTS/TSEC.html" target="_blank" class="enlace-interno">➜ SADV41 ESPORTS TSEC</a>
+          <a href="https://thesteef21.github.io/usgs/ESPORTS/TSEC.html" target="_blank" class="enlace-interno">➜ USGS ESPORTS TSEC</a>
+          <a href="https://thesteef21.github.io/SADV41/ESPORTS/TSEC/Convergencia%20de%20las%20Cuatro%20Placas.html" target="_blank" class="enlace-interno">➜ Convergencia de las Cuatro Placas</a>
+        </div>
+      </details>
+
+      <details>
+        <summary>🕊 Comunidad, Fe y Tienda <span>[+]</span></summary>
+        <div style="font-size: 0.85rem; margin-top: 5px;">
+          <a href="https://whatsapp.com/channel/0029VbDQjGKCsU9VzdA8Iu2x" target="_blank" class="enlace-interno">➜ WhatsApp Channel Oficial</a>
+          <a href="https://thesteef21.github.io/SADV41/Cristo/Love" target="_blank" class="enlace-interno">➜ Módulo: Cristo Love</a>
+          <a href="https://stevendior-shop.fourthwall.com" target="_blank" class="enlace-interno">➜ Tienda Oficial Steven Dior</a>
+        </div>
+      </details>
+    </div>
+
+    <!-- Panel Global Live -->
+    <div class="card">
+      <h3>ÚLTIMOS SISMOS - GLOBAL (USGS LIVE)</h3>
+      <div id="usgs-global" class="feed-list">Cargando datos globales...</div>
+    </div>
+
+    <!-- Panel Panamá + Centroamérica SADV41 -->
+    <div class="card">
+      <h3>PANAMÁ + CENTROAMÉRICA - FILTRO SADV41</h3>
+      <div id="usgs-panama" class="feed-list">Filtrando eventos de la región...</div>
+      <div class="meta-info">
+        Bounding: 6.5-10.0N, -83.5 - -76.5W • Protocolo BERIÓN A217<br>
+        Fuente: USGS API Live
+      </div>
+    </div>
+
+    <!-- Panel Análisis Geológico: Sistema de Fallas Azuero-Soná -->
+    <div class="card">
+      <h3>🌋 ANÁLISIS GEOLÓGICO: ROTURA DE FALLA (AZUERO-SONÁ)</h3>
+      <p style="font-size: 0.85rem; color: #e2e8f0; line-height: 1.4;">
+        Una <strong>rotura de falla</strong> (o ruptura de falla) es el deslizamiento repentino y brusco de los bloques de roca a lo largo de una fractura preexistente en la corteza terrestre. Ocurre cuando el esfuerzo tectónico acumulado supera la fuerza de fricción y la resistencia mecánica que mantiene unidas las rocas, liberando esa energía acumulada en forma de ondas sísmicas (un terremoto).
+      </p>
+
+      <details>
+        <summary>⚡ 1. Acumulación de Tensión (Fase Elástica) <span>[+]</span></summary>
+        <div style="font-size: 0.85rem; margin-top: 5px; color: #94a3b8;">
+          El sistema Azuero-Soná es una red de fallas de rumbo (transcurrentes) internas del Bloque de Panamá, con movimiento predominantemente lateral. Aunque las placas tectónicas se mueven de forma constante a una velocidad de unos 5 a 7 milímetros por año, la falla permanece "bloqueada" o trabada en profundidad debido a la fricción. Durante décadas o siglos, las rocas se van deformando elásticamente sin moverse, almacenando enorme energía.
+        </div>
+      </details>
+
+      <details>
+        <summary>💥 2. Iniciación y Propagación de la Ruptura <span>[+]</span></summary>
+        <div style="font-size: 0.85rem; margin-top: 5px; color: #94a3b8;">
+          Cuando la tensión ejercida en un punto específico (el hipocentro o foco) supera la resistencia de la roca, ocurre el "disparo". A partir de ese punto, la grieta o plano de ruptura se propaga a velocidades hipersónicas (2 a 3 km/s) a lo largo de la falla. En el caso de una falla como la de Azuero-Soná, la ruptura puede extenderse decenas o más de un centenar de kilómetros a lo largo de la estructura del subsuelo.
+        </div>
+      </details>
+
+      <details>
+        <summary>🌊 3. Liberación Energética y Efectos <span>[+]</span></summary>
+        <div style="font-size: 0.85rem; margin-top: 5px; color: #94a3b8;">
+          <ul style="margin: 5px 0; padding-left: 18px;">
+            <li><strong>Tiempo de ruptura:</strong> Es la duración que le toma a la fractura propagarse de un extremo a otro del plano afectado en el subsuelo (usualmente medido en segundos o decenas de segundos).</li>
+            <li><strong>Ondas sísmicas:</strong> A medida que el plano se desplaza lateralmente, genera ondas elásticas que viajan a través de la corteza, produciendo la sacudida del suelo en la superficie y sus réplicas posteriores a medida que el sistema busca un nuevo equilibrio geométrico.</li>
+          </ul>
+        </div>
+      </details>
+
+      <div class="meta-info" style="font-style: italic; color: #94a3b8; margin-top: 12px; line-height: 1.3;">
+        En resumen: La rotura de la falla Azuero-Soná no significa que el terreno se abra desde cero, sino que una cicatriz geológica ya existente cede y se desliza bruscamente en el subsuelo, liberando de golpe la deformación acumulada por el movimiento de la corteza.
+      </div>
+    </div>
+
+    <!-- Panel Landsat 9 (TSEC) -->
+    <div class="card">
+      <h3>🛰 PANEL GEOPOLÍTICO: LANDSAT 9 (TSEC)</h3>
+      <p style="font-size: 0.85rem; color: #94a3b8;">Monitoreo Espectral y Cobertura de Superficie</p>
+
+      <details>
+        <summary>🌏 Misión y Órbitas de Revisión <span>[+]</span></summary>
+        <div id="landsat-orbit" style="font-size: 0.85rem; margin-top: 5px;">
+          <strong>Órbita Sincrónica Solar:</strong> Gira alrededor de la Tierra a ~705 km.<br>
+          <strong>Ciclo de Repetición:</strong> Cobertura global cada 16 días.
+        </div>
+      </details>
+
+      <details>
+        <summary>📷 Instrumentos de Captura (OLI-2 &amp; TIRS-2) <span>[+]</span></summary>
+        <div id="landsat-instruments" style="font-size: 0.85rem; margin-top: 5px;">
+          <ul>
+            <li><strong>OLI-2:</strong> Captura luz reflejada en el espectro visible, NIR y SWIR.</li>
+            <li><strong>TIRS-2:</strong> Mide la emisión térmica de la superficie.</li>
+          </ul>
+        </div>
+      </details>
+
+      <details>
+        <summary>📊 Resolución Espacial y Espectral <span>[+]</span></summary>
+        <div id="landsat-specs" style="font-size: 0.85rem; margin-top: 5px;">
+          <ul>
+            <li><strong>Multiespectral:</strong> Píxeles de 30m.</li>
+            <li><strong>Pancromática:</strong> Detalle de alta resolución a 15m.</li>
+            <li><strong>Profundidad Radiométrica:</strong> Codificación de 14 bits.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Panel Herramientas y Recursos Complementarios -->
+    <div class="card">
+      <h3>📱 HERRAMIENTAS Y RECURSOS DE ENLACE</h3>
+      <p style="font-size: 0.85rem; color: #94a3b8;">Sistemas de telemetría, apps móviles y transferencia directa.</p>
+
+      <div style="margin-top: 12px;">
+        <strong style="font-size: 0.9rem; color: #e2e8f0;">📲 App Earthquake Network (DistQuake):</strong><br>
+        <span style="font-size: 0.8rem; color: #94a3b8;">Detección temprana de sismos en smartphones.</span><br>
+        <a href="https://play.google.com/store/apps/details?id=com.finazzi.distquake" target="_blank" class="link-btn">
+          Abrir en Google Play Store ↗
+        </a>
+      </div>
+
+      <div style="margin-top: 15px;">
+        <strong style="font-size: 0.9rem; color: #e2e8f0;">🔗 Enlace Quick Share SADV41:</strong><br>
+        <span style="font-size: 0.8rem; color: #94a3b8;">Transferencia rápida de archivos y captura de datos.</span><br>
+        <a href="https://quickshare.samsungcloud.com/faeEwwGK4ePw" target="_blank" class="link-btn">
+          Ver enlace Quick Share ↗
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    STEVENDIOR OFICIAL • MISIÓN SADV41 • thesteef21.github.io
+  </footer>
+
+  <script>
+    // 1. Cargar datos del archivo tsec.json local
+    fetch('./tsec.json')
+      .then(res => {
+        if (!res.ok) throw new Error('Archivo tsec.json no detectado');
+        return res.json();
+      })
+      .then(data => {
+        console.log('✅ tsec.json cargado exitosamente:', data);
+        if (data.satellites && data.satellites[0]) {
+          const sat = data.satellites[0];
+          document.getElementById('landsat-orbit').innerHTML = `
+            <strong>${sat.orbit.type}:</strong> Altitud ~${sat.orbit.altitude_km} km.<br>
+            <strong>Ciclo de Repetición:</strong> Cobertura cada ${sat.orbit.revisit_cycle_days} días.
+          `;
+        }
+      })
+      .catch(err => {
+        console.warn('⚠️ Nota:', err.message);
+      });
+
+    // 2. Cargar feed en vivo de USGS
+    const USGS_FEED = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson';
+
+    fetch(USGS_FEED)
+      .then(res => res.json())
+      .then(geoData => {
+        const features = geoData.features || [];
+
+        // Panel Global (Últimos 10 eventos)
+        const globalContainer = document.getElementById('usgs-global');
+        if (features.length === 0) {
+          globalContainer.innerHTML = 'Sin sismos reportados hoy.';
+        } else {
+          globalContainer.innerHTML = features.slice(0, 10).map(f => `
+            <div class="feed-item">
+              <span class="mag">M ${f.properties.mag.toFixed(1)}</span> - ${f.properties.place}<br>
+              <small style="color:#64748b;">${new Date(f.properties.time).toLocaleTimeString()}</small>
+            </div>
+          `).join('');
+        }
+
+        // Panel Panamá + Centroamérica (Bounding Box SADV41: Lat 6.5 a 10.0 N, Lon -83.5 a -76.5 W)
+        const panamaContainer = document.getElementById('usgs-panama');
+        const panamaEvents = features.filter(f => {
+          const [lon, lat] = f.geometry.coordinates;
+          return lat >= 6.5 && lat <= 10.0 && lon >= -83.5 && lon <= -76.5;
+        });
+
+        if (panamaEvents.length === 0) {
+          panamaContainer.innerHTML = '<div style="color: #64748b; padding: 10px 0;">Sin actividad sísmica detectada en la cuadrícula de Panamá/Centroamérica en las últimas 24 hrs.</div>';
+        } else {
+          panamaContainer.innerHTML = panamaEvents.map(f => `
+            <div class="feed-item">
+              <span class="mag" style="color: #00f2fe;">M ${f.properties.mag.toFixed(1)}</span> - ${f.properties.place}<br>
+              <small style="color:#94a3b8;">Hora: ${new Date(f.properties.time).toLocaleTimeString()} | Prof: ${f.geometry.coordinates[2]} km</small>
+            </div>
+          `).join('');
+        }
+      })
+      .catch(err => {
+        console.error('Error cargando USGS Live API:', err);
+        document.getElementById('usgs-global').innerText = 'Error al consultar API en vivo.';
+        document.getElementById('usgs-panama').innerText = 'Error al consultar API en vivo.';
+      });
+  </script>
+</body>
+</html>

@@ -6,13 +6,13 @@
 <title>SADV41 Sismos</title>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <style>
-  html,body{margin:0;height:100%;background:#0a0f14;color:#e8eef5;font-family:system-ui,sans-serif}
+  html,body{margin:0;height:100%;background:#000;color:#e8eef5;font-family:system-ui,sans-serif}
   header{padding:10px 14px;display:flex;justify-content:space-between;align-items:center}
   header h1{font-size:16px;margin:0}
   header a{color:#5aa9ff;font-size:13px;text-decoration:none}
   #map{height:62vh}
   #info{padding:10px 14px;font-size:13px;max-height:28vh;overflow:auto}
-  #info div{padding:4px 0;border-bottom:1px solid #1c2733}
+  #info div{padding:4px 0;border-bottom:1px solid #1a1a1a}
   .m{font-weight:700}
 </style>
 </head>
@@ -26,7 +26,7 @@
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 const map = L.map('map').setView([7.8, -80.5], 8);
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',
   {attribution:'© OpenStreetMap © CARTO', maxZoom:18}).addTo(map);
 const color = m => m>=6 ? '#ff3b30' : m>=5 ? '#ff9500' : m>=4 ? '#ffd60a' : '#32d4ff';
 const fmt = t => new Date(t).toLocaleString('es-PA',{timeZone:'America/Panama'});

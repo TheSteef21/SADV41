@@ -387,7 +387,7 @@
   <script>
     (function () {
       const map = L.map('sismo-map').setView([7.8, -80.5], 7);
-      const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+      const dark = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',
         { attribution: '© OpenStreetMap © CARTO', maxZoom: 18 }).addTo(map);
       let errs = 0, fell = false;
       dark.on('tileerror', function () {

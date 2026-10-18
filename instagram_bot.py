@@ -58,7 +58,7 @@ def make_image(ev, path):
 
     for i in range(-2, 3):
         for j in range(-2, 3):
-            url = f"https://a.basemaps.cartocdn.com/dark_all/{zoom}/{cx+i}/{cy+j}.png"
+            url = f"https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}"
             try:
                 r = requests.get(url, headers=headers, timeout=5)
                 if r.status_code == 200:
