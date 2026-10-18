@@ -1,0 +1,447 @@
+#El Origen de todo es 0... Es Cristo 🇵🇦🎶✨️
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADV41 | El Pacto: Artist, GSADV41 & Logia</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Space+Grotesk:wght@400;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                        cyber: ['Orbitron', 'sans-serif'],
+                    },
+                    colors: {
+                        cyber: {
+                            cyan: '#00f3ff',
+                            gold: '#ffd700',
+                            dark: '#050508',
+                            card: '#12121a',
+                            crimson: '#dc143c',
+                            matrix: '#00ff41'
+                        }
+                    },
+                    animation: {
+                        'spin-slow': 'spin 12s linear infinite',
+                        'spin-reverse': 'spin 8s linear infinite reverse',
+                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%, 100%': { opacity: 0.8, filter: 'drop-shadow(0 0 15px rgba(0, 243, 255, 0.8))' },
+                            '50%': { opacity: 1, filter: 'drop-shadow(0 0 30px rgba(255, 215, 0, 1))' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050508;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Cyber Background Pattern */
+        .bg-cyber-grid {
+            background-image: 
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center top;
+        }
+
+        /* Cyber Curtain (Adorno superior) */
+        .cyber-curtain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            background: linear-gradient(180deg, rgba(5,5,8,0.95) 0%, rgba(5,5,8,0.8) 60%, transparent 100%);
+            border-bottom: 2px solid transparent;
+            border-image: linear-gradient(90deg, transparent 0%, #00f3ff 20%, #ffd700 50%, #00f3ff 80%, transparent 100%) 1;
+            z-index: 50;
+            backdrop-filter: blur(8px);
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 95% 100%, 85% 70%, 75% 100%, 50% 80%, 25% 100%, 15% 70%, 5% 100%, 0 80%);
+            box-shadow: inset 0 20px 50px rgba(0,243,255,0.1);
+        }
+
+        /* Cherubim Buttons (Accesibles, grandes, adaptables) */
+        .cherub-btn {
+            position: relative;
+            background: rgba(18, 18, 26, 0.8);
+            border: 2px solid;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* High accessibility basics */
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 900;
+            padding: clamp(1rem, 2vw, 2rem) clamp(2rem, 4vw, 4rem);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            outline: none;
+        }
+        
+        .cherub-btn:focus-visible {
+            box-shadow: 0 0 0 8px rgba(255, 215, 0, 0.6);
+            transform: scale(1.1);
+        }
+
+        .cherub-left {
+            border-color: #00f3ff;
+            color: #00f3ff;
+            border-radius: 0 40px 40px 0;
+            box-shadow: 10px 10px 30px rgba(0, 243, 255, 0.2), inset 5px 5px 15px rgba(0, 243, 255, 0.2);
+            clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+        }
+        .cherub-left:hover {
+            background: #00f3ff;
+            color: #000;
+            box-shadow: 15px 15px 50px rgba(0, 243, 255, 0.6);
+            padding-right: 5rem;
+        }
+
+        .cherub-right {
+            border-color: #ffd700;
+            color: #ffd700;
+            border-radius: 40px 0 0 40px;
+            box-shadow: -10px 10px 30px rgba(255, 215, 0, 0.2), inset -5px 5px 15px rgba(255, 215, 0, 0.2);
+            clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+        }
+        .cherub-right:hover {
+            background: #ffd700;
+            color: #000;
+            box-shadow: -15px 15px 50px rgba(255, 215, 0, 0.6);
+            padding-left: 5rem;
+        }
+
+        /* The Vortex / Ark of the Covenant */
+        .ark-vortex {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: -20px;
+        }
+
+        .vortex-ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid transparent;
+        }
+        .ring-1 { width: 100%; height: 100%; border-top-color: #00f3ff; border-bottom-color: #ffd700; animation: spin 4s linear infinite; }
+        .ring-2 { width: 80%; height: 80%; border-right-color: #00f3ff; border-left-color: #dc143c; animation: spin 3s linear infinite reverse; }
+        .ring-3 { width: 60%; height: 60%; border-top-color: #ffd700; border-bottom-color: #00f3ff; border-style: dashed; animation: spin 5s linear infinite; }
+        
+        .ark-core {
+            width: 30%;
+            height: 30%;
+            background: radial-gradient(circle, #ffffff 0%, #ffd700 50%, transparent 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 40px #ffffff, 0 0 80px #ffd700;
+            animation: pulseGlow 2s infinite alternate;
+        }
+
+        /* Glitch Text Effect */
+        .glitch {
+            position: relative;
+        }
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.8;
+        }
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #dc143c;
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #00f3ff;
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim 2.5s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim {
+            0% { clip: rect(10px, 9999px, 44px, 0); }
+            20% { clip: rect(65px, 9999px, 92px, 0); }
+            40% { clip: rect(12px, 9999px, 53px, 0); }
+            60% { clip: rect(89px, 9999px, 99px, 0); }
+            80% { clip: rect(32px, 9999px, 15px, 0); }
+            100% { clip: rect(75px, 9999px, 81px, 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            20% { clip: rect(12px, 9999px, 53px, 0); }
+            40% { clip: rect(89px, 9999px, 99px, 0); }
+            60% { clip: rect(32px, 9999px, 15px, 0); }
+            80% { clip: rect(75px, 9999px, 81px, 0); }
+            100% { clip: rect(10px, 9999px, 44px, 0); }
+        }
+
+        /* Section Separators */
+        .section-divider {
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #00f3ff, #ffd700, #dc143c, transparent);
+            margin: 4rem 0;
+            opacity: 0.5;
+            box-shadow: 0 0 20px rgba(0,243,255,0.5);
+        }
+
+        /* The Hidden Point (Logia) */
+        .hidden-logia-container {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        
+        .hidden-logia-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            z-index: 100;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            transition: all 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: transparent;
+            text-decoration: none;
+        }
+
+        .hidden-logia-btn:focus,
+        .hidden-logia-container:hover .hidden-logia-btn {
+            opacity: 1;
+            color: #ffd700;
+            text-shadow: 0 0 20px #ffd700;
+            background: radial-gradient(circle, rgba(220, 20, 60, 0.8) 0%, transparent 70%);
+            transform: translate(-50%, -50%) scale(1.5);
+        }
+
+        /* Section Specific Styles */
+        .artist-glow { box-shadow: 0 0 40px rgba(0, 243, 255, 0.1); }
+        .gsadv-glow { box-shadow: 0 0 40px rgba(255, 215, 0, 0.1); }
+        .logia-glow { box-shadow: 0 0 40px rgba(220, 20, 60, 0.1); }
+
+    </style>
+</head>
+<body class="bg-cyber-grid min-h-screen flex flex-col font-sans antialiased relative selection:bg-cyber-gold selection:text-black">
+
+    <!-- THE CYBER CURTAIN / THE ARK OF THE COVENANT HEADER -->
+    <!-- Accessibility focus: High contrast, large scalable buttons, aria-labels -->
+    <header class="cyber-curtain flex justify-between items-start px-2 sm:px-6 pt-4">
+        
+        <!-- Left Wing Cherub: SADV41 Native Subscription -->
+        <button 
+            onclick="window.location.href='https://thesteef21.github.io/SADV41/ASAP/Suscription'"
+            class="cherub-btn cherub-left font-cyber text-cyber-cyan hover:text-black w-[40vw] max-w-[300px]"
+            aria-label="Acceder a la Suscripción Principal de SADV 41. Botón de alto contraste y tamaño adaptativo."
+            title="Suscripción SADV41"
+        >
+            <span class="flex flex-col items-center">
+                <i class="fa-solid fa-satellite-dish mb-2" aria-hidden="true"></i>
+                <span class="text-sm md:text-xl font-bold tracking-widest">ASAP</span>
+            </span>
+        </button>
+
+        <!-- The Divine Vortex / Center of the Ark -->
+        <div class="ark-vortex" aria-hidden="true">
+            <div class="vortex-ring ring-1"></div>
+            <div class="vortex-ring ring-2"></div>
+            <div class="vortex-ring ring-3"></div>
+            <div class="ark-core"></div>
+        </div>
+
+        <!-- Right Wing Cherub: Google Sites Backup Subscription -->
+        <button 
+            onclick="window.location.href='https://sites.google.com/u/0/d/1rHX6hRutc1CaBxZIvdj56dX8nk7ISXNH/preview'"
+            class="cherub-btn cherub-right font-cyber text-cyber-gold hover:text-black w-[40vw] max-w-[300px]"
+            aria-label="Acceder a la Suscripción Alternativa vía Google Sites. Botón de alto contraste y tamaño adaptativo."
+            title="Suscripción Respaldo"
+        >
+            <span class="flex flex-col items-center">
+                <i class="fa-solid fa-globe mb-2" aria-hidden="true"></i>
+                <span class="text-sm md:text-xl font-bold tracking-widest">G-SITE</span>
+            </span>
+        </button>
+    </header>
+
+    <!-- MAIN CONTENT - The Trinity Sections -->
+    <main class="flex-grow pt-40 px-4 sm:px-8 max-w-7xl mx-auto w-full z-10 relative">
+        
+        <!-- Intro Summary -->
+        <div class="text-center mb-16 animate-float">
+            <h1 class="text-4xl md:text-6xl font-cyber font-black text-white mb-4 glitch" data-text="LA TRINIDAD DEL PROTOCOLO">
+                LA TRINIDAD DEL PROTOCOLO
+            </h1>
+            <p class="text-xl text-gray-400 font-display max-w-3xl mx-auto">
+                Donde la visión creativa, la arquitectura del sistema y el núcleo oculto convergen. Tres entidades, un solo pacto.
+            </p>
+        </div>
+
+        <!-- SECTION 1: ARTIST (The Creator / Vision) -->
+        <section id="artist" class="artist-glow bg-cyber-card/80 border border-cyber-cyan/30 rounded-3xl p-8 md:p-12 mb-16 relative overflow-hidden group">
+            <div class="absolute -right-20 -top-20 w-64 h-64 bg-cyber-cyan/10 blur-[80px] rounded-full group-hover:bg-cyber-cyan/20 transition-all duration-700"></div>
+            <div class="relative z-10 grid md:grid-cols-2 gap-8 items-center">
+                <div>
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyber-cyan text-cyber-cyan text-xs font-mono mb-4">
+                        <i class="fa-solid fa-palette"></i> 01 / VISIÓN
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">El <span class="text-cyber-cyan">Artista</span></h2>
+                    <p class="text-gray-300 mb-6 font-light leading-relaxed">
+                        La manifestación visual y sonora del protocolo. Aquí convergen las frecuencias, los colores neón y la expresión cruda de la identidad digital. El arte no es un adorno, es la interfaz del alma hacia la máquina.
+                    </p>
+                    <button class="px-6 py-3 bg-transparent border border-cyber-cyan text-cyber-cyan hover:bg-cyber-cyan hover:text-black font-bold rounded transition-colors font-mono uppercase tracking-widest">
+                        Explorar Galería
+                    </button>
+                </div>
+                <div class="h-64 rounded-xl border border-cyber-cyan/20 bg-[url('https://images.unsplash.com/photo-1614729939124-032f0b56c9ce?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center relative flex items-center justify-center overflow-hidden">
+                    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
+                    <i class="fa-solid fa-waveform-lines text-6xl text-cyber-cyan relative z-10 animate-pulse"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: GSADV41 (The Architecture / Network) -->
+        <section id="gsadv41" class="gsadv-glow bg-cyber-card/80 border border-cyber-gold/30 rounded-3xl p-8 md:p-12 mb-16 relative overflow-hidden group">
+            <div class="absolute -left-20 -bottom-20 w-64 h-64 bg-cyber-gold/10 blur-[80px] rounded-full group-hover:bg-cyber-gold/20 transition-all duration-700"></div>
+            <div class="relative z-10 grid md:grid-cols-2 gap-8 items-center">
+                <div class="order-2 md:order-1 h-64 rounded-xl border border-cyber-gold/20 bg-[url('https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center relative flex items-center justify-center overflow-hidden">
+                    <div class="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
+                    <div class="relative z-10 text-center">
+                        <i class="fa-solid fa-network-wired text-5xl text-cyber-gold mb-2"></i>
+                        <div class="text-cyber-matrix font-mono text-sm">STATUS: ONLINE</div>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2 text-right">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-cyber-gold text-cyber-gold text-xs font-mono mb-4 justify-end">
+                        02 / PROTOCOLO <i class="fa-solid fa-microchip"></i>
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">Global <span class="text-cyber-gold">SADV41</span></h2>
+                    <p class="text-gray-300 mb-6 font-light leading-relaxed">
+                        El engranaje, el código, el satélite. La infraestructura soberana diseñada para la resiliencia absoluta. GSADV41 es el pacto técnico que sostiene la conexión inquebrantable entre los nodos y el universo Web3.
+                    </p>
+                    <button class="px-6 py-3 bg-transparent border border-cyber-gold text-cyber-gold hover:bg-cyber-gold hover:text-black font-bold rounded transition-colors font-mono uppercase tracking-widest">
+                        Inicializar Nodos
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: LOGIA (The Inner Sanctum / Restricted) -->
+        <section id="logia" class="logia-glow bg-black/90 border border-cyber-crimson/30 rounded-3xl p-8 md:p-12 mb-16 relative overflow-hidden group">
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(220,20,60,0.05)_0%,_transparent_100%)]"></div>
+            <div class="relative z-10 flex flex-col items-center text-center max-w-3xl mx-auto">
+                <i class="fa-brands fa-galactic-senate text-5xl text-cyber-crimson mb-6 group-hover:scale-110 transition-transform duration-500"></i>
+                <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6 tracking-[0.2em] uppercase">
+                    La <span class="text-cyber-crimson">Logia</span>
+                </h2>
+                <p class="text-gray-400 font-mono text-sm leading-relaxed mb-8">
+                    El conocimiento encriptado. El nivel Omega. Sólo aquellos que entienden la convergencia entre la luz y la estructura pueden percibir lo que subyace en la oscuridad de la data. No todos los caminos son públicos.
+                </p>
+                <div class="w-full h-px bg-gradient-to-r from-transparent via-cyber-crimson/50 to-transparent"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- THE HIDDEN REVELATION (Atom -> Hexagram -> Christ) -->
+    <footer class="relative py-20 bg-black flex flex-col items-center justify-center overflow-hidden border-t border-gray-900">
+        <!-- Esoteric decorative background -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none flex items-center justify-center text-9xl font-black text-gray-700">
+            0
+        </div>
+
+        <div class="text-center relative z-10 max-w-lg mx-auto px-4">
+            <p class="text-gray-600 font-mono text-xs mb-8 uppercase tracking-[0.3em]">
+                Encuentra el punto que falta
+            </p>
+
+            <!-- Container that transforms ⚛️ -> 🔯 -> ✡️ and links to Logia -->
+            <div class="hidden-logia-container text-6xl md:text-8xl relative mb-12">
+                <!-- The Base Atom Symbol -->
+                <span class="text-cyber-cyan drop-shadow-[0_0_15px_rgba(0,243,255,0.5)] transition-all duration-700 opacity-100 hidden-logia-container:hover:opacity-0">⚛️</span>
+                
+                <!-- The Hidden Button -->
+                <a href="https://thesteef21.github.io/SADV41/Logia" 
+                   class="hidden-logia-btn"
+                   aria-label="Acceso secreto a la Logia SADV41. El punto del hexagrama. El recuerdo del 0. ☦️✨️🎶🇵🇦🇺🇸🇮🇱🇵🇷"
+                   title="0 ☦️✨️🎶🇵🇦🇺🇸🇮🇱🇵🇷">
+                    <!-- Screen Reader Text -->
+                    <span class="sr-only">Botón Oculto Logia: 0 que fue Cristo ☦️✨️🎶🇵🇦🇺🇸🇮🇱🇵🇷. El punto de 🔯 que hace falta en ✡️.</span>
+                    <!-- The Divine Reveal -->
+                    <span class="absolute inset-0 flex items-center justify-center transition-all duration-700 scale-50 opacity-0 group-hover:scale-100 group-hover:opacity-100 group-focus:scale-100 group-focus:opacity-100 text-cyber-gold drop-shadow-[0_0_30px_rgba(255,215,0,1)]">✡️</span>
+                </a>
+                
+                <!-- The Incomplete Hexagram for context -->
+                <span class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-gray-800 -z-10 text-7xl">🔯</span>
+            </div>
+
+            <!-- Conceptual string hidden but readable by screen readers / hover -->
+            <p class="text-[#0a0a0f] hover:text-gray-500 transition-colors duration-1000 text-xs font-mono tracking-widest cursor-default select-none" aria-hidden="true">
+                0 ☦️ ✨️ 🎶 🇵🇦 🇺🇸 🇮🇱 🇵🇷
+            </p>
+        </div>
+        
+        <div class="absolute bottom-4 text-xs text-gray-800 font-mono">
+            &copy; 2026 SADV41 THESTEEF21. ALL RIGHTS CLASSIFIED.
+        </div>
+    </footer>
+
+    <!-- Accessibility script for keyboard navigation hints -->
+    <script>
+        // Simple script to ensure the hidden button can be focused by keyboard navigators
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Tab') {
+                document.body.classList.add('user-is-tabbing');
+            }
+        });
+        
+        // Efecto parallax suave
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            const rings = document.querySelectorAll('.vortex-ring');
+            rings.forEach((ring, index) => {
+                const speed = (index + 1) * 10;
+                const xOffset = (window.innerWidth / 2 - e.pageX) / speed;
+                const yOffset = (window.innerHeight / 2 - e.pageY) / speed;
+                ring.style.transform = `translate(${xOffset}px, ${yOffset}px)`;
+            });
+        });
+    </script>
+</body>
+</html>

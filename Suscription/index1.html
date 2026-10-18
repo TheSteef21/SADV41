@@ -1,0 +1,329 @@
+#De éstas 6, la 7 es el descanso 🇵🇦🎶✨️
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADV41 | ASAP Suscription</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        cyber: {
+                            cyan: '#00f3ff',
+                            gold: '#ffd700',
+                            dark: '#0a0a0f',
+                            card: '#12121a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050508;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(0, 243, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(255, 215, 0, 0.05) 0%, transparent 50%);
+            color: #ffffff;
+        }
+
+        .cyber-glow-cyan {
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.2), inset 0 0 10px rgba(0, 243, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+        .cyber-glow-cyan:hover {
+            box-shadow: 0 0 40px rgba(0, 243, 255, 0.6), inset 0 0 20px rgba(0, 243, 255, 0.3);
+            transform: translateY(-5px) scale(1.02);
+            border-color: #00f3ff;
+        }
+
+        .cyber-glow-gold {
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.2), inset 0 0 10px rgba(255, 215, 0, 0.1);
+            transition: all 0.4s ease;
+        }
+        .cyber-glow-gold:hover {
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.6), inset 0 0 20px rgba(255, 215, 0, 0.3);
+            transform: translateY(-5px) scale(1.02);
+            border-color: #ffd700;
+        }
+
+        .cyber-glow-elite {
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4), 0 0 30px rgba(0, 243, 255, 0.2), inset 0 0 15px rgba(255, 215, 0, 0.2);
+            background: linear-gradient(180deg, rgba(20,20,25,1) 0%, rgba(10,10,15,1) 100%);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cyber-glow-elite::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: conic-gradient(transparent, rgba(255, 215, 0, 0.3), transparent 30%);
+            animation: rotate 4s linear infinite;
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .cyber-glow-elite:hover::before {
+            opacity: 1;
+        }
+
+        .cyber-glow-elite:hover {
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.8), 0 0 50px rgba(0, 243, 255, 0.5);
+            transform: translateY(-10px) scale(1.03);
+            border-color: #ffd700;
+        }
+        
+        .elite-content {
+            position: relative;
+            z-index: 1;
+            background: #12121a;
+            height: 100%;
+            border-radius: inherit;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(1turn); }
+        }
+
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .bg-cyber-pattern {
+            background-image: linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-sans selection:bg-cyber-cyan selection:text-black antialiased relative">
+    
+    <!-- Pattern Overlay -->
+    <div class="absolute inset-0 bg-cyber-pattern pointer-events-none opacity-50 z-0"></div>
+
+    <!-- Header -->
+    <header class="relative z-50 w-full backdrop-blur-xl bg-cyber-dark/80 border-b border-gray-800 sticky top-0">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3 group cursor-pointer">
+                <i class="fa-solid fa-satellite-dish text-cyber-cyan text-2xl group-hover:animate-pulse"></i>
+                <div>
+                    <h1 class="font-display font-bold text-2xl tracking-wider text-white">SADV41<span class="text-cyber-cyan">.ASAP</span></h1>
+                    <p class="text-xs text-gray-400 font-mono tracking-widest">BY THESTEEF21</p>
+                </div>
+            </div>
+            
+            <nav class="hidden md:flex gap-8 font-mono text-sm">
+                <a href="#" class="text-gray-300 hover:text-cyber-cyan transition-colors">Ecosistema</a>
+                <a href="#" class="text-gray-300 hover:text-cyber-cyan transition-colors">Protocolos</a>
+                <a href="#pricing" class="text-cyber-cyan font-bold drop-shadow-[0_0_8px_rgba(0,243,255,0.8)]">Suscripciones</a>
+            </nav>
+
+            <button class="px-6 py-2.5 rounded-full bg-transparent border border-cyber-cyan text-cyber-cyan font-semibold font-mono text-sm hover:bg-cyber-cyan hover:text-black transition-all duration-300 shadow-[0_0_15px_rgba(0,243,255,0.3)] hover:shadow-[0_0_25px_rgba(0,243,255,0.6)] flex items-center gap-2">
+                <i class="fa-solid fa-wallet"></i> CONECTAR DUDUINO
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow relative z-10 flex flex-col items-center pt-20 pb-32 px-4 sm:px-6 lg:px-8">
+        
+        <!-- Hero Section -->
+        <div class="text-center max-w-4xl mx-auto mb-20">
+            <div class="inline-block mb-4 px-4 py-1 rounded-full border border-cyber-gold/30 bg-cyber-gold/10 backdrop-blur-md text-cyber-gold font-mono text-xs uppercase tracking-[0.2em]">
+                Acceso al Ecosistema Web3
+            </div>
+            <h2 class="font-display text-5xl md:text-7xl font-bold mb-6 tracking-tight leading-tight">
+                Forja tu <span class="bg-gradient-to-r from-cyber-cyan to-blue-500 text-gradient">Soberanía</span><br>
+                Digital y Física.
+            </h2>
+            <p class="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto font-light">
+                Selecciona tu nivel de integración en el protocolo SADV41. Desde alertas tempranas vitales hasta acceso irrestricto al núcleo operativo y arquitectónico.
+            </p>
+        </div>
+
+        <!-- Pricing Grid -->
+        <div id="pricing" class="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+            
+            <!-- Tier 1 -->
+            <div class="cyber-glow-cyan bg-cyber-card border border-gray-800 rounded-2xl p-8 flex flex-col h-full relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-cyber-cyan/10 blur-[50px] -mr-10 -mt-10 rounded-full"></div>
+                <h3 class="text-gray-400 font-mono text-sm tracking-widest mb-2">TIER 1</h3>
+                <h4 class="font-display text-2xl font-bold text-white mb-4">Alertas Integrales Básico</h4>
+                <div class="flex items-end gap-1 mb-6">
+                    <span class="text-4xl font-bold text-cyber-cyan">$14.99</span>
+                    <span class="text-gray-500 font-mono text-sm mb-1">/mes</span>
+                </div>
+                <div class="h-px w-full bg-gradient-to-r from-cyber-cyan/50 to-transparent mb-6"></div>
+                <ul class="flex-grow space-y-4 mb-8 text-gray-300 text-sm">
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-cyber-cyan mt-1"></i> Satélite Activo + Notificaciones Push</li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-cyber-cyan mt-1"></i> Alertas tempranas de sismos</li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-check text-cyber-cyan mt-1"></i> Monitoreo de anomalías climáticas</li>
+                </ul>
+                <button class="w-full py-3 rounded-lg border border-cyber-cyan text-cyber-cyan hover:bg-cyber-cyan hover:text-black font-bold transition-all duration-300">
+                    Inicializar Protocolo
+                </button>
+            </div>
+
+            <!-- Tier 2 -->
+            <div class="cyber-glow-cyan bg-cyber-card border border-gray-800 rounded-2xl p-8 flex flex-col h-full relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-cyber-cyan/20 blur-[50px] -mr-10 -mt-10 rounded-full"></div>
+                <h3 class="text-cyber-cyan font-mono text-sm tracking-widest mb-2">TIER 2</h3>
+                <h4 class="font-display text-2xl font-bold text-white mb-4">Alertas Integrales Pro</h4>
+                <div class="flex items-end gap-1 mb-6">
+                    <span class="text-4xl font-bold text-white drop-shadow-[0_0_10px_rgba(255,255,255,0.5)]">$59.99</span>
+                    <span class="text-gray-500 font-mono text-sm mb-1">/mes</span>
+                </div>
+                <div class="h-px w-full bg-gradient-to-r from-cyber-cyan to-transparent mb-6"></div>
+                <ul class="flex-grow space-y-4 mb-8 text-gray-300 text-sm">
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-shield-halved text-cyber-cyan mt-1"></i> Protección Avanzada Personal</li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-satellite text-cyber-cyan mt-1"></i> Enlace satélite 24/7 sin latencia</li>
+                    <li class="flex items-start gap-3"><i class="fa-brands fa-whatsapp text-cyber-cyan mt-1"></i> Acceso Grupo WhatsApp Privado Operativo</li>
+                </ul>
+                <button class="w-full py-3 rounded-lg bg-cyber-cyan/10 border border-cyber-cyan text-cyber-cyan hover:bg-cyber-cyan hover:text-black font-bold transition-all duration-300">
+                    Escalar Acceso
+                </button>
+            </div>
+
+            <!-- Tier 3 -->
+            <div class="cyber-glow-gold bg-cyber-card border border-gray-800 rounded-2xl p-8 flex flex-col h-full relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-cyber-gold/10 blur-[50px] -mr-10 -mt-10 rounded-full"></div>
+                <h3 class="text-cyber-gold font-mono text-sm tracking-widest mb-2">TIER 3</h3>
+                <h4 class="font-display text-2xl font-bold text-white mb-4">Alertas Integrales HQ</h4>
+                <div class="flex items-end gap-1 mb-6">
+                    <span class="text-4xl font-bold text-cyber-gold">$199.00</span>
+                    <span class="text-gray-500 font-mono text-sm mb-1">/mes</span>
+                </div>
+                <div class="h-px w-full bg-gradient-to-r from-cyber-gold/50 to-transparent mb-6"></div>
+                <ul class="flex-grow space-y-4 mb-8 text-gray-300 text-sm">
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-crown text-cyber-gold mt-1"></i> Soberanía Total de Datos</li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-bolt text-cyber-gold mt-1"></i> Conexión satélite directa (Uso corporativo)</li>
+                    <li class="flex items-start gap-3"><i class="fa-solid fa-headset text-cyber-gold mt-1"></i> Soporte Directo Prioritario 24/7</li>
+                </ul>
+                <button class="w-full py-3 rounded-lg border border-cyber-gold text-cyber-gold hover:bg-cyber-gold hover:text-black font-bold transition-all duration-300">
+                    Desplegar HQ
+                </button>
+            </div>
+
+            <!-- Top Tier 1 -->
+            <div class="cyber-glow-cyan bg-cyber-card border border-gray-800 rounded-2xl p-8 flex flex-col h-full relative overflow-hidden lg:col-start-1">
+                <div class="absolute inset-0 bg-gradient-to-br from-cyber-cyan/5 to-transparent z-0 pointer-events-none"></div>
+                <div class="relative z-10 flex flex-col h-full">
+                    <h3 class="text-cyber-cyan font-mono text-xs tracking-widest mb-2 border border-cyber-cyan/30 bg-cyber-cyan/10 px-2 py-1 rounded w-max">TOP TIER 1</h3>
+                    <h4 class="font-display text-2xl font-bold text-white mb-4">SADV41 INITIATE</h4>
+                    <div class="flex items-end gap-1 mb-6">
+                        <span class="text-4xl font-bold text-white">$599.99</span>
+                        <span class="text-gray-500 font-mono text-sm mb-1">/anual</span>
+                    </div>
+                    <div class="h-px w-full bg-gray-800 mb-6 relative"><div class="absolute left-0 top-0 h-full w-1/3 bg-cyber-cyan"></div></div>
+                    <ul class="flex-grow space-y-4 mb-8 text-gray-300 text-sm">
+                        <li class="flex items-start gap-3"><i class="fa-brands fa-hive text-cyber-cyan mt-1"></i> Acceso al Ecosistema Base (Nivel 1)</li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-fingerprint text-cyber-cyan mt-1"></i> Identidad Digital Encriptada</li>
+                        <li class="flex items-start gap-3"><i class="fa-brands fa-btc text-cyber-cyan mt-1"></i> Integración nativa con BNB Chain</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-lg border border-gray-600 hover:border-cyber-cyan text-white hover:text-cyber-cyan hover:shadow-[0_0_15px_rgba(0,243,255,0.4)] transition-all duration-300">
+                        Mint Initiate Pass
+                    </button>
+                </div>
+            </div>
+
+            <!-- Top Tier 2 -->
+            <div class="cyber-glow-gold bg-cyber-card border border-gray-800 rounded-2xl p-8 flex flex-col h-full relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-cyber-gold/5 to-transparent z-0 pointer-events-none"></div>
+                <div class="relative z-10 flex flex-col h-full">
+                    <h3 class="text-cyber-gold font-mono text-xs tracking-widest mb-2 border border-cyber-gold/30 bg-cyber-gold/10 px-2 py-1 rounded w-max">TOP TIER 2</h3>
+                    <h4 class="font-display text-2xl font-bold text-white mb-4">SADV41 BUILDER</h4>
+                    <div class="flex items-end gap-1 mb-6">
+                        <span class="text-4xl font-bold text-white">$1499.99</span>
+                        <span class="text-gray-500 font-mono text-sm mb-1">/anual</span>
+                    </div>
+                    <div class="h-px w-full bg-gray-800 mb-6 relative"><div class="absolute left-0 top-0 h-full w-2/3 bg-cyber-gold"></div></div>
+                    <ul class="flex-grow space-y-4 mb-8 text-gray-300 text-sm">
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-network-wired text-cyber-gold mt-1"></i> Acceso total a Anábasis Protocol</li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-cubes text-cyber-gold mt-1"></i> Interacción y despliegue de dApps</li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-microchip text-cyber-gold mt-1"></i> Consenso Proof-of-Skill habilitado</li>
+                    </ul>
+                    <button class="w-full py-3 rounded-lg border border-gray-600 hover:border-cyber-gold text-white hover:text-cyber-gold hover:shadow-[0_0_15px_rgba(255,215,0,0.4)] transition-all duration-300">
+                        Mint Builder Pass
+                    </button>
+                </div>
+            </div>
+
+            <!-- Top Tier 3 - Ultimate -->
+            <div class="cyber-glow-elite border-2 border-transparent rounded-2xl p-[2px]">
+                <div class="elite-content p-8 flex flex-col rounded-2xl relative">
+                    <div class="absolute top-0 right-0 p-4">
+                        <i class="fa-solid fa-gem text-cyber-gold animate-bounce"></i>
+                    </div>
+                    <h3 class="text-transparent bg-clip-text bg-gradient-to-r from-cyber-gold to-cyber-cyan font-mono text-xs font-bold tracking-widest mb-2 uppercase">
+                        TOP TIER 3 - Nivel Arquitecto
+                    </h3>
+                    <h4 class="font-display text-2xl font-bold text-white mb-4">SADV41 HEADQUARTERS</h4>
+                    <div class="flex items-end gap-1 mb-6">
+                        <span class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyber-gold via-white to-cyber-cyan drop-shadow-lg">$2999.99</span>
+                        <span class="text-gray-400 font-mono text-sm mb-1">/lifetime</span>
+                    </div>
+                    <div class="h-px w-full bg-gradient-to-r from-cyber-gold via-cyber-cyan to-transparent mb-6"></div>
+                    <ul class="flex-grow space-y-4 mb-8 text-gray-200 text-sm font-medium">
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-user-secret text-cyber-gold mt-1"></i> WhatsApp HQ Acceso Directo (Inner Circle)</li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-globe text-cyber-cyan mt-1"></i> Soberanía Total en la Red SADV41</li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-user-astronaut text-cyber-gold mt-1"></i> Mentoría 1:1 con TheSteef21</li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-eye text-cyber-cyan mt-1"></i> Estatus Exclusivo Divino (Sin límites)</li>
+                    </ul>
+                    <button class="w-full py-4 rounded-lg bg-gradient-to-r from-cyber-gold/80 to-cyber-cyan/80 text-black font-black hover:from-cyber-gold hover:to-cyber-cyan shadow-[0_0_20px_rgba(255,215,0,0.4)] hover:shadow-[0_0_30px_rgba(0,243,255,0.6)] transition-all duration-300 transform hover:-translate-y-1 uppercase tracking-widest">
+                        Trascender
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer Exclusivo Logia -->
+    <footer class="relative z-20 border-t border-gray-800 bg-black overflow-hidden py-16">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-red-900/10 via-black to-black pointer-events-none"></div>
+        <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+            <i class="fa-brands fa-galactic-senate text-5xl text-gray-700 mb-6 hover:text-red-500 transition-colors duration-500 cursor-pointer"></i>
+            <h3 class="font-display text-2xl md:text-3xl font-bold text-white mb-4 tracking-[0.2em] uppercase">
+                Restringido <span class="text-red-500">Nivel Omega</span>
+            </h3>
+            <p class="text-gray-500 font-mono text-sm max-w-2xl mx-auto mb-8 leading-relaxed">
+                El acceso más allá de las suscripciones regulares está estrictamente clasificado. Entidades corporativas de alto nivel, Transnacionales y miembros de la Élite Oligárquica deben dirigirse a la entrada encriptada.
+            </p>
+            <a href="/SADV41/Logia" class="group relative inline-flex items-center justify-center px-8 py-3 font-mono font-bold text-gray-300 bg-transparent border border-red-900/50 rounded hover:border-red-500 hover:text-white transition-all duration-300 overflow-hidden">
+                <span class="absolute inset-0 w-full h-full -mt-1 rounded opacity-30 bg-gradient-to-b from-transparent via-transparent to-red-600 group-hover:opacity-100 transition-opacity duration-300"></span>
+                <span class="relative flex items-center gap-2">
+                    <i class="fa-solid fa-lock text-xs"></i> 
+                    GSADV41 Protocolo Confidencial
+                </span>
+            </a>
+            <div class="mt-16 pt-8 border-t border-gray-900 flex flex-col md:flex-row justify-between items-center text-xs font-mono text-gray-600">
+                <p>&copy; 2026 SADV41 Core. Creado por TheSteef21.</p>
+                <p class="mt-2 md:mt-0 flex gap-4">
+                    <span>STATUS: <span class="text-green-500">OPERACIONAL</span></span>
+                    <span>NET: <span class="text-cyber-cyan">MAINNET</span></span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
