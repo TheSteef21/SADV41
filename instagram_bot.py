@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """SADV41 Sismos: detecta sismos de Panamá (USGS) y publica en Instagram."""
-import argparse, hashlib, json, os, sys, time
+import argparse, hashlib, json, os, sys, time, math, re, io
 from datetime import datetime, timedelta, timezone
 import requests
+from PIL import Image, ImageDraw, ImageFont
 
 USGS = "https://earthquake.usgs.gov/fdsnws/event/1/query"
 STATE = "last_event.json"
@@ -11,6 +12,16 @@ PAGES_IMG = os.getenv("IMAGE_PUBLIC_URL", "https://thesteef21.github.io/SADV41/l
 GRAPH = "https://graph.facebook.com/v21.0"
 PTY = timezone(timedelta(hours=-5))
 
+def traducir_lugar(place_en):
+    p = place_en
+    p = p.replace(" of ", " de ")
+    p = re.sub(r'\bNE\b', 'NE', p)
+    p = re.sub(r'\bNW\b', 'NO', p)
+    p = re.sub(r'\bSE\b', 'SE', p)
+    p = re.sub(r'\bSW\b', 'SO', p)
+    p = p.replace("Panama", "Panamá")
+    p = p.replace("Costa Rica", "Costa Rica")
+    return p
 
 def fetch_latest(min_mag):
     start = (datetime.now(timezone.utc) - timedelta(hours=6)).isoformat()
@@ -24,40 +35,76 @@ def fetch_latest(min_mag):
     feats = r.json().get("features", [])
     return feats[0] if feats else None
 
-
 def make_image(ev, path):
-    from PIL import Image, ImageDraw, ImageFont
     p = ev["properties"]
-    depth = ev["geometry"]["coordinates"][2]
-    when = datetime.fromtimestamp(p["time"] / 1000, PTY).strftime("%d/%m/%Y %I:%M %p")
+    lon, lat, depth = ev["geometry"]["coordinates"]
+    mag = p["mag"]
+    lugar_es = traducir_lugar(p["place"])
+
+    # 1. Calcular tiles del mapa
+    zoom = 9
+    lat_rad = math.radians(lat)
+    n = 2.0 ** zoom
+    xtile = (lon + 180.0) / 360.0 * n
+    ytile = (1.0 - math.asinh(math.tan(lat_rad)) / math.pi) / 2.0 * n
+    cx, cy = int(xtile), int(ytile)
+
+    pixel_x = int((xtile - cx) * 256)
+    pixel_y = int((ytile - cy) * 256)
+
+    # 2. Descargar cuadrícula de CARTO Dark Matter
+    map_img = Image.new("RGBA", (5 * 256, 5 * 256), "#0a0f14")
+    headers = {"User-Agent": "SADV41-SismosWatch/1.0"}
+
+    for i in range(-2, 3):
+        for j in range(-2, 3):
+            url = f"https://a.basemaps.cartocdn.com/dark_all/{zoom}/{cx+i}/{cy+j}.png"
+            try:
+                r = requests.get(url, headers=headers, timeout=5)
+                if r.status_code == 200:
+                    tile = Image.open(io.BytesIO(r.content)).convert("RGBA")
+                    map_img.paste(tile, ((i + 2) * 256, (j + 2) * 256))
+            except:
+                pass # Fondo oscuro de respaldo si falla un tile
+
+    # 3. Recortar 1080x1080 centrado en el sismo
+    center_px = (2 * 256) + pixel_x
+    center_py = (2 * 256) + pixel_y
+
+    final_img = Image.new("RGBA", (1080, 1080), "#0a0f14")
+    crop = map_img.crop((center_px - 540, center_py - 540, center_px + 540, center_py + 540))
+    final_img.paste(crop, (0, 0))
+
+    d = ImageDraw.Draw(final_img)
+
+    # 4. Impacto gráfico
+    col = "#ff3b30" if mag >= 6 else "#ff9500" if mag >= 5 else "#ffd60a"
+    radio = int(30 + (mag * 12))
+
+    d.ellipse([540 - radio, 540 - radio, 540 + radio, 540 + radio], fill=col + "60", outline=col, width=3)
+    d.ellipse([540 - 6, 540 - 6, 540 + 6, 540 + 6], fill="#ffffff")
 
     def font(size):
-        for f in ("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf",):
+        for f in ("/system/fonts/Roboto-Bold.ttf", "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"):
             try:
                 return ImageFont.truetype(f, size)
             except OSError:
                 pass
-        return ImageFont.load_default(size)
+        return ImageFont.load_default()
 
-    img = Image.new("RGB", (1080, 1080), "#0a0f14")
-    d = ImageDraw.Draw(img)
-    mag = p["mag"]
-    col = "#ff3b30" if mag >= 6 else "#ff9500" if mag >= 5 else "#ffd60a"
-    d.text((540, 150), "SISMO PANAMÁ", font=font(64), fill="#e8eef5", anchor="mm")
-    d.text((540, 430), f"M{mag:.1f}", font=font(300), fill=col, anchor="mm")
-    d.text((540, 680), p["place"], font=font(44), fill="#e8eef5", anchor="mm")
-    d.text((540, 760), when + " (hora Panamá)", font=font(40), fill="#9fb0c3", anchor="mm")
-    d.text((540, 820), f"Profundidad: {depth:.0f} km", font=font(40), fill="#9fb0c3", anchor="mm")
-    d.text((540, 990), "SADV41 // Fuente: USGS", font=font(32), fill="#5aa9ff", anchor="mm")
-    img.save(path, "JPEG", quality=92)
+    d.text((540 + radio + 25, 540 - 45), f"M {mag:.1f}", fill="#ffffff", font=font(65))
+    d.text((540 + radio + 25, 540 + 25), lugar_es, fill="#e8eef5", font=font(35))
+    d.text((40, 1010), "SADV41 // Fuente: USGS", font=font(32), fill="#5aa9ff")
 
+    final_img.convert("RGB").save(path, "JPEG", quality=95)
 
 def caption(ev):
     p = ev["properties"]
     when = datetime.fromtimestamp(p["time"] / 1000, PTY).strftime("%d/%m/%Y %I:%M %p")
-    return (f"Sismo M{p['mag']:.1f} - {p['place']}\n{when} (hora Panamá)\n"
+    lugar_es = traducir_lugar(p["place"])
+    return (f"⚠️ Sismo M{p['mag']:.1f} - {lugar_es}\n{when} (hora Panamá)\n"
+            f"Profundidad: {ev['geometry']['coordinates'][2]:.0f} km\n\n"
             f"Fuente: USGS (datos preliminares)\n#Panama #Sismo #SADV41")
-
 
 def check(min_mag, no_image):
     ev = fetch_latest(min_mag)
@@ -76,7 +123,6 @@ def check(min_mag, no_image):
     print("Sismo nuevo:", ev["id"], "M", ev["properties"]["mag"], ev["properties"]["place"])
     return 0
 
-
 def publish():
     uid, tok = os.getenv("IG_USER_ID"), (os.getenv("ACCESS_TOKEN") or os.getenv("IG_ACCESS_TOKEN"))
     if not uid or not tok:
@@ -85,7 +131,7 @@ def publish():
     cap = json.load(open(STATE))["caption"]
     want = hashlib.sha256(open(IMG, "rb").read()).hexdigest()
     url = f"{PAGES_IMG}?v={int(time.time())}"
-    for _ in range(16):  # espera a que GitHub Pages sirva la imagen nueva
+    for _ in range(16):
         try:
             r = requests.get(url, timeout=20)
             if r.ok and hashlib.sha256(r.content).hexdigest() == want:
@@ -105,7 +151,6 @@ def publish():
         "creation_id": c.json()["id"], "access_token": tok}, timeout=60)
     print("publish:", p.status_code, p.text)
     return 0 if p.ok else 1
-
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
