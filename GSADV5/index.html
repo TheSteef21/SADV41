@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADV41 | Modo Caótico Thriller GSADV5</title>
+    <style>
+        :root {
+            --neon-green: #39ff14;
+            --dark-bg: #050a05;
+            --scanline-color: rgba(57, 255, 20, 0.1);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--dark-bg);
+            color: var(--neon-green);
+            font-family: 'Courier New', Courier, monospace;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+        }
+
+        /* Overlay de scanlines tipo monitor antiguo */
+        .scanlines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to bottom,
+                transparent 50%,
+                var(--scanline-color) 51%
+            );
+            background-size: 100% 4px;
+            z-index: 10;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        /* Efecto de viñeta para oscurecer bordes */
+        .vignette {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 50%, #000000 100%);
+            z-index: 11;
+            pointer-events: none;
+        }
+
+        /* Imagen principal central */
+        .main-visual {
+            width: 80%;
+            max-width: 900px;
+            height: auto;
+            position: relative;
+            z-index: 5;
+            border: 2px solid var(--neon-green);
+            box-shadow: 0 0 30px rgba(57, 255, 20, 0.4);
+            transition: all 0.1s ease;
+            filter: sepia(1) hue-rotate(80deg) saturate(3) brightness(0.8);
+            object-fit: contain;
+            display: none; /* Oculto por defecto, se maneja por JS */
+        }
+
+        .main-visual.active {
+            display: block;
+        }
+
+        /* Texto intermitente de alerta */
+        .alert-text {
+            position: absolute;
+            top: 10%;
+            width: 100%;
+            text-align: center;
+            font-size: 2em;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            z-index: 20;
+            text-shadow: 0 0 10px var(--neon-green);
+            animation: flash 2s infinite, glitch-text 3s infinite;
+        }
+
+        .sub-text {
+            position: absolute;
+            bottom: 10%;
+            width: 100%;
+            text-align: center;
+            font-size: 1.2em;
+            z-index: 20;
+            opacity: 0.8;
+            animation: pulse 4s infinite;
+        }
+
+        /* Ruido estático de fondo */
+        .static-noise {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            right: -50%;
+            bottom: -50%;
+            width: 200%;
+            height: 200%;
+            background: transparent url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyBAMAAADsEZWCAAAAGFBMVEUAAAAAAP8A/wD/AAAAAAD/AP8A/wD///8nZ7/oAAAAQElEQVQ4y2NgQAX8DIxg0shgYGCQEWFgYJBkYGAQY2BgEGdgYBDNYGBgYWBgEGBgYJBmYGAQY2BgEGNgYBBjYKABAMC4AiH//cRMAAAAAElFTkSuQmCC') repeat;
+            opacity: 0.05;
+            animation: bg-scroll 0.5s infinite linear;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        /* Efectos de Glitch aplicados al contenedor de imágenes */
+        .glitch-container {
+            position: relative;
+            z-index: 5;
+        }
+
+        .glitch-anim {
+            animation: heavy-glitch 0.2s cubic-bezier(.25, .46, .45, .94) infinite alternate;
+        }
+
+        @keyframes flash {
+            0%, 49% { opacity: 1; color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green); }
+            50%, 100% { opacity: 0.8; color: #ff0000; text-shadow: 0 0 20px #ff0000; }
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; text-shadow: 0 0 15px var(--neon-green); }
+            100% { opacity: 0.5; }
+        }
+
+        @keyframes bg-scroll {
+            0% { transform: translate(0,0); }
+            100% { transform: translate(10%, 10%); }
+        }
+
+        @keyframes heavy-glitch {
+            0% { transform: translate(0) skew(0deg); filter: hue-rotate(0deg); }
+            20% { transform: translate(-5px, 5px) skew(2deg); filter: hue-rotate(90deg) invert(0.2); }
+            40% { transform: translate(-5px, -5px) skew(-2deg); filter: hue-rotate(0deg); }
+            60% { transform: translate(5px, 5px) skew(5deg); filter: hue-rotate(180deg) invert(0.1); }
+            80% { transform: translate(5px, -5px) skew(-5deg); filter: hue-rotate(0deg); }
+            100% { transform: translate(0) skew(0deg); filter: hue-rotate(0deg); }
+        }
+
+        @keyframes glitch-text {
+            0% { transform: translate(0); }
+            10% { transform: translate(-2px, 1px); }
+            20% { transform: translate(2px, -1px); }
+            30% { transform: translate(0); }
+            100% { transform: translate(0); }
+        }
+
+        /* Datos de telemetría falsos en las esquinas */
+        .hud-element {
+            position: absolute;
+            font-size: 0.8em;
+            z-index: 15;
+            opacity: 0.7;
+        }
+        .hud-tl { top: 20px; left: 20px; }
+        .hud-tr { top: 20px; right: 20px; text-align: right; }
+        .hud-bl { bottom: 20px; left: 20px; }
+        .hud-br { bottom: 20px; right: 20px; text-align: right; }
+        
+        .red-alert {
+            color: #ff0000;
+            text-shadow: 0 0 5px #ff0000;
+        }
+
+        /* Botón de inicio */
+        #startBtn {
+            position: absolute;
+            z-index: 100;
+            padding: 15px 30px;
+            background: transparent;
+            color: var(--neon-green);
+            border: 2px solid var(--neon-green);
+            font-family: inherit;
+            font-size: 1.5em;
+            cursor: pointer;
+            text-transform: uppercase;
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        #startBtn:hover {
+            background: var(--neon-green);
+            color: var(--dark-bg);
+            box-shadow: 0 0 30px var(--neon-green);
+        }
+
+    </style>
+</head>
+<body>
+
+    <button id="startBtn">INICIAR SECUENCIA GSADV5</button>
+
+    <div class="static-noise"></div>
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+
+    <div class="alert-text" id="alertText" style="display: none;">GSADV5: MODO CAÓTICO ACTIVO</div>
+    
+    <div class="hud-element hud-tl" id="hud1" style="display: none;">
+        SADV41_ORIGEN_0<br>
+        FREQ: 432 Hz<br>
+        NODOS: 51/51
+    </div>
+    <div class="hud-element hud-tr" id="hud2" style="display: none;">
+        TELEMETRÍA SÍSMICA<br>
+        BURUNGA SECTOR 7<br>
+        LATENCIA: 12ms
+    </div>
+    <div class="hud-element hud-bl" id="hud3" style="display: none;">
+        ALERTA DETECTADA<br>
+        <span class="red-alert">SISMO M4.3 PRELIMINAR</span><br>
+        DIR: S - 164 KM
+    </div>
+    <div class="hud-element hud-br" id="hud4" style="display: none;">
+        ESTADO: PARUSÍA CONFIRMADA<br>
+        TIMESTAMP: <span id="time-display"></span>
+    </div>
+
+    <div class="glitch-container" id="visuals" style="display: none;">
+        <!-- Imágenes proporcionadas para la secuencia -->
+        <img src="543993.jpg" class="main-visual active" id="img1">
+        <img src="543948_2.jpg" class="main-visual" id="img2">
+        <img src="543995.jpg" class="main-visual" id="img3">
+        <img src="543949.jpg" class="main-visual" id="img4">
+    </div>
+
+    <div class="sub-text" id="subText" style="display: none;">LA FRECUENCIA NATURAL ABORRECE EL PECADO.</div>
+
+    <script>
+        document.getElementById('startBtn').addEventListener('click', function() {
+            this.style.display = 'none';
+            document.getElementById('alertText').style.display = 'block';
+            document.getElementById('visuals').style.display = 'block';
+            document.getElementById('subText').style.display = 'block';
+            document.getElementById('hud1').style.display = 'block';
+            document.getElementById('hud2').style.display = 'block';
+            document.getElementById('hud3').style.display = 'block';
+            document.getElementById('hud4').style.display = 'block';
+
+            // Sintetizador de audio web para efecto de ruido/tensión
+            const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            
+            // Oscilador de tono bajo continuo (Drone)
+            const drone = audioCtx.createOscillator();
+            drone.type = 'sawtooth';
+            drone.frequency.setValueAtTime(43.2, audioCtx.currentTime); // Frecuencia muy baja basada en 432
+            
+            const droneGain = audioCtx.createGain();
+            droneGain.gain.setValueAtTime(0.1, audioCtx.currentTime);
+            
+            drone.connect(droneGain);
+            droneGain.connect(audioCtx.destination);
+            drone.start();
+
+            // Oscilador para "beeps" de telemetría erráticos
+            const beep = audioCtx.createOscillator();
+            beep.type = 'square';
+            const beepGain = audioCtx.createGain();
+            beepGain.gain.setValueAtTime(0, audioCtx.currentTime);
+            
+            beep.connect(beepGain);
+            beepGain.connect(audioCtx.destination);
+            beep.start();
+
+            // Actualizador de reloj HUD
+            setInterval(() => {
+                const now = new Date();
+                document.getElementById('time-display').innerText = now.toISOString().split('T')[1].substring(0, 8) + " UTC";
+            }, 1000);
+
+            // Lógica de transición de imágenes (Secuencia Caótica Thriller)
+            const images = document.querySelectorAll('.main-visual');
+            const container = document.getElementById('visuals');
+            const alertText = document.getElementById('alertText');
+            let currentIndex = 0;
+
+            function triggerChaosCycle() {
+                // Cambiar imagen
+                images[currentIndex].classList.remove('active');
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].classList.add('active');
+
+                // Aplicar clase glitch severa temporalmente
+                container.classList.add('glitch-anim');
+                
+                // Efecto de sonido (Beep agudo corto)
+                beep.frequency.setValueAtTime(432 + (Math.random() * 400), audioCtx.currentTime);
+                beepGain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+                beepGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+
+                // Cambiar texto de alerta
+                const alerts = ["GSADV5: MODO CAÓTICO ACTIVO", "ONDA SÍSMICA DETECTADA", "ORIGEN 0: VALIDANDO", "PARUSÍA CONFIRMADA"];
+                alertText.innerText = alerts[currentIndex];
+
+                // Detener el glitch visual severo después de un instante corto (Flash cut)
+                setTimeout(() => {
+                    container.classList.remove('glitch-anim');
+                }, 150);
+
+                // Programar el siguiente ciclo de forma arrítmica (entre 0.5s y 2.5s)
+                const nextTrigger = 500 + Math.random() * 2000;
+                setTimeout(triggerChaosCycle, nextTrigger);
+            }
+
+            // Iniciar el bucle de caos
+            triggerChaosCycle();
+        });
+    </script>
+</body>
+</html>
