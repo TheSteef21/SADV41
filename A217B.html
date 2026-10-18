@@ -143,6 +143,20 @@
       padding-top: 15px;
     }
   </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    #sismo-map { height: 420px; border-radius: 6px; background: var(--bg-color); }
+    .leaflet-container { background: var(--bg-color); font-family: inherit; }
+    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+      background: var(--panel-bg); color: var(--text-color);
+      border: 1px solid var(--border-color);
+    }
+    .leaflet-popup-content a { color: var(--accent-color); }
+    .leaflet-control-attribution { background: rgba(11,15,25,.8) !important; color: #64748b !important; }
+    .leaflet-control-attribution a { color: #94a3b8 !important; }
+    .leaflet-control-zoom a { background: var(--panel-bg); color: var(--accent-color); border-color: var(--border-color); }
+    .osm-dark { filter: invert(1) hue-rotate(180deg) brightness(.8) contrast(.9); }
+  </style>
 </head>
 <body>
 
@@ -196,6 +210,13 @@
         Bounding: 6.5-10.0N, -83.5 - -76.5W • Protocolo BERIÓN A217<br>
         Fuente: USGS API Live
       </div>
+    </div>
+
+    <!-- Mapa sísmico -->
+    <div class="card" style="grid-column: 1 / -1;">
+      <h3>🗺 MAPA SÍSMICO - PANAMÁ (14 DÍAS)</h3>
+      <div id="sismo-map"></div>
+      <div class="meta-info" id="sismo-map-info">Cargando mapa...</div>
     </div>
 
     <!-- Panel Análisis Geológico: Sistema de Fallas Azuero-Soná -->
@@ -361,6 +382,55 @@
         document.getElementById('usgs-global').innerText = 'Error al consultar API en vivo.';
         document.getElementById('usgs-panama').innerText = 'Error al consultar API en vivo.';
       });
+  </script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    (function () {
+      const map = L.map('sismo-map').setView([7.8, -80.5], 7);
+      const dark = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+        { attribution: '© OpenStreetMap © CARTO', maxZoom: 18 }).addTo(map);
+      let errs = 0, fell = false;
+      dark.on('tileerror', function () {
+        if (++errs > 3 && !fell) {
+          fell = true; map.removeLayer(dark);
+          L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+            { attribution: '© OpenStreetMap', maxZoom: 18, className: 'osm-dark' }).addTo(map);
+        }
+      });
+
+      const css = getComputedStyle(document.documentElement);
+      const ACCENT = css.getPropertyValue('--accent-color').trim() || '#00f2fe';
+      const HIGH = css.getPropertyValue('--highlight').trim() || '#ff4757';
+      const col = m => m >= 5 ? HIGH : ACCENT;
+      const fmt = t => new Date(t).toLocaleString('es-PA', { timeZone: 'America/Panama' });
+
+      [
+        { n: 'Ineter M4.7, 13 km al norte de Macaracas (17 oct, 11:31 a.m.)', lat: 7.85, lon: -80.55 },
+        { n: 'Sismo Detector M5.2 preliminar, 2 km de Las Tablas (17 oct, 11:24 a.m.)', lat: 7.77, lon: -80.28 }
+      ].forEach(function (r) {
+        L.circleMarker([r.lat, r.lon], { radius: 12, color: '#ffffff', weight: 2, dashArray: '4', fillOpacity: 0 })
+          .addTo(map).bindPopup('<b>Reporte de app</b><br>' + r.n + '<br><i>ubicación aproximada</i>');
+      });
+
+      const ini = new Date(Date.now() - 14 * 864e5).toISOString();
+      const url = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson'
+        + '&minlatitude=6.5&maxlatitude=10&minlongitude=-83.5&maxlongitude=-76.5'
+        + '&minmagnitude=2.5&orderby=time&limit=500&starttime=' + ini;
+
+      fetch(url).then(r => r.json()).then(function (d) {
+        const fs = d.features || [];
+        fs.forEach(function (f) {
+          const c = f.geometry.coordinates, p = f.properties, m = p.mag;
+          L.circleMarker([c[1], c[0]], { radius: 3 + m * 2, color: col(m), fillColor: col(m), fillOpacity: .45, weight: 1 })
+            .addTo(map)
+            .bindPopup('<b>M' + m + '</b> ' + p.place + '<br>' + fmt(p.time) + '<br><a href="' + p.url + '" target="_blank">USGS</a>');
+        });
+        document.getElementById('sismo-map-info').textContent =
+          fs.length + ' sismos (M2.5+) en 14 días • Rojo: M5+ • Aros blancos: reportes de apps (ubicación aproximada) • Fuente: USGS API Live';
+      }).catch(function (e) {
+        document.getElementById('sismo-map-info').textContent = 'No se pudo cargar USGS: ' + e;
+      });
+    })();
   </script>
 </body>
 </html>
