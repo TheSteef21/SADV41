@@ -98,10 +98,14 @@
             animation: pulse 2s infinite;
         }
 
-        /* Estilos para el botón de chat */
+        /* Contenedor de Botones (Chat + Transmutar) */
         .btn-container {
             text-align: center;
             margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
         }
 
         .btn-chat {
@@ -118,6 +122,8 @@
             transition: all 0.3s ease;
             text-shadow: 0 0 5px var(--cyan-glow);
             box-shadow: inset 0 0 10px rgba(0, 243, 255, 0.1);
+            width: 250px;
+            box-sizing: border-box;
         }
 
         .btn-chat:hover {
@@ -125,6 +131,85 @@
             color: var(--deep-black);
             box-shadow: 0 0 20px var(--cyan-glow);
             text-shadow: none;
+        }
+
+        /* Efecto Glitch Caótico GSADV5 */
+        .glitch-btn {
+            position: relative;
+            overflow: hidden;
+            background: rgba(0, 243, 255, 0.1);
+            border: 1px solid var(--cyan-glow);
+            color: var(--cyan-glow);
+            transition: all 0.2s ease;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-shadow: 0 0 5px var(--cyan-glow);
+            box-shadow: inset 0 0 10px rgba(0, 243, 255, 0.1);
+            display: inline-block;
+            text-align: center;
+            width: 250px;
+            box-sizing: border-box;
+        }
+
+        .glitch-btn:hover {
+            animation: glitch-anim 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+            background: var(--cyan-glow);
+            color: var(--deep-black);
+            box-shadow: 0 0 20px var(--cyan-glow);
+            text-shadow: none;
+        }
+
+        @keyframes glitch-anim {
+            0% { transform: translate(0) }
+            20% { transform: translate(-2px, 2px) }
+            40% { transform: translate(-2px, -2px) }
+            60% { transform: translate(2px, 2px) }
+            80% { transform: translate(2px, -2px) }
+            100% { transform: translate(0) }
+        }
+
+        .glitch-btn::before,
+        .glitch-btn::after {
+            content: "TRANSMUTAR";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+        }
+
+        .glitch-btn:hover::before {
+            animation: glitch-color 0.4s cubic-bezier(.25, .46, .45, .94) both infinite;
+            color: #ff00ff;
+            z-index: -1;
+            left: 2px;
+            opacity: 0.8;
+        }
+
+        .glitch-btn:hover::after {
+            animation: glitch-color 0.4s cubic-bezier(.25, .46, .45, .94) both infinite reverse;
+            color: #00ffff;
+            z-index: -2;
+            left: -2px;
+            opacity: 0.8;
+        }
+        
+        @keyframes glitch-color {
+            0% { opacity: 0.8; transform: translate3d(2px, 0, 0); clip-path: polygon(0 20%, 100% 20%, 100% 21%, 0 21%); }
+            20% { opacity: 0.6; transform: translate3d(-2px, 0, 0); clip-path: polygon(0 33%, 100% 33%, 100% 33%, 0 33%); }
+            40% { opacity: 0.8; transform: translate3d(2px, 0, 0); clip-path: polygon(0 44%, 100% 44%, 100% 44%, 0 44%); }
+            60% { opacity: 0.6; transform: translate3d(-2px, 0, 0); clip-path: polygon(0 50%, 100% 50%, 100% 51%, 0 51%); }
+            80% { opacity: 0.8; transform: translate3d(2px, 0, 0); clip-path: polygon(0 70%, 100% 70%, 100% 71%, 0 71%); }
+            100% { opacity: 0.6; transform: translate3d(-2px, 0, 0); clip-path: polygon(0 80%, 100% 80%, 100% 81%, 0 81%); }
         }
 
         .metricas {
@@ -175,7 +260,9 @@
         </div>
 
         <div class="btn-container">
-            <a href="https://wa.me/stevendioroficial" class="btn-chat" target="_blank" rel="noopener noreferrer">Chatea con IA</a>
+            <a href="https://wa.me/stevendioroficial" class="btn-chat" target="_blank" rel="noopener noreferrer">CHATEA CON IA</a>
+            <!-- Botón Transmutar con Glitch GSADV5 -->
+            <button onclick="transmuteChaos()" class="glitch-btn">TRANSMUTAR</button>
         </div>
 
         <div class="metricas">
@@ -185,5 +272,17 @@
         </div>
     </div>
 
+    <!-- Lógica de transmutación -->
+    <script>
+        function transmuteChaos() {
+            const urls = [
+                "https://thesteef21.github.io/SADV41/AI.html",
+                "https://thesteef21.github.io/SADV41/IA.html"
+            ];
+            // Selección pseudoaleatoria cuántica del nodo de destino
+            const randomIndex = Math.floor(Math.random() * urls.length);
+            window.location.href = urls[randomIndex];
+        }
+    </script>
 </body>
 </html>
