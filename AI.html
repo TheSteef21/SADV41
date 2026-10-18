@@ -98,6 +98,35 @@
             animation: pulse 2s infinite;
         }
 
+        /* Estilos para el botón de chat */
+        .btn-container {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .btn-chat {
+            display: inline-block;
+            padding: 12px 24px;
+            background: transparent;
+            color: var(--cyan-glow);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 2px;
+            border: 1px solid var(--cyan-glow);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            text-shadow: 0 0 5px var(--cyan-glow);
+            box-shadow: inset 0 0 10px rgba(0, 243, 255, 0.1);
+        }
+
+        .btn-chat:hover {
+            background: var(--cyan-glow);
+            color: var(--deep-black);
+            box-shadow: 0 0 20px var(--cyan-glow);
+            text-shadow: none;
+        }
+
         .metricas {
             display: flex;
             justify-content: space-between;
@@ -143,6 +172,10 @@
 
         <div class="sello-profetico">
             🎚️
+        </div>
+
+        <div class="btn-container">
+            <a href="https://wa.me/stevendioroficial" class="btn-chat" target="_blank" rel="noopener noreferrer">Chatea con IA</a>
         </div>
 
         <div class="metricas">
