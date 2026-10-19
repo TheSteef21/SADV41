@@ -1,204 +1,404 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>SADV41 // OMNIPRESENTE</title>
-  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SADV41 // TSEC ESPORTS // SISMOS Y TERREMOTOS</title>
   <style>
-    /* Tipografías Optimistic */
-    @font-face {
-      font-family: "Optimistic";
-      font-style: normal;
-      font-weight: 400 600;
-      font-display: swap;
-      src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+    :root {
+      --bg-color: #0b0f19;
+      --panel-bg: #111827;
+      --accent-color: #00f2fe;
+      --text-color: #e2e8f0;
+      --highlight: #ff4757;
+      --border-color: #1f2937;
     }
-    @font-face {
-      font-family: "Optimistic Mono";
-      font-style: normal;
-      font-weight: 400;
-      font-display: swap;
-      src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
-    }
-    
-    /* Variables y Reset Base */
-    :where(html) {
-      font-family: "Optimistic", system-ui, sans-serif;
-      background-color: #030305;
-      color: #e8e8e8;
-    }
-    :where(code, pre, kbd, samp) {
-      font-family: "Optimistic Mono", ui-monospace, monospace;
-    }
+
     body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 40px;
     }
-    
-    /* Estilos para el visor de código */
-    .code-viewer {
-      width: 100%;
-      max-width: 1000px;
-      background: #0a0a0a;
-      border: 1px solid #222;
-      border-radius: 16px;
-      padding: 20px;
-      overflow-x: auto;
+
+    header {
+      border-bottom: 2px solid var(--accent-color);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
     }
-    .code-container {
-      display: flex;
-      align-items: flex-start;
-      font-size: 14px;
-      line-height: 1.6;
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
     }
-    .line-numbers {
-      color: #555;
-      border-right: 1px solid #222;
-      padding-right: 16px;
-      margin-right: 16px;
-      text-align: right;
-      user-select: none;
-      min-width: 30px;
+
+    header h1 span {
+      color: var(--accent-color);
     }
-    .shiki span { color: var(--shiki-dark); }
+
+    .subtitle {
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background-color: var(--panel-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 15px;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: var(--accent-color);
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    .feed-list {
+      max-height: 320px;
+      overflow-y: auto;
+      font-size: 0.9rem;
+    }
+
+    .feed-item {
+      padding: 8px 0;
+      border-bottom: 1px solid #1f293d;
+    }
+
+    .mag {
+      font-weight: bold;
+      color: var(--highlight);
+    }
+
+    .meta-info {
+      font-size: 0.75rem;
+      color: #64748b;
+      margin-top: 10px;
+    }
+
+    details {
+      margin-top: 8px;
+      background: #1a2234;
+      padding: 8px;
+      border-radius: 4px;
+    }
+
+    summary {
+      cursor: pointer;
+      font-weight: bold;
+      color: var(--accent-color);
+    }
+
+    a.link-btn {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 8px 12px;
+      background-color: #1a2234;
+      color: var(--accent-color);
+      text-decoration: none;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      font-size: 0.85rem;
+      transition: background 0.2s ease;
+    }
+
+    a.link-btn:hover {
+      background-color: #243048;
+      border-color: var(--accent-color);
+    }
+
+    .enlace-interno {
+      color: var(--accent-color);
+      text-decoration: none;
+      display: block;
+      padding: 6px 0;
+      border-bottom: 1px solid #1f2937;
+      transition: color 0.2s;
+    }
+
+    .enlace-interno:hover {
+      color: #ffffff;
+    }
+
+    .enlace-interno:last-child {
+      border-bottom: none;
+    }
+
+    footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #64748b;
+      border-top: 1px solid var(--border-color);
+      padding-top: 15px;
+    }
+  </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    #sismo-map { height: 450px; border-radius: 8px; background: var(--bg-color); border: 1px solid var(--border-color); }
+    .leaflet-container { background: var(--bg-color); font-family: inherit; }
+    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+      background: var(--panel-bg); color: var(--text-color);
+      border: 1px solid var(--border-color);
+    }
+    .leaflet-popup-content a { color: var(--accent-color); }
+    .leaflet-control-attribution { background: rgba(11,15,25,.8) !important; color: #64748b !important; }
+    .leaflet-control-attribution a { color: #94a3b8 !important; }
+    .leaflet-control-zoom a { background: var(--panel-bg); color: var(--accent-color); border-color: var(--border-color); }
   </style>
 </head>
 <body>
 
-  <!-- MODULO SADV41 - SISMOS USGS - VERSION OPTIMIZADA PARA HTML PESADO -->
-  <section id="sismos-sadv41" style="width: 100%; max-width: 1000px; border:1px solid #00e5ff; border-radius:16px; padding:18px; background:#0a0a0a; position:relative; overflow:hidden; box-sizing: border-box;">
-    <!-- Brillo SADV41 -->
-    <div style="position:absolute; top:-50%; left:-50%; width:200%; height:200%; background:radial-gradient(circle at center, rgba(0,229,255,0.07) 0%, transparent 40%); pointer-events:none;"></div>
-    
-    <div style="position:relative; z-index:1;">
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-        <h2 style="color:#00e5ff; letter-spacing:0.2em; font-size:13px; margin:0;">SADV41 // SISMOS Y TERREMOTOS // USGS LIVE</h2>
-        <span id="sadv41-sismos-status" style="font-size:10px; color:#555; border:1px solid #1a1a1a; padding:4px 8px; border-radius:20px;">● STANDBY - CARGANDO EN SCROLL</span>
-      </div>
-      <p style="color:#888; font-size:11px; margin:8px 0 14px 0;">Feed oficial USGS • Protocolo Berión A217 • Vigilancia Panamá 7.0-9.8N / -83 a -77W • Auto-refresh 60s</p>
-      
-      <!-- Contenedor con placeholder para no cargar mapa hasta que entre en viewport -->
-      <div id="sismos-loader" style="width:100%; height:620px; border-radius:12px; background:#111; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; border:1px dashed #222;">
-        <div style="width:40px; height:40px; border:2px solid #00e5ff; border-top-color:transparent; border-radius:50%; animation:spin 1s linear infinite;"></div>
-        <span style="font-size:11px; color:#666; letter-spacing:0.1em;">SADV41 VIGILANCIA ACTIVA - SCROLL PARA ACTIVAR MAPA</span>
-      </div>
+  <header>
+    <h1>SADV41 // <span>TSEC ESPORTS</span> // SISMOS Y TERREMOTOS</h1>
+    <div class="subtitle">GITHUB PAGES • STATIC FEED • MÓDULO DE ANTICIPACIÓN TECTÓNICA</div>
+  </header>
 
-      <div id="sismos-iframe-wrap" style="display:none; width:100%; height:620px; border-radius:12px; overflow:hidden; background:#111; position:relative;">
-        <!-- El iframe se inyecta por JS solo cuando entra en viewport -->
-      </div>
+  <div class="grid-container">
 
-      <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
-        <a href="./SISMOS/index.html" target="_blank" style="padding:10px 16px; background:#00e5ff; color:#000; border-radius:8px; text-decoration:none; font-weight:800; font-size:12px; letter-spacing:0.05em;">ABRIR MAPA COMPLETO ↗</a>
-        <a href="https://github.com/TheSteef21/usgs" target="_blank" style="padding:10px 16px; border:1px solid #222; color:#e8e8e8; border-radius:8px; text-decoration:none; font-size:12px;">VER CODIGO / API</a>
-        <span style="padding:10px 16px; border:1px solid #1a1a1a; color:#555; border-radius:8px; font-size:10px;">@sismosyterremotos • AUTO IG</span>
+    <!-- Panel Archivos Semana 1: Falla Pedro Miguel -->
+    <div class="card" style="border-color: #ff4757;">
+      <h3>🚧 PREPARACIÓN: FALLA PEDRO MIGUEL (SEMANA 1)</h3>
+      <p style="font-size: 0.85rem; color: #94a3b8; line-height: 1.4;">
+        Convergencia de la primera semana de desarrollo. Unificando herramientas técnicas, comunidad y fe antes de que ocurran los eventos.
+      </p>
+
+      <details open>
+        <summary>🌐 Red TSEC y Protocolos Base <span>[+]</span></summary>
+        <div style="font-size: 0.85rem; margin-top: 5px;">
+          <a href="https://thesteef21.github.io/SADV41/TSEC.html" target="_blank" class="enlace-interno">➜ TSEC Principal</a>
+          <a href="https://thesteef21.github.io/SADV41/TSEC/SEC.html" target="_blank" class="enlace-interno">➜ Módulo SEC</a>
+          <a href="https://thesteef21.github.io/SADV41/A217B.html" target="_blank" class="enlace-interno">➜ Protocolo A217B</a>
+          <a href="https://thesteef21.github.io/SADV41/ESPORTS/TSEC.html" target="_blank" class="enlace-interno">➜ SADV41 ESPORTS TSEC</a>
+          <a href="https://thesteef21.github.io/usgs/ESPORTS/TSEC.html" target="_blank" class="enlace-interno">➜ USGS ESPORTS TSEC</a>
+          <a href="https://thesteef21.github.io/SADV41/ESPORTS/TSEC/Convergencia%20de%20las%20Cuatro%20Placas.html" target="_blank" class="enlace-interno">➜ Convergencia de las Cuatro Placas</a>
+        </div>
+      </details>
+
+      <details>
+        <summary>🕊 Comunidad, Fe y Tienda <span>[+]</span></summary>
+        <div style="font-size: 0.85rem; margin-top: 5px;">
+          <a href="https://whatsapp.com/channel/0029VbDQjGKCsU9VzdA8Iu2x" target="_blank" class="enlace-interno">➜ WhatsApp Channel Oficial</a>
+          <a href="https://thesteef21.github.io/SADV41/Cristo/Love" target="_blank" class="enlace-interno">➜ Módulo: Cristo Love</a>
+          <a href="https://stevendior-shop.fourthwall.com" target="_blank" class="enlace-interno">➜ Tienda Oficial Steven Dior</a>
+        </div>
+      </details>
+    </div>
+
+    <!-- Panel Global Live -->
+    <div class="card">
+      <h3>ÚLTIMOS SISMOS - GLOBAL (USGS LIVE)</h3>
+      <div id="usgs-global" class="feed-list">Cargando datos globales...</div>
+    </div>
+
+    <!-- Panel Panamá + Centroamérica SADV41 -->
+    <div class="card">
+      <h3>PANAMÁ + CENTROAMÉRICA - FILTRO SADV41</h3>
+      <div id="usgs-panama" class="feed-list">Filtrando eventos de la región...</div>
+      <div class="meta-info">
+        Bounding: 6.5-10.0N, -83.5 - -76.5W • Protocolo BERIÓN A217<br>
+        Fuente: USGS API Live
       </div>
     </div>
 
-    <style>
-      @keyframes spin { to { transform: rotate(360deg); } }
-    </style>
+    <!-- Mapa sísmico -->
+    <div class="card" style="grid-column: 1 / -1;">
+      <h3>🗺 MAPA SÍSMICO - PANAMÁ (14 DÍAS)</h3>
+      <div id="sismo-map"></div>
+      <div class="meta-info" id="sismo-map-info">Cargando mapa...</div>
+    </div>
 
-    <script>
-      (function(){
-        const section = document.getElementById('sismos-sadv41');
-        const loader = document.getElementById('sismos-loader');
-        const wrap = document.getElementById('sismos-iframe-wrap');
-        const status = document.getElementById('sadv41-sismos-status');
-        let loaded = false;
+    <!-- Panel Análisis Geológico: Sistema de Fallas Azuero-Soná -->
+    <div class="card">
+      <h3>🌋 ANÁLISIS GEOLÓGICO: ROTURA DE FALLA (AZUERO-SONÁ)</h3>
+      <p style="font-size: 0.85rem; color: #e2e8f0; line-height: 1.4;">
+        Una <strong>rotura de falla</strong> (o ruptura de falla) es el deslizamiento repentino y brusco de los bloques de roca a lo largo de una fractura preexistente en la corteza terrestre. Ocurre cuando el esfuerzo tectónico acumulado supera la fuerza de fricción y la resistencia mecánica que mantiene unidas las rocas, liberando esa energía acumulada en forma de ondas sísmicas.
+      </p>
 
-        function loadMap(){
-          if(loaded) return;
-          loaded = true;
-          status.textContent = '● LIVE - USGS CONECTADO';
-          status.style.color = '#00e5ff';
-          status.style.borderColor = '#00e5ff';
-          
-          const iframe = document.createElement('iframe');
-          iframe.src = './SISMOS/index.html';
-          iframe.style.width = '100%';
-          iframe.style.height = '100%';
-          iframe.style.border = '0';
-          iframe.loading = 'lazy';
-          iframe.setAttribute('allowfullscreen','');
-          iframe.setAttribute('title','SADV41 USGS Live Map');
-          
-          // Mostrar iframe, ocultar loader
-          loader.style.display = 'none';
-          wrap.style.display = 'block';
-          wrap.appendChild(iframe);
+      <details>
+        <summary>⚡ 1. Acumulación de Tensión (Fase Elástica) <span>[+]</span></summary>
+        <div style="font-size: 0.85rem; margin-top: 5px; color: #94a3b8;">
+          El sistema Azuero-Soná es una red de fallas de rumbo (transcurrentes) internas del Bloque de Panamá, con movimiento predominantemente lateral. Aunque las placas tectónicas se mueven de forma constante a una velocidad de unos 5 a 7 milímetros por año, la falla permanece "bloqueada" o trabada en profundidad debido a la fricción.
+        </div>
+      </details>
+
+      <details>
+        <summary>💥 2. Iniciación y Propagación de la Ruptura <span>[+]</span></summary>
+        <div style="font-size: 0.85rem; margin-top: 5px; color: #94a3b8;">
+          Cuando la tensión ejercida en un punto específico (el hipocentro o foco) supera la resistencia de la roca, ocurre el "disparo". A partir de ese punto, la grieta o plano de ruptura se propaga a velocidades hipersónicas (2 a 3 km/s) a lo largo de la falla.
+        </div>
+      </details>
+
+      <details>
+        <summary>🌊 3. Liberación Energética y Efectos <span>[+]</span></summary>
+        <div style="font-size: 0.85rem; margin-top: 5px; color: #94a3b8;">
+          <ul style="margin: 5px 0; padding-left: 18px;">
+            <li><strong>Tiempo de ruptura:</strong> Duración de la fractura a lo largo del plano afectado.</li>
+            <li><strong>Ondas sísmicas:</strong> Ondas elásticas que viajan a través de la corteza, produciendo la sacudida en superficie.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Panel Landsat 9 (TSEC) -->
+    <div class="card">
+      <h3>🛰 PANEL GEOPOLÍTICO: LANDSAT 9 (TSEC)</h3>
+      <p style="font-size: 0.85rem; color: #94a3b8;">Monitoreo Espectral y Cobertura de Superficie</p>
+
+      <details>
+        <summary>🌏 Misión y Órbitas de Revisión <span>[+]</span></summary>
+        <div id="landsat-orbit" style="font-size: 0.85rem; margin-top: 5px;">
+          <strong>Órbita Sincrónica Solar:</strong> Gira alrededor de la Tierra a ~705 km.<br>
+          <strong>Ciclo de Repetición:</strong> Cobertura global cada 16 días.
+        </div>
+      </details>
+
+      <details>
+        <summary>📷 Instrumentos de Captura (OLI-2 &amp; TIRS-2) <span>[+]</span></summary>
+        <div id="landsat-instruments" style="font-size: 0.85rem; margin-top: 5px;">
+          <ul>
+            <li><strong>OLI-2:</strong> Captura luz reflejada en el espectro visible, NIR y SWIR.</li>
+            <li><strong>TIRS-2:</strong> Mide la emisión térmica de la superficie.</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Panel Herramientas y Recursos Complementarios -->
+    <div class="card">
+      <h3>📱 HERRAMIENTAS Y RECURSOS DE ENLACE</h3>
+      <p style="font-size: 0.85rem; color: #94a3b8;">Sistemas de telemetría, apps móviles y transferencia directa.</p>
+
+      <div style="margin-top: 12px;">
+        <strong style="font-size: 0.9rem; color: #e2e8f0;">📲 App Earthquake Network:</strong><br>
+        <a href="https://play.google.com/store/apps/details?id=com.finazzi.distquake" target="_blank" class="link-btn">
+          Abrir en Google Play Store ↗
+        </a>
+      </div>
+
+      <div style="margin-top: 15px;">
+        <strong style="font-size: 0.9rem; color: #e2e8f0;">🔗 Enlace Quick Share SADV41:</strong><br>
+        <a href="https://quickshare.samsungcloud.com/faeEwwGK4ePw" target="_blank" class="link-btn">
+          Ver enlace Quick Share ↗
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    STEVENDIOR OFICIAL • MISIÓN SADV41 • thesteef21.github.io
+  </footer>
+
+  <script>
+    fetch('./tsec.json')
+      .then(res => res.json())
+      .then(data => {
+        if (data.satellites && data.satellites[0]) {
+          const sat = data.satellites[0];
+          document.getElementById('landsat-orbit').innerHTML = `
+            <strong>${sat.orbit.type}:</strong> Altitud ~${sat.orbit.altitude_km} km.<br>
+            <strong>Ciclo de Repetición:</strong> Cobertura cada ${sat.orbit.revisit_cycle_days} días.
+          `;
         }
+      })
+      .catch(err => console.warn('tsec.json opcional:', err.message));
 
-        // Intersection Observer: carga solo cuando el usuario llega a la sección
-        if('IntersectionObserver' in window){
-          const io = new IntersectionObserver((entries)=>{
-            entries.forEach(e=>{
-              if(e.isIntersecting){
-                loadMap();
-                io.disconnect();
-              }
-            });
-          }, { rootMargin: '300px' }); 
-          io.observe(section);
+    const USGS_FEED = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson';
+
+    fetch(USGS_FEED)
+      .then(res => res.json())
+      .then(geoData => {
+        const features = geoData.features || [];
+
+        const globalContainer = document.getElementById('usgs-global');
+        if (features.length === 0) {
+          globalContainer.innerHTML = 'Sin sismos reportados hoy.';
         } else {
-          // Fallback: carga a los 2s
-          setTimeout(loadMap, 2000);
+          globalContainer.innerHTML = features.slice(0, 10).map(f => `
+            <div class="feed-item">
+              <span class="mag">M ${f.properties.mag.toFixed(1)}</span> - ${f.properties.place}<br>
+              <small style="color:#64748b;">${new Date(f.properties.time).toLocaleTimeString()}</small>
+            </div>
+          `).join('');
         }
-      })();
-    </script>
-  </section>
 
-  <!-- WORKFLOW YAML VIEWER (Extraído de Next.js payload) -->
-  <section class="code-viewer">
-    <h2 style="color:#00e5ff; letter-spacing:0.2em; font-size:13px; margin:0 0 16px 0;">SADV41 // GITHUB ACTIONS WORKFLOW</h2>
-    <div class="code-container">
-      <div class="line-numbers" aria-hidden="true">
-        <div>1</div><div>2</div><div>3</div><div>4</div><div>5</div><div>6</div><div>7</div><div>8</div><div>9</div><div>10</div>
-        <div>11</div><div>12</div><div>13</div><div>14</div><div>15</div><div>16</div><div>17</div><div>18</div><div>19</div><div>20</div>
-        <div>21</div><div>22</div><div>23</div><div>24</div><div>25</div><div>26</div><div>27</div><div>28</div><div>29</div><div>30</div>
-        <div>31</div><div>32</div><div>33</div>
-      </div>
-      <code style="min-width:0; flex:1; white-space:pre;">
-        <pre class="shiki" style="--shiki-dark:#e1e4e8; margin:0;" tabindex="0"><code><span class="line"><span style="--shiki-dark:#85E89D">name</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">SADV41 Sismos Watch</span></span>
-<span class="line"><span style="--shiki-dark:#79B8FF">on</span><span style="--shiki-dark:#E1E4E8">:</span></span>
-<span class="line"><span style="--shiki-dark:#85E89D">  schedule</span><span style="--shiki-dark:#E1E4E8">:</span></span>
-<span class="line"><span style="--shiki-dark:#E1E4E8">    - </span><span style="--shiki-dark:#85E89D">cron</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">'*/15 * * * *'</span></span>
-<span class="line"><span style="--shiki-dark:#85E89D">  workflow_dispatch</span><span style="--shiki-dark:#E1E4E8">:</span></span>
-<span class="line"></span>
-<span class="line"><span style="--shiki-dark:#85E89D">jobs</span><span style="--shiki-dark:#E1E4E8">:</span></span>
-<span class="line"><span style="--shiki-dark:#85E89D">  check</span><span style="--shiki-dark:#E1E4E8">:</span></span>
-<span class="line"><span style="--shiki-dark:#85E89D">    runs-on</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">ubuntu-latest</span></span>
-<span class="line"><span style="--shiki-dark:#85E89D">    permissions</span><span style="--shiki-dark:#E1E4E8">:</span></span>
-<span class="line"><span style="--shiki-dark:#85E89D">      contents</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">write</span></span>
-<span class="line"><span style="--shiki-dark:#85E89D">    steps</span><span style="--shiki-dark:#E1E4E8">:</span></span>
-<span class="line"><span style="--shiki-dark:#E1E4E8">      - </span><span style="--shiki-dark:#85E89D">uses</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">actions/checkout@v4</span></span>
-<span class="line"><span style="--shiki-dark:#E1E4E8">      - </span><span style="--shiki-dark:#85E89D">uses</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">actions/setup-python@v5</span></span>
-<span class="line"><span style="--shiki-dark:#85E89D">        with</span><span style="--shiki-dark:#E1E4E8">: { </span><span style="--shiki-dark:#85E89D">python-version</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">'3.11'</span><span style="--shiki-dark:#E1E4E8"> }</span></span>
-<span class="line"><span style="--shiki-dark:#E1E4E8">      - </span><span style="--shiki-dark:#85E89D">run</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">pip install requests Pillow</span></span>
-<span class="line"><span style="--shiki-dark:#E1E4E8">      - </span><span style="--shiki-dark:#85E89D">name</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">Check USGS Panama</span></span>
-<span class="line"><span style="--shiki-dark:#85E89D">        run</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">python instagram_bot.py --check-panama --min-mag 4.5</span></span>
-<span class="line"><span style="--shiki-dark:#85E89D">        env</span><span style="--shiki-dark:#E1E4E8">:</span></span>
-<span class="line"><span style="--shiki-dark:#85E89D">          FB_PAGE_ID</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">${{ secrets.FB_PAGE_ID }}</span></span>
-<span class="line"><span style="--shiki-dark:#85E89D">          IG_USER_ID</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">${{ secrets.IG_USER_ID }}</span></span>
-<span class="line"><span style="--shiki-dark:#85E89D">          ACCESS_TOKEN</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">${{ secrets.ACCESS_TOKEN }}</span></span>
-<span class="line"><span style="--shiki-dark:#85E89D">          IMAGE_PUBLIC_URL</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">https://thesteef21.github.io/usgs/latest.jpg</span></span>
-<span class="line"><span style="--shiki-dark:#E1E4E8">      - </span><span style="--shiki-dark:#85E89D">name</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#9ECBFF">Commit latest image for Pages</span></span>
-<span class="line"><span style="--shiki-dark:#85E89D">        run</span><span style="--shiki-dark:#E1E4E8">: </span><span style="--shiki-dark:#F97583">|</span></span>
-<span class="line"><span style="--shiki-dark:#9ECBFF">          if [ -f latest.jpg ]; then</span></span>
-<span class="line"><span style="--shiki-dark:#9ECBFF">            git config user.name "SADV41-BOT"</span></span>
-<span class="line"><span style="--shiki-dark:#9ECBFF">            git config user.email "bot@sadv41.io"</span></span>
-<span class="line"><span style="--shiki-dark:#9ECBFF">            git add latest.jpg || true</span></span>
-<span class="line"><span style="--shiki-dark:#9ECBFF">            git commit -m "auto: update latest sismo image [skip ci]" || true</span></span>
-<span class="line"><span style="--shiki-dark:#9ECBFF">            git push || true</span></span>
-<span class="line"><span style="--shiki-dark:#9ECBFF">          fi</span></span>
-<span class="line"></span></code></pre>
-      </code>
-    </div>
-  </section>
+        const panamaContainer = document.getElementById('usgs-panama');
+        const panamaEvents = features.filter(f => {
+          const [lon, lat] = f.geometry.coordinates;
+          return lat >= 6.5 && lat <= 10.0 && lon >= -83.5 && lon <= -76.5;
+        });
 
+        if (panamaEvents.length === 0) {
+          panamaContainer.innerHTML = '<div style="color: #64748b; padding: 10px 0;">Sin actividad sísmica detectada en la cuadrícula de Panamá/Centroamérica en las últimas 24 hrs.</div>';
+        } else {
+          panamaContainer.innerHTML = panamaEvents.map(f => `
+            <div class="feed-item">
+              <span class="mag" style="color: #00f2fe;">M ${f.properties.mag.toFixed(1)}</span> - ${f.properties.place}<br>
+              <small style="color:#94a3b8;">Hora: ${new Date(f.properties.time).toLocaleTimeString()} | Prof: ${f.geometry.coordinates[2]} km</small>
+            </div>
+          `).join('');
+        }
+      })
+      .catch(err => {
+        document.getElementById('usgs-global').innerText = 'Error al consultar API en vivo.';
+        document.getElementById('usgs-panama').innerText = 'Error al consultar API en vivo.';
+      });
+  </script>
+  
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    (function () {
+      const map = L.map('sismo-map').setView([7.8, -80.5], 7);
+
+      // Cargar Capa CartoDB Voyager con API Key personalizada
+      L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_4ne6_1_3c19f375f3946685db2cfede', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        maxZoom: 18
+      }).addTo(map);
+
+      const css = getComputedStyle(document.documentElement);
+      const ACCENT = css.getPropertyValue('--accent-color').trim() || '#00f2fe';
+      const HIGH = css.getPropertyValue('--highlight').trim() || '#ff4757';
+      const col = m => m >= 5 ? HIGH : ACCENT;
+      const fmt = t => new Date(t).toLocaleString('es-PA', { timeZone: 'America/Panama' });
+
+      [
+        { n: 'Ineter M4.7, 13 km al norte de Macaracas (17 oct, 11:31 a.m.)', lat: 7.85, lon: -80.55 },
+        { n: 'Sismo Detector M5.2 preliminar, 2 km de Las Tablas (17 oct, 11:24 a.m.)', lat: 7.77, lon: -80.28 }
+      ].forEach(function (r) {
+        L.circleMarker([r.lat, r.lon], { radius: 12, color: '#111827', weight: 2, dashArray: '4', fillOpacity: 0.2, fillColor: '#00f2fe' })
+          .addTo(map).bindPopup('<b>Reporte de app</b><br>' + r.n + '<br><i>ubicación aproximada</i>');
+      });
+
+      const ini = new Date(Date.now() - 14 * 864e5).toISOString();
+      const url = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson'
+        + '&minlatitude=6.5&maxlatitude=10&minlongitude=-83.5&maxlongitude=-76.5'
+        + '&minmagnitude=2.5&orderby=time&limit=500&starttime=' + ini;
+
+      fetch(url).then(r => r.json()).then(function (d) {
+        const fs = d.features || [];
+        fs.forEach(function (f) {
+          const c = f.geometry.coordinates, p = f.properties, m = p.mag;
+          L.circleMarker([c[1], c[0]], { radius: 4 + m * 2, color: col(m), fillColor: col(m), fillOpacity: .65, weight: 1.5 })
+            .addTo(map)
+            .bindPopup('<b>M' + m + '</b> - ' + p.place + '<br>' + fmt(p.time) + '<br><a href="' + p.url + '" target="_blank">USGS Detalle</a>');
+        });
+        document.getElementById('sismo-map-info').textContent =
+          fs.length + ' sismos (M2.5+) en 14 días • Rojo: M5+ • Fuente: CartoDB + USGS API Live';
+      }).catch(function (e) {
+        document.getElementById('sismo-map-info').textContent = 'No se pudo cargar USGS: ' + e;
+      });
+    })();
+  </script>
 </body>
 </html>
