@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>USGS • SADV41 • SISMOS Y TERREMOTOS</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+  :root { --bg:#0a0a0a; --fg:#e8e8e8; --accent:#ff3b30; --sadv41:#00e5ff; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif}
+  header{padding:18px 20px;border-bottom:1px solid #222;display:flex;justify-content:space-between;align-items:center}
+  header h1{font-size:14px;letter-spacing:0.2em}
+  header h1 span{color:var(--sadv41)}
+  #map{height:62vh;width:100%;background:#111}
+  .panel{padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .card{border:1px solid #222;padding:14px;border-radius:12px;background:#0f0f0f}
+  .card h3{font-size:11px;letter-spacing:0.15em;color:#888;margin-bottom:8px}
+  .quake{padding:10px 0;border-bottom:1px solid #1a1a1a;display:flex;justify-content:space-between}
+  .quake:last-child{border:0}
+  .mag{font-weight:900;padding:4px 8px;border-radius:6px;background:#1a1a1a}
+  .mag.crit{background:var(--accent);color:white}
+  .mag.high{background:#ff9500;color:black}
+  .mag.med{background:#ffcc00;color:black}
+  .footer{padding:20px;text-align:center;font-size:11px;color:#666;letter-spacing:0.1em}
+  @media(max-width:800px){.panel{grid-template-columns:1fr}}
+
+  /* ESTILOS ACORDEÓN TSEC (Flash-lite) */
+  .tsec-accordion { background: #0c1017; border: 1px solid #0369a1; border-radius: 6px; margin-bottom: 10px; font-family: monospace; overflow: hidden; }
+  .tsec-accordion summary { background: #080d16; color: #38bdf8; padding: 12px 15px; cursor: pointer; font-weight: bold; font-size: 12px; outline: none; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid transparent; transition: background 0.2s; }
+  .tsec-accordion summary:hover { background: #111827; }
+  .tsec-accordion[open] summary { border-bottom: 1px solid #0369a1; }
+  .tsec-content { padding: 15px; font-size: 11px; color: #cbd5e1; line-height: 1.6; background: #050505; }
+  .tsec-content ul { margin: 5px 0 0 15px; padding: 0; }
+  .tsec-content li { margin-bottom: 5px; }
+  .tsec-panel { padding: 0 18px 18px 18px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>SADV41 // <span>USGS LIVE</span> // SISMOSYTERREMOTOS</h1>
+  <div style="font-size:10px;color:#888">FEED: all_day.geojson • AUTO REFRESH 60s</div>
+</header>
+<div id="map"></div>
+<div class="panel">
+  <div class="card">
+    <h3>ÚLTIMOS SISMOS - GLOBAL (USGS)</h3>
+    <div id="list">Cargando...</div>
+  </div>
+  <div class="card">
+    <h3>PANAMÁ + CENTROAMÉRICA - FILTRO SADV41</h3>
+    <div id="list-pa">Cargando...</div>
+    <div style="margin-top:14px;font-size:10px;color:#555">
+      Bounding: 7.0-9.8N, -83 - -77W • Protocolo BERIÓN A217<br/>
+      Fuente: earthquake.usgs.gov • No almacena, solo visualiza.
+    </div>
+  </div>
+</div>
+
+<!-- PANEL GEOPOLÍTICO TSEC / LANDSAT 9 -->
+<div class="tsec-panel">
+  <div class="card" style="grid-column: 1 / -1;">
+    <h3 style="color: #38bdf8;">🛰️ PANEL GEOPOLÍTICO: LANDSAT 9 (TSEC)</h3>
+    <p style="font-size: 11px; color: #888; margin-bottom: 15px;">Monitoreo activo y sincronización de telemetría orbital y terrestre. Despliega las tarjetas para inspeccionar especificaciones.</p>
+    
+    <details class="tsec-accordion">
+        <summary>🌍 Misión y Órbitas de Revisión <span>[+]</span></summary>
+        <div class="tsec-content">
+            <strong>Órbita Sincrónica Solar:</strong> Gira alrededor de la Tierra a una altitud nominal de 705 kilómetros.<br>
+            <strong>Ciclo de Repetición:</strong> Compleja cobertura global cada 16 días, permitiendo un monitoreo ambiental constante y estricto sincronizado con la red terrestre TSEC.
+        </div>
+    </details>
+    <details class="tsec-accordion">
+        <summary>📷 Instrumentos de Captura (OLI-2 & TIRS-2) <span>[+]</span></summary>
+        <div class="tsec-content">
+            <ul>
+                <li><strong>OLI-2:</strong> Captura la luz reflejada en el espectro visible, cercano al infrarrojo (NIR) y de onda corta (SWIR). Fundamental para índices de vegetación (NDVI).</li>
+                <li><strong>TIRS-2:</strong> Mide la emisión térmica de la superficie terrestre en dos bandas térmicas de alta precisión.</li>
+            </ul>
+        </div>
+    </details>
+    <details class="tsec-accordion">
+        <summary>📊 Resolución Espacial y Espectral <span>[+]</span></summary>
+        <div class="tsec-content">
+            <ul>
+                <li><strong>Resolución Multiespectral:</strong> Píxeles de 30 metros por lado en las bandas ópticas e infrarrojas.</li>
+                <li><strong>Resolución Pancromática:</strong> Detalle de alta nitidez a 15 metros.</li>
+                <li><strong>Profundidad Radiométrica:</strong> Codificación de 14 bits (más de 16,384 niveles de gris por banda).</li>
+            </ul>
+        </div>
+    </details>
+    <details class="tsec-accordion">
+        <summary>📡 Integración con el Hub SADV41 <span>[+]</span></summary>
+        <div class="tsec-content">
+            Los datos crudos son procesados localmente en entornos ligeros (como Termux) para extraer métricas clave como el NDVI asegurando que la telemetría orbital y la actividad sísmica converjan de manera eficiente.
+        </div>
+    </details>
+  </div>
+</div>
+
+<div class="footer">STEVENDIOR OFICIAL • MISION SADV41 • thesteef21.github.io/SADV41 • 2026</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const FEED = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson';
+const map = L.map('map',{zoomControl:false}).setView([8.9,-80.2],5);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'© USGS © CARTO'}).addTo(map);
+
+function severity(m){
+ if(m>=7) return {cls:'crit',label:'CRITICO'};
+ if(m>=6) return {cls:'high',label:'ALTO'};
+ if(m>=5) return {cls:'med',label:'MEDIO'};
+ return {cls:'',label:'VIGILANCIA'};
+}
+function isPanama(lat,lon){
+ return lat>=7 && lat<=9.8 && lon>=-83 && lon<=-77;
+}
+
+async function load(){
+ try{
+  const r = await fetch(FEED); const data = await r.json();
+  const list = document.getElementById('list'); const listPA = document.getElementById('list-pa');
+  list.innerHTML=''; listPA.innerHTML='';
+  map.eachLayer(l=>{ if(l instanceof L.CircleMarker) map.removeLayer(l) });
+
+  const panamaQuakes = [];
+
+  data.features.sort((a,b)=>b.properties.mag-a.properties.mag).forEach(f=>{
+    const [lon,lat,depth] = f.geometry.coordinates;
+    const {mag,place,time} = f.properties;
+    const sev = severity(mag);
+    const date = new Date(time).toLocaleString('es-PA');
+    
+    const marker = L.circleMarker([lat,lon],{
+      radius: Math.max(4, mag*2.5),
+      color: sev.cls==='crit' ? '#ff3b30' : sev.cls==='high' ? '#ff9500' : '#00e5ff',
+      weight:2, fillOpacity:0.6
+    }).addTo(map).bindPopup(`<b>M${mag} ${place}</b><br/>${date}<br/>Prof: ${depth}km<br/>${sev.label}`);
+
+    const row = `<div class="quake"><div><span class="mag ${sev.cls}">M${mag}</span> ${place}<br/><span style="font-size:10px;color:#666">${date} • ${depth}km</span></div><div style="font-size:10px;color:#888">${sev.label}</div></div>`;
+
+    if(isPanama(lat,lon)) { panamaQuakes.push(f); listPA.innerHTML+=row; }
+  });
+
+  // Global list (top 20)
+  data.features.slice(0,20).forEach(f=>{
+    const {mag,place,time} = f.properties;
+    const sev = severity(mag);
+    const date = new Date(time).toLocaleString('es-PA');
+    list.innerHTML+= `<div class="quake"><div><span class="mag ${sev.cls}">M${mag}</span> ${place}<br/><span style="font-size:10px;color:#666">${date}</span></div><div style="font-size:10px">${sev.label}</div></div>`;
+  });
+
+  if(panamaQuakes.length===0) listPA.innerHTML='<div style="color:#666;padding:20px 0">Sin sismos en bounding Panamá últimas 24h. Vigilancia activa SADV41.</div>';
+
+ }catch(e){ console.error(e); document.getElementById('list').innerHTML='Error cargando USGS'; }
+}
+load(); setInterval(load,60000);
+</script>
+</body>
+</html>
