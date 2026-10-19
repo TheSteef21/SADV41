@@ -3,11 +3,11 @@ import os
 import sys
 import json
 import time
+import getpass
 import requests
 from datetime import datetime, timedelta, timezone
 from PIL import Image, ImageDraw, ImageFont
 
-# 1. Verificar la librería instagrapi
 try:
     from instagrapi import Client
 except ImportError:
@@ -19,15 +19,11 @@ POSTED_FILE = "posted_events.json"
 SESSION_FILE = "ig_session.json"
 TEMP_IMAGE = "temp_sismo.jpg"
 
-# Filtros USGS
 HOURS_LOOKBACK = 72
-MIN_MAGNITUDE = 2.5  # Actualizado a magnitud mínima 2.5
+MIN_MAGNITUDE = 2.5
 
-# Bounding Box de Panamá y zona cercana
 USE_PANAMA_BOUNDS = True
 PANAMA_BOUNDS = "&minlatitude=6.5&maxlatitude=10.5&minlongitude=-83.5&maxlongitude=-77.0"
-
-# --- FUNCIONES SECUNDARIAS ---
 
 def load_posted_events():
     if os.path.exists(POSTED_FILE):
@@ -65,7 +61,6 @@ def fetch_usgs_events():
         return []
 
 def create_card_image(mag, place, event_time_str, depth):
-    """Genera una imagen oscura de 1080x1080 estilizada sin marca de agua."""
     width, height = 1080, 1080
     bg_color = (18, 18, 18)
     img = Image.new("RGB", (width, height), color=bg_color)
@@ -109,19 +104,29 @@ def create_card_image(mag, place, event_time_str, depth):
 def login_instagram():
     cl = Client()
     if os.path.exists(SESSION_FILE):
-        print("🔑 Cargando sesión existente de Instagram...")
+        print("🔑 Cargando sesión existente desde ig_session.json...")
         try:
             cl.load_settings(SESSION_FILE)
-            cl.login_by_sessionid()
+            cl.get_timeline_feed()
+            print("✅ Sesión validada correctamente.")
             return cl
         except Exception as e:
-            print(f"⚠️ Falló la sesión guardada: {e}. Inicia sesión con tus credenciales.")
-            sys.exit(1)
-    else:
-        print("❌ No se encontró 'ig_session.json'. Asegúrate de haber iniciado sesión previamente.")
+            print(f"⚠️ Sesión guardada no válida o expirada: {e}")
+
+    print("\n🔐 Inicio de sesión requerido en Instagram:")
+    username = input("👤 Usuario / Email: ").strip()
+    password = getpass.getpass("🔑 Contraseña: ")
+
+    try:
+        print("🚀 Autenticando en Instagram...")
+        cl.login(username, password)
+        cl.dump_settings(SESSION_FILE)
+        print("✅ Sesión iniciada y guardada en ig_session.json")
+        return cl
+    except Exception as e:
+        print(f"❌ Error al iniciar sesión: {e}")
         sys.exit(1)
 
-# --- PROCESO PRINCIPAL ---
 def main():
     posted_ids = load_posted_events()
     features = fetch_usgs_events()

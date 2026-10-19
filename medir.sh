@@ -1,2 +1,16 @@
-#!/data/data/com.termux/files/usr/bin/bash
-/usr/bin/time -v python instagram_bot.py --check-panama --min-mag 2.5 2>&1 | grep -E "Elapsed|Maximum resident"
+#!/bin/bash
+cd "$HOME/sadv41" || exit 1
+
+echo "🗿 [SADV41 - Diagnóstico y Telemetría]"
+echo "----------------------------------------"
+echo "📂 Archivos de sesión y registros:"
+ls -lh ig_session.json posted_events.json loop.log 2>/dev/null
+
+echo ""
+echo "⚙️ Proceso Python en ejecución:"
+ps aux | grep python | grep -v grep
+
+echo ""
+echo "📄 Últimas 10 líneas de loop.log:"
+tail -n 10 loop.log 2>/dev/null
+echo "----------------------------------------"

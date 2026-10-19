@@ -1,16 +1,30 @@
-#!/data/data/com.termux/files/usr/bin/bash
-cd ~/sadv41
-set -a; . ~/.sadv41_env; set +a
-termux-wake-lock
-COOL=1800
+#!/bin/bash
+PROJECT_DIR="$HOME/sadv41"
+LOG_FILE="loop.log"
+INTERVAL=300
+
+cd "$PROJECT_DIR" || exit 1
+
+echo "🗿 [SADV41 - Ejecución de Bucle de Monitoreo]"
+
+if [ ! -f "ig_session.json" ]; then
+    echo "⚠️ No existe ig_session.json. Ejecuta primero 'python post_72h_sismos.py' para autenticarte."
+    exit 1
+fi
+
+PREV_PID=$(pgrep -f "python.*post_72h_sismos.py")
+if [ -n "$PREV_PID" ]; then
+    echo "🛑 Deteniendo instancia previa (PID: $PREV_PID)..."
+    kill -9 $PREV_PID 2>/dev/null
+fi
+
+echo "🚀 Iniciando bucle cada ${INTERVAL}s..."
+nohup bash -c "
 while true; do
-  if python instagram_bot.py --check-panama --min-mag 2.5; then
-    now=$(date +%s); last=$(cat .last_post 2>/dev/null || echo 0)
-    if [ $((now-last)) -ge $COOL ]; then
-      python ig_publish.py && echo $now > .last_post
-    else
-      echo "Cooldown: sismo omitido"
-    fi
-  fi
-  sleep 900
+    echo \"=== \$(date '+%Y-%m-%d %H:%M:%S') Executing post_72h_sismos.py ===\" >> $LOG_FILE
+    python post_72h_sismos.py >> $LOG_FILE 2>&1
+    sleep $INTERVAL
 done
+" > /dev/null 2>&1 &
+
+echo "✅ Bucle ejecutándose en segundo plano. Logs: tail -f $LOG_FILE"
