@@ -1,0 +1,22 @@
+name: TSEC Seismic Data Filter
+
+on:
+  schedule:
+    - cron: '0 * * * *' # Se ejecuta cada hora
+  workflow_dispatch:     # Permite ejecución manual desde la interfaz de GitHub
+
+jobs:
+  run-tsec-filter:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Instalar dependencias
+        run: sudo apt-get update && sudo apt-get install -y jq curl
+
+      - name: Asignar permisos y ejecutar script
+        run: |
+          chmod +x tsec_filter.sh
+          ./tsec_filter.sh
