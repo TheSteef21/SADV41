@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SADV41 INTSEC</title>
+<style>
+:root{--bg:#05080f;--t:#d7e2ff;--m:#7e8db0;--b:#4da3ff;--r:#ff3b4a;--line:rgba(120,160,255,.18)}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--t);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+#sig{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+main{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:48px 16px 64px}
+h1{font:800 clamp(28px,7vw,48px)/1 ui-monospace,Menlo,Consolas,monospace;letter-spacing:-.04em;margin:0 0 8px}
+#mark{cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+.sub{color:var(--m);margin:0 0 16px;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+#status{color:var(--m);font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;margin:0 0 16px;min-height:1.5em}
+#status.live{color:var(--b)}
+#status.err{opacity:.8}
+#list{list-style:none;margin:0 0 24px;padding:0;font:12px/1.6 ui-monospace,Menlo,Consolas,monospace}
+#list li{padding:4px 0;border-bottom:1px solid var(--line)}
+#egg{opacity:0;transition:opacity 1.2s;font:13px/1.6 ui-monospace,Menlo,Consolas,monospace;color:var(--r);white-space:pre-line;min-height:4.8em;margin:0 0 24px}
+#egg.on{opacity:1}
+hr{border:0;border-top:1px solid var(--line);margin:40px 0 24px}
+.final{font-size:1.05rem;line-height:1.6}
+a{color:var(--b);word-break:break-all}
+</style>
+</head>
+<body>
+<canvas id="sig"></canvas>
+<main>
+  <h1>SADV<span id="mark">41</span> // INTSEC</h1>
+  <p class="sub">Sección internacional</p>
+  <p id="status" aria-live="polite">USGS: conectando…</p>
+  <ul id="list" aria-label="Sismos recientes en el área"></ul>
+  <p id="egg" aria-live="polite"></p>
+  <hr>
+  <p class="final">
+    De las nacionales de
+    <a href="https://thesteef21.github.io/SADV41">https://thesteef21.github.io/SADV41</a>
+    saltamos a las internacionales, aquí en
+    <a href="https://thesteef21.github.io/SADV41/INTSEC">https://thesteef21.github.io/SADV41/INTSEC</a>
+  </p>
+</main>
+<script>
+(function(){
+  'use strict';
+  // ---- configuración ----
+  var FEED='https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson';
+  var BOX={latMin:6.5,latMax:10.0,lonMin:-83.5,lonMax:-76.5}; // Azuero–Panamá
+  var MIN_MAG=3.7;        // mínimo para disparar la traza (ajustable)
+  var POLL_MS=4*60*1000;  // refresco cada 4 min
+  var TIMEOUT_MS=10000;
+  var MAX_LIST=5;
+  var FRAME_MS=33;
+
+  // ---- elementos ----
+  var cv=document.getElementById('sig'),ctx=cv.getContext('2d');
+  var egg=document.getElementById('egg'),mark=document.getElementById('mark');
+  var statusEl=document.getElementById('status'),listEl=document.getElementById('list');
+
+  var mobile=/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)||innerWidth<768;
+  var DPR=Math.min(devicePixelRatio||1,mobile?1:2);
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var W,H,N,buf=[];
+
+  var simT0=null;   // easter egg simulado (5 toques sobre el 41)
+  var live=[];      // eventos reales en curso: {t0,gain}
+  var seen={};      // ids vistos en el último refresco
+  var firstPoll=true;
+  var last=0;
+
+  function size(){
+    W=cv.width=Math.floor(innerWidth*DPR);
+    H=cv.height=Math.floor(innerHeight*DPR);
+    N=Math.max(60,Math.floor(W/(2*DPR)));
+    buf=new Array(N).fill(0);
+    draw(false);
+  }
+
+  function ev(s){
+    if(s<0)return 0;
+    var p=.12*Math.sin(s*38)*Math.min(1,s*2)*Math.exp(-s/4);
+    var q=s>=1.8?Math.sin((s-1.8)*17)*Math.exp(-(s-1.8)/2.6)*Math.min(1,(s-1.8)*3):0;
+    var r=s>=3.2?.5*Math.sin((s-3.2)*7)*Math.exp(-(s-3.2)/4):0;
+    return p+q+r;
+  }
+
+  function gainFor(mag){return Math.max(.2,Math.min(1,(mag-2)/6));}
+
+  function sample(now){
+    var v=0,active=false,s;
+    if(simT0!==null){
+      s=(now-simT0)/1000;
+      if(s<=16){v+=ev(s);active=true;}else simT0=null;
+    }
+    for(var i=live.length-1;i>=0;i--){
+      s=(now-live[i].t0)/1000;
+      if(s>16){live.splice(i,1);continue;}
+      v+=ev(s)*live[i].gain;active=true;
+    }
+    return {v:v,active:active};
+  }
+
+  function draw(active){
+    ctx.clearRect(0,0,W,H);
+    ctx.lineWidth=1.5*DPR;
+    ctx.strokeStyle=active?'rgba(255,59,74,.55)':'rgba(77,163,255,.22)';
+    var mid=H*.5,amp=H*.22;
+    ctx.beginPath();
+    for(var i=0;i<N;i++){
+      var px=i*(W/(N-1)),py=mid-buf[i]*amp;
+      if(i)ctx.lineTo(px,py);else ctx.moveTo(px,py);
+    }
+    ctx.stroke();
+  }
+
+  function frame(ts){
+    requestAnimationFrame(frame);
+    if(ts-last<FRAME_MS)return;
+    last=ts;
+    var r=sample(performance.now());
+    buf.push((Math.random()-.5)*.035+Math.sin(ts*.002)*.01+r.v);
+    buf.shift();
+    draw(r.active);
+  }
+
+  function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p);}catch(e){}}
+
+  function fmtTime(ms){
+    try{
+      return new Intl.DateTimeFormat('es-PA',{timeZone:'America/Panama',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(ms));
+    }catch(e){return new Date(ms).toLocaleString();}
+  }
+
+  function fireSim(){
+    egg.textContent='09/10/2026 · 12:56 (hora Panamá) · M7.7 · cerca de Pitaloza Arriba, Herrera\nSimulación artística inspirada en el evento. No son datos de un sensor.';
+    egg.classList.add('on');
+    buzz([80,40,160,60,240]);
+    if(!reduce)simT0=performance.now();
+  }
+  
+  var taps=[];
+  mark.addEventListener('click',function(){
+    var n=Date.now();
+    taps=taps.filter(function(x){return n-x<3000;});
+    taps.push(n);
+    if(taps.length>=5){taps=[];fireSim();}
+  });
+
+  function setStatus(text,cls){statusEl.textContent=text;statusEl.className=cls||'';}
+
+  function renderList(events){
+    listEl.textContent='';
+    events.slice(0,MAX_LIST).forEach(function(e){
+      var li=document.createElement('li');
+      li.textContent='M'+e.mag.toFixed(1)+' · '+e.place+' · '+fmtTime(e.time);
+      listEl.appendChild(li);
+    });
+  }
+
+  function handle(data){
+    var feats=(data&&data.features)||[];
+    var area=[];
+    for(var i=0;i<feats.length;i++){
+      var f=feats[i],p=f.properties||{},g=f.geometry&&f.geometry.coordinates;
+      if(!g||typeof p.mag!=='number')continue;
+      var lon=g[0],lat=g[1];
+      if(lat<BOX.latMin||lat>BOX.latMax||lon<BOX.lonMin||lon>BOX.lonMax)continue;
+      area.push({id:f.id||(p.time+'_'+lat+'_'+lon),mag:p.mag,place:p.place||'sin referencia',time:p.time});
+    }
+    area.sort(function(a,b){return b.time-a.time;});
+
+    var prev=seen,next={},fresh=[];
+    area.forEach(function(e){
+      next[e.id]=true;
+      if(!prev[e.id]&&!firstPoll&&e.mag>=MIN_MAG)fresh.push(e);
+    });
+    seen=next;
+
+    fresh.forEach(function(e){
+      if(!reduce)live.push({t0:performance.now(),gain:gainFor(e.mag)});
+      buzz([60,30,120]);
+    });
+    
+    if(fresh.length){
+      var big=fresh.slice().sort(function(a,b){return b.mag-a.mag;})[0];
+      egg.textContent='USGS · M'+big.mag.toFixed(1)+' · '+big.place+'\n'+fmtTime(big.time)+' (Panamá) · dato real de earthquake.usgs.gov';
+      egg.classList.add('on');
+    }
+
+    renderList(area);
+    var now=fmtTime(Date.now())+' (Panamá)';
+    if(area.length){
+      var max=area.reduce(function(m,e){return Math.max(m,e.mag);},-Infinity);
+      setStatus('USGS en vivo · '+now+' · '+area.length+' evento(s) en el área · máx M'+max.toFixed(1),'live');
+    }else{
+      setStatus('USGS en vivo · '+now+' · sin eventos en el área en la última hora','live');
+    }
+    firstPoll=false;
+  }
+
+  function offline(){
+    setStatus('USGS no disponible ahora · mostrando solo la línea offline','err');
+  }
+
+  function poll(){
+    var ctrl=typeof AbortController!=='undefined'?new AbortController():null;
+    var to=setTimeout(function(){if(ctrl)ctrl.abort();},TIMEOUT_MS);
+    fetch(FEED,{cache:'no-store',signal:ctrl?ctrl.signal:undefined})
+      .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+      .then(function(data){clearTimeout(to);handle(data);})
+      .catch(function(){clearTimeout(to);offline();});
+  }
+
+  addEventListener('resize',size,{passive:true});
+  size();
+  if(!reduce)requestAnimationFrame(frame);
+  poll();
+  setInterval(poll,POLL_MS);
+})();
+</script>
+</body>
+</html>
