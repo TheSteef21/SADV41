@@ -1,166 +1,164 @@
 #!/usr/bin/env python3
-"""SADV41 Sismos: detecta sismos de Panamá (USGS) y publica en Instagram."""
-import argparse, hashlib, json, os, sys, time, math, re, io
-from datetime import datetime, timedelta, timezone
+import os
+import sys
+import json
+import time
+import argparse
+import hashlib
+import getpass
 import requests
+from datetime import datetime, timezone
 from PIL import Image, ImageDraw, ImageFont
 
-USGS = "https://earthquake.usgs.gov/fdsnws/event/1/query"
-STATE = "last_event.json"
+try:
+    from instagrapi import Client
+except ImportError:
+    print("❌ 'instagrapi' no está instalado. Ejecuta: pip install instagrapi pillow requests")
+    sys.exit(1)
+
+# --- CONFIGURACIÓN ---
+STATE = "posted_events.json"
 IMG = "latest.jpg"
-PAGES_IMG = os.getenv("IMAGE_PUBLIC_URL", "https://thesteef21.github.io/SADV41/latest.jpg")
-GRAPH = "https://graph.facebook.com/v21.0"
-PTY = timezone(timedelta(hours=-5))
 
-def traducir_lugar(place_en):
-    p = place_en
-    p = p.replace(" of ", " de ")
-    p = re.sub(r'\bNE\b', 'NE', p)
-    p = re.sub(r'\bNW\b', 'NO', p)
-    p = re.sub(r'\bSE\b', 'SE', p)
-    p = re.sub(r'\bSW\b', 'SO', p)
-    p = p.replace("Panama", "Panamá")
-    p = p.replace("Costa Rica", "Costa Rica")
-    return p
+# REGLA ESTRICTA: Desde el 9 de octubre de 2026 a las 12:55 PM (UTC-5 / Panamá) -> 17:55:00 UTC
+START_TIMESTAMP_MS = int(datetime(2026, 10, 9, 17, 55, 0, tzinfo=timezone.utc).timestamp() * 1000)
 
-def fetch_latest(min_mag):
-    start = (datetime.now(timezone.utc) - timedelta(hours=6)).isoformat()
-    r = requests.get(USGS, params={
-        "format": "geojson", "orderby": "time", "limit": 1,
-        "minmagnitude": min_mag, "starttime": start,
-        "minlatitude": 5.5, "maxlatitude": 10.0,
-        "minlongitude": -84.0, "maxlongitude": -77.0,
-    }, timeout=30)
-    r.raise_for_status()
-    feats = r.json().get("features", [])
-    return feats[0] if feats else None
-
-def make_image(ev, path):
-    p = ev["properties"]
-    lon, lat, depth = ev["geometry"]["coordinates"]
-    mag = p["mag"]
-    lugar_es = traducir_lugar(p["place"])
-
-    # 1. Calcular tiles del mapa
-    zoom = 9
-    lat_rad = math.radians(lat)
-    n = 2.0 ** zoom
-    xtile = (lon + 180.0) / 360.0 * n
-    ytile = (1.0 - math.asinh(math.tan(lat_rad)) / math.pi) / 2.0 * n
-    cx, cy = int(xtile), int(ytile)
-
-    pixel_x = int((xtile - cx) * 256)
-    pixel_y = int((ytile - cy) * 256)
-
-    # 2. Descargar cuadrícula de CARTO Dark Matter
-    map_img = Image.new("RGBA", (5 * 256, 5 * 256), "#0a0f14")
-    headers = {"User-Agent": "SADV41-SismosWatch/1.0"}
-
-    for i in range(-2, 3):
-        for j in range(-2, 3):
-            url = f"https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}"
-            try:
-                r = requests.get(url, headers=headers, timeout=5)
-                if r.status_code == 200:
-                    tile = Image.open(io.BytesIO(r.content)).convert("RGBA")
-                    map_img.paste(tile, ((i + 2) * 256, (j + 2) * 256))
-            except:
-                pass # Fondo oscuro de respaldo si falla un tile
-
-    # 3. Recortar 1080x1080 centrado en el sismo
-    center_px = (2 * 256) + pixel_x
-    center_py = (2 * 256) + pixel_y
-
-    final_img = Image.new("RGBA", (1080, 1080), "#0a0f14")
-    crop = map_img.crop((center_px - 540, center_py - 540, center_px + 540, center_py + 540))
-    final_img.paste(crop, (0, 0))
-
-    d = ImageDraw.Draw(final_img)
-
-    # 4. Impacto gráfico
-    col = "#ff3b30" if mag >= 6 else "#ff9500" if mag >= 5 else "#ffd60a"
-    radio = int(30 + (mag * 12))
-
-    d.ellipse([540 - radio, 540 - radio, 540 + radio, 540 + radio], fill=col + "60", outline=col, width=3)
-    d.ellipse([540 - 6, 540 - 6, 540 + 6, 540 + 6], fill="#ffffff")
-
-    def font(size):
-        for f in ("/system/fonts/Roboto-Bold.ttf", "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"):
-            try:
-                return ImageFont.truetype(f, size)
-            except OSError:
-                pass
-        return ImageFont.load_default()
-
-    d.text((540 + radio + 25, 540 - 45), f"M {mag:.1f}", fill="#ffffff", font=font(65))
-    d.text((540 + radio + 25, 540 + 25), lugar_es, fill="#e8eef5", font=font(35))
-    d.text((40, 1010), "SADV41 // Fuente: USGS", font=font(32), fill="#5aa9ff")
-
-    final_img.convert("RGB").save(path, "JPEG", quality=95)
-
-def caption(ev):
-    p = ev["properties"]
-    when = datetime.fromtimestamp(p["time"] / 1000, PTY).strftime("%d/%m/%Y %I:%M %p")
-    lugar_es = traducir_lugar(p["place"])
-    return (f"⚠️ Sismo M{p['mag']:.1f} - {lugar_es}\n{when} (hora Panamá)\n"
-            f"Profundidad: {ev['geometry']['coordinates'][2]:.0f} km\n\n"
-            f"Fuente: USGS (datos preliminares)\n#Panama #Sismo #SADV41")
-
-def check(min_mag, no_image):
-    ev = fetch_latest(min_mag)
-    if not ev:
-        print("Sin sismos recientes sobre el mínimo.")
-        return 2
-    last = json.load(open(STATE)).get("id") if os.path.exists(STATE) else None
-    if ev["id"] == last:
-        print("Sin sismo nuevo (ya procesado:", last, ")")
-        return 2
-    if not no_image:
-        make_image(ev, IMG)
-    json.dump({"id": ev["id"], "mag": ev["properties"]["mag"],
-               "place": ev["properties"]["place"], "caption": caption(ev)},
-              open(STATE, "w"), ensure_ascii=False, indent=2)
-    print("Sismo nuevo:", ev["id"], "M", ev["properties"]["mag"], ev["properties"]["place"])
-    return 0
-
-def publish():
-    uid, tok = os.getenv("IG_USER_ID"), (os.getenv("ACCESS_TOKEN") or os.getenv("IG_ACCESS_TOKEN"))
-    if not uid or not tok:
-        print("Faltan IG_USER_ID / IG_ACCESS_TOKEN: se omite la publicación.")
-        return 0
-    cap = json.load(open(STATE))["caption"]
-    want = hashlib.sha256(open(IMG, "rb").read()).hexdigest()
-    url = f"{PAGES_IMG}?v={int(time.time())}"
-    for _ in range(16):
+def load_posted():
+    if os.path.exists(STATE):
         try:
-            r = requests.get(url, timeout=20)
-            if r.ok and hashlib.sha256(r.content).hexdigest() == want:
-                break
-        except requests.RequestException:
+            return json.load(open(STATE, "r"))
+        except:
+            return []
+    return []
+
+def save_posted(ev_id):
+    posted = load_posted()
+    if ev_id not in posted:
+        posted.append(ev_id)
+        json.dump(posted, open(STATE, "w"), indent=2)
+
+def fetch_events(min_mag):
+    # Consultar sismos desde el inicio definido hasta ahora en la región de Panamá / Centroamérica
+    url = f"https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-10-09T17:55:00&minmagnitude={min_mag}&minlatitude=6.5&maxlatitude=10.5&minlongitude=-83.5&maxlongitude=-77.0"
+    print(f"🌐 Consultando USGS con filtro estricto (Mag >={min_mag}, desde 09/Oct 12:55 PM)...")
+    try:
+        r = requests.get(url, timeout=30)
+        if r.ok:
+            return r.json().get("features", [])
+    except Exception as e:
+        print(f"⚠️ Error al conectar con USGS: {e}")
+    return []
+
+def make_image(ev, filename):
+    props = ev["properties"]
+    geom = ev["geometry"]
+    mag = props.get("mag", 0.0)
+    place = props.get("place", "Ubicación desconocida")
+    
+    width, height = 1080, 1080
+    bg_color = (18, 18, 18)
+    img = Image.new("RGB", (width, height), color=bg_color)
+    draw = ImageDraw.Draw(img)
+    
+    try:
+        font_large = ImageFont.truetype("/system/fonts/Roboto-Bold.ttf", 110)
+        font_title = ImageFont.truetype("/system/fonts/Roboto-Bold.ttf", 50)
+        font_sub = ImageFont.truetype("/system/fonts/Roboto-Regular.ttf", 36)
+        font_footer = ImageFont.truetype("/system/fonts/Roboto-Regular.ttf", 30)
+    except Exception:
+        font_large = font_title = font_sub = font_footer = ImageFont.load_default()
+
+    mag_color = (239, 68, 68) if mag >= 6.0 else ((245, 158, 11) if mag >= 4.5 else (234, 179, 8))
+
+    draw.text((80, 100), "SADV41 / TSEC - ALERTA SÍSMICA", fill=(156, 163, 175), font=font_sub)
+    draw.line([(80, 160), (1000, 160)], fill=(55, 65, 81), width=3)
+
+    draw.ellipse([(390, 250), (690, 550)], outline=mag_color, width=12)
+    draw.text((540, 370), f"M{mag:.1f}", fill=mag_color, font=font_large, anchor="mm")
+
+    draw.text((540, 640), "UBICACIÓN", fill=(156, 163, 175), font=font_footer, anchor="mm")
+    place_clean = place.replace("Panama", "Panamá")
+    draw.text((540, 710), place_clean, fill=(255, 255, 255), font=font_title, anchor="mm")
+
+    time_ms = props.get("time")
+    dt_utc = datetime.fromtimestamp(time_ms / 1000.0, tz=timezone.utc)
+    dt_panama = dt_utc - timedelta(hours=5) if 'timedelta' in globals() else dt_utc
+    from datetime import timedelta
+    dt_panama = dt_utc - timedelta(hours=5)
+    time_formatted = dt_panama.strftime("%d/%m/%Y %I:%M %p (hora Panamá)")
+
+    draw.text((540, 810), f"Fecha/Hora: {time_formatted}", fill=(209, 213, 219), font=font_sub, anchor="mm")
+    depth = geom["coordinates"][2] if len(geom["coordinates"]) > 2 else 0
+    draw.text((540, 870), f"Profundidad: {depth} km", fill=(156, 163, 175), font=font_sub, anchor="mm")
+
+    draw.line([(80, 960), (1000, 960)], fill=(55, 65, 81), width=2)
+    draw.text((540, 1010), "SADV41 🗿 • Fuente: USGS", fill=(107, 114, 128), font=font_footer, anchor="mm")
+
+    img.save(filename, "JPEG", quality=95)
+    return time_formatted, depth
+
+def run_bot(min_mag):
+    features = fetch_events(min_mag)
+    if not features:
+        print("✅ No hay sismos que cumplan con los filtros establecidos.")
+        return
+
+    posted = load_posted()
+    # Filtrar estrictamente desde la fecha clave y magnitud >= 4.0
+    pending = [f for f in features if f["id"] not in posted and f["properties"]["time"] >= START_TIMESTAMP_MS and f["properties"]["mag"] >= min_mag]
+    pending.sort(key=lambda x: x["properties"]["time"])
+
+    print(f"📌 Sismos totales en rango: {len(features)} | Pendientes por publicar: {len(pending)}")
+    if not pending:
+        print("👍 Todos los sismos históricos válidos ya están publicados.")
+        return
+
+    # Iniciar sesión en Instagram usando sesión persistente o credenciales
+    cl = Client()
+    session_file = "ig_session.json"
+    if os.path.exists(session_file):
+        try:
+            cl.load_settings(session_file)
+            cl.get_timeline_feed()
+        except:
             pass
-        time.sleep(15)
-    else:
-        print("Pages no sirvió la imagen a tiempo.")
-        return 1
-    c = requests.post(f"{GRAPH}/{uid}/media", data={
-        "image_url": url, "caption": cap, "access_token": tok}, timeout=60)
-    print("media:", c.status_code, c.text)
-    if not c.ok:
-        return 1
-    p = requests.post(f"{GRAPH}/{uid}/media_publish", data={
-        "creation_id": c.json()["id"], "access_token": tok}, timeout=60)
-    print("publish:", p.status_code, p.text)
-    return 0 if p.ok else 1
+    
+    if not cl.user_id:
+        print("🔐 Se requiere autenticación de Instagram:")
+        user = input("Usuario: ").strip()
+        pwd = getpass.getpass("Contraseña: ")
+        cl.login(user, pwd)
+        cl.dump_settings(session_file)
+
+    for ev in pending:
+        ev_id = ev["id"]
+        props = ev["properties"]
+        mag = props.get("mag", 0.0)
+        place = props.get("place", "Ubicación desconocida")
+        
+        print(f"\n🚀 Procesando sismo {ev_id} | M{mag} - {place}")
+        time_formatted, depth = make_image(ev, IMG)
+        
+        caption = (
+            f"⚠️ SISMO REGISTRADO | M{mag:.1f}\n\n"
+            f"📍 Ubicación: {place}\n"
+            f"📅 Fecha/Hora: {time_formatted}\n"
+            f"📏 Profundidad: {depth} km\n\n"
+            f"🗿 Monitoreo automático SADV41 / TSEC\n"
+            f"#sismo #terremoto #panama #usgs #sadv41 #alerta"
+        )
+        
+        try:
+            media = cl.photo_upload(IMG, caption)
+            save_posted(ev_id)
+            print(f"✅ ¡Publicado exitosamente! Enlace: https://instagram.com/p/{media.code}/")
+            time.sleep(35) # Pausa estratégica entre publicaciones
+        except Exception as e:
+            print(f"❌ Error al publicar en Instagram: {e}")
+            break
 
 if __name__ == "__main__":
     ap = argparse.ArgumentParser()
-    ap.add_argument("--check-panama", action="store_true")
-    ap.add_argument("--min-mag", type=float, default=4.5)
-    ap.add_argument("--no-image", action="store_true")
-    ap.add_argument("--publish", action="store_true")
+    ap.add_argument("--min-mag", type=float, default=4.0)
     a = ap.parse_args()
-    if a.publish:
-        sys.exit(publish())
-    if a.check_panama:
-        sys.exit(check(a.min_mag, a.no_image))
-    ap.print_help()
+    run_bot(a.min_mag)

@@ -1,6 +1,6 @@
 {
-  "id": "us6000u36m",
-  "mag": 4.5,
-  "place": "0 km NE of Río Grande, Panama",
-  "caption": "⚠️ Sismo M4.5 - 0 km NE de Río Grande, Panamá\n18/10/2026 11:12 AM (hora Panamá)\nProfundidad: 10 km\n\nFuente: USGS (datos preliminares)\n#Panama #Sismo #SADV41"
+  "id": "sadv41_test_2026",
+  "mag": 4.8,
+  "place": "Panamá (Simulación de Prueba)",
+  "caption": "⚠️ SISMO DE PRUEBA SIMULADO | M4.8\n\n📍 Ubicación: Panamá\n🗿 Monitoreo automático SADV41 / TSEC"
 }
