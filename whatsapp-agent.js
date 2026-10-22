@@ -29,7 +29,8 @@ app.post('/webhook/whatsapp', async (req, res) => {
 
         console.log(`[WHATSAPP] Consulta recibida de ${sender}: "${message}"`);
 
-        const command = `npx baw exec "${message}"`;
+        // Ejecutar baw pasando el mensaje directamente
+        const command = `baw "${message}"`;
         const { stdout, stderr } = await execPromise(command);
 
         let responseText = stdout || stderr;
