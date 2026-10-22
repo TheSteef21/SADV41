@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SADV41 | Web3 Standalone Console</title>
+    <title>SADV41 | Web3 Console</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
     <script>
@@ -14,25 +14,22 @@
     </script>
 </head>
 <body class="bg-navy text-slate-100 min-h-screen font-mono p-4 sm:p-6">
-
     <div class="max-w-4xl mx-auto space-y-6">
         <header class="border-b border-slate-800 pb-4 flex justify-between items-center">
             <div>
                 <h1 class="text-2xl font-bold text-amber-500">⚡ SADV41 | Standalone Web3</h1>
                 <p class="text-xs text-slate-400">stevendior.ai • Direct RPC Connection</p>
             </div>
-            <span class="text-xs bg-emerald-900/50 text-emerald-400 border border-emerald-700 px-3 py-1 rounded-full">Sin Túnel / Direct RPC</span>
+            <span class="text-xs bg-emerald-900/50 text-emerald-400 border border-emerald-700 px-3 py-1 rounded-full">Direct RPC</span>
         </header>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div class="bg-card p-4 rounded-xl border border-slate-800 space-y-4">
                 <h2 class="text-sm font-semibold text-amber-400 uppercase">Consultar Billetera On-Chain</h2>
-                
                 <div class="space-y-2">
                     <label class="text-xs text-slate-400">Dirección EVM</label>
                     <input type="text" id="targetAddress" value="0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-emerald-400 focus:outline-none">
                 </div>
-
                 <button onclick="fetchNativeBalance()" class="w-full bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-2 rounded-lg text-xs">
                     📊 Consultar BNB Balance Directo (RPC)
                 </button>
