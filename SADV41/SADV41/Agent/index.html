@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Binance Agent | SADV41</title>
+    <meta name="theme-color" content="#030305">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { navy: '#020617', oro: '#facc15', emerald: { 400: '#34d399', 500: '#10b981' } }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { background-color: #030305; color: #f8fafc; font-family: 'Courier New', Courier, monospace; }
+        .glass-panel { background: rgba(10, 15, 25, 0.7); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 1rem; backdrop-filter: blur(10px); }
+        .terminal { background: rgba(0, 0, 0, 0.8); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 0.5rem; height: 250px; overflow-y: auto; padding: 1rem; }
+        .terminal-text { color: #34d399; font-size: 0.85rem; }
+        .scanline { width: 100%; height: 2px; background: rgba(16, 185, 129, 0.1); position: fixed; top: 0; animation: scan 6s linear infinite; pointer-events: none; }
+        @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 10px; }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-8 relative overflow-hidden flex flex-col items-center">
+    <div class="scanline"></div>
+    
+    <div class="w-full max-w-4xl glass-panel p-6 z-10 shadow-2xl shadow-emerald-500/10">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-emerald-500/30 pb-4 mb-6 gap-4">
+            <div>
+                <h1 class="text-2xl font-bold text-emerald-400 tracking-widest uppercase flex items-center gap-3">
+                    🛸 SADV41 <span class="text-white text-lg">| Binance Agent Hub</span>
+                </h1>
+                <p class="text-slate-400 text-xs mt-1">Protocolo Web3 - Agente Operativo Autónomo</p>
+            </div>
+            <button id="btnConnect" class="bg-oro hover:bg-amber-600 text-navy font-bold px-6 py-2 rounded-md transition-all shadow-[0_0_15px_rgba(250,204,21,0.3)] text-sm">
+                ⚡ Enlazar Wallet
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="md:col-span-1 space-y-4">
+                <div class="bg-navy/50 p-4 rounded-lg border border-slate-800">
+                    <h3 class="text-oro text-xs uppercase tracking-widest font-bold mb-3">Estado del Agente</h3>
+                    <div class="flex items-center gap-2 mb-2">
+                        <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                        <span class="text-xs text-slate-300">Conexión Frontal: ACTIVA</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <div class="w-2 h-2 rounded-full bg-rose-500"></div>
+                        <span class="text-xs text-slate-300">Enlace Termux: ESPERANDO...</span>
+                    </div>
+                </div>
+
+                <div class="bg-navy/50 p-4 rounded-lg border border-slate-800 space-y-3">
+                    <h3 class="text-emerald-400 text-xs uppercase tracking-widest font-bold">Comandos Rápidos</h3>
+                    <button class="w-full bg-slate-800 hover:bg-slate-700 text-white text-xs py-2 rounded border border-slate-600 transition-colors text-left px-4"> > /consultar_balance</button>
+                    <button class="w-full bg-slate-800 hover:bg-slate-700 text-white text-xs py-2 rounded border border-slate-600 transition-colors text-left px-4"> > /estimar_gas</button>
+                    <button class="w-full bg-emerald-900/50 hover:bg-emerald-800/50 text-emerald-400 text-xs py-2 rounded border border-emerald-700 transition-colors text-left px-4"> > /ejecutar_transaccion</button>
+                </div>
+            </div>
+
+            <div class="md:col-span-2">
+                <h3 class="text-slate-400 text-xs uppercase tracking-widest font-bold mb-2">Log de Operaciones (Consola del Agente)</h3>
+                <div class="terminal" id="terminalLog">
+                    <p class="terminal-text opacity-70">[SADV41] Iniciando interfaz de agente descentralizado...</p>
+                    <p class="terminal-text opacity-70">[SADV41] Esperando inyección de Web3Provider...</p>
+                    <p class="terminal-text text-oro mt-2">>> El entorno está preparado. Para operar, el backend en Termux debe apuntar a esta UI a través de una API o socket.</p>
+                </div>
+                
+                <div class="mt-4 flex gap-2">
+                    <span class="text-emerald-500 font-bold">></span>
+                    <input type="text" class="bg-transparent border-b border-emerald-500/50 text-white text-sm w-full focus:outline-none focus:border-emerald-400" placeholder="Escribe un comando para el agente (ej. auto-trade)...">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('btnConnect').addEventListener('click', function() {
+            const term = document.getElementById('terminalLog');
+            this.innerText = '⏳ Conectando...';
+            
+            setTimeout(() => {
+                this.innerText = '✅ Wallet Enlazada';
+                this.classList.replace('bg-oro', 'bg-emerald-600');
+                this.classList.replace('text-navy', 'text-white');
+                
+                const log = document.createElement('p');
+                log.className = 'terminal-text text-emerald-400 mt-2';
+                log.innerText = '[WEB3] Binance Wallet detectada. Permisos de agente concedidos. Esperando instrucciones de Termux.';
+                term.appendChild(log);
+                term.scrollTop = term.scrollHeight;
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
