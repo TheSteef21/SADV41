@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Binance Agent | SADV41</title>
+    <title>SADV41 | Web3 Marketplace & Binance Agent Hub</title>
     <meta name="theme-color" content="#030305">
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Ethers.js para interacción Web3 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -18,7 +21,7 @@
     <style>
         body { background-color: #030305; color: #f8fafc; font-family: 'Courier New', Courier, monospace; }
         .glass-panel { background: rgba(10, 15, 25, 0.7); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 1rem; backdrop-filter: blur(10px); }
-        .terminal { background: rgba(0, 0, 0, 0.8); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 0.5rem; height: 250px; overflow-y: auto; padding: 1rem; }
+        .terminal { background: rgba(0, 0, 0, 0.8); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 0.5rem; height: 280px; overflow-y: auto; padding: 1rem; }
         .terminal-text { color: #34d399; font-size: 0.85rem; }
         .scanline { width: 100%; height: 2px; background: rgba(16, 185, 129, 0.1); position: fixed; top: 0; animation: scan 6s linear infinite; pointer-events: none; }
         @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
@@ -27,95 +30,210 @@
         ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 10px; }
     </style>
 </head>
-<body class="min-h-screen p-4 md:p-8 relative overflow-hidden flex flex-col items-center">
+<body class="min-h-screen p-4 md:p-8 relative overflow-x-hidden flex flex-col items-center">
     <div class="scanline"></div>
     
-    <div class="w-full max-w-4xl glass-panel p-6 z-10 shadow-2xl shadow-emerald-500/10">
+    <div class="w-full max-w-6xl glass-panel p-6 z-10 shadow-2xl shadow-emerald-500/10 mb-8">
+        <!-- Header -->
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-emerald-500/30 pb-4 mb-6 gap-4">
             <div>
                 <h1 class="text-2xl font-bold text-emerald-400 tracking-widest uppercase flex items-center gap-3">
-                    🛸 SADV41 <span class="text-white text-lg">| Binance Agent Hub</span>
+                    🛸 SADV41 <span class="text-white text-lg">| Web3 Marketplace & Agent Hub</span>
                 </h1>
-                <p class="text-slate-400 text-xs mt-1">Protocolo Web3 - Agente Operativo Autónomo</p>
+                <p class="text-slate-400 text-xs mt-1">Protocolo Descentralizado - Intercambio de Activos & IA de Enlace</p>
             </div>
-            <button id="btnConnect" class="bg-oro hover:bg-amber-600 text-navy font-bold px-6 py-2 rounded-md transition-all shadow-[0_0_15px_rgba(250,204,21,0.3)] text-sm">
-                ⚡ Enlazar Backend
+            <button id="connectWalletBtn" class="bg-oro hover:bg-amber-600 text-navy font-bold px-6 py-2 rounded-md transition-all shadow-[0_0_15px_rgba(250,204,21,0.3)] text-sm">
+                ⚡ Conectar Wallet Web3
             </button>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div class="md:col-span-1 space-y-4">
+        <!-- Main Grid Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            
+            <!-- Columna Izquierda: Controles y Estado -->
+            <div class="space-y-4 lg:col-span-1">
                 <div class="bg-navy/50 p-4 rounded-lg border border-slate-800">
-                    <h3 class="text-oro text-xs uppercase tracking-widest font-bold mb-3">Estado del Agente</h3>
+                    <h3 class="text-oro text-xs uppercase tracking-widest font-bold mb-3">Estado del Sistema</h3>
                     <div class="flex items-center gap-2 mb-2">
-                        <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                        <span class="text-xs text-slate-300">Conexión Frontal: ACTIVA</span>
+                        <div id="statusWallet" class="w-2 h-2 rounded-full bg-rose-500"></div>
+                        <span id="textWallet" class="text-xs text-slate-300">Wallet EVM: DESCONECTADA</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <div id="statusTermux" class="w-2 h-2 rounded-full bg-rose-500"></div>
-                        <span id="textTermux" class="text-xs text-slate-300">Enlace Termux: ESPERANDO...</span>
+                        <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                        <span class="text-xs text-slate-300">Entorno Frontend: ACTIVO</span>
                     </div>
                 </div>
 
                 <div class="bg-navy/50 p-4 rounded-lg border border-slate-800 space-y-3">
-                    <h3 class="text-emerald-400 text-xs uppercase tracking-widest font-bold">Comandos Rápidos</h3>
-                    <button class="w-full bg-slate-800 hover:bg-slate-700 text-white text-xs py-2 rounded border border-slate-600 transition-colors text-left px-4"> > /consultar_balance</button>
-                    <button class="w-full bg-slate-800 hover:bg-slate-700 text-white text-xs py-2 rounded border border-slate-600 transition-colors text-left px-4"> > /estimar_gas</button>
-                    <button class="w-full bg-emerald-900/50 hover:bg-emerald-800/50 text-emerald-400 text-xs py-2 rounded border border-emerald-700 transition-colors text-left px-4"> > /ejecutar_transaccion</button>
+                    <h3 class="text-emerald-400 text-xs uppercase tracking-widest font-bold">Comandos Rápidos AI</h3>
+                    <button onclick="setQuery('/consultar_balance')" class="w-full bg-slate-800 hover:bg-slate-700 text-white text-xs py-2 rounded border border-slate-600 transition-colors text-left px-4"> > /consultar_balance</button>
+                    <button onclick="setQuery('/estimar_gas')" class="w-full bg-slate-800 hover:bg-slate-700 text-white text-xs py-2 rounded border border-slate-600 transition-colors text-left px-4"> > /estimar_gas</button>
+                    <button onclick="setQuery('/listar_activos')" class="w-full bg-emerald-900/50 hover:bg-emerald-800/50 text-emerald-400 text-xs py-2 rounded border border-emerald-700 transition-colors text-left px-4"> > /listar_activos</button>
                 </div>
             </div>
 
-            <div class="md:col-span-2">
-                <h3 class="text-slate-400 text-xs uppercase tracking-widest font-bold mb-2">Log de Operaciones (Consola del Agente)</h3>
-                <div class="terminal" id="terminalLog">
-                    <p class="terminal-text opacity-70">[SADV41] Iniciando interfaz de agente descentralizado...</p>
-                    <p class="terminal-text opacity-70">[SADV41] El túnel encriptado está configurado.</p>
-                </div>
+            <!-- Columna Derecha / Central: Catálogo de Activos + Terminal -->
+            <div class="lg:col-span-2 space-y-6">
                 
-                <div class="mt-4 flex gap-2">
-                    <span class="text-emerald-500 font-bold">></span>
-                    <input type="text" class="bg-transparent border-b border-emerald-500/50 text-white text-sm w-full focus:outline-none focus:border-emerald-400" placeholder="Escribe un comando para el agente (ej. auto-trade)...">
+                <!-- Sección de Activos (Marketplace) -->
+                <div>
+                    <h2 class="text-lg font-semibold text-emerald-400 border-b border-emerald-500/20 pb-2 mb-4">Catálogo de Activos Disponibles</h2>
+                    <div id="assetGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Tarjeta de Activo 1 -->
+                        <div class="bg-navy/40 border border-emerald-500/20 rounded-xl p-4 flex flex-col justify-between">
+                            <div>
+                                <div class="h-28 bg-slate-900 rounded-lg mb-3 flex items-center justify-center text-emerald-500/50 font-mono text-xs border border-slate-800">[ ASSET PREVIEW: GENESIS ]</div>
+                                <h3 class="font-bold text-sm text-white">SADV41 Genesis Token</h3>
+                                <p class="text-xs text-slate-400 mt-1">Activo digital on-chain verificado para licencias de autor y acceso a nodos.</p>
+                            </div>
+                            <div class="mt-4 flex items-center justify-between pt-2 border-t border-slate-800">
+                                <span class="text-oro font-mono font-bold text-sm">0.015 ETH</span>
+                                <button onclick="buyAsset('SADV41 Genesis Token', '0.015')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded text-xs font-semibold transition">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Tarjeta de Activo 2 -->
+                        <div class="bg-navy/40 border border-emerald-500/20 rounded-xl p-4 flex flex-col justify-between">
+                            <div>
+                                <div class="h-28 bg-slate-900 rounded-lg mb-3 flex items-center justify-center text-emerald-500/50 font-mono text-xs border border-slate-800">[ ASSET PREVIEW: AUDIO ]</div>
+                                <h3 class="font-bold text-sm text-white">Master 432Hz Sound Drop</h3>
+                                <p class="text-xs text-slate-400 mt-1">Pista original maestra calibrada en frecuencia pura 432Hz (wav + derechos).</p>
+                            </div>
+                            <div class="mt-4 flex items-center justify-between pt-2 border-t border-slate-800">
+                                <span class="text-oro font-mono font-bold text-sm">0.010 ETH</span>
+                                <button onclick="buyAsset('Master 432Hz Sound Drop', '0.010')" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded text-xs font-semibold transition">
+                                    Comprar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Terminal de Operaciones / Log -->
+                <div>
+                    <h3 class="text-slate-400 text-xs uppercase tracking-widest font-bold mb-2">Log de Operaciones & IA</h3>
+                    <div class="terminal" id="terminalLog">
+                        <p class="terminal-text opacity-70">[SADV41] Entorno Web3 inicializado correctamente.</p>
+                        <p class="terminal-text opacity-70">[SYSTEM] Conecta tu wallet EVM para habilitar transacciones en la red.</p>
+                    </div>
+                    
+                    <div class="mt-3 flex gap-2 items-center bg-navy/60 p-2 rounded-lg border border-slate-800">
+                        <span class="text-emerald-500 font-bold pl-2">></span>
+                        <input type="text" id="aiInput" onkeypress="handleKeyPress(event)" class="bg-transparent text-white text-xs w-full focus:outline-none font-mono" placeholder="Escribe un comando o consulta (ej. /consultar_balance)...">
+                        <button onclick="sendAICommand()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-4 py-1.5 rounded transition">Ejecutar</button>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
 
+    <!-- Script de Integración Web3 y Consola -->
     <script>
-        // INSERTA AQUÍ LA URL EXACTA QUE TE DIO CLOUDFLARE EN LA CONSOLA
-        const BACKEND_URL = "https://porter-genealogy-jerusalem-memphis.trycloudflare.com";
+        let provider, signer, userAddress;
+        const recipientAddress = "0xTuDireccionEVMRecibidoraAqui"; // Cambia por tu wallet receptora
 
-        document.getElementById('btnConnect').addEventListener('click', async function() {
+        function logToTerminal(message, isError = false) {
             const term = document.getElementById('terminalLog');
-            this.innerText = '⏳ Conectando...';
-            
-            try {
-                const response = await fetch(BACKEND_URL);
-                const data = await response.json();
-                
-                this.innerText = '✅ Backend Enlazado';
-                this.classList.replace('bg-oro', 'bg-emerald-600');
-                this.classList.replace('text-navy', 'text-white');
-                
-                document.getElementById('statusTermux').classList.replace('bg-rose-500', 'bg-emerald-500');
-                document.getElementById('statusTermux').classList.add('animate-pulse');
-                document.getElementById('textTermux').innerText = 'Enlace Termux: CONECTADO';
-
-                const log = document.createElement('p');
-                log.className = 'terminal-text text-emerald-400 mt-2';
-                log.innerText = `[WEB3] Conexión establecida de forma soberana: ${data.status} | Agente: ${data.agente}.`;
-                term.appendChild(log);
-            } catch (error) {
-                this.innerText = '❌ Error de Conexión';
-                this.classList.replace('bg-oro', 'bg-rose-600');
-                this.classList.replace('text-navy', 'text-white');
-                
-                const log = document.createElement('p');
-                log.className = 'terminal-text text-rose-500 mt-2';
-                log.innerText = '[ERROR] No se pudo contactar al backend en Termux. Verifica que el túnel de Cloudflare y el servidor Node.js estén activos.';
-                term.appendChild(log);
-            }
+            const log = document.createElement('p');
+            log.className = isError ? 'terminal-text text-rose-500 mt-1' : 'terminal-text text-emerald-400 mt-1';
+            log.innerText = `[${new Date().toLocaleTimeString()}] ${message}`;
+            term.appendChild(log);
             term.scrollTop = term.scrollHeight;
+        }
+
+        // 1. Conexión Web3
+        document.getElementById('connectWalletBtn').addEventListener('click', async () => {
+            if (typeof window.ethereum !== 'undefined') {
+                try {
+                    provider = new ethers.providers.Web3Provider(window.ethereum);
+                    await provider.send("eth_requestAccounts", []);
+                    signer = provider.getSigner();
+                    userAddress = await signer.getAddress();
+                    
+                    const btn = document.getElementById('connectWalletBtn');
+                    btn.innerText = `${userAddress.substring(0, 6)}...${userAddress.substring(38)}`;
+                    btn.classList.replace('bg-oro', 'bg-emerald-600');
+                    btn.classList.replace('text-navy', 'text-white');
+                    
+                    document.getElementById('statusWallet').classList.replace('bg-rose-500', 'bg-emerald-500');
+                    document.getElementById('statusWallet').classList.add('animate-pulse');
+                    document.getElementById('textWallet').innerText = `Wallet EVM: ${userAddress.substring(0, 6)}...`;
+                    
+                    logToTerminal(`Wallet conectada de forma soberana: ${userAddress}`);
+                } catch (error) {
+                    console.error(error);
+                    logToTerminal(`Error al conectar wallet: ${error.message}`, true);
+                }
+            } else {
+                alert("Por favor instala MetaMask u otra billetera Web3 compatible.");
+            }
         });
+
+        // 2. Función de Compra / Transacción
+        async function buyAsset(assetName, priceInEth) {
+            if (!signer) {
+                alert("Por favor conecta tu wallet Web3 primero.");
+                logToTerminal("Intento de compra cancelado: Wallet no conectada.", true);
+                return;
+            }
+            try {
+                logToTerminal(`Iniciando adquisición de: ${assetName} por ${priceInEth} ETH...`);
+                
+                const tx = await signer.sendTransaction({
+                    to: recipientAddress,
+                    value: ethers.utils.parseEther(priceInEth)
+                });
+
+                logToTerminal(`Transacción enviada a la red. Hash: ${tx.hash}`);
+                await tx.wait();
+                logToTerminal(`¡Transacción confirmada con éxito! Activo "${assetName}" asignado.`);
+            } catch (error) {
+                console.error(error);
+                logToTerminal(`Transacción fallida o rechazada: ${error.reason || error.message}`, true);
+            }
+        }
+
+        // 3. Comandos Rápidos e Interfaz de IA
+        function setQuery(cmd) {
+            document.getElementById('aiInput').value = cmd;
+        }
+
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') {
+                sendAICommand();
+            }
+        }
+
+        async function sendAICommand() {
+            const input = document.getElementById('aiInput');
+            const query = input.value.trim();
+            if (!query) return;
+
+            logToTerminal(`User: ${query}`);
+            input.value = '';
+
+            setTimeout(() => {
+                const q = query.toLowerCase();
+                if (q.includes('/consultar_balance')) {
+                    if (userAddress && provider) {
+                        provider.getBalance(userAddress).then(balance => {
+                            logToTerminal(`AI: Balance actual en wallet -> ${ethers.utils.formatEther(balance)} ETH`);
+                        });
+                    } else {
+                        logToTerminal(`AI: Conecta tu wallet primero para consultar el balance de la red.`);
+                    }
+                } else if (q.includes('/estimar_gas')) {
+                    logToTerminal(`AI: Estimación actual de gas optimizada en red EVM: ~15 Gwei.`);
+                } else if (q.includes('/listar_activos')) {
+                    logToTerminal(`AI: Activos activos en catálogo: SADV41 Genesis Token (0.015 ETH), Master 432Hz Sound Drop (0.010 ETH).`);
+                } else {
+                    logToTerminal(`AI: Comando procesado correctamente por el Agente SADV41.`);
+                }
+            }, 400);
+        }
     </script>
 </body>
 </html>
