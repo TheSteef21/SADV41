@@ -1,0 +1,1879 @@
+Sin sismo nuevo (ya procesado: us6000u30p )
+Sin sismo nuevo (ya procesado: us6000u30p )
+Sin sismo nuevo (ya procesado: us6000u30p )
+Sin sismo nuevo (ya procesado: us6000u30p )
+Sin sismo nuevo (ya procesado: us6000u30p )
+Sin sismo nuevo (ya procesado: us6000u30p )
+Sin sismo nuevo (ya procesado: us6000u30p )
+Sin sismo nuevo (ya procesado: us6000u30p )
+Sin sismo nuevo (ya procesado: us6000u30p )
+Sin sismo nuevo (ya procesado: us6000u30p )
+Sin sismo nuevo (ya procesado: us6000u30p )
+Sin sismo nuevo (ya procesado: us6000u30p )
+Sin sismo nuevo (ya procesado: us6000u30p )
+Sin sismo nuevo (ya procesado: us6000u30p )
+Sin sismo nuevo (ya procesado: us6000u30p )
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sismo nuevo: us6000u33d M 4.3 2 km W of Pedasí, Panama
+Publicado.
+Sin sismo nuevo (ya procesado: us6000u33d )
+Sin sismo nuevo (ya procesado: us6000u33d )
+Sin sismo nuevo (ya procesado: us6000u33d )
+Sin sismo nuevo (ya procesado: us6000u33d )
+Sin sismo nuevo (ya procesado: us6000u33d )
+Sin sismo nuevo (ya procesado: us6000u33d )
+Sismo nuevo: us6000u33l M 4.1 2 km S of Leones Arriba, Panama
+Publicado.
+Sin sismo nuevo (ya procesado: us6000u33l )
+Sin sismo nuevo (ya procesado: us6000u33l )
+Sin sismo nuevo (ya procesado: us6000u33l )
+Sin sismo nuevo (ya procesado: us6000u33l )
+Sin sismo nuevo (ya procesado: us6000u33l )
+Sin sismo nuevo (ya procesado: us6000u33l )
+Sin sismo nuevo (ya procesado: us6000u33l )
+Sin sismo nuevo (ya procesado: us6000u33l )
+Sin sismo nuevo (ya procesado: us6000u33l )
+Sin sismo nuevo (ya procesado: us6000u33l )
+Sin sismo nuevo (ya procesado: us6000u33l )
+Sin sismo nuevo (ya procesado: us6000u33l )
+Sin sismo nuevo (ya procesado: us6000u33l )
+Sin sismo nuevo (ya procesado: us6000u33l )
+Sin sismo nuevo (ya procesado: us6000u33l )
+Sin sismo nuevo (ya procesado: us6000u33l )
+Sin sismo nuevo (ya procesado: us6000u33l )
+Sin sismo nuevo (ya procesado: us6000u33l )
+Sin sismo nuevo (ya procesado: us6000u33l )
+Sin sismo nuevo (ya procesado: us6000u33l )
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sismo nuevo: us6000u36m M 4.5 0 km NE of Río Grande, Panama
+Publicado.
+Sin sismo nuevo (ya procesado: us6000u36m )
+Sin sismo nuevo (ya procesado: us6000u36m )
+Sin sismo nuevo (ya procesado: us6000u36m )
+Sin sismo nuevo (ya procesado: us6000u36m )
+Sin sismo nuevo (ya procesado: us6000u36m )
+Sin sismo nuevo (ya procesado: us6000u36m )
+Sin sismo nuevo (ya procesado: us6000u36m )
+Sin sismo nuevo (ya procesado: us6000u36m )
+Sin sismo nuevo (ya procesado: us6000u36m )
+Sin sismo nuevo (ya procesado: us6000u36m )
+Sin sismo nuevo (ya procesado: us6000u36m )
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connection.py", line 239, in _new_conn
+    sock = connection.create_connection(
+        (self._dns_host, self.port),
+    ...<2 lines>...
+        socket_options=self.socket_options,
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/util/connection.py", line 60, in create_connection
+    for res in socket.getaddrinfo(host, port, family, socket.SOCK_STREAM):
+               ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/socket.py", line 977, in getaddrinfo
+    for res in _socket.getaddrinfo(host, port, family, type, proto, flags):
+               ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+socket.gaierror: [Errno 7] No address associated with hostname
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 494, in _make_request
+    raise new_e
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 470, in _make_request
+    self._validate_conn(conn)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 1125, in _validate_conn
+    conn.connect()
+    ~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connection.py", line 827, in connect
+    self.sock = sock = self._new_conn()
+                       ~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connection.py", line 246, in _new_conn
+    raise NameResolutionError(self.host, self, e) from e
+urllib3.exceptions.NameResolutionError: HTTPSConnection(host='earthquake.usgs.gov', port=443): Failed to resolve 'earthquake.usgs.gov' ([Errno 7] No address associated with hostname)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/util/retry.py", line 555, in increment
+    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='earthquake.usgs.gov', port=443): Max retries exceeded with url: /fdsnws/event/1/query?format=geojson&orderby=time&limit=1&minmagnitude=3.7&starttime=2026-10-18T22%3A45%3A58.138454%2B00%3A00&minlatitude=5.5&maxlatitude=10.0&minlongitude=-84.0&maxlongitude=-77.0 (Caused by NameResolutionError("HTTPSConnection(host='earthquake.usgs.gov', port=443): Failed to resolve 'earthquake.usgs.gov' ([Errno 7] No address associated with hostname)"))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/sadv41/instagram_bot.py", line 165, in <module>
+    sys.exit(check(a.min_mag, a.no_image))
+             ~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/sadv41/instagram_bot.py", line 110, in check
+    ev = fetch_latest(min_mag)
+  File "/data/data/com.termux/files/home/sadv41/instagram_bot.py", line 28, in fetch_latest
+    r = requests.get(USGS, params={
+        "format": "geojson", "orderby": "time", "limit": 1,
+    ...<2 lines>...
+        "minlongitude": -84.0, "maxlongitude": -77.0,
+    }, timeout=30)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/adapters.py", line 729, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='earthquake.usgs.gov', port=443): Max retries exceeded with url: /fdsnws/event/1/query?format=geojson&orderby=time&limit=1&minmagnitude=3.7&starttime=2026-10-18T22%3A45%3A58.138454%2B00%3A00&minlatitude=5.5&maxlatitude=10.0&minlongitude=-84.0&maxlongitude=-77.0 (Caused by NameResolutionError("HTTPSConnection(host='earthquake.usgs.gov', port=443): Failed to resolve 'earthquake.usgs.gov' ([Errno 7] No address associated with hostname)"))
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 10:34:29] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 10:34:30] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 10:39:30] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 10:39:31] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 10:44:31] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 10:44:32] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 10:49:32] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 10:49:33] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 10:54:33] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 10:54:35] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 10:59:35] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 10:59:37] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 11:04:37] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 11:04:38] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 11:09:38] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 11:09:42] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 11:14:42] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 11:14:45] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 11:19:45] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 11:19:46] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 11:24:46] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 11:24:48] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 11:29:48] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 11:29:50] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 11:34:50] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 11:34:51] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 11:39:51] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 11:39:53] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 11:44:53] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 11:44:54] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 11:49:54] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 11:49:56] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 11:54:56] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 11:54:57] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 11:59:57] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 11:59:59] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 12:04:59] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 12:05:00] En espera por 300 segundos...
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/sadv41/instagram_bot.py", line 165, in <module>
+    sys.exit(check(a.min_mag, a.no_image))
+             ~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/sadv41/instagram_bot.py", line 110, in check
+    ev = fetch_latest(min_mag)
+  File "/data/data/com.termux/files/home/sadv41/instagram_bot.py", line 34, in fetch_latest
+    r.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 502 Server Error: Bad Gateway for url: https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&limit=1&minmagnitude=3.7&starttime=2026-10-19T11%3A04%3A51.004536%2B00%3A00&minlatitude=5.5&maxlatitude=10.0&minlongitude=-84.0&maxlongitude=-77.0
+==================================================
+[TIMESTAMP: 2026-10-19 12:10:00] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 12:10:01] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 12:15:01] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 12:15:02] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 12:20:02] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 12:20:04] En espera por 300 segundos...
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/sadv41/instagram_bot.py", line 165, in <module>
+    sys.exit(check(a.min_mag, a.no_image))
+             ~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/sadv41/instagram_bot.py", line 110, in check
+    ev = fetch_latest(min_mag)
+  File "/data/data/com.termux/files/home/sadv41/instagram_bot.py", line 34, in fetch_latest
+    r.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 502 Server Error: Bad Gateway for url: https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&limit=1&minmagnitude=3.7&starttime=2026-10-19T11%3A20%3A07.520875%2B00%3A00&minlatitude=5.5&maxlatitude=10.0&minlongitude=-84.0&maxlongitude=-77.0
+==================================================
+[TIMESTAMP: 2026-10-19 12:25:04] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 12:25:05] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 12:30:05] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 12:30:06] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 12:35:06] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 12:35:07] En espera por 300 segundos...
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/sadv41/instagram_bot.py", line 165, in <module>
+    sys.exit(check(a.min_mag, a.no_image))
+             ~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/sadv41/instagram_bot.py", line 110, in check
+    ev = fetch_latest(min_mag)
+  File "/data/data/com.termux/files/home/sadv41/instagram_bot.py", line 34, in fetch_latest
+    r.raise_for_status()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/models.py", line 1167, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 502 Server Error: Bad Gateway for url: https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&limit=1&minmagnitude=3.7&starttime=2026-10-19T11%3A35%3A23.579153%2B00%3A00&minlatitude=5.5&maxlatitude=10.0&minlongitude=-84.0&maxlongitude=-77.0
+==================================================
+[TIMESTAMP: 2026-10-19 12:40:07] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 12:40:09] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 12:45:09] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 12:45:12] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 12:50:12] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 12:50:15] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 12:55:16] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 12:55:18] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 13:00:19] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 13:00:20] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 13:05:20] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 13:05:21] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 13:10:22] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 13:10:23] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 13:15:23] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 13:15:24] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 13:20:24] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 13:20:26] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 13:25:26] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 13:25:27] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 13:30:27] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 13:30:28] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 13:35:28] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 13:35:30] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 13:40:30] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 13:40:32] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 13:45:32] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 13:45:33] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 13:50:34] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 13:50:36] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 13:55:36] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 13:55:37] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 14:00:38] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 14:00:39] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 14:05:40] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 14:05:42] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 14:10:42] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 14:10:44] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 14:15:44] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 14:15:45] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 14:20:46] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 14:20:47] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 14:25:47] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 14:25:48] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 14:30:48] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 14:30:49] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 14:35:49] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 14:35:51] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 14:40:51] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 14:40:52] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 14:45:52] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 14:45:53] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 14:50:53] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 14:50:55] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 14:55:55] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 14:55:56] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 15:00:56] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 15:00:58] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 15:05:58] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 15:05:59] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 15:11:00] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 15:11:01] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 15:16:01] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 15:16:02] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 15:21:02] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 15:21:04] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 15:26:04] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 15:26:06] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 15:31:06] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 15:31:08] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 15:36:08] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 15:36:09] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 15:41:09] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 15:41:11] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 15:46:11] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 15:46:13] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 15:51:13] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 15:51:14] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 15:56:15] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 15:56:16] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 16:01:16] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 16:01:18] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 16:06:18] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 16:06:20] En espera por 300 segundos...
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 540, in _make_request
+    response = conn.getresponse()
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connection.py", line 638, in getresponse
+    httplib_response = super().getresponse()
+  File "/data/data/com.termux/files/usr/lib/python3.13/http/client.py", line 1450, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/http/client.py", line 336, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/http/client.py", line 297, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/ssl.py", line 1304, in recv_into
+    return self.read(nbytes, buffer)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/ssl.py", line 1138, in read
+    return self._sslobj.read(len, buffer)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+TimeoutError: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/util/retry.py", line 510, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 542, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 373, in _raise_timeout
+    raise ReadTimeoutError(
+        self, url, f"Read timed out. (read timeout={timeout_value})"
+    ) from err
+urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='earthquake.usgs.gov', port=443): Read timed out. (read timeout=30)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/sadv41/instagram_bot.py", line 165, in <module>
+    sys.exit(check(a.min_mag, a.no_image))
+             ~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/home/sadv41/instagram_bot.py", line 110, in check
+    ev = fetch_latest(min_mag)
+  File "/data/data/com.termux/files/home/sadv41/instagram_bot.py", line 28, in fetch_latest
+    r = requests.get(USGS, params={
+        "format": "geojson", "orderby": "time", "limit": 1,
+    ...<2 lines>...
+        "minlongitude": -84.0, "maxlongitude": -77.0,
+    }, timeout=30)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/adapters.py", line 742, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='earthquake.usgs.gov', port=443): Read timed out. (read timeout=30)
+==================================================
+[TIMESTAMP: 2026-10-19 16:11:20] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 16:11:21] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 16:16:21] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 16:16:22] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 16:21:22] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 16:21:23] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 16:26:23] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 16:26:24] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 16:31:24] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 16:31:26] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 16:36:26] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 16:36:28] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 16:41:28] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 16:41:28] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 16:46:29] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 16:46:30] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 16:51:30] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 16:51:31] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 16:56:31] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 16:56:32] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 17:01:32] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 17:01:33] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 17:06:33] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 17:06:34] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 17:11:34] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 17:11:35] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 17:16:35] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 17:16:36] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 17:21:36] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 17:21:37] En espera por 300 segundos...
+Sin sismos recientes sobre el mínimo.
+==================================================
+[TIMESTAMP: 2026-10-19 17:26:38] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 17:26:39] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 17:31:39] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 17:31:40] En espera por 300 segundos...
+🗿 [SADV41 - Bucle de Monitoreo Sísmico Iniciado]
+=== 2026-10-19 17:33:04 Ejecutando chequeo USGS ===
+🗿 [SADV41 - Bucle de Monitoreo Sísmico Iniciado]
+=== 2026-10-19 17:33:07 Ejecutando chequeo USGS ===
+🗿 [SADV41 - Bucle de Monitoreo Sísmico Iniciado (Umbral 2.5)]
+=== 2026-10-19 17:33:09 Ejecutando chequeo USGS ===
+🌐 Consultando USGS (Últimas 72h, Mag >=2.5)...
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 540, in _make_request
+    response = conn.getresponse()
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connection.py", line 638, in getresponse
+    httplib_response = super().getresponse()
+  File "/data/data/com.termux/files/usr/lib/python3.13/http/client.py", line 1450, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/http/client.py", line 336, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/http/client.py", line 297, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/ssl.py", line 1304, in recv_into
+    return self.read(nbytes, buffer)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/ssl.py", line 1138, in read
+    return self._sslobj.read(len, buffer)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+TimeoutError: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/util/retry.py", line 510, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 542, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 373, in _raise_timeout
+    raise ReadTimeoutError(
+        self, url, f"Read timed out. (read timeout={timeout_value})"
+    ) from err
+urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='earthquake.usgs.gov', port=443): Read timed out. (read timeout=15)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/sadv41/post_72h_sismos.py", line 167, in <module>
+    main()
+    ~~~~^^
+  File "/data/data/com.termux/files/home/sadv41/post_72h_sismos.py", line 114, in main
+    features = fetch_usgs_events()
+  File "/data/data/com.termux/files/home/sadv41/post_72h_sismos.py", line 50, in fetch_usgs_events
+    resp = requests.get(url, timeout=15)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/adapters.py", line 742, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='earthquake.usgs.gov', port=443): Read timed out. (read timeout=15)
+==================================================
+[TIMESTAMP: 2026-10-19 17:36:43] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 17:36:44] En espera por 300 segundos...
+🗿 [SADV41 - Bucle de Monitoreo Sísmico Iniciado (Umbral 2.5)]
+=== 2026-10-19 17:39:34 Ejecutando chequeo USGS ===
+🌐 Consultando USGS (Últimas 72h, Mag >=2.5)...
+👍 Todos los sismos de las últimas 72h (M>=2.5) ya están publicados.
+==================================================
+[TIMESTAMP: 2026-10-19 17:41:44] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 17:41:45] En espera por 300 segundos...
+🗿 [SADV41 - Bucle de Monitoreo Sísmico Iniciado (Umbral 2.5)]
+=== 2026-10-19 17:42:57 Ejecutando chequeo USGS ===
+🌐 Consultando USGS (Últimas 72h, Mag >=2.5)...
+👍 Todos los sismos de las últimas 72h (M>=2.5) ya están publicados.
+==================================================
+[TIMESTAMP: 2026-10-19 17:46:45] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 17:46:46] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 17:51:47] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 17:51:48] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 17:56:48] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 17:56:49] En espera por 300 segundos...
+==================================================
+[TIMESTAMP: 2026-10-19 18:01:50] Ejecutando instagram_bot.py
+==================================================
+usage: instagram_bot.py [-h] [--check-panama] [--min-mag MIN_MAG] [--no-image]
+                        [--publish]
+
+options:
+  -h, --help         show this help message and exit
+  --check-panama
+  --min-mag MIN_MAG
+  --no-image
+  --publish
+[TIMESTAMP: 2026-10-19 18:01:53] En espera por 300 segundos...
+🗿 [SADV41 - Bucle de Monitoreo Sísmico Iniciado (Umbral 2.5)]
+=== 2026-10-19 18:04:53 Ejecutando chequeo USGS ===
+🌐 Consultando USGS (Últimas 72h, Mag >=2.5)...
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 540, in _make_request
+    response = conn.getresponse()
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connection.py", line 638, in getresponse
+    httplib_response = super().getresponse()
+  File "/data/data/com.termux/files/usr/lib/python3.13/http/client.py", line 1450, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/http/client.py", line 336, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/http/client.py", line 297, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/ssl.py", line 1304, in recv_into
+    return self.read(nbytes, buffer)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/ssl.py", line 1138, in read
+    return self._sslobj.read(len, buffer)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+TimeoutError: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/util/retry.py", line 510, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 542, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 373, in _raise_timeout
+    raise ReadTimeoutError(
+        self, url, f"Read timed out. (read timeout={timeout_value})"
+    ) from err
+urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='earthquake.usgs.gov', port=443): Read timed out. (read timeout=15)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/sadv41/post_72h_sismos.py", line 174, in <module>
+    main()
+    ~~~~^^
+  File "/data/data/com.termux/files/home/sadv41/post_72h_sismos.py", line 116, in main
+    features = fetch_usgs_events()
+  File "/data/data/com.termux/files/home/sadv41/post_72h_sismos.py", line 49, in fetch_usgs_events
+    resp = requests.get(url, timeout=15)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/adapters.py", line 742, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='earthquake.usgs.gov', port=443): Read timed out. (read timeout=15)
+🗿 [SADV41 - Bucle de Monitoreo Sísmico Iniciado (Umbral 2.5)]
+=== 2026-10-19 22:39:11 Ejecutando chequeo USGS ===
+🌐 Consultando USGS (Últimas 72h, Mag >=2.5)...
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 540, in _make_request
+    response = conn.getresponse()
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connection.py", line 638, in getresponse
+    httplib_response = super().getresponse()
+  File "/data/data/com.termux/files/usr/lib/python3.13/http/client.py", line 1450, in getresponse
+    response.begin()
+    ~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/http/client.py", line 336, in begin
+    version, status, reason = self._read_status()
+                              ~~~~~~~~~~~~~~~~~^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/http/client.py", line 297, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/socket.py", line 719, in readinto
+    return self._sock.recv_into(b)
+           ~~~~~~~~~~~~~~~~~~~~^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/ssl.py", line 1304, in recv_into
+    return self.read(nbytes, buffer)
+           ~~~~~~~~~^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/ssl.py", line 1138, in read
+    return self._sslobj.read(len, buffer)
+           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+TimeoutError: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+        method=request.method,
+    ...<9 lines>...
+        chunked=chunked,
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+        method, url, error=new_e, _pool=self, _stacktrace=sys.exc_info()[2]
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/util/retry.py", line 510, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 793, in urlopen
+    response = self._make_request(
+        conn,
+    ...<10 lines>...
+        **response_kw,
+    )
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 542, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/urllib3/connectionpool.py", line 373, in _raise_timeout
+    raise ReadTimeoutError(
+        self, url, f"Read timed out. (read timeout={timeout_value})"
+    ) from err
+urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='earthquake.usgs.gov', port=443): Read timed out. (read timeout=15)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/data/data/com.termux/files/home/sadv41/post_72h_sismos.py", line 174, in <module>
+    main()
+    ~~~~^^
+  File "/data/data/com.termux/files/home/sadv41/post_72h_sismos.py", line 116, in main
+    features = fetch_usgs_events()
+  File "/data/data/com.termux/files/home/sadv41/post_72h_sismos.py", line 49, in fetch_usgs_events
+    resp = requests.get(url, timeout=15)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+  File "/data/data/com.termux/files/usr/lib/python3.13/site-packages/requests/adapters.py", line 742, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='earthquake.usgs.gov', port=443): Read timed out. (read timeout=15)
+🗿 [SADV41 - Bucle de Monitoreo Sísmico Iniciado]
+=== 2026-10-19 22:39:36 Ejecutando chequeo USGS ===
+Sin sismos recientes sobre el mínimo.
+🗿 [SADV41 - Bucle de Monitoreo Sísmico Iniciado]
+=== 2026-10-20 03:58:01 Ejecutando chequeo USGS ===
+usage: instagram_bot.py [-h] [--min-mag MIN_MAG]
+instagram_bot.py: error: unrecognized arguments: --check-panama
+=== 2026-10-20 04:28:05 Ejecutando chequeo USGS ===
+usage: instagram_bot.py [-h] [--min-mag MIN_MAG]
+instagram_bot.py: error: unrecognized arguments: --check-panama
+=== 2026-10-20 04:58:08 Ejecutando chequeo USGS ===
+usage: instagram_bot.py [-h] [--min-mag MIN_MAG]
+instagram_bot.py: error: unrecognized arguments: --check-panama
+=== 2026-10-20 05:28:12 Ejecutando chequeo USGS ===
+usage: instagram_bot.py [-h] [--min-mag MIN_MAG]
+instagram_bot.py: error: unrecognized arguments: --check-panama
+=== 2026-10-20 05:58:15 Ejecutando chequeo USGS ===
+usage: instagram_bot.py [-h] [--min-mag MIN_MAG]
+instagram_bot.py: error: unrecognized arguments: --check-panama
+=== 2026-10-20 06:28:20 Ejecutando chequeo USGS ===
+usage: instagram_bot.py [-h] [--min-mag MIN_MAG]
+instagram_bot.py: error: unrecognized arguments: --check-panama
+=== 2026-10-20 06:58:24 Ejecutando chequeo USGS ===
+usage: instagram_bot.py [-h] [--min-mag MIN_MAG]
+instagram_bot.py: error: unrecognized arguments: --check-panama
+=== 2026-10-20 07:28:30 Ejecutando chequeo USGS ===
+usage: instagram_bot.py [-h] [--min-mag MIN_MAG]
+instagram_bot.py: error: unrecognized arguments: --check-panama
+=== 2026-10-20 07:58:34 Ejecutando chequeo USGS ===
+usage: instagram_bot.py [-h] [--min-mag MIN_MAG]
+instagram_bot.py: error: unrecognized arguments: --check-panama
+=== 2026-10-20 08:28:38 Ejecutando chequeo USGS ===
+usage: instagram_bot.py [-h] [--min-mag MIN_MAG]
+instagram_bot.py: error: unrecognized arguments: --check-panama
+=== 2026-10-20 09:03:21 Ejecutando chequeo USGS ===
+usage: instagram_bot.py [-h] [--min-mag MIN_MAG]
+instagram_bot.py: error: unrecognized arguments: --check-panama
+=== 2026-10-20 09:39:35 Ejecutando chequeo USGS ===
+usage: instagram_bot.py [-h] [--min-mag MIN_MAG]
+instagram_bot.py: error: unrecognized arguments: --check-panama
+=== 2026-10-20 10:21:22 Ejecutando chequeo USGS ===
+usage: instagram_bot.py [-h] [--min-mag MIN_MAG]
+instagram_bot.py: error: unrecognized arguments: --check-panama
+=== 2026-10-20 10:54:47 Ejecutando chequeo USGS ===
+usage: instagram_bot.py [-h] [--min-mag MIN_MAG]
+instagram_bot.py: error: unrecognized arguments: --check-panama
+=== 2026-10-20 11:31:42 Ejecutando chequeo USGS ===
+usage: instagram_bot.py [-h] [--min-mag MIN_MAG]
+instagram_bot.py: error: unrecognized arguments: --check-panama
+=== 2026-10-20 12:06:38 Ejecutando chequeo USGS ===
+usage: instagram_bot.py [-h] [--min-mag MIN_MAG]
+instagram_bot.py: error: unrecognized arguments: --check-panama
+=== 2026-10-20 12:37:47 Ejecutando chequeo USGS ===
+usage: instagram_bot.py [-h] [--min-mag MIN_MAG]
+instagram_bot.py: error: unrecognized arguments: --check-panama
