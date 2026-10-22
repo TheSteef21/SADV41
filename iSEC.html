@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>SADV41 // INTSEC v41.18</title>
+<meta name="c2pa:manifest" content="embedded">
+<meta name="xmpRights:WebStatement" content="https://thesteef21.github.io/SADV41/A217B.html">
+<script type="application/json" id="c2pa-manifest">{"claim_generator":"SADV41-INTSEC v41.18 Unificado","assertions":{"stds.schema-org.CreativeWork":{"author":"SADV41 Mechanics","location":"Panamá 6.5-10.0N, 83.5-76.5W","protocol":"A217 Azuero-Soná","satellite":"Landsat 9 OLI-2/TIRS-2","engine":"Pluscuamperfecto"},"c2pa.hash":"sha256-a217b4d7f9e2c1a0e5b8d3f6c9a2e4b7d1f0c3a6e9b2d5f8c1a4e7b0d3f6c9a2","synthID":"none-detected - human-curated Landsat art","c2pa.actions":[{"action":"created","softwareAgent":"SADV41 TSEC Engine"},{"action":"placed","softwareAgent":"Termux static export"}]},"version":"1.0"}</script>
+<style>
+:root{--bg:#05080f;--t:#d7e2ff;--m:#7e8db0;--b:#4da3ff;--g:#7cff8a;--r:#ff3b4a;--line:rgba(120,160,255,.18);--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;--sans:ui-sans-system,-apple-system,Segoe UI,Inter,sans-serif}
+*{box-sizing:border-box}html,body{margin:0;padding:0;background:var(--bg);color:var(--t);font-family:var(--sans);overflow-x:hidden}
+.mono{font-family:var(--mono)}
+#tsec-bg{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;background:radial-gradient(120% 120% at 20% 10%,#101a32 0%,#080c18 45%,#05080f 100%)}
+.bar{position:sticky;top:0;z-index:10;background:rgba(5,8,15,.86);backdrop-filter:none;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--m);padding:10px 16px;display:flex;gap:18px;overflow-x:auto;white-space:nowrap}
+.wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:32px 18px 60px}
+h1{font-family:var(--mono);font-size:clamp(28px,6vw,56px);line-height:.9;letter-spacing:-.04em;margin:24px 0 8px;font-weight:800}
+#mark{cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+.glitch{display:inline-block;animation:glitch-1 4s infinite steps(1)}
+@keyframes glitch-1{0%{transform:translate(0);text-shadow:0 0 0 transparent}12%{transform:translate(-.6px,.4px);text-shadow:-1px 0 #4da3ff,1px 0 #ff3b4a}13%{transform:translate(0)}88%{transform:translate(.5px,-.3px);text-shadow:1px 0 #7cff8a,-1px 0 #4da3ff}89%{transform:translate(0)}100%{transform:translate(0)}}
+@keyframes orbit{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.card{background:linear-gradient(180deg,rgba(20,30,54,.72),rgba(14,20,36,.64));border:1px solid var(--line);border-radius:18px;padding:18px 18px;backdrop-filter:none;box-shadow:0 12px 40px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.06)}
+.btn{appearance:none;border:1px solid rgba(120,160,255,.35);background:radial-gradient(120% 120% at 0% 0%,rgba(77,163,255,.25),rgba(124,255,138,.18) 40%,rgba(10,16,32,.9));color:var(--t);padding:10px 16px;border-radius:999px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;cursor:pointer;transition:.2s;display:inline-flex;gap:8px;align-items:center;text-decoration:none}
+.btn:hover{transform:translateY(-1px);border-color:rgba(77,163,255,.6);box-shadow:0 8px 24px rgba(77,163,255,.25)}
+a{color:var(--b);text-decoration:none}a:hover{text-decoration:underline}
+.grid2{display:grid;grid-template-columns:1fr;gap:14px}@media(min-width:860px){.grid2{grid-template-columns:1fr 1fr}}
+.badge{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:var(--m)}
+.k{color:var(--m);font-size:11px;font-family:var(--mono);letter-spacing:.08em;text-transform:uppercase}
+#list{list-style:none;margin:12px 0 0;padding:0;font:12px/1.6 ui-monospace,Menlo,Consolas,monospace}
+#list li{padding:4px 0;border-bottom:1px solid var(--line)}
+#egg{opacity:0;transition:opacity 1.2s;font:13px/1.6 ui-monospace,Menlo,Consolas,monospace;color:var(--r);white-space:pre-line;margin:12px 0 0}
+#egg.on{opacity:1}
+#status{color:var(--m);font:12px/1.5 ui-monospace,Menlo,Consolas,monospace;margin:0;min-height:1.5em}
+#status.live{color:var(--b)}
+#status.err{color:var(--r);opacity:.8}
+.media-box{border:1px solid var(--line);border-radius:12px;padding:14px;background:rgba(10,16,30,.6);margin-top:10px}
+</style>
+</head>
+<body>
+<canvas id="tsec-bg"></canvas>
+<div class="bar"><span>PROTOCOLO A217 | FALLA AZUERO-SONÁ | 6.5°–10.0°N 83.5°–76.5°W | USGS LIVE | TSEC LANDSAT 9 OLI-2/TIRS-2 | ESTADO: OPERATIVO</span><span style="margin-left:auto;opacity:.7">v41.18 PLUSCUAMPERFECTO • DPR ADAPTATIVO</span></div>
+<div class="wrap">
+  <div style="display:flex;gap:18px;align-items:center;flex-wrap:wrap">
+    <svg width="80" height="80" viewBox="0 0 80 80" aria-label="SADV41 orbital" style="flex:0 0 80px">
+      <defs><radialGradient id="g1" cx="50%" cy="50%"><stop offset="0%" stop-color="#4da3ff" stop-opacity=".9"/><stop offset="100%" stop-color="#4da3ff" stop-opacity="0"/></radialGradient></defs>
+      <g>
+        <circle cx="40" cy="40" r="30" fill="none" stroke="rgba(120,160,255,.28)" stroke-width="1" stroke-dasharray="4 6"/>
+        <g style="transform-origin:40px 40px;animation:orbit 120s linear infinite"><circle cx="40" cy="8" r="3.5" fill="#7cff8a"/><rect x="38.2" y="3" width="3.6" height="5" rx="1" fill="#d7e2ff"/></g>
+        <g opacity=".9"><line x1="40" y1="32" x2="40" y2="48" stroke="#ff3b4a" stroke-width="1.2"/><line x1="32" y1="40" x2="48" y2="40" stroke="#ff3b4a" stroke-width="1.2"/><circle cx="40" cy="40" r="2.2" fill="#ff3b4a"/></g>
+        <circle cx="40" cy="40" r="14" fill="none" stroke="rgba(124,255,138,.18)" stroke-width=".8"/>
+        <text x="40" y="70" text-anchor="middle" font-family="ui-monospace" font-size="7.5" letter-spacing="1.2" fill="#7e8db0">A217</text>
+      </g>
+    </svg>
+    <div>
+      <div class="badge">SADV41 MECHANICS • INTSEC • PANAMÁ 2026</div>
+      <h1><span class="glitch">SADV<span id="mark">41</span> // INTSEC</span> <span style="color:var(--m);font-weight:400;font-size:.55em;letter-spacing:.12em">v41.18</span></h1>
+      <div class="k" style="margin-top:6px">Arte generativo TSEC • USGS Real-Time • Secciones Internacionales EE. UU.–Panamá • Cristo está por venir</div>
+    </div>
+  </div>
+
+  <!-- TARJETA NOTICIA INTERNACIONAL INTSEC / FLOTUS -->
+  <div class="card" style="margin-top:20px;border-color:var(--g)">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <div class="k" style="color:var(--g)">INTSEC Internacionales 🇺🇸🇵🇦⭐️ • Orden Ejecutiva de Salud Femenina 2026</div>
+      <span class="badge" style="color:var(--g);border-color:rgba(124,255,138,.3)">The White House Official</span>
+    </div>
+    <div class="media-box">
+      <p style="margin:0 0 8px;font-size:14px;font-weight:700;color:var(--t)">
+        FLOTUS Melania Trump on the Advancing Women's Health to Improve Outcomes in All Phases of Life EO 🇺🇸
+      </p>
+      <p style="margin:0 0 12px;font-size:13px;line-height:1.5;color:#b9c9e9">
+        Discurso oficial de la Primera Dama de los EE. UU. sobre la Orden Ejecutiva para transformar la investigación y la salud de la mujer en todas sus etapas vitales. Enfocado en descubrimientos médicos, dignidad, vitalidad y resiliencia. Donald Trump agradece a su primera dama, Melania Trump ⭐️🇵🇦🇺🇸
+      </p>
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+        <a href="https://www.youtube.com/shorts/yGutzgm50Vg" target="_blank" rel="noopener noreferrer" class="btn">
+          ▶ Ver Short Oficial en YouTube
+        </a>
+        <span class="mono" style="font-size:11px;color:var(--m)">[00:00 - 01:53] • La Casa Blanca</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MONITOREO SÍSMICO EN VIVO -->
+  <div class="card" style="margin-top:14px;border-color:var(--b)">
+    <div class="k" style="color:var(--b)">Monitoreo Sísmico en Vivo (USGS)</div>
+    <div style="margin-top:12px">
+      <p id="status" aria-live="polite">USGS: conectando…</p>
+      <ul id="list" aria-label="Sismos recientes en el área"></ul>
+      <p id="egg" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <div class="grid2" style="margin-top:14px">
+    <div class="card">
+      <div class="k">Verificación Francia / C2PA</div>
+      <p style="margin:10px 0 0;line-height:1.5;font-size:14px;color:#c7d6f5">Metadatos C2PA embebidos (manifest <code>embedded</code>), declaración XMP Rights apuntando a <a href="https://thesteef21.github.io/SADV41/A217B.html" target="_blank" rel="noopener noreferrer">A217B.html</a>. Claim generator: <b>SADV41-INTSEC v41.18 Unificado</b>. SynthID: human-curated Landsat art.</p>
+      <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+        <a href="https://thesteef21.github.io/SADV41" target="_blank" rel="noopener noreferrer" class="badge">SADV41 ROOT ↗</a>
+        <a href="https://thesteef21.github.io/SADV41/INTSEC" target="_blank" rel="noopener noreferrer" class="badge">SADV41 INTSEC ↗</a>
+        <a href="https://thesteef21.github.io/SADV41/A217B.html" target="_blank" rel="noopener noreferrer" class="badge">/A217B ↗</a>
+      </div>
+    </div>
+    <div class="card">
+      <div class="k">Protocolo A217 • Falla Azuero-Soná</div>
+      <p style="margin:8px 0 0;font-size:13px;line-height:1.6;color:#b9c9e9">Epicentros mapeados desde bounding box <b>6.5°–10.0°N, 83.5°–76.5°W</b>. Ruido Perlin 2D ligero, renderizado en canvas con DPR adaptativo. Capa final globalAlpha 0.15 para rastro sin backdrop-filter (compatible con entornos restringidos).</p>
+    </div>
+  </div>
+
+  <footer style="margin-top:28px;padding-top:16px;border-top:1px solid var(--line);display:flex;gap:12px;flex-wrap:wrap;justify-content:space-between" class="mono">
+    <span style="font-size:11px;color:var(--m)">INTSEC | SADV41 Mechanics | Panamá 2026 | Cristo está por venir</span>
+    <span style="font-size:10px;color:var(--m);letter-spacing:.1em">PLUSCUAMPERFECTO v41.18 UNIFICADO</span>
+  </footer>
+</div>
+
+<script>
+(function(){
+  'use strict';
+
+  // ==========================================
+  // LÓGICA DEL MOTOR VISUAL TSEC-BG (v41.18)
+  // ==========================================
+  const canvas=document.getElementById('tsec-bg');
+  const ctx=canvas?canvas.getContext('2d',{alpha:false}):null;
+  const isMobile = /Android|iPhone|iPad|iPod|SamsungBrowser|Brave/i.test(navigator.userAgent) || window.innerWidth < 768;
+  const EPICENTROS = isMobile ? 40 : 75;
+  const DPR = Math.min(window.devicePixelRatio||1, isMobile?1:2);
+  let W=0,H=0,ep=[];
+
+  function makePerlin(){
+    const p=new Array(256);for(let i=0;i<256;i++)p[i]=i;for(let i=255;i>0;i--){const j=Math.floor(Math.random()*(i+1));const t=p[i];p[i]=p[j];p[j]=t;}
+    const perm=new Array(512);for(let i=0;i<512;i++)perm[i]=p[i&255];
+    function fade(t){return t*t*t*(t*(t*6-15)+10)}function lerp(t,a,b){return a+t*(b-a)}
+    function grad(h,x,y){const hh=h&3;const u=hh<2?x:y;const v=hh<2?y:x;return ((hh&1)?-u:u)+((hh&2)?-2*v:2*v)}
+    return (x,y)=>{const X=Math.floor(x)&255,Y=Math.floor(y)&255,xf=x-Math.floor(x),yf=y-Math.floor(y),u=fade(xf),v=fade(yf);const aa=perm[perm[X]+Y],ab=perm[perm[X]+Y+1],ba=perm[perm[X+1]+Y],bb=perm[perm[X+1]+Y+1];const x1=lerp(u,grad(aa,xf,yf),grad(ba,xf-1,yf)),x2=lerp(u,grad(ab,xf,yf-1),grad(bb,xf-1,yf-1));return lerp(v,x1,x2)}
+  }
+  const perlin=makePerlin();
+
+  function resize(){
+    if(!canvas)return;
+    W=canvas.width=Math.floor(window.innerWidth*DPR);
+    H=canvas.height=Math.floor(window.innerHeight*DPR);
+    canvas.style.width=window.innerWidth+'px';
+    canvas.style.height=window.innerHeight+'px';
+    ep=[];
+    for(let i=0;i<EPICENTROS;i++){
+      const n1=perlin(i*0.13,i*0.17),n2=perlin(i*0.21+100,i*0.09+50);
+      const lat=6.5+Math.random()*3.5+n1*0.35,lon=-83.5+Math.random()*7+n2*0.45,mag=2.5+Math.random()*5.2;
+      ep.push({lat:Math.min(10,Math.max(6.5,lat)),lon:Math.min(-76.5,Math.max(-83.5,lon)),mag,phase:Math.random()*6.28,driftX:(Math.random()-.5)*.6,driftY:(Math.random()-.5)*.4,size:mag<4?8+mag*1.2:mag<6?12+mag*1.8:18+mag*2.2})
+    }
+    ctx.fillStyle='#05080f';ctx.fillRect(0,0,W,H);
+  }
+  function lonToX(lon){return ((lon+83.5)/7)*W + perlin(lon*0.8,0)*30*DPR}
+  function latToY(lat){return ((10-lat)/3.5)*H + perlin(lat*0.8,100)*24*DPR}
+  function colorForMag(m){if(m<4)return'#4da3ff';if(m<6)return'#7cff8a';return'#ff3b4a'}
+  function hexToRgb(h){const r=parseInt(h.slice(1,3),16),g=parseInt(h.slice(3,5),16),b=parseInt(h.slice(5,7),16);return [r,g,b]}
+
+  let lastFrame=0;
+  function frame(t){
+    requestAnimationFrame(frame);
+    if(t-lastFrame<32) return; lastFrame=t;
+    ctx.fillStyle='rgba(5,8,15,0.15)';ctx.globalAlpha=1;ctx.fillRect(0,0,W,H);
+    const time=t*0.0004;
+    for(let i=0;i<ep.length;i++){
+      const e=ep[i];
+      const px=lonToX(e.lon + Math.sin(time+e.phase)*e.driftX*0.12);
+      const py=latToY(e.lat + Math.cos(time*0.8+e.phase)*e.driftY*0.12);
+      const pulse = 0.85 + Math.sin(time*1.6+e.phase)*0.18;
+      const r = e.size*DPR* (isMobile?0.85:1) * pulse;
+      const col=colorForMag(e.mag); const [rr,gg,bb]=hexToRgb(col);
+      const grad=ctx.createRadialGradient(px,py,0,px,py,r*3.2);
+      grad.addColorStop(0,'rgba('+rr+','+gg+','+bb+','+(0.55*e.mag/7)+')');
+      grad.addColorStop(0.22,'rgba('+rr+','+gg+','+bb+','+(0.22*e.mag/7)+')');
+      grad.addColorStop(0.55,'rgba('+rr+','+gg+','+bb+',0.06)');
+      grad.addColorStop(1,'rgba('+rr+','+gg+','+bb+',0)');
+      ctx.fillStyle=grad;
+      ctx.beginPath();ctx.arc(px,py,r*3.2,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle=col;ctx.globalAlpha=0.85* (e.mag/7.7);
+      ctx.beginPath();ctx.arc(px,py,Math.max(0.9*DPR,r*0.18),0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;
+    }
+    const vg=ctx.createRadialGradient(W*0.5,H*0.45,0,W*0.5,H*0.45,Math.max(W,H)*0.9);
+    vg.addColorStop(0,'rgba(0,0,0,0)');vg.addColorStop(1,'rgba(0,0,0,0.42)');ctx.fillStyle=vg;ctx.fillRect(0,0,W,H);
+  }
+
+  if(canvas){
+    window.addEventListener('resize',resize,{passive:true});
+    resize();requestAnimationFrame(frame);
+  }
+
+  // ==========================================
+  // LÓGICA DEL FEED SÍSMICO USGS
+  // ==========================================
+  var FEED='https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_hour.geojson';
+  var BOX={latMin:6.5,latMax:10.0,lonMin:-83.5,lonMax:-76.5};
+  var MIN_MAG=3.7;
+  var POLL_MS=4*60*1000;
+  var TIMEOUT_MS=10000;
+  var MAX_LIST=5;
+
+  var egg=document.getElementById('egg'),mark=document.getElementById('mark');
+  var statusEl=document.getElementById('status'),listEl=document.getElementById('list');
+  var seen={}, firstPoll=true;
+
+  function buzz(p){try{if(navigator.vibrate)navigator.vibrate(p);}catch(e){}}
+
+  function fmtTime(ms){
+    try{
+      return new Intl.DateTimeFormat('es-PA',{timeZone:'America/Panama',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date(ms));
+    }catch(e){return new Date(ms).toLocaleString();}
+  }
+
+  function fireSim(){
+    egg.textContent='09/10/2026 · 12:56 (hora Panamá) · M7.7 · cerca de Pitaloza Arriba, Herrera\nSimulación artística inspirada en el evento. No son datos de un sensor.';
+    egg.classList.add('on');
+    buzz([80,40,160,60,240]);
+  }
+
+  var taps=[];
+  if(mark){
+    mark.addEventListener('click',function(){
+      var n=Date.now();
+      taps=taps.filter(function(x){return n-x<3000;});
+      taps.push(n);
+      if(taps.length>=5){taps=[];fireSim();}
+    });
+  }
+
+  function setStatus(text,cls){
+    if(statusEl){statusEl.textContent=text;statusEl.className=cls||'';}
+  }
+
+  function renderList(events){
+    if(!listEl)return;
+    listEl.textContent='';
+    events.slice(0,MAX_LIST).forEach(function(e){
+      var li=document.createElement('li');
+      li.textContent='M'+e.mag.toFixed(1)+' · '+e.place+' · '+fmtTime(e.time);
+      listEl.appendChild(li);
+    });
+  }
+
+  function handle(data){
+    var feats=(data&&data.features)||[];
+    var area=[];
+    for(var i=0;i<feats.length;i++){
+      var f=feats[i],p=f.properties||{},g=f.geometry&&f.geometry.coordinates;
+      if(!g||typeof p.mag!=='number')continue;
+      var lon=g[0],lat=g[1];
+      if(lat<BOX.latMin||lat>BOX.latMax||lon<BOX.lonMin||lon>BOX.lonMax)continue;
+      area.push({id:f.id||(p.time+'_'+lat+'_'+lon),mag:p.mag,place:p.place||'sin referencia',time:p.time});
+    }
+    area.sort(function(a,b){return b.time-a.time;});
+
+    var prev=seen,next={},fresh=[];
+    area.forEach(function(e){
+      next[e.id]=true;
+      if(!prev[e.id]&&!firstPoll&&e.mag>=MIN_MAG)fresh.push(e);
+    });
+    seen=next;
+
+    fresh.forEach(function(e){
+      buzz([60,30,120]);
+    });
+
+    if(fresh.length && egg){
+      var big=fresh.slice().sort(function(a,b){return b.mag-a.mag;})[0];
+      egg.textContent='USGS · M'+big.mag.toFixed(1)+' · '+big.place+'\n'+fmtTime(big.time)+' (Panamá) · dato real de earthquake.usgs.gov';
+      egg.classList.add('on');
+    }
+
+    renderList(area);
+    var now=fmtTime(Date.now())+' (Panamá)';
+    if(area.length){
+      var max=area.reduce(function(m,e){return Math.max(m,e.mag);},-Infinity);
+      setStatus('USGS en vivo · '+now+' · '+area.length+' evento(s) en el área · máx M'+max.toFixed(1),'live');
+    }else{
+      setStatus('USGS en vivo · '+now+' · sin eventos en el área en la última hora','live');
+    }
+    firstPoll=false;
+  }
+
+  function offline(){
+    setStatus('USGS no disponible temporalmente.','err');
+  }
+
+  function poll(){
+    var ctrl=typeof AbortController!=='undefined'?new AbortController():null;
+    var to=setTimeout(function(){if(ctrl)ctrl.abort();},TIMEOUT_MS);
+    fetch(FEED,{cache:'no-store',signal:ctrl?ctrl.signal:undefined})
+      .then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();})
+      .then(function(data){clearTimeout(to);handle(data);})
+      .catch(function(){clearTimeout(to);offline();});
+  }
+
+  poll();
+  setInterval(poll,POLL_MS);
+})();
+</script>
+</body>
+</html>
