@@ -39,7 +39,7 @@
                 <p class="text-slate-400 text-xs mt-1">Protocolo Web3 - Agente Operativo Autónomo</p>
             </div>
             <button id="btnConnect" class="bg-oro hover:bg-amber-600 text-navy font-bold px-6 py-2 rounded-md transition-all shadow-[0_0_15px_rgba(250,204,21,0.3)] text-sm">
-                ⚡ Enlazar Wallet
+                ⚡ Enlazar Backend
             </button>
         </div>
 
@@ -52,8 +52,8 @@
                         <span class="text-xs text-slate-300">Conexión Frontal: ACTIVA</span>
                     </div>
                     <div class="flex items-center gap-2">
-                        <div class="w-2 h-2 rounded-full bg-rose-500"></div>
-                        <span class="text-xs text-slate-300">Enlace Termux: ESPERANDO...</span>
+                        <div id="statusTermux" class="w-2 h-2 rounded-full bg-rose-500"></div>
+                        <span id="textTermux" class="text-xs text-slate-300">Enlace Termux: ESPERANDO...</span>
                     </div>
                 </div>
 
@@ -69,8 +69,7 @@
                 <h3 class="text-slate-400 text-xs uppercase tracking-widest font-bold mb-2">Log de Operaciones (Consola del Agente)</h3>
                 <div class="terminal" id="terminalLog">
                     <p class="terminal-text opacity-70">[SADV41] Iniciando interfaz de agente descentralizado...</p>
-                    <p class="terminal-text opacity-70">[SADV41] Esperando inyección de Web3Provider...</p>
-                    <p class="terminal-text text-oro mt-2">>> El entorno está preparado. Para operar, el backend en Termux debe apuntar a esta UI a través de una API o socket.</p>
+                    <p class="terminal-text opacity-70">[SADV41] El túnel encriptado está configurado.</p>
                 </div>
                 
                 <div class="mt-4 flex gap-2">
@@ -82,21 +81,40 @@
     </div>
 
     <script>
-        document.getElementById('btnConnect').addEventListener('click', function() {
+        // INSERTA AQUÍ LA URL EXACTA QUE TE DIO CLOUDFLARE EN LA CONSOLA
+        const BACKEND_URL = "https://porter-genealogy-jerusalem-memphis.trycloudflare.com";
+
+        document.getElementById('btnConnect').addEventListener('click', async function() {
             const term = document.getElementById('terminalLog');
             this.innerText = '⏳ Conectando...';
             
-            setTimeout(() => {
-                this.innerText = '✅ Wallet Enlazada';
+            try {
+                const response = await fetch(BACKEND_URL);
+                const data = await response.json();
+                
+                this.innerText = '✅ Backend Enlazado';
                 this.classList.replace('bg-oro', 'bg-emerald-600');
                 this.classList.replace('text-navy', 'text-white');
                 
+                document.getElementById('statusTermux').classList.replace('bg-rose-500', 'bg-emerald-500');
+                document.getElementById('statusTermux').classList.add('animate-pulse');
+                document.getElementById('textTermux').innerText = 'Enlace Termux: CONECTADO';
+
                 const log = document.createElement('p');
                 log.className = 'terminal-text text-emerald-400 mt-2';
-                log.innerText = '[WEB3] Binance Wallet detectada. Permisos de agente concedidos. Esperando instrucciones de Termux.';
+                log.innerText = `[WEB3] Conexión establecida de forma soberana: ${data.status} | Agente: ${data.agente}.`;
                 term.appendChild(log);
-                term.scrollTop = term.scrollHeight;
-            }, 1500);
+            } catch (error) {
+                this.innerText = '❌ Error de Conexión';
+                this.classList.replace('bg-oro', 'bg-rose-600');
+                this.classList.replace('text-navy', 'text-white');
+                
+                const log = document.createElement('p');
+                log.className = 'terminal-text text-rose-500 mt-2';
+                log.innerText = '[ERROR] No se pudo contactar al backend en Termux. Verifica que el túnel de Cloudflare y el servidor Node.js estén activos.';
+                term.appendChild(log);
+            }
+            term.scrollTop = term.scrollHeight;
         });
     </script>
 </body>
