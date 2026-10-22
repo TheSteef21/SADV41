@@ -1,294 +1,79 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SADV41 | stevendior.ai Web3 Marketplace</title>
-    <meta name="theme-color" content="#030305">
-    <!-- Tailwind CSS -->
+    <title>SADV41 | Web3 Standalone Console</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Ethers.js v5 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
     <script>
         tailwind.config = {
-            theme: {
-                extend: {
-                    colors: { navy: '#020617', oro: '#facc15', emerald: { 400: '#34d399', 500: '#10b981' } }
-                }
-            }
+            darkMode: 'class',
+            theme: { extend: { colors: { navy: '#0b0f19', card: '#111827' } } }
         }
     </script>
-    <style>
-        body { background-color: #030305; color: #f8fafc; font-family: 'Courier New', Courier, monospace; }
-        .glass-panel { background: rgba(10, 15, 25, 0.7); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 1rem; backdrop-filter: blur(10px); }
-        .terminal { background: rgba(0, 0, 0, 0.8); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 0.5rem; height: 280px; overflow-y: auto; padding: 1rem; }
-        .terminal-text { color: #34d399; font-size: 0.85rem; }
-        .scanline { width: 100%; height: 2px; background: rgba(16, 185, 129, 0.1); position: fixed; top: 0; animation: scan 6s linear infinite; pointer-events: none; }
-        @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #020617; }
-        ::-webkit-scrollbar-thumb { background: #10b981; border-radius: 10px; }
-    </style>
 </head>
-<body class="min-h-screen p-4 md:p-8 relative overflow-x-hidden flex flex-col items-center">
-    <div class="scanline"></div>
+<body class="bg-navy text-slate-100 min-h-screen font-mono p-4 sm:p-6">
 
-    <div class="w-full max-w-6xl glass-panel p-6 z-10 shadow-2xl shadow-emerald-500/10 mb-8">
-        <!-- Header -->
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center border-b border-emerald-500/30 pb-4 mb-6 gap-4">
+    <div class="max-w-4xl mx-auto space-y-6">
+        <header class="border-b border-slate-800 pb-4 flex justify-between items-center">
             <div>
-                <h1 class="text-2xl font-bold text-emerald-400 tracking-widest uppercase flex items-center gap-3">
-                    🛸 SADV41 <span class="text-white text-lg">| stevendior.ai Agent Hub</span>
-                </h1>
-                <p class="text-slate-400 text-xs mt-1">Protocolo Descentralizado - Intercambio de Activos & Agentic AI</p>
+                <h1 class="text-2xl font-bold text-amber-500">⚡ SADV41 | Standalone Web3</h1>
+                <p class="text-xs text-slate-400">stevendior.ai • Direct RPC Connection</p>
             </div>
-            <button id="connectWalletBtn" class="bg-oro hover:bg-amber-600 text-navy font-bold px-6 py-2 rounded-md transition-all shadow-[0_0_15px_rgba(250,204,21,0.3)] text-sm">
-                ⚡ Conectar Wallet Web3
-            </button>
-        </div>
+            <span class="text-xs bg-emerald-900/50 text-emerald-400 border border-emerald-700 px-3 py-1 rounded-full">Sin Túnel / Direct RPC</span>
+        </header>
 
-        <!-- Main Grid Layout -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-            <!-- Columna Izquierda: Controles y Estado -->
-            <div class="space-y-4 lg:col-span-1">
-                <div class="bg-navy/50 p-4 rounded-lg border border-slate-800">
-                    <h3 class="text-oro text-xs uppercase tracking-widest font-bold mb-3">Estado del Sistema</h3>
-                    <div class="flex items-center gap-2 mb-2">
-                        <div id="statusWallet" class="w-2 h-2 rounded-full bg-rose-500"></div>
-                        <span id="textWallet" class="text-xs text-slate-300">Wallet EVM: DESCONECTADA</span>
-                    </div>
-                    <div class="flex items-center gap-2">
-                        <div class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                        <span class="text-xs text-slate-300">Nodo stevendior.ai: ACTIVO</span>
-                    </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-card p-4 rounded-xl border border-slate-800 space-y-4">
+                <h2 class="text-sm font-semibold text-amber-400 uppercase">Consultar Billetera On-Chain</h2>
+                
+                <div class="space-y-2">
+                    <label class="text-xs text-slate-400">Dirección EVM</label>
+                    <input type="text" id="targetAddress" value="0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-emerald-400 focus:outline-none">
                 </div>
 
-                <div class="bg-navy/50 p-4 rounded-lg border border-slate-800 space-y-3">
-                    <h3 class="text-emerald-400 text-xs uppercase tracking-widest font-bold">Comandos Rápidos AI</h3>
-                    <button onclick="setQuery('/consultar_balance')" class="w-full bg-slate-800 hover:bg-slate-700 text-white text-xs py-2 rounded border border-slate-600 transition-colors text-left px-4"> > /consultar_balance</button>
-                    <button onclick="setQuery('/estimar_gas')" class="w-full bg-slate-800 hover:bg-slate-700 text-white text-xs py-2 rounded border border-slate-600 transition-colors text-left px-4"> > /estimar_gas</button>
-                    <button onclick="setQuery('/listar_activos')" class="w-full bg-emerald-900/50 hover:bg-emerald-800/50 text-emerald-400 text-xs py-2 rounded border border-emerald-700 transition-colors text-left px-4"> > /listar_activos</button>
-                </div>
+                <button onclick="fetchNativeBalance()" class="w-full bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-2 rounded-lg text-xs">
+                    📊 Consultar BNB Balance Directo (RPC)
+                </button>
             </div>
 
-            <!-- Columna Derecha / Central: Catálogo de Activos + Terminal -->
-            <div class="lg:col-span-2 space-y-6">
-
-                <!-- Sección de Activos (Marketplace) -->
-                <div>
-                    <h2 class="text-lg font-semibold text-emerald-400 border-b border-emerald-500/20 pb-2 mb-4">Catálogo de Activos Disponibles</h2>
-                    <div id="assetGrid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <!-- Tarjeta de Activo 1 -->
-                        <div class="bg-navy/40 border border-emerald-500/20 rounded-xl p-4 flex flex-col justify-between">
-                            <div>
-                                <div class="h-28 bg-slate-900 rounded-lg mb-3 flex items-center justify-center text-emerald-500/50 font-mono text-xs border border-slate-800">[ ASSET PREVIEW: GENESIS ]</div>
-                                <h3 class="font-bold text-sm text-white">SADV41 Genesis Token</h3>
-                                <p class="text-xs text-slate-400 mt-1">Activo digital on-chain verificado para licencias de autor y acceso a nodos.</p>
-                            </div>
-                            <div class="mt-4 flex items-center justify-between pt-2 border-t border-slate-800">
-                                <span class="text-oro font-mono font-bold text-sm">0.015 ETH</span>
-                                <button onclick="buyAsset('SADV41 Genesis Token', '0.015')" class="buy-btn bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded text-xs font-semibold transition">
-                                    Comprar
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Tarjeta de Activo 2 -->
-                        <div class="bg-navy/40 border border-emerald-500/20 rounded-xl p-4 flex flex-col justify-between">
-                            <div>
-                                <div class="h-28 bg-slate-900 rounded-lg mb-3 flex items-center justify-center text-emerald-500/50 font-mono text-xs border border-slate-800">[ ASSET PREVIEW: AUDIO ]</div>
-                                <h3 class="font-bold text-sm text-white">Master 432Hz Sound Drop</h3>
-                                <p class="text-xs text-slate-400 mt-1">Pista original maestra calibrada en frecuencia pura 432Hz (wav + derechos).</p>
-                            </div>
-                            <div class="mt-4 flex items-center justify-between pt-2 border-t border-slate-800">
-                                <span class="text-oro font-mono font-bold text-sm">0.010 ETH</span>
-                                <button onclick="buyAsset('Master 432Hz Sound Drop', '0.010')" class="buy-btn bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded text-xs font-semibold transition">
-                                    Comprar
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+            <div class="bg-card p-4 rounded-xl border border-slate-800 flex flex-col h-64">
+                <h2 class="text-sm font-semibold text-slate-300 border-b border-slate-800 pb-2 mb-2">Respuesta en Vivo</h2>
+                <div id="logs" class="flex-1 bg-slate-950 rounded-lg p-3 text-xs text-emerald-400 font-mono overflow-y-auto">
+                    <p class="text-slate-500">Consola autónoma lista.</p>
                 </div>
-
-                <!-- Terminal de Operaciones / Log -->
-                <div>
-                    <h3 class="text-slate-400 text-xs uppercase tracking-widest font-bold mb-2">Log de Operaciones & Agentic AI</h3>
-                    <div class="terminal" id="terminalLog">
-                        <p class="terminal-text opacity-70">[stevendior.ai] Entorno Web3 Agentic inicializado.</p>
-                        <p class="terminal-text opacity-70">[SYSTEM] Wallet Receptora: 0x8CE9...a6CB configurada.</p>
-                    </div>
-
-                    <div class="mt-3 flex gap-2 items-center bg-navy/60 p-2 rounded-lg border border-slate-800">
-                        <span class="text-emerald-500 font-bold pl-2">></span>
-                        <input type="text" id="aiInput" onkeypress="handleKeyPress(event)" class="bg-transparent text-white text-xs w-full focus:outline-none font-mono" placeholder="Escribe un comando o consulta (ej. /consultar_balance)...">
-                        <button onclick="sendAICommand()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs px-4 py-1.5 rounded transition">Ejecutar</button>
-                    </div>
-                </div>
-
             </div>
         </div>
     </div>
 
-    <!-- Script de Integración Web3 y Consola -->
     <script>
-        let provider, signer, userAddress;
+        const BSC_RPC = "https://bsc-dataseed.binance.org/";
 
-        // Billetera Agentic activa de cobro
-        const RECIPIENT_ADDRESS = "0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB";
-
-        // Redes donde la moneda nativa es ETH
-        const ETH_CHAINS = { 1: "Ethereum", 8453: "Base", 42161: "Arbitrum One", 10: "Optimism" };
-
-        function logToTerminal(message, isError = false) {
-            const term = document.getElementById('terminalLog');
-            const log = document.createElement('p');
-            log.className = isError ? 'terminal-text text-rose-500 mt-1' : 'terminal-text text-emerald-400 mt-1';
-            log.innerText = `[${new Date().toLocaleTimeString()}] ${message}`;
-            term.appendChild(log);
-            term.scrollTop = term.scrollHeight;
+        function log(msg, err = false) {
+            const el = document.getElementById('logs');
+            const p = document.createElement('p');
+            p.className = err ? 'text-rose-400' : 'text-emerald-400';
+            p.innerText = `[${new Date().toLocaleTimeString()}] ${msg}`;
+            el.appendChild(p);
+            el.scrollTop = el.scrollHeight;
         }
 
-        function recipientOk() {
-            return typeof RECIPIENT_ADDRESS === "string" && ethers.utils.isAddress(RECIPIENT_ADDRESS);
-        }
-
-        function refreshBuyButtons() {
-            const ok = recipientOk();
-            document.querySelectorAll('.buy-btn').forEach(b => {
-                b.disabled = !ok;
-                if (!ok) {
-                    b.classList.add('opacity-40', 'cursor-not-allowed');
-                }
-            });
-            if (ok) {
-                logToTerminal(`[SYSTEM] Billetera receptora conectada: ${RECIPIENT_ADDRESS.substring(0, 6)}...${RECIPIENT_ADDRESS.substring(38)}`);
-            }
-        }
-        refreshBuyButtons();
-
-        // 1. Conexión Web3
-        document.getElementById('connectWalletBtn').addEventListener('click', async () => {
-            if (typeof window.ethereum !== 'undefined') {
-                try {
-                    provider = new ethers.providers.Web3Provider(window.ethereum);
-                    await provider.send("eth_requestAccounts", []);
-                    signer = provider.getSigner();
-                    userAddress = await signer.getAddress();
-
-                    const btn = document.getElementById('connectWalletBtn');
-                    btn.innerText = `${userAddress.substring(0, 6)}...${userAddress.substring(38)}`;
-                    btn.classList.replace('bg-oro', 'bg-emerald-600');
-                    btn.classList.replace('text-navy', 'text-white');
-
-                    document.getElementById('statusWallet').classList.replace('bg-rose-500', 'bg-emerald-500');
-                    document.getElementById('statusWallet').classList.add('animate-pulse');
-                    document.getElementById('textWallet').innerText = `Wallet EVM: ${userAddress.substring(0, 6)}...`;
-
-                    logToTerminal(`Wallet de usuario conectada: ${userAddress}`);
-                } catch (error) {
-                    console.error(error);
-                    logToTerminal(`Error al conectar wallet: ${error.message}`, true);
-                }
-            } else {
-                alert("Por favor instala MetaMask u otra billetera Web3 compatible.");
-            }
-        });
-
-        // 2. Función de Compra / Transacción
-        async function buyAsset(assetName, priceInEth) {
-            if (!signer || !provider) {
-                alert("Por favor conecta tu wallet Web3 primero.");
-                logToTerminal("Intento de compra cancelado: Wallet no conectada.", true);
+        async function fetchNativeBalance() {
+            const addr = document.getElementById('targetAddress').value.trim();
+            if (!ethers.utils.isAddress(addr)) {
+                log("Dirección EVM inválida", true);
                 return;
             }
 
-            if (!recipientOk()) {
-                logToTerminal("ERROR CRÍTICO: RECIPIENT_ADDRESS no es válida.", true);
-                return;
-            }
-
-            let value;
+            log(`Consultando balance en BNB Chain para: ${addr}...`);
             try {
-                value = ethers.utils.parseEther(String(priceInEth));
+                const provider = new ethers.providers.JsonRpcProvider(BSC_RPC);
+                const rawBalance = await provider.getBalance(addr);
+                const bnb = ethers.utils.formatEther(rawBalance);
+                log(`✅ Balance Nativo: ${parseFloat(bnb).toFixed(6)} BNB`);
             } catch (e) {
-                logToTerminal(`ERROR: Precio inválido -> ${priceInEth}`, true);
-                return;
-            }
-
-            try {
-                const net = await provider.getNetwork();
-                const chainName = ETH_CHAINS[net.chainId];
-                if (!chainName) {
-                    logToTerminal(`Red no soportada (chainId ${net.chainId}). Cambia a Ethereum, Base, Arbitrum u Optimism.`, true);
-                    return;
-                }
-
-                const ok = confirm(
-                    `Vas a enviar ${priceInEth} ETH en la red ${chainName}\n` +
-                    `Destino: ${RECIPIENT_ADDRESS}\n` +
-                    `Activo: ${assetName}\n\n¿Confirmas la transacción?`
-                );
-                if (!ok) {
-                    logToTerminal("Transacción cancelada por el usuario.");
-                    return;
-                }
-
-                logToTerminal(`Iniciando envío de ${priceInEth} ETH a ${RECIPIENT_ADDRESS.substring(0, 6)}... en ${chainName}`);
-
-                const tx = await signer.sendTransaction({ to: RECIPIENT_ADDRESS, value });
-
-                logToTerminal(`Transacción enviada. Hash: ${tx.hash}`);
-                await tx.wait();
-                logToTerminal(`¡Pago confirmado en ${chainName}! Hash: ${tx.hash}`);
-            } catch (error) {
-                console.error(error);
-                logToTerminal(`Transacción fallida/rechazada: ${error.reason || error.message}`, true);
-            }
-        }
-
-        // 3. Comandos de Consola / Agentic AI
-        function setQuery(cmd) {
-            document.getElementById('aiInput').value = cmd;
-        }
-
-        function handleKeyPress(e) {
-            if (e.key === 'Enter') sendAICommand();
-        }
-
-        async function sendAICommand() {
-            const input = document.getElementById('aiInput');
-            const query = input.value.trim();
-            if (!query) return;
-
-            logToTerminal(`User: ${query}`);
-            input.value = '';
-
-            const q = query.toLowerCase();
-            try {
-                if (q.includes('/consultar_balance')) {
-                    if (userAddress && provider) {
-                        const net = await provider.getNetwork();
-                        const balance = await provider.getBalance(userAddress);
-                        const name = ETH_CHAINS[net.chainId] || `chainId ${net.chainId}`;
-                        logToTerminal(`stevendior.ai: Balance en ${name} -> ${ethers.utils.formatEther(balance)} ETH`);
-                    } else {
-                        logToTerminal(`stevendior.ai: Conecta tu wallet primero para consultar el balance de red.`);
-                    }
-                } else if (q.includes('/estimar_gas')) {
-                    if (provider) {
-                        const gp = await provider.getGasPrice();
-                        logToTerminal(`stevendior.ai: Gas actual en red: ${ethers.utils.formatUnits(gp, 'gwei')} Gwei.`);
-                    } else {
-                        logToTerminal(`stevendior.ai: Conecta tu wallet para estimar gas en tiempo real.`);
-                    }
-                } else if (q.includes('/listar_activos')) {
-                    logToTerminal(`stevendior.ai: Activos: SADV41 Genesis Token (0.015 ETH), Master 432Hz Sound Drop (0.010 ETH).`);
-                } else {
-                    logToTerminal(`stevendior.ai: Comando no reconocido. Usa /consultar_balance, /estimar_gas o /listar_activos.`);
-                }
-            } catch (err) {
-                logToTerminal(`stevendior.ai: Error en comando: ${err.message}`, true);
+                log(`Error conectando al RPC: ${e.message}`, true);
             }
         }
     </script>
