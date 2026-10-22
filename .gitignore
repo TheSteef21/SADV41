@@ -1,3 +1,7 @@
-ig_session.json
-.last_post
-loop.log
+# Bloquear carpetas ocultas de agentes locales
+.*
+!.gitignore
+!.github/
+skills-lock.json
+data/
+agents/
