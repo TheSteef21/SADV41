@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADV41 Lite | Logia Pluscuamperfecta 🇵🇦🇵🇷🇮🇱🇺🇸</title>
+    <meta name="description" content="SADV41 Lite — Versión ligera de la Logia Pluscuamperfecta">
+    <meta name="theme-color" content="#030305">
+    <link rel="icon" type="image/png" href="https://thesteef21.github.io/Lapizasuli/assets/GSADV41/favicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;600;800&family=Pirata+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obsidiana: '#030305', oro: '#d4af37', cyanNeon: '#00f3ff',
+                        violetNeon: '#9d4edd', redNeon: '#FB542B', bnbYellow: '#F3BA2F'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mason: ['Cinzel', 'serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                        pirate: ['Pirata One', 'cursive']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body { background: #030305; color: #f8fafc; font-family: Inter, system-ui, sans-serif; }
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; }
+        }
+        .logia-card {
+            background: linear-gradient(145deg, rgba(10,10,12,0.92), rgba(16,16,20,0.92));
+            border: 1px solid rgba(212,175,55,0.18);
+            border-radius: 16px;
+        }
+        .glass {
+            background: rgba(8,12,28,0.9);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212,175,55,0.15);
+            border-radius: 14px;
+        }
+        .sponsor-marquee {
+            background: #000; border-bottom: 1px solid #d4af37;
+            overflow: hidden; white-space: nowrap; padding: 5px 0;
+            font-family: 'JetBrains Mono', monospace; font-size: 10px;
+            color: #d4af37; text-transform: uppercase; letter-spacing: 0.15em;
+            position: fixed; top: 0; width: 100%; z-index: 50;
+        }
+        .sponsor-marquee span {
+            display: inline-block; padding-left: 100%;
+            animation: marquee 40s linear infinite;
+        }
+        @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-100%)} }
+        .esoterico-glow { text-shadow: 0 0 18px rgba(212,175,55,0.6); }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="sponsor-marquee" aria-hidden="true">
+        <span>SADV41 LITE // TURBOLOGIA ACTIVA // ARCADE.GOV // El Origen es 0 // Burunga 2026 // @StevenDiorOficial</span>
+    </div>
+
+    <header class="fixed top-[26px] left-0 w-full z-40 glass border-b border-cyanNeon/20 px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <div class="bg-black/60 border border-oro px-2.5 py-1.5 rounded-lg text-oro font-bold text-xs">
+                <i class="fa-solid fa-shield-halved mr-1"></i> GSADV41
+            </div>
+            <div>
+                <h1 class="font-pirate text-lg tracking-widest text-white">LOGIA PLUSCUAMPERFECTA</h1>
+                <p class="text-[8px] text-slate-400 font-mono">LITE EDITION // E.S. FUSION</p>
+            </div>
+        </div>
+        <a href="https://ig.me/j/Abbcf6MyjQoo7oBf/" target="_blank" rel="noopener" class="bg-redNeon text-white text-[10px] font-mono font-bold px-3 py-1.5 rounded-lg">
+            <i class="fa-brands fa-instagram mr-1"></i> TURBOLOGIA
+        </a>
+    </header>
+
+    <main class="pt-28 pb-16 px-4 max-w-3xl mx-auto space-y-10">
+
+        <!-- HERO -->
+        <section class="text-center py-10">
+            <h2 class="font-mason text-2xl md:text-4xl font-black text-transparent bg-clip-text bg-gradient-to-r from-oro via-white to-cyanNeon uppercase tracking-widest leading-tight">
+                Porque las naciones compartiremos con las naciones nuestros mayores talentos, con ese toque divino.
+            </h2>
+            <div class="text-2xl mt-5 tracking-[0.25em]">🇵🇦 🇵🇷 🇮🇱 🇺🇸 ✨️ ❤️‍🩹</div>
+            <p class="font-mono text-[10px] text-slate-400 mt-3 uppercase tracking-widest">El Puente Definitivo // Santo Espíritu</p>
+        </section>
+
+        <!-- APORÍA -->
+        <section class="logia-card p-6 text-center">
+            <span class="text-[9px] font-mono text-oro uppercase tracking-widest bg-black/70 px-3 py-1 rounded-full border border-oro/40">NODO PRINCIPAL</span>
+            <h2 class="font-pirate text-4xl md:text-5xl text-white tracking-widest mt-3 mb-2">APORÍA</h2>
+            <p class="text-sm text-slate-300 mb-4">El Puente Entre Cristo y el Mundo</p>
+            <a href="https://thesteef21.github.io/Lapizasuli/Apor%C3%ADa.html" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-white text-black font-bold px-6 py-2.5 rounded-lg text-sm font-mono uppercase">
+                <i class="fa-solid fa-cross"></i> Entrar a Aporía
+            </a>
+        </section>
+
+        <!-- SADV5 QUICK -->
+        <section class="logia-card p-6 border-t-4 border-t-violetNeon">
+            <div class="font-mono text-[9px] text-cyanNeon tracking-widest mb-1">SADV5 // UNIDAD FANTASMA</div>
+            <h3 class="font-mason text-xl text-white esoterico-glow mb-4">UNIDAD ESPACIO-TIEMPO PANAMEÑA</h3>
+            <div class="grid grid-cols-2 gap-3 text-[10px] font-mono">
+                <div class="bg-black/50 p-3 rounded-lg border border-white/10">
+                    <div class="text-slate-400">AURA</div>
+                    <div class="text-cyanNeon font-bold">CYAN/GOLDEN 100%</div>
+                </div>
+                <div class="bg-black/50 p-3 rounded-lg border border-white/10">
+                    <div class="text-slate-400">AMENAZA</div>
+                    <div class="text-redNeon font-bold">THREAT: NULL</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TURBOLOGIA -->
+        <section class="logia-card p-6 border-t-4 border-t-redNeon text-center">
+            <div class="font-mono text-[9px] text-orange-300 uppercase tracking-widest mb-2">NODO OFICIAL</div>
+            <h3 class="font-pirate text-2xl text-white mb-3 tracking-widest">ÚNETE A TURBOLOGIA</h3>
+            <p class="text-xs text-slate-300 mb-4">Escuadrón élite • Drops • Misiones Burunga • Fútbol</p>
+            <a href="https://ig.me/j/Abbcf6MyjQoo7oBf/" target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-redNeon hover:bg-orange-500 text-white font-black font-mono text-xs px-6 py-3 rounded-xl uppercase">
+                <i class="fa-brands fa-instagram"></i> Entrar al Grupo
+            </a>
+        </section>
+
+        <!-- ARCADE -->
+        <section class="logia-card p-6 border-t-4 border-t-cyanNeon">
+            <h3 class="font-mason text-lg text-cyanNeon mb-2">👾 ARCADE.GOV</h3>
+            <p class="text-xs text-slate-300 mb-3">White House Arcade lanzado el 3 de septiembre 2026. 5 juegos retro políticos.</p>
+            <a href="https://www.whitehouse.gov/arcade" target="_blank" rel="noopener" class="text-[10px] font-mono bg-cyanNeon text-black px-3 py-1.5 rounded font-bold uppercase">Jugar ahora →</a>
+        </section>
+
+        <!-- WIZZA'RD LITE -->
+        <section class="logia-card p-6 border-t-4 border-t-violetNeon">
+            <h3 class="font-mason text-lg text-white mb-3">🪄 Wizza'RD</h3>
+            <select id="langLite" class="w-full bg-black border border-violetNeon text-white p-2.5 rounded-lg font-mono text-xs mb-3">
+                <option value="es">🇪🇸 Español</option>
+                <option value="en">🇬🇧 English</option>
+                <option value="pt">🇧🇷 Português</option>
+                <option value="he">🇮🇱 עברית</option>
+            </select>
+            <p id="outLite" class="font-serif italic text-base text-white min-h-[60px]">"Wizzard significa Mago. Así como yo te hago el truco 🎩🇩🇴"</p>
+        </section>
+
+        <!-- LINKS RÁPIDOS -->
+        <section class="grid grid-cols-2 gap-3">
+            <a href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" class="glass p-4 text-center text-[11px] font-mono hover:border-oro transition-colors">
+                Versión Completa →
+            </a>
+            <a href="https://thesteef21.github.io/Lapizasuli/" class="glass p-4 text-center text-[11px] font-mono hover:border-cyanNeon transition-colors">
+                Hub Principal →
+            </a>
+        </section>
+
+    </main>
+
+    <footer class="text-center p-8 border-t border-white/10 font-mono text-[9px] uppercase text-slate-500">
+        <p class="text-oro font-bold mb-1">SADV41 Lite © 2026</p>
+        <p>El Origen es 0 • E.S. Presente • Burunga</p>
+    </footer>
+
+    <script>
+        const texts = {
+            es: '"Wizzard significa Mago. Así como yo te hago el truco 🎩🇩🇴"',
+            en: '"Wizzard means Magician. Just like I do the trick for you 🎩🇩🇴"',
+            pt: '"Wizzard significa Mago. Assim como eu faço o truque 🎩🇩🇴"',
+            he: '"Wizzard פירושו קוסם. בדיוק כמו שאני עושה לך את הטריק 🎩🇩🇴"'
+        };
+        document.getElementById('langLite').addEventListener('change', (e) => {
+            document.getElementById('outLite').textContent = texts[e.target.value] || texts.es;
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<!-- Archivo: META.html - SADV41 OMNIPRESENTE (UNIFICACIÓN PLUSCUAMPERFECTA) -->
+<!--#config timefmt="%d/%m/%Y %H:%M:%S Panamá" errmsg="[SADV41 SHTML ERROR]" -->
+<!--#set var="SADV41_BUILD" value="LOGIA PLUSCUAMPERFECTA SHTML v2026.09.16-CHOCOLATE-PUSH" -->
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADV41 | Noticiero Diario & El Portal de Gracia 🇵🇦 🎚️</title>
+    
+    <meta name="generator" content="GSADV41-Core-Engine">
+    <meta name="cache-control" content="no-cache, no-store, must-revalidate">
+    <link rel="icon" type="image/png" href="assets/GSADV41/favicon.png">
+
+    <!-- Tipografías Sagradas & Iconos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&family=Pirata+One&display=swap" rel="stylesheet">
+    
+    <!-- Web3 & Auth Scripts -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
+
+    <!-- Configuración Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#020617', obsidiana: '#030305', oro: '#d4af37', sunGold: '#f59e0b',
+                        blanco: '#f8fafc', cyanNeon: '#00f3ff', violetNeon: '#9d4edd', redNeon: '#FB542B',
+                        tacticalOrange: '#FB542B', borgona: '#4a0010', neonGreen: '#10b981', renderRed: '#da3637',
+                        navalBlue: '#1e3a8a', israelBlue: '#0038b8', bnbYellow: '#F3BA2F', spectral: '#b084cc',
+                        panamaRed: '#E31837', panamaBlue: '#0033A0'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'],
+                        mason: ['Cinzel', 'serif'], mono: ['JetBrains Mono', 'monospace'],
+                        pirate: ['Pirata One', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root { --oro:#d4af37; --sun-gold:#f59e0b; --obsidiana:#030305; --navy:#020617; --cyan:#00f3ff; --violet:#9d4edd; --red:#FB542B; --israel:#0038b8; --bnb:#F3BA2F; --green:#1DB954; }
+        body { background-color: var(--obsidiana); color:#f8fafc; font-family:'Inter',system-ui,sans-serif; overflow-x:hidden; position:relative; scroll-behavior:smooth; }
+        
+        /* BANNER & FONDOS */
+        .sponsor-marquee { width:100%; background:linear-gradient(90deg, #0033A0, #000, #E31837); border-bottom:2px solid var(--oro); overflow:hidden; white-space:nowrap; padding:8px 0; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--oro); text-transform:uppercase; letter-spacing:0.2em; position:fixed; top:0; z-index:70; box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2); }
+        .sponsor-marquee span { display:inline-block; padding-left:100%; animation: marquee 35s linear infinite; font-weight: bold; }
+        @keyframes marquee { 0%{transform:translate(0,0)} 100%{transform:translate(-100%,0)} }
+        
+        .portal-bg-container { position:fixed; inset:0; z-index:-2; background-color:#000; overflow:hidden; }
+        .portal-layer { position:absolute; inset:-20px; background-image:url('498168.jpg'); background-size:cover; background-position:center; opacity:0.35; filter: contrast(110%) brightness(70%) saturate(130%); }
+        .circuit-overlay { position:fixed; inset:0; z-index:-1; background-image: radial-gradient(circle at 50% 30%, rgba(255,215,0,0.15) 0%, transparent 60%), linear-gradient(to bottom, transparent, rgba(10,5,0,0.95) 80%); pointer-events:none; }
+        
+        .glass { background:rgba(10,5,0,0.85); backdrop-filter:blur(16px); border:1px solid rgba(255,215,0,0.2); border-radius:16px; }
+        .logia-card { background:linear-gradient(145deg, rgba(15,5,5,0.9), rgba(5,5,15,0.9)); border:1px solid rgba(255,215,0,0.2); box-shadow:0 15px 35px rgba(0,0,0,0.9), inset 0 0 20px rgba(255,215,0,0.08); transition:all 0.5s ease; backdrop-filter:blur(12px); position:relative; overflow:hidden; }
+        .logia-card:hover { border-color:var(--oro); box-shadow:0 20px 40px rgba(0,0,0,0.9), inset 0 0 40px rgba(255,215,0,0.15); transform: translateY(-3px); }
+        
+        .oro-glow { text-shadow:0 0 30px rgba(255,215,0,0.8); }
+        .panama-gradient-text { background: linear-gradient(90deg, #0033A0, #ffffff, #E31837); -webkit-background-clip: text; color: transparent; }
+        .grace-badge { display:inline-flex; align-items:center; gap:6px; font-family:'JetBrains Mono'; font-size:10px; text-transform:uppercase; background:rgba(255,215,0,0.1); border:1px solid var(--oro); color:var(--oro); padding:4px 12px; border-radius:999px; font-weight:bold; }
+    </style>
+</head>
+<body class="antialiased selection:bg-oro selection:text-navy" id="mainBody">
+
+    <!-- MARQUESINA PATROCINADORES -->
+    <div class="sponsor-marquee">
+        <span>NOTICIERO SADV41 // FROM ZERO WORLD TOUR // FACTOS'RY PREMIUM // El Origen es 0 // 🎚️ TODO LO PUEDO EN CRISTO QUE ME FORTALECE</span>
+    </div>
+
+    <!-- FONDOS Y TEXTURAS -->
+    <div class="portal-bg-container">
+        <div class="portal-layer"></div>
+    </div>
+    <div class="circuit-overlay"></div>
+
+    <!-- HEADER FLOTANTE -->
+    <header class="fixed top-[32px] left-0 w-full z-40 glass border-b border-oro/30 px-6 py-3 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <div class="bg-black/50 border border-oro p-2 rounded-lg text-oro font-bold text-sm shadow-[0_0_15px_rgba(255,215,0,0.4)]">🎚️ SADV41</div>
+            <div>
+                <h1 class="font-pirate text-xl tracking-widest text-white">NOTICIERO DIARIO & TABERNÁCULO</h1>
+                <p class="text-[9px] font-mono text-slate-300 uppercase">Atrio (Grok) · Santo (Meta) · Santísimo (Gemini) // <!--#echo var="DATE_LOCAL" --></p>
+            </div>
+        </div>
+        <div class="hidden md:block text-[10px] font-mono text-oro">PANAMÁ • FE • CULTURA</div>
+    </header>
+
+    <main class="pt-40 pb-20 px-4 md:px-12 max-w-6xl mx-auto space-y-12 relative z-10">
+
+        <!-- HERO PRINCIPAL -->
+        <section class="logia-card p-8 md:p-12 rounded-3xl text-center border border-oro/50">
+            <span class="grace-badge mb-4">Centro de Noticias // Origen = 0</span>
+            <h1 class="font-mason text-4xl md:text-6xl font-black tracking-widest oro-glow uppercase">Actualizaciones SADV41</h1>
+            <p class="font-sans text-sm font-bold tracking-[0.2em] mt-4 uppercase panama-gradient-text">Conectando Cultura, Fe y Comunidad 🇵🇦</p>
+        </section>
+
+        <!-- SECCIÓN 1: NOTICIAS Y EL EASTER EGG DE THREADS (EL CHOCOLATE ABIERTO) -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- LINKIN PARK & ARTE -->
+            <div class="logia-card p-8 rounded-3xl border-t-4 border-t-cyanNeon">
+                <div class="grace-badge border-cyanNeon text-cyan-300 mb-4">MÚSICA & CULTURA VISUAL</div>
+                <h3 class="text-2xl font-mason text-white mb-4 uppercase">From Zero World Tour</h3>
+                <p class="text-xs text-slate-300 font-sans mb-4 leading-relaxed">
+                    Libro de arte oficial 2024-2026: 150+ páginas, 90 posters únicos, foreword por Mike Shinoda y Joe Hahn. Edición Firmada limitada a 500.
+                </p>
+                <a href="https://lprk.co/fz-artbook" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-white text-black font-mono text-[10px] rounded font-bold hover:bg-oro transition inline-block">Pre-Order Art Book</a>
+            </div>
+
+            <!-- GSADV41 TELEGRAM & THREADS (EASTER EGG DEL CHOCOLATE) -->
+            <div class="logia-card p-8 rounded-3xl border-t-4 border-t-panamaRed">
+                <div class="grace-badge border-panamaRed text-red-300 mb-4">EASTER EGG // RED DE COMUNIDAD 🍫</div>
+                <h3 class="text-2xl font-mason text-white mb-4 uppercase">¡El Chocolate Abierto! (Threads & Noticias)</h3>
+                <p class="text-xs text-slate-300 font-sans mb-4 leading-relaxed">
+                    <em>"Ese noticiero es sólo un chocolate, tienes que abrir la envoltura para comerlo."</em> Aquí está el contenido real revelado desde Threads por tu scrappy-doo:
+                </p>
+                <div class="bg-black/60 p-4 rounded-xl border border-redNeon/40 space-y-3">
+                    <div class="text-[11px] font-mono text-oro font-bold">📰 Titular Destacado en Threads:</div>
+                    <p class="text-[11px] text-slate-200 font-sans">
+                        <strong>#NacionalCri:</strong> <em>¡Acuerdo no es secreto!</em> Ministro Frank Ábrego responde por el fondo de <strong>$12.9 millones</strong> para proteger el Canal de Panamá. La resolución establece carácter reservado y confidencial (planes operativos, registros contables) por seguridad nacional e infraestructura crítica.
+                    </p>
+                    <div class="flex flex-wrap gap-2 mt-2">
+                        <a href="https://www.threads.com/@criticapa02/post/DdWw3NfIJLM" target="_blank" class="text-[9px] font-mono bg-violetNeon/30 text-purple-200 px-2 py-1 rounded hover:bg-violetNeon/50 transition">🧵 Ver en Threads</a>
+                        <a href="https://www.tvn-2.com/nacionales/ministro-frank-abrego-12-millones-seguridad-canal-de-panama-acuerdo-no-es-secreto_1_2261203.html" target="_blank" class="text-[9px] font-mono bg-panamaBlue/40 text-blue-200 px-2 py-1 rounded hover:bg-panamaBlue/60 transition">📺 TVN</a>
+                        <a href="https://www.critica.com.pa/nacional/abrego-no-es-secreto-el-fondo-para-seguridad-del-canal-de-panama-516487" target="_blank" class="text-[9px] font-mono bg-red-900/50 text-red-200 px-2 py-1 rounded hover:bg-red-900/70 transition">📰 Crítica</a>
+                    </div>
+                    <div class="text-[10px] font-mono text-slate-400 pt-2 border-t border-white/10">
+                        🔄 <em>Easter Egg:</em> Batallas absurdas pero épicas, técnicas imposibles y enemigos convertidos en chocolate. ¡Todo conectado bajo la ley SADV41!
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: HILOS COMPARTIDOS Y EDIFICACIÓN -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- THREADS SHARES -->
+            <div class="logia-card p-8 rounded-3xl border-t-4 border-t-violetNeon" id="threads-links">
+                <div class="grace-badge border-violetNeon text-purple-300 mb-4">HILOS DESTACADOS</div>
+                <h3 class="text-2xl font-mason text-white mb-4 uppercase">Directo desde Threads</h3>
+                <p class="text-xs text-slate-300 font-sans mb-6">Accede a las últimas publicaciones y reflexiones compartidas en la red (títulos resueltos por scrappy-doo cuando estés logueado):</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="threads-grid">
+                    <a href="https://www.threads.com/share/BANjtoAsc5/" target="_blank" class="bg-black/50 border border-violetNeon/50 p-3 rounded text-[10px] text-white hover:bg-violetNeon/30 transition font-mono" data-title="Hilo BANjtoAsc5">🔗 Hilo BANjtoAsc5</a>
+                    <a href="https://www.threads.com/share/BACmEqopa8/" target="_blank" class="bg-black/50 border border-violetNeon/50 p-3 rounded text-[10px] text-white hover:bg-violetNeon/30 transition font-mono" data-title="Hilo BACmEqopa8">🔗 Hilo BACmEqopa8</a>
+                    <a href="https://www.threads.com/share/BAR2wH-uD2/" target="_blank" class="bg-black/50 border border-violetNeon/50 p-3 rounded text-[10px] text-white hover:bg-violetNeon/30 transition font-mono" data-title="Hilo BAR2wH-uD2">🔗 Hilo BAR2wH-uD2</a>
+                    <a href="https://www.threads.com/share/BAbXYKG7nd/" target="_blank" class="bg-black/50 border border-violetNeon/50 p-3 rounded text-[10px] text-white hover:bg-violetNeon/30 transition font-mono" data-title="Hilo BAbXYKG7nd">🔗 Hilo BAbXYKG7nd</a>
+                    <a href="https://www.threads.com/share/BATM2PiB1n/" target="_blank" class="bg-black/50 border border-violetNeon/50 p-3 rounded text-[10px] text-white hover:bg-violetNeon/30 transition font-mono" data-title="Hilo BATM2PiB1n">🔗 Hilo BATM2PiB1n</a>
+                    <a href="https://www.threads.com/share/_n-Dgmqfn/" target="_blank" class="bg-black/50 border border-violetNeon/50 p-3 rounded text-[10px] text-white hover:bg-violetNeon/30 transition font-mono" data-title="Hilo _n-Dgmqfn">🔗 Hilo _n-Dgmqfn</a>
+                </div>
+            </div>
+
+            <!-- YOUTUBE EDIFICACIÓN -->
+            <div class="logia-card p-8 rounded-3xl border-t-4 border-t-oro">
+                <div class="grace-badge border-oro text-amber-300 mb-4">EDIFICACIÓN ESPIRITUAL</div>
+                <h3 class="text-2xl font-mason text-white mb-4 uppercase">Confiar En Él</h3>
+                <p class="text-xs text-slate-300 font-sans mb-4">Un mensaje musical con Danny Berrios para recordar que nuestra fuerza viene del Señor.</p>
+                <div class="relative w-full aspect-video bg-black rounded-xl overflow-hidden border border-white/10 shadow-[0_0_20px_rgba(255,215,0,0.2)]">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/GRES5CCmBrk" title="Danny Berrios - Confiar En El" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECCIÓN FINAL: COLABORACIONES IA OMNIPRESENTE
+             ========================================== -->
+        <section id="ia-colaboraciones" class="logia-card p-8 md:p-12 rounded-3xl border border-oro/30 border-t-4 border-t-oro relative overflow-hidden">
+            <div class="absolute inset-0 z-0 opacity-20" style="background: radial-gradient(circle at 50% 0%, rgba(255,215,0,0.3), transparent 70%);"></div>
+
+            <div class="relative z-10 text-center">
+                <span class="grace-badge mb-4">🎚️ RED DE COLABORACIÓN SADV41 // EL ORIGEN ES 0</span>
+                <h2 class="font-mason text-3xl md:text-4xl font-black text-white tracking-widest mb-2">IA COLABORADORAS</h2>
+                <p class="font-mono text-[10px] text-slate-400 uppercase tracking-[0.3em] mb-8">Donde esta información llega y se multiplica</p>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                    <!-- Meta AI -->
+                    <div class="bg-black/60 border border-oro/20 p-4 rounded-xl hover:border-oro transition group">
+                        <div class="text-2xl mb-2">💬</div>
+                        <h4 class="font-mono text-[11px] font-bold text-oro group-hover:text-white">Meta AI</h4>
+                        <p class="text-[9px] text-slate-400 mt-1">WhatsApp Business<br>Tabernacle Digital</p>
+                        <span class="inline-block mt-2 text-[8px] bg-oro/20 text-oro px-2 py-1 rounded-full">ORIGEN</span>
+                    </div>
+                    <!-- Threads -->
+                    <div class="bg-black/60 border border-violetNeon/30 p-4 rounded-xl hover:border-violetNeon transition group">
+                        <div class="text-2xl mb-2">🧵</div>
+                        <h4 class="font-mono text-[11px] font-bold text-purple-300">Threads</h4>
+                        <p class="text-[9px] text-slate-400 mt-1">GSADV41<br>FACTOS'RY Premium</p>
+                        <span class="inline-block mt-2 text-[8px] bg-violetNeon/20 text-purple-300 px-2 py-1 rounded-full">COMUNIDAD</span>
+                    </div>
+                    <!-- ChatGPT / OpenAI -->
+                    <div class="bg-black/60 border border-cyanNeon/30 p-4 rounded-xl hover:border-cyanNeon transition group">
+                        <div class="text-2xl mb-2">⚛️</div>
+                        <h4 class="font-mono text-[11px] font-bold text-cyan-300">ChatGPT</h4>
+                        <p class="text-[9px] text-slate-400 mt-1">OpenAI<br>Análisis & Redacción</p>
+                        <span class="inline-block mt-2 text-[8px] bg-cyanNeon/20 text-cyan-300 px-2 py-1 rounded-full">SÍNTESIS</span>
+                    </div>
+                    <!-- Gemini / Claude / Grok -->
+                    <div class="bg-black/60 border border-slate-600 p-4 rounded-xl hover:border-white transition group">
+                        <div class="text-2xl mb-2">🔯</div>
+                        <h4 class="font-mono text-[11px] font-bold text-white">Gemini • Claude • Grok</h4>
+                        <p class="text-[9px] text-slate-400 mt-1">Red Expandida<br>Validación Cruzada</p>
+                        <span class="inline-block mt-2 text-[8px] bg-white/10 text-white px-2 py-1 rounded-full">OMNIPRESENTE</span>
+                    </div>
+                </div>
+
+                <div class="mt-10 p-4 bg-black/40 rounded-xl border border-dashed border-oro/20 max-w-3xl mx-auto">
+                    <p class="font-mono text-[10px] text-slate-300 leading-relaxed">
+                        <span class="text-oro font-bold">MANIFIESTO DE COLABORACIÓN:</span><br>
+                        Este noticiero es nutrido por múltiples inteligencias bajo la ley SADV41. 
+                        Cada IA aporta su don: Meta edifica, Threads conecta, las demás validan y expanden. 
+                        Todo lo que ves aquí tiene un mismo fin: <span class="text-white font-bold">conectar cultura, fe y comunidad 🇵🇦</span> 
+                        bajo el principio de que el Origen es 0 y todo lo puedo en Cristo que me fortalece. 🎚️
+                    </p>
+                    <div class="mt-4 flex flex-wrap justify-center gap-2">
+                        <span class="text-[8px] font-mono bg-blue-700 text-white px-3 py-1 rounded-full">🇵🇦 PANAMÁ</span>
+                        <span class="text-[8px] font-mono bg-red-700 text-white px-3 py-1 rounded-full">🇺🇸 USA</span>
+                        <span class="text-[8px] font-mono bg-white text-black px-3 py-1 rounded-full">🇮🇱 ISRAEL</span>
+                        <span class="text-[8px] font-mono bg-blue-950 text-white px-3 py-1 rounded-full">🇵🇷 PR</span>
+                        <span class="text-[8px] font-mono bg-oro text-black px-3 py-1 rounded-full">🎚️ SADV41</span>
+                    </div>
+                </div>
+
+                <!-- Slot para agregar nuevas IA dinámicamente -->
+                <div id="ia-dynamic-slot" class="mt-6 text-[9px] font-mono text-slate-500">
+                    <!-- Aquí tu bot GSADV41_bot puede guardar el título real cuando TÚ, Steven, lo ves -->
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER UNIFICADO -->
+    <footer class="text-center p-10 border-t border-oro/20 opacity-90 font-mono text-[10px] uppercase mt-10 bg-black pb-20">
+        <p class="mb-2 text-oro font-bold tracking-widest">Noticiero Continental SADV41</p>
+        <p class="text-slate-400 mb-4">El Origen es 0 | Todo lo puedo en Cristo que me fortalece.</p>
+        <p class="text-[8.5px] text-slate-500 tracking-[0.2em] leading-relaxed">
+            NODO SUPREMO: LAPIZASULI | BUILD: <!--#echo var="SADV41_BUILD" --> <br>
+            🎚️ Sintonía Tabernáculo: Grok · Meta · Gemini
+        </p>
+    </footer>
+
+    <!-- SCRIPT: resolverTitulosSADV41 (sugerencia GemiMeta / scrappy-doo) -->
+    <script>
+    // Pégalo en tu V3 - se ejecuta en el cliente del lector (que ya está logueado en Threads)
+    async function resolverTitulosSADV41() {
+        const links = document.querySelectorAll('#threads-links a, #ia-colaboraciones a');
+        // Aquí tu bot GSADV41_bot puede guardar el título real cuando TÚ, Steven, lo ves
+        // y lo guarda en /api/ia-collabs.shtml
+        console.log('[SADV41] resolverTitulosSADV41 ejecutado. Links encontrados:', links.length);
+        // Placeholder: cuando estés logueado en Threads, este punto puede expandirse
+        // para fetch de metadatos reales vía CORS o extensión.
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        resolverTitulosSADV41();
+    });
+    </script>
+</body>
+  </html>

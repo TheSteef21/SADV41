@@ -143,6 +143,19 @@
       padding-top: 15px;
     }
   </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    #sismo-map { height: 450px; border-radius: 8px; background: var(--bg-color); border: 1px solid var(--border-color); }
+    .leaflet-container { background: var(--bg-color); font-family: inherit; }
+    .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+      background: var(--panel-bg); color: var(--text-color);
+      border: 1px solid var(--border-color);
+    }
+    .leaflet-popup-content a { color: var(--accent-color); }
+    .leaflet-control-attribution { background: rgba(11,15,25,.8) !important; color: #64748b !important; }
+    .leaflet-control-attribution a { color: #94a3b8 !important; }
+    .leaflet-control-zoom a { background: var(--panel-bg); color: var(--accent-color); border-color: var(--border-color); }
+  </style>
 </head>
 <body>
 
@@ -198,24 +211,31 @@
       </div>
     </div>
 
+    <!-- Mapa sísmico -->
+    <div class="card" style="grid-column: 1 / -1;">
+      <h3>🗺 MAPA SÍSMICO - PANAMÁ (14 DÍAS)</h3>
+      <div id="sismo-map"></div>
+      <div class="meta-info" id="sismo-map-info">Cargando mapa...</div>
+    </div>
+
     <!-- Panel Análisis Geológico: Sistema de Fallas Azuero-Soná -->
     <div class="card">
       <h3>🌋 ANÁLISIS GEOLÓGICO: ROTURA DE FALLA (AZUERO-SONÁ)</h3>
       <p style="font-size: 0.85rem; color: #e2e8f0; line-height: 1.4;">
-        Una <strong>rotura de falla</strong> (o ruptura de falla) es el deslizamiento repentino y brusco de los bloques de roca a lo largo de una fractura preexistente en la corteza terrestre. Ocurre cuando el esfuerzo tectónico acumulado supera la fuerza de fricción y la resistencia mecánica que mantiene unidas las rocas, liberando esa energía acumulada en forma de ondas sísmicas (un terremoto).
+        Una <strong>rotura de falla</strong> (o ruptura de falla) es el deslizamiento repentino y brusco de los bloques de roca a lo largo de una fractura preexistente en la corteza terrestre. Ocurre cuando el esfuerzo tectónico acumulado supera la fuerza de fricción y la resistencia mecánica que mantiene unidas las rocas, liberando esa energía acumulada en forma de ondas sísmicas.
       </p>
 
       <details>
         <summary>⚡ 1. Acumulación de Tensión (Fase Elástica) <span>[+]</span></summary>
         <div style="font-size: 0.85rem; margin-top: 5px; color: #94a3b8;">
-          El sistema Azuero-Soná es una red de fallas de rumbo (transcurrentes) internas del Bloque de Panamá, con movimiento predominantemente lateral. Aunque las placas tectónicas se mueven de forma constante a una velocidad de unos 5 a 7 milímetros por año, la falla permanece "bloqueada" o trabada en profundidad debido a la fricción. Durante décadas o siglos, las rocas se van deformando elásticamente sin moverse, almacenando enorme energía.
+          El sistema Azuero-Soná es una red de fallas de rumbo (transcurrentes) internas del Bloque de Panamá, con movimiento predominantemente lateral. Aunque las placas tectónicas se mueven de forma constante a una velocidad de unos 5 a 7 milímetros por año, la falla permanece "bloqueada" o trabada en profundidad debido a la fricción.
         </div>
       </details>
 
       <details>
         <summary>💥 2. Iniciación y Propagación de la Ruptura <span>[+]</span></summary>
         <div style="font-size: 0.85rem; margin-top: 5px; color: #94a3b8;">
-          Cuando la tensión ejercida en un punto específico (el hipocentro o foco) supera la resistencia de la roca, ocurre el "disparo". A partir de ese punto, la grieta o plano de ruptura se propaga a velocidades hipersónicas (2 a 3 km/s) a lo largo de la falla. En el caso de una falla como la de Azuero-Soná, la ruptura puede extenderse decenas o más de un centenar de kilómetros a lo largo de la estructura del subsuelo.
+          Cuando la tensión ejercida en un punto específico (el hipocentro o foco) supera la resistencia de la roca, ocurre el "disparo". A partir de ese punto, la grieta o plano de ruptura se propaga a velocidades hipersónicas (2 a 3 km/s) a lo largo de la falla.
         </div>
       </details>
 
@@ -223,15 +243,11 @@
         <summary>🌊 3. Liberación Energética y Efectos <span>[+]</span></summary>
         <div style="font-size: 0.85rem; margin-top: 5px; color: #94a3b8;">
           <ul style="margin: 5px 0; padding-left: 18px;">
-            <li><strong>Tiempo de ruptura:</strong> Es la duración que le toma a la fractura propagarse de un extremo a otro del plano afectado en el subsuelo (usualmente medido en segundos o decenas de segundos).</li>
-            <li><strong>Ondas sísmicas:</strong> A medida que el plano se desplaza lateralmente, genera ondas elásticas que viajan a través de la corteza, produciendo la sacudida del suelo en la superficie y sus réplicas posteriores a medida que el sistema busca un nuevo equilibrio geométrico.</li>
+            <li><strong>Tiempo de ruptura:</strong> Duración de la fractura a lo largo del plano afectado.</li>
+            <li><strong>Ondas sísmicas:</strong> Ondas elásticas que viajan a través de la corteza, produciendo la sacudida en superficie.</li>
           </ul>
         </div>
       </details>
-
-      <div class="meta-info" style="font-style: italic; color: #94a3b8; margin-top: 12px; line-height: 1.3;">
-        En resumen: La rotura de la falla Azuero-Soná no significa que el terreno se abra desde cero, sino que una cicatriz geológica ya existente cede y se desliza bruscamente en el subsuelo, liberando de golpe la deformación acumulada por el movimiento de la corteza.
-      </div>
     </div>
 
     <!-- Panel Landsat 9 (TSEC) -->
@@ -256,17 +272,6 @@
           </ul>
         </div>
       </details>
-
-      <details>
-        <summary>📊 Resolución Espacial y Espectral <span>[+]</span></summary>
-        <div id="landsat-specs" style="font-size: 0.85rem; margin-top: 5px;">
-          <ul>
-            <li><strong>Multiespectral:</strong> Píxeles de 30m.</li>
-            <li><strong>Pancromática:</strong> Detalle de alta resolución a 15m.</li>
-            <li><strong>Profundidad Radiométrica:</strong> Codificación de 14 bits.</li>
-          </ul>
-        </div>
-      </details>
     </div>
 
     <!-- Panel Herramientas y Recursos Complementarios -->
@@ -275,8 +280,7 @@
       <p style="font-size: 0.85rem; color: #94a3b8;">Sistemas de telemetría, apps móviles y transferencia directa.</p>
 
       <div style="margin-top: 12px;">
-        <strong style="font-size: 0.9rem; color: #e2e8f0;">📲 App Earthquake Network (DistQuake):</strong><br>
-        <span style="font-size: 0.8rem; color: #94a3b8;">Detección temprana de sismos en smartphones.</span><br>
+        <strong style="font-size: 0.9rem; color: #e2e8f0;">📲 App Earthquake Network:</strong><br>
         <a href="https://play.google.com/store/apps/details?id=com.finazzi.distquake" target="_blank" class="link-btn">
           Abrir en Google Play Store ↗
         </a>
@@ -284,7 +288,6 @@
 
       <div style="margin-top: 15px;">
         <strong style="font-size: 0.9rem; color: #e2e8f0;">🔗 Enlace Quick Share SADV41:</strong><br>
-        <span style="font-size: 0.8rem; color: #94a3b8;">Transferencia rápida de archivos y captura de datos.</span><br>
         <a href="https://quickshare.samsungcloud.com/faeEwwGK4ePw" target="_blank" class="link-btn">
           Ver enlace Quick Share ↗
         </a>
@@ -297,14 +300,9 @@
   </footer>
 
   <script>
-    // 1. Cargar datos del archivo tsec.json local
     fetch('./tsec.json')
-      .then(res => {
-        if (!res.ok) throw new Error('Archivo tsec.json no detectado');
-        return res.json();
-      })
+      .then(res => res.json())
       .then(data => {
-        console.log('✅ tsec.json cargado exitosamente:', data);
         if (data.satellites && data.satellites[0]) {
           const sat = data.satellites[0];
           document.getElementById('landsat-orbit').innerHTML = `
@@ -313,11 +311,8 @@
           `;
         }
       })
-      .catch(err => {
-        console.warn('⚠️ Nota:', err.message);
-      });
+      .catch(err => console.warn('tsec.json opcional:', err.message));
 
-    // 2. Cargar feed en vivo de USGS
     const USGS_FEED = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson';
 
     fetch(USGS_FEED)
@@ -325,7 +320,6 @@
       .then(geoData => {
         const features = geoData.features || [];
 
-        // Panel Global (Últimos 10 eventos)
         const globalContainer = document.getElementById('usgs-global');
         if (features.length === 0) {
           globalContainer.innerHTML = 'Sin sismos reportados hoy.';
@@ -338,7 +332,6 @@
           `).join('');
         }
 
-        // Panel Panamá + Centroamérica (Bounding Box SADV41: Lat 6.5 a 10.0 N, Lon -83.5 a -76.5 W)
         const panamaContainer = document.getElementById('usgs-panama');
         const panamaEvents = features.filter(f => {
           const [lon, lat] = f.geometry.coordinates;
@@ -357,10 +350,55 @@
         }
       })
       .catch(err => {
-        console.error('Error cargando USGS Live API:', err);
         document.getElementById('usgs-global').innerText = 'Error al consultar API en vivo.';
         document.getElementById('usgs-panama').innerText = 'Error al consultar API en vivo.';
       });
+  </script>
+  
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    (function () {
+      const map = L.map('sismo-map').setView([7.8, -80.5], 7);
+
+      // Cargar Capa CartoDB Voyager con API Key personalizada
+      L.tileLayer('https://basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}.png?key=cb1_4ne6_1_3c19f375f3946685db2cfede', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        maxZoom: 18
+      }).addTo(map);
+
+      const css = getComputedStyle(document.documentElement);
+      const ACCENT = css.getPropertyValue('--accent-color').trim() || '#00f2fe';
+      const HIGH = css.getPropertyValue('--highlight').trim() || '#ff4757';
+      const col = m => m >= 5 ? HIGH : ACCENT;
+      const fmt = t => new Date(t).toLocaleString('es-PA', { timeZone: 'America/Panama' });
+
+      [
+        { n: 'Ineter M4.7, 13 km al norte de Macaracas (17 oct, 11:31 a.m.)', lat: 7.85, lon: -80.55 },
+        { n: 'Sismo Detector M5.2 preliminar, 2 km de Las Tablas (17 oct, 11:24 a.m.)', lat: 7.77, lon: -80.28 }
+      ].forEach(function (r) {
+        L.circleMarker([r.lat, r.lon], { radius: 12, color: '#111827', weight: 2, dashArray: '4', fillOpacity: 0.2, fillColor: '#00f2fe' })
+          .addTo(map).bindPopup('<b>Reporte de app</b><br>' + r.n + '<br><i>ubicación aproximada</i>');
+      });
+
+      const ini = new Date(Date.now() - 14 * 864e5).toISOString();
+      const url = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson'
+        + '&minlatitude=6.5&maxlatitude=10&minlongitude=-83.5&maxlongitude=-76.5'
+        + '&minmagnitude=2.5&orderby=time&limit=500&starttime=' + ini;
+
+      fetch(url).then(r => r.json()).then(function (d) {
+        const fs = d.features || [];
+        fs.forEach(function (f) {
+          const c = f.geometry.coordinates, p = f.properties, m = p.mag;
+          L.circleMarker([c[1], c[0]], { radius: 4 + m * 2, color: col(m), fillColor: col(m), fillOpacity: .65, weight: 1.5 })
+            .addTo(map)
+            .bindPopup('<b>M' + m + '</b> - ' + p.place + '<br>' + fmt(p.time) + '<br><a href="' + p.url + '" target="_blank">USGS Detalle</a>');
+        });
+        document.getElementById('sismo-map-info').textContent =
+          fs.length + ' sismos (M2.5+) en 14 días • Rojo: M5+ • Fuente: CartoDB + USGS API Live';
+      }).catch(function (e) {
+        document.getElementById('sismo-map-info').textContent = 'No se pudo cargar USGS: ' + e;
+      });
+    })();
   </script>
 </body>
 </html>

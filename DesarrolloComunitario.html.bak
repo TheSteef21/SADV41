@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desarrollo Comunitario | SADV41</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .bg-tabernaculo {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        .text-oro { color: #fbbf24; }
+        .border-oro { border-color: #fbbf24; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <!-- Navegación: Conectando el Ecosistema -->
+    <nav class="bg-tabernaculo text-white p-4 shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center">
+            <a href="#" class="text-2xl font-bold tracking-wider flex items-center gap-2">
+                <span class="text-oro">SADV41</span> <span class="text-sm font-light uppercase tracking-widest">Desarrollo Comunitario</span>
+            </a>
+            <div class="flex gap-4 text-sm mt-2 md:mt-0 font-medium">
+                <a href="https://thesteef21.github.io/SADV41/Pacto.html" target="_blank" class="hover:text-oro transition">El Pacto</a>
+                <a href="https://thesteef21.github.io/SADV41/Artist.html" target="_blank" class="hover:text-oro transition">El Artista</a>
+                <a href="https://thesteef21.github.io/Lapizasuli/StevenDiorOficial/2026/QU%C3%89%20BELLEZA%20CUANDO%20VIVO%20AS%C3%8D/index.html" target="_blank" class="hover:text-oro transition">Música</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Hero -->
+    <header class="relative bg-white overflow-hidden border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 flex flex-col items-center text-center">
+            <h1 class="text-5xl md:text-6xl font-extrabold text-gray-900 mb-6 tracking-tight">
+                Instrucción de Estudio en Cimientos:<br>
+                <span class="text-blue-600">Protocolo "Nuevo Pacto"</span>
+            </h1>
+            <p class="mt-4 max-w-3xl text-xl text-gray-500 mb-8">
+                El conocimiento, la tecnología y la creatividad organizados como herramientas para impactar a las próximas generaciones de Burunga. Un desarrollo para todos, congregados en corazones y mentes.
+            </p>
+        </div>
+    </header>
+
+    <!-- Sección 1: El Atrio (Estudio y Tecnología) -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center mb-8 gap-4">
+                <div class="h-10 w-2 bg-blue-600 rounded"></div>
+                <h2 class="text-3xl font-bold text-gray-900">El Atrio: La Interacción Inicial</h2>
+            </div>
+            <p class="text-lg text-gray-600 mb-8">
+                La puerta de entrada a la educación estructurada. Aquí digitalizamos nuestros cuadernos de estudio para fomentar el pensamiento crítico y la exégesis bíblica.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Tarjetas para módulos de estudio -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+                    <h3 class="text-xl font-semibold mb-2">Análisis Teológico</h3>
+                    <p class="text-gray-600 text-sm">Investigación sobre los fundamentos de la Mesa de Inteligencias Artificiales (MIA) y la exégesis cristiana histórica.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+                    <h3 class="text-xl font-semibold mb-2">Realidad del Nuevo Pacto</h3>
+                    <p class="text-gray-600 text-sm">Contraste histórico y teológico entre el cristianismo primitivo, la adoración del Cristo encarnado y los paradigmas religiosos.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition">
+                    <h3 class="text-xl font-semibold mb-2">Cuadernos Digitales</h3>
+                    <p class="text-gray-600 text-sm">Espacio para organizar y nutrir cada tema nuevo, evitando la dispersión del conocimiento y orientándolo a un propósito espiritual.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección 2: El Lugar Santo (Campamento Asiel y Oficios) -->
+    <section class="py-16 bg-white border-y border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center mb-8 gap-4">
+                <div class="h-10 w-2 bg-green-600 rounded"></div>
+                <h2 class="text-3xl font-bold text-gray-900">El Lugar Santo: Vínculo y Convivencia</h2>
+            </div>
+            <p class="text-lg text-gray-600 mb-10 max-w-4xl">
+                La tecnología debe conectarse con la vida física. En este espacio honramos el esfuerzo diario y atesoramos los recuerdos del Campamento "Asiel", donde la familia, la juventud y la naturaleza se unen en hermandad.
+            </p>
+            
+            <!-- Galería Conceptual (Aquí puedes enlazar tus imágenes locales) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-gray-100 rounded-2xl p-8 flex flex-col justify-center border border-gray-200">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">El Valor del Trabajo Duro</h3>
+                    <p class="text-gray-600 mb-4">Tomando como ejemplo la labor diaria y el servicio en la llantería, demostramos que la base del desarrollo comunitario es el esfuerzo constante y honesto en el entorno físico.</p>
+                    <span class="inline-block px-4 py-2 bg-gray-800 text-white text-sm font-semibold rounded-full w-max">Oficios Prácticos</span>
+                </div>
+                <div class="bg-green-50 rounded-2xl p-8 flex flex-col justify-center border border-green-100 relative overflow-hidden">
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-bold text-green-900 mb-4">Un Campamento de Ensueño</h3>
+                        <p class="text-green-800 mb-4">Fomentando la unidad de la Asociación Central Panameña al aire libre. La verdadera educación integra a la familia, el contacto directo con la creación y la sonrisa de la próxima generación.</p>
+                        <span class="inline-block px-4 py-2 bg-green-600 text-white text-sm font-semibold rounded-full w-max">Naturaleza y Familia</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección 3: El Santísimo (La Certeza y La Acción) -->
+    <section class="py-16 bg-tabernaculo text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center mb-8 gap-4">
+                <div class="h-10 w-2 bg-yellow-400 rounded"></div>
+                <h2 class="text-3xl font-bold text-white">El Santísimo: Certeza y Acción Tangible</h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-10">
+                <!-- Bendición de Dina -->
+                <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-sm border border-white/20">
+                    <h3 class="text-2xl font-semibold text-oro mb-4">El Código de Dina</h3>
+                    <p class="font-light text-gray-300 italic mb-4">"Sean nuestros hijos como plantas crecidas en su juventud, nuestras hijas como esquinas labradas como las de un palacio." <br><span class="text-sm font-bold mt-2 block">— Salmo 144:12</span></p>
+                    <p class="font-light text-gray-300 italic mb-4">"Bien dicen las hijas de Zelofehad; les darás la posesión de una heredad..." <br><span class="text-sm font-bold mt-2 block">— Números 27:7</span></p>
+                    <p class="text-sm text-gray-200 mt-4 border-t border-white/20 pt-4">La fortaleza estructural y el derecho a la herencia para toda casa formada por mujeres firmes en el Nuevo Pacto.</p>
+                </div>
+
+                <!-- Códigos de Generosidad -->
+                <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-sm border border-white/20">
+                    <h3 class="text-2xl font-semibold text-oro mb-4">La Apertura del Corazón</h3>
+                    <ul class="space-y-4 text-sm font-light text-gray-300">
+                        <li><strong class="text-white">1 Juan 3:16-17:</strong> El origen perfecto de la generosidad, recordando el sacrificio que abre cualquier corazón.</li>
+                        <li><strong class="text-white">Hechos 2:44-45:</strong> La manifestación exacta del desarrollo comunitario compartiendo las bendiciones.</li>
+                        <li><strong class="text-white">Proverbios 11:24-25:</strong> La respuesta de sabiduría para transformar la mentalidad del tacaño a través del ejemplo.</li>
+                        <li><strong class="text-white">Lucas 6:35:</strong> El mandato de actuar con la gracia divina para derribar las barreras del egoísmo.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center border-t border-gray-800">
+        <p class="text-sm tracking-widest uppercase">&copy; 2026 Ley SADV41 | Transmitiendo el propósito a la siguiente generación.</p>
+    </footer>
+
+</body>
+</html>

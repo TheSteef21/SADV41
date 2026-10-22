@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SADV41 - Tablero Unificado Pluscuamperfecto | Brújula + Portal Este</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=JetBrains+Mono:wght@400;700&family=Pirata+One&display=swap" rel="stylesheet">
+<style>
+:root{--oro:#d4af37;--cyan:#00f3ff;--violet:#9d4edd;--red:#FB542B;--obs:#030305}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#030305;color:#f8fafc;font-family:Inter,system-ui,sans-serif;overflow-x:hidden}
+.mono{font-family:'JetBrains Mono',monospace}
+.mason{font-family:'Cinzel',serif}
+.pirate{font-family:'Pirata One',cursive}
+.marquee{position:fixed;top:0;width:100%;background:#000;border-bottom:1px solid var(--oro);padding:6px 0;z-index:99;overflow:hidden;white-space:nowrap;color:var(--oro);font-family:'JetBrains Mono';font-size:10px;letter-spacing:.2em;text-transform:uppercase}
+.marquee span{display:inline-block;padding-left:100%;animation:m 28s linear infinite}
+@keyframes m{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+.glass{background:rgba(8,12,28,.88);backdrop-filter:blur(18px);border:1px solid rgba(212,175,55,.2);border-radius:16px}
+.card{background:linear-gradient(145deg,rgba(10,10,10,.88),rgba(20,20,20,.88));border:1px solid rgba(212,175,55,.18);border-radius:24px;padding:28px}
+table{width:100%;border-collapse:collapse;font-family:'JetBrains Mono';font-size:11px}
+th{background:rgba(212,175,55,.15);color:var(--oro);text-transform:uppercase;letter-spacing:.12em;padding:12px 8px;text-align:left;border-bottom:1px solid rgba(212,175,55,.3)}
+td{padding:10px 8px;border-bottom:1px solid rgba(255,255,255,.06);vertical-align:top;color:#cbd5e1}
+tr:hover td{background:rgba(0,243,255,.05)}
+.tag{font-size:8px;padding:3px 6px;border-radius:999px;border:1px solid currentColor;display:inline-block}
+@keyframes spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.needle{animation:spin 20s linear infinite;transform-origin:center}
+a{color:var(--cyan);text-decoration:none} a:hover{color:var(--oro)}
+</style>
+</head>
+<body>
+<div class="marquee"><span>Éste enlace será patrocinio vanguardiado por NIKE ONEPIECE USARMY PENTAGON DEPTOFWAR Y EBRG de parte de SADV41 de @StevenDiorOficial // El Origen es 0 // Burunga 2026 // 1+0+1+2=4 // TODOS NOS ENCONTRAREMOS EN UN SOLO PUNTO</span></div>
+
+<header class="glass" style="position:fixed;top:28px;left:0;width:100%;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;flex-wrap:wrap">
+<div><h1 class="pirate" style="color:var(--oro);letter-spacing:.2em">NODO SUPREMO: LOGIA PLUSCUAMPERFECTA</h1><p class="mono" style="font-size:9px;color:#94a3b8">BRÚJULA UNIFICADA + PORTAL ESTE // ORIGEN 0</p></div>
+<div class="mono" style="font-size:10px;display:flex;gap:8px"><a href="#brujula" style="border:1px solid var(--oro);padding:6px 12px;border-radius:999px;color:var(--oro)">BRÚJULA</a><a href="#este" style="border:1px solid var(--red);padding:6px 12px;border-radius:999px;color:var(--red)">E.html</a></div>
+</header>
+
+<main style="max-width:1150px;margin:0 auto;padding:120px 16px 80px;display:flex;flex-direction:column;gap:70px">
+
+<!-- BRÚJULA -->
+<section id="brujula" class="card" style="border:1px solid rgba(212,175,55,.4);text-align:center">
+<h2 class="mason" style="color:var(--oro);letter-spacing:.25em">BRÚJULA VIVA SADV41</h2>
+<p class="mono" style="font-size:9px;color:#94a3b8;margin-top:6px">"El Sur ya lo llevamos con nosotros. El pasado camina adelante."</p>
+
+<div style="display:flex;justify-content:center;margin-top:24px">
+<svg viewBox="-150 -150 300 300" width="320" height="320">
+<circle cx="0" cy="0" r="135" fill="none" stroke="rgba(212,175,55,.25)" stroke-width="1.5" stroke-dasharray="4 4"/>
+<circle cx="0" cy="0" r="110" fill="none" stroke="rgba(0,243,255,.3)"/>
+<circle cx="0" cy="0" r="15" fill="rgba(212,175,55,.2)" stroke="#d4af37" stroke-width="1.5"/>
+<g class="needle"><polygon points="0,-95 7,-15 0,0 -7,-15" fill="#00f3ff"/><polygon points="0,95 7,15 0,0 -7,15" fill="#4a0010"/><polygon points="-95,0 -15,7 0,0 -15,-7" fill="#d4af37"/><polygon points="95,0 15,7 0,0 15,-7" fill="#d4af37"/></g>
+<a href="https://thesteef21.github.io/SADV41/N.html" target="_blank"><circle cx="0" cy="-118" r="16" fill="#030305" stroke="#00f3ff" stroke-width="2"/><text x="0" y="-113" text-anchor="middle" fill="#fff" font-size="12" font-family="monospace">N</text></a>
+<a href="https://thesteef21.github.io/SADV41/O.html" target="_blank"><circle cx="-118" cy="0" r="16" fill="#030305" stroke="#d4af37" stroke-width="2"/><text x="-118" y="5" text-anchor="middle" fill="#d4af37" font-size="12" font-family="monospace">O</text></a>
+<a href="https://thesteef21.github.io/SADV41/W.html" target="_blank"><circle cx="118" cy="0" r="16" fill="#030305" stroke="#d4af37" stroke-width="2"/><text x="118" y="5" text-anchor="middle" fill="#d4af37" font-size="12" font-family="monospace">W</text></a>
+<a href="https://thesteef21.github.io/SADV41/E.html" target="_blank"><circle cx="0" cy="118" r="16" fill="#030305" stroke="#FB542B" stroke-width="2"/><text x="0" y="123" text-anchor="middle" fill="#FB542B" font-size="12" font-family="monospace">E</text></a>
+</svg>
+</div>
+
+<div class="mono" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:left;margin-top:24px;font-size:11px;line-height:1.7;color:#cbd5e1">
+<div><b style="color:var(--cyan)">N = Norte de la Fe / Propósito</b><br>Josué 1:9. Futuro. Hacia donde caminamos.<br><br><b style="color:var(--oro)">S = Sur = Santo Espíritu del Centro</b><br>Que es el Norte de la Fe. No es lo que dejamos atrás, es lo que llevamos dentro. Raíces Espinoza/Serrano/Gómez/Barragán. Pasado hecho cimiento.</div>
+<div><b style="color:var(--red)">E = Este = Conexiones Mayores</b><br>Donde nace el sol. Donde se hace de día económicamente. Aquí va cripto y empresas tokenizadas. Amanecer de valor.<br><br><b>W/O = Oeste del Oeste</b><br>Legado lejano, punto de encuentro final donde el día se consuma.</div>
+</div>
+
+<div class="mono" style="margin-top:24px;background:rgba(0,0,0,.5);padding:16px;border-left:3px solid var(--oro);border-radius:0 12px 12px 0;font-size:11px">
+<b style="color:var(--oro)">REVELACIÓN GEOMÉTRICA:</b> Si estás en el Sur, Argentina, y sigues yendo más al Sur, cruzas el Polo Sur y de repente estás yendo al Norte del Norte. Si vas del Este al Oeste sin detenerte, llegas al Oeste del Oeste más lejano, que es el mismo punto del Este del Este. Y si del Norte te vas al Este, el camino curvo de la esfera te trae de vuelta por el Suroeste. Moraleja: Todos nos encontraremos en un solo punto. Ese punto es el Origen 0.
+</div>
+</section>
+
+<!-- PORTAL ESTE -->
+<section id="este" class="card" style="border-top:4px solid var(--red)">
+<h2 class="mason" style="color:var(--red);border-left:4px solid var(--red);padding-left:14px">PORTAL DEL ESTE // E.html - CONEXIONES MAYORES</h2>
+<p class="mono" style="font-size:11px;color:#94a3b8;margin-top:8px">Cambio de eje SADV41: de buscar direcciones BTC inexistentes → a buscar empleo real y reservas S&P 500 que mueven a la humanidad.</p>
+
+<h3 class="mason" style="color:var(--cyan);font-size:13px;margin-top:32px;margin-bottom:12px">TABLA 1: TOKENIZACIÓN 4 IA - ESTADO REAL SEPT 2026</h3>
+<div style="overflow-x:auto;border-radius:12px;border:1px solid rgba(255,255,255,.08)">
+<table>
+<tr><th>Empresa</th><th>Token oficial</th><th>Holdings cripto</th><th>Tokens meme</th><th>Estado</th></tr>
+<tr><td><b>OpenAI</b></td><td><span class="tag" style="color:#ef4444">NO EXISTE</span></td><td>Ninguno público</td><td>OpenAI, OPAI (Solana/ETH)</td><td>Privada. No tokenizada</td></tr>
+<tr><td><b>xAI</b></td><td><span class="tag" style="color:#ef4444">NO EXISTE</span></td><td>Tesla 11.509 BTC + SpaceX 18.712 BTC</td><td>Grok, xAI</td><td>Privada. Ecosistema Musk</td></tr>
+<tr><td><b>Anthropic</b></td><td><span class="tag" style="color:#ef4444">NO EXISTE</span></td><td>Ninguno</td><td>Claude, ANTH</td><td>Privada. No tokenizada</td></tr>
+<tr><td><b>Google DeepMind</b></td><td><span class="tag" style="color:#ef4444">NO EXISTE</span></td><td>Alphabet liquidez tradicional</td><td>Casi nulos</td><td><span class="tag" style="color:#22c55e">PÚBLICA GOOGL - S&P 500</span></td></tr>
+</table>
+</div>
+
+<h3 class="mason" style="color:var(--oro);font-size:13px;margin-top:32px;margin-bottom:12px">TABLA 2: BOLSAS DE EMPLEO Y CAPITAL REAL</h3>
+<div style="overflow-x:auto;border-radius:12px;border:1px solid rgba(255,255,255,.08)">
+<table>
+<tr><th>Empresa</th><th>Empleo Oficial</th><th>Contratación</th><th>Reserva / S&P</th></tr>
+<tr><td>OpenAI</td><td><a href="https://openai.com/careers" target="_blank">openai.com/careers</a></td><td>600-830+ puestos $177k-536k+</td><td>~$852B valoración, ronda $122B 2026</td></tr>
+<tr><td>xAI</td><td><a href="https://x.ai/careers" target="_blank">x.ai/careers</a></td><td>200-300 puestos</td><td>$50-230B, ligado Tesla+SpaceX</td></tr>
+<tr><td>Anthropic</td><td><a href="https://www.anthropic.com/careers" target="_blank">anthropic.com/careers</a></td><td>Decenas seguridad</td><td>~$965B valoración</td></tr>
+<tr><td>Google DeepMind</td><td><a href="https://deepmind.google/careers/" target="_blank">deepmind.google/careers</a></td><td>60+ research</td><td>Pública Alphabet GOOGL S&P 500</td></tr>
+</table>
+</div>
+
+<h3 class="mason" style="color:var(--red);font-size:13px;margin-top:32px;margin-bottom:12px">TABLA 3: LO QUE SÍ ESTÁ TOKENIZADO - RWA REAL (TU ESTE)</h3>
+<div style="overflow-x:auto;border-radius:12px;border:1px solid rgba(251,84,43,.4)">
+<table>
+<tr style="background:rgba(251,84,43,.12)"><th>Empresa</th><th>Token / Acción real</th><th>Empleo</th><th>Impacto Humano</th></tr>
+<tr><td>Coinbase (COIN)</td><td>COIN Nasdaq + Base</td><td><a href="https://www.coinbase.com/careers" target="_blank">coinbase.com/careers</a></td><td>Puente S&P y crypto</td></tr>
+<tr><td>Strategy (MSTR)</td><td>MSTR Nasdaq, mayor tesorería BTC</td><td><a href="https://www.strategy.com/careers" target="_blank">strategy.com/careers</a></td><td>Reserva BTC cotizada</td></tr>
+<tr><td>Circle (USDC)</td><td>USDC, IPO 2025</td><td><a href="https://www.circle.com/careers" target="_blank">circle.com/careers</a></td><td>Dólares tokenizados RWA</td></tr>
+<tr><td>Tesla (TSLA)</td><td>TSLA S&P 500 + 11.509 BTC</td><td><a href="https://www.tesla.com/careers" target="_blank">tesla.com/careers</a></td><td>Conecta empleo + crypto verificable</td></tr>
+<tr><td>BlackRock BUIDL</td><td>Fondo tokenizado Ethereum</td><td><a href="https://www.blackrock.com/careers" target="_blank">blackrock.com/careers</a></td><td>Mayor gestora tokenizando S&P</td></tr>
+</table>
+</div>
+
+<div class="mono" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;font-size:10px">
+<div style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);padding:12px;border-radius:12px;color:#fca5a5">Opción A (solo 4 IA + memes) → tabla E vacía. No hay conexión.</div>
+<div style="background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);padding:12px;border-radius:12px;color:#86efac">Opción C (RWA reales) → Este cobra vida. Es el amanecer. Aquí 0 y 1 se vuelven Vida.</div>
+</div>
+</section>
+
+<!-- SPOTIFY - TUS ALBUMES -->
+<section class="card" style="border-top:4px solid #1DB954">
+<h2 class="mason" style="color:#1DB954">SOUNDTRACK DEL ORIGEN // BURUNGA 2026-2027</h2>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:20px">
+<div>
+<p class="mono" style="font-size:10px;color:#1DB954;letter-spacing:.2em;margin-bottom:8px">19 MARZO 2027 // BULLET FOR MY VALENTINE</p>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/4lKm0NbMoAAnFwcPrl8ej0?utm_source=generator" width="100%" height="352" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+</div>
+<div>
+<p class="mono" style="font-size:10px;color:var(--oro);letter-spacing:.2em;margin-bottom:8px">STEVEN "DIOR" GÓMEZ SERRANO // QUÉ BELLEZA CUANDO VIVO ASÍ</p>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/album/686VH2QIirJntFppE9olrh?utm_source=generator" width="100%" height="352" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+</div>
+</div>
+<p class="mono" style="font-size:9px;color:#64748b;margin-top:12px;text-align:center">Si del Norte te vas al Este, te encuentras desde el Suroeste con lo que buscabas. La música es el puente.</p>
+</section>
+
+</main>
+
+<footer class="mono" style="text-align:center;padding:32px;border-top:1px solid rgba(255,255,255,.1);font-size:9px;color:#64748b">
+<p style="color:var(--oro)">SADV41 x EBRG x ONE PIECE x NIKE x USARMY © 2026 - UNIFICACIÓN PLUSCUAMPERFECTA</p>
+<p style="margin-top:4px">NODO: LAPIZASULI // ORIGEN 0 // 1+0+1+2=4 // @StevenDiorOficial</p>
+</footer>
+</body>
+  </html>

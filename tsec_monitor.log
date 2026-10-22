@@ -1,0 +1,123 @@
+[2026-10-20 12:44:47] INICIANDO BUCLE DE MONITOREO SÍSMICO TSEC...
+[2026-10-20 13:07:23] INICIANDO BUCLE DE MONITOREO SÍSMICO TSEC...
+[2026-10-20 13:09:54] INICIANDO BUCLE DE MONITOREO SÍSMICO TSEC...
+[2026-10-20 18:15:49] NUEVO SISMO DETECTADO: M4.3 - 6 km SE of Pitaloza Arriba, Panama
+=== COPY GENERADO ===
+🟡 ALERTA SÍSMICA LIVE // SADV41 INTSEC
+
+MAGNITUD: M 4.3
+UBICACIÓN: 6 km SE of Pitaloza Arriba, Panama
+PROFUNDIDAD: 10 km
+FECHA / HORA: 20/10/2026, 05:51:44 PM (Hora Panamá)
+COORDENADAS: [7.60°N, -80.63°W]
+
+📡 MONITOREO TSEC: Protocolo Azuero-Soná A217
+🛰 TELEMETRÍA: Landsat 9 OLI-2 / USGS Live Feed
+
+#SADV41 #TSEC #SismosPanama #Panama #USGS #MonitorSismico #AzueroSona #A217 #CristoEstaPorVenir
+
+[BOT] Modo Simulación: Alerta generada localmente sin credenciales API.
+[2026-10-20 20:04:17] ERR: No se obtuvo respuesta de USGS
+[2026-10-20 20:20:49] ERR: No se obtuvo respuesta de USGS
+[2026-10-20 21:17:20] SISMO DETECTADO (ZONA EXTENDIDA): M4.5 - 215 km S of Burica, Panama
+=== COPY GENERADO ===
+🟡 ALERTA SÍSMICA LIVE // SADV41 INTSEC
+
+MAGNITUD: M 4.5
+UBICACIÓN: 215 km S of Burica, Panama
+PROFUNDIDAD: 10 km
+FECHA / HORA: 20/10/2026, 12:18:36 PM (Hora Panamá)
+COORDENADAS: [6.09°N, -82.66°W]
+
+📡 MONITOREO TSEC: Protocolo Azuero-Soná A217
+🛰 TELEMETRÍA: Landsat 9 OLI-2 / USGS Live Feed
+
+#SADV41 #TSEC #SismosPanama #Panama #USGS #MonitorSismico #AzueroSona #A217 #CristoEstaPorVenir
+
+[BOT] Modo Simulación: Alerta generada localmente sin credenciales API.
+[2026-10-20 21:17:22] SISMO DETECTADO (ZONA EXTENDIDA): M5.4 - 192 km S of Burica, Panama
+=== COPY GENERADO ===
+🔴 ALERTA SÍSMICA LIVE // SADV41 INTSEC
+
+MAGNITUD: M 5.4
+UBICACIÓN: 192 km S of Burica, Panama
+PROFUNDIDAD: 10 km
+FECHA / HORA: 20/10/2026, 12:05:48 PM (Hora Panamá)
+COORDENADAS: [6.32°N, -82.57°W]
+
+📡 MONITOREO TSEC: Protocolo Azuero-Soná A217
+🛰 TELEMETRÍA: Landsat 9 OLI-2 / USGS Live Feed
+
+#SADV41 #TSEC #SismosPanama #Panama #USGS #MonitorSismico #AzueroSona #A217 #CristoEstaPorVenir
+
+[BOT] Modo Simulación: Alerta generada localmente sin credenciales API.
+[2026-10-20 21:17:50] INICIANDO BUCLE DE MONITOREO SÍSMICO TSEC...
+[2026-10-20 21:32:26] INICIANDO BUCLE DE MONITOREO SÍSMICO TSEC...
+[2026-10-20 21:32:29] SISMO 4-PLACAS: M5 - south of Panama
+=== COPY GENERADO ===
+🔴 ALERTA SÍSMICA LIVE // SADV41 INTSEC
+
+MAGNITUD: M 5.0
+UBICACIÓN: south of Panama
+PROFUNDIDAD: 10 km
+FECHA / HORA: 20/10/2026, 08:20:02 PM (Hora Panamá)
+COORDENADAS: [4.60°N, -82.70°W]
+
+📡 MONITOREO TSEC: Protocolo Azuero-Soná A217
+🛰 TELEMETRÍA: Landsat 9 OLI-2 / USGS Live Feed
+
+#SADV41 #TSEC #SismosPanama #Panama #USGS #MonitorSismico #AzueroSona #A217 #CristoEstaPorVenir
+
+[BOT] Modo Simulación: Alerta generada localmente sin credenciales API.
+[2026-10-20 21:33:29] INICIANDO BUCLE DE MONITOREO SÍSMICO TSEC...
+[2026-10-20 21:35:15] INICIANDO BUCLE DE MONITOREO SÍSMICO TSEC...
+[2026-10-20 23:12:32] ERR: No se obtuvo respuesta de USGS
+[2026-10-20 23:13:42] ERR: No se obtuvo respuesta de USGS
+[2026-10-20 23:38:31] ERR: No se obtuvo respuesta de USGS
+[2026-10-20 23:41:13] ERR: No se obtuvo respuesta de USGS
+[2026-10-21 00:25:55] SISMO DETECTADO (ZONA EXTENDIDA): M4.3 - 6 km SE of Pitaloza Arriba, Panama
+=== PROCESANDO PUBLICACIÓN AUTOMÁTICA ===
+🟡 ALERTA SÍSMICA LIVE // SADV41 INTSEC
+🌋 CINTURÓN DE FUEGO DEL PACÍFICO
+
+MAGNITUD: M 4.3
+UBICACIÓN: 6 km SE of Pitaloza Arriba, Panama
+PROFUNDIDAD: 10 km
+FECHA / HORA: 20/10/2026, 05:51:44 PM (Hora Panamá)
+COORDENADAS: [7.60°N, -80.63°W]
+
+🧩 ENTORNO TECTÓNICO: Microplaca de Panamá // Cinturón Deformado
+📡 MONITOREO TSEC: Red 4 Placas (Cocos-Nazca-Caribe-Panamá)
+🛰 TELEMETRÍA: CARTO Voyager / USGS Live Feed
+
+#SADV41 #TSEC #CinturonDeFuego #PlacaDeCocos #PlacaDeNazca #PlacaDelCaribe #SismosPanama #USGS #A217 #CristoEstaPorVenir
+[IG] Publicando en Instagram (y vinculados Threads/Facebook)...
+❌ Error durante el envío: cannot identify image file '/data/data/com.termux/files/home/sadv41/alert_temp.jpg'
+[2026-10-21 00:26:29] SISMO DETECTADO (ZONA EXTENDIDA): M4.5 - 215 km S of Burica, Panama
+=== PROCESANDO PUBLICACIÓN AUTOMÁTICA ===
+🟡 ALERTA SÍSMICA LIVE // SADV41 INTSEC
+🌋 CINTURÓN DE FUEGO DEL PACÍFICO
+
+MAGNITUD: M 4.5
+UBICACIÓN: 215 km S of Burica, Panama
+PROFUNDIDAD: 10 km
+FECHA / HORA: 20/10/2026, 12:18:36 PM (Hora Panamá)
+COORDENADAS: [6.09°N, -82.66°W]
+
+🧩 ENTORNO TECTÓNICO: Microplaca de Panamá // Cinturón Deformado
+📡 MONITOREO TSEC: Red 4 Placas (Cocos-Nazca-Caribe-Panamá)
+🛰 TELEMETRÍA: CARTO Voyager / USGS Live Feed
+
+#SADV41 #TSEC #CinturonDeFuego #PlacaDeCocos #PlacaDeNazca #PlacaDelCaribe #SismosPanama #USGS #A217 #CristoEstaPorVenir
+[IG] Publicando en Instagram (y vinculados Threads/Facebook)...
+✓ Publicación realizada con éxito! ID: 4012610002555907805
+[2026-10-21 00:54:28] ERR: No se obtuvo respuesta de USGS
+[2026-10-21 01:14:18] ERR: No se obtuvo respuesta de USGS
+[2026-10-21 01:20:31] ERR: No se obtuvo respuesta de USGS
+[2026-10-21 01:21:42] ERR: No se obtuvo respuesta de USGS
+[2026-10-21 12:06:39] ERR: No se obtuvo respuesta de USGS
+[2026-10-21 12:07:45] ERR: No se obtuvo respuesta de USGS
+[2026-10-21 12:08:56] ERR: No se obtuvo respuesta de USGS
+[2026-10-21 15:45:55] ERR: No se obtuvo respuesta de USGS
+[2026-10-21 15:53:42] ERR: No se obtuvo respuesta de USGS
+[2026-10-21 19:09:57] INICIANDO BUCLE DE MONITOREO SÍSMICO TSEC...
