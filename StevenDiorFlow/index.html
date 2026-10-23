@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADV41 | Boxdrop - Importaciones & Alibaba Action</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Ethers.js for Web3 Payments -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#070a12',
+                        card: '#0d1322',
+                        alibabaOrange: '#ff6a00'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #070a12; color: #f1f5f9; }
+        .glow-orange { box-shadow: 0 0 25px rgba(255, 106, 0, 0.25); }
+        .gradient-text { background: linear-gradient(135deg, #ff6a00 0%, #ffa200 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 sm:p-6 selection:bg-orange-500 selection:text-black">
+
+    <!-- Flyer Container Minimalista -->
+    <div class="max-w-xl w-full bg-card p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl space-y-6 relative overflow-hidden glow-orange">
+        
+        <!-- Decorative Glow Background -->
+        <div class="absolute -top-24 -right-24 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- Header / Marca -->
+        <div class="text-center space-y-2 border-b border-slate-800 pb-5">
+            <div class="inline-block bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs px-3.5 py-1 rounded-full font-bold tracking-widest uppercase">
+                📦 BOXDROP • SADV41 PROTOCOL
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                ¡TE TRAEMOS TU <span class="gradient-text">PRODUCTO!</span>
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-300">
+                Ese que viste en redes sociales o en Alibaba. De China & USA directo a Panamá 🇵🇦✨
+            </p>
+        </div>
+
+        <!-- Dirección Única Multired Web3 -->
+        <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2 text-center">
+            <div class="flex justify-between items-center text-[11px]">
+                <span class="text-orange-400 font-bold uppercase tracking-wider">Billetera Autorizada (Multi-Red)</span>
+                <button onclick="copyAddress()" class="text-slate-400 hover:text-white transition flex items-center gap-1 text-[10px]">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+            </div>
+            <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 font-mono text-xs text-emerald-400 break-all select-all">
+                0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB
+            </div>
+            <p class="text-[10px] text-slate-400">
+                ✅ Compatible con: <span class="text-slate-200">BSC, Ethereum, Solana, Polygon, Arbitrum, Base, Avalanche, TON, TRON y más.</span>
+            </p>
+        </div>
+
+        <!-- Redes Soportadas Minimalistas -->
+        <div class="grid grid-cols-4 sm:grid-cols-6 gap-1.5 text-center text-[10px] font-semibold text-slate-400">
+            <div class="bg-slate-900 p-2 rounded-lg border border-slate-800 text-amber-400">BSC</div>
+            <div class="bg-slate-900 p-2 rounded-lg border border-slate-800 text-blue-400">ETH</div>
+            <div class="bg-slate-900 p-2 rounded-lg border border-slate-800 text-purple-400">SOL</div>
+            <div class="bg-slate-900 p-2 rounded-lg border border-slate-800 text-emerald-400">BASE</div>
+            <div class="bg-slate-900 p-2 rounded-lg border border-slate-800 text-cyan-400">ARB</div>
+            <div class="bg-slate-900 p-2 rounded-lg border border-slate-800 text-rose-400">AVAX</div>
+        </div>
+
+        <!-- Pago Directo Cripto / Web3 -->
+        <div class="bg-slate-900/50 p-4 rounded-2xl border border-slate-800 space-y-3">
+            <div class="flex justify-between items-center">
+                <span class="text-xs font-bold text-slate-300">💳 Pago Rápido Web3</span>
+                <button id="btnConnect" onclick="connectWallet()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-3 py-1.5 rounded-lg text-[11px] transition">
+                    ⚡ <span id="walletBtnText">Conectar Wallet</span>
+                </button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <input id="inputPayAmount" type="number" step="0.001" placeholder="Monto BNB" class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-orange-500 font-mono">
+                <button onclick="payDirectCrypto()" class="sm:col-span-2 bg-gradient-to-r from-orange-500 to-amber-500 text-slate-950 font-bold py-2 px-4 rounded-xl text-xs transition shadow-lg hover:opacity-95">
+                    🚀 Enviar Pago Cripto Directo
+                </button>
+            </div>
+        </div>
+
+        <!-- Botón WhatsApp y Footer -->
+        <div class="space-y-3 pt-1 text-center">
+            <a href="https://wa.me/50769362166?text=Hola%20Boxdrop,%20vi%20un%20producto%20en%20redes%20sociales/Alibaba%20y%20quiero%20cotizarlo." target="_blank" rel="noopener noreferrer" class="block w-full bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold py-3 rounded-2xl text-xs transition shadow-lg flex items-center justify-center gap-2">
+                <i class="fa-brands fa-whatsapp text-base"></i> Cotizar en WhatsApp (+507 69362166)
+            </a>
+            <p class="text-[10px] text-slate-500">SADV41 Protocolo Descentralizado • Alibaba Action Hub</p>
+        </div>
+
+    </div>
+
+    <!-- Script Web3 -->
+    <script>
+        const TARGET_WALLET = "0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB";
+
+        function copyAddress() {
+            navigator.clipboard.writeText(TARGET_WALLET);
+            alert("¡Dirección copiada al portapapeles!");
+        }
+
+        async function connectWallet() {
+            if (window.ethereum) {
+                try {
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    const acc = accounts[0];
+                    document.getElementById('walletBtnText').innerText = `${acc.slice(0,6)}...${acc.slice(-4)}`;
+                } catch (e) {
+                    console.error(e);
+                }
+            } else {
+                alert("Por favor usa una Web3 Wallet compatible (MetaMask / Binance Web3 Wallet).");
+            }
+        }
+
+        async function payDirectCrypto() {
+            const amount = document.getElementById('inputPayAmount').value;
+            if (!amount || parseFloat(amount) <= 0) {
+                alert("Por favor ingresa un monto válido.");
+                return;
+            }
+            if (!window.ethereum) {
+                alert("No se detectó Web3 Wallet.");
+                return;
+            }
+            try {
+                const provider = new ethers.providers.Web3Provider(window.ethereum);
+                const signer = provider.getSigner();
+                const tx = await signer.sendTransaction({
+                    to: TARGET_WALLET,
+                    value: ethers.utils.parseEther(amount)
+                });
+                alert(`¡Transacción enviada! Hash: ${tx.hash}`);
+                await tx.wait();
+                alert("¡Pago confirmado exitosamente!");
+            } catch (e) {
+                alert(`Error: ${e.message}`);
+            }
+        }
+    </script>
+</body>
+</html>
