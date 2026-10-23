@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADV41 | Boxdrop - Importaciones & Alibaba Action Hub</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Ethers.js for Web3 Payments -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#070a12',
+                        card: '#0d1322',
+                        alibabaOrange: '#ff6a00',
+                        alibabaDark: '#e65c00'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #070a12; color: #f1f5f9; }
+        .glow-orange { box-shadow: 0 0 25px rgba(255, 106, 0, 0.3); }
+        .glow-button { box-shadow: 0 4px 20px rgba(255, 106, 0, 0.4); transition: all 0.3s ease; }
+        .glow-button:hover { box-shadow: 0 6px 25px rgba(255, 106, 0, 0.6); transform: translateY(-2px); }
+        .gradient-text { background: linear-gradient(135deg, #ff6a00 0%, #ffa200 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-orange-500 selection:text-black pb-20">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-gradient-to-r from-orange-600 via-amber-600 to-orange-600 text-white text-xs sm:text-sm py-2 px-4 text-center font-bold tracking-wide shadow-md">
+        📦 ¡TE TRAEMOS TU PRODUCTO! De China & USA a Panamá (Alibaba Action Hub) 🇵🇦✨
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-navy/90 border-b border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-orange-500 to-amber-500 flex items-center justify-center text-slate-950 font-extrabold text-xl glow-orange">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+                <div>
+                    <h1 class="text-base sm:text-lg font-extrabold tracking-tight text-white">BOXDROP <span class="gradient-text">SADV41</span></h1>
+                    <p class="text-[11px] text-slate-400 font-medium">Alibaba & Global Sourcing Agent</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <a href="https://wa.me/50769362166?text=Hola%20Boxdrop,%20quiero%20traer%20un%20producto%20que%20vi%20en%20redes%20sociales." target="_blank" rel="noopener noreferrer" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-2 rounded-xl text-xs font-semibold transition shadow-lg flex items-center gap-1.5">
+                    <i class="fa-brands fa-whatsapp text-sm"></i> <span class="hidden sm:inline">WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-6xl mx-auto px-4 sm:px-6 py-8 space-y-10 w-full">
+
+        <!-- Hero Section -->
+        <section class="text-center space-y-4 relative py-6">
+            <div class="absolute inset-0 -z-10 flex items-center justify-center opacity-10 pointer-events-none">
+                <div class="w-[450px] h-[450px] bg-orange-500 rounded-full blur-[140px]"></div>
+            </div>
+            <span class="inline-block bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs sm:text-sm font-semibold px-4 py-1.5 rounded-full">
+                ✨ Compras Online • Envíos Aéreos & Marítimos
+            </span>
+            <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
+                ESE PRODUCTO QUE VISTE EN <span class="gradient-text">REDES SOCIALES</span>
+            </h2>
+            <p class="text-sm sm:text-base text-slate-300 max-w-2xl mx-auto">
+                Lo cotizamos, lo compramos en Alibaba, China o USA, y te lo entregamos seguro en Panamá. Paga fácil con criptomonedas o Binance Pay.
+            </p>
+        </section>
+
+        <!-- Web3 Wallet Connection & Direct Payment Hub -->
+        <section class="bg-card p-6 rounded-3xl border border-slate-800 shadow-2xl space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-800 pb-4">
+                <div>
+                    <h3 class="text-sm font-bold text-orange-400 uppercase tracking-wider flex items-center gap-2">
+                        <span>💳</span> Billetera de Agente & Pagos Web3 Multi-Red
+                    </h3>
+                    <p class="text-xs text-slate-400 mt-1">Dirección unificada compatible con BSC, Ethereum, Solana, Polygon, Arbitrum, Base, etc.</p>
+                </div>
+                <button id="btnConnect" onclick="connectWallet()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2.5 rounded-xl text-xs shadow-lg transition flex items-center gap-2">
+                    ⚡ <span id="walletBtnText">Conectar Wallet Web3</span>
+                </button>
+            </div>
+
+            <!-- Wallet Address & Copy Box -->
+            <div class="bg-slate-950 p-4 rounded-2xl border border-slate-900 space-y-2">
+                <div class="flex justify-between items-center text-xs">
+                    <span class="text-slate-400 font-mono">Dirección Autorizada:</span>
+                    <button onclick="copyAddress()" class="text-orange-400 hover:text-orange-300 font-semibold flex items-center gap-1 text-[11px]">
+                        <i class="fa-regular fa-copy"></i> Copiar Dirección
+                    </button>
+                </div>
+                <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 text-xs text-emerald-400 font-mono break-all select-all">
+                    0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB
+                </div>
+                <p class="text-[10px] text-amber-500/90 font-medium">
+                    ⚠️ Advertencia: Envíos compatibles con múltiples redes Web3. Asegúrate de seleccionar la red correcta al transferir.
+                </p>
+            </div>
+
+            <!-- Direct Payment Form -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                <div class="sm:col-span-2 space-y-1">
+                    <label class="block text-xs text-slate-300 font-medium">Monto a pagar (BNB / Moneda nativa):</label>
+                    <input id="inputPayAmount" type="number" step="0.001" placeholder="Ej. 0.01" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-200 focus:outline-none focus:border-orange-500 font-mono">
+                </div>
+                <div class="flex items-end">
+                    <button onclick="payDirectCrypto()" class="w-full bg-gradient-to-r from-orange-500 to-amber-500 text-slate-950 font-bold py-2.5 px-4 rounded-xl text-xs glow-button transition">
+                        🚀 Enviar Pago Cripto
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Supported Networks Grid -->
+        <section class="space-y-3">
+            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-widest text-center">Redes Web3 Soportadas para tus Pagos</h3>
+            <div class="grid grid-cols-3 sm:grid-cols-6 gap-2 text-center text-[11px] font-semibold">
+                <div class="bg-card border border-slate-800 p-2.5 rounded-xl text-amber-400">BSC (BNB)</div>
+                <div class="bg-card border border-slate-800 p-2.5 rounded-xl text-blue-400">Ethereum</div>
+                <div class="bg-card border border-slate-800 p-2.5 rounded-xl text-purple-400">Solana</div>
+                <div class="bg-card border border-slate-800 p-2.5 rounded-xl text-emerald-400">Base</div>
+                <div class="bg-card border border-slate-800 p-2.5 rounded-xl text-cyan-400">Arbitrum</div>
+                <div class="bg-card border border-slate-800 p-2.5 rounded-xl text-orange-400">Optimism</div>
+                <div class="bg-card border border-slate-800 p-2.5 rounded-xl text-rose-400">Avalanche</div>
+                <div class="bg-card border border-slate-800 p-2.5 rounded-xl text-indigo-400">Polygon</div>
+                <div class="bg-card border border-slate-800 p-2.5 rounded-xl text-sky-400">TON</div>
+                <div class="bg-card border border-slate-800 p-2.5 rounded-xl text-red-500">TRON</div>
+                <div class="bg-card border border-slate-800 p-2.5 rounded-xl text-yellow-400">Dogecoin</div>
+                <div class="bg-card border border-slate-800 p-2.5 rounded-xl text-teal-400">Sui / Sei</div>
+            </div>
+        </section>
+
+        <!-- Sourcing Calculator & Showcase -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Boxdrop Import Calculator -->
+            <div class="bg-card p-6 rounded-3xl border border-slate-800 space-y-4">
+                <div class="border-b border-slate-800 pb-3">
+                    <h3 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                        <span>📦</span> Cotizador Exprés de Importación
+                    </h3>
+                    <p class="text-xs text-slate-400">Calcula tu estimado de importación desde China o USA a Panamá.</p>
+                </div>
+                <div class="space-y-3 text-xs">
+                    <div>
+                        <label class="block text-slate-400 mb-1">Origen del Producto:</label>
+                        <select id="calcOrigin" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-slate-200 focus:outline-none focus:border-orange-500">
+                            <option value="alibaba">Alibaba / China (Marítimo / Aéreo)</option>
+                            <option value="usa">Estados Unidos (Courier USA - Panamá)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 mb-1">Valor aproximado del producto ($ USD):</label>
+                        <input id="calcValue" type="number" placeholder="50" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-slate-200 focus:outline-none focus:border-orange-500 font-mono">
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 mb-1">Peso estimado (libras / kg):</label>
+                        <input id="calcWeight" type="number" placeholder="2" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-slate-200 focus:outline-none focus:border-orange-500 font-mono">
+                    </div>
+                    <button onclick="calculateImport()" class="w-full bg-slate-800 hover:bg-slate-700 text-orange-400 font-bold py-2.5 rounded-xl transition">
+                        Calcular Estimado
+                    </button>
+                    <div id="calcResult" class="bg-slate-950 p-3 rounded-xl border border-slate-900 text-slate-300 hidden font-mono"></div>
+                </div>
+            </div>
+
+            <!-- Operations Terminal Log -->
+            <div class="bg-card p-6 rounded-3xl border border-slate-800 space-y-4 flex flex-col justify-between">
+                <div>
+                    <div class="flex justify-between items-center border-b border-slate-800 pb-3">
+                        <h3 class="text-sm font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                            <span>💻</span> Log de Operaciones Agentic AI
+                        </h3>
+                        <button onclick="clearTerminal()" class="text-[11px] text-slate-500 hover:text-slate-300">Limpiar</button>
+                    </div>
+                </div>
+                <div id="terminalLogs" class="bg-slate-950 rounded-xl p-3 h-48 overflow-y-auto space-y-1.5 text-xs font-mono border border-slate-900 text-slate-300">
+                    <p class="text-slate-500">[System] Boxdrop & Alibaba Hub inicializado. Listo para procesar solicitudes y pagos.</p>
+                </div>
+                <div class="pt-2">
+                    <a href="https://wa.me/50769362166?text=Hola%20Boxdrop,%20quiero%20cotizar%20un%20producto%20de%20Alibaba%20o%20redes%20sociales." target="_blank" rel="noopener noreferrer" class="block w-full bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold py-3 rounded-xl text-center text-xs transition shadow-lg">
+                        <i class="fa-brands fa-whatsapp mr-1 text-sm"></i> Enviar Producto por WhatsApp (+507 69362166)
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 bg-navy/90 py-6 px-4 text-center mt-12 text-xs text-slate-500">
+        <p class="font-semibold text-slate-400">BOXDROP • SADV41 Protocol</p>
+        <p class="mt-1">Importaciones desde China, Alibaba y USA hacia Panamá. Soporte Rápido y Seguro.</p>
+        <p class="mt-2 text-[10px] text-slate-600">© 2026 Steven Dior. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        const TARGET_WALLET = "0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB";
+        let activeAddress = TARGET_WALLET;
+
+        function appendLog(msg, type = "normal") {
+            const el = document.getElementById('terminalLogs');
+            const p = document.createElement('p');
+            const time = new Date().toLocaleTimeString();
+            let color = "text-slate-300";
+            if (type === "success") color = "text-emerald-400 font-semibold";
+            if (type === "error") color = "text-rose-400";
+            if (type === "info") color = "text-amber-400";
+
+            p.className = color;
+            p.innerText = `[${time}] ${msg}`;
+            el.appendChild(p);
+            el.scrollTop = el.scrollHeight;
+        }
+
+        function clearTerminal() {
+            document.getElementById('terminalLogs').innerHTML = '<p class="text-slate-500">[System] Terminal limpia.</p>';
+        }
+
+        function copyAddress() {
+            navigator.clipboard.writeText(TARGET_WALLET);
+            appendLog(`Dirección copiada: ${TARGET_WALLET}`, "success");
+        }
+
+        async function connectWallet() {
+            if (window.ethereum) {
+                try {
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    activeAddress = accounts[0];
+                    document.getElementById('walletBtnText').innerText = `${activeAddress.slice(0,6)}...${activeAddress.slice(-4)}`;
+                    appendLog(`Wallet conectada: ${activeAddress}`, "success");
+                } catch (e) {
+                    appendLog(`Error conectando wallet: ${e.message}`, "error");
+                }
+            } else {
+                appendLog("Modo RPC predeterminado activo para Boxdrop Agent.", "info");
+            }
+        }
+
+        async function payDirectCrypto() {
+            const amount = document.getElementById('inputPayAmount').value;
+            if (!amount || parseFloat(amount) <= 0) {
+                appendLog("Por favor ingresa un monto válido.", "error");
+                return;
+            }
+            if (!window.ethereum) {
+                appendLog("No se detectó Web3 Provider. Usa MetaMask o Binance Web3 Wallet.", "error");
+                return;
+            }
+            try {
+                appendLog(`Iniciando transferencia de ${amount} BNB...`, "info");
+                const provider = new ethers.providers.Web3Provider(window.ethereum);
+                const signer = provider.getSigner();
+                const tx = await signer.sendTransaction({
+                    to: TARGET_WALLET,
+                    value: ethers.utils.parseEther(amount)
+                });
+                appendLog(`¡Transacción enviada! Hash: ${tx.hash}`, "success");
+                await tx.wait();
+                appendLog("¡Pago confirmado exitosamente en la blockchain!", "success");
+            } catch (e) {
+                appendLog(`Error en la transacción: ${e.message}`, "error");
+            }
+        }
+
+        function calculateImport() {
+            const origin = document.getElementById('calcOrigin').value;
+            const val = parseFloat(document.getElementById('calcValue').value) || 0;
+            const weight = parseFloat(document.getElementById('calcWeight').value) || 1;
+            
+            let shippingEst = origin === 'alibaba' ? (weight * 3.50 + 15) : (weight * 2.75 + 8);
+            let totalEst = val + shippingEst;
+
+            const resEl = document.getElementById('calcResult');
+            resEl.classList.remove('hidden');
+            resEl.innerHTML = `Estimado de Importación:<br>• Valor Producto: $${val.toFixed(2)}<br>• Envío & Handling: $${shippingEst.toFixed(2)}<br>• Total Aproximado a Panamá: <strong class="text-emerald-400">$${totalEst.toFixed(2)} USD</strong>`;
+            appendLog(`Cotización calculada para origen ${origin.toUpperCase()}: ~$${totalEst.toFixed(2)}`, "info");
+        }
+    </script>
+</body>
+</html>
