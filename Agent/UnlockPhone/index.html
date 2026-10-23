@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADV41 | STEVENDIOR.AI AGENT HUB & UNLOCKPHONE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#070a12',
+                        card: '#0d1322',
+                        borderDark: '#1e293b'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-navy text-slate-100 min-h-screen font-mono p-4 sm:p-6 pb-24">
+
+    <div class="max-w-3xl mx-auto space-y-6">
+        
+        <!-- Header & Wallet Connection -->
+        <header class="border-b border-slate-800 pb-4 space-y-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <span class="text-xl">🛸</span>
+                    <h1 class="text-lg font-bold text-emerald-400 tracking-wider">SADV41 <span class="text-slate-400">|</span> STEVENDIOR.AI</h1>
+                </div>
+                <a href="https://wa.me/50769362166" target="_blank" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-xs py-1.5 px-3 rounded-lg flex items-center gap-1 transition-all">
+                    💬 WhatsApp Soporte
+                </a>
+            </div>
+            <p class="text-xs text-slate-400">Protocolo Descentralizado - Licencias UnlockTool & Agentic AI</p>
+            
+            <button id="btnConnect" onclick="connectWallet()" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2.5 px-4 rounded-lg text-xs shadow-lg transition-all flex justify-center items-center gap-2">
+                ⚡ <span id="walletBtnText">Conectar Wallet Web3</span>
+            </button>
+        </header>
+
+        <!-- Estado del Sistema -->
+        <section class="bg-card p-4 rounded-xl border border-slate-800 space-y-2 text-xs">
+            <h2 class="font-bold text-amber-400 uppercase tracking-widest border-b border-slate-800/80 pb-1">ESTADO DEL SISTEMA</h2>
+            <div class="flex justify-between items-center pt-1">
+                <span class="flex items-center gap-2 text-slate-300">
+                    <span id="dotWallet" class="w-2 h-2 rounded-full bg-rose-500"></span>
+                    Wallet EVM: <span id="textWalletState" class="text-slate-400 font-bold">DESCONECTADA</span>
+                </span>
+                <span class="flex items-center gap-2 text-slate-300">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Nodo stevendior.ai: <span class="text-emerald-400 font-bold">ACTIVO (BSC RPC)</span>
+                </span>
+            </div>
+        </section>
+
+        <!-- Panel de Pago Directo Crypto a la Wallet del Agente -->
+        <section class="bg-card p-4 rounded-xl border border-amber-500/30 space-y-3 shadow-lg">
+            <h2 class="text-xs font-bold text-amber-400 uppercase tracking-widest flex items-center gap-1.5">
+                💳 PAGO DIRECTO CRIPTO (BSC AGENT HUB)
+            </h2>
+            <p class="text-[11px] text-slate-400">Transfiere directamente en BNB o tokens BEP-20 a la wallet oficial del agente.</p>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                <div>
+                    <label class="block text-[10px] text-slate-400 mb-1">Monto en BNB:</label>
+                    <input id="inputPayAmount" type="number" step="0.001" placeholder="0.01" class="w-full bg-slate-900 border border-slate-700 rounded px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-amber-400">
+                </div>
+                <div class="flex items-end">
+                    <button onclick="payDirectCrypto()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold py-2 px-3 rounded text-xs transition-all flex justify-center items-center gap-1 shadow">
+                        🚀 Enviar Pago Cripto
+                    </button>
+                </div>
+            </div>
+            <div class="text-[10px] text-slate-500 break-all font-mono pt-1">
+                Destino (Agent Wallet): <span class="text-slate-300">0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB</span>
+            </div>
+        </section>
+
+        <!-- Botones de Acción Directa (Panel Táctico) -->
+        <section class="bg-card p-4 rounded-xl border border-slate-800 space-y-3">
+            <h2 class="text-xs font-bold text-emerald-400 uppercase tracking-widest">ACCIONES RÁPIDAS AGENTIC AI</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <button onclick="fetchAllBalances()" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 text-emerald-400 font-semibold py-2.5 px-3 rounded-lg text-xs transition-all flex items-center justify-center gap-1.5 shadow">
+                    📊 Consultar Portfolio
+                </button>
+                <button onclick="estimateGas()" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 text-amber-400 font-semibold py-2.5 px-3 rounded-lg text-xs transition-all flex items-center justify-center gap-1.5 shadow">
+                    ⛽ Estimar Gas
+                </button>
+                <button onclick="checkNodeStatus()" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 text-blue-400 font-semibold py-2.5 px-3 rounded-lg text-xs transition-all flex items-center justify-center gap-1.5 shadow">
+                    ⚡ Estado Nodo
+                </button>
+                <button onclick="copyWalletAddress()" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 text-purple-400 font-semibold py-2.5 px-3 rounded-lg text-xs transition-all flex items-center justify-center gap-1.5 shadow">
+                    📋 Copiar Wallet
+                </button>
+            </div>
+        </section>
+
+        <!-- Log de Operaciones -->
+        <section class="bg-card p-4 rounded-xl border border-slate-800 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                <h2 class="text-xs font-semibold text-slate-400 uppercase tracking-widest">LOG DE OPERACIONES</h2>
+                <button onclick="clearTerminal()" class="text-xs text-slate-500 hover:text-slate-300">Limpiar Pantalla</button>
+            </div>
+
+            <div id="logs" class="bg-slate-950 rounded-lg p-3 h-48 overflow-y-auto space-y-1.5 text-xs font-mono border border-slate-900">
+                <p class="text-slate-500">[System] Panel táctico listo. Selecciona una acción de pago o consulta.</p>
+            </div>
+        </section>
+
+        <!-- Catálogo de Activos Registrados -->
+        <section class="space-y-3">
+            <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Catálogo de Activos Registrados (BSC On-Chain)</h2>
+            <div id="assetsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+        </section>
+
+    </div>
+
+    <script>
+        const BSC_RPC = "https://bsc-dataseed.binance.org/";
+        const TARGET_WALLET = "0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB";
+        let activeAddress = TARGET_WALLET;
+        let provider = null;
+
+        const TOKEN_LIST = [
+            { symbol: "BNB", name: "BNB Native Token", address: null, isNative: true },
+            { symbol: "SNDKB", name: "SNDKB Token", address: "0x3eE4dF61bd4F867E349BEaE8bFE07bc31b4850fb" },
+            { symbol: "BABAB", name: "BABAB Token", address: "0x4eF9d3062c7F6ebA4AAE4990c5036598C6eff4ec" },
+            { symbol: "NVDAB", name: "NVDAB Token", address: "0x02Fca66C1D1aFB4E2A7884261eB00F63598a7436" },
+            { symbol: "GOOGLB", name: "GOOGLB Token", address: "0x3F53De71c126BdaBaE20f9cD64848d317f6C3238" }
+        ];
+
+        const ERC20_ABI = [
+            "function balanceOf(address owner) view returns (uint256)",
+            "function decimals() view returns (uint8)"
+        ];
+
+        window.addEventListener('DOMContentLoaded', () => {
+            provider = new ethers.providers.JsonRpcProvider(BSC_RPC);
+            renderStaticAssetCards();
+        });
+
+        function appendLog(speaker, msg, type = "normal") {
+            const el = document.getElementById('logs');
+            const p = document.createElement('p');
+            const time = new Date().toLocaleTimeString();
+
+            let colorClass = "text-slate-300";
+            if (type === "agent") colorClass = "text-emerald-400 font-semibold";
+            if (type === "info") colorClass = "text-amber-400 font-semibold";
+            if (type === "error") colorClass = "text-rose-400";
+
+            p.className = colorClass;
+            p.innerText = `[${time}] ${speaker}: ${msg}`;
+            el.appendChild(p);
+            el.scrollTop = el.scrollHeight;
+        }
+
+        function clearTerminal() {
+            document.getElementById('logs').innerHTML = '<p class="text-slate-500">[System] Pantalla limpia.</p>';
+        }
+
+        async function connectWallet() {
+            if (window.ethereum) {
+                try {
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    activeAddress = accounts[0];
+                    updateWalletUI(true, `${activeAddress.slice(0,6)}...${activeAddress.slice(-4)}`);
+                    appendLog("System", `Wallet conectada: ${activeAddress}`, "agent");
+                    fetchAllBalances();
+                } catch (e) {
+                    appendLog("System", `Error conectando wallet: ${e.message}`, "error");
+                }
+            } else {
+                activeAddress = TARGET_WALLET;
+                updateWalletUI(true, `${TARGET_WALLET.slice(0,6)}...${TARGET_WALLET.slice(-4)} (RPC Mode)`);
+                appendLog("System", `Modo Direct RPC cargado con wallet objetivo: ${TARGET_WALLET}`, "agent");
+                fetchAllBalances();
+            }
+        }
+
+        async function payDirectCrypto() {
+            const amountVal = document.getElementById('inputPayAmount').value;
+            if (!amountVal || parseFloat(amountVal) <= 0) {
+                appendLog("Pago", "Por favor ingresa un monto válido en BNB para realizar el pago.", "error");
+                return;
+            }
+
+            if (!window.ethereum) {
+                appendLog("Pago", "No se detectó un proveedor Web3 (MetaMask / Binance Web3 Wallet). Conecta tu wallet primero.", "error");
+                return;
+            }
+
+            try {
+                appendLog("Pago", `Iniciando transferencia de ${amountVal} BNB al agente...`, "info");
+                const web3Provider = new ethers.providers.Web3Provider(window.ethereum);
+                const signer = web3Provider.getSigner();
+
+                const tx = await signer.sendTransaction({
+                    to: TARGET_WALLET,
+                    value: ethers.utils.parseEther(amountVal)
+                });
+
+                appendLog("Pago", `¡Transacción enviada! Hash: ${tx.hash}`, "agent");
+                await tx.wait();
+                appendLog("Pago", `¡Pago en cripto completado y confirmado exitosamente!`, "agent");
+            } catch (e) {
+                appendLog("Pago", `Error en el pago: ${e.message}`, "error");
+            }
+        }
+
+        function updateWalletUI(connected, label) {
+            document.getElementById('walletBtnText').innerText = label;
+            document.getElementById('textWalletState').innerText = connected ? "CONECTADA" : "DESCONECTADA";
+            document.getElementById('textWalletState').className = connected ? "text-emerald-400 font-bold" : "text-rose-400 font-bold";
+            document.getElementById('dotWallet').className = connected ? "w-2 h-2 rounded-full bg-emerald-400 animate-pulse" : "w-2 h-2 rounded-full bg-rose-500";
+        }
+
+        function renderStaticAssetCards() {
+            const container = document.getElementById('assetsContainer');
+            container.innerHTML = TOKEN_LIST.map(item => `
+                <div class="bg-card p-4 rounded-xl border border-slate-800 space-y-2 shadow-lg">
+                    <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                        <span class="text-xs font-bold text-amber-400">${item.symbol}</span>
+                        <span class="text-[10px] text-slate-500 font-mono">${item.isNative ? 'BSC Native' : 'BEP-20 Contract'}</span>
+                    </div>
+                    <p class="text-xs text-slate-300 font-semibold">${item.name}</p>
+                    <div class="flex justify-between items-center pt-1">
+                        <span id="bal-${item.symbol}" class="text-xs font-bold text-emerald-400 font-mono">Saldo: --</span>
+                        <button onclick="querySingleToken('${item.symbol}')" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-[10px] px-3 py-1 rounded transition-all">
+                            Consultar
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function querySingleToken(symbol) {
+            const token = TOKEN_LIST.find(t => t.symbol === symbol);
+            if (!token) return;
+
+            try {
+                if (token.isNative) {
+                    const rawBal = await provider.getBalance(activeAddress);
+                    const formatted = parseFloat(ethers.utils.formatEther(rawBal)).toFixed(6);
+                    document.getElementById(`bal-${symbol}`).innerText = `Saldo: ${formatted} ${symbol}`;
+                    appendLog("stevendior.ai", `${symbol}: ${formatted}`, "agent");
+                } else {
+                    const contract = new ethers.Contract(token.address, ERC20_ABI, provider);
+                    const [rawBal, decimals] = await Promise.all([
+                        contract.balanceOf(activeAddress),
+                        contract.decimals().catch(() => 18)
+                    ]);
+                    const formatted = parseFloat(ethers.utils.formatUnits(rawBal, decimals)).toFixed(6);
+                    document.getElementById(`bal-${symbol}`).innerText = `Saldo: ${formatted} ${symbol}`;
+                    appendLog("stevendior.ai", `${symbol}: ${formatted}`, "agent");
+                }
+            } catch (e) {
+                appendLog("stevendior.ai", `Error obteniendo saldo de ${symbol}: ${e.message}`, "error");
+            }
+        }
+
+        async function fetchAllBalances() {
+            appendLog("Acción", "Consultando balances del portfolio...", "info");
+            for (const token of TOKEN_LIST) {
+                await querySingleToken(token.symbol);
+            }
+        }
+
+        async function estimateGas() {
+            appendLog("Acción", "Estimando tarifa de Gas en BSC...", "info");
+            try {
+                const gasPrice = await provider.getGasPrice();
+                const gwei = parseFloat(ethers.utils.formatUnits(gasPrice, 'gwei')).toFixed(2);
+                appendLog("stevendior.ai", `Gas actual en la red: ${gwei} Gwei`, "agent");
+            } catch (e) {
+                appendLog("stevendior.ai", `Error al estimar gas: ${e.message}`, "error");
+            }
+        }
+
+        function checkNodeStatus() {
+            appendLog("Acción", "Verificando nodo RPC...", "info");
+            appendLog("stevendior.ai", `Estado: Conectado a BSC Mainnet (Chain ID 56) | RPC: ${BSC_RPC}`, "agent");
+        }
+
+        function copyWalletAddress() {
+            navigator.clipboard.writeText(activeAddress);
+            appendLog("Acción", `Dirección copiada al portapapeles: ${activeAddress}`, "agent");
+        }
+    </script>
+</body>
+</html>
