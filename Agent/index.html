@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SADV41 | Web3 Standalone Console</title>
+    <title>SADV41 | Agentic Web3 Console</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
     <script>
@@ -11,7 +11,12 @@
             darkMode: 'class',
             theme: {
                 extend: {
-                    colors: { navy: '#0b0f19', card: '#111827', gold: '#d97706' }
+                    colors: {
+                        navy: '#070a12',
+                        card: '#0d1322',
+                        emeraldBtn: '#10b981',
+                        borderDark: '#1e293b'
+                    }
                 }
             }
         }
@@ -19,122 +24,203 @@
 </head>
 <body class="bg-navy text-slate-100 min-h-screen font-mono p-4 sm:p-6">
 
-    <div class="max-w-4xl mx-auto space-y-6">
+    <div class="max-w-3xl mx-auto space-y-6">
         
-        <!-- Header -->
-        <header class="border-b border-slate-800 pb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+        <!-- Header & Wallet Connection -->
+        <header class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-800 pb-4">
             <div>
-                <h1 class="text-2xl font-bold text-amber-500 tracking-wider">⚡ SADV41 | Web3 Console</h1>
-                <p class="text-xs text-slate-400">stevendior.ai • Autónoma On-Chain via Direct RPC</p>
+                <h1 class="text-xl font-bold text-amber-500 tracking-wider">⚡ SADV41 | Agentic Console</h1>
+                <p class="text-xs text-slate-400">stevendior.ai • Direct RPC & Wallet Bridge</p>
             </div>
-            <span class="text-xs bg-emerald-950 text-emerald-400 border border-emerald-800 px-3 py-1 rounded-full font-semibold">
-                🟢 Direct Blockchain Mode
-            </span>
+            <button id="btnConnectWallet" onclick="connectWallet()" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold px-4 py-2 rounded-lg text-xs transition-all flex items-center gap-2">
+                <span id="walletDot" class="w-2 h-2 rounded-full bg-emerald-950 border border-emerald-400"></span>
+                <span id="walletBtnText">Conectar Wallet</span>
+            </button>
         </header>
 
-        <!-- Main Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Web3 Assets / Productos On-Chain -->
+        <section class="space-y-4">
+            <h2 class="text-xs font-semibold text-slate-400 uppercase tracking-widest">Activos Digitales On-Chain</h2>
             
-            <!-- Controles y Consultas -->
-            <div class="bg-card p-4 rounded-xl border border-slate-800 space-y-4 shadow-lg">
-                <h2 class="text-sm font-semibold text-amber-400 uppercase tracking-wider border-b border-slate-800 pb-2">
-                    Consultar Billetera EVM
-                </h2>
-                
-                <div class="space-y-2">
-                    <label class="block text-xs text-slate-400">Wallet de Cobro / Dirección EVM</label>
-                    <input type="text" id="targetAddress" 
-                           value="0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB" 
-                           class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-emerald-400 font-mono focus:outline-none focus:border-amber-500">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Asset 1 -->
+                <div class="bg-card p-4 rounded-xl border border-slate-800 space-y-3 shadow-lg">
+                    <div class="bg-slate-950 border border-slate-800 rounded-lg h-24 flex items-center justify-center text-slate-600 text-xs font-bold tracking-widest">
+                        [ ASSET PREVIEW: GENESIS ]
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-200">SADV41 Genesis Token</h3>
+                        <p class="text-xs text-slate-400 mt-1">Activo digital on-chain verificado para licencias de autor y acceso a nodos.</p>
+                    </div>
+                    <div class="flex justify-between items-center pt-2 border-t border-slate-800/60">
+                        <span class="text-xs font-bold text-emerald-400">0.015 BNB / ETH</span>
+                        <button onclick="buyAsset('SADV41 Genesis Token', '0.015')" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold px-3 py-1.5 rounded text-xs transition-all">
+                            Comprar
+                        </button>
+                    </div>
                 </div>
 
-                <div class="grid grid-cols-1 gap-2 pt-2">
-                    <button onclick="fetchNativeBalance()" class="w-full bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-2.5 px-3 rounded-lg text-xs flex justify-between items-center transition-all">
-                        <span>📊 Consultar Balance Nativo (BNB)</span>
-                        <span class="text-xs font-mono">BSC Mainnet</span>
-                    </button>
-
-                    <button onclick="validateEVM()" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 py-2.5 px-3 rounded-lg text-xs font-medium flex justify-between items-center transition-all">
-                        <span>🛡️ Validar Formato de Dirección</span>
-                        <span class="text-amber-500">ethers.js</span>
-                    </button>
-                </div>
-
-                <div class="pt-3 border-t border-slate-800">
-                    <label class="block text-xs text-slate-400 mb-1">Redes RPC Activas</label>
-                    <div class="flex items-center gap-2 text-xs text-slate-400">
-                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-                        <span>BNB Smart Chain (Chain ID: 56)</span>
+                <!-- Asset 2 -->
+                <div class="bg-card p-4 rounded-xl border border-slate-800 space-y-3 shadow-lg">
+                    <div class="bg-slate-950 border border-slate-800 rounded-lg h-24 flex items-center justify-center text-slate-600 text-xs font-bold tracking-widest">
+                        [ ASSET PREVIEW: AUDIO ]
+                    </div>
+                    <div>
+                        <h3 class="text-sm font-bold text-slate-200">Master 432Hz Sound Drop</h3>
+                        <p class="text-xs text-slate-400 mt-1">Pista original maestra calibrada en frecuencia pura 432Hz (wav + derechos).</p>
+                    </div>
+                    <div class="flex justify-between items-center pt-2 border-t border-slate-800/60">
+                        <span class="text-xs font-bold text-emerald-400">0.010 BNB / ETH</span>
+                        <button onclick="buyAsset('Master 432Hz Sound Drop', '0.010')" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold px-3 py-1.5 rounded text-xs transition-all">
+                            Comprar
+                        </button>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Terminal en Vivo -->
-            <div class="bg-card p-4 rounded-xl border border-slate-800 shadow-lg flex flex-col h-80 md:h-auto">
-                <div class="flex justify-between items-center border-b border-slate-800 pb-2 mb-2">
-                    <h2 class="text-sm font-semibold text-slate-300 uppercase tracking-wider">Consola de Respuestas</h2>
-                    <button onclick="clearTerminal()" class="text-xs text-slate-500 hover:text-slate-300">Limpiar</button>
-                </div>
-                <div id="logs" class="flex-1 bg-slate-950 rounded-lg p-3 text-xs font-mono overflow-y-auto space-y-2">
-                    <p class="text-slate-500">[SADV41 System] Consola web autónoma lista. Realiza una consulta directa.</p>
-                </div>
+        <!-- Log de Operaciones & Agentic AI -->
+        <section class="bg-card p-4 rounded-xl border border-slate-800 shadow-lg space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                <h2 class="text-xs font-semibold text-slate-400 uppercase tracking-widest">Log de Operaciones & Agentic AI</h2>
+                <button onclick="clearTerminal()" class="text-xs text-slate-500 hover:text-slate-300">Limpiar</button>
             </div>
 
-        </div>
+            <!-- Terminal Output -->
+            <div id="logs" class="bg-slate-950 rounded-lg p-3 h-52 overflow-y-auto space-y-1.5 text-xs font-mono border border-slate-900">
+                <p class="text-slate-500">[System] Consola lista. Conecta tu billetera o ejecuta un comando.</p>
+            </div>
+
+            <!-- Interactive Command Bar -->
+            <div class="flex gap-2 pt-1">
+                <div class="relative flex-1">
+                    <span class="absolute left-3 top-2.5 text-emerald-500 font-bold">&gt;</span>
+                    <input type="text" id="cmdInput" 
+                           placeholder="Escribe un comando o consulta (ej. /consultar_balance, /estimar_gas, /listar_activos)" 
+                           onkeydown="if(event.key === 'Enter') processInput()"
+                           class="w-full bg-slate-950 border border-slate-800 rounded-lg pl-7 pr-3 py-2 text-xs text-emerald-400 focus:outline-none focus:border-emerald-500">
+                </div>
+                <button onclick="processInput()" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold px-4 py-2 rounded-lg text-xs transition-all">
+                    Ejecutar
+                </button>
+            </div>
+        </section>
 
     </div>
 
     <script>
         const BSC_RPC = "https://bsc-dataseed.binance.org/";
+        const DEFAULT_WALLET = "0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB";
+        let userAddress = null;
+        let provider = null;
 
-        function log(msg, type = "info") {
+        window.addEventListener('DOMContentLoaded', () => {
+            provider = new ethers.providers.JsonRpcProvider(BSC_RPC);
+        });
+
+        function appendLog(speaker, msg, type = "normal") {
             const el = document.getElementById('logs');
             const p = document.createElement('p');
             const time = new Date().toLocaleTimeString();
 
-            if (type === "error") {
-                p.className = "text-rose-400";
-                p.innerText = `[${time}] ❌ ${msg}`;
-            } else if (type === "success") {
-                p.className = "text-emerald-400 font-semibold";
-                p.innerText = `[${time}] ✅ ${msg}`;
-            } else {
-                p.className = "text-slate-300";
-                p.innerText = `[${time}] ℹ️ ${msg}`;
-            }
+            let colorClass = "text-slate-300";
+            if (type === "user") colorClass = "text-amber-400";
+            if (type === "agent") colorClass = "text-emerald-400 font-semibold";
+            if (type === "error") colorClass = "text-rose-400";
 
+            p.className = colorClass;
+            p.innerText = `[${time}] ${speaker}: ${msg}`;
             el.appendChild(p);
             el.scrollTop = el.scrollHeight;
         }
 
         function clearTerminal() {
-            document.getElementById('logs').innerHTML = '<p class="text-slate-500">[SADV41 System] Consola limpia.</p>';
+            document.getElementById('logs').innerHTML = '<p class="text-slate-500">[System] Consola limpia.</p>';
         }
 
-        function validateEVM() {
-            const addr = document.getElementById('targetAddress').value.trim();
-            if (window.ethers && ethers.utils.isAddress(addr)) {
-                log(`Dirección EVM válida: ${addr}`, "success");
+        async function connectWallet() {
+            if (window.ethereum) {
+                try {
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    userAddress = accounts[0];
+                    document.getElementById('walletBtnText').innerText = `${userAddress.slice(0, 6)}...${userAddress.slice(-4)}`;
+                    document.getElementById('walletDot').className = "w-2 h-2 rounded-full bg-emerald-400 animate-pulse";
+                    appendLog("System", `Wallet de usuario conectada: ${userAddress}`, "agent");
+                } catch (e) {
+                    appendLog("System", `Error al conectar wallet: ${e.message}`, "error");
+                }
             } else {
-                log(`Dirección EVM inválida: ${addr}`, "error");
+                userAddress = DEFAULT_WALLET;
+                document.getElementById('walletBtnText').innerText = `${DEFAULT_WALLET.slice(0, 6)}...${DEFAULT_WALLET.slice(-4)} (RPC)`;
+                document.getElementById('walletDot').className = "w-2 h-2 rounded-full bg-amber-400";
+                appendLog("System", `Metamask no detectado. Modo Direct RPC activado con: ${DEFAULT_WALLET}`, "agent");
             }
         }
 
-        async function fetchNativeBalance() {
-            const addr = document.getElementById('targetAddress').value.trim();
-            if (!window.ethers || !ethers.utils.isAddress(addr)) {
-                log("Ingresa una dirección EVM válida primero.", "error");
-                return;
-            }
+        async function processInput() {
+            const inputEl = document.getElementById('cmdInput');
+            const query = inputEl.value.trim();
+            if (!query) return;
 
-            log(`Consultando balance on-chain en BNB Chain para ${addr}...`);
-            try {
-                const provider = new ethers.providers.JsonRpcProvider(BSC_RPC);
-                const rawBalance = await provider.getBalance(addr);
-                const bnbFormatted = ethers.utils.formatEther(rawBalance);
-                log(`Balance Nativo: ${parseFloat(bnbFormatted).toFixed(6)} BNB`, "success");
-            } catch (e) {
-                log(`Error conectando al nodo RPC: ${e.message}`, "error");
+            appendLog("User", query, "user");
+            inputEl.value = "";
+
+            const targetAddr = userAddress || DEFAULT_WALLET;
+            const cmd = query.toLowerCase();
+
+            if (cmd.includes('balance') || cmd.includes('consultar_balance')) {
+                try {
+                    const rawBalance = await provider.getBalance(targetAddr);
+                    const bnb = parseFloat(ethers.utils.formatEther(rawBalance)).toFixed(6);
+                    appendLog("stevendior.ai", `Balance Nativo (${targetAddr.slice(0,6)}...) -> ${bnb} BNB`, "agent");
+                } catch (e) {
+                    appendLog("stevendior.ai", `Error al consultar balance: ${e.message}`, "error");
+                }
+            } 
+            else if (cmd.includes('gas') || cmd.includes('estimar_gas')) {
+                try {
+                    const gasPrice = await provider.getGasPrice();
+                    const gwei = parseFloat(ethers.utils.formatUnits(gasPrice, 'gwei')).toFixed(2);
+                    appendLog("stevendior.ai", `Gas actual en red BSC: ${gwei} Gwei`, "agent");
+                } catch (e) {
+                    appendLog("stevendior.ai", `Error al obtener gas: ${e.message}`, "error");
+                }
+            } 
+            else if (cmd.includes('activos') || cmd.includes('listar_activos')) {
+                appendLog("stevendior.ai", `Activos: SADV41 Genesis Token (0.015 BNB), Master 432Hz Sound Drop (0.010 BNB)`, "agent");
+            } 
+            else if (cmd.includes('direccion') || cmd.includes('address')) {
+                appendLog("stevendior.ai", `Dirección activa: ${targetAddr}`, "agent");
+            } 
+            else if (cmd.includes('status') || cmd.includes('estado')) {
+                appendLog("stevendior.ai", `Estado: Nodo RPC BSC activo | Chain ID: 56`, "agent");
+            } 
+            else {
+                appendLog("stevendior.ai", `Comando no reconocido. Prueba: /consultar_balance, /estimar_gas, /listar_activos, /status`, "error");
+            }
+        }
+
+        async function buyAsset(assetName, price) {
+            const activeAddr = userAddress || DEFAULT_WALLET;
+            appendLog("User", `Iniciando compra de ${assetName} (${price} BNB)`, "user");
+            
+            if (window.ethereum && userAddress) {
+                try {
+                    const parsedPrice = ethers.utils.parseEther(price);
+                    const tx = await window.ethereum.request({
+                        method: 'eth_sendTransaction',
+                        params: [{
+                            from: userAddress,
+                            to: DEFAULT_WALLET,
+                            value: parsedPrice.toHexString()
+                        }]
+                    });
+                    appendLog("stevendior.ai", `Transacción enviada: ${tx}`, "agent");
+                } catch (e) {
+                    appendLog("stevendior.ai", `Transacción cancelada/fallida: ${e.message}`, "error");
+                }
+            } else {
+                appendLog("stevendior.ai", `Conecta una billetera (MetaMask) para completar la transacción on-chain. Valor objetivo: ${price} BNB hacia ${DEFAULT_WALLET}`, "agent");
             }
         }
     </script>
