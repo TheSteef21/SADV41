@@ -35,13 +35,13 @@
 <body class="min-h-screen flex items-center justify-center p-4 sm:p-6 selection:bg-orange-500 selection:text-black">
 
     <!-- Flyer Container Minimalista -->
-    <div class="max-w-xl w-full bg-card p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl space-y-6 relative overflow-hidden glow-orange">
+    <div class="max-w-xl w-full bg-card p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl space-y-5 relative overflow-hidden glow-orange">
         
         <!-- Decorative Glow Background -->
         <div class="absolute -top-24 -right-24 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
 
         <!-- Header / Marca -->
-        <div class="text-center space-y-2 border-b border-slate-800 pb-5">
+        <div class="text-center space-y-2 border-b border-slate-800 pb-4">
             <div class="inline-block bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs px-3.5 py-1 rounded-full font-bold tracking-widest uppercase">
                 📦 BOXDROP • SADV41 PROTOCOL
             </div>
@@ -53,34 +53,46 @@
             </p>
         </div>
 
+        <!-- Navegación y Accesos del Ecosistema SADV41 -->
+        <div class="space-y-2">
+            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block text-center">Navegación del Ecosistema SADV41</span>
+            <div class="grid grid-cols-2 gap-2 text-xs font-semibold">
+                <a href="https://thesteef21.github.io/SADV41/StevenDiorFlow/" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/80 p-2.5 rounded-xl text-center transition flex items-center justify-center gap-1.5">
+                    🎵 StevenDiorFlow
+                </a>
+                <a href="https://thesteef21.github.io/SADV41/Agent/" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/80 p-2.5 rounded-xl text-center transition flex items-center justify-center gap-1.5">
+                    🤖 Agent Hub
+                </a>
+                <a href="https://thesteef21.github.io/SADV41/Agent/Boxdrop/" target="_blank" class="bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 border border-orange-500/30 p-2.5 rounded-xl text-center transition flex items-center justify-center gap-1.5">
+                    📦 Boxdrop
+                </a>
+                <a href="https://thesteef21.github.io/SADV41/Agent/UnlockPhone/" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/80 p-2.5 rounded-xl text-center transition flex items-center justify-center gap-1.5">
+                    🔓 UnlockPhone
+                </a>
+            </div>
+            <!-- Enlace adicional Google Sites / Pay -->
+            <div class="pt-1">
+                <a href="https://sites.google.com/u/0/d/1t2dbokSuMNP9nkftLeYvSt5S6r_m2GUZ/preview" target="_blank" class="block w-full bg-slate-900 hover:bg-slate-800 text-amber-400 border border-slate-800 p-2 rounded-xl text-center text-[11px] transition">
+                    🌐 Ver Vista Previa Google Sites (Pay & Acciones)
+                </a>
+            </div>
+        </div>
+
         <!-- Dirección Única Multired Web3 -->
-        <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800 space-y-2 text-center">
+        <div class="bg-slate-950 p-3.5 rounded-2xl border border-slate-800 space-y-1.5 text-center">
             <div class="flex justify-between items-center text-[11px]">
-                <span class="text-orange-400 font-bold uppercase tracking-wider">Billetera Autorizada (Multi-Red)</span>
+                <span class="text-orange-400 font-bold uppercase tracking-wider">Billetera Autorizada</span>
                 <button onclick="copyAddress()" class="text-slate-400 hover:text-white transition flex items-center gap-1 text-[10px]">
                     <i class="fa-regular fa-copy"></i> Copiar
                 </button>
             </div>
-            <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 font-mono text-xs text-emerald-400 break-all select-all">
+            <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800 font-mono text-xs text-emerald-400 break-all select-all">
                 0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB
             </div>
-            <p class="text-[10px] text-slate-400">
-                ✅ Compatible con: <span class="text-slate-200">BSC, Ethereum, Solana, Polygon, Arbitrum, Base, Avalanche, TON, TRON y más.</span>
-            </p>
-        </div>
-
-        <!-- Redes Soportadas Minimalistas -->
-        <div class="grid grid-cols-4 sm:grid-cols-6 gap-1.5 text-center text-[10px] font-semibold text-slate-400">
-            <div class="bg-slate-900 p-2 rounded-lg border border-slate-800 text-amber-400">BSC</div>
-            <div class="bg-slate-900 p-2 rounded-lg border border-slate-800 text-blue-400">ETH</div>
-            <div class="bg-slate-900 p-2 rounded-lg border border-slate-800 text-purple-400">SOL</div>
-            <div class="bg-slate-900 p-2 rounded-lg border border-slate-800 text-emerald-400">BASE</div>
-            <div class="bg-slate-900 p-2 rounded-lg border border-slate-800 text-cyan-400">ARB</div>
-            <div class="bg-slate-900 p-2 rounded-lg border border-slate-800 text-rose-400">AVAX</div>
         </div>
 
         <!-- Pago Directo Cripto / Web3 -->
-        <div class="bg-slate-900/50 p-4 rounded-2xl border border-slate-800 space-y-3">
+        <div class="bg-slate-900/50 p-3.5 rounded-2xl border border-slate-800 space-y-2.5">
             <div class="flex justify-between items-center">
                 <span class="text-xs font-bold text-slate-300">💳 Pago Rápido Web3</span>
                 <button id="btnConnect" onclick="connectWallet()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-3 py-1.5 rounded-lg text-[11px] transition">
@@ -96,7 +108,7 @@
         </div>
 
         <!-- Botón WhatsApp y Footer -->
-        <div class="space-y-3 pt-1 text-center">
+        <div class="space-y-2.5 pt-1 text-center">
             <a href="https://wa.me/50769362166?text=Hola%20Boxdrop,%20vi%20un%20producto%20en%20redes%20sociales/Alibaba%20y%20quiero%20cotizarlo." target="_blank" rel="noopener noreferrer" class="block w-full bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold py-3 rounded-2xl text-xs transition shadow-lg flex items-center justify-center gap-2">
                 <i class="fa-brands fa-whatsapp text-base"></i> Cotizar en WhatsApp (+507 69362166)
             </a>
