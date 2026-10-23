@@ -21,7 +21,7 @@
         }
     </script>
 </head>
-<body class="bg-navy text-slate-100 min-h-screen font-mono p-4 sm:p-6">
+<body class="bg-navy text-slate-100 min-h-screen font-mono p-4 sm:p-6 pb-24">
 
     <div class="max-w-3xl mx-auto space-y-6">
         
@@ -74,7 +74,24 @@
             </div>
         </section>
 
-        <!-- Log de Operaciones (Solo Pantalla de Resultados) -->
+        <!-- Acceso Rápido a Sismos & Monitoreo -->
+        <section class="bg-card p-4 rounded-xl border border-slate-800 space-y-3">
+            <h2 class="text-xs font-bold text-rose-400 uppercase tracking-widest">🚨 TELEMETRÍA SÍSMICA TSEC & @sismosyterremotos</h2>
+            <p class="text-xs text-slate-400">Selecciona el tipo de alerta sísmica para consultar los reportes en tiempo real:</p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <a href="https://thesteef21.github.io/SADV41/SISMOS/SEC.html" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 text-rose-400 font-semibold py-2.5 px-3 rounded-lg text-xs transition-all text-center flex items-center justify-center gap-1">
+                    🏚️ TSEC Panel
+                </a>
+                <a href="https://thesteef21.github.io/SADV41/SISMOS/index.html" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 text-amber-400 font-semibold py-2.5 px-3 rounded-lg text-xs transition-all text-center flex items-center justify-center gap-1">
+                    🌐 Alerta Internacional
+                </a>
+                <a href="https://thesteef21.github.io/SADV41/A217B.html" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 text-emerald-400 font-semibold py-2.5 px-3 rounded-lg text-xs transition-all text-center flex items-center justify-center gap-1">
+                    🏁 Alerta Nacional (Panamá)
+                </a>
+            </div>
+        </section>
+
+        <!-- Log de Operaciones -->
         <section class="bg-card p-4 rounded-xl border border-slate-800 space-y-3">
             <div class="flex justify-between items-center border-b border-slate-800 pb-2">
                 <h2 class="text-xs font-semibold text-slate-400 uppercase tracking-widest">LOG DE OPERACIONES</h2>
@@ -82,21 +99,41 @@
             </div>
 
             <div id="logs" class="bg-slate-950 rounded-lg p-3 h-48 overflow-y-auto space-y-1.5 text-xs font-mono border border-slate-900">
-                <p class="text-slate-500">[System] Selecciona cualquier botón arriba para ejecutar consultas on-chain.</p>
+                <p class="text-slate-500">[System] Panel táctico listo. Selecciona una acción o consulta sísmica.</p>
             </div>
         </section>
 
         <!-- Catálogo de Activos Registrados -->
         <section class="space-y-3">
             <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Catálogo de Activos Registrados (BSC On-Chain)</h2>
-            <div id="assetsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                <!-- Se puebla dinámicamente -->
-            </div>
+            <div id="assetsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
         </section>
 
     </div>
 
+    <!-- Widget Flotante Sismológico (@sismosyterremotos) -->
+    <div id="sismoFloatingWidget" class="fixed bottom-4 right-4 z-50 bg-card border border-rose-500/50 shadow-2xl rounded-2xl p-3 max-w-xs text-xs space-y-2 backdrop-blur-md bg-opacity-95">
+        <div class="flex justify-between items-center border-b border-slate-800 pb-1.5">
+            <span class="font-bold text-rose-400 flex items-center gap-1">🛘🏚️ @sismosyterremotos</span>
+            <button onclick="toggleSismoWidget()" class="text-slate-500 hover:text-slate-300 font-bold px-1">✕</button>
+        </div>
+        <p class="text-[11px] text-slate-300">Monitoreo activo. ¿Qué tipo de alerta deseas consultar?</p>
+        <div class="grid grid-cols-2 gap-1.5 pt-1">
+            <a href="https://thesteef21.github.io/SADV41/SISMOS/index.html" class="bg-rose-950/60 hover:bg-rose-900 text-rose-300 border border-rose-800 text-center py-1.5 px-2 rounded font-semibold transition-all">
+                🌍 Internacional
+            </a>
+            <a href="https://thesteef21.github.io/SADV41/A217B.html" class="bg-emerald-950/60 hover:bg-emerald-900 text-emerald-300 border border-emerald-800 text-center py-1.5 px-2 rounded font-semibold transition-all">
+                🇵🇦 Nacional
+            </a>
+        </div>
+    </div>
+
     <script>
+        function toggleSismoWidget() {
+            const w = document.getElementById('sismoFloatingWidget');
+            w.classList.toggle('hidden');
+        }
+
         const BSC_RPC = "https://bsc-dataseed.binance.org/";
         const TARGET_WALLET = "0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB";
         let activeAddress = TARGET_WALLET;
