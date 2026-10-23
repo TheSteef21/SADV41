@@ -1,294 +1,142 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SADV41 • Consola Táctica Soberana</title>
-  <meta name="theme-color" content="#0a0f14">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            navy: '#0a0f14',
-            panel: '#0f1923',
-            border: '#1c2733',
-            cyan: '#32d4ff',
-            gold: '#d4af37',
-            oro: '#facc15'
-          }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADV41 | Web3 Console</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: { navy: '#0b0f19', card: '#111827', gold: '#d97706' }
+                }
+            }
         }
-      }
-    }
-  </script>
-  <style>
-    body { background: #0a0f14; color: #e2e8f0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
-    .glass { background: rgba(15,25,35,0.85); border: 1px solid #1c2733; backdrop-filter: blur(12px); }
-    .terminal { background: #000; border: 1px solid #1c2733; height: 280px; overflow-y: auto; }
-    .scanline { position: fixed; top: 0; left: 0; width: 100%; height: 2px; background: rgba(50,212,255,0.08); animation: scan 8s linear infinite; pointer-events: none; z-index: 50; }
-    @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
-    ::-webkit-scrollbar { width: 5px; }
-    ::-webkit-scrollbar-track { background: #0a0f14; }
-    ::-webkit-scrollbar-thumb { background: #32d4ff; border-radius: 10px; }
-    .map-container { position: relative; height: 220px; background: #061a1f; border-radius: 12px; overflow: hidden; }
-    .map-circle-red { position: absolute; border: 3px solid #ef4444; border-radius: 50%; width: 140px; height: 140px; top: 40%; left: 55%; transform: translate(-50%,-50%); opacity: 0.7; }
-    .map-circle-yellow { position: absolute; border: 3px solid #facc15; border-radius: 50%; width: 180px; height: 180px; top: 55%; left: 48%; transform: translate(-50%,-50%); opacity: 0.6; }
-    .map-star { position: absolute; color: #32d4ff; font-size: 18px; top: 52%; left: 48%; transform: translate(-50%,-50%); text-shadow: 0 0 8px #32d4ff; }
-  </style>
+    </script>
 </head>
-<body class="min-h-screen p-3 md:p-6 relative">
-  <div class="scanline"></div>
+<body class="bg-navy text-slate-100 min-h-screen font-mono p-4 sm:p-6">
 
-  <div class="max-w-6xl mx-auto">
-    <!-- HEADER -->
-    <header class="glass rounded-2xl p-4 mb-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
-      <div>
-        <h1 class="text-xl md:text-2xl font-black tracking-widest text-cyan uppercase flex items-center gap-2">
-          🛸 SADV41 <span class="text-white text-base font-bold">| Consola Táctica Soberana</span>
-        </h1>
-        <p class="text-xs text-slate-400 mt-1">Termux + Cloudflare + GitHub Pages • Nodo Panamá</p>
-      </div>
-      <div class="flex flex-wrap gap-2 items-center">
-        <div id="statusTermux" class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-600/20 border border-rose-500/40 text-xs">
-          <span class="w-2 h-2 rounded-full bg-rose-500" id="statusDot"></span>
-          <span id="textTermux">Enlace Termux: DESCONECTADO</span>
-        </div>
-        <button id="btnWallet" class="px-4 py-2 rounded-lg bg-oro/20 border border-oro/40 text-oro text-sm font-bold hover:bg-oro/30 transition">
-          🔗 Wallet (demo)
-        </button>
-        <button id="btnConnect" class="px-5 py-2 rounded-lg bg-oro text-navy font-black text-sm hover:bg-amber-400 transition shadow-lg shadow-oro/20">
-          ⚡ Enlazar Backend
-        </button>
-      </div>
-    </header>
-
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-      <!-- COLUMNA PRINCIPAL -->
-      <div class="lg:col-span-2 space-y-4">
-        <!-- BACKEND URL -->
-        <div class="glass rounded-2xl p-4">
-          <label class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">BACKEND_URL (Cloudflare Tunnel)</label>
-          <div class="mt-2 flex gap-2">
-            <input id="backendUrl" type="text"
-              value="https://enhanced-temp-shipped-vegas.trycloudflare.com"
-              class="flex-1 bg-black border border-border rounded-lg px-3 py-2 text-sm text-cyan outline-none focus:border-cyan/50"
-              placeholder="https://xxxx.trycloudflare.com">
-            <button id="btnSaveUrl"
-              class="px-3 py-2 rounded-lg bg-panel border border-border text-xs hover:border-cyan/40 transition">
-              💾
-            </button>
-          </div>
-          <p class="text-[10px] text-slate-600 mt-2">La URL cambia cada vez que reinicias cloudflared. Pega la nueva y pulsa Enlazar.</p>
-        </div>
-
-        <!-- TERMINAL -->
-        <div class="glass rounded-2xl overflow-hidden">
-          <div class="flex items-center justify-between px-4 py-2 border-b border-border bg-black/40">
-            <div class="flex items-center gap-2">
-              <div class="flex gap-1.5">
-                <div class="w-2.5 h-2.5 rounded-full bg-rose-500"></div>
-                <div class="w-2.5 h-2.5 rounded-full bg-oro"></div>
-                <div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
-              </div>
-              <span class="text-[11px] text-slate-400 ml-2">consola@sadv41 — log del agente</span>
+    <div class="max-w-4xl mx-auto space-y-6">
+        
+        <!-- Header -->
+        <header class="border-b border-slate-800 pb-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+            <div>
+                <h1 class="text-2xl font-bold text-amber-500 tracking-wider">⚡ SADV41 | Web3 Console</h1>
+                <p class="text-xs text-slate-400">stevendior.ai • Autónoma On-Chain via Direct RPC</p>
             </div>
-            <span class="text-[10px] text-slate-600">auto-scroll</span>
-          </div>
-          <div id="terminalLog" class="terminal p-3 text-[12px] leading-relaxed">
-            <p class="text-slate-500">[SADV41] Consola táctica iniciada.</p>
-            <p class="text-slate-500">[SADV41] Pega la URL del túnel y pulsa Enlazar Backend.</p>
-          </div>
+            <span class="text-xs bg-emerald-950 text-emerald-400 border border-emerald-800 px-3 py-1 rounded-full font-semibold">
+                🟢 Direct Blockchain Mode
+            </span>
+        </header>
+
+        <!-- Main Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
+            <!-- Controles y Consultas -->
+            <div class="bg-card p-4 rounded-xl border border-slate-800 space-y-4 shadow-lg">
+                <h2 class="text-sm font-semibold text-amber-400 uppercase tracking-wider border-b border-slate-800 pb-2">
+                    Consultar Billetera EVM
+                </h2>
+                
+                <div class="space-y-2">
+                    <label class="block text-xs text-slate-400">Wallet de Cobro / Dirección EVM</label>
+                    <input type="text" id="targetAddress" 
+                           value="0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB" 
+                           class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-emerald-400 font-mono focus:outline-none focus:border-amber-500">
+                </div>
+
+                <div class="grid grid-cols-1 gap-2 pt-2">
+                    <button onclick="fetchNativeBalance()" class="w-full bg-amber-600 hover:bg-amber-500 text-slate-950 font-bold py-2.5 px-3 rounded-lg text-xs flex justify-between items-center transition-all">
+                        <span>📊 Consultar Balance Nativo (BNB)</span>
+                        <span class="text-xs font-mono">BSC Mainnet</span>
+                    </button>
+
+                    <button onclick="validateEVM()" class="w-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 py-2.5 px-3 rounded-lg text-xs font-medium flex justify-between items-center transition-all">
+                        <span>🛡️ Validar Formato de Dirección</span>
+                        <span class="text-amber-500">ethers.js</span>
+                    </button>
+                </div>
+
+                <div class="pt-3 border-t border-slate-800">
+                    <label class="block text-xs text-slate-400 mb-1">Redes RPC Activas</label>
+                    <div class="flex items-center gap-2 text-xs text-slate-400">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                        <span>BNB Smart Chain (Chain ID: 56)</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terminal en Vivo -->
+            <div class="bg-card p-4 rounded-xl border border-slate-800 shadow-lg flex flex-col h-80 md:h-auto">
+                <div class="flex justify-between items-center border-b border-slate-800 pb-2 mb-2">
+                    <h2 class="text-sm font-semibold text-slate-300 uppercase tracking-wider">Consola de Respuestas</h2>
+                    <button onclick="clearTerminal()" class="text-xs text-slate-500 hover:text-slate-300">Limpiar</button>
+                </div>
+                <div id="logs" class="flex-1 bg-slate-950 rounded-lg p-3 text-xs font-mono overflow-y-auto space-y-2">
+                    <p class="text-slate-500">[SADV41 System] Consola web autónoma lista. Realiza una consulta directa.</p>
+                </div>
+            </div>
+
         </div>
 
-        <!-- MAPA SÍSMICO -->
-        <div class="glass rounded-2xl p-4">
-          <div class="flex items-center justify-between mb-3">
-            <h2 class="text-[11px] font-bold tracking-widest text-slate-400 uppercase">Mapa Táctico • Panamá (ilustrativo)</h2>
-            <div class="flex gap-2 text-[10px]">
-              <span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-400 border border-rose-500/30">Pacífico</span>
-              <span class="px-2 py-0.5 rounded bg-oro/20 text-oro border border-oro/30">Azuero</span>
-            </div>
-          </div>
-          <div class="map-container" id="mapBox">
-            <div class="map-circle-red"></div>
-            <div class="map-circle-yellow"></div>
-            <div class="map-star">★</div>
-            <div class="absolute bottom-2 left-2 text-[10px] text-slate-500 bg-black/60 px-2 py-1 rounded">
-              SADV41 • Secuencia Azuero-Soná
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SIDEBAR -->
-      <div class="space-y-4">
-        <!-- COMANDOS -->
-        <div class="glass rounded-2xl p-4">
-          <h2 class="text-[11px] font-bold tracking-widest text-slate-400 uppercase mb-3">Comandos del Agente</h2>
-          <form id="cmdForm" class="flex gap-2 mb-3">
-            <span class="text-emerald-400 font-black self-center">&gt;</span>
-            <input id="cmdInput" type="text" placeholder="auto-trade, status, map panama..."
-              class="flex-1 bg-black border border-border rounded-lg px-3 py-2 text-sm outline-none focus:border-emerald-500/50">
-            <button type="submit" class="px-3 py-2 bg-emerald-600 text-black font-bold text-xs rounded-lg hover:bg-emerald-400 transition">ENVIAR</button>
-          </form>
-          <div class="flex flex-wrap gap-1.5">
-            <button data-cmd="status" class="cmd-btn px-2.5 py-1 rounded-full border border-border text-[10px] text-slate-400 hover:border-cyan/40 hover:text-cyan transition">status</button>
-            <button data-cmd="auto-trade" class="cmd-btn px-2.5 py-1 rounded-full border border-border text-[10px] text-slate-400 hover:border-cyan/40 hover:text-cyan transition">auto-trade</button>
-            <button data-cmd="map panama" class="cmd-btn px-2.5 py-1 rounded-full border border-border text-[10px] text-slate-400 hover:border-cyan/40 hover:text-cyan transition">map panama</button>
-            <button data-cmd="clear" class="cmd-btn px-2.5 py-1 rounded-full border border-border text-[10px] text-slate-400 hover:border-cyan/40 hover:text-cyan transition">clear</button>
-          </div>
-        </div>
-
-        <!-- TELEMETRÍA -->
-        <div class="glass rounded-2xl p-4">
-          <h2 class="text-[11px] font-bold tracking-widest text-slate-400 uppercase mb-3">Telemetría del Backend</h2>
-          <div class="grid grid-cols-2 gap-2">
-            <div class="bg-black/50 rounded-xl p-3 border border-border">
-              <p class="text-[9px] text-slate-500">UPTIME</p>
-              <p class="text-sm font-bold text-gold" id="uptimeVal">—</p>
-            </div>
-            <div class="bg-black/50 rounded-xl p-3 border border-border">
-              <p class="text-[9px] text-slate-500">AGENTE</p>
-              <p class="text-sm font-bold text-cyan" id="agenteVal">—</p>
-            </div>
-            <div class="bg-black/50 rounded-xl p-3 border border-border col-span-2">
-              <p class="text-[9px] text-slate-500">ESTADO</p>
-              <p class="text-sm font-bold" id="estadoVal">—</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- DESPLIEGUE -->
-        <div class="glass rounded-2xl p-4">
-          <h2 class="text-[11px] font-bold tracking-widest text-slate-400 uppercase mb-2">Despliegue</h2>
-          <a href="https://thesteef21.github.io/SADV41/Agent/index.html" target="_blank"
-             class="text-[11px] text-cyan underline break-all mt-1 block">
-            thesteef21.github.io/SADV41/Agent
-          </a>
-          <p class="text-[10px] text-slate-500 mt-2">Repo: github.com/TheSteef21/SADV41</p>
-        </div>
-      </div>
     </div>
 
-    <footer class="mt-6 text-center text-[10px] text-slate-600">
-      SADV41 • Consola Soberana • Hecho en Panamá • Termux + Node.js + Cloudflare + GitHub Pages
-    </footer>
-  </div>
+    <script>
+        const BSC_RPC = "https://bsc-dataseed.binance.org/";
 
-  <script>
-    const term = document.getElementById('terminalLog');
-    const urlInput = document.getElementById('backendUrl');
-    let connected = false;
+        function log(msg, type = "info") {
+            const el = document.getElementById('logs');
+            const p = document.createElement('p');
+            const time = new Date().toLocaleTimeString();
 
-    // Recupera la última URL guardada
-    try {
-      const saved = localStorage.getItem('sadv41_backend');
-      if (saved) urlInput.value = saved;
-    } catch (_) {}
+            if (type === "error") {
+                p.className = "text-rose-400";
+                p.innerText = `[${time}] ❌ ${msg}`;
+            } else if (type === "success") {
+                p.className = "text-emerald-400 font-semibold";
+                p.innerText = `[${time}] ✅ ${msg}`;
+            } else {
+                p.className = "text-slate-300";
+                p.innerText = `[${time}] ℹ️ ${msg}`;
+            }
 
-    function getUrl() {
-      return urlInput.value.trim().replace(/\/+$/, '');
-    }
+            el.appendChild(p);
+            el.scrollTop = el.scrollHeight;
+        }
 
-    function log(msg, level = 'info') {
-      const colors = {
-        ok: 'text-emerald-400', err: 'text-rose-400', web3: 'text-cyan',
-        cmd: 'text-gold', info: 'text-slate-400'
-      };
-      const p = document.createElement('p');
-      p.className = `${colors[level] || colors.info} mt-1.5`;
-      const ts = new Date().toLocaleTimeString('es-PA', { hour12: false });
-      const span = document.createElement('span');
-      span.className = 'opacity-40';
-      span.textContent = `[${ts}] `;
-      p.appendChild(span);
-      p.appendChild(document.createTextNode(msg));
-      term.appendChild(p);
-      term.scrollTop = term.scrollHeight;
-    }
+        function clearTerminal() {
+            document.getElementById('logs').innerHTML = '<p class="text-slate-500">[SADV41 System] Consola limpia.</p>';
+        }
 
-    document.getElementById('btnSaveUrl').addEventListener('click', () => {
-      try { localStorage.setItem('sadv41_backend', getUrl()); log('URL guardada.', 'ok'); }
-      catch (_) { log('No se pudo guardar la URL en este navegador.', 'err'); }
-    });
+        function validateEVM() {
+            const addr = document.getElementById('targetAddress').value.trim();
+            if (window.ethers && ethers.utils.isAddress(addr)) {
+                log(`Dirección EVM válida: ${addr}`, "success");
+            } else {
+                log(`Dirección EVM inválida: ${addr}`, "error");
+            }
+        }
 
-    // ========== CONECTAR ==========
-    document.getElementById('btnConnect').addEventListener('click', async function () {
-      const url = getUrl();
-      if (!url) return log('URL vacía', 'err');
+        async function fetchNativeBalance() {
+            const addr = document.getElementById('targetAddress').value.trim();
+            if (!window.ethers || !ethers.utils.isAddress(addr)) {
+                log("Ingresa una dirección EVM válida primero.", "error");
+                return;
+            }
 
-      this.innerText = '⏳ Conectando...';
-      this.disabled = true;
-
-      try {
-        const res = await fetch(url + '/', { cache: 'no-store' });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const data = await res.json();
-
-        connected = true;
-        this.innerText = '✅ Backend Enlazado';
-        this.classList.remove('bg-oro', 'text-navy', 'bg-rose-600');
-        this.classList.add('bg-emerald-600', 'text-white');
-
-        document.getElementById('statusDot').className = 'w-2 h-2 rounded-full bg-emerald-500 animate-pulse';
-        document.getElementById('statusTermux').className = 'flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-600/20 border border-emerald-500/40 text-xs';
-        document.getElementById('textTermux').innerText = 'Enlace Termux: CONECTADO';
-
-        document.getElementById('agenteVal').innerText = data.agente || '—';
-        document.getElementById('estadoVal').innerText = data.estado || '—';
-        document.getElementById('uptimeVal').innerText = (data.uptimeSeconds ?? 0) + 's';
-
-        log(`Backend enlazado: ${data.status} | Agente: ${data.agente}`, 'web3');
-        try { localStorage.setItem('sadv41_backend', url); } catch (_) {}
-      } catch (e) {
-        connected = false;
-        this.innerText = '❌ Error de Conexión';
-        this.classList.remove('bg-oro', 'text-navy', 'bg-emerald-600');
-        this.classList.add('bg-rose-600', 'text-white');
-        log(`No se pudo contactar a ${url}. Verifica que node server.js y cloudflared estén activos y que la URL sea la actual. (${e.message})`, 'err');
-      }
-      this.disabled = false;
-    });
-
-    // ========== WALLET (DEMO) ==========
-    document.getElementById('btnWallet').addEventListener('click', function () {
-      this.innerText = '✅ Wallet (demo)';
-      log('[DEMO] Botón de demostración: todavía no hay conexión real con Binance Wallet. Ninguna transacción se firma ni se envía.', 'info');
-    });
-
-    // ========== COMANDOS ==========
-    document.getElementById('cmdForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const input = document.getElementById('cmdInput');
-      const cmd = input.value.trim();
-      if (!cmd) return;
-      input.value = '';
-      log(`> ${cmd}`, 'cmd');
-
-      if (cmd === 'clear') { term.innerHTML = ''; return; }
-      if (!connected) { log('Primero enlaza el backend', 'err'); return; }
-
-      try {
-        const res = await fetch(getUrl() + '/command', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ cmd })
-        });
-        const data = await res.json();
-        log(data.message || JSON.stringify(data), data.ok ? 'ok' : 'err');
-      } catch (err) {
-        log('Error enviando comando: ' + err.message, 'err');
-      }
-    });
-
-    document.querySelectorAll('.cmd-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const c = btn.dataset.cmd;
-        document.getElementById('cmdInput').value = c;
-        if (c === 'clear') term.innerHTML = '';
-      });
-    });
-  </script>
+            log(`Consultando balance on-chain en BNB Chain para ${addr}...`);
+            try {
+                const provider = new ethers.providers.JsonRpcProvider(BSC_RPC);
+                const rawBalance = await provider.getBalance(addr);
+                const bnbFormatted = ethers.utils.formatEther(rawBalance);
+                log(`Balance Nativo: ${parseFloat(bnbFormatted).toFixed(6)} BNB`, "success");
+            } catch (e) {
+                log(`Error conectando al nodo RPC: ${e.message}`, "error");
+            }
+        }
+    </script>
 </body>
 </html>
