@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADV41 | Deploy Secure Agent Node</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#070a12',
+                        card: '#0d1322',
+                        borderDark: '#1e293b'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-navy text-slate-100 min-h-screen font-mono p-4 sm:p-6">
+
+    <div class="max-w-2xl mx-auto space-y-6">
+        
+        <!-- Header -->
+        <header class="border-b border-slate-800 pb-4 space-y-2">
+            <div class="flex items-center gap-2">
+                <span class="text-xl">🛸</span>
+                <h1 class="text-lg font-bold text-emerald-400 tracking-wider">ADV41 <span class="text-slate-400">|</span> SECURE SOVEREIGN NODE</h1>
+            </div>
+            <p class="text-xs text-slate-400">Puente local endurecido: solo lectura, sin shell, protegido por token y lista blanca.</p>
+        </header>
+
+        <!-- Sección Interactiva: Despliegue Seguro -->
+        <section class="bg-card p-5 rounded-xl border border-slate-800 space-y-4 shadow-xl">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <h2 class="text-xs font-bold text-emerald-400 uppercase tracking-widest">⚡ Despliegue del Nodo Blindado</h2>
+                <span class="text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-0.5 rounded font-mono">Termux / Linux</span>
+            </div>
+            
+            <p class="text-xs text-slate-300">
+                Ejecuta este bloque en tu terminal para configurar el backend seguro con <code class="text-emerald-400 bg-slate-950 px-1.5 py-0.5 rounded">execFile</code> y validación por token:
+            </p>
+
+            <!-- Bloque de Código interactivo con botón de copiar -->
+            <div class="relative bg-slate-950 rounded-lg p-3 border border-slate-900 font-mono text-[11px] text-slate-300 overflow-x-auto">
+                <button onclick="copySnippet()" class="absolute right-2 top-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-[10px] px-2.5 py-1 rounded transition-all">
+                    📋 Copiar Código
+                </button>
+                <pre id="codeSnippet" class="pr-20 text-emerald-400">
+cd ~/sadv41
+mkdir -p Agent && cd Agent
+npm init -y >/dev/null 2>&1
+npm pkg set type="commonjs" >/dev/null 2>&1
+npm install express >/dev/null 2>&1
+
+cat << 'SERVEREOF' > server.js
+const express = require('express');
+const { execFile } = require('child_process');
+const crypto = require('crypto');
+
+const app = express();
+app.use(express.json({ limit: '10kb' }));
+
+const AUTH_TOKEN = process.env.ADV41_TOKEN;
+if (!AUTH_TOKEN) {
+  console.error('❌ ADV41_TOKEN no definido');
+  process.exit(1);
+}
+const EXPECTED_HASH = crypto.createHash('sha256').update(AUTH_TOKEN).digest();
+
+const ALLOWED_COMMANDS = {
+  'balance': ['wallet', 'balance', '--json'],
+  'status':  ['wallet', 'status', '--json'],
+  'address': ['wallet', 'address', '--json']
+};
+
+const limits = new Map();
+const WINDOW = 60_000;
+const MAX = 30;
+
+app.post('/webhook/agent', (req, res) => {
+  const ip = req.ip;
+  const now = Date.now();
+  const e = limits.get(ip) || { count: 0, start: now };
+  if (now - e.start > WINDOW) { e.count = 1; e.start = now; } else e.count++;
+  limits.set(ip, e);
+  if (e.count > MAX) return res.status(429).json({ error: 'rate limited' });
+
+  const ts = new Date().toISOString();
+  const hdr = req.headers['authorization'] || '';
+  const token = hdr.startsWith('Bearer ') ? hdr.slice(7) : '';
+  
+  const clientHash = crypto.createHash('sha256').update(token).digest();
+  if (!crypto.timingSafeEqual(clientHash, EXPECTED_HASH)) {
+    console.log(`[${ts}] 403 ip=${ip} action=${req.body?.action} reason=auth`);
+    return res.status(403).json({ error: 'Acceso no autorizado' });
+  }
+
+  const { action } = req.body;
+  if (!ALLOWED_COMMANDS[action]) {
+    console.log(`[${ts}] 403 ip=${ip} action=${action} reason=not_allowed`);
+    return res.status(403).json({ error: 'Comando no permitido' });
+  }
+
+  console.log(`[${ts}] EXEC ip=${ip} action=${action}`);
+
+  execFile('baw', ALLOWED_COMMANDS[action], { timeout: 5000 }, (error, stdout, stderr) => {
+    if (error) {
+      console.log(`[${ts}] 500 ip=${ip} action=${action} reason=exec_error`);
+      return res.status(500).json({ status: 'error', details: stderr || error.message });
+    }
+    try {
+      const data = JSON.parse(stdout);
+      return res.json({ status: 'success', response: data });
+    } catch {
+      return res.json({ status: 'success', response: stdout.trim() });
+    }
+  });
+});
+
+const server = app.listen(3000, '127.0.0.1', () => {
+  console.log('🛸 ADV41 Secure Bridge en 127.0.0.1:3000 (solo lectura)');
+});
+
+function shutdown(s) { 
+  console.log(`${s} -> cierre limpio`); 
+  server.close(() => process.exit(0)); 
+}
+process.on('SIGINT', () => shutdown('SIGINT'));
+process.on('SIGTERM', () => shutdown('SIGTERM'));
+SERVEREOF
+
+node server.js &
+                </pre>
+            </div>
+
+            <!-- Medida de Conexión Segura -->
+            <div class="space-y-2 pt-2">
+                <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Paso 2: Nota de Seguridad sobre Red</h3>
+                <div class="bg-slate-950 p-2.5 rounded border border-slate-900 text-xs text-amber-400 font-mono">
+                    ⚠️ Mantén el nodo en local (127.0.0.1). Evita exponerlo mediante túneles públicos directos.
+                </div>
+            </div>
+        </section>
+
+        <!-- Enlace de Retorno -->
+        <div class="text-center pt-2">
+            <a href="index.html" class="text-xs text-emerald-400 hover:text-emerald-300 underline font-semibold">
+                ← Volver a la Consola Principal ADV41
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        function copySnippet() {
+            const snippet = document.getElementById('codeSnippet').innerText;
+            navigator.clipboard.writeText(snippet);
+            alert('¡Código seguro copiado al portapapeles! Pégalo en tu Termux.');
+        }
+    </script>
+</body>
+</html>
