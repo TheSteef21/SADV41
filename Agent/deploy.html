@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADV41 | Deploy Your Agent Node</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#070a12',
+                        card: '#0d1322',
+                        borderDark: '#1e293b'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-navy text-slate-100 min-h-screen font-mono p-4 sm:p-6">
+
+    <div class="max-w-2xl mx-auto space-y-6">
+        
+        <!-- Header -->
+        <header class="border-b border-slate-800 pb-4 space-y-2">
+            <div class="flex items-center gap-2">
+                <span class="text-xl">🛸</span>
+                <h1 class="text-lg font-bold text-emerald-400 tracking-wider">ADV41 <span class="text-slate-400">|</span> DEPLOY SOVEREIGN NODE</h1>
+            </div>
+            <p class="text-xs text-slate-400">Levanta tu propio puente descentralizado y conéctate al ecosistema.</p>
+        </header>
+
+        <!-- Sección Interactiva: ¿Quieres crear el tuyo? -->
+        <section class="bg-card p-5 rounded-xl border border-slate-800 space-y-4 shadow-xl">
+            <div class="flex items-center justify-between border-b border-slate-800 pb-3">
+                <h2 class="text-xs font-bold text-amber-400 uppercase tracking-widest">⚡ ¿Quieres crear el tuyo?</h2>
+                <span class="text-[10px] bg-amber-500/10 text-amber-400 border border-amber-500/20 px-2 py-0.5 rounded font-mono">Termux / Linux</span>
+            </div>
+            
+            <p class="text-xs text-slate-300">
+                Copia y ejecuta este bloque de comandos en tu terminal para desplegar tu backend local con soporte para comandos <code class="text-emerald-400 bg-slate-950 px-1.5 py-0.5 rounded">baw</code> y webhooks:
+            </p>
+
+            <!-- Bloque de Código interactivo con botón de copiar -->
+            <div class="relative bg-slate-950 rounded-lg p-3 border border-slate-900 font-mono text-[11px] text-slate-300 overflow-x-auto">
+                <button onclick="copySnippet()" class="absolute right-2 top-2 bg-slate-800 hover:bg-slate-700 text-slate-200 text-[10px] px-2.5 py-1 rounded transition-all">
+                    📋 Copiar Código
+                </button>
+                <pre id="codeSnippet" class="pr-20 text-emerald-400">
+cd ~/sadv41
+mkdir -p Agent && cd Agent
+npm init -y >/dev/null 2>&1
+npm pkg set type="commonjs" >/dev/null 2>&1
+npm install express cors >/dev/null 2>&1
+
+cat << 'SERVEREOF' > server.js
+const express = require('express');
+const cors = require('cors');
+const { exec } = require('child_process');
+const util = require('util');
+const execPromise = util.promisify(exec);
+const app = express();
+app.use(express.json());
+app.use(cors());
+
+app.post('/webhook/agent', async (req, res) => {
+    try {
+        const { message } = req.body;
+        if (!message) return res.status(400).json({ error: 'Comando vacío' });
+        const { stdout, stderr } = await execPromise(`baw ${message}`);
+        res.status(200).json({ status: 'success', response: stdout || stderr });
+    } catch (error) {
+        res.status(500).json({ status: 'error', details: error.message });
+    }
+});
+
+app.listen(3000, () => console.log('🛸 ADV41 Agentic Bridge en puerto 3000'));
+SERVEREOF
+
+pkill -f node 2>/dev/null || true
+node server.js &
+                </pre>
+            </div>
+
+            <!-- Paso siguiente del Túnel -->
+            <div class="space-y-2 pt-2">
+                <h3 class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Paso 2: Abre tu túnel seguro</h3>
+                <div class="bg-slate-950 p-2.5 rounded border border-slate-900 text-xs text-amber-400 font-mono">
+                    cloudflared tunnel --url http://localhost:3000
+                </div>
+                <p class="text-[11px] text-slate-500">Copia la URL <code class="text-slate-400">https://xxxx.trycloudflare.com</code> generada y conéctala en la consola principal de ADV41.</p>
+            </div>
+        </section>
+
+        <!-- Enlace de Retorno -->
+        <div class="text-center pt-2">
+            <a href="index.html" class="text-xs text-emerald-400 hover:text-emerald-300 underline font-semibold">
+                ← Volver a la Consola Principal ADV41
+            </a>
+        </div>
+
+    </div>
+
+    <script>
+        function copySnippet() {
+            const snippet = document.getElementById('codeSnippet').innerText;
+            navigator.clipboard.writeText(snippet);
+            alert('¡Código copiado al portapapeles! Pégalo en tu Termux.');
+        }
+    </script>
+</body>
+</html>
