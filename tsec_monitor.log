@@ -156,3 +156,27 @@ user
 [2026-10-22 02:59:24] ERR: No se obtuvo respuesta de USGS
 [2026-10-22 03:00:34] ERR: No se obtuvo respuesta de USGS
 [2026-10-22 03:01:45] ERR: No se obtuvo respuesta de USGS
+[2026-10-22 20:49:11] SISMO DETECTADO (ZONA EXTENDIDA): M4 - 2 km S of Valle Rico, Panama
+=== PROCESANDO PUBLICACIÓN AUTOMÁTICA CON COLABORACIÓN ===
+🟡 ALERTA SÍSMICA LIVE // SADV41 INTSEC
+🌋 CINTURÓN DE FUEGO DEL PACÍFICO
+
+MAGNITUD: M 4.0
+UBICACIÓN: 2 km S of Valle Rico, Panama
+PROFUNDIDAD: 10 km
+FECHA / HORA: 22/10/2026, 08:19:47 PM (Hora Panamá)
+COORDENADAS: [7.59°N, -80.35°W]
+
+🧩 ENTORNO TECTÓNICO: Microplaca de Panamá // Cinturón Deformado
+📡 MONITOREO TSEC: Red 4 Placas (Cocos-Nazca-Caribe-Panamá)
+🛰 TELEMETRÍA: CARTO Voyager / USGS Live Feed
+
+Cc: @NoticiasBurunga
+
+#SADV41 #TSEC #CinturonDeFuego #PlacaDeCocos #PlacaDeNazca #PlacaDelCaribe #SismosPanama #USGS #A217 #NoticiasBurunga #CristoEstaPorVenir
+⚠️ No se pudo obtener la info de @NoticiasBurunga: 1 validation error for Usertag
+user
+  Input should be a valid dictionary or instance of UserShort [type=model_type, input_value=User(pk='76600974333', us...bid='17842724583558334'), input_type=User]
+    For further information visit https://errors.pydantic.dev/2.12/v/model_type
+[IG] Publicando en Instagram con invitación a colaborador...
+✓ Publicación realizada con éxito! ID: 4013950245917880678
