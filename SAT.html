@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MÓDULO SAT — Transfiguración Digital & Testimonio Sabático</title>
+
+  <!-- Fuentes Sacras y Tecnológicas -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: "Optimistic";
+      font-style: normal;
+      font-weight: 400 600;
+      font-display: swap;
+      src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Optimistic Mono";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+    }
+    :where(html) {
+      font-family: "Optimistic", system-ui, sans-serif;
+    }
+    :where(code, pre, kbd, samp) {
+      font-family: "Optimistic Mono", ui-monospace, monospace;
+    }
+
+    :root {
+      --bg-sacro: #080A0F;
+      --dorado-luz: #D4AF37;
+      --azul-celestial: #2E5BFF;
+      --texto-pergamino: #F5F3EF;
+      --borde-hairline: rgba(212, 175, 55, 0.2);
+      --bg-card: #11131a;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-sacro);
+      color: var(--texto-pergamino);
+      font-family: 'JetBrains Mono', monospace;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    .serif { font-family: 'Cormorant Garamond', serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    .portal-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+    }
+
+    .node-navigator {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--borde-hairline);
+      border-radius: 8px;
+      margin-bottom: 30px;
+      backdrop-filter: blur(10px);
+    }
+
+    .node-btn {
+      background: rgba(8, 10, 15, 0.8);
+      color: var(--dorado-luz);
+      border: 1px solid var(--borde-hairline);
+      padding: 10px 18px;
+      font-size: 14px;
+      letter-spacing: 0.8px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.4s ease;
+      line-height: 1.2;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .node-btn:hover, .node-btn.active {
+      background: var(--dorado-luz);
+      color: #000;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+    }
+
+    .transfiguration-chamber {
+      position: relative;
+      min-height: 600px;
+      border: 1px solid var(--borde-hairline);
+      border-radius: 4px;
+      padding: 32px 28px;
+      background: radial-gradient(circle at 50% 0%, rgba(46, 91, 255, 0.08), transparent 70%);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .content-layer {
+      display: none;
+      opacity: 0;
+      transform: scale(0.98);
+      transition: all 0.4s ease;
+    }
+
+    .content-layer.active {
+      display: block;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .infograph-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+      margin-top: 22px;
+    }
+
+    .infograph-card {
+      border: 1px solid var(--borde-hairline);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--bg-card);
+      text-align: center;
+    }
+
+    .infograph-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .infograph-card img:hover {
+      transform: scale(1.02);
+    }
+
+    .img-fallback {
+      display: none;
+      width: 100%;
+      height: 420px;
+      background: #12151c;
+      color: var(--dorado-luz);
+      border: 1px dashed var(--borde-hairline);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-size: 14px;
+      letter-spacing: 0.5px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .infograph-caption {
+      padding: 14px 12px;
+      font-size: 13px;
+      color: rgba(245, 243, 239, 0.75);
+      letter-spacing: 0.4px;
+      line-height: 1.5;
+      background: rgba(0,0,0,0.4);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .caption-ia {
+      display: block;
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--dorado-luz);
+      opacity: 0.85;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .arco-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 16px;
+      margin: 24px 0;
+      align-items: start;
+    }
+
+    .arco-col {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid var(--borde-hairline);
+      border-radius: 6px;
+      padding: 16px;
+    }
+
+    .arco-col h4 {
+      color: var(--dorado-luz);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      margin-bottom: 10px;
+      line-height: 1.2;
+    }
+
+    .arco-col p {
+      font-size: 13px;
+      color: rgba(245,243,239,0.85);
+      font-family: 'JetBrains Mono', monospace;
+      line-height: 1.6;
+    }
+
+    .arco-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--dorado-luz);
+      font-size: 20px;
+      padding-top: 40px;
+    }
+
+    footer {
+      margin-top: 50px;
+      padding: 30px 0;
+      border-top: 1px solid var(--borde-hairline);
+      text-align: center;
+      font-size: 13px;
+      color: rgba(245, 243, 239, 0.7);
+      line-height: 1.6;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .scripture-footer {
+      margin-top: 12px;
+      color: var(--dorado-luz);
+      letter-spacing: 1.5px;
+      font-weight: bold;
+      font-size: 13px;
+    }
+
+    @media (max-width: 768px) {
+      .transfiguration-chamber { padding: 20px 16px; }
+      .arco-grid { grid-template-columns: 1fr; }
+      .arco-arrow { transform: rotate(90deg); padding: 8px 0; }
+      .node-btn { font-size: 13px; padding: 10px 14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="portal-container mono">
+
+    <!-- Navegador de Nodos Vivos /SAT/ -->
+    <nav class="node-navigator">
+      <button class="node-btn active" onclick="transfigure('readme', this)">📄 README.md</button>
+      <button class="node-btn" onclick="transfigure('infograph', this)">🖼️ /infograph/ Tipología</button>
+      <button class="node-btn" onclick="transfigure('root-webp', this)">🖼️ Raíz WebP</button>
+      <button class="node-btn" onclick="transfigure('sintesis', this)">📜 Síntesis Divina</button>
+    </nav>
+
+    <!-- Cámara de Transfiguración del Código -->
+    <main class="transfiguration-chamber" id="chamber">
+
+      <!-- NODO 1: README.md / Declaración Sabática -->
+      <article id="layer-readme" class="content-layer active">
+        <h1 class="serif" style="font-size: 36px; color: var(--dorado-luz); line-height: 1.2;">MÓDULO SAT — TESTIMONIO APOSTÓLICO SABÁTICO</h1>
+        <p style="font-size: 13px; color: rgba(245,243,239,0.6); margin: 10px 0 20px;">
+          Misión SADV41 / ORIGEN 0 / PROTOCOLO 131 • GitHub Pages • Burunga, Panamá Oeste 🇵🇦
+        </p>
+        <hr style="border-color: var(--borde-hairline); margin: 20px 0; border-style: solid; border-width: 1px 0 0 0;">
+
+        <h2 class="serif" style="font-size: 24px; margin-top: 20px; color: var(--dorado-luz);">🏛 DECLARACIÓN DE PROPÓSITO</h2>
+        <p style="margin-top: 12px; font-size: 14px;">
+          El Módulo SAT (Sabbatical Apostolic Testimony) es un espacio de divulgación y enseñanza espiritual publicado en <b>GitHub Pages</b>[span_2](start_span)[span_2](end_span). En este santo día Sábado, declaramos que cesamos de nuestras propias obras para descansar y caminar en la voluntad perfecta de Dios[span_3](start_span)[span_3](end_span). No es un monumento de vanagloria, sino canal de gracia, perdón y mejoramiento integral sobre el fundamento de apóstoles y profetas, siendo Cristo la Piedra Angular (Efesios 2:20)[span_4](start_span)[span_4](end_span).
+        </p>
+
+        <h2 class="serif" style="font-size: 24px; margin-top: 32px; color: var(--dorado-luz);">📜 PILARES DE LA TIPOLOGÍA BÍBLICA</h2>
+        <ul style="margin-left: 20px; margin-top: 12px; font-size: 14px;">
+          <li style="margin-bottom: 10px;"><b>1. Del Primer Adán al Postrer Adán (1 Corintios 15:45):</b> Del Edén terrenal a la Recreación Redimida en la Nueva Jerusalén[span_5](start_span)[span_5](end_span).</li>
+          <li style="margin-bottom: 10px;"><b>2. La Piedra Angular Inconmovible (Efesios 2:20 · Salmo 46:1, 7, 11):</b> Cristo como fundamento eterno. Dios es refugio y fortaleza, Jehová de los ejércitos está con nosotros[span_6](start_span)[span_6](end_span).</li>
+          <li><b>3. Amor, Perdón y Restauración:</b> Edificación y consolación (1 Cor. 14:3), el camino del perdón de José (Gén. 50:20) y refugio inconmovible (Salmo 46)[span_7](start_span)[span_7](end_span)[span_8](start_span)[span_8](end_span).</li>
+        </ul>
+
+        <div style="margin-top: 28px; padding: 16px; border: 1px solid var(--borde-hairline); border-radius: 6px; background: rgba(212,175,55,0.06);">
+          <p style="font-size: 13px; color: var(--dorado-luz);">Fundamento Escritural: Génesis 1:27; 2:24 · Salmo 46:1, 7, 11 · Mateo 19:4-6 · Juan 3:16-17 · Efesios 2:20; 5:31-32 · Romanos 10:13[span_9](start_span)[span_9](end_span)</p>
+        </div>
+      </article>
+
+      <!-- NODO 2: Subcarpeta /infograph/ -->
+      <article id="layer-infograph" class="content-layer">
+        <h2 class="serif" style="font-size: 28px; color: var(--dorado-luz);">Carpeta: /SAT/infograph/</h2>
+        <p style="font-size: 14px; margin: 8px 0 20px; color: rgba(245,243,239,0.7);">
+          Archivos gráficos renombrados con nombres simples para evitar enlaces rotos. Ilustraciones generadas con IA, estilo óleo barroco sacro[span_10](start_span)[span_10](end_span).
+        </p>
+        
+        <div class="infograph-grid">
+          <div class="infograph-card">
+            <img src="./infograph/tipologia-eden-01.webp" 
+                 alt="Tipología Bíblica Del Edén a la Nueva Jerusalén 01" 
+                 onerror="handleImgError(this)" />
+            <div class="img-fallback">
+              <div>🖼️ Imagen no disponible</div>
+              <div style="font-size: 11px; margin-top: 8px; opacity: 0.6;">tipologia-eden-01.webp</div>
+            </div>
+            <div class="infograph-caption">
+              Tipología Bíblica: Del Edén a la Nueva Jerusalén — Vista 01
+              <span class="caption-ia">Ilustración generada con IA · Estilo óleo barroco sacro · Adán y Eva / Cristo y la Iglesia</span>
+            </div>
+          </div>
+
+          <div class="infograph-card">
+            <img src="./infograph/tipologia-eden-02.webp" 
+                 alt="Tipología Bíblica Del Edén a la Nueva Jerusalén 02" 
+                 onerror="handleImgError(this)" />
+            <div class="img-fallback">
+              <div>🖼️ Imagen no disponible</div>
+              <div style="font-size: 11px; margin-top: 8px; opacity: 0.6;">tipologia-eden-02.webp</div>
+            </div>
+            <div class="infograph-caption">
+              Tipología Bíblica: Del Edén a la Nueva Jerusalén — Vista 02
+              <span class="caption-ia">Ilustración generada con IA · Cristo Piedra Angular Ef. 2:20 · Enoc y Elías</span>
+            </div>
+          </div>
+        </div>
+        <p style="font-size: 12px; margin-top: 16px; color: rgba(245,243,239,0.5);">
+          Nota: Renombra tus archivos larguísimos de Meta a <code>tipologia-eden-01.webp</code> y <code>tipologia-eden-02.webp</code> para asegurar su carga impecable.
+        </p>
+      </article>
+
+      <!-- NODO 3: Archivos WebP Raíz /SAT/ -->
+      <article id="layer-root-webp" class="content-layer">
+        <h2 class="serif" style="font-size: 28px; color: var(--dorado-luz);">Archivos WebP Raíz: /SAT/</h2>
+        <p style="font-size: 14px; margin-bottom: 20px; color: rgba(245,243,239,0.7);">Estructura ligera de renderizado[span_11](start_span)[span_11](end_span).</p>
+
+        <div class="infograph-grid">
+          <div class="infograph-card">
+            <img src="./tipologia-principal.webp" 
+                 alt="Arte Sacro Principal" 
+                 onerror="handleImgError(this)" />
+            <div class="img-fallback">
+              <div>🖼️ Imagen no disponible</div>
+              <div style="font-size: 11px; margin-top: 8px; opacity: 0.6;">tipologia-principal.webp (antes xf.webp)</div>
+            </div>
+            <div class="infograph-caption">
+              Arte Sacro Principal — Adán y Eva originales / Cristo y Esposa
+              <span class="caption-ia">Ilustración generada con IA · Túnicas de lino decorosas</span>
+            </div>
+          </div>
+
+          <div class="infograph-card">
+            <img src="./piedra-angular.webp" 
+                 alt="Cristo Piedra Angular" 
+                 onerror="handleImgError(this)" />
+            <div class="img-fallback">
+              <div>🖼️ Imagen no disponible</div>
+              <div style="font-size: 11px; margin-top: 8px; opacity: 0.6;">piedra-angular.webp (antes Of.webp)</div>
+            </div>
+            <div class="infograph-caption">
+              Cristo como Piedra Angular (Ef. 2:20) — Nueva Jerusalén
+              <span class="caption-ia">Ilustración generada con IA · Luz celestial</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- NODO 4: Síntesis Divina y Conectoma Redentor (COMPLETA CON ARCO TIPOLÓGICO) -->
+      <article id="layer-sintesis" class="content-layer">
+        <h2 class="serif" style="font-size: 28px; color: var(--dorado-luz);">LA SÍNTESIS DIVINA: EL CONECTOMA REDENTOR</h2>
+        <blockquote class="serif" style="border-left: 2px solid var(--dorado-luz); padding-left: 16px; margin: 20px 0; font-style: italic; font-size: 15px;">
+          «Del Costado Traspasado al Satélite Celestial: Todo lo sensible se vuelve verificado, seguro y lleno de paz en la voluntad de Dios.»[span_12](start_span)[span_12](end_span)
+        </blockquote>
+
+        <h3 class="serif" style="font-size: 20px; color: var(--dorado-luz); margin-top: 28px;">El Arco Tipológico: De la Creación a la Recreación</h3>
+        <p style="font-size: 14px; margin-top: 10px;">
+          La tipología bíblica no es alegoría libre, es Cristo revelado en figura. El primer Adán es sombra, el Postrer Adán es sustancia (1 Cor. 15:45)[span_13](start_span)[span_13](end_span).
+        </p>
+
+        <div class="arco-grid">
+          <div class="arco-col">
+            <h4>EL ADÁN Y EVA ORIGINAL (Génesis 2-3)</h4>
+            <p><b>Origen:</b> Eva formada del costado de Adán mientras dormía (Gén. 2:21-22). Hombre de barba corta, cabello corto; mujer de rostro suave, cabello largo suelto y corona de flores.</p>
+            <p style="margin-top: 8px;"><b>Condición Pre-Pecado:</b> Inocencia original, acceso al Árbol de la Vida, comunión directa sin sufrimiento (Gén. 2:9).</p>
+            <p style="margin-top: 8px;"><b>Caída:</b> Desobediencia, trabajo penoso con espinos, dolores y muerte (Gén. 3:16-19).</p>
+            <p style="margin-top: 8px;"><b>Unión Sacudida:</b> Unión terrenal sacudida por la culpa y el miedo (Gén. 3:7-10).</p>
+          </div>
+
+          <div class="arco-arrow">→</div>
+
+          <div class="arco-col">
+            <h4>CRISTO Y SU ESPOSA LA IGLESIA (Ef. 5, Apoc. 19 y 21)</h4>
+            <p><b>Origen:</b> La Iglesia nace del costado traspasado de Cristo en la cruz durante su sueño de la muerte, sangre y agua (Juan 19:34).</p>
+            <p style="margin-top: 8px;"><b>Recreación Redimida:</b> Esposa glorificada en la Nueva Jerusalén, Árbol de la Vida restituido, sin llanto ni dolor (Apoc. 21:4; 22:2)[span_14](start_span)[span_14](end_span).</p>
+            <p style="margin-top: 8px;"><b>Redención:</b> Cristo asume la maldición, corona de espinas, para librar y regenerar a la Esposa (Gál. 3:13).</p>
+            <p style="margin-top: 8px;"><b>Matrimonio Espiritual:</b> Alianza inquebrantable y eterna, misterio grande (Ef. 5:32; Apoc. 19:7)[span_15](start_span)[span_15](end_span).</p>
+          </div>
+        </div>
+
+        <h3 class="serif" style="font-size: 20px; color: var(--dorado-luz); margin-top: 32px;">Centro: Piedra Angular y Testigos que no vieron muerte</h3>
+        <p style="font-size: 14px; margin-top: 10px;">
+          <b>Cristo Victorioso como Piedra Angular (Ef. 2:20)</b> sobre el fundamento de Apóstoles y Profetas[span_16](start_span)[span_16](end_span). Camino dorado de luz que une Edén con Nueva Jerusalén. <b>Enoc (Gén. 5:24)</b> caminó con Dios y desapareció, y <b>Elías (1 Reyes 18:38)</b> — dos testigos del arrebatamiento y del reposo en Dios, figura de la Esposa que no verá corrupción[span_17](start_span)[span_17](end_span).
+        </p>
+
+        <h3 class="serif" style="font-size: 20px; color: var(--dorado-luz); margin-top: 32px;">La Esposa en el Apocalipsis VS. La Caída Efímera</h3>
+        <p style="font-size: 14px; margin-top: 10px;">
+          Mientras la primera Eva cayó ante la tentación en el huerto terrenal, la Esposa de Cristo es presentada en Apocalipsis 19:7-8 y 21:2 como nupcia victoriosa, vestida de lino fino, limpio y resplandeciente y purificada[span_18](start_span)[span_18](end_span). Frente al colapso de este mundo —no quedará piedra sobre piedra (Mt. 24:2)[span_19](start_span)[span_19](end_span)— la edificación del cuerpo de Cristo permanece para siempre (Ef. 2:20)[span_20](start_span)[span_20](end_span).
+        </p>
+
+        <h3 class="serif" style="font-size: 20px; color: var(--dorado-luz); margin-top: 32px;">El Propósito Divino: Amor, Perdón y Restauración (1 Cor. 15:45)</h3>
+        <ul style="margin-left: 20px; margin-top: 12px; font-size: 14px;">
+          <li style="margin-bottom: 10px;"><b>1) Edificación y consolación (1 Cor. 14:3):</b> El mensaje del Espíritu Santo edifica, exhorta y consuela, sanando heridas pasadas y edificándonos juntos en amor[span_21](start_span)[span_21](end_span).</li>
+          <li style="margin-bottom: 10px;"><b>2) El camino del perdón (Gén. 45:1-15; 50:20):</b> José y sus hermanos — vosotros pensasteis mal contra mí, mas Dios lo encaminó a bien[span_22](start_span)[span_22](end_span). Ilustración de perdón que supera escasez y agravios[span_23](start_span)[span_23](end_span).</li>
+          <li><b>3) Refugio Inconmovible (Salmo 46:1,7,11):</b> Dios es refugio y fortaleza, pronto auxilio en tribulaciones[span_24](start_span)[span_24](end_span). La unión final del Novio y la Esposa se mantiene firme, sin temor ni dolor, sostenida por Su presencia divina[span_25](start_span)[span_25](end_span)[span_26](start_span)[span_26](end_span).</li>
+        </ul>
+
+        <div style="margin-top: 30px; padding: 18px; border: 1px solid var(--borde-hairline); border-radius: 6px; background: rgba(46,91,255,0.06);">
+          <p style="font-size: 14px; font-style: italic;">“Porque no envió Dios a su Hijo al mundo para condenar al mundo, sino para que el mundo sea salvo por él.” — Juan 3:17[span_27](start_span)[span_27](end_span)</p>
+          <p style="font-size: 13px; margin-top: 10px; color: rgba(245,243,239,0.7);">
+            Inclusión correcta en Cristo Jesús: Modelo fiel Adán y Eva como hombre y mujer, Cristo y su Iglesia; llamado universal — todo aquel que invocare el nombre del Señor será salvo (Rom. 10:13), porque de tal manera amó Dios al mundo (Juan 3:16)[span_28](start_span)[span_28](end_span). Panamá Oeste y las naciones[span_29](start_span)[span_29](end_span).
+          </p>
+        </div>
+      </article>
+
+    </main>
+
+    <!-- Pie Escritural Permanente Inalterable -->
+    <footer>
+      <p>Misión SADV41 — Burunga, Panamá Oeste 🇵🇦 · GitHub Pages SAT[span_30](start_span)[span_30](end_span)</p>
+      <p class="scripture-footer">Génesis 1:27; 2:24 · Mateo 19:4-6 · Efesios 5:31-32 · Juan 3:16 · Romanos 10:13 · Salmo 46:1, 7, 11[span_31](start_span)[span_31](end_span)</p>
+      <p style="margin-top: 10px; font-size: 11px; opacity: 0.5;">Ilustraciones generadas con IA · Arte sacro óleo barroco con fines de edificación · 2026[span_32](start_span)[span_32](end_span)</p>
+    </footer>
+
+  </div>
+
+  <!-- JavaScript Seguro de Transfiguración Nodal -->
+  <script>
+    function transfigure(targetId, btnElement) {
+      if (btnElement) {
+        document.querySelectorAll('.node-btn').forEach(b => b.classList.remove('active'));
+        btnElement.classList.add('active');
+      }
+
+      const chamber = document.getElementById('chamber');
+      if (chamber) {
+        chamber.style.opacity = '0';
+        chamber.style.transform = 'scale(0.98)';
+      }
+
+      setTimeout(() => {
+        document.querySelectorAll('.content-layer').forEach(layer => layer.classList.remove('active'));
+        const activeLayer = document.getElementById('layer-' + targetId);
+        if (activeLayer) {
+          activeLayer.classList.add('active');
+        }
+        if (chamber) {
+          chamber.style.opacity = '1';
+          chamber.style.transform = 'scale(1)';
+        }
+      }, 350);
+    }
+
+    function handleImgError(img) {
+      img.style.display = 'none';
+      const fallback = img.parentElement.querySelector('.img-fallback');
+      if (fallback) {
+        fallback.style.display = 'flex';
+      }
+    }
+  </script>
+</body>
+</html>
