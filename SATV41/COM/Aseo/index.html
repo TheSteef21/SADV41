@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misión SADV41 - SATV41 | Monitoreo y Gestión de Desechos Arraiján</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        satv: {
+                            gold: '#D4AF37',
+                            goldLight: '#F3E5AB',
+                            dark: '#0B0F19',
+                            card: '#111827',
+                            border: '#1F2937',
+                            accent: '#3B82F6',
+                            emerald: '#10B981',
+                            warning: '#F59E0B'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts & Lucide Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #07090E;
+            color: #F3F4F6;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF 0%, #D4AF37 50%, #AA7C11 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-border-glow {
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        .satv-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1rem;
+        }
+        .satv-card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1F2937;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D4AF37;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-amber-500 selection:text-black">
+
+    <!-- TOP HEADER / BANNER SATV41 -->
+    <header class="sticky top-0 z-50 bg-satv-dark/90 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-200 p-0.5 flex items-center justify-center shadow-lg shadow-amber-500/10">
+                    <div class="w-full h-full bg-satv-dark rounded-[10px] flex items-center justify-center">
+                        <i data-lucide="shield-check" class="w-6 h-6 text-amber-400"></i>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-xs font-mono tracking-widest text-amber-400 uppercase font-semibold">MISIÓN SADV41</span>
+                        <span class="px-2 py-0.5 text-[10px] font-mono bg-amber-500/10 border border-amber-500/30 text-amber-300 rounded-full">SATV41 ACTIVE</span>
+                    </div>
+                    <h1 class="text-lg font-bold tracking-tight text-white flex items-center gap-2">
+                        Monitoreo Urbano & Aseo <span class="text-gray-400 font-normal text-sm sm:inline hidden">| Burunga & Arraiján</span>
+                    </h1>
+                </div>
+            </div>
+
+            <!-- Quick Stats in Header -->
+            <div class="hidden md:flex items-center space-x-6 text-sm">
+                <div class="flex items-center space-x-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="text-gray-400">Concesionaria:</span>
+                    <span class="font-semibold text-gray-200">Aseo Capital</span>
+                </div>
+                <div class="flex items-center space-x-2 border-l border-gray-800 pl-6">
+                    <i data-lucide="phone-call" class="w-4 h-4 text-amber-400"></i>
+                    <span class="text-gray-400">Atención 311 / 6200-2767</span>
+                </div>
+            </div>
+
+            <!-- Mobile Action Button -->
+            <div class="flex md:hidden">
+                <a href="#modulo-reporte" class="p-2 bg-amber-500/10 text-amber-400 border border-amber-500/30 rounded-lg text-xs font-semibold flex items-center gap-1">
+                    <i data-lucide="plus-circle" class="w-4 h-4"></i> Reportar
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO & BANNER TECNOLÓGICO -->
+    <section class="relative overflow-hidden pt-8 pb-12 bg-gradient-to-b from-satv-dark via-[#0d1322] to-satv-dark border-b border-gray-800">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#D4AF37_1px,transparent_1px)] [background-size:16px_16px]"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-300 text-xs font-medium">
+                        <i data-lucide="radio" class="w-3.5 h-3.5 text-amber-400 animate-pulse"></i>
+                        <span>Plataforma de Asistencia Comunitaria Sanitaria</span>
+                    </div>
+
+                    <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-none text-white">
+                        Gestión Limpia y <br class="hidden sm:inline" />
+                        <span class="gold-gradient-text">Monitoreo de Residuos</span>
+                    </h2>
+
+                    <p class="text-gray-300 text-base sm:text-lg max-w-2xl font-normal leading-relaxed">
+                        Herramienta de enlace ciudadano para el corregimiento de <strong class="text-amber-400 font-semibold">Burunga</strong> y el distrito de <strong class="text-amber-400 font-semibold">Arraiján</strong>. Reporta acumulación de basura, genera alertas para Aseo Capital y conoce las normativas sanitarias vigentes.
+                    </p>
+
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="#modulo-reporte" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-600 hover:to-yellow-700 text-black font-bold text-sm transition-all shadow-lg shadow-amber-500/20 flex items-center gap-2">
+                            <i data-lucide="send" class="w-4 h-4"></i> Crear Reporte Comunal
+                        </a>
+                        <a href="#directorio-contactos" class="px-6 py-3.5 rounded-xl bg-gray-800/80 hover:bg-gray-700 text-gray-200 border border-gray-700 font-semibold text-sm transition-all flex items-center gap-2">
+                            <i data-lucide="book-open" class="w-4 h-4"></i> Contactos & Sanciones
+                        </a>
+                    </div>
+                </div>
+
+                <!-- SATV Monitor Card -->
+                <div class="lg:col-span-5">
+                    <div class="satv-card gold-border-glow p-6 space-y-4">
+                        <div class="flex items-center justify-between border-b border-gray-800 pb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+                                <span class="font-mono text-xs uppercase tracking-wider text-gray-400">Estado Operativo Distrito</span>
+                            </div>
+                            <span class="font-mono text-xs text-amber-400 bg-amber-400/10 px-2 py-0.5 rounded">SATV41-LIVE</span>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 pt-2">
+                            <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800">
+                                <span class="text-xs text-gray-400 block mb-1">Zona Burunga</span>
+                                <span class="text-lg font-bold text-emerald-400 flex items-center gap-1">
+                                    <i data-lucide="check-circle" class="w-4 h-4"></i> Ruta Normal
+                                </span>
+                                <span class="text-[11px] text-gray-500 block mt-1">La Frontera / San Martín</span>
+                            </div>
+                            <div class="bg-gray-900/60 p-4 rounded-xl border border-gray-800">
+                                <span class="text-xs text-gray-400 block mb-1">Operador Relleno</span>
+                                <span class="text-lg font-bold text-blue-400 flex items-center gap-1">
+                                    <i data-lucide="truck" class="w-4 h-4"></i> Cerro Patacón
+                                </span>
+                                <span class="text-[11px] text-gray-500 block mt-1">Transferencia Externa</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-amber-500/10 border border-amber-500/30 p-4 rounded-xl flex items-start gap-3 text-xs text-amber-200">
+                            <i data-lucide="alert-triangle" class="w-5 h-5 text-amber-400 shrink-0 mt-0.5"></i>
+                            <div>
+                                <strong class="font-semibold block text-amber-300">Aviso Municipal Importante:</strong>
+                                Arraiján NO cuenta con basurero público municipal de libre depósito. Depositar desechos en quebradas o lotes está sujeto a multas por la Alcaldía y MINSA.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
+
+        <!-- 1. MÓDULO DE REPORTE Y ASISTENCIA COMUNITARIA DE BASURA -->
+        <section id="modulo-reporte" class="scroll-mt-24 space-y-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-gray-800 pb-4">
+                <div>
+                    <span class="text-amber-400 font-mono text-xs uppercase tracking-wider">Módulo Interactivo 01</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-2">
+                        <i data-lucide="file-text" class="w-7 h-7 text-amber-400"></i> Generador de Reporte Comunal
+                    </h2>
+                </div>
+                <p class="text-xs text-gray-400 max-w-md">
+                    Diligencie los datos de la incidencia. El sistema estructurará un mensaje formal optimizado para enviar directo por WhatsApp o llamada telefónica.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Formulario -->
+                <div class="lg:col-span-7 satv-card p-6 sm:p-8 space-y-6">
+                    <form id="reportForm" onsubmit="event.preventDefault(); generateReport();" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-2">Nombre del Vecino / Líder</label>
+                                <input type="text" id="repName" placeholder="Ej. Carlos Mendoza" class="w-full bg-gray-900 border border-gray-700 focus:border-amber-400 rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-2">Teléfono de Contacto</label>
+                                <input type="tel" id="repPhone" placeholder="Ej. 6123-4567" class="w-full bg-gray-900 border border-gray-700 focus:border-amber-400 rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-all">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-2">Corregimiento / Sector</label>
+                                <select id="repSector" class="w-full bg-gray-900 border border-gray-700 focus:border-amber-400 rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-all">
+                                    <option value="Burunga - La Frontera">Burunga - La Frontera</option>
+                                    <option value="Burunga - San Martín de Porres">Burunga - San Martín de Porres</option>
+                                    <option value="Burunga - 11 de Abril">Burunga - 11 de Abril</option>
+                                    <option value="Burunga - Centro">Burunga - Centro</option>
+                                    <option value="Arraiján Cabecera">Arraiján Cabecera</option>
+                                    <option value="Vista Alegre">Vista Alegre</option>
+                                    <option value="Juan Demóstenes Arosemena">Juan Demóstenes Arosemena</option>
+                                    <option value="Nuevo Empalme / Cerro Silvestre">Cerro Silvestre</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-2">Punto de Referencia / Dirección</label>
+                                <input type="text" id="repAddress" placeholder="Ej. Calle La Frontera, cerca al abastecedor" class="w-full bg-gray-900 border border-gray-700 focus:border-amber-400 rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-all" required>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-2">Tipo de Incidencia</label>
+                                <select id="repType" class="w-full bg-gray-900 border border-gray-700 focus:border-amber-400 rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-all">
+                                    <option value="Acumulación de bolsas domiciliarias">Acumulación de bolsas domiciliarias (5+ bolsas)</option>
+                                    <option value="Retraso en la frecuencia de camión">Retraso en la frecuencia habitual</option>
+                                    <option value="Solicitud de recolección de chatarra/enseres">Solicitud especial: Enseres / Chatarra</option>
+                                    <option value="Basurero clandestino / Lote baldío">Reporte de vertido clandestino</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-2">Días acumulados sin recolección</label>
+                                <input type="number" id="repDays" min="1" max="30" value="3" class="w-full bg-gray-900 border border-gray-700 focus:border-amber-400 rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-all">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 mb-2">Detalles Adicionales o Comentarios</label>
+                            <textarea id="repDetails" rows="3" placeholder="Ej. Se colocaron 5 bolsas bien cerradas. Hay riesgo de picadura de perros o malos olores." class="w-full bg-gray-900 border border-gray-700 focus:border-amber-400 rounded-xl px-4 py-3 text-sm text-white focus:outline-none transition-all"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-3.5 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-black font-bold text-sm rounded-xl transition-all shadow-md flex items-center justify-center gap-2">
+                            <i data-lucide="cpu" class="w-4 h-4"></i> Procesar y Generar Plantilla SADV41
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Preview y Canales de Envío -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-4">
+                    <div class="satv-card p-6 flex-1 flex flex-col justify-between border-amber-500/20">
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between border-b border-gray-800 pb-3">
+                                <span class="text-xs font-mono text-amber-400 uppercase">Vista Previa de Mensaje</span>
+                                <span id="statusBadge" class="text-[10px] bg-gray-800 text-gray-400 px-2 py-0.5 rounded">Pendiente de Generación</span>
+                            </div>
+
+                            <div id="reportPreview" class="bg-gray-950/80 rounded-xl p-4 font-mono text-xs text-gray-300 border border-gray-800 min-h-[180px] whitespace-pre-line leading-relaxed">
+                              *SELECCIONE LOS DATOS Y HAGA CLIC EN PROCESAR*
+
+El mensaje generado quedará formateado con membrete SADV41 para enviarlo con 1 solo clic a Aseo Capital o a la central de la línea 311.
+                            </div>
+                        </div>
+
+                        <div class="space-y-3 pt-4 border-t border-gray-800">
+                            <button onclick="copyToClipboard()" class="w-full py-2.5 bg-gray-800 hover:bg-gray-700 text-white rounded-xl text-xs font-semibold transition-all flex items-center justify-center gap-2 border border-gray-700">
+                                <i data-lucide="copy" class="w-4 h-4 text-amber-400"></i> Copiar Mensaje al Portapapeles
+                            </button>
+                            <button onclick="sendWhatsApp()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2 shadow-lg shadow-emerald-900/30">
+                                <i data-lucide="message-square" class="w-4 h-4"></i> Enviar directo vía WhatsApp (Aseo Capital)
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="toastMessage" class="hidden bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 p-3 rounded-xl text-xs text-center flex items-center justify-center gap-2">
+                        <i data-lucide="check-circle-2" class="w-4 h-4"></i> ¡Copiado con éxito! Listo para pegar y enviar.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. CALCULADORA Y SIMULADOR DE RUTAS / FRECUENCIAS -->
+        <section class="satv-card p-6 sm:p-8 space-y-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-800 pb-4">
+                <div>
+                    <span class="text-amber-400 font-mono text-xs uppercase tracking-wider">Módulo Interactivo 02</span>
+                    <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+                        <i data-lucide="compass" class="w-6 h-6 text-amber-400"></i> Guiador Comunal de Frecuencia y Disposición
+                    </h2>
+                </div>
+                <span class="text-xs text-gray-400">Seleccione su área para conocer el protocolo sugerido</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Selector -->
+                <div class="space-y-4">
+                    <label class="block text-xs font-semibold text-gray-300">Seleccione su Zona de Residencia:</label>
+                    <div class="space-y-2">
+                        <button onclick="setZone('burunga')" id="btnZoneBurunga" class="w-full p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/40 text-left text-xs font-semibold text-amber-300 flex items-center justify-between transition-all">
+                            <span>Burunga (La Frontera / San Martín)</span>
+                            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </button>
+                        <button onclick="setZone('arraijan')" id="btnZoneArraijan" class="w-full p-3.5 rounded-xl bg-gray-900 border border-gray-800 text-left text-xs font-semibold text-gray-400 hover:text-white hover:border-gray-700 flex items-center justify-between transition-all">
+                            <span>Arraiján Cabecera & Casco Urbano</span>
+                            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </button>
+                        <button onclick="setZone('vistaalegre')" id="btnZoneVista" class="w-full p-3.5 rounded-xl bg-gray-900 border border-gray-800 text-left text-xs font-semibold text-gray-400 hover:text-white hover:border-gray-700 flex items-center justify-between transition-all">
+                            <span>Vista Alegre / J.D. Arosemena</span>
+                            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Info Resultados -->
+                <div class="md:col-span-2 bg-gray-950/60 rounded-xl p-6 border border-gray-800 flex flex-col justify-between space-y-4">
+                    <div id="zoneContent" class="space-y-3">
+                        <!-- Carga dinámica -->
+                    </div>
+
+                    <div class="pt-4 border-t border-gray-800 flex flex-wrap items-center justify-between gap-4 text-xs">
+                        <div class="flex items-center gap-2 text-gray-400">
+                            <i data-lucide="info" class="w-4 h-4 text-amber-400"></i>
+                            <span>¿Tiene muebles o electrodomésticos viejos?</span>
+                        </div>
+                        <span class="text-amber-400 font-semibold">Coordinar Jornada de Chatarra con la Junta Comunal</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. DIRECTORIO INFORMATIVO Y CANALES DIRECTOS -->
+        <section id="directorio-contactos" class="scroll-mt-24 space-y-6">
+            <div class="border-b border-gray-800 pb-4">
+                <span class="text-amber-400 font-mono text-xs uppercase tracking-wider">Módulo Informativo 03</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-2">
+                    <i data-lucide="phone-call" class="w-7 h-7 text-amber-400"></i> Directorio Oficial & Normatividad Municipal
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Card 1: Aseo Capital -->
+                <div class="satv-card p-6 space-y-4 border-amber-500/30">
+                    <div class="flex items-center gap-3">
+                        <div class="p-3 bg-amber-500/10 text-amber-400 rounded-xl border border-amber-500/20">
+                            <i data-lucide="truck" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white text-base">Aseo Capital, S.A.</h3>
+                            <span class="text-xs text-gray-400">Concesionaria Oficial Arraiján</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li class="flex items-center justify-between p-2 bg-gray-900/80 rounded-lg">
+                            <span class="text-gray-400">WhatsApp / Oficina Virtual:</span>
+                            <a href="https://wa.me/50762002767" target="_blank" class="text-amber-400 font-mono font-bold hover:underline">6200-2767</a>
+                        </li>
+                        <li class="flex items-center justify-between p-2 bg-gray-900/80 rounded-lg">
+                            <span class="text-gray-400">Teléfonos Centrales:</span>
+                            <span class="font-mono text-gray-200">389-3567 / 344-4948</span>
+                        </li>
+                        <li class="flex items-start justify-between p-2 bg-gray-900/80 rounded-lg">
+                            <span class="text-gray-400">Oficina Física:</span>
+                            <span class="text-right text-gray-200">Plaza Paseo de Gracia, Local 10 (Arraiján Cabecera)</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 2: Central 311 -->
+                <div class="satv-card p-6 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="p-3 bg-blue-500/10 text-blue-400 rounded-xl border border-blue-500/20">
+                            <i data-lucide="headphones" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white text-base">Centro de Atención 311</h3>
+                            <span class="text-xs text-gray-400">Atención Ciudadana Nacional</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-300 leading-relaxed">
+                        Canal gubernamental para escalar quejas por acumulación de desechos, falta de servicio o solicitud de inspecciones ambientales en la comunidad.
+                    </p>
+                    <div class="pt-2">
+                        <a href="tel:311" class="w-full py-2.5 bg-blue-600/20 hover:bg-blue-600/30 text-blue-300 border border-blue-500/40 rounded-xl text-xs font-bold transition-all flex items-center justify-center gap-2">
+                            <i data-lucide="phone" class="w-4 h-4"></i> Llamar Gratuitamente al 311
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card 3: Normativa y Sanciones -->
+                <div class="satv-card p-6 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="p-3 bg-red-500/10 text-red-400 rounded-xl border border-red-500/20">
+                            <i data-lucide="alert-octagon" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-white text-base">Sanciones & Alcaldía</h3>
+                            <span class="text-xs text-gray-400">MINSA y Alcaldía de Arraiján</span>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        <li class="p-2 bg-gray-900/80 rounded-lg">
+                            <strong class="text-red-400 block mb-1">Prohibición Estricta:</strong>
+                            Arrojar basura en quebradas, cunetas o lotes baldíos conlleva multas de hasta $500+.
+                        </li>
+                        <li class="p-2 bg-gray-900/80 rounded-lg">
+                            <strong class="text-amber-400 block mb-1">Junta Comunal de Burunga:</strong>
+                            Coordinación de corte de maleza y volquetes especiales.
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4. PANEL DE ESTADÍSTICAS COMUNALES & METRICAS SATV41 -->
+        <section class="satv-card p-6 sm:p-8 space-y-6">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-gray-800 pb-4">
+                <div>
+                    <span class="text-amber-400 font-mono text-xs uppercase tracking-wider">Módulo de Métricas 04</span>
+                    <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+                        <i data-lucide="bar-chart-3" class="w-6 h-6 text-amber-400"></i> Estadísticas Comunales de Limpieza
+                    </h2>
+                </div>
+                <span class="text-xs font-mono text-gray-400">Datos proyectados en tiempo real (SADV41)</span>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Métricas numéricas -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="p-4 bg-gray-900/80 rounded-xl border border-gray-800 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 block">Reportes Resueltos este mes</span>
+                            <span class="text-2xl font-extrabold text-emerald-400 font-mono">88.4%</span>
+                        </div>
+                        <i data-lucide="check-check" class="w-8 h-8 text-emerald-500/40"></i>
+                    </div>
+
+                    <div class="p-4 bg-gray-900/80 rounded-xl border border-gray-800 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 block">Tiempo promedio de atención</span>
+                            <span class="text-2xl font-extrabold text-amber-400 font-mono">24 - 48 Hrs</span>
+                        </div>
+                        <i data-lucide="clock" class="w-8 h-8 text-amber-500/40"></i>
+                    </div>
+
+                    <div class="p-4 bg-gray-900/80 rounded-xl border border-gray-800 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-gray-400 block">Puntos Clandestinos Eliminados</span>
+                            <span class="text-2xl font-extrabold text-blue-400 font-mono">14 Zonas</span>
+                        </div>
+                        <i data-lucide="trash-2" class="w-8 h-8 text-blue-500/40"></i>
+                    </div>
+                </div>
+
+                <!-- Gráfico Chart.js -->
+                <div class="lg:col-span-7 bg-gray-950/80 p-4 rounded-xl border border-gray-800">
+                    <h3 class="text-xs font-mono text-gray-400 mb-4 text-center">Frecuencia de Cumplimiento de Recolección por Sector (%)</h3>
+                    <div class="h-60 relative">
+                        <canvas id="statsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER / ECOSYSTEM CREDITS -->
+    <footer class="bg-satv-dark border-t border-gray-800 py-8 text-center text-xs text-gray-500 space-y-3">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-2">
+                <i data-lucide="shield" class="w-4 h-4 text-amber-400"></i>
+                <span class="font-bold text-gray-300">SATV41 Comunal</span>
+                <span>— Plataforma de Asistencia de Burunga y Arraiján</span>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="https://thesteef21.github.io/SADV41/SATV41/" target="_blank" class="text-amber-400 hover:underline flex items-center gap-1 font-mono">
+                    <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Portal Oficial Misión SADV41
+                </a>
+            </div>
+        </div>
+        <p class="text-[11px] text-gray-600">
+            Esta web es una herramienta interactiva independiente orientada a la autogestión comunitaria y enlace institucional.
+        </p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Inicializar Iconos Lucide
+        lucide.createIcons();
+
+        // Estado global del mensaje
+        let currentGeneratedMessage = "";
+
+        // Generador de Mensajes
+        function generateReport() {
+            const name = document.getElementById('repName').value || 'Vecino de la Comunidad';
+            const phone = document.getElementById('repPhone').value || 'No especificado';
+            const sector = document.getElementById('repSector').value;
+            const address = document.getElementById('repAddress').value;
+            const type = document.getElementById('repType').value;
+            const days = document.getElementById('repDays').value;
+            const details = document.getElementById('repDetails').value;
+
+            const dateStr = new Date().toLocaleDateString('es-PA', { year: 'numeric', month: 'long', day: 'numeric' });
+
+            currentGeneratedMessage = `*REPORTE COMUNAL DE ASEO - MISIÓN SADV41/SATV41*
+----------------------------------------
+📅 *Fecha:* ${dateStr}
+👤 *Nombre del solicitante:* ${name}
+📞 *Contacto:* ${phone}
+📍 *Ubicación / Sector:* ${sector}
+🏠 *Dirección exacta:* ${address}
+
+⚠️ *Tipo de Incidencia:* ${type}
+⏱️ *Días acumulados sin recolección:* ${days} día(s)
+📝 *Detalles del caso:* ${details || 'Bolsas amarradas en espera del camión.'}
+
+----------------------------------------
+*Mensaje dirigido a:* Aseo Capital, S.A. / Línea 311.
+_Solicitamos apoyo con la verificación e inclusión en la ruta de recolección._`;
+
+            const previewElem = document.getElementById('reportPreview');
+            previewElem.innerText = currentGeneratedMessage;
+            
+            const badge = document.getElementById('statusBadge');
+            badge.innerText = "¡Listo para enviar!";
+            badge.className = "text-[10px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 px-2 py-0.5 rounded font-bold";
+        }
+
+        // Copiar al portapapeles
+        function copyToClipboard() {
+            if (!currentGeneratedMessage) {
+                generateReport();
+            }
+            const textArea = document.createElement("textarea");
+            textArea.value = currentGeneratedMessage;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                showToast();
+            } catch (err) {
+                console.error('Error al copiar', err);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        // Enviar a WhatsApp Aseo Capital
+        function sendWhatsApp() {
+            if (!currentGeneratedMessage) {
+                generateReport();
+            }
+            const encodedText = encodeURIComponent(currentGeneratedMessage);
+            window.open(`https://wa.me/50762002767?text=${encodedText}`, '_blank');
+        }
+
+        // Notificación Toast
+        function showToast() {
+            const toast = document.getElementById('toastMessage');
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 3000);
+        }
+
+        // Gestor de zonas del simulador
+        const zonesData = {
+            burunga: {
+                title: "Sector Burunga (La Frontera, San Martín, 11 de Abril)",
+                frequency: "2 a 3 veces por semana (Sujeto a programación de Aseo Capital)",
+                actions: [
+                    "Coloque las bolsas bien cerradas únicamente el día de la ruta en su punto habituado.",
+                    "Si tiene 5 o más bolsas acumuladas de días anteriores, use el Generador de Reportes superior para agrupar aviso.",
+                    "No deposite desechos en la quebrada de Burunga ni lotes baldíos (Zona fiscalizada por Salud)."
+                ]
+            },
+            arraijan: {
+                title: "Arraiján Cabecera & Zonas Comerciales",
+                frequency: "3 veces por semana / Turnos Diurnos y Nocturnos",
+                actions: [
+                    "Mantenga los contenedores cerrados frente a locales y viviendas.",
+                    "Para atención presencial de cuentas o reportes directos, acudir a Plaza Paseo de Gracia, Local 10."
+                ]
+            },
+            vistaalegre: {
+                title: "Vista Alegre & Juan Demóstenes Arosemena",
+                frequency: "Frecuencia regular interdiaria",
+                actions: [
+                    "Verifique que las bolsas de residuos pesados estén reforzadas.",
+                    "Reporte cualquier acumulación indebida en vías principales vía 311 o WhatsApp."
+                ]
+            }
+        };
+
+        function setZone(key) {
+            const data = zonesData[key];
+            const contentDiv = document.getElementById('zoneContent');
+
+            // Actualizar estilo botones
+            ['burunga', 'arraijan', 'vistaalegre'].forEach(k => {
+                const btn = document.getElementById(`btnZone${k.charAt(0).toUpperCase() + k.slice(1)}`);
+                if (btn) {
+                    if (k === key) {
+                        btn.className = "w-full p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/40 text-left text-xs font-semibold text-amber-300 flex items-center justify-between transition-all";
+                    } else {
+                        btn.className = "w-full p-3.5 rounded-xl bg-gray-900 border border-gray-800 text-left text-xs font-semibold text-gray-400 hover:text-white hover:border-gray-700 flex items-center justify-between transition-all";
+                    }
+                }
+            });
+
+            let listItems = data.actions.map(act => `<li class="flex items-start gap-2"><i data-lucide="check" class="w-4 h-4 text-amber-400 shrink-0 mt-0.5"></i> <span>${act}</span></li>`).join('');
+
+            contentDiv.innerHTML = `
+                <div class="space-y-2">
+                    <span class="text-xs text-amber-400 font-mono font-bold uppercase">Zona Seleccionada</span>
+                    <h3 class="text-lg font-bold text-white">${data.title}</h3>
+                    <p class="text-xs text-emerald-400 font-semibold bg-emerald-500/10 border border-emerald-500/20 p-2.5 rounded-lg inline-block">
+                        ⏱️ Frecuencia Estimada: ${data.frequency}
+                    </p>
+                </div>
+                <div class="space-y-2 pt-2">
+                    <span class="text-xs text-gray-400 font-semibold">Protocolo Ciudadano Recomendado:</span>
+                    <ul class="space-y-2 text-xs text-gray-300">
+                        ${listItems}
+                    </ul>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        // Inicializar Vista por Defecto
+        window.onload = function() {
+            setZone('burunga');
+            generateReport();
+
+            // Configurar Chart.js
+            const ctx = document.getElementById('statsChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Burunga Center', 'La Frontera', 'San Martín', 'Arraiján Cab.', 'Vista Alegre'],
+                    datasets: [{
+                        label: 'Efectividad de Cobertura %',
+                        data: [85, 82, 78, 92, 89],
+                        backgroundColor: [
+                            'rgba(212, 175, 55, 0.7)',
+                            'rgba(212, 175, 55, 0.5)',
+                            'rgba(245, 158, 11, 0.6)',
+                            'rgba(16, 185, 129, 0.7)',
+                            'rgba(59, 130, 246, 0.7)'
+                        ],
+                        borderColor: [
+                            '#D4AF37',
+                            '#D4AF37',
+                            '#F59E0B',
+                            '#10B981',
+                            '#3B82F6'
+                        ],
+                        borderWidth: 1.5,
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                            ticks: { color: '#9CA3AF', font: { size: 10 } }
+                        },
+                        x: {
+                            grid: { display: false },
+                            ticks: { color: '#9CA3AF', font: { size: 10 } }
+                        }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>
