@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MISSION SADV41 — Módulo SAT | Testimonio Apostólico Sabático</title>
+  <meta name="description" content="Faro digital de testimonio, gracia y reposo sabático. Burunga, Panamá Oeste.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cinzel+Decorative:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #0a1628;
+      --bg-deep-2: #101f3a;
+      --gold: #d4af37;
+      --gold-light: #f6e8b5;
+      --gold-dim: #8a7020;
+      --parchment: #fdf6e3;
+      --parchment-2: #f7ecd0;
+      --ink: #1a1a2e;
+      --ink-light: #3a3a5c;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-deep: #070f1d;
+        --bg-deep-2: #0c1a33;
+      }
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg-deep);
+      color: var(--parchment);
+      font-family: "Cormorant Garamond", Georgia, serif;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      overflow-x: clip;
+    }
+    .cinzel { font-family: Cinzel, serif; }
+    .cinzel-deco { font-family: "Cinzel Decorative", serif; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-deep); }
+    ::-webkit-scrollbar-thumb { background: var(--gold-dim); border-radius: 4px; }
+
+    /* Background ambient */
+    .bg-layer {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .bg-glow-1 {
+      position: absolute;
+      top: -30%;
+      left: 50%;
+      height: 120%;
+      width: 140%;
+      transform: translateX(-50%);
+      border-radius: 100%;
+      background: radial-gradient(ellipse at 50% 20%, rgba(212,175,55,0.18) 0%, rgba(212,175,55,0.06) 35%, transparent 70%);
+    }
+    .bg-glow-2 {
+      position: absolute;
+      top: 0; left: 0;
+      height: 800px; width: 100%;
+      opacity: 0.4;
+      background:
+        radial-gradient(ellipse at 20% 10%, rgba(100,130,255,0.12), transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(212,175,55,0.12), transparent 60%);
+    }
+    .bg-stars {
+      position: absolute;
+      inset: 0;
+      opacity: 0.3;
+      background-image:
+        radial-gradient(1px 1px at 15% 25%, #d4af37 50%, transparent),
+        radial-gradient(1px 1px at 35% 15%, white 60%, transparent),
+        radial-gradient(1px 1px at 55% 30%, #d4af37 40%, transparent),
+        radial-gradient(1px 1px at 75% 20%, white 50%, transparent),
+        radial-gradient(1px 1px at 85% 40%, #d4af37 30%, transparent),
+        radial-gradient(1.5px 1.5px at 50% 50%, white 50%, transparent);
+      background-repeat: repeat;
+      background-size: 800px 600px;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      width: 100%;
+      border-bottom: 1px solid transparent;
+      background: rgba(10,22,40,0.6);
+      backdrop-filter: blur(12px);
+      transition: all 0.5s;
+    }
+    header.scrolled {
+      background: rgba(10,22,40,0.92);
+      border-color: rgba(212,175,55,0.25);
+    }
+    .header-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .header-inner { padding-left: 2.5rem; padding-right: 2.5rem; }
+    }
+    .logo-box {
+      height: 2rem; width: 2rem;
+      border-radius: 3px;
+      border: 1px solid rgba(212,175,55,0.4);
+      background: rgba(212,175,55,0.1);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .logo-box span {
+      font-family: Cinzel, serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: var(--gold);
+    }
+    nav { display: none; gap: 2rem; align-items: center; }
+    @media (min-width: 768px) { nav { display: flex; } }
+    nav a {
+      font-family: Cinzel, serif;
+      font-size: 10px;
+      letter-spacing: 0.18em;
+      color: rgba(212,175,55,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--gold); }
+
+    main {
+      position: relative;
+      z-index: 10;
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 0 1.25rem 5rem;
+    }
+    @media (min-width: 768px) {
+      main { padding-left: 2.5rem; padding-right: 2.5rem; }
+    }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 3rem;
+    }
+    @media (min-width: 768px) { .hero { padding-top: 5rem; } }
+    .hero-arch {
+      position: relative;
+      width: 100%;
+      max-width: 860px;
+    }
+    .hero-arch svg { width: 100%; }
+    .hero-glow {
+      position: absolute;
+      left: 50%; top: 18%;
+      height: 180px; width: 380px;
+      transform: translateX(-50%);
+      filter: blur(40px);
+      background: radial-gradient(ellipse at center, rgba(255,240,180,0.35) 0%, rgba(212,175,55,0.15) 35%, transparent 70%);
+    }
+    .hero-diamond {
+      position: absolute;
+      left: 50%; top: 34%;
+      transform: translate(-50%, -50%);
+    }
+    .hero-diamond-inner {
+      position: relative;
+      display: flex;
+      height: 58px; width: 58px;
+      align-items: center; justify-content: center;
+      transform: rotate(45deg);
+      border: 1px solid var(--gold);
+      background: var(--bg-deep);
+      box-shadow: 0 0 30px rgba(212,175,55,0.35);
+    }
+    .hero-diamond-inner span {
+      transform: rotate(-45deg);
+      font-family: Cinzel, serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .hero-diamond::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      filter: blur(18px);
+      background: rgba(212,175,55,0.2);
+      border-radius: 9999px;
+      transform: scale(1.8);
+    }
+
+    .hero-text {
+      position: relative;
+      margin-top: -40px;
+      display: flex;
+      max-width: 820px;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    @media (min-width: 768px) { .hero-text { margin-top: -30px; } }
+
+    .hero-badge {
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .hero-badge .line {
+      height: 1px; width: 2.5rem;
+      background: linear-gradient(to right, transparent, rgba(212,175,55,0.6));
+    }
+    .hero-badge .line.rev {
+      background: linear-gradient(to left, transparent, rgba(212,175,55,0.6));
+    }
+    .hero-badge span {
+      font-family: Cinzel, serif;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      color: rgba(212,175,55,0.8);
+    }
+
+    h1 {
+      font-family: Cinzel, serif;
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--parchment);
+    }
+    @media (min-width: 768px) { h1 { font-size: 46px; } }
+    h1 .sub {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      color: var(--gold);
+    }
+    @media (min-width: 768px) { h1 .sub { font-size: 18px; } }
+    h1 .italic-sub {
+      display: block;
+      margin-top: 0.75rem;
+      font-size: 18px;
+      font-weight: 400;
+      font-style: italic;
+      letter-spacing: 0.02em;
+      color: var(--gold-light);
+      font-family: "Cormorant Garamond", serif;
+    }
+    @media (min-width: 768px) { h1 .italic-sub { font-size: 22px; } }
+
+    .quote-box {
+      position: relative;
+      margin-top: 2rem;
+      max-width: 680px;
+    }
+    .quote-box .q-mark {
+      position: absolute;
+      font-size: 48px;
+      line-height: 1;
+      color: rgba(212,175,55,0.15);
+      font-family: serif;
+    }
+    .quote-box .q-mark.left { left: -1.5rem; top: -1rem; }
+    .quote-box .q-mark.right { right: -1.5rem; bottom: -2rem; }
+    .quote-box h2 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 22px;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.35;
+      color: rgba(253,246,227,0.9);
+    }
+    @media (min-width: 768px) { .quote-box h2 { font-size: 30px; } }
+
+    .hero-desc {
+      margin-top: 2.5rem;
+      max-width: 560px;
+      font-size: 13px;
+      line-height: 1.8;
+      letter-spacing: 0.02em;
+      color: rgba(255,255,255,0.6);
+    }
+    @media (min-width: 768px) { .hero-desc { font-size: 14px; } }
+
+    .hero-cta {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+    .btn-primary {
+      position: relative;
+      overflow: hidden;
+      border-radius: 2px;
+      border: 1px solid rgba(212,175,55,0.4);
+      background: rgba(212,175,55,0.1);
+      padding: 0.75rem 1.75rem;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: rgba(212,175,55,0.15); }
+    .btn-primary span {
+      font-family: Cinzel, serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: var(--gold-light);
+    }
+    .btn-primary::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      transform: translateX(-100%);
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.1), transparent);
+      transition: transform 0.7s;
+    }
+    .btn-primary:hover::after { transform: translateX(100%); }
+    .hero-ref {
+      font-family: Cinzel, serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* Divider */
+    .divider {
+      margin: 4rem auto;
+      max-width: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .divider .line {
+      height: 1px;
+      flex: 1;
+      background: linear-gradient(to right, transparent, rgba(212,175,55,0.3));
+    }
+    .divider .line.rev {
+      background: linear-gradient(to left, transparent, rgba(212,175,55,0.3));
+    }
+    .divider span { font-size: 14px; color: rgba(212,175,55,0.5); }
+
+    /* Section cards (parchment) */
+    .card-parchment {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 4px;
+      border: 1px solid rgba(212,175,55,0.25);
+      background: var(--parchment);
+      box-shadow: 0 20px 80px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.8);
+    }
+    .card-parchment .top-bar {
+      height: 3px;
+      width: 100%;
+      background: linear-gradient(to right, var(--gold-dim), var(--gold), var(--gold-dim));
+    }
+    .card-parchment .corner {
+      position: absolute;
+      height: 1.5rem; width: 1.5rem;
+      border-color: rgba(212,175,55,0.3);
+    }
+    .card-parchment .corner.tl { left: 1.25rem; top: 1.25rem; border-left: 1px solid; border-top: 1px solid; }
+    .card-parchment .corner.tr { right: 1.25rem; top: 1.25rem; border-right: 1px solid; border-top: 1px solid; }
+    .card-parchment .corner.bl { left: 1.25rem; bottom: 1.25rem; border-left: 1px solid; border-bottom: 1px solid; }
+    .card-parchment .corner.br { right: 1.25rem; bottom: 1.25rem; border-right: 1px solid; border-bottom: 1px solid; }
+    .card-body { position: relative; padding: 2rem; }
+    @media (min-width: 768px) { .card-body { padding: 3.5rem; } }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .section-label .line {
+      height: 1px; width: 2rem;
+      background: rgba(212,175,55,0.4);
+    }
+    .section-label span {
+      font-family: Cinzel, serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.35em;
+      color: var(--gold-dim);
+    }
+    .card-parchment h3 {
+      font-family: Cinzel, serif;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      color: var(--ink);
+    }
+    @media (min-width: 768px) { .card-parchment h3 { font-size: 28px; } }
+    .card-parchment p {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 17px;
+      line-height: 1.85;
+      color: var(--ink-light);
+    }
+    @media (min-width: 768px) { .card-parchment p { font-size: 19px; } }
+    .card-parchment .sat-tag {
+      font-family: Cinzel, serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--gold-dim);
+    }
+    .card-parchment .highlight {
+      position: relative;
+      padding-left: 1.5rem;
+      border-left: 2px solid rgba(212,175,55,0.3);
+      font-style: italic;
+    }
+    .card-parchment .footer-ref {
+      margin-top: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .card-parchment .footer-ref .icon {
+      height: 2.25rem; width: 2.25rem;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 9999px;
+      border: 1px solid rgba(212,175,55,0.2);
+      background: rgba(212,175,55,0.1);
+      font-size: 14px;
+      color: var(--gold-dim);
+    }
+    .card-parchment .footer-ref span {
+      font-family: Cinzel, serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: rgba(138,112,32,0.7);
+    }
+
+    /* Ejes section */
+    .ejes-header { text-align: center; max-width: 900px; margin: 0 auto; }
+    .ejes-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(212,175,55,0.2);
+      background: rgba(212,175,55,0.1);
+      padding: 0.375rem 1rem;
+      margin-bottom: 1rem;
+    }
+    .ejes-badge .dot {
+      height: 4px; width: 4px;
+      border-radius: 9999px;
+      background: var(--gold);
+      animation: pulse 2s cubic-bezier(0.4,0,0.6,1) infinite;
+    }
+    @keyframes pulse { 50% { opacity: 0.5; } }
+    .ejes-badge span {
+      font-family: Cinzel, serif;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+    }
+    .ejes-header h3 {
+      font-family: Cinzel, serif;
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: 0.025em;
+      color: var(--parchment);
+    }
+    @media (min-width: 768px) { .ejes-header h3 { font-size: 34px; } }
+    .ejes-header p {
+      margin: 1rem auto 0;
+      max-width: 520px;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 15px;
+      font-style: italic;
+      line-height: 1.625;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .ejes-grid {
+      margin-top: 3rem;
+      display: grid;
+      gap: 1.5rem;
+    }
+    @media (min-width: 768px) { .ejes-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .eje-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border-radius: 4px;
+      border: 1px solid rgba(212,175,55,0.2);
+      background: linear-gradient(to bottom, var(--bg-deep-2), var(--bg-deep));
+      padding: 1px;
+    }
+    .eje-card-inner {
+      position: relative;
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+      background: var(--bg-deep);
+      padding: 1.5rem;
+    }
+    @media (min-width: 768px) { .eje-card-inner { padding: 1.75rem; } }
+    .eje-card .accent {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.7s;
+    }
+    .eje-card:hover .accent { opacity: 1; }
+    .eje-top {
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    .eje-icon {
+      height: 2.5rem; width: 2.5rem;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 2px;
+      border: 1px solid rgba(212,175,55,0.3);
+      background: rgba(212,175,55,0.1);
+      color: var(--gold);
+      font-size: 18px;
+    }
+    .eje-num {
+      font-family: Cinzel, serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.2);
+    }
+    .eje-card h4 {
+      font-family: Cinzel, serif;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: 0.06em;
+      color: var(--gold-light);
+    }
+    .eje-refs {
+      margin-top: 0.5rem;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 11px;
+      font-style: italic;
+      letter-spacing: 0.025em;
+      color: rgba(212,175,55,0.6);
+    }
+    .eje-divider {
+      margin-top: 1.25rem;
+      height: 1px; width: 100%;
+      background: linear-gradient(to right, rgba(212,175,55,0.2), transparent);
+    }
+    .eje-card ul {
+      margin-top: 1.25rem;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .eje-card li {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .eje-card li .dot {
+      margin-top: 8px;
+      height: 4px; width: 4px;
+      flex-shrink: 0;
+      border-radius: 9999px;
+      background: rgba(212,175,55,0.6);
+    }
+    .eje-card li p {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* Bendición */
+    .bendicion-card {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      overflow: hidden;
+      border-radius: 4px;
+      border: 1px solid rgba(212,175,55,0.2);
+    }
+    .bendicion-card .bg { position: absolute; inset: 0; background: var(--parchment); }
+    .bendicion-card .bg-grad {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom right, rgba(212,175,55,0.08), transparent, rgba(10,22,40,0.05));
+    }
+    .verse-box {
+      position: relative;
+      margin-top: 2.5rem;
+      border-radius: 3px;
+      border: 1px solid rgba(212,175,55,0.2);
+      background: var(--bg-deep);
+      padding: 2rem;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+    }
+    @media (min-width: 768px) { .verse-box { padding: 2.5rem; } }
+    .verse-tag {
+      position: absolute;
+      top: -0.75rem; left: 2rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(212,175,55,0.3);
+      background: var(--parchment);
+      padding: 0.25rem 0.75rem;
+    }
+    .verse-tag span {
+      font-family: Cinzel, serif;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      color: var(--gold-dim);
+    }
+    .verse-box p {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 20px;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--parchment);
+    }
+    @media (min-width: 768px) { .verse-box p { font-size: 26px; } }
+    .verse-label {
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .verse-label .line { height: 1px; width: 2.5rem; background: rgba(212,175,55,0.4); }
+    .verse-label span {
+      font-family: Cinzel, serif;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: rgba(212,175,55,0.7);
+    }
+    .bendicion-body {
+      margin-top: 2.5rem;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 17px;
+      line-height: 1.9;
+      color: var(--ink-light);
+    }
+    @media (min-width: 768px) { .bendicion-body { font-size: 18px; } }
+    .bendicion-body a {
+      border-radius: 2px;
+      background: rgba(26,26,46,0.05);
+      padding: 0.125rem 0.375rem;
+      font-family: ui-monospace, monospace;
+      font-size: 13px;
+      letter-spacing: 0.025em;
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-color: rgba(212,175,55,0.4);
+      text-underline-offset: 4px;
+    }
+    .bendicion-body a:hover { color: var(--gold-dim); }
+    .bendicion-body .label {
+      font-family: Cinzel, serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--gold-dim);
+    }
+    .inclusion-box {
+      margin-top: 1.5rem;
+      border-left: 2px solid rgba(212,175,55,0.4);
+      background: rgba(212,175,55,0.05);
+      padding: 0.75rem 0 0.75rem 1.25rem;
+      font-style: italic;
+    }
+    .fundamento {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      border-radius: 2px;
+      border: 1px dashed rgba(212,175,55,0.25);
+      background: rgba(10,22,40,0.05);
+      padding: 1rem;
+    }
+    .fundamento .label {
+      font-family: Cinzel, serif;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      color: rgba(138,112,32,0.8);
+    }
+    .fundamento .refs {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 13px;
+      font-style: italic;
+      line-height: 1.625;
+      color: var(--ink-light);
+      text-align: center;
+    }
+
+    /* Oración grid */
+    .oracion-grid {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      gap: 1.5rem;
+    }
+    @media (min-width: 768px) { .oracion-grid { grid-template-columns: 1fr 1fr; } }
+
+    .verse-day {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      border: 1px solid rgba(212,175,55,0.25);
+      background: var(--bg-deep-2);
+      padding: 1px;
+    }
+    .verse-day-inner {
+      position: relative;
+      height: 100%;
+      background: linear-gradient(to bottom right, var(--bg-deep-2), var(--bg-deep));
+      padding: 2rem;
+    }
+    .verse-day .glow {
+      position: absolute;
+      right: -2.5rem; top: -2.5rem;
+      height: 10rem; width: 10rem;
+      border-radius: 9999px;
+      background: rgba(212,175,55,0.05);
+      filter: blur(30px);
+      transition: background 0.3s;
+    }
+    .verse-day:hover .glow { background: rgba(212,175,55,0.1); }
+    .verse-day .label-row {
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .verse-day .label-row span:first-child { font-size: 16px; color: var(--gold); }
+    .verse-day .label-row span:last-child {
+      font-family: Cinzel, serif;
+      font-size: 11px;
+      letter-spacing: 0.3em;
+      color: rgba(212,175,55,0.8);
+    }
+    .verse-day blockquote {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 22px;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.5;
+      color: var(--parchment);
+    }
+    .verse-day cite {
+      display: block;
+      margin-top: 1.5rem;
+      font-family: Cinzel, serif;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      color: rgba(212,175,55,0.6);
+      font-style: normal;
+    }
+    .verse-day .tags {
+      margin-top: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-radius: 2px;
+      border: 1px solid rgba(255,255,255,0.05);
+      background: rgba(255,255,255,0.02);
+      padding: 0.5rem 0.75rem;
+    }
+    .verse-day .tags .note {
+      height: 1.5rem; width: 1.5rem;
+      border-radius: 9999px;
+      background: rgba(212,175,55,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 10px; color: var(--gold);
+    }
+    .verse-day .tags span {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 12px;
+      font-style: italic;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .oracion-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      border: 1px solid rgba(212,175,55,0.2);
+      background: var(--parchment);
+      padding: 2rem;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    }
+    .oracion-card .label-row {
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .oracion-card .label-row span:first-child { font-size: 14px; color: var(--gold-dim); }
+    .oracion-card .label-row span:nth-child(2) {
+      font-family: Cinzel, serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      color: var(--gold-dim);
+    }
+    .oracion-card .badge {
+      margin-left: auto;
+      border-radius: 9999px;
+      background: rgba(26,26,46,0.05);
+      padding: 0.125rem 0.5rem;
+      font-family: Cinzel, serif;
+      font-size: 8px;
+      letter-spacing: 0.1em;
+      color: rgba(26,26,46,0.6);
+    }
+    .oracion-card p {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 16px;
+      line-height: 1.8;
+      color: var(--ink-light);
+    }
+    .oracion-card .dropcap {
+      font-family: Cinzel, serif;
+      font-size: 22px;
+      line-height: 1;
+      color: var(--gold-dim);
+    }
+    .oracion-footer {
+      margin-top: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(212,175,55,0.15);
+      padding-top: 1rem;
+    }
+    .oracion-footer span:first-child {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 12px;
+      font-style: italic;
+      color: rgba(26,26,46,0.5);
+    }
+
+    /* Infografía */
+    .infografia-header {
+      margin-bottom: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .infografia-header .label {
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .infografia-header .label .line {
+      height: 1px; width: 3rem;
+      background: rgba(212,175,55,0.3);
+    }
+    .infografia-header .label span {
+      font-family: Cinzel, serif;
+      font-size: 10px;
+      letter-spacing: 0.35em;
+      color: rgba(212,175,55,0.6);
+    }
+    .infografia-header h4 {
+      font-family: Cinzel, serif;
+      font-size: 18px;
+      letter-spacing: 0.025em;
+      color: rgba(253,246,227,0.8);
+    }
+    .infografia-header p {
+      margin-top: 0.5rem;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 13px;
+      font-style: italic;
+      color: rgba(255,255,255,0.4);
+    }
+    .infografia-frame {
+      position: relative;
+      overflow: hidden;
+      border-radius: 6px;
+      border: 1px solid rgba(212,175,55,0.3);
+      background: var(--bg-deep-2);
+      padding: 1px;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.6);
+    }
+    .infografia-frame .img-wrap {
+      position: relative;
+      overflow: hidden;
+      border-radius: 5px;
+      background: #000;
+    }
+    .infografia-frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+    .infografia-frame .overlay {
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(10,22,40,0.4), transparent);
+      box-shadow: inset 0 0 0 1px rgba(212,175,55,0.15);
+    }
+    .infografia-caption {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+      background: var(--bg-deep);
+      padding: 1rem 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .infografia-caption { flex-direction: row; }
+    }
+    .infografia-caption span:first-child {
+      font-family: Cinzel, serif;
+      font-size: 9px;
+      letter-spacing: 0.25em;
+      color: rgba(255,255,255,0.4);
+    }
+    .infografia-caption span:last-child {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 12px;
+      font-style: italic;
+      color: rgba(212,175,55,0.6);
+    }
+
+    .side-grid {
+      margin-top: 2.5rem;
+      display: grid;
+      gap: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .side-grid { grid-template-columns: 2fr 3fr; }
+    }
+    .side-img {
+      position: relative;
+      overflow: hidden;
+      border-radius: 4px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .side-img img {
+      height: 260px;
+      width: 100%;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+    .side-img .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, var(--bg-deep), transparent);
+      opacity: 0.7;
+    }
+    .side-img .caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1rem;
+    }
+    .side-img .caption span {
+      font-family: Cinzel, serif;
+      font-size: 9px;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.6);
+    }
+    .nota-box {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-radius: 4px;
+      border: 1px solid rgba(212,175,55,0.1);
+      background: rgba(255,255,255,0.02);
+      padding: 1.5rem;
+    }
+    .nota-box .label {
+      font-family: Cinzel, serif;
+      font-size: 11px;
+      letter-spacing: 0.25em;
+      color: rgba(212,175,55,0.6);
+    }
+    .nota-box p {
+      margin-top: 0.75rem;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.6);
+    }
+    .nota-box code {
+      border-radius: 2px;
+      background: rgba(255,255,255,0.1);
+      padding: 0.125rem 0.375rem;
+      font-size: 12px;
+      color: var(--gold-light);
+    }
+    .nota-dots {
+      margin-top: 1rem;
+      display: flex;
+      gap: 0.5rem;
+    }
+    .nota-dots span {
+      height: 4px; width: 4px;
+      border-radius: 9999px;
+      background: rgba(212,175,55,0.6);
+    }
+    .nota-dots span:nth-child(2) { background: rgba(212,175,55,0.3); }
+    .nota-dots span:nth-child(3) { background: rgba(212,175,55,0.15); }
+
+    /* Closing */
+    .closing {
+      margin: 5rem auto 0;
+      max-width: 600px;
+      text-align: center;
+    }
+    .closing .ornament {
+      margin-bottom: 1.5rem;
+      font-size: 20px;
+      color: rgba(212,175,55,0.4);
+    }
+    .closing p {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 16px;
+      font-style: italic;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.5);
+    }
+    .closing .flags {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      font-size: 14px;
+      opacity: 0.6;
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 10;
+      margin-top: 4rem;
+      border-top: 1px solid rgba(212,175,55,0.15);
+      background: rgba(16,31,58,0.8);
+    }
+    .footer-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .footer-inner { padding-left: 2.5rem; padding-right: 2.5rem; }
+    }
+    .footer-row {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .footer-row { flex-direction: row; }
+    }
+    .footer-left { text-align: center; }
+    @media (min-width: 768px) { .footer-left { text-align: left; } }
+    .footer-left p:first-child {
+      font-family: Cinzel, serif;
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: rgba(212,175,55,0.8);
+    }
+    .footer-left p:last-child {
+      margin-top: 0.5rem;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+    }
+    .footer-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+    .footer-right span:first-child {
+      font-family: Cinzel, serif;
+      font-size: 9px;
+      letter-spacing: 0.3em;
+      color: rgba(255,255,255,0.2);
+    }
+    .footer-right .sep {
+      height: 1rem; width: 1px;
+      background: rgba(255,255,255,0.1);
+    }
+    .footer-right span:last-child {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 11px;
+      font-style: italic;
+      color: rgba(255,255,255,0.3);
+    }
+    .footer-line {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+    }
+    .footer-line div {
+      height: 1px;
+      width: 100%;
+      max-width: 900px;
+      background: linear-gradient(to right, transparent, rgba(212,175,55,0.2), transparent);
+    }
+
+    .mt-20 { margin-top: 5rem; }
+  </style>
+</head>
+<body>
+  <!-- Ambient background -->
+  <div class="bg-layer">
+    <div class="bg-glow-1"></div>
+    <div class="bg-glow-2"></div>
+    <div class="bg-stars"></div>
+  </div>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="header-inner">
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <div class="logo-box"><span>S41</span></div>
+        <span class="cinzel" style="font-size:10px;letter-spacing:0.25em;color:rgba(246,232,181,0.7);">MISSION • SAT</span>
+      </div>
+      <nav>
+        <a href="#proposito">PROPÓSITO</a>
+        <a href="#ejes">EJES</a>
+        <a href="#bendicion">BENDICIÓN</a>
+        <a href="#oracion">ORACIÓN</a>
+      </nav>
+      <div class="cinzel" style="font-size:9px;letter-spacing:0.2em;color:rgba(255,255,255,0.4);">BURUNGA • PA OESTE</div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-arch">
+        <svg viewBox="0 0 860 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40 260 Q 430 -40 820 260" stroke="#d4af37" stroke-width="1.2" stroke-opacity="0.9"/>
+          <path d="M70 260 Q 430 0 790 260" stroke="#d4af37" stroke-width="0.6" stroke-opacity="0.4"/>
+          <circle cx="430" cy="18" r="3" fill="#d4af37"/>
+          <circle cx="430" cy="18" r="8" stroke="#d4af37" stroke-opacity="0.3"/>
+          <path d="M40 260 C 20 220, 10 180, 30 160 Q 45 145, 60 160" stroke="#d4af37" stroke-width="0.8" stroke-opacity="0.5"/>
+          <path d="M820 260 C 840 220, 850 180, 830 160 Q 815 145, 800 160" stroke="#d4af37" stroke-width="0.8" stroke-opacity="0.5"/>
+          <g opacity="0.35">
+            <path d="M200 260 Q 260 190 320 260" stroke="#d4af37" stroke-width="0.5"/>
+            <path d="M540 260 Q 600 190 660 260" stroke="#d4af37" stroke-width="0.5"/>
+          </g>
+        </svg>
+        <div class="hero-glow"></div>
+        <div class="hero-diamond">
+          <div class="hero-diamond-inner"><span>✦</span></div>
+        </div>
+      </div>
+
+      <div class="hero-text">
+        <div class="hero-badge">
+          <div class="line"></div>
+          <span>SÁBADO • REPOSO • GRACIA</span>
+          <div class="line rev"></div>
+        </div>
+
+        <h1>
+          MISSION SADV41
+          <span class="sub">— MÓDULO SAT —</span>
+          <span class="italic-sub">Testimonio Apostólico Sabático</span>
+        </h1>
+
+        <div class="quote-box">
+          <span class="q-mark left">“</span>
+          <h2>Caminar con Él es perfecto: De la Creación al Reposo en Cristo</h2>
+          <span class="q-mark right">”</span>
+        </div>
+
+        <p class="hero-desc">
+          Un faro digital que no condena, sino que transmite — como satélite celestial — gracia, perdón y mejoramiento integral. En el reposo sabático, descansamos en la obra consumada y caminamos en Su voluntad perfecta.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#proposito" class="btn-primary"><span>ENTRAR AL REPOSO</span></a>
+          <div class="hero-ref">EFESIOS 2:20 • PIEDRA ANGULAR</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider">
+      <div class="line"></div>
+      <span>☦</span>
+      <div class="line rev"></div>
+    </div>
+
+    <!-- PROPÓSITO -->
+    <section id="proposito">
+      <div class="card-parchment">
+        <div class="top-bar"></div>
+        <div class="corner tl"></div>
+        <div class="corner tr"></div>
+        <div class="corner bl"></div>
+        <div class="corner br"></div>
+        <div class="card-body">
+          <div class="section-label">
+            <div class="line"></div>
+            <span>SECCIÓN I</span>
+          </div>
+          <h3>DECLARACIÓN DE PROPÓSITO</h3>
+          <div style="margin-top:2rem;display:flex;flex-direction:column;gap:1.5rem;">
+            <p>
+              Este espacio (<span class="sat-tag">“SAT”</span>) no es un monumento de vanagloria ni una obra de edificación humana. En este santo día <em style="font-weight:600;color:var(--ink);">Sábado</em>, testificamos que la obra de la redención ha sido consumada en la Cruz del Calvario.
+            </p>
+            <p class="highlight">
+              No juzgamos las debilidades del prójimo; servimos como canal de gracia, perdón y mejoramiento integral para edificar la iglesia sobre el verdadero fundamento: los apóstoles y profetas, siendo Cristo la <strong style="font-weight:700;font-style:normal;color:var(--ink);">Piedra Angular</strong> (Efesios 2:20).
+            </p>
+          </div>
+          <div class="footer-ref">
+            <div class="icon">✦</div>
+            <span>EFESIOS 2:20 • FUNDAMENTO APOSTÓLICO</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EJES -->
+    <section id="ejes" class="mt-20">
+      <div class="ejes-header">
+        <div style="margin-bottom:1rem;display:flex;justify-content:center;">
+          <div class="ejes-badge">
+            <span class="dot"></span>
+            <span>SATÉLITE CELESTIAL ACTIVO</span>
+          </div>
+        </div>
+        <h3>LOS TRES EJES DEL SATÉLITE CELESTIAL</h3>
+        <p>Transmitiendo señal sin fronteras — del hacer humano al caminar divino</p>
+      </div>
+
+      <div class="ejes-grid">
+        <!-- Eje 01 -->
+        <div class="eje-card">
+          <div class="eje-card-inner">
+            <div class="accent" style="background:linear-gradient(to bottom,hsla(48,96%,89%,0.05),transparent);"></div>
+            <div>
+              <div class="eje-top">
+                <div class="eje-icon">◐</div>
+                <span class="eje-num">01</span>
+              </div>
+              <h4>REPOSO Y AMOR FRATERNO</h4>
+              <p class="eje-refs">Génesis 2:1-3 · 1 Corintios 13</p>
+              <div class="eje-divider"></div>
+              <ul>
+                <li>
+                  <span class="dot"></span>
+                  <p>El Sábado es el recordatorio de que Dios completa la obra y el hombre descansa en su amor.</p>
+                </li>
+                <li>
+                  <span class="dot"></span>
+                  <p>El mayor mandato es amar al prójimo como a uno mismo, superando toda contienda mediante el perdón.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Eje 02 -->
+        <div class="eje-card">
+          <div class="eje-card-inner">
+            <div class="accent" style="background:linear-gradient(to bottom,rgba(219,234,254,0.05),transparent);"></div>
+            <div>
+              <div class="eje-top">
+                <div class="eje-icon">⬔</div>
+                <span class="eje-num">02</span>
+              </div>
+              <h4>CIMENTADOS EN LA PIEDRA ANGULAR</h4>
+              <p class="eje-refs">Efesios 2:20 · Salmo 46:1,7,11</p>
+              <div class="eje-divider"></div>
+              <ul>
+                <li>
+                  <span class="dot"></span>
+                  <p>Mientras las estructuras políticas y terrenales se tambalean, el Cuerpo de Cristo permanece inconmovible.</p>
+                </li>
+                <li>
+                  <span class="dot"></span>
+                  <p>Dios es nuestro refugio y fortaleza, nuestro pronto auxilio en las tribulaciones (Salmo 46:1), Jehová de los ejércitos está con nosotros, nuestro refugio es el Dios de Jacob (Salmo 46:7,11), baluarte en medio de cualquier prueba climática, social o espiritual.</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Eje 03 -->
+        <div class="eje-card">
+          <div class="eje-card-inner">
+            <div class="accent" style="background:linear-gradient(to bottom,rgba(255,228,230,0.05),transparent);"></div>
+            <div>
+              <div class="eje-top">
+                <div class="eje-icon">♛</div>
+                <span class="eje-num">03</span>
+              </div>
+              <h4>LA ESPOSA PREPARADA Y REDIMIDA</h4>
+              <p class="eje-refs">Efesios 5:31-32 · Apoc. 21:2,4 · Gén. 1:27; 2:24 · Mt. 19:4-6</p>
+              <div class="eje-divider"></div>
+              <ul>
+                <li>
+                  <span class="dot"></span>
+                  <p>Varón y hembra los creó (Gén. 1:27), por tanto dejará el hombre a su padre y a su madre y se unirá a su mujer y serán una sola carne (Gén. 2:24). Jesús confirma: lo que Dios juntó, no lo separe el hombre (Mateo 19:4-6). Este misterio grande es figura de Cristo y la Iglesia (Efesios 5:31-32).</p>
+                </li>
+                <li>
+                  <span class="dot"></span>
+                  <p>El contraste del primer Adán (afectado por la Caída) hacia el Postrer Adán, Jesucristo (1 Cor. 15:45).</p>
+                </li>
+                <li>
+                  <span class="dot"></span>
+                  <p>La restauración de la Iglesia como una nupcia victoriosa, vestida de lino fino limpio y resplandeciente (Apoc. 19:8), donde ya no habrá llanto ni dolor (Apoc. 21:4).</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENDICIÓN -->
+    <section id="bendicion" class="mt-20">
+      <div class="bendicion-card">
+        <div class="bg"></div>
+        <div class="bg-grad"></div>
+        <div class="card-body" style="position:relative;">
+          <div class="section-label">
+            <div class="line"></div>
+            <span>SECCIÓN III</span>
+          </div>
+          <h3 style="color:var(--ink);">BENDICIÓN Y LLEGAR A LAS NACIONES</h3>
+
+          <div class="verse-box">
+            <div class="verse-tag"><span>JUAN 3:17</span></div>
+            <p>“Porque no envió Dios a su Hijo al mundo para condenar al mundo, sino para que el mundo sea salvo por él.”</p>
+            <div class="verse-label">
+              <div class="line"></div>
+              <span>PALABRA VIVA</span>
+            </div>
+          </div>
+
+          <div class="bendicion-body">
+            <p>
+              Para la ciencia terrenal, un enlace en GitHub como
+              <a href="https://thesteef21.github.io/SADV41/SAT/" target="_blank" rel="noopener noreferrer">https://thesteef21.github.io/SADV41/SAT/</a>
+              puede verse como un satélite o código desplegado. Para Dios y en el Espíritu Santo, es un
+              <strong style="font-weight:600;color:var(--ink);">faro digital</strong>
+              de testimonio, edificación y consolación (1 Corintios 14:3), diseñado no para juzgar ni señalar faltas, sino para ayudar a sanar, restaurar y mejorar con el amor de Cristo.
+            </p>
+            <p style="margin-top:1.5rem;">
+              <span class="label">DEL HACER AL CAMINAR:</span>
+              el Sábado nos enseña que <em>no quedará piedra sobre piedra</em> (Mateo 24:2), sino que reposamos sobre la Piedra Angular. Un satélite que conecta la tierra con la Ciudad Celestial: no para condenar, sino para recordar que Dios es nuestro refugio (Salmo 46:1), para unir y sanar con la reconstrucción redimida.
+            </p>
+            <p class="inclusion-box">
+              Inclusión correcta en Cristo: <span style="font-weight:600;">todo el que invocare el nombre del Señor, será salvo</span> (Romanos 10:13), porque de tal manera amó Dios al mundo (Juan 3:16).
+            </p>
+          </div>
+
+          <div class="fundamento">
+            <span class="label">FUNDAMENTO ESCRITURAL:</span>
+            <span class="refs">Génesis 1:27; 2:24 · Salmo 46:1,7,11 · Mateo 19:4-6 · Juan 3:16-17 · Efesios 2:20; 5:31-32 · Romanos 10:13 · 1 Corintios 13; 14:3; 15:45 · Apocalipsis 19:7-8; 21:2,4</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORACIÓN -->
+    <section id="oracion" class="mt-20">
+      <div class="oracion-grid">
+        <div class="verse-day">
+          <div class="verse-day-inner">
+            <div class="glow"></div>
+            <div style="position:relative;">
+              <div class="label-row">
+                <span>✦</span>
+                <span>VERSÍCULO DEL DÍA</span>
+              </div>
+              <blockquote>“Dios es nuestro amparo y fortaleza, nuestro pronto auxilio en las tribulaciones.”</blockquote>
+              <cite>— SALMO 46:1</cite>
+              <div class="tags">
+                <div class="note">♪</div>
+                <span>Reposo • Refugio • Fortaleza</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="oracion-card">
+          <div class="label-row">
+            <span>☦</span>
+            <span>ORACIÓN CORTA</span>
+            <span class="badge">PANAMÁ OESTE & NACIONES</span>
+          </div>
+          <p>
+            <span class="dropcap">P</span>adre, en este Sábado reposamos en Tu obra consumada. Enséñanos a amar, perdonar como José y permanecer inconmovibles en Cristo, Piedra Angular. Bendice a Burunga, Panamá Oeste y las naciones. Amén.
+          </p>
+          <div class="oracion-footer">
+            <span>Orando en el reposo del Sábado</span>
+            <span>🇵🇦</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INFOGRAFÍA -->
+    <section class="mt-20">
+      <div style="max-width:900px;margin:0 auto;">
+        <div class="infografia-header">
+          <div class="label">
+            <div class="line"></div>
+            <span>VISIÓN GRÁFICA • FARO DIGITAL</span>
+            <div class="line"></div>
+          </div>
+          <h4>INFOGRAFÍA PRINCIPAL DEL MÓDULO SAT</h4>
+          <p>Arte sacro barroco — luz celestial sobre Burunga</p>
+        </div>
+
+        <div class="infografia-frame">
+          <div class="img-wrap">
+            <img src="xf.webp" alt="Infografía MISSION SADV41 - Módulo SAT - Testimonio Apostólico Sabático - Faro digital" loading="lazy">
+            <div class="overlay"></div>
+          </div>
+          <div class="infografia-caption">
+            <span>SADV41 • SAT • BURUNGA • PANAMÁ OESTE</span>
+            <span>“Caminar con Él es perfecto”</span>
+          </div>
+        </div>
+
+        <div class="side-grid">
+          <div class="side-img">
+            <img src="Of.webp" alt="Referencia visual secundaria - Piedra Angular y luz celestial" loading="lazy">
+            <div class="overlay"></div>
+            <div class="caption"><span>ESTUDIO • PIEDRA ANGULAR • LUZ</span></div>
+          </div>
+          <div class="nota-box">
+            <p class="label">NOTA DE DESPLIEGUE</p>
+            <p>
+              Esta página es un <code>index.html</code> único, listo para publicar en <code>/SAT/</code> de GitHub Pages. No requiere build, conserva tipografía sacra y luz celestial responsiva.
+            </p>
+            <div class="nota-dots">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Closing -->
+    <div class="closing">
+      <div class="ornament">— ✦ —</div>
+      <p>Que la paz de Cristo reine en tu corazón en este día de descanso y adoración. ¡Sigamos caminando juntos en la voluntad perfecta del Señor, edificando y ayudando a mejorar con Su amor fraterno!</p>
+      <div class="flags">
+        <span>🇵🇦</span>
+        <span>☦️</span>
+        <span>⭐️</span>
+        <span>🎉</span>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-row">
+        <div class="footer-left">
+          <p>MISSION SADV41 | Energy Gym Burunga</p>
+          <p>Burunga, Panamá Oeste 🇵🇦 • Juan 3:16 · Romanos 10:13</p>
+        </div>
+        <div class="footer-right">
+          <span>SAT • TESTIMONIO APOSTÓLICO SABÁTICO</span>
+          <div class="sep"></div>
+          <span>Reposo en Cristo • 2025</span>
+        </div>
+      </div>
+      <div class="footer-line"><div></div></div>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky header scroll effect
+    const header = document.getElementById('header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 20);
+    });
+  </script>
+</body>
+</html>
