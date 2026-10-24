@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADV41 - SATV41 | Ecosistema StevenDior & Monitoreo Comunal</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Ethers.js para pagos Web3 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+    <!-- Chart.js & Lucide Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#070a12',
+                        card: '#0d1322',
+                        alibabaOrange: '#ff6a00',
+                        satv: {
+                            gold: '#D4AF37',
+                            goldLight: '#F3E5AB',
+                            dark: '#0B0F19',
+                            card: '#111827',
+                            border: '#1F2937',
+                            accent: '#3B82F6',
+                            emerald: '#10B981',
+                            warning: '#F59E0B'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #07090E; color: #f1f5f9; }
+        .glow-orange { box-shadow: 0 0 25px rgba(255, 106, 0, 0.25); }
+        .gradient-text { background: linear-gradient(135deg, #ff6a00 0%, #ffa200 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF 0%, #D4AF37 50%, #AA7C11 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .satv-card {
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1rem;
+        }
+        .satv-card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B0F19; }
+        ::-webkit-scrollbar-thumb { background: #1F2937; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #D4AF37; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between antialiased selection:bg-orange-500 selection:text-black">
+
+    <!-- TOP HEADER SATV41 -->
+    <header class="sticky top-0 z-50 bg-satv-dark/90 backdrop-blur-md border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-200 p-0.5 flex items-center justify-center shadow-lg shadow-amber-500/10">
+                    <div class="w-full h-full bg-satv-dark rounded-[10px] flex items-center justify-center">
+                        <i data-lucide="shield-check" class="w-6 h-6 text-amber-400"></i>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex items-center space-x-2">
+                        <span class="text-xs font-mono tracking-widest text-amber-400 uppercase font-semibold">MISIÓN SADV41</span>
+                        <span class="px-2 py-0.5 text-[10px] font-mono bg-amber-500/10 border border-amber-500/30 text-amber-300 rounded-full">SATV41 ACTIVE</span>
+                    </div>
+                    <h1 class="text-lg font-bold tracking-tight text-white flex items-center gap-2">
+                        Ecosistema StevenDior <span class="text-gray-400 font-normal text-sm sm:inline hidden">| Monitoreo & Cargo Hub</span>
+                    </h1>
+                </div>
+            </div>
+
+            <!-- Header Quick Info -->
+            <div class="hidden md:flex items-center space-x-6 text-sm">
+                <div class="flex items-center space-x-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="text-gray-400">Estado Nodo:</span>
+                    <span class="font-semibold text-gray-200 font-mono text-xs">BSC RPC LIVE</span>
+                </div>
+                <div class="flex items-center space-x-2 border-l border-gray-800 pl-6">
+                    <i data-lucide="phone-call" class="w-4 h-4 text-amber-400"></i>
+                    <span class="text-gray-400">Contacto Directo:</span>
+                    <a href="https://wa.me/50769362166" target="_blank" class="font-mono text-emerald-400 font-bold hover:underline">+507 69362166</a>
+                </div>
+            </div>
+
+            <!-- Mobile Quick Action -->
+            <div class="flex md:hidden">
+                <a href="#modulo-reporte" class="p-2 bg-amber-500/10 text-amber-400 border border-amber-500/30 rounded-lg text-xs font-semibold flex items-center gap-1">
+                    <i data-lucide="plus-circle" class="w-4 h-4"></i> Reportar
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTAINER DE FLYER & HUB DE PAGO WEB3 -->
+    <section class="py-10 px-4 sm:px-6 bg-gradient-to-b from-satv-dark via-[#0d1322] to-satv-dark border-b border-gray-800">
+        <div class="max-w-xl mx-auto">
+            
+            <!-- Flyer Card Minimalista -->
+            <div class="w-full bg-card p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl space-y-5 relative overflow-hidden glow-orange">
+                
+                <div class="absolute -top-24 -right-24 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                <!-- Encabezado del Flyer -->
+                <div class="text-center space-y-2 border-b border-slate-800 pb-4">
+                    <div class="inline-block bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs px-3.5 py-1 rounded-full font-bold tracking-widest uppercase">
+                        📦 STEVENDIOR × HEAVY CARGO SERVICE (ALIBABA ACTION)
+                    </div>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                        ¡TE TRAEMOS TU <span class="gradient-text">PRODUCTO!</span>
+                    </h1>
+                    <p class="text-xs sm:text-sm text-slate-300">
+                        Ese que viste en redes sociales o en Alibaba. Envíos de China & USA directo a Panamá 🇨🇳 🇺🇸 ➔ 🇵🇦✨
+                    </p>
+                </div>
+
+                <!-- Navegación del Ecosistema SADV41 -->
+                <div class="space-y-2">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block text-center">Navegación del Ecosistema SADV41</span>
+                    <div class="grid grid-cols-2 gap-2 text-xs font-semibold">
+                        <a href="https://thesteef21.github.io/SADV41/StevenDiorFlow/" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/80 p-2.5 rounded-xl text-center transition flex items-center justify-center gap-1.5">
+                            🎵 StevenDiorFlow
+                        </a>
+                        <a href="https://thesteef21.github.io/SADV41/Agent/" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/80 p-2.5 rounded-xl text-center transition flex items-center justify-center gap-1.5">
+                            🤖 Agent Hub
+                        </a>
+                        <a href="https://thesteef21.github.io/SADV41/Agent/Boxdrop/" target="_blank" class="bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 border border-orange-500/30 p-2.5 rounded-xl text-center transition flex items-center justify-center gap-1.5">
+                            📦 Boxdrop
+                        </a>
+                        <a href="https://thesteef21.github.io/SADV41/Agent/UnlockPhone/" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/80 p-2.5 rounded-xl text-center transition flex items-center justify-center gap-1.5">
+                            🔓 UnlockPhone
+                        </a>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+                        <a href="https://sites.google.com/u/0/d/1t2dbokSuMNP9nkftLeYvSt5S6r_m2GUZ/preview" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-amber-400 border border-slate-800 p-2 rounded-xl text-center text-[11px] transition">
+                            🌐 Google Sites (Pay & Acciones)
+                        </a>
+                        <a href="https://thesteef21.github.io/SADV41/Agent/UnlockPhone/Pay/" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-slate-800 p-2 rounded-xl text-center text-[11px] transition">
+                            💳 Módulo UnlockPhone Pay
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Dirección Única Multired Web3 -->
+                <div class="bg-slate-950 p-3.5 rounded-2xl border border-slate-800 space-y-1.5 text-center">
+                    <div class="flex justify-between items-center text-[11px]">
+                        <span class="text-orange-400 font-bold uppercase tracking-wider">Billetera de Agente Autorizada</span>
+                        <button onclick="copyAddress()" class="text-slate-400 hover:text-white transition flex items-center gap-1 text-[10px]">
+                            <i class="fa-regular fa-copy"></i> Copiar
+                        </button>
+                    </div>
+                    <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800 font-mono text-xs text-emerald-400 break-all select-all">
+                        0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB
+                    </div>
+                    <p class="text-[10px] text-slate-400">
+                        ✅ Compatible con: <span class="text-slate-200">BSC, Ethereum, Solana, Polygon, Arbitrum, Base, Avalanche, TON, TRON y más.</span>
+                    </p>
+                </div>
+
+                <!-- Módulo de Pago Cripto Directo -->
+                <div class="bg-slate-900/50 p-3.5 rounded-2xl border border-slate-800 space-y-2.5">
+                    <div class="flex justify-between items-center">
+                        <span class="text-xs font-bold text-slate-300">💳 Pago Rápido Web3</span>
+                        <button id="btnConnect" onclick="connectWallet()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-3 py-1.5 rounded-lg text-[11px] transition">
+                            ⚡ <span id="walletBtnText">Conectar Wallet</span>
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                        <input id="inputPayAmount" type="number" step="0.001" placeholder="Monto BNB" class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-orange-500 font-mono">
+                        <button onclick="payDirectCrypto()" class="sm:col-span-2 bg-gradient-to-r from-orange-500 to-amber-500 text-slate-950 font-bold py-2 px-4 rounded-xl text-xs transition shadow-lg hover:opacity-95">
+                            🚀 Enviar Pago Cripto Directo
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Cotizador Exprés de Importaciones -->
+                <div class="bg-slate-900/40 p-4 rounded-2xl border border-slate-800 space-y-3">
+                    <div class="border-b border-slate-800 pb-2">
+                        <h3 class="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-1.5">
+                            <span>📦</span> Cotizador Exprés de Cargo (China / USA)
+                        </h3>
+                    </div>
+                    <div class="space-y-2 text-xs">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <div>
+                                <label class="block text-[10px] text-slate-400 mb-1">Origen:</label>
+                                <select id="calcOrigin" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2 text-slate-200 focus:outline-none focus:border-orange-500">
+                                    <option value="alibaba">Alibaba / China (Marítimo/Aéreo)</option>
+                                    <option value="usa">USA Courier (Panamá)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] text-slate-400 mb-1">Valor Producto ($ USD):</label>
+                                <input id="calcValue" type="number" placeholder="50" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2 text-slate-200 focus:outline-none focus:border-orange-500 font-mono">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-[10px] text-slate-400 mb-1">Peso estimado (libras/kg):</label>
+                            <input id="calcWeight" type="number" placeholder="2" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-2 text-slate-200 focus:outline-none focus:border-orange-500 font-mono">
+                        </div>
+                        <button onclick="calculateImport()" class="w-full bg-slate-800 hover:bg-slate-700 text-orange-400 font-bold py-2 rounded-xl transition text-xs">
+                            Calcular Estimado
+                        </button>
+                        <div id="calcResult" class="bg-slate-950 p-2.5 rounded-xl border border-slate-800 text-slate-300 hidden font-mono text-[11px]"></div>
+                    </div>
+                </div>
+
+                <!-- Log de Operaciones AI Agent -->
+                <div class="bg-slate-950 p-3 rounded-2xl border border-slate-900 space-y-2">
+                    <div class="flex justify-between items-center border-b border-slate-800 pb-1.5">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Log de Operaciones Agentic AI</span>
+                        <button onclick="clearTerminal()" class="text-[10px] text-slate-500 hover:text-slate-300">Limpiar</button>
+                    </div>
+                    <div id="terminalLogs" class="h-28 overflow-y-auto space-y-1 text-[11px] font-mono text-slate-400">
+                        <p class="text-slate-500">[System] Nodo StevenDior / Cargo Hub inicializado.</p>
+                    </div>
+                </div>
+
+                <!-- Botón de WhatsApp y Contacto -->
+                <div class="space-y-2.5 pt-1 text-center">
+                    <a href="https://wa.me/50769362166?text=Hola%20StevenDior,%20quiero%20cotizar%20un%20env%C3%ADo%20de%20Alibaba/redes%20con%20Heavy%20Cargo%20Service." target="_blank" rel="noopener noreferrer" class="block w-full bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold py-3 rounded-2xl text-xs transition shadow-lg flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-base"></i> Cotizar en WhatsApp (+507 69362166)
+                    </a>
+                    <p class="text-[10px] text-slate-500">SADV41 Protocolo Descentralizado • StevenDior.ai</p>
+                </div>
+
+            </div>
+
+            <!-- Sección Disclaimer & Marco Legal bStocks / SADV41 -->
+            <div class="mt-6 bg-slate-950 p-4 rounded-2xl border border-rose-500/30 space-y-3 text-xs">
+                <div class="flex items-center gap-2 border-b border-slate-800 pb-2">
+                    <span class="text-rose-400 font-bold uppercase tracking-wider">⚠️ AVISO LEGAL & DISCLAIMER DE GARANTÍA (bStocks)</span>
+                </div>
+                
+                <ul class="list-disc list-inside space-y-1.5 text-slate-300 text-[11px]">
+                    <li><strong>Riesgo de Volatilidad Compuesta:</strong> Los bStocks usados como garantía están sujetos a variaciones simultáneas de precio en tres capas (acción subyacente, token wrapper y posiciones cripto apalancadas).</li>
+                    <li><strong>Derecho de Dividendos Excluido:</strong> Las garantías en bStocks en cuentas de margen no acumulan ni cobran dividendos directos del activo subyacente.</li>
+                    <li><strong>Ajustes de Tasa de Garantía (Haircut):</strong> La relación de colateral puede ser ajustada unilateralmente por la plataforma, afectando la tasa de margen unificado (uniMMR) y pudiendo gatillar un margin call o liquidación.</li>
+                    <li><strong>Diferencia de Horarios y Ventas Forzosas:</strong> Cripto opera 24/7; la liquidación de bStocks durante cierres de mercado bursátil de EE. UU. puede ejecutarse con descuentos significativos por liquidez, asumiendo el usuario la pérdida o déficit residual.</li>
+                </ul>
+
+                <div class="pt-2 flex flex-wrap gap-2 text-[10px]">
+                    <a href="https://thesteef21.github.io/SADV41/SATV41/COM/Aseo/" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-amber-400 border border-slate-700 px-3 py-1.5 rounded-lg transition">
+                        🌐 Ver Protocolo SATV41 / Aseo
+                    </a>
+                    <a href="https://sites.google.com/u/0/d/1J2HQaoiel6AyXxxAOVfQWzYIpaKuC_-m/preview" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-slate-700 px-3 py-1.5 rounded-lg transition">
+                        📄 Vista Previa Google Sites
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PORTAL DE MONITOREO COMUNAL SATV41 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12 w-full">
+
+        <!-- 1. MÓDULO DE REPORTE DE ASEO -->
+        <section id="modulo-reporte" class="scroll-mt-24 space-y-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-gray-800 pb-4">
+                <div>
+                    <span class="text-amber-400 font-mono text-xs uppercase tracking-wider">Módulo Interactivo 01</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-white flex items-center gap-2">
+                        <i data-lucide="file-text" class="w-7 h-7 text-amber-400"></i> Generador de Reporte Comunal
+                    </h2>
+                </div>
+                <p class="text-xs text-gray-400 max-w-md">
+                    Diligencie los datos de la incidencia. El sistema estructurará un mensaje formal optimizado para enviar directo por WhatsApp o llamada telefónica.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <!-- Formulario -->
+                <div class="lg:col-span-7 satv-card p-6 sm:p-8 space-y-6">
+                    <form id="reportForm" onsubmit="event.preventDefault(); generateReport();" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-300 mb-2">Nombre del Vecino / Líder</label>
+                                <input type="text" id="repName" placeholder="
