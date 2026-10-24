@@ -1,1 +1,272 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MÓDULO SAT — Transfiguración Digital & Testimonio Sabático</title>
+    
+    <!-- Fuentes Sacras y Tecnológicas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-sacro: #080A0F;
+            --dorado-luz: #D4AF37;
+            --azul-celestial: #2E5BFF;
+            --texto-pergamino: #F5F3EF;
+            --borde-hairline: rgba(212, 175, 55, 0.2);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            background-color: var(--bg-sacro);
+            color: var(--texto-pergamino);
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .serif { font-family: 'Cormorant Garamond', serif; }
+
+        /* Lienzo Transfigurativo Fluido */
+        .portal-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Selector Vivo de Archivos de la Carpeta SAT */
+        .node-navigator {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--borde-hairline);
+            border-radius: 8px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .node-btn {
+            background: rgba(8, 10, 15, 0.8);
+            color: var(--dorado-luz);
+            border: 1px solid var(--borde-hairline);
+            padding: 8px 16px;
+            font-size: 11px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.4s ease;
+        }
+
+        .node-btn:hover, .node-btn.active {
+            background: var(--dorado-luz);
+            color: #000;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Área donde transfiguran los archivos (HTML, WebP, MD) */
+        .transfiguration-chamber {
+            position: relative;
+            min-height: 600px;
+            border: 1px solid var(--borde-hairline);
+            border-radius: 4px;
+            padding: 30px;
+            background: radial-gradient(circle at 50% 0%, rgba(46, 91, 255, 0.08), transparent 70%);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .content-layer {
+            display: none;
+            opacity: 0;
+            transform: scale(0.98);
+            transition: all 0.5s ease;
+        }
+
+        .content-layer.active {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Galería Viva de Infografías en /infograph/ */
+        .infograph-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .infograph-card {
+            border: 1px solid var(--borde-hairline);
+            border-radius: 4px;
+            overflow: hidden;
+            background: #000;
+            text-align: center;
+        }
+
+        .infograph-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .infograph-card img:hover {
+            transform: scale(1.02);
+        }
+
+        .infograph-caption {
+            padding: 12px;
+            font-size: 10px;
+            color: rgba(245, 243, 239, 0.6);
+            letter-spacing: 1px;
+        }
+
+        /* Pie Escritural Inalterable */
+        footer {
+            margin-top: 50px;
+            padding: 30px 0;
+            border-top: 1px solid var(--borde-hairline);
+            text-align: center;
+            font-size: 11px;
+            color: rgba(245, 243, 239, 0.6);
+        }
+
+        .scripture-footer {
+            margin-top: 10px;
+            color: var(--dorado-luz);
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="portal-container">
+
+    <!-- Navegador de Archivos Vivos en la Carpeta /SAT/ -->
+    <nav class="node-navigator">
+        <button class="node-btn active" onclick="transfigure('readme')">📄 README.md</button>
+        <button class="node-btn" onclick="transfigure('infograph')">🖼️ /infograph/ (Arte Meta AI)</button>
+        <button class="node-btn" onclick="transfigure('root-webp')">🖼️ xf.webp & Of.webp</button>
+        <button class="node-btn" onclick="transfigure('sintesis')">📜 Síntesis Divina</button>
+    </nav>
+
+    <!-- Cámara de Transfiguración del Código -->
+    <main class="transfiguration-chamber" id="chamber">
+
+        <!-- NODO 1: README.md / Declaración Sabática -->
+        <article id="layer-readme" class="content-layer active">
+            <h1 class="serif" style="font-size: 36px; color: var(--dorado-luz);">MÓDULO SAT — TESTIMONIO APOSTÓLICO SABÁTICO</h1>
+            <p style="font-size: 12px; color: rgba(245,243,239,0.5); margin-bottom: 20px;">
+                Misión SADV41 / ORIGEN 0 / PROTOCOLO 131 • Burunga, Panamá Oeste 🇵🇦
+            </p>
+            <hr style="border-color: var(--borde-hairline); margin: 20px 0;">
+
+            <h2 class="serif" style="font-size: 24px; margin-top: 20px;">🏛 DECLARACIÓN DE PROPÓSITO</h2>
+            <p style="margin-top: 10px; font-size: 14px;">
+                El Módulo SAT (Sabbatical Apostolic Testimony) es un espacio de divulgación y enseñanza espiritual publicado en GitHub Pages[span_4](start_span)[span_4](end_span). En este santo día Sábado, declaramos que cesamos de nuestras propias obras para descansar y caminar en la voluntad perfecta de Dios[span_5](start_span)[span_5](end_span)[span_6](start_span)[span_6](end_span).
+            </p>
+
+            <h2 class="serif" style="font-size: 24px; margin-top: 30px;">📜 PILARES DE LA TIPOLOGÍA BÍBLICA</h2>
+            <ul style="margin-left: 20px; margin-top: 10px; font-size: 13px;">
+                <li><b>1. Del Primer Adán al Postrer Adán (1 Corintios 15:45):</b> Del Edén terrenal a la Recreación Redimida en la Nueva Jerusalén[span_7](start_span)[span_7](end_span).</li>
+                <li><b>2. La Piedra Angular e Inconmovible (Efesios 2:20):</b> Cristo como el fundamento eterno[span_8](start_span)[span_8](end_span)[span_9](start_span)[span_9](end_span).</li>
+                <li><b>3. Amor, Perdón y Restauración:</b> Edificación, el camino del perdón de José y el refugio del Salmo 46:1, 7, 11[span_10](start_span)[span_10](end_span)[span_11](start_span)[span_11](end_span)[span_12](start_span)[span_12](end_span).</li>
+            </ul>
+        </article>
+
+        <!-- NODO 2: Subcarpeta /infograph/ -->
+        <article id="layer-infograph" class="content-layer">
+            <h2 class="serif" style="font-size: 28px; color: var(--dorado-luz);">Carpeta: /SAT/infograph/</h2>
+            <p style="font-size: 12px; margin-bottom: 20px;">Archivos gráficos de alta fidelidad guardados en el repositorio[span_13](start_span)[span_13](end_span)[span_14](start_span)[span_14](end_span).</p>
+            
+            <div class="infograph-grid">
+                <div class="infograph-card">
+                    <img src="./infograph/Meta_AI_864939553_1133311395832227_1376551410433248278_n_20261023_233854.webp" alt="Infografía Sacra Meta AI 1" onerror="this.src='https://via.placeholder.com/600x800/080A0F/D4AF37?text=Meta_AI_864939553.webp'">
+                    <div class="infograph-caption">Meta_AI_864939553_..._20261023_233854.webp[span_15](start_span)[span_15](end_span)[span_16](start_span)[span_16](end_span)</div>
+                </div>
+                <div class="infograph-card">
+                    <img src="./infograph/Meta_AI_858439924_1099347296338277_6799342234654444946_n_20261023_230158.webp" alt="Infografía Sacra Meta AI 2" onerror="this.src='https://via.placeholder.com/600x800/080A0F/D4AF37?text=Meta_AI_858439924.webp'">
+                    <div class="infograph-caption">Meta_AI_858439924_..._20261023_230158.webp[span_17](start_span)[span_17](end_span)[span_18](start_span)[span_18](end_span)</div>
+                </div>
+            </div>
+        </article>
+
+        <!-- NODO 3: Archivos .webp en la raíz /SAT/ -->
+        <article id="layer-root-webp" class="content-layer">
+            <h2 class="serif" style="font-size: 28px; color: var(--dorado-luz);">Archivos WebP Raíz: /SAT/</h2>
+            <p style="font-size: 12px; margin-bottom: 20px;">Estructura ligera de renderizado en tiempo real[span_19](start_span)[span_19](end_span)[span_20](start_span)[span_20](end_span).</p>
+
+            <div class="infograph-grid">
+                <div class="infograph-card">
+                    <img src="./xf.webp" alt="xf.webp" onerror="this.src='https://via.placeholder.com/600x800/080A0F/D4AF37?text=xf.webp'">
+                    <div class="infograph-caption">xf.webp — Arte Sacro Barroco[span_21](start_span)[span_21](end_span)[span_22](start_span)[span_22](end_span)</div>
+                </div>
+                <div class="infograph-card">
+                    <img src="./Of.webp" alt="Of.webp" onerror="this.src='https://via.placeholder.com/600x800/080A0F/D4AF37?text=Of.webp'">
+                    <div class="infograph-caption">Of.webp — Referencia de Piedra Angular[span_23](start_span)[span_23](end_span)[span_24](start_span)[span_24](end_span)</div>
+                </div>
+            </div>
+        </article>
+
+        <!-- NODO 4: Síntesis Divina y Conectoma Redentor -->
+        <article id="layer-sintesis" class="content-layer">
+            <h2 class="serif" style="font-size: 28px; color: var(--dorado-luz);">LA SÍNTESIS DIVINA: EL CONECTOMA REDENTOR</h2>
+            <blockquote style="border-left: 2px solid var(--dorado-luz); padding-left: 15px; margin: 20px 0; font-style: italic;" class="serif">
+                «Del Costado Traspasado al Satélite Celestial: Todo lo sensible se vuelve verificado, seguro y lleno de paz en la voluntad de Dios.»[span_25](start_span)[span_25](end_span)
+            </blockquote>
+            <p style="font-size: 13px; line-height: 1.8;">
+                Poseemos la profunda fe de que esa fuerza que está por encima de lo que no podemos manejar está solucionando[span_26](start_span)[span_26](end_span). De que va a acabar el sufrimiento para tanta gente que queremos ver sonreír una vez más[span_27](start_span)[span_27](end_span)[span_28](start_span)[span_28](end_span). En este santo Sábado, caminamos con Él porque su amor al prójimo es perfecto[span_29](start_span)[span_29](end_span)[span_30](start_span)[span_30](end_span)[span_31](start_span)[span_31](end_span).
+            </p>
+        </article>
+
+    </main>
+
+    <!-- Pie de Fundamento Escritural Permanente -->
+    <footer>
+        <p>Misión SADV41 — Burunga, Panamá Oeste 🇵🇦[span_32](start_span)[span_32](end_span)[span_33](start_span)[span_33](end_span)</p>
+        <p class="scripture-footer">Génesis 1:27; 2:24 · Mateo 19:4-6 · Efesios 5:31-32 · Juan 3:16 · Romanos 10:13[span_34](start_span)[span_34](end_span)[span_35](start_span)[span_35](end_span)[span_36](start_span)[span_36](end_span)</p>
+    </footer>
+
+</div>
+
+<!-- Script Lógico de Transfiguración entre Capas/Archivos -->
+<script>
+    function transfigure(targetId) {
+        // Desactivar botones
+        document.querySelectorAll('.node-btn').forEach(btn => btn.classList.remove('active'));
+        // Activar botón clickeado
+        event.target.classList.add('active');
+
+        // Transfiguración con efecto fade
+        const chamber = document.getElementById('chamber');
+        chamber.style.opacity = '0';
+        chamber.style.transform = 'scale(0.98)';
+
+        setTimeout(() => {
+            // Ocultar todas las capas
+            document.querySelectorAll('.content-layer').forEach(layer => layer.classList.remove('active'));
+            
+            // Mostrar la capa elegida
+            const activeLayer = document.getElementById('layer-' + targetId);
+            if (activeLayer) {
+                activeLayer.classList.add('active');
+            }
+
+            // Reaparecer suavemente
+            chamber.style.opacity = '1';
+            chamber.style.transform = 'scale(1)';
+        }, 300);
+    }
+</script>
+
+</body>
+</html>
 
