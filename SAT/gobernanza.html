@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SAT · Gobernanza de los Tres Círculos — SADV41</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-sacro: #080A0F;
+      --dorado-luz: #D4AF37;
+      --azul-celestial: #2E5BFF;
+      --texto-pergamino: #F5F3EF;
+      --borde-hairline: rgba(212, 175, 55, 0.2);
+      --bg-card: #11131a;
+      --verde-familia: #3D8B6E;
+      --rojo-propiedad: #A85C3A;
+      --azul-empresa: #3A6EA5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      background: var(--bg-sacro);
+      color: var(--texto-pergamino);
+      font-family: 'JetBrains Mono', monospace;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    .serif { font-family: 'Cormorant Garamond', serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+
+    .portal-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      padding: 40px 20px 30px;
+      border-bottom: 1px solid var(--borde-hairline);
+      margin-bottom: 36px;
+    }
+
+    header .eyebrow {
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: var(--dorado-luz);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      opacity: 0.85;
+    }
+
+    header h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 5vw, 42px);
+      color: var(--dorado-luz);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    header .subtitle {
+      font-size: 15px;
+      color: rgba(245,243,239,0.7);
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* Navigation */
+    .node-navigator {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--borde-hairline);
+      border-radius: 8px;
+      margin-bottom: 36px;
+      backdrop-filter: blur(10px);
+    }
+
+    .node-btn {
+      background: rgba(8, 10, 15, 0.8);
+      color: var(--dorado-luz);
+      border: 1px solid var(--borde-hairline);
+      padding: 9px 16px;
+      font-size: 13px;
+      letter-spacing: 0.6px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .node-btn:hover, .node-btn.active {
+      background: rgba(212, 175, 55, 0.12);
+      border-color: var(--dorado-luz);
+      transform: translateY(-1px);
+    }
+
+    /* Cards & Sections */
+    .content-layer {
+      display: none;
+      animation: fadeIn 0.45s ease;
+    }
+
+    .content-layer.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h2.serif {
+      font-size: 26px;
+      color: var(--dorado-luz);
+      margin-bottom: 18px;
+      letter-spacing: 0.5px;
+    }
+
+    h3.serif {
+      font-size: 20px;
+      color: var(--dorado-luz);
+      margin: 28px 0 12px;
+    }
+
+    h4 {
+      font-size: 15px;
+      color: var(--dorado-luz);
+      margin-bottom: 8px;
+      letter-spacing: 0.4px;
+    }
+
+    p, li {
+      font-size: 14px;
+      color: rgba(245,243,239,0.88);
+    }
+
+    .lead {
+      font-size: 15px;
+      color: rgba(245,243,239,0.75);
+      margin-bottom: 24px;
+      max-width: 780px;
+    }
+
+    blockquote {
+      border-left: 2px solid var(--dorado-luz);
+      padding-left: 18px;
+      margin: 22px 0;
+      font-style: italic;
+      font-size: 15px;
+      color: rgba(245,243,239,0.8);
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    /* Three Circles Visual */
+    .circles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin: 28px 0;
+    }
+
+    .circle-card {
+      background: var(--bg-card);
+      border: 1px solid var(--borde-hairline);
+      border-radius: 10px;
+      padding: 22px 20px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease;
+    }
+
+    .circle-card:hover {
+      border-color: rgba(212, 175, 55, 0.45);
+    }
+
+    .circle-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+
+    .circle-card.familia::before { background: var(--verde-familia); }
+    .circle-card.propiedad::before { background: var(--rojo-propiedad); }
+    .circle-card.empresa::before { background: var(--azul-empresa); }
+
+    .circle-label {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      opacity: 0.7;
+    }
+
+    .circle-card.familia .circle-label { color: var(--verde-familia); }
+    .circle-card.propiedad .circle-label { color: var(--rojo-propiedad); }
+    .circle-card.empresa .circle-label { color: var(--azul-empresa); }
+
+    .circle-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: var(--texto-pergamino);
+    }
+
+    .circle-logic {
+      font-size: 13px;
+      opacity: 0.75;
+      margin-bottom: 14px;
+    }
+
+    .bridge-tag {
+      display: inline-block;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 3px;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.25);
+      color: var(--dorado-luz);
+      margin-top: 8px;
+    }
+
+    /* Rules */
+    .rule-box {
+      background: rgba(46, 91, 255, 0.06);
+      border: 1px solid rgba(46, 91, 255, 0.2);
+      border-radius: 8px;
+      padding: 20px 22px;
+      margin: 20px 0;
+    }
+
+    .rule-number {
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: var(--azul-celestial);
+      margin-bottom: 6px;
+    }
+
+    .rule-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      color: var(--dorado-luz);
+      margin-bottom: 8px;
+    }
+
+    /* Bridge Table */
+    .bridge-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 24px 0;
+      font-size: 13px;
+    }
+
+    .bridge-table th {
+      text-align: left;
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--borde-hairline);
+      color: var(--dorado-luz);
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    .bridge-table td {
+      padding: 14px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.08);
+      vertical-align: top;
+    }
+
+    .bridge-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Complexity note */
+    .complexity-note {
+      background: var(--bg-card);
+      border: 1px solid var(--borde-hairline);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 24px 0;
+    }
+
+    .complexity-note ul {
+      margin: 12px 0 0 18px;
+    }
+
+    .complexity-note li {
+      margin-bottom: 8px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 36px 20px 50px;
+      border-top: 1px solid var(--borde-hairline);
+      margin-top: 50px;
+      font-size: 12px;
+      color: rgba(245,243,239,0.55);
+    }
+
+    footer .scripture-footer {
+      margin-top: 8px;
+      color: rgba(212, 175, 55, 0.7);
+      font-size: 12px;
+    }
+
+    a.back-link {
+      display: inline-block;
+      margin-top: 16px;
+      color: var(--dorado-luz);
+      text-decoration: none;
+      font-size: 13px;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    a.back-link:hover {
+      border-bottom-color: var(--dorado-luz);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      header h1 { font-size: 28px; }
+      .circles-grid { grid-template-columns: 1fr; }
+      .bridge-table { font-size: 12px; }
+      .bridge-table th, .bridge-table td { padding: 10px 8px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="portal-container">
+
+    <header>
+      <div class="eyebrow">Misión SADV41 · Módulo SAT</div>
+      <h1 class="serif">Gobernanza de los Tres Círculos</h1>
+      <p class="subtitle">
+        Family · Ownership · Business<br>
+        Puente entre la gobernanza de empresa familiar y el Testimonio Apostólico Sabático
+      </p>
+    </header>
+
+    <nav class="node-navigator">
+      <a href="#modelo" class="node-btn active" onclick="showSection('modelo', this); return false;">Modelo 3 Círculos</a>
+      <a href="#puente" class="node-btn" onclick="showSection('puente', this); return false;">Puente SAT</a>
+      <a href="#reglas" class="node-btn" onclick="showSection('reglas', this); return false;">Reglas #3 y #4</a>
+      <a href="#complejidad" class="node-btn" onclick="showSection('complejidad', this); return false;">Complejidad</a>
+      <a href="SAT.html" class="node-btn">← Volver a SAT</a>
+    </nav>
+
+    <main id="chamber">
+
+      <!-- SECCIÓN 1: MODELO -->
+      <section id="sec-modelo" class="content-layer active">
+        <h2 class="serif">El Modelo de los Tres Círculos</h2>
+        <p class="lead">
+          Desarrollado por Renato Tagiuri y John Davis (Harvard), el modelo revela que toda empresa familiar es en realidad <strong>tres sistemas superpuestos</strong>. Cada círculo tiene su propia lógica, su propia definición de justicia y sus propias tensiones.
+        </p>
+
+        <div class="circles-grid">
+          <div class="circle-card familia">
+            <div class="circle-label">Círculo 1</div>
+            <div class="circle-title">Familia</div>
+            <p class="circle-logic">Se rige por la cohesión, el afecto y la igualdad entre miembros.</p>
+            <p style="font-size:13px;">Prioridad: armonía, pertenencia, cuidado de las relaciones y transmisión de valores a través de generaciones.</p>
+            <span class="bridge-tag">→ Reposo y Amor Fraterno</span>
+          </div>
+
+          <div class="circle-card propiedad">
+            <div class="circle-label">Círculo 2</div>
+            <div class="circle-title">Propiedad</div>
+            <p class="circle-logic">Se enfoca en el control, el retorno financiero y la seguridad jurídica del capital.</p>
+            <p style="font-size:13px;">Prioridad: protección del patrimonio, liquidez, riesgo y continuidad de la titularidad.</p>
+            <span class="bridge-tag">→ Piedra Angular Inconmovible</span>
+          </div>
+
+          <div class="circle-card empresa">
+            <div class="circle-label">Círculo 3</div>
+            <div class="circle-title">Empresa</div>
+            <p class="circle-logic">Se centra en la competencia, la eficiencia y la ventaja competitiva.</p>
+            <p style="font-size:13px;">Prioridad: resultados, mérito, velocidad de ejecución y capacidad operativa.</p>
+            <span class="bridge-tag">→ Esposa Preparada y Redimida</span>
+          </div>
+        </div>
+
+        <h3 class="serif">Las 7 posiciones que nacen de la intersección</h3>
+        <p style="margin-bottom:14px;">Cuando los tres círculos se superponen se generan siete roles distintos, cada uno con motivaciones y perspectivas diferentes:</p>
+        <ol style="margin-left:22px; font-size:13.5px; line-height:1.9;">
+          <li><strong>Solo Familia</strong> — cónyuge o hijo sin propiedad ni rol operativo</li>
+          <li><strong>Solo Propiedad</strong> — inversionista externo</li>
+          <li><strong>Solo Empresa</strong> — ejecutivo no familiar</li>
+          <li><strong>Familia + Propiedad</strong> — accionista familiar no activo</li>
+          <li><strong>Propiedad + Empresa</strong> — CEO no familiar con equity</li>
+          <li><strong>Familia + Empresa</strong> — gerente familiar aún sin acciones</li>
+          <li><strong>Familia + Propiedad + Empresa</strong> — fundador o CEO-propietario familiar</li>
+        </ol>
+
+        <blockquote>
+          «Cada círculo tiene su propia definición de justicia. Confundirlas es la raíz de la mayoría de los conflictos en la empresa familiar.»
+        </blockquote>
+      </section>
+
+      <!-- SECCIÓN 2: PUENTE SAT -->
+      <section id="sec-puente" class="content-layer">
+        <h2 class="serif">El Puente con el Módulo SAT</h2>
+        <p class="lead">
+          La gobernanza secular de los Tres Círculos encuentra su cumplimiento tipológico en el Testimonio Apostólico Sabático. Lo que el mundo llama “sistemas superpuestos”, la Escritura revela como sombra y sustancia.
+        </p>
+
+        <table class="bridge-table">
+          <thead>
+            <tr>
+              <th>Círculo secular</th>
+              <th>Lógica terrenal</th>
+              <th>Correspondencia en SAT</th>
+              <th>Fundamento</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:var(--verde-familia)">Familia</strong></td>
+              <td>Cohesión · Afecto · Igualdad</td>
+              <td>Reposo y Amor Fraterno</td>
+              <td>Génesis 2:1-3 · 1 Corintios 13</td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--rojo-propiedad)">Propiedad</strong></td>
+              <td>Control · Retorno · Seguridad</td>
+              <td>Piedra Angular Inconmovible</td>
+              <td>Efesios 2:20 · Salmo 46:1,7,11</td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--azul-empresa)">Empresa</strong></td>
+              <td>Competencia · Eficiencia · Mérito</td>
+              <td>Esposa Preparada y Redimida</td>
+              <td>1 Cor 15:45 · Ef 5:25-32 · Apoc 19:7</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 class="serif">Lectura tipológica</h3>
+        <p style="margin-bottom:12px;">
+          En el primer Adán, la “empresa” humana (trabajo, dominio, fruto) quedó sujeta a espinos y sudor (Génesis 3:17-19). En el Postrer Adán, la obra es consumada: el reposo es real, la propiedad es eterna (herencia incorruptible) y la Esposa es presentada sin mancha ni arruga.
+        </p>
+        <p>
+          La gobernanza que perdura no es la que profesionaliza solo por supervivencia generacional, sino la que reconoce que <strong>Cristo es la Piedra Angular</strong> y que toda estructura humana (familiar, societaria o eclesial) debe alinearse a Él antes de que la complejidad la quiebre.
+        </p>
+
+        <blockquote>
+          «Vosotros pensasteis mal contra mí, mas Dios lo encaminó a bien.» — Génesis 50:20<br>
+          <span style="font-size:13px; opacity:0.7;">El perdón de José es modelo de gobernanza restauradora: convierte la traición en provisión para las generaciones.</span>
+        </blockquote>
+      </section>
+
+      <!-- SECCIÓN 3: REGLAS -->
+      <section id="sec-reglas" class="content-layer">
+        <h2 class="serif">Reglas de Gobernanza #3 y #4</h2>
+        <p class="lead">
+          Extraídas de la enseñanza de la Dra. Marta Widz y del Modelo de los Tres Círculos, estas dos reglas son el núcleo práctico que evita el colapso generacional.
+        </p>
+
+        <div class="rule-box">
+          <div class="rule-number">REGLA #3</div>
+          <div class="rule-title">Ser conscientes del rol que cada persona desempeña dentro del sistema</div>
+          <p>
+            Cada individuo ocupa una o más de las siete posiciones. Cuando alguien habla desde “familia” pero exige derechos de “propiedad”, o cuando un ejecutivo familiar decide como si fuera solo “empresa”, se genera conflicto. La conciencia de rol permite separar foros: consejo de familia, junta de propietarios y directorio de la empresa.
+          </p>
+          <p style="margin-top:12px; font-size:13px; opacity:0.8;">
+            <strong>En clave SAT:</strong> Conocer el rol es conocer el llamado. No todos son apóstoles, ni profetas, ni maestros… pero cada miembro del Cuerpo tiene función (1 Cor 12). Confundir el rol destruye la edificación mutua.
+          </p>
+        </div>
+
+        <div class="rule-box">
+          <div class="rule-number">REGLA #4</div>
+          <div class="rule-title">Profesionalizar la gobernanza antes de que el sistema se vuelva demasiado complejo</div>
+          <p>
+            La complejidad crece de forma no lineal con cada generación: más propietarios, más ramas, más negocios, más emociones. Si se espera a que el conflicto ya esté instalado para formalizar protocolos, estatutos y consejos, suele ser demasiado tarde. La profesionalización preventiva es acto de amor a las generaciones futuras.
+          </p>
+          <p style="margin-top:12px; font-size:13px; opacity:0.8;">
+            <strong>En clave SAT:</strong> “Antes de que se levante la tormenta” (Salmo 46). Edificar sobre la Roca no se improvisa el día del diluvio. El reposo sabático nos recuerda que la obra ya está consumada; nosotros solo ordenamos lo que Él ya terminó.
+          </p>
+        </div>
+
+        <h3 class="serif">Aplicación práctica en el hogar y en la obra</h3>
+        <ul style="margin:14px 0 0 20px; font-size:14px; line-height:1.85;">
+          <li>Definir claramente quién habla en cada foro (familia / propiedad / operación).</li>
+          <li>Documentar valores y límites antes de que existan intereses enfrentados.</li>
+          <li>Separar el afecto familiar de las decisiones de capital y de mérito laboral.</li>
+          <li>Preparar la sucesión con transparencia y tiempo, no con urgencia.</li>
+          <li>Recordar que la verdadera continuidad no es la torre humana, sino la Piedra Angular.</li>
+        </ul>
+      </section>
+
+      <!-- SECCIÓN 4: COMPLEJIDAD -->
+      <section id="sec-complejidad" class="content-layer">
+        <h2 class="serif">Complejidad y Evolución Generacional</h2>
+        <p class="lead">
+          Desde la primera generación la complejidad aumenta de forma exponencial. No es un problema a evitar, sino una realidad a gobernar a tiempo.
+        </p>
+
+        <div class="complexity-note">
+          <h4>Factores que multiplican la complejidad</h4>
+          <ul>
+            <li>Diversificación del negocio y entrada en nuevas industrias</li>
+            <li>Aumento del número de propietarios y administradores familiares</li>
+            <li>Estructura del consejo y filosofía de control (concentrada vs. inclusiva)</li>
+            <li>Incorporación de nuevas generaciones (sobrinos, hijos políticos, primos)</li>
+            <li>Dinámicas personales (divorcios, herencias, conflictos de lealtad) que impactan posiciones ejecutivas</li>
+          </ul>
+        </div>
+
+        <h3 class="serif">Tensiones típicas que aparecen</h3>
+        <ul style="margin:12px 0 0 20px; font-size:14px; line-height:1.9;">
+          <li><strong>Transparencia e información:</strong> familiar no activo que cuestiona el acceso desigual a datos financieros respecto a los hermanos que trabajan en la empresa.</li>
+          <li><strong>Sucesión y gobierno:</strong> discrepancias sobre la inclusión de la siguiente generación en la junta directiva.</li>
+          <li><strong>Límites personales y profesionales:</strong> asuntos de familia (divorcios, relaciones) que afectan cargos clave (Chief Investment Office, gerencias, etc.).</li>
+        </ul>
+
+        <blockquote style="margin-top:28px;">
+          «Dios es nuestro amparo y fortaleza, nuestro pronto auxilio en las tribulaciones.<br>
+          Jehová de los ejércitos está con nosotros; nuestro refugio es el Dios de Jacob.»<br>
+          <span style="font-size:13px; opacity:0.75;">— Salmo 46:1, 7, 11</span>
+        </blockquote>
+
+        <p style="margin-top:20px; font-size:14px;">
+          La gobernanza profesional no sustituye la dependencia de Dios; la ordena. Cuando la estructura humana se vuelve frágil, la Piedra Angular permanece. Por eso el Módulo SAT no propone una torre de control, sino un faro de testimonio: cesar de las propias obras, descansar en la obra consumada y caminar en el amor fraterno que edifica.
+        </p>
+      </section>
+
+    </main>
+
+    <footer>
+      <p>Misión SADV41 — Burunga, Panamá Oeste 🇵🇦 · Módulo SAT · Gobernanza</p>
+      <p class="scripture-footer">
+        Génesis 2:1-3 · 1 Corintios 13 · Efesios 2:20 · Salmo 46:1, 7, 11 · 1 Corintios 15:45 · Efesios 5:31-32
+      </p>
+      <p style="margin-top:12px; font-size:11px; opacity:0.45;">
+        Síntesis inspirada en el Modelo de los Tres Círculos (Tagiuri &amp; Davis) y la enseñanza de la Dra. Marta Widz · Conectada al Testimonio Apostólico Sabático · 2026
+      </p>
+      <a href="SAT.html" class="back-link">← Regresar al Módulo SAT</a>
+    </footer>
+
+  </div>
+
+  <script>
+    function showSection(id, btn) {
+      document.querySelectorAll('.node-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+
+      const chamber = document.getElementById('chamber');
+      if (chamber) {
+        chamber.style.opacity = '0';
+        chamber.style.transform = 'translateY(6px)';
+      }
+
+      setTimeout(() => {
+        document.querySelectorAll('.content-layer').forEach(s => s.classList.remove('active'));
+        const target = document.getElementById('sec-' + id);
+        if (target) target.classList.add('active');
+        if (chamber) {
+          chamber.style.opacity = '1';
+          chamber.style.transform = 'translateY(0)';
+        }
+      }, 220);
+    }
+
+    // Suave transición inicial
+    document.getElementById('chamber').style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+  </script>
+</body>
+</html>
