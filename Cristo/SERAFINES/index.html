@@ -275,7 +275,7 @@
         </a>
     </div>
 </div>
-<!-- SADV41 Draggable Floating Icon & Widgets -->
+<!-- SADV41 Universal Draggable Floating Engine -->
 <div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
   <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
     <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
@@ -290,20 +290,27 @@
 <script>
 (function() {
   function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
     let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
     let isDragging = false;
 
-    // Iniciar arrastre con ratón
     elmnt.onmousedown = dragMouseDown;
-    // Iniciar arrastre con pantalla táctil
     elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
 
     function dragMouseDown(e) {
       e = e || window.event;
-      // Prevenir drag predeterminado solo si no se hace click en un link dentro del menú
-      if (e.target.tagName !== 'A') {
-        e.preventDefault();
-      }
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
       pos3 = e.clientX;
       pos4 = e.clientY;
       document.onmouseup = closeDragElement;
@@ -333,6 +340,7 @@
 
     function dragTouchStart(e) {
       if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
         let touch = e.touches[0];
         pos3 = touch.clientX;
         pos4 = touch.clientY;
@@ -354,6 +362,7 @@
         elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
         elmnt.style.bottom = 'auto';
         elmnt.style.right = 'auto';
+        e.preventDefault();
       }
     }
 
@@ -363,7 +372,6 @@
       setTimeout(() => { isDragging = false; }, 50);
     }
 
-    // Prevenir activación no deseada del enlace si solo se estaba arrastrando
     elmnt.addEventListener('click', function(e) {
       if (isDragging) {
         e.preventDefault();
@@ -372,24 +380,48 @@
     }, true);
   }
 
-  // Hacer movible el contenedor del ícono flotante SADV41
-  const floatingContainer = document.getElementById('sadv41-floating-container');
-  const menu = document.getElementById('sadv41-menu');
-  if (floatingContainer) {
-    makeElementDraggable(floatingContainer);
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
 
-    // Mostrar u ocultar menú al mantener o tocar
-    floatingContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
-    floatingContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
   }
 
-  // Hacer movible cualquier otra barra de navegación o ícono flotante existente
-  document.querySelectorAll('[class*="-floating"], [id*="-floating"], [class*="floating-"]').forEach(el => {
-    makeElementDraggable(el);
-  });
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
 })();
 </script>
-<!-- End SADV41 Draggable Floating Icon & Widgets -->
+<!-- End SADV41 Universal Draggable Floating Engine -->
 </body>
 </html>
 ``` 🎚
