@@ -21,7 +21,7 @@
 #
 # Variables opcionales (se pueden definir antes del comando):
 #   SADV41_DIR    carpeta del repo (por defecto ~/SADV41, o ~/sadv41 si solo existe esa)
-#   MAG_GLOBAL    magnitud mínima mundial        (por defecto 3.7)
+#   MAG_GLOBAL    magnitud mínima mundial        (por defecto 2.5)
 #   MAG_PANAMA    magnitud mínima en la región   (por defecto 2.5)
 #   BBOX          latmin,latmax,lonmin,lonmax    (por defecto 5,11,-86,-76: Panamá y alrededores)
 #   BOT_DIR       carpeta del bot de Instagram   (por defecto ~/sadv41)
@@ -43,7 +43,7 @@ DATA_DIR="$REPO/SISMOS/data"
 ASEO_DIR="$REPO/SATV41/COM/Aseo"
 PAGES_BASE="${PAGES_BASE:-https://thesteef21.github.io/SADV41}"
 USGS_URL="${USGS_URL:-https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson}"
-MAG_GLOBAL="${MAG_GLOBAL:-3.7}"
+MAG_GLOBAL="${MAG_GLOBAL:-2.5}"
 MAG_PANAMA="${MAG_PANAMA:-2.5}"
 BBOX="${BBOX:-5,11,-86,-76}"
 STATE="${STATE_DIR:-$HOME/.sadv41-auto}"

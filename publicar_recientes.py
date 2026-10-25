@@ -15,7 +15,7 @@ USGS_URL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.ge
 # Radio de ~700 km centrado en Panamá (Cocos, Nazca, Caribe y Microplaca de Panamá)
 LAT_MIN, LAT_MAX = 2.0, 15.0
 LON_MIN, LON_MAX = -86.5, -73.5
-MAG_MINIMA = 3.5
+MAG_MINIMA = float(os.environ.get("MAG_MIN", "2.5"))
 
 def main():
     if not os.path.exists(STATE_FILE):

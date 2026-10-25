@@ -1,12 +1,12 @@
 #!/bin/bash
 
 # ==========================================
-# TSEC / INTSEC - Filtro de Sismos Panamá (1.0 - 4.5)
+# TSEC / INTSEC - Filtro de Sismos Panamá (2.5+)
 # ==========================================
 
 USGS_URL="https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson"
-MIN_MAG=1.0
-MAX_MAG=4.5
+MIN_MAG=${MIN_MAG:-2.5}
+MAX_MAG=${MAX_MAG:-10}
 
 echo "=================================================="
 echo "  TSEC MONITOREO SÍSMICO | PANAMÁ (${MIN_MAG}M - ${MAX_MAG}M)"

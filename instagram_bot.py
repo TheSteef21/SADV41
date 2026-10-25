@@ -18,7 +18,7 @@ BASE_DIR = os.path.expanduser("~/sadv41")
 SESSION_FILE = os.path.join(BASE_DIR, "ig_session.json")
 TEMP_IMG = os.path.join(BASE_DIR, "alert_temp.jpg")
 
-MAGNITUD_MINIMA_PUBLICAR = 3.5
+MAGNITUD_MINIMA_PUBLICAR = float(os.environ.get("MAG_MIN", "2.5"))
 CARTO_KEY = "cb1_4ne6_1_3c19f375f3946685db2cfede"
 COLLABORATOR_USERNAME = "NoticiasBurunga"
 
@@ -142,16 +142,16 @@ def format_alert_copy(event):
     time_str = pa_time.strftime('%d/%m/%Y, %I:%M:%S %p')
 
     plate_zone = get_tectonic_zone(lat, lon)
-    icon = "🔴" if mag >= 5.0 else ("🟡" if mag >= 4.0 else "🟢")
+    icon = "🔴" if mag >= 5.0 else ("🟠" if mag >= 4.0 else ("🟡" if mag >= 3.0 else "🟢"))
 
     copy = f"""{icon} ALERTA SÍSMICA LIVE // SADV41 INTSEC
 🌋 CINTURÓN DE FUEGO DEL PACÍFICO
 
 MAGNITUD: M {mag:.1f}
 UBICACIÓN: {place}
-PROFUNDIDAD: {depth} km
+PROFUNDIDAD: {depth:.0f} km
 FECHA / HORA: {time_str} (Hora Panamá)
-COORDENADAS: [{lat:.2f}°N, {lon:.2f}°W]
+COORDENADAS: [{abs(lat):.2f}°{'N' if lat>=0 else 'S'}, {abs(lon):.2f}°{'W' if lon<0 else 'E'}]
 
 🧩 ENTORNO TECTÓNICO: {plate_zone}
 📡 MONITOREO TSEC: Red 4 Placas (Cocos-Nazca-Caribe-Panamá)
