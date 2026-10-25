@@ -1,0 +1,15 @@
+{
+  "caption": "🚨 SISMO M4.9 | 17 km SE of Ambelókipoi, Greece\n\n🕒 25/10/2026 00:15 (hora de Panamá)\n📍 Lat 37.65, Lon 21.01 · Profundidad 10 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4sm\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "event": {
+    "id": "us6000u4sm",
+    "mag": 4.9,
+    "place": "17 km SE of Ambelókipoi, Greece",
+    "time": 1792905344196,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4sm",
+    "lon": 21.0112,
+    "lat": 37.6512,
+    "depth": 10,
+    "panama": false
+  },
+  "generated": "2026-10-25T05:45:09Z"
+}
