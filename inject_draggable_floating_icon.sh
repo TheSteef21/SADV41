@@ -1,0 +1,154 @@
+#!/bin/bash
+
+# =======================================================
+# SADV41 - Inyector de Ícono y Widgets Flotantes Movibles
+# =======================================================
+
+# Bloque HTML/CSS/JS con lógica de arrastre (Draggable)
+INJECTION_CODE=$(cat << 'EOF'
+<!-- SADV41 Draggable Floating Icon & Widgets -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    // Iniciar arrastre con ratón
+    elmnt.onmousedown = dragMouseDown;
+    // Iniciar arrastre con pantalla táctil
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      // Prevenir drag predeterminado solo si no se hace click en un link dentro del menú
+      if (e.target.tagName !== 'A') {
+        e.preventDefault();
+      }
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    // Prevenir activación no deseada del enlace si solo se estaba arrastrando
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  // Hacer movible el contenedor del ícono flotante SADV41
+  const floatingContainer = document.getElementById('sadv41-floating-container');
+  const menu = document.getElementById('sadv41-menu');
+  if (floatingContainer) {
+    makeElementDraggable(floatingContainer);
+
+    // Mostrar u ocultar menú al mantener o tocar
+    floatingContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+    floatingContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+  }
+
+  // Hacer movible cualquier otra barra de navegación o ícono flotante existente
+  document.querySelectorAll('[class*="-floating"], [id*="-floating"], [class*="floating-"]').forEach(el => {
+    makeElementDraggable(el);
+  });
+})();
+</script>
+<!-- End SADV41 Draggable Floating Icon & Widgets -->
+EOF
+)
+
+echo "🚀 Iniciando inyección global de íconos flotantes movibles..."
+
+# Procesar todos los archivos .html en el repositorio
+find . -type f -name "*.html" | while read -r html_file; do
+  # Limpiar versiones previas de la inyección si existen
+  if grep -q "sadv41-floating-container" "$html_file"; then
+    sed -i '/<!-- SADV41 Floating Icon Widget -->/,/<!-- End SADV41 Floating Icon Widget -->/d' "$html_file"
+    sed -i '/<!-- SADV41 Draggable Floating Icon & Widgets -->/,/<!-- End SADV41 Draggable Floating Icon & Widgets -->/d' "$html_file"
+  fi
+
+  echo "✏️ Inyectando lógica movible en: $html_file"
+  if grep -q "</body>" "$html_file"; then
+    awk -v nav="$INJECTION_CODE" '/<\/body>/ { print nav } { print }' "$html_file" > "$html_file.tmp" && mv "$html_file.tmp" "$html_file"
+  else
+    echo -e "\n$INJECTION_CODE" >> "$html_file"
+  fi
+done
+
+echo "✅ Inyección de la lógica movible completada."
+
+# Subir cambios automáticamente a GitHub
+echo "📦 Enviando cambios a GitHub..."
+git add .
+git commit -m "feat(ui): convert floating icons and widgets to draggable elements across all pages"
+git push origin main || git push origin master
+
+echo "🔥 ¡Proceso finalizado con éxito!"
+# Pegar el código del script arriba
