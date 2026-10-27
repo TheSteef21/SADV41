@@ -1,3 +1,7 @@
 node_modules/
 *.log
 tsec_monitor.log
+
+ig_session.json
+*_session.json
+*.log
