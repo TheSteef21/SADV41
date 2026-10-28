@@ -37,7 +37,13 @@
   #gorra-widget .g-claim[data-state=locked]{opacity:.55;color:#94a3b8}
   #gorra-widget .g-claim[data-state=unlocked]{color:#fbbf24;background:rgba(120,53,15,.45);border-color:#b45309;box-shadow:0 0 12px rgba(245,158,11,.35)}
   #gorra-widget .g-msg{margin-top:10px;font-size:10px;color:#94a3b8;min-height:14px}
-  @media(max-width:360px){#gorra-widget .g-grid{grid-template-columns:1fr}}
+  #gorra-widget dialog{width:min(92vw,340px);padding:18px;border-radius:16px;border:1px solid rgba(245,158,11,.5);background:#0b1220;color:#e2e8f0;font:12px/1.4 ui-monospace,Menlo,Consolas,monospace;text-align:center}
+  #gorra-widget dialog::backdrop{background:rgba(2,6,23,.78)}
+  #gorra-widget dialog h4{margin:0 0 14px;font-size:15px;color:#f1f5f9}
+  #gorra-widget .g-ask-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  #gorra-widget .g-ask-row small{display:block;margin-top:3px;font-weight:400;font-size:9px;color:#94a3b8}
+  #gorra-widget .g-ask-risk{margin:12px 0 10px;font-size:9px;color:#64748b}
+  @media(max-width:360px){#gorra-widget .g-grid,#gorra-widget .g-ask-row{grid-template-columns:1fr}}
 </style>
 
   <div class="g-head">
@@ -67,10 +73,20 @@
   </div>
 
   <div class="g-grid">
-    <a id="g-trade" class="g-btn g-buy" target="_blank" rel="noopener">🪙<br>Trade en Four.meme</a>
+    <button id="g-buy" type="button" class="g-buy">🛒<br>Comprar</button>
     <a id="g-claim" class="g-btn g-claim" data-state="locked" target="_blank" rel="noopener">🛍️<br><span id="g-claim-txt">Reclamar artículo físico</span></a>
   </div>
   <div id="g-msg" class="g-msg"></div>
+
+  <dialog id="g-ask" aria-labelledby="g-ask-t">
+    <h4 id="g-ask-t">¿Quieres comprar el producto 🤣 o el activo?</h4>
+    <div class="g-ask-row">
+      <a id="g-ask-prod" class="g-btn" target="_blank" rel="noopener">🧢<br>El producto<small>Gorra StevenDior x USSS</small></a>
+      <a id="g-ask-asset" class="g-btn g-buy" target="_blank" rel="noopener">🪙<br>El activo<small>$GORRA en Four.meme</small></a>
+    </div>
+    <p class="g-ask-risk">El activo es un token meme nuevo: puede perder todo su valor. No es asesoría financiera.</p>
+    <button id="g-ask-x" type="button">Cerrar</button>
+  </dialog>
 
 <script>
 (function(){
@@ -91,7 +107,16 @@
   var $ = function(id){return document.getElementById(id)};
   var account = null, provider = null, ethersLib = null;
 
-  $("g-trade").href = CFG.trade;
+  var ask = $("g-ask");
+  $("g-ask-prod").href = CFG.shop;
+  $("g-ask-asset").href = CFG.trade;
+  function openAsk(){ if (ask.showModal) ask.showModal(); else ask.setAttribute("open",""); }
+  function closeAsk(){ if (ask.close) ask.close(); else ask.removeAttribute("open"); }
+  $("g-buy").addEventListener("click", openAsk);
+  $("g-ask-x").addEventListener("click", closeAsk);
+  $("g-ask-prod").addEventListener("click", closeAsk);
+  $("g-ask-asset").addEventListener("click", closeAsk);
+  ask.addEventListener("click", function(e){ if (e.target === ask) closeAsk(); });
   $("g-scan").href = "https://bscscan.com/token/" + CFG.contract;
   $("g-claim").href = "#";
 
@@ -179,12 +204,11 @@
   if (document.readyState !== "loading") setTimeout(refresh, 800);
 
   // API pública por si otros módulos de Artist.html la necesitan
-  window.GorraWidget = { refresh: refresh, config: CFG };
+  window.GorraWidget = { refresh: refresh, ask: openAsk, config: CFG };
 })();
 </script>
 </section>
 
 <p class="risk">$GORRA es un token tipo meme en BNB Chain (Four.meme). No es asesoría financiera ni garantía de rendimiento: puedes perder lo que inviertas. Investiga antes de operar.</p>
-<script defer src="https://thesteef21.github.io/SADV41/ticker/sadv-ticker.js" data-sadv-ticker></script>
 </body>
 </html>

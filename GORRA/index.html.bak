@@ -1,3 +1,15 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GORRA · StevenDior x USSS · SADV41</title>
+<style>body{margin:0;padding:16px;background:#020617;color:#e2e8f0;font-family:ui-monospace,Menlo,Consolas,monospace}
+.back{display:block;text-align:center;margin:12px;color:#94a3b8;font-size:12px;text-decoration:none}
+.risk{max-width:420px;margin:0 auto;font-size:10px;color:#64748b;text-align:center;line-height:1.4}</style>
+</head>
+<body>
+<a class="back" href="../Artist.html">← Volver a Artist.html</a>
 <!-- ============================================================
      WIDGET PHYGITAL: GORRA StevenDior x USSS  (autónomo)
      Pegar donde quieras en Artist.html. No depende de variables
@@ -171,3 +183,8 @@
 })();
 </script>
 </section>
+
+<p class="risk">$GORRA es un token tipo meme en BNB Chain (Four.meme). No es asesoría financiera ni garantía de rendimiento: puedes perder lo que inviertas. Investiga antes de operar.</p>
+<script defer src="https://thesteef21.github.io/SADV41/ticker/sadv-ticker.js" data-sadv-ticker></script>
+</body>
+</html>
