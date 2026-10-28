@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADV41 | STEVENDIOR.AI AGENT HUB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#070a12',
+                        card: '#0d1322',
+                        borderDark: '#1e293b'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-navy text-slate-100 min-h-screen font-mono p-4 sm:p-6 pb-24">
+
+    <div class="max-w-3xl mx-auto space-y-6">
+        
+        <!-- Header & Wallet Connection -->
+        <header class="border-b border-slate-800 pb-4 space-y-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <span class="text-xl">🛸</span>
+                    <h1 class="text-lg font-bold text-emerald-400 tracking-wider">SADV41 <span class="text-slate-400">|</span> STEVENDIOR.AI AGENT HUB</h1>
+                </div>
+            </div>
+            <p class="text-xs text-slate-400">Protocolo Descentralizado - Intercambio de Activos & Agentic AI</p>
+            
+            <button id="btnConnect" onclick="connectWallet()" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2.5 px-4 rounded-lg text-xs shadow-lg transition-all flex justify-center items-center gap-2">
+                ⚡ <span id="walletBtnText">Conectar Wallet Web3</span>
+            </button>
+        </header>
+
+        <!-- Estado del Sistema -->
+        <section class="bg-card p-4 rounded-xl border border-slate-800 space-y-2 text-xs">
+            <h2 class="font-bold text-amber-400 uppercase tracking-widest border-b border-slate-800/80 pb-1">ESTADO DEL SISTEMA</h2>
+            <div class="flex justify-between items-center pt-1">
+                <span class="flex items-center gap-2 text-slate-300">
+                    <span id="dotWallet" class="w-2 h-2 rounded-full bg-rose-500"></span>
+                    Wallet EVM: <span id="textWalletState" class="text-slate-400 font-bold">DESCONECTADA</span>
+                </span>
+                <span class="flex items-center gap-2 text-slate-300">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                    Nodo stevendior.ai: <span class="text-emerald-400 font-bold">ACTIVO (BSC RPC)</span>
+                </span>
+            </div>
+        </section>
+
+        <!-- Botones de Acción Directa (Panel Táctico) -->
+        <section class="bg-card p-4 rounded-xl border border-slate-800 space-y-3">
+            <h2 class="text-xs font-bold text-emerald-400 uppercase tracking-widest">ACCIONES RÁPIDAS AGENTIC AI</h2>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <button onclick="fetchAllBalances()" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 text-emerald-400 font-semibold py-2.5 px-3 rounded-lg text-xs transition-all flex items-center justify-center gap-1.5 shadow">
+                    📊 Consultar Portfolio
+                </button>
+                <button onclick="estimateGas()" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 text-amber-400 font-semibold py-2.5 px-3 rounded-lg text-xs transition-all flex items-center justify-center gap-1.5 shadow">
+                    ⛽ Estimar Gas
+                </button>
+                <button onclick="checkNodeStatus()" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 text-blue-400 font-semibold py-2.5 px-3 rounded-lg text-xs transition-all flex items-center justify-center gap-1.5 shadow">
+                    ⚡ Estado Nodo
+                </button>
+                <button onclick="copyWalletAddress()" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 text-purple-400 font-semibold py-2.5 px-3 rounded-lg text-xs transition-all flex items-center justify-center gap-1.5 shadow">
+                    📋 Copiar Wallet
+                </button>
+            </div>
+        </section>
+
+        <!-- Acceso Rápido a Sismos & Monitoreo -->
+        <section class="bg-card p-4 rounded-xl border border-slate-800 space-y-3">
+            <h2 class="text-xs font-bold text-rose-400 uppercase tracking-widest">🚨 TELEMETRÍA SÍSMICA TSEC & @sismosyterremotos</h2>
+            <p class="text-xs text-slate-400">Selecciona el tipo de alerta sísmica para consultar los reportes en tiempo real:</p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <a href="https://thesteef21.github.io/SADV41/SISMOS/SEC.html" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 text-rose-400 font-semibold py-2.5 px-3 rounded-lg text-xs transition-all text-center flex items-center justify-center gap-1">
+                    🏚️ TSEC Panel
+                </a>
+                <a href="https://thesteef21.github.io/SADV41/SISMOS/index.html" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 text-amber-400 font-semibold py-2.5 px-3 rounded-lg text-xs transition-all text-center flex items-center justify-center gap-1">
+                    🌐 Alerta Internacional
+                </a>
+                <a href="https://thesteef21.github.io/SADV41/A217B.html" class="bg-slate-900 hover:bg-slate-800 border border-slate-700 text-emerald-400 font-semibold py-2.5 px-3 rounded-lg text-xs transition-all text-center flex items-center justify-center gap-1">
+                    🏁 Alerta Nacional (Panamá)
+                </a>
+            </div>
+        </section>
+
+        <!-- Log de Operaciones -->
+        <section class="bg-card p-4 rounded-xl border border-slate-800 space-y-3">
+            <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                <h2 class="text-xs font-semibold text-slate-400 uppercase tracking-widest">LOG DE OPERACIONES</h2>
+                <button onclick="clearTerminal()" class="text-xs text-slate-500 hover:text-slate-300">Limpiar Pantalla</button>
+            </div>
+
+            <div id="logs" class="bg-slate-950 rounded-lg p-3 h-48 overflow-y-auto space-y-1.5 text-xs font-mono border border-slate-900">
+                <p class="text-slate-500">[System] Panel táctico listo. Selecciona una acción o consulta sísmica.</p>
+            </div>
+        </section>
+
+        <!-- Catálogo de Activos Registrados -->
+        <section class="space-y-3">
+            <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Catálogo de Activos Registrados (BSC On-Chain)</h2>
+            <div id="assetsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3"></div>
+        </section>
+
+        <!-- MODULO UNIFICADO: DOCUMENTACIÓN TÁCTICA -->
+        <section class="bg-card p-4 sm:p-6 rounded-xl border border-slate-800 space-y-6">
+            <header class="border-b border-slate-800 pb-4">
+                <p class="text-[10px] text-amber-400 uppercase tracking-widest mb-1">Notas de estudio · Binance AI</p>
+                <h2 class="text-lg font-bold text-slate-100">KDJ + Bandas de Bollinger sobre PREDICTUSDT</h2>
+                <p class="text-xs text-slate-400 mt-2">Cómo está armada una estrategia automatizada de futuros perpetuos, qué decide en cada ronda y dónde están sus puntos débiles.</p>
+            </header>
+
+            <div class="space-y-5 text-xs text-slate-300">
+                <!-- Idea Principal -->
+                <div>
+                    <h3 class="font-bold text-emerald-400 uppercase tracking-widest mb-2">La idea en una frase</h3>
+                    <p class="leading-relaxed mb-2">Un cruce del KDJ marca el giro del momento, y las Bandas de Bollinger (14 periodos, 3 desviaciones) confirman que el precio está en un extremo. Sólo cuando coinciden las dos cosas se abre una posición; se cierra cuando el KDJ gira en contra, cuando el precio alcanza la banda opuesta o cuando la pérdida llega al 2 %.</p>
+                    <p class="text-slate-500">El KDJ no es una fórmula aparte: es el estocástico lento con período 21 y suavizados 3 y 3, que entrega las líneas K y D. La línea J se deriva como <code class="bg-slate-900 px-1 py-0.5 rounded text-amber-300">3K − 2D</code> y sirve para leer la velocidad del giro.</p>
+                </div>
+
+                <!-- Ficha del contrato -->
+                <div>
+                    <h3 class="font-bold text-emerald-400 uppercase tracking-widest mb-2">Ficha del contrato</h3>
+                    <div class="overflow-x-auto border border-slate-800 rounded-lg">
+                        <table class="w-full text-left">
+                            <tbody class="divide-y divide-slate-800">
+                                <tr class="bg-slate-900/50"><th class="px-3 py-2 text-slate-400 font-semibold">Símbolo</th><td class="px-3 py-2"><code class="text-amber-300">PREDICTUSDT</code> · perpetuo USDⓈ-M</td></tr>
+                                <tr><th class="px-3 py-2 text-slate-400 font-semibold">Tipo de contrato</th><td class="px-3 py-2">Perpetuo de <strong>premercado</strong> (<code class="text-amber-300">underlyingType: PREMARKET</code>)</td></tr>
+                                <tr class="bg-slate-900/50"><th class="px-3 py-2 text-slate-400 font-semibold">Precio de referencia</th><td class="px-3 py-2">1.461182 (mark, 28 oct 2026)</td></tr>
+                                <tr><th class="px-3 py-2 text-slate-400 font-semibold">Cantidad</th><td class="px-3 py-2">Unidades enteras · paso 1 · mínimo 1</td></tr>
+                                <tr class="bg-slate-900/50"><th class="px-3 py-2 text-slate-400 font-semibold">Nocional mínimo</th><td class="px-3 py-2">5 USDT</td></tr>
+                                <tr><th class="px-3 py-2 text-slate-400 font-semibold">Apalancamiento</th><td class="px-3 py-2">5x · margen aislado · modo unidireccional</td></tr>
+                                <tr class="bg-slate-900/50"><th class="px-3 py-2 text-slate-400 font-semibold">Comisión mant.</th><td class="px-3 py-2">10 % (mantenimiento), margen inicial 20 %</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <p class="text-[11px] text-slate-500 mt-2">El apalancamiento no es una preferencia estética: en el tramo de nocional bajo 5.000 USDT este contrato admite exactamente 5x, ni más ni menos.</p>
+                </div>
+
+                <!-- Parámetros -->
+                <div>
+                    <h3 class="font-bold text-emerald-400 uppercase tracking-widest mb-2">Parámetros de la versión r1</h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-2">
+                        <div class="bg-slate-900 p-3 rounded-lg border border-slate-800"><div class="text-[10px] text-slate-500 mb-1">Capital</div><div class="font-bold text-sm text-slate-200">5.53 USDT</div></div>
+                        <div class="bg-slate-900 p-3 rounded-lg border border-slate-800"><div class="text-[10px] text-slate-500 mb-1">Nocional por op.</div><div class="font-bold text-sm text-slate-200">≈24.8 USDT</div></div>
+                        <div class="bg-slate-900 p-3 rounded-lg border border-slate-800"><div class="text-[10px] text-slate-500 mb-1">Tamaño</div><div class="font-bold text-sm text-slate-200">17 PREDICT</div></div>
+                        <div class="bg-slate-900 p-3 rounded-lg border border-slate-800"><div class="text-[10px] text-slate-500 mb-1">Stop protección</div><div class="font-bold text-sm text-slate-200">2 %</div></div>
+                    </div>
+                    <p class="text-slate-400">El tamaño se calcula en cada ronda: <code class="text-amber-300">capital × apalancamiento × 0.9 ÷ precio</code>, redondeado hacia abajo al paso entero. El 0.9 deja un colchón para comisiones y evita que el margen quede consumido al 100 %.</p>
+                </div>
+
+                <!-- El ciclo -->
+                <div>
+                    <h3 class="font-bold text-emerald-400 uppercase tracking-widest mb-2">El ciclo, hora a hora</h3>
+                    <p class="mb-3">La estrategia no vigila el mercado: se despierta cada hora en punto (Asia/Singapore), hace una ronda completa y vuelve a dormir. Entre rondas no mira nada.</p>
+                    <ol class="list-decimal list-inside space-y-2 text-slate-300 bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                        <li><strong>Velas:</strong> Pide 200 velas de 1h y descarta la que aún se está formando.</li>
+                        <li><strong>Bandas:</strong> Calcula media de 14 periodos con desviación poblacional ×3 (superior, media e inferior).</li>
+                        <li><strong>KDJ:</strong> Calcula el estocástico lento 21/3/3. Compara última vela cerrada con anterior.</li>
+                        <li><strong>Posición real:</strong> Lee la posición del contrato en la cuenta. Si abriste a mano, lo ve.</li>
+                        <li><strong>Decisión:</strong> Sin posición: cruce alcista + precio ≤ banda inferior → largo; cruce bajista + precio ≥ banda superior → corto. Con posición: cruce contrario, banda opuesta o 2 % en contra → cerrar.</li>
+                        <li><strong>Ejecución:</strong> Configura 5x aislado y envía orden a mercado.</li>
+                    </ol>
+                    <div class="mt-3 border-l-4 border-emerald-500 bg-emerald-950/30 p-3 text-[11px] rounded-r">
+                        <strong class="text-emerald-400">Por qué velas cerradas:</strong> Si se usara la vela en curso, el mismo cruce podría aparecer y desaparecer varias veces dentro de la hora, y la estrategia abriría y cerraría repetidamente sobre el mismo movimiento.
+                    </div>
+                </div>
+
+                <!-- Riesgos -->
+                <div>
+                    <h3 class="font-bold text-emerald-400 uppercase tracking-widest mb-2">Dónde duele (Riesgos)</h3>
+                    <div class="space-y-2">
+                        <div class="border-l-4 border-rose-500 bg-rose-950/20 p-3 text-slate-300 rounded-r">
+                            <strong class="text-rose-400">El stop es lógico, no una orden viva:</strong> Se evalúa una vez por hora sobre velas cerradas. Un hueco de precio puede atravesar el 2 % sin que nada lo detenga.
+                        </div>
+                        <div class="border-l-4 border-rose-500 bg-rose-950/20 p-3 text-slate-300 rounded-r">
+                            <strong class="text-rose-400">Todo el margen entra en juego:</strong> Con 5.53 USDT y 5x, cada entrada compromete casi la totalidad del margen. Un movimiento en contra del 2 % ronda el 10 % del capital.
+                        </div>
+                        <div class="border-l-4 border-rose-500 bg-rose-950/20 p-3 text-slate-300 rounded-r">
+                            <strong class="text-rose-400">Contrato de premercado:</strong> Liquidez fina, spreads anchos y movimientos bruscos. El precio puede saltar niveles drásticamente.
+                        </div>
+                        <div class="border-l-4 border-amber-500 bg-amber-950/20 p-3 text-slate-300 rounded-r">
+                            <strong class="text-amber-400">Decisiones fuera del diseño:</strong> La entrada no filtra zona de sobreventa o sobrecompra del KDJ (sólo exige cruce y banda). Queda pendiente reconciliar rechazos de órdenes y leer el límite de apalancamiento del exchange dinámicamente.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lectura y Glosario en Columnas -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <div>
+                        <h3 class="font-bold text-emerald-400 uppercase tracking-widest mb-2">Primera lectura real</h3>
+                        <div class="overflow-x-auto border border-slate-800 rounded-lg">
+                            <table class="w-full text-left">
+                                <tbody class="divide-y divide-slate-800">
+                                    <tr class="bg-slate-900/50"><td class="px-2 py-1 text-slate-400">K / D / J</td><td class="px-2 py-1">29.93 / 25.18 / 39.42</td></tr>
+                                    <tr><td class="px-2 py-1 text-slate-400">Cierre de vela</td><td class="px-2 py-1">1.461</td></tr>
+                                    <tr class="bg-slate-900/50"><td class="px-2 py-1 text-slate-400">Banda sup / inf</td><td class="px-2 py-1">1.3524 / 1.5873</td></tr>
+                                    <tr><td class="px-2 py-1 text-slate-400">Decisión</td><td class="px-2 py-1 text-amber-400">No operar</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-emerald-400 uppercase tracking-widest mb-2">Glosario Mínimo</h3>
+                        <div class="overflow-x-auto border border-slate-800 rounded-lg">
+                            <table class="w-full text-left text-[10px]">
+                                <tbody class="divide-y divide-slate-800">
+                                    <tr class="bg-slate-900/50"><th class="px-2 py-1 text-slate-400">Perpetuo</th><td class="px-2 py-1">Futuros sin fecha de vencimiento.</td></tr>
+                                    <tr><th class="px-2 py-1 text-slate-400">A mercado</th><td class="px-2 py-1">Mejor precio disponible sin límite.</td></tr>
+                                    <tr class="bg-slate-900/50"><th class="px-2 py-1 text-slate-400">Margen Aislado</th><td class="px-2 py-1">Riesgo acotado solo a ese margen.</td></tr>
+                                    <tr><th class="px-2 py-1 text-slate-400">Nocional</th><td class="px-2 py-1">Valor = cantidad × precio (sin apalancar).</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Widget Flotante Sismológico (@sismosyterremotos) -->
+    <div id="sismoFloatingWidget" class="fixed bottom-4 right-4 z-50 bg-card border border-rose-500/50 shadow-2xl rounded-2xl p-3 max-w-xs text-xs space-y-2 backdrop-blur-md bg-opacity-95">
+        <div class="flex justify-between items-center border-b border-slate-800 pb-1.5">
+            <span class="font-bold text-rose-400 flex items-center gap-1">🛘🏚️ @sismosyterremotos</span>
+            <button onclick="toggleSismoWidget()" class="text-slate-500 hover:text-slate-300 font-bold px-1">✕</button>
+        </div>
+        <p class="text-[11px] text-slate-300">Monitoreo activo. ¿Qué tipo de alerta deseas consultar?</p>
+        <div class="grid grid-cols-2 gap-1.5 pt-1">
+            <a href="https://thesteef21.github.io/SADV41/SISMOS/index.html" class="bg-rose-950/60 hover:bg-rose-900 text-rose-300 border border-rose-800 text-center py-1.5 px-2 rounded font-semibold transition-all">
+                🌍 Internacional
+            </a>
+            <a href="https://thesteef21.github.io/SADV41/A217B.html" class="bg-emerald-950/60 hover:bg-emerald-900 text-emerald-300 border border-emerald-800 text-center py-1.5 px-2 rounded font-semibold transition-all">
+                🇵🇦 Nacional
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function toggleSismoWidget() {
+            const w = document.getElementById('sismoFloatingWidget');
+            w.classList.toggle('hidden');
+        }
+
+        const BSC_RPC = "https://bsc-dataseed.binance.org/";
+        const TARGET_WALLET = "0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB";
+        let activeAddress = TARGET_WALLET;
+        let provider = null;
+
+        const TOKEN_LIST = [
+            { symbol: "BNB", name: "BNB Native Token", address: null, isNative: true },
+            { symbol: "SNDKB", name: "SNDKB Token", address: "0x3eE4dF61bd4F867E349BEaE8bFE07bc31b4850fb" },
+            { symbol: "BABAB", name: "BABAB Token", address: "0x4eF9d3062c7F6ebA4AAE4990c5036598C6eff4ec" },
+            { symbol: "NVDAB", name: "NVDAB Token", address: "0x02Fca66C1D1aFB4E2A7884261eB00F63598a7436" },
+            { symbol: "GOOGLB", name: "GOOGLB Token", address: "0x3F53De71c126BdaBaE20f9cD64848d317f6C3238" }
+        ];
+
+        const ERC20_ABI = [
+            "function balanceOf(address owner) view returns (uint256)",
+            "function decimals() view returns (uint8)"
+        ];
+
+        window.addEventListener('DOMContentLoaded', () => {
+            provider = new ethers.providers.JsonRpcProvider(BSC_RPC);
+            renderStaticAssetCards();
+        });
+
+        function appendLog(speaker, msg, type = "normal") {
+            const el = document.getElementById('logs');
+            const p = document.createElement('p');
+            const time = new Date().toLocaleTimeString();
+
+            let colorClass = "text-slate-300";
+            if (type === "agent") colorClass = "text-emerald-400 font-semibold";
+            if (type === "info") colorClass = "text-amber-400 font-semibold";
+            if (type === "error") colorClass = "text-rose-400";
+
+            p.className = colorClass;
+            p.innerText = `[${time}] ${speaker}: ${msg}`;
+            el.appendChild(p);
+            el.scrollTop = el.scrollHeight;
+        }
+
+        function clearTerminal() {
+            document.getElementById('logs').innerHTML = '<p class="text-slate-500">[System] Pantalla limpia.</p>';
+        }
+
+        async function connectWallet() {
+            if (window.ethereum) {
+                try {
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    activeAddress = accounts[0];
+                    updateWalletUI(true, `${activeAddress.slice(0,6)}...${activeAddress.slice(-4)}`);
+                    appendLog("System", `Wallet conectada: ${activeAddress}`, "agent");
+                    fetchAllBalances();
+                } catch (e) {
+                    appendLog("System", `Error conectando wallet: ${e.message}`, "error");
+                }
+            } else {
+                activeAddress = TARGET_WALLET;
+                updateWalletUI(true, `${TARGET_WALLET.slice(0,6)}...${TARGET_WALLET.slice(-4)} (RPC Mode)`);
+                appendLog("System", `Modo Direct RPC cargado con wallet objetivo: ${TARGET_WALLET}`, "agent");
+                fetchAllBalances();
+            }
+        }
+
+        function updateWalletUI(connected, label) {
+            document.getElementById('walletBtnText').innerText = label;
+            document.getElementById('textWalletState').innerText = connected ? "CONECTADA" : "DESCONECTADA";
+            document.getElementById('textWalletState').className = connected ? "text-emerald-400 font-bold" : "text-rose-400 font-bold";
+            document.getElementById('dotWallet').className = connected ? "w-2 h-2 rounded-full bg-emerald-400 animate-pulse" : "w-2 h-2 rounded-full bg-rose-500";
+        }
+
+        function renderStaticAssetCards() {
+            const container = document.getElementById('assetsContainer');
+            container.innerHTML = TOKEN_LIST.map(item => `
+                <div class="bg-card p-4 rounded-xl border border-slate-800 space-y-2 shadow-lg">
+                    <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                        <span class="text-xs font-bold text-amber-400">${item.symbol}</span>
+                        <span class="text-[10px] text-slate-500 font-mono">${item.isNative ? 'BSC Native' : 'BEP-20 Contract'}</span>
+                    </div>
+                    <p class="text-xs text-slate-300 font-semibold">${item.name}</p>
+                    <div class="flex justify-between items-center pt-1">
+                        <span id="bal-${item.symbol}" class="text-xs font-bold text-emerald-400 font-mono">Saldo: --</span>
+                        <button onclick="querySingleToken('${item.symbol}')" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold text-[10px] px-3 py-1 rounded transition-all">
+                            Consultar
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function querySingleToken(symbol) {
+            const token = TOKEN_LIST.find(t => t.symbol === symbol);
+            if (!token) return;
+
+            try {
+                if (token.isNative) {
+                    const rawBal = await provider.getBalance(activeAddress);
+                    const formatted = parseFloat(ethers.utils.formatEther(rawBal)).toFixed(6);
+                    document.getElementById(`bal-${symbol}`).innerText = `Saldo: ${formatted} ${symbol}`;
+                    appendLog("stevendior.ai", `${symbol}: ${formatted}`, "agent");
+                } else {
+                    const contract = new ethers.Contract(token.address, ERC20_ABI, provider);
+                    const [rawBal, decimals] = await Promise.all([
+                        contract.balanceOf(activeAddress),
+                        contract.decimals().catch(() => 18)
+                    ]);
+                    const formatted = parseFloat(ethers.utils.formatUnits(rawBal, decimals)).toFixed(6);
+                    document.getElementById(`bal-${symbol}`).innerText = `Saldo: ${formatted} ${symbol}`;
+                    appendLog("stevendior.ai", `${symbol}: ${formatted}`, "agent");
+                }
+            } catch (e) {
+                appendLog("stevendior.ai", `Error obteniendo saldo de ${symbol}: ${e.message}`, "error");
+            }
+        }
+
+        async function fetchAllBalances() {
+            appendLog("Acción", "Consultando balances del portfolio...", "info");
+            for (const token of TOKEN_LIST) {
+                await querySingleToken(token.symbol);
+            }
+        }
+
+        async function estimateGas() {
+            appendLog("Acción", "Estimando tarifa de Gas en BSC...", "info");
+            try {
+                const gasPrice = await provider.getGasPrice();
+                const gwei = parseFloat(ethers.utils.formatUnits(gasPrice, 'gwei')).toFixed(2);
+                appendLog("stevendior.ai", `Gas actual en la red: ${gwei} Gwei`, "agent");
+            } catch (e) {
+                appendLog("stevendior.ai", `Error al estimar gas: ${e.message}`, "error");
+            }
+        }
+
+        function checkNodeStatus() {
+            appendLog("Acción", "Verificando nodo RPC...", "info");
+            appendLog("stevendior.ai", `Estado: Conectado a BSC Mainnet (Chain ID 56) | RPC: ${BSC_RPC}`, "agent");
+        }
+
+        function copyWalletAddress() {
+            navigator.clipboard.writeText(activeAddress);
+            appendLog("Acción", `Dirección copiada al portapapeles: ${activeAddress}`, "agent");
+        }
+    </script>
+<script src="https://thesteef21.github.io/SADV41/Agent/SAT/GOB/satv41-widget.js" defer></script>
+<!-- WIDGET DISCLAIMER BSTOCKS - SADV41 PROTOCOL -->
+<div class="mt-6 bg-slate-950 p-4 rounded-2xl border border-rose-500/30 space-y-3 text-xs font-mono shadow-2xl max-w-3xl mx-auto mb-10">
+    <div class="flex items-center gap-2 border-b border-slate-800 pb-2">
+        <span class="text-rose-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
+            ⚠️ DESCARGO DE RESPONSABILIDAD DE RIESGO (DISCLAIMER)
+        </span>
+    </div>
+    
+    <p class="text-slate-300 text-[11px] leading-relaxed">
+        Los activos digitales, acciones tokenizadas (<strong class="text-amber-400">bStocks</strong>), estrategias automatizadas e interacciones en cadena conllevan riesgos financieros elevados. El token SATV41, la infraestructura Web3 mostrada, los colaterales bursátiles y estrategias documentadas no constituyen asesoría financiera ni garantía de rendimiento. Operar futuros con apalancamiento puede resultar en la pérdida total del capital.
+    </p>
+
+    <ul class="list-disc list-inside space-y-1.5 text-slate-300 text-[11px]">
+        <li><strong>Riesgo de Volatilidad Compuesta:</strong> Los bStocks usados como garantía están sujetos a variaciones simultáneas de precio en tres capas.</li>
+        <li><strong>Derecho de Dividendos Excluido:</strong> Las garantías en bStocks en cuentas de margen no acumulan ni cobran dividendos.</li>
+        <li><strong>Ajustes de Tasa de Garantía (Haircut):</strong> Puede gatillar margin calls y liquidación.</li>
+        <li><strong>Diferencia de Horarios:</strong> Cripto opera 24/7; la liquidación de bStocks puede ejecutarse con descuentos significativos por liquidez.</li>
+    </ul>
+
+    <div class="pt-2 flex flex-wrap gap-2 text-[10px]">
+        <a href="https://thesteef21.github.io/SADV41/SATV41/COM/Aseo/" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-amber-400 border border-slate-700 px-3 py-1.5 rounded-lg transition flex items-center gap-1">
+            🌐 Ver Protocolo SATV41
+        </a>
+    </div>
+</div>
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+<script src="https://thesteef21.github.io/SADV41/sadv41-drag.js" defer></script>
+</body>
+</html>
