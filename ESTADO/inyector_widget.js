@@ -1,21 +1,8 @@
-
-// Snippet de inyección para Lapizasuli y USGS
 (function() {
-    const widgetContainer = document.createElement('div');
-    widgetContainer.style.position = 'fixed';
-    widgetContainer.style.bottom = '20px';
-    widgetContainer.style.right = '20px';
-    widgetContainer.style.zIndex = '9999';
-    
-    const iframe = document.createElement('iframe');
-    iframe.src = 'widget_sadv41_inyectable.html';
-    iframe.style.width = '350px';
-    iframe.style.height = '600px';
-    iframe.style.border = 'none';
-    iframe.style.borderRadius = '12px';
-    iframe.style.boxShadow = '0 25px 50px -12px rgba(0, 0, 0, 0.5)';
-    
-    widgetContainer.appendChild(iframe);
-    document.body.appendChild(widgetContainer);
-    console.log('[+] Widget Neopolítico SADV41 inyectado exitosamente.');
+  var w = document.createElement('div');
+  w.style.cssText = 'position:fixed;bottom:20px;right:20px;z-index:9999;';
+  var f = document.createElement('iframe');
+  f.src = 'https://thesteef21.github.io/SADV41/ESTADO/widget_sadv41_inyectable.html';
+  f.style.cssText = 'width:350px;height:600px;border:none;border-radius:12px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.5);';
+  w.appendChild(f); document.body.appendChild(w);
 })();

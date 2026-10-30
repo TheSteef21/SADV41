@@ -1,102 +1,46 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Widget Universal - SADV41 Neopolítica</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <style>
-        /* Scrollbar minimalista para el widget */
-        ::-webkit-scrollbar { width: 6px; height: 6px; }
-        ::-webkit-scrollbar-track { background: #1e293b; }
-        ::-webkit-scrollbar-thumb { background: #475569; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
-    </style>
+<html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Widget SADV41 Neopolítica</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body class="bg-transparent m-0 p-0 font-sans">
-    <!-- Contenedor Principal del Widget (Inyectable vía Iframe o Shadow DOM) -->
-    <div class="w-full max-w-sm mx-auto bg-slate-900 border border-slate-700 rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[600px]">
-        
-        <!-- Cabecera -->
-        <div class="bg-slate-800 p-4 border-b border-slate-700 flex justify-between items-center">
-            <div>
-                <h3 class="text-lg font-bold text-amber-500 tracking-tight">SADV41 | Neopolítica</h3>
-                <p class="text-xs text-slate-400">Motor Estadístico en Tiempo Real</p>
-            </div>
-            <div class="text-2xl animate-pulse">🎛</div>
-        </div>
-
-        <!-- Cuerpo Desplazable -->
-        <div class="overflow-y-auto p-4 space-y-5">
-            
-            <!-- Ecuación Core -->
-            <div class="bg-black/50 p-3 rounded-lg border border-purple-900/50 text-center">
-                <span class="text-xs text-purple-400 font-semibold uppercase tracking-wider block mb-1">El Trinomio Financiero</span>
-                <div class="text-lg overflow-x-auto text-slate-200">
-                    $$ (a+b)^2 = a^2 + 2ab + b^2 $$
-                </div>
-            </div>
-
-            <!-- Gráfica Embebida -->
-            <div class="bg-slate-800/50 p-3 rounded-lg border border-slate-700">
-                <h4 class="text-xs font-semibold text-blue-400 mb-2">Expansión de Deuda (USD Millones)</h4>
-                <div class="relative h-48 w-full">
-                    <canvas id="miniChart"></canvas>
-                </div>
-                <div class="mt-2 text-right">
-                    <span class="text-xs font-bold text-red-400">Total Acumulado: +$55,578.4M (876.5%)</span>
-                </div>
-            </div>
-
-            <!-- Feed de Cajas Integradas -->
-            <div class="space-y-3">
-                <h4 class="text-xs font-semibold text-emerald-400 uppercase tracking-wider border-b border-slate-700 pb-1">Data Feed Operativo</h4>
-                
-                <div class="bg-slate-800 p-3 rounded border border-slate-600 border-l-4 border-l-amber-500">
-                    <span class="text-[10px] text-amber-500 font-bold block mb-1">CAJA 1: MACROECONOMÍA</span>
-                    <p class="text-xs text-slate-300 leading-tight">L. Cortizo registró el mayor aumento nominal histórico (+$25,200.8M), duplicando prácticamente la deuda recibida. J.R. Mulino suma +$10,105.6M a agosto 2026.</p>
-                </div>
-
-                <div class="bg-slate-800 p-3 rounded border border-slate-600 border-l-4 border-l-purple-500">
-                    <span class="text-[10px] text-purple-400 font-bold block mb-1">CAJA 4: VISIÓN TEOLÓGICA</span>
-                    <p class="text-xs text-slate-300 leading-tight">"Quedarse en la Tierra Nueva porque Cristo va a celebrar con nosotros". Contraste directo contra la inactividad espiritual.</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Footer -->
-        <div class="bg-slate-950 p-2 text-center text-[10px] text-slate-500 border-t border-slate-800">
-            Powered by Lapizasuli & USGS Data Node | v4.1.0
-        </div>
-    </div>
-
-    <script>
-        const datos = [{"presidente": "G. Endara", "periodo": "89-94", "incremento_num": 985, "color": "rgba(59, 130, 246, 0.7)"}, {"presidente": "E. P\u00e9rez B.", "periodo": "94-99", "incremento_num": 369, "color": "rgba(16, 185, 129, 0.7)"}, {"presidente": "M. Moscoso", "periodo": "99-04", "incremento_num": 1489, "color": "rgba(139, 92, 246, 0.7)"}, {"presidente": "M. Torrijos", "periodo": "04-09", "incremento_num": 1619, "color": "rgba(245, 158, 11, 0.7)"}, {"presidente": "R. Martinelli", "periodo": "09-14", "incremento_num": 6838, "color": "rgba(239, 68, 68, 0.7)"}, {"presidente": "J.C. Varela", "periodo": "14-19", "incremento_num": 8972, "color": "rgba(236, 72, 153, 0.7)"}, {"presidente": "L. Cortizo", "periodo": "19-24", "incremento_num": 25200.8, "color": "rgba(234, 179, 8, 0.8)"}, {"presidente": "J.R. Mulino", "periodo": "24-26*", "incremento_num": 10105.6, "color": "rgba(14, 165, 233, 0.7)"}];
-        const ctx = document.getElementById('miniChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: datos.map(d => d.periodo),
-                datasets: [{
-                    label: 'USD Millones',
-                    data: datos.map(d => d.incremento_num),
-                    backgroundColor: datos.map(d => d.color),
-                    borderWidth: 0,
-                    borderRadius: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: { legend: { display: false } },
-                scales: {
-                    x: { ticks: { font: { size: 9 }, color: '#94a3b8' }, grid: { display: false } },
-                    y: { ticks: { font: { size: 9 }, color: '#94a3b8' }, grid: { color: '#334155' } }
-                }
-            }
-        });
-    </script>
-</body>
-</html>
+<div class="w-full max-w-sm mx-auto bg-slate-900 border border-slate-700 rounded-xl shadow-2xl overflow-hidden flex flex-col max-h-[600px]">
+ <div class="bg-slate-800 p-4 border-b border-slate-700">
+  <h3 class="text-lg font-bold text-amber-500">SADV41 | Neopolítica</h3>
+  <p class="text-[10px] text-slate-400">Datos históricos en revisión (Ago 2026)</p>
+ </div>
+ <div class="overflow-y-auto p-4 space-y-5">
+  <div class="bg-black/50 p-3 rounded-lg border border-purple-900/50 text-center">
+   <span class="text-xs text-purple-400 font-semibold uppercase block mb-1">El Trinomio Financiero</span>
+   <div class="text-lg text-slate-200 overflow-x-auto">$$ (a+b)^2 = a^2 + 2ab + b^2 $$</div>
+  </div>
+  <div class="bg-slate-800/50 p-3 rounded-lg border border-slate-700">
+   <h4 class="text-xs font-semibold text-blue-400 mb-2">Expansión (USD Millones)</h4>
+   <div class="relative h-48 w-full"><canvas id="miniChart"></canvas></div>
+   <div class="mt-2 text-right"><span class="text-xs font-bold text-red-400">Acumulado: +$55,578.4M (876.6%)</span></div>
+  </div>
+  <div class="bg-slate-800 p-3 rounded border border-slate-600 border-l-4 border-l-amber-500">
+   <span class="text-[10px] text-amber-500 font-bold block mb-1">MACROECONOMÍA HISTÓRICA</span>
+   <p class="text-xs text-slate-300">Cortizo cerró en $51,812.8M. Mulino sitúa la deuda parcial en $61,918.4M.</p>
+  </div>
+  <div class="bg-slate-800 p-3 rounded border border-slate-600 border-l-4 border-l-purple-500">
+   <span class="text-[10px] text-purple-400 font-bold block mb-1">VISIÓN TEOLÓGICA SADV41</span>
+   <p class="text-xs text-slate-300">Rechazo a "ir al cielo a descansar en una nube": ¡Quedarse en la Tierra Nueva porque Cristo va a celebrar con nosotros!</p>
+  </div>
+ </div>
+ <div class="bg-slate-950 p-2 text-center text-[10px] text-slate-500 border-t border-slate-800">Powered by SADV41 | v4.1.3</div>
+</div><script>
+const datos = [{"presidente": "Guillermo Endara", "corto": "G. Endara", "periodo": "1989-1994", "p_corto": "89-94", "recibida": 6340, "dejada": 7325, "incremento": 985, "color": "#3b82f6"}, {"presidente": "Ernesto P. Balladares", "corto": "E. P\u00e9rez B.", "periodo": "1994-1999", "p_corto": "94-99", "recibida": 7325, "dejada": 7694, "incremento": 369, "color": "#10b981"}, {"presidente": "Mireya Moscoso", "corto": "M. Moscoso", "periodo": "1999-2004", "p_corto": "99-04", "recibida": 7694, "dejada": 9183, "incremento": 1489, "color": "#8b5cf6"}, {"presidente": "Mart\u00edn Torrijos", "corto": "M. Torrijos", "periodo": "2004-2009", "p_corto": "04-09", "recibida": 9183, "dejada": 10802, "incremento": 1619, "color": "#f59e0b"}, {"presidente": "Ricardo Martinelli", "corto": "R. Martinelli", "periodo": "2009-2014", "p_corto": "09-14", "recibida": 10802, "dejada": 17640, "incremento": 6838, "color": "#ef4444"}, {"presidente": "Juan Carlos Varela", "corto": "J.C. Varela", "periodo": "2014-2019", "p_corto": "14-19", "recibida": 17640, "dejada": 26612, "incremento": 8972, "color": "#ec4899"}, {"presidente": "Laurentino Cortizo", "corto": "L. Cortizo", "periodo": "2019-2024", "p_corto": "19-24", "recibida": 26612, "dejada": 51812.8, "incremento": 25200.8, "color": "#eab308"}, {"presidente": "Jos\u00e9 Ra\u00fal Mulino", "corto": "J.R. Mulino", "periodo": "2024-2026*", "p_corto": "24-26*", "recibida": 51812.8, "dejada": 61918.4, "incremento": 10105.6, "color": "#0ea5e9"}];
+new Chart(document.getElementById('miniChart').getContext('2d'), {
+  type: 'bar',
+  data: { labels: datos.map(d => d.p_corto),
+    datasets: [{ label: 'Incremento (Millones USD)', data: datos.map(d => d.incremento),
+      backgroundColor: datos.map(d => d.color), borderWidth: 0, borderRadius: 3 }] },
+  options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } },
+    scales: { x: { ticks: { color: '#94a3b8' }, grid: { display: false } },
+              y: { beginAtZero: true, ticks: { color: '#94a3b8' }, grid: { color: '#334155' } } } }
+});
+</script></body></html>
