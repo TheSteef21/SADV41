@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADV41 // Cuartel General y Alivio Sísmico Panamá</title>
+    <!-- Tailwind CSS (CDN) para consistencia visual relámpago -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background-color: #050507; color: #e2e8f0; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; }
+        .glass-card { background: rgba(12, 16, 23, 0.85); border: 1px solid rgba(0, 229, 255, 0.2); backdrop-filter: blur(12px); }
+        .tsec-chip { background: #0a0d14; border: 1px solid #1e293b; color: #94a3b8; padding: 6px 12px; border-radius: 9999px; font-size: 11px; cursor: pointer; transition: all 0.2s; }
+        .tsec-chip.on { background: rgba(0, 229, 255, 0.15); border-color: #00e5ff; color: #00e5ff; font-weight: bold; }
+        .lightbox { position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 100; display: none; align-items: center; justify-content: center; flex-direction: column; padding: 20px; }
+        .lightbox.open { display: flex; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-black">
+
+    <!-- HEADER DE ACCIÓN Y ESTADO -->
+    <header class="sticky top-0 z-40 w-full border-b border-cyan-500/20 glass-card">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-3 h-3 rounded-full bg-cyan-400 animate-ping"></div>
+                <span class="text-xs sm:text-sm font-bold tracking-widest text-cyan-400">SADV41 // ALIVIO SÍSMICO PANAMÁ</span>
+            </div>
+            <div class="flex items-center space-x-2">
+                <span class="text-[10px] bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 px-2.5 py-1 rounded-full">AZUERO & VERAGUAS</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 w-full space-y-10 flex-grow">
+
+        <!-- BLOQUE DE EMERGENCIA Y CANALES DE APOYO -->
+        <section class="glass-card rounded-2xl p-6 border-l-4 border-cyan-400 space-y-4">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-extrabold text-white flex items-center gap-2">
+                        <span>🇵🇦 Red de Apoyo Humanitario y Acopio</span>
+                    </h1>
+                    <p class="text-xs sm:text-sm text-slate-400 mt-1">
+                        Coordinación comunitaria de emergencia ante la secuencia de sismos en Azuero y la región central.
+                    </p>
+                </div>
+                <div class="flex gap-2 w-full md:w-auto">
+                    <a href="https://wa.me/?text=SADV41%20Ayuda%20Sismica%20Panama" target="_blank" class="flex-1 md:flex-initial px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg text-center transition">
+                        <i class="fa-brands fa-whatsapp mr-1"></i> Reportar / Apoyar
+                    </a>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-slate-800 text-xs">
+                <div class="bg-black/40 p-4 rounded-xl border border-slate-800 space-y-2">
+                    <span class="text-cyan-400 font-bold block"><i class="fa-solid fa-location-dot"></i> Zonas Prioritarias</span>
+                    <p class="text-slate-300">Quebrada Grande (Soná), Las Tablas, Macaracas, Pitaloza Arriba, Villa de Los Santos.</p>
+                </div>
+                <div class="bg-black/40 p-4 rounded-xl border border-slate-800 space-y-2">
+                    <span class="text-cyan-400 font-bold block"><i class="fa-solid fa-hand-holding-heart"></i> Canales de Ayuda Oficial</span>
+                    <p class="text-slate-300">Cruz Roja Panameña & Juntas Comunales Locales. Suministros de agua, lonas y víveres secos.</p>
+                </div>
+                <div class="bg-black/40 p-4 rounded-xl border border-slate-800 space-y-2">
+                    <span class="text-cyan-400 font-bold block"><i class="fa-solid fa-shield-halved"></i> Protocolo Técnico</span>
+                    <p class="text-slate-300">Monitoreo activo USGS + Reducción de riesgos estructurales en edificaciones afectadas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MOMENTO 0: ARCHIVO VISUAL Y EVIDENCIAS TSEC (Conectado a GitHub) -->
+        <section class="glass-card rounded-2xl p-6 space-y-6">
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-800 pb-4">
+                <div>
+                    <h2 class="text-lg font-bold text-white flex items-center gap-2">
+                        <i class="fa-solid fa-camera text-cyan-400"></i> Momento 0 // Archivo Visual TSEC
+                    </h2>
+                    <p class="text-xs text-slate-400 mt-0.5">Capturas, alertas y telemetría histórica del evento registrada en terreno.</p>
+                </div>
+                <div id="tsec-count" class="text-xs text-cyan-400 font-mono">Sincronizando archivos...</div>
+            </div>
+
+            <!-- Filtros Dinámicos (Chips) -->
+            <div id="tsec-filters" class="flex flex-wrap gap-2">
+                <!-- Se llena mediante script -->
+            </div>
+
+            <!-- Grid de Imágenes Dinámico -->
+            <div id="tsec-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                <!-- Contenido cargado dinámicamente desde el repositorio -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- LIGHTBOX PARA INSPECCIÓN DE EVIDENCIAS -->
+    <div id="tsec-lightbox" class="lightbox" onclick="this.classList.remove('open')">
+        <img id="lb-img" src="" alt="Evidencia Ampliada" class="max-h-[80vh] max-w-[90vw] object-contain rounded-lg border border-cyan-500/50 mb-4">
+        <p id="lb-cap" class="text-xs text-cyan-300 font-mono bg-black/80 px-4 py-2 rounded border border-slate-800"></p>
+        <span class="absolute top-6 right-6 text-white text-xl cursor-pointer bg-slate-800 w-10 h-10 rounded-full flex items-center justify-center">✕</span>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-800 bg-black/60 py-6 text-center text-xs text-slate-500 space-y-1">
+        <p>SADV41 // Resiliencia, Ciencia y Comunidad 🇵🇦 ⚛️ ☦️</p>
+        <p class="text-[10px]">Fuentes primarias conectadas: GitHub (TSEC/img) & USGS FDSNWS</p>
+    </footer>
+
+    <!-- SCRIPT DE CONEXIÓN DINÁMICA TSEC/img -->
+    <script>
+    (function(){
+        const API = 'https://api.github.com/repos/TheSteef21/SADV41/contents/TSEC/img';
+        const BASE = 'https://thesteef21.github.io/SADV41/TSEC/img/';
+        
+        const grid = document.getElementById('tsec-grid');
+        const filters = document.getElementById('tsec-filters');
+        const count = document.getElementById('tsec-count');
+        const lb = document.getElementById('tsec-lightbox');
+        const lbImg = document.getElementById('lb-img');
+        const lbCap = document.getElementById('lb-cap');
+
+        let items = [];
+        let current = 'Todas';
+
+        function when(name) {
+            // Intenta extraer fecha de nombres tipo Screenshot_20261011_093840 o similar
+            const m = name.match(/(\d{4})(\d{2})(\d{2})_(\d{2})(\d{2})(\d{2})/);
+            if(m) return `${m[3]}/${m[2]}/${m[1]} ${m[4]}:${m[5]}`;
+            return 'Registro TSEC';
+        }
+
+        function source(name) {
+            if(name.includes('Screenshot') || name.includes('IMG')) return 'Captura Móvil';
+            if(name.includes('map') || name.includes('usgs')) return 'Telemetría';
+            return 'General';
+        }
+
+        function render() {
+            grid.innerHTML = '';
+            const filtered = current === 'Todas' ? items : items.filter(i => i.src === current);
+            
+            filtered.forEach(i => {
+                const d = document.createElement('div');
+                d.className = 'bg-slate-900 border border-slate-800 rounded-lg overflow-hidden flex flex-col group cursor-pointer hover:border-cyan-500/50 transition';
+                
+                const im = document.createElement('img');
+                im.src = i.url;
+                im.alt = i.name;
+                im.loading = 'lazy';
+                im.className = 'w-full h-32 object-cover group-hover:scale-105 transition duration-300';
+                
+                const t = document.createElement('span');
+                t.className = 'p-2 text-[10px] text-slate-400 font-mono truncate bg-black/60';
+                t.textContent = i.date;
+
+                d.appendChild(im);
+                d.appendChild(t);
+
+                d.onclick = function() {
+                    lbImg.src = i.url;
+                    lbCap.textContent = `${i.name} · ${i.date}`;
+                    lb.classList.add('open');
+                };
+
+                grid.appendChild(d);
+            });
+
+            if(!filtered.length) {
+                grid.innerHTML = '<div class="col-span-full text-center py-8 text-xs text-slate-500">Sin archivos en este filtro.</div>';
+            }
+        }
+
+        function chips() {
+            var set = ['Todas'];
+            items.forEach(function(i){ if(set.indexOf(i.src) < 0) set.push(i.src); });
+            filters.innerHTML = '';
+            set.forEach(function(s){
+                var b = document.createElement('button');
+                b.className = 'tsec-chip' + (s === current ? ' on' : '');
+                var n = s === 'Todas' ? items.length : items.filter(function(i){ return i.src === s; }).length;
+                b.textContent = `${s} (${n})`;
+                b.onclick = function(){ current = s; chips(); render(); };
+                filters.appendChild(b);
+            });
+        }
+
+        fetch(API)
+            .then(r => { if(!r.ok) throw new Error(r.status); return r.json(); })
+            .then(files => {
+                items = files
+                    .filter(f => /\.(jpe?g|png|webp|gif)$/i.test(f.name))
+                    .map(f => ({
+                        name: f.name,
+                        src: source(f.name),
+                        date: when(f.name),
+                        url: BASE + encodeURIComponent(f.name)
+                    }))
+                    .sort((a,b) => b.name.localeCompare(a.name));
+
+                count.textContent = `· ${items.length} archivos verificados`;
+                chips();
+                render();
+            })
+            .catch(err => {
+                grid.innerHTML = `<div class="col-span-full text-center py-8 text-xs text-rose-400">No se pudo cargar la galería automática. <a href="https://thesteef21.github.io/SADV41/TSEC/img" target="_blank" class="underline text-cyan-400">Abrir repositorio directo ↗</a></div>`;
+                count.textContent = '· Error de conexión API';
+            });
+    })();
+    </script>
+</body>
+</html>
