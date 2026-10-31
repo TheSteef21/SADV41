@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GORRA · StevenDior x USSS · SADV41</title>
+<style>body{margin:0;padding:16px;background:#020617;color:#e2e8f0;font-family:ui-monospace,Menlo,Consolas,monospace}
+.back{display:block;text-align:center;margin:12px;color:#94a3b8;font-size:12px;text-decoration:none}
+.risk{max-width:420px;margin:0 auto;font-size:10px;color:#64748b;text-align:center;line-height:1.4}</style>
+</head>
+<body>
+<a class="back" href="../Artist.html">← Volver a Artist.html</a>
+<!-- ============================================================
+     WIDGET PHYGITAL: GORRA StevenDior x USSS  (autónomo)
+     Pegar donde quieras en Artist.html. No depende de variables
+     globales (provider, ERC20_ABI, activeAddress): trae las suyas.
+     Si existen window.activeAddress / appendLog, las aprovecha.
+     3 botones: La acción (Four.meme) · El producto (Fourthwall) · El artista (WhatsApp)
+     ============================================================ -->
+<section id="gorra-widget" aria-label="Gorra StevenDior x USSS">
+<style>
+  #gorra-widget{--g-amber:#f59e0b;--g-green:#34d399;--g-red:#fb7185;max-width:420px;margin:24px auto;padding:18px;border-radius:18px;border:1px solid rgba(245,158,11,.4);background:linear-gradient(160deg,#0b1220,#0f172a);box-shadow:0 0 18px rgba(245,158,11,.15);color:#e2e8f0;font:12px/1.4 ui-monospace,Menlo,Consolas,monospace;position:relative;overflow:hidden}
+  #gorra-widget *{box-sizing:border-box}
+  #gorra-widget .g-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--g-amber);background:rgba(120,53,15,.35);border:1px solid #78350f;padding:2px 8px;border-radius:6px}
+  #gorra-widget h3{margin:6px 0 0;font-size:16px;color:#f1f5f9}
+  #gorra-widget .g-head{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #1e293b;padding-bottom:10px}
+  #gorra-widget .g-contract{text-align:right;font-size:10px;color:#94a3b8}
+  #gorra-widget .g-contract a{color:var(--g-green);text-decoration:none;font-weight:700}
+  #gorra-widget .g-box{margin-top:12px;background:rgba(15,23,42,.85);border:1px solid #1e293b;border-radius:12px;padding:12px}
+  #gorra-widget .g-label{font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em}
+  #gorra-widget .g-bal{font-size:15px;font-weight:700;margin-top:2px}
+  #gorra-widget .g-row{display:flex;gap:8px;align-items:center;justify-content:space-between}
+  #gorra-widget button,#gorra-widget a.g-btn{cursor:pointer;font:inherit;font-weight:700;font-size:11px;text-align:center;text-decoration:none;color:var(--g-amber);background:#1e293b;border:1px solid #334155;border-radius:10px;padding:9px 12px;transition:.15s}
+  #gorra-widget button:hover,#gorra-widget a.g-btn:hover{background:#334155}
+  #gorra-widget input{width:100%;margin-top:8px;background:#020617;color:#e2e8f0;border:1px solid #334155;border-radius:8px;padding:8px;font:inherit}
+  #gorra-widget .g-q{margin:14px 0 8px;text-align:center;font-size:13px;font-weight:700;color:#f1f5f9}
+  #gorra-widget .g-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  #gorra-widget a.g-btn{display:block;padding:10px 6px;font-size:12px}
+  #gorra-widget a.g-btn small{display:block;margin-top:3px;font-weight:400;font-size:9px;color:#94a3b8}
+  #gorra-widget .g-act{color:var(--g-green)}
+  #gorra-widget .g-prod{color:#fbbf24;background:rgba(120,53,15,.45);border-color:#b45309}
+  #gorra-widget .g-wa{color:#4ade80;border-color:#166534;background:rgba(20,83,45,.35)}
+  #gorra-widget .g-msg{margin-top:10px;font-size:10px;color:#94a3b8;min-height:14px;text-align:center}
+  #gorra-widget .g-risk{margin:6px 0 0;font-size:9px;color:#64748b;text-align:center}
+  @media(max-width:340px){#gorra-widget .g-grid{grid-template-columns:1fr}}
+</style>
+
+  <div class="g-head">
+    <div>
+      <span class="g-tag">Activo Phygital</span>
+      <h3>🧢 Gorra Token <small style="color:#64748b;font-size:10px">(Agent Exclusive)</small></h3>
+    </div>
+    <div class="g-contract">
+      Contrato BSC<br>
+      <a id="g-scan" href="#" target="_blank" rel="noopener" title="Ver en BscScan">0xd031...ffff</a>
+    </div>
+  </div>
+
+  <div class="g-box">
+    <div class="g-row">
+      <div>
+        <div class="g-label">Tu saldo $GORRA</div>
+        <div id="g-bal" class="g-bal">—</div>
+      </div>
+      <button id="g-refresh" type="button" title="Actualizar">🔄</button>
+    </div>
+    <div class="g-row" style="margin-top:10px">
+      <button id="g-connect" type="button">Conectar wallet</button>
+      <span id="g-addr" class="g-label">sin wallet</span>
+    </div>
+    <input id="g-manual" type="text" placeholder="…o pega una dirección 0x para consultar saldo" autocomplete="off" spellcheck="false">
+  </div>
+
+  <p class="g-q">¿Quieres comprar el producto 🤣 o el activo?</p>
+  <div class="g-grid">
+    <a id="g-trade" class="g-btn g-act" target="_blank" rel="noopener">🪙<br>La acción<small>Four.meme</small></a>
+    <a id="g-shop" class="g-btn g-prod" target="_blank" rel="noopener">🧢<br>El producto<small>Fourthwall</small></a>
+    <a id="g-wa" class="g-btn g-wa" target="_blank" rel="noopener">💬<br>El artista<small>WhatsApp</small></a>
+  </div>
+  <div id="g-msg" class="g-msg"></div>
+  <p class="g-risk">$GORRA es un token meme nuevo: puede perder todo su valor. No es asesoría financiera.</p>
+
+<script>
+(function(){
+  // ---------- CONFIG (editar aquí) ----------
+  var CFG = {
+    contract: "0xd03115edb6794fa06304d43ee46f7f62b71bffff",
+    chainId: 56,
+    minToUnlock: 1, // saldo mínimo de GORRA para mostrar la insignia de holder
+    trade: "https://four.meme/token/0xd03115edb6794fa06304d43ee46f7f62b71bffff?code=BFEJ4KQR584G",
+    shop:  "https://stevendior-shop.fourthwall.com/products/stevendior-x-usss-hat",
+    wa:    "https://wa.me/p/39376850615293979/50769362166",
+    rpcs: [
+      "https://bsc-dataseed.binance.org/",
+      "https://bsc-dataseed1.defibit.io/",
+      "https://bsc-dataseed1.ninicoin.io/"
+    ]
+  };
+  var ABI = ["function balanceOf(address) view returns (uint256)","function decimals() view returns (uint8)"];
+  var $ = function(id){return document.getElementById(id)};
+  var account = null, ethersLib = null;
+
+  $("g-trade").href = CFG.trade;
+  $("g-shop").href = CFG.shop;
+  $("g-wa").href = CFG.wa;
+  $("g-scan").href = "https://bscscan.com/token/" + CFG.contract;
+
+  function msg(t, kind){
+    var m = $("g-msg");
+    m.textContent = t || "";
+    m.style.color = kind === "bad" ? "#fb7185" : kind === "ok" ? "#34d399" : "#94a3b8";
+  }
+  function short(a){ return a.slice(0,6)+"…"+a.slice(-4); }
+
+  function loadEthers(){
+    return new Promise(function(res, rej){
+      if (window.ethers && window.ethers.providers) return res(window.ethers);
+      var s = document.createElement("script");
+      s.src = "https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js";
+      s.onload = function(){ res(window.ethers) };
+      s.onerror = function(){ rej(new Error("No se pudo cargar ethers")) };
+      document.head.appendChild(s);
+    });
+  }
+
+  async function readBalance(addr){
+    var E = ethersLib, lastErr;
+    for (var i=0;i<CFG.rpcs.length;i++){
+      try {
+        var p = new E.providers.StaticJsonRpcProvider(CFG.rpcs[i], CFG.chainId);
+        var c = new E.Contract(CFG.contract, ABI, p);
+        var r = await Promise.all([c.balanceOf(addr), c.decimals().catch(function(){return 18})]);
+        return parseFloat(E.utils.formatUnits(r[0], r[1]));
+      } catch(e){ lastErr = e; }
+    }
+    throw lastErr || new Error("RPC no disponible");
+  }
+
+  function currentAddress(){
+    var man = $("g-manual").value.trim();
+    if (/^0x[a-fA-F0-9]{40}$/.test(man)) return man;
+    if (account) return account;
+    if (typeof window.activeAddress === "string" && /^0x[a-fA-F0-9]{40}$/.test(window.activeAddress)) return window.activeAddress;
+    return null;
+  }
+
+  async function refresh(){
+    var out = $("g-bal"), addr = currentAddress();
+    if (!addr){ out.textContent = "Wallet no conectada"; out.style.color="#fb7185"; msg(""); return; }
+    $("g-addr").textContent = short(addr);
+    out.textContent = "Consultando…"; out.style.color="";
+    try {
+      ethersLib = ethersLib || await loadEthers();
+      var bal = await readBalance(addr);
+      out.textContent = bal.toLocaleString(undefined,{maximumFractionDigits:2}) + " GORRA";
+      out.style.color = bal >= CFG.minToUnlock ? "#34d399" : "#e2e8f0";
+      if (bal >= CFG.minToUnlock) msg("✓ COJE TU GORRA 😂🇵🇦 — ya eres parte de la SADV41", "ok"); else msg("");
+      document.dispatchEvent(new CustomEvent("gorra:balance",{detail:{address:addr,balance:bal}}));
+      if (typeof window.appendLog === "function") window.appendLog("Agent","Saldo $GORRA verificado: "+bal.toFixed(2),"info");
+    } catch(e){
+      console.error(e); out.textContent = "Error on-chain"; out.style.color="#fb7185";
+      msg("No pude leer el contrato. Reintenta en unos segundos.", "bad");
+    }
+  }
+
+  async function connect(){
+    var eth = window.ethereum || window.BinanceChain;
+    if (!eth){ msg("No hay wallet en este navegador. Pega tu dirección arriba.", "bad"); return; }
+    try {
+      var accs = await eth.request({method:"eth_requestAccounts"});
+      account = accs[0];
+      try { await eth.request({method:"wallet_switchEthereumChain", params:[{chainId:"0x38"}]}); } catch(_){}
+      refresh();
+      if (eth.on) eth.on("accountsChanged", function(a){ account = a[0]||null; refresh(); });
+    } catch(e){ msg("Conexión cancelada.", "bad"); }
+  }
+
+  $("g-refresh").addEventListener("click", refresh);
+  $("g-connect").addEventListener("click", connect);
+  $("g-manual").addEventListener("change", refresh);
+  window.addEventListener("DOMContentLoaded", function(){ setTimeout(refresh, 800); });
+  if (document.readyState !== "loading") setTimeout(refresh, 800);
+
+  // API pública por si otros módulos de Artist.html la necesitan
+  window.GorraWidget = { refresh: refresh, config: CFG };
+})();
+</script>
+</section>
+
+<p class="risk">$GORRA es un token tipo meme en BNB Chain (Four.meme). No es asesoría financiera ni garantía de rendimiento: puedes perder lo que inviertas. Investiga antes de operar.</p>
+</body>
+</html>

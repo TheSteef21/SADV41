@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SADV41 - Estado de Deuda Neopolítica</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body class="bg-slate-900 text-slate-200 font-sans p-4 md:p-8">
+<div class="max-w-6xl mx-auto p-6 bg-slate-800 rounded-xl shadow-2xl border border-slate-700">
+ <div class="mb-4 border-b border-slate-600 pb-4">
+  <h1 class="text-3xl font-bold text-amber-500">Neopolítica: Análisis de Deuda Pública</h1>
+  <p class="text-sm text-slate-400 mt-1">Cifras en revisión basadas en reportes históricos (USD millones nominales).</p>
+  <p class="text-xs text-slate-500">*Corte al 31 de agosto de 2026</p>
+ </div>
+ <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+  <section class="p-5 bg-slate-900/50 rounded-lg border border-slate-700/50">
+   <h2 class="text-xl font-semibold text-purple-400 mb-4">Métricas Consolidadas (1989-2026)</h2>
+   <div class="bg-slate-800 p-4 rounded border border-slate-700 mb-4 text-center">
+    <span class="block text-slate-400 text-sm">Incremento Total Acumulado</span>
+    <span class="block text-3xl font-bold text-red-500">+$55,578.4 M</span>
+    <span class="block text-sm text-red-400">+876.6% sobre la deuda de 1989</span>
+   </div>
+   <div class="text-center text-xl py-4 bg-black rounded border border-purple-900/50 mb-4">$$ (a+b)^2 = a^2 + 2ab + b^2 $$</div>
+   <div class="overflow-x-auto"><table class="w-full text-xs text-slate-300">
+    <tr class="text-slate-400"><th class="text-left">Gobierno</th><th class="text-left">Período</th><th class="text-right">Recibida</th><th class="text-right">Dejada</th><th class="text-right">Aumento</th></tr>
+    <tr class="border-t border-slate-700"><td class="py-1 pr-2">Guillermo Endara</td><td class="pr-2">1989-1994</td><td class="text-right pr-2">6,340.0</td><td class="text-right pr-2">7,325.0</td><td class="text-right text-red-400">+985.0</td></tr><tr class="border-t border-slate-700"><td class="py-1 pr-2">Ernesto P. Balladares</td><td class="pr-2">1994-1999</td><td class="text-right pr-2">7,325.0</td><td class="text-right pr-2">7,694.0</td><td class="text-right text-red-400">+369.0</td></tr><tr class="border-t border-slate-700"><td class="py-1 pr-2">Mireya Moscoso</td><td class="pr-2">1999-2004</td><td class="text-right pr-2">7,694.0</td><td class="text-right pr-2">9,183.0</td><td class="text-right text-red-400">+1,489.0</td></tr><tr class="border-t border-slate-700"><td class="py-1 pr-2">Martín Torrijos</td><td class="pr-2">2004-2009</td><td class="text-right pr-2">9,183.0</td><td class="text-right pr-2">10,802.0</td><td class="text-right text-red-400">+1,619.0</td></tr><tr class="border-t border-slate-700"><td class="py-1 pr-2">Ricardo Martinelli</td><td class="pr-2">2009-2014</td><td class="text-right pr-2">10,802.0</td><td class="text-right pr-2">17,640.0</td><td class="text-right text-red-400">+6,838.0</td></tr><tr class="border-t border-slate-700"><td class="py-1 pr-2">Juan Carlos Varela</td><td class="pr-2">2014-2019</td><td class="text-right pr-2">17,640.0</td><td class="text-right pr-2">26,612.0</td><td class="text-right text-red-400">+8,972.0</td></tr><tr class="border-t border-slate-700"><td class="py-1 pr-2">Laurentino Cortizo</td><td class="pr-2">2019-2024</td><td class="text-right pr-2">26,612.0</td><td class="text-right pr-2">51,812.8</td><td class="text-right text-red-400">+25,200.8</td></tr><tr class="border-t border-slate-700"><td class="py-1 pr-2">José Raúl Mulino</td><td class="pr-2">2024-2026*</td><td class="text-right pr-2">51,812.8</td><td class="text-right pr-2">61,918.4</td><td class="text-right text-red-400">+10,105.6</td></tr></table></div>
+  </section>
+  <section class="p-5 bg-slate-900/50 rounded-lg border border-slate-700/50">
+   <h2 class="text-xl font-semibold text-blue-400 mb-3">Expansión de Obligaciones (USD Millones)</h2>
+   <canvas id="deudaChart"></canvas>
+  </section>
+ </div>
+</div><script>
+const datos = [{"presidente": "Guillermo Endara", "corto": "G. Endara", "periodo": "1989-1994", "p_corto": "89-94", "recibida": 6340, "dejada": 7325, "incremento": 985, "color": "#3b82f6"}, {"presidente": "Ernesto P. Balladares", "corto": "E. P\u00e9rez B.", "periodo": "1994-1999", "p_corto": "94-99", "recibida": 7325, "dejada": 7694, "incremento": 369, "color": "#10b981"}, {"presidente": "Mireya Moscoso", "corto": "M. Moscoso", "periodo": "1999-2004", "p_corto": "99-04", "recibida": 7694, "dejada": 9183, "incremento": 1489, "color": "#8b5cf6"}, {"presidente": "Mart\u00edn Torrijos", "corto": "M. Torrijos", "periodo": "2004-2009", "p_corto": "04-09", "recibida": 9183, "dejada": 10802, "incremento": 1619, "color": "#f59e0b"}, {"presidente": "Ricardo Martinelli", "corto": "R. Martinelli", "periodo": "2009-2014", "p_corto": "09-14", "recibida": 10802, "dejada": 17640, "incremento": 6838, "color": "#ef4444"}, {"presidente": "Juan Carlos Varela", "corto": "J.C. Varela", "periodo": "2014-2019", "p_corto": "14-19", "recibida": 17640, "dejada": 26612, "incremento": 8972, "color": "#ec4899"}, {"presidente": "Laurentino Cortizo", "corto": "L. Cortizo", "periodo": "2019-2024", "p_corto": "19-24", "recibida": 26612, "dejada": 51812.8, "incremento": 25200.8, "color": "#eab308"}, {"presidente": "Jos\u00e9 Ra\u00fal Mulino", "corto": "J.R. Mulino", "periodo": "2024-2026*", "p_corto": "24-26*", "recibida": 51812.8, "dejada": 61918.4, "incremento": 10105.6, "color": "#0ea5e9"}];
+new Chart(document.getElementById('deudaChart').getContext('2d'), {
+  type: 'bar',
+  data: { labels: datos.map(d => d.presidente),
+    datasets: [{ label: 'Incremento (Millones USD)', data: datos.map(d => d.incremento),
+      backgroundColor: datos.map(d => d.color), borderWidth: 0, borderRadius: 3 }] },
+  options: { responsive: true,  plugins: { legend: { display: false } },
+    scales: { x: { ticks: { color: '#94a3b8' }, grid: { display: false } },
+              y: { beginAtZero: true, ticks: { color: '#94a3b8' }, grid: { color: '#334155' } } } }
+});
+</script></body></html>

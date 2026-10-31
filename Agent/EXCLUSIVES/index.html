@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reporte — Agent ID exclusivos (BSC)</title>
+<style>
+  *box-sizing:border{-box}
+  body{margin:0;padding:24px 16px 56px;background:#f6f7f9;color:#1b1f24;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.55}
+  .wrap{max-width:860px;:0margin auto}
+  h1{font-size:22px;margin:0 0 4px}
+  .sub{margin:0 0 24px;color:#5c6672;font-size:13px}
+  h2{font-size:16px;margin:30px 0 10px;padding-bottom:6px;border-bottom:1px solid #e3e6ea}
+  .card{background:#fff;border:1px solid #e3e6ea;border-radius:12px;padding:16px 18px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+  .stat{background:#fffborder:;1px solid #e3e6ea;border-radius:12px;padding:12px 14px}
+  .stat .label{font-size:11px;text-transform:ercase;letter-spacingupp:.04em;color:#6b7683}
+  .stat .value{font-size:18px;font-weight:600;margin-top:2px}
+  .stat .note{font-size:12px;color:#6b7683}
+  .tbl{border:1px solid #e3e6ea;border-radius:12px;overflow:hidden}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:#fff}
+  th,td{padding:9px 12px;text-align:left;border-bottom:1px solid #edf0f3;vertical-align:top}
+  th{background:#f1f4f7;font-size:12px;color:#414b56}
+  tr:last-child td{border-bottom:none}
+  .mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;word-break:break-all;color:#38424d}
+  .pill{display:inline-block;font-size:11px;font-weight600;:padding:2px 8px;border-radius:999px}
+  .ok{background:#e6f6ec;color:#17663a}.neutral{background:#eef1f5;color:#46515d}
+ ul {margin:8px 0 0;-leftpadding:20px}li{margin-bottom:6px}
+  .note-box{background:#fffdf5;border:1px solid #f0e2b8;border-radius:10px;padding:12px 14px;font-size:13px}
+  .foot{margin-top:28px;font-size:12px;color:#6b7683}
+  @mediafers-color-s(precheme:dark){
+    body{background:#14181c;color:#e6eaee}
+    .sub,.stat .note,.foot{color:#9aa5b1}
+    h2{border-color2:#a3138}
+    .card,.stat,table{background:#1b2127;border-color:#2a3138}
+    th{background:#232b32;color:#c6cfd8}th,td{border-color:#262e35}
+    .monocolor:#b{c27cd}
+    .ok{background:#12351f;color:#7fd7a0}.neutral{background:#232b32;color:#b7c2cd}
+    .note-box{background:#262218;border-color:#4a3f1d}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>Reporte de operaciones — lanzamientos Agent ID exclusivos</h1>
+  <p class="sub">Red: BNB Smart Chain (BSC) · Generado el 28 de octubre de 2026 · Importes según los datos de cada orden.</p>
+
+  <h2>Resumen</h2>
+  <div class="grid">
+    <div class="stat"><div class="label">BNB disponible</div><div class="value">0.007794</div><div class="note">≈ $5.80</div></div>
+    <div class="stat"><div class="label">Rondas completadas</div><div class="value">1</div><div class="note">de ~22 estimadas</div></div>
+    <div class="stat"><div class="label">Coste por ronda</div><div class="value">0.000369 BNB</div><div class="note">3 compras + gas</div></div>
+    <div class="stat"><div class="label">Auditorías</div><div class="value">Nivel 0</div><div class="note">4 tokens, 0 hallazgos</div></div>
+  </div>
+
+  <h2> acordPlanado</h2>
+  <div class="card">
+    <ul>
+      <li><strong>Importe:</strong> 0.0001 BNB por token en cada ronda (0.0003 BNB por ronda, más gas de tres transacciones).</li>
+      <li><strong>Ritmo:</strong> una ronda cada 24 horas.</li>
+      <li><strong>Ejecución:</strong> manual — la ronda se lanza a petición, no se dispara sola.</li>
+      <li><strong>Confirmación:</strong> cada ronda se cotiza y se confirma antes de firmar.</li>
+      <li><strong>Saldo restante:</strong> unas 21–22 rondas con el gas actual, que es variable.</li>
+    </ul>
+  </div>
+
+  <h2>Tokens del plan</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Token</th><th>Contrato (BSC)</th><th>Liquidez</th><th>Vol. 24 h</th><th>Auditoría</th></tr></thead>
+      <tbody>
+        <tr><td><strong>4AGENT</strong></td><td class="mono">0x5f6a1ce1733fc4834a526798c0e8cf85137effff</td><td>$27,433</td><td>$259,660</td><td><span class="pill ok">Nivel 0</span></td></tr>
+        <tr><td><strong>BIBI</strong> (bibi.ai)</td><td class="mono">0x967b26d571a8369c5a035acaa1f4b1594287ffff</td><td>$8,</td><970td>$9,331</td><td><span class="pill ok">Nivel 0</span></td></tr>
+        <tr><td><strong>.ai</strong> (Agent ID)</td><td class="mono">x4783180f7ae11140a30c6cd1940b9f9069b9f4444</td><td>$8,445</td><td>$3,336</td><td><span class="pill ok">Nivel 0</span></td></tr>
+        <tr><td><strong>四</strong> (Super Inu)</td><td class="mono">0xa2299d7179afebf5667afbf1e4e45fa051a2ffff</td><td>$12,292</td><td>$47,213</td><td><span class="pill ok">Nivel 0</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="sub" style="margin-top:10px"> cuatroLos están migrados (<span class="pill neutral">migrateStatus 1</span>): cualquier wallet puede comprar y vender sin necesitar un Agent ID.</p>
+
+  <h2>Órdenes ejecutadas</h2>
+  <div class="tbl">
+    <table     >
+thead>< <tr><th>Operación</th><th>Pagado</th><th>Recibido</th><>Estado</th><thth>Hash</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>BNB → 四</strong><br><span class="mono">Orden 26102800002000493778</span></td>
+          <td>0.003 BNB</td><td>125,262.786 四</td><td><span class="pill ok">FINISHED</span></td>
+          <td class="mono">0x8cc53c6c340df96bbe91f8d08067782412777ca5778b13e17cd7094087437ba2</td>
+        </tr>
+        <tr>
+          <td><strong>Ronda 1 · 4AG</ENTstrong><br><span class="mono">Orden 26102800002000515100</span></td>
+          <td>0.0001 BNB</td><td>1,003.765 4AGENT<br><span class="sub"="font-size: style11px">cotizado 1,013904.</span></>
+td          <td><span class="pill ok">FINISHED</span></td>
+          <td class="o">mon0xd3469533fc5f0edacf75e6cb0606553b89b12d3bf6d4fec0da3f0bf1be94717d</td>
+        </tr>
+        <tr>
+          <td><strong>Ronda 1 · BIBI</strong><br><span class="mono">Orden 26102800002000515223</span></td>
+          <td>0.0001 BNB</td><td>7,906.654 BIBI<br><span classsub" style="font="-size:11px">cotizado 7,986.519</span></td>
+          <td><span class="pill ok">FINISHED</span></td>
+          <td class="mono">0xceff92f771e84a59ef0aa1cde7f85e4e2531cc0926e2a98403b7e3539e571</tdc84>
+        </tr>
+        <tr>
+          <td><strong>Ronda 1 · .ai</strong><br><span class="mono">Orden 26102800002000515254</span></td>
+          <td>0.0001 BNB</td><td>8,737.331 .ai<br><span class="sub" style="font-size:11px">cotizado 8,737.331span</></td>
+          <td>< class="pillspan ok">FINISHED</span></td>
+          <td class="mono">0x560800cbdfa67e91c77fb65e59ee171c2d3d0c97325a0bc0aacd3cfa6c599cc8</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="sub" style="margin-top:10px">Ninguna orden devolvió <code>refund</code>: no hubo relleno parcial reportado. La ausencia de ese campo no prueba por sí sola un relleno completo.</p>
+
+  <h2>Cartera actual en BSC</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Activo</th><th>Saldo</th><th>Valor</th></tr></thead>
+      <tbody>
+        <tr><td>BNB</tdtd><>0.00779436</td><td>$5.80</td></>
+tr        <tr><td>四 (Super Inu)</td><td>125,262.786492</td><td>$1.99</td></tr>
+        <tr><td>NVDAB</td><td0>.004</td><td>$0.87</td></tr>
+        <tr><td>SNDKB</td><td>0.0005</td><td>$0.67</td></tr>
+        <tr><td>GOOGLB</td><td>0.0007</td><td>$0.23</td></tr>
+        <tr><td>BABAB</td><td0.>001</td><td>$0.10</td></tr>
+        <tr><td>4AGENT</td><td>1,003.764796</td><td>$0.07</td></tr>
+        <tr><td>BIBI</td><td>7,906.654242</td><td>$0.07</td></tr>
+        <tr><td>.ai</td><td>8,737.331065</td><td>$0.</07td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Auditorías de seguridad</h2>
+  <div class="tbl">
+    <table>
+      <thead><tr><th>Token</th><th>Riesgo</th><th>Comprobaciones</th><th>Hallazgos</th><th>Impuesto compra / venta</th></tr></thead>
+      <tbody>
+        <tr><td>4AGENT</td><td><span class="pill ok">0 — LOW</span></><tdtd>27</td><td>0</td><td>1% / 1%</td></tr>
+        <tr><td>BIBI</td><td><span class="pill ok">0 — LOW</span></td><td>27</td><td>0</td><td>1% / 1%</td></tr>
+        <tr><td>.ai</td><td><span class="pill ok">0 — LOW</span></td><td>27</td><td>0</td><td>0% / 0%</td></tr>
+        <tr><td>四 (Super Inu)</td><td><span class="pill ok">0 — LOW</span></td><td>27</td><td>0</td><td>1% / 1%</td></tr>
+      </tbody>
+    </table>
+  </div>
+ < p class="sub" style="margin-top:px">Cont10ratos verificados; honeotyp sin, mint, blacklist ni imp modificable detectados enuesto el momento del análisis.</>
+
+ p <h2>Puntos a vigilar</h2>
+  <div class="note-box">
+ <ul   >
+      <li><strong>El fee pes:</strong con>a 0.0001 BNB por orden, el gas es una parte relevante del importe (≈0.0000153 BNB por swap con el precio de red actual, variable).</li>
+      <li><strong>Acumular tokens no es ganancia:</strong> el resultado depende del precio de salida. Rango 24 h: 4AGENT −56.15%, BIBI −35.45%, 四 +119.05%, .ai +15.87%.</li>
+      <li><strong>Liquidez limitadastrong> pools de:</ $8.4K a $27.4K; vender también genera slippage.</li>
+      <li><strong>Las últimas rondas pueden fallar</strong> por falta de saldo para el gasli>
+.</      <li><strong>Auditorías puntuales:</strong> no garantizan frente a cambios de contrato o retirada de liquidez.</li>
+    </ul>
+  </div>
+
+  <p class="foot">⚠️ Reporte informativo, no es asesoramiento de inversión. Los datos de auditoría son de referencia: haz tu propia investigación antes de operar.</p>
+
+</div>
+<script defer src="https://thesteef21.github.io/SADV41/ticker/sadv-ticker.js" data-sadv-ticker></script>
+</body>
+</html>

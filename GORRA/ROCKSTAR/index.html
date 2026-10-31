@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rockstar Games - Conexión GTA VI (Fan Page No Oficial)</title>
+  <style>
+    :root {
+      --bg-dark: #050505;
+      --surface: #11161f;
+      --border: #242e42;
+      --accent: #ff9900;
+      --text: #eef2f8;
+      --console-green: #00ff00;
+    }
+    
+    body {
+        background: var(--bg-dark);
+        color: var(--text);
+        font-family: system-ui, -apple-system, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        margin: 0;
+        overflow-x: hidden;
+    }
+    
+    .connection-box {
+        background-color: var(--surface);
+        border: 1px solid var(--accent);
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 30px rgba(255, 153, 0, 0.15);
+        max-width: 500px;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .asset-img {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+        border: 1px solid var(--border);
+        background-color: #0a0d14;
+    }
+    
+    h1 {
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 1.3rem;
+        margin: 0 0 10px 0;
+        text-align: center;
+    }
+    
+    .controls {
+        display: flex;
+        gap: 10px;
+    }
+    
+    input[type="url"] {
+        flex: 1;
+        padding: 10px;
+        background: #000;
+        border: 1px solid var(--border);
+        color: var(--text);
+        border-radius: 4px;
+        font-family: monospace;
+    }
+    
+    button {
+        padding: 10px 15px;
+        background: var(--accent);
+        color: #000;
+        border: none;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+        text-transform: uppercase;
+        transition: opacity 0.2s;
+    }
+    
+    button:hover { opacity: 0.8; }
+    button:disabled { background: var(--border); cursor: not-allowed; }
+    
+    .console-output {
+        background-color: #000;
+        color: var(--console-green);
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        padding: 15px;
+        border-radius: 4px;
+        font-size: 0.85rem;
+        border: 1px solid #222;
+        min-height: 150px;
+        max-height: 250px;
+        overflow-y: auto;
+        line-height: 1.4;
+    }
+    
+    .log-line { margin: 2px 0; word-break: break-all; }
+    .log-time { color: #666; margin-right: 8px; }
+    .log-error { color: #ff3333; }
+    .log-warn { color: #ffcc00; }
+    
+    .blinking-cursor {
+        animation: blink 1s step-end infinite;
+        font-weight: bold;
+    }
+    @keyframes blink { 50% { opacity: 0; } }
+  </style>
+</head>
+<body>
+
+  <div class="connection-box">
+      <h1>Estado de Red - GTA VI</h1>
+      
+      <!-- Imagen original con fallback a SVG incrustado -->
+      <img class="asset-img" 
+           src="img/Meta_AI_856844343_1148864021034560_8204811431986995824_n_20261030_000639.webp" 
+           alt="GTA VI Asset Connection"
+           onerror="this.onerror=null; this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 200\'%3E%3Crect width=\'400\' height=\'200\' fill=\'%230a0d14\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' fill=\'%23ff9900\' font-family=\'monospace\' font-size=\'14\'%3E[ Asset Visual Respaldado (SVG) ]%3C/text%3E%3C/svg%3E';">
+      
+      <div class="controls">
+          <input type="url" id="targetUrl" placeholder="https://api.ejemplo.com" value="https://www.rockstargames.com">
+          <button id="btnConnect">Sondear</button>
+      </div>
+      
+      <div class="console-output" id="terminal">
+          <div class="log-line"><span class="log-time">[SISTEMA]</span> Máquina de estados lista. Esperando instrucción...<span class="blinking-cursor">_</span></div>
+      </div>
+  </div>
+
+  <script>
+    const terminal = document.getElementById('terminal');
+    const btnConnect = document.getElementById('btnConnect');
+    const inputUrl = document.getElementById('targetUrl');
+    
+    // Máquina de estados
+    let currentState = 'IDLE'; // IDLE -> CONNECTING -> HANDSHAKE -> READY / ERROR
+
+    function getTimestamp() {
+        const now = new Date();
+        return `[${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}:${now.getSeconds().toString().padStart(2, '0')}.${now.getMilliseconds().toString().padStart(3, '0')}]`;
+    }
+
+    function appendLog(message, type = 'info') {
+        // Remover el cursor anterior si existe
+        const cursor = document.querySelector('.blinking-cursor');
+        if (cursor) cursor.remove();
+        
+        const div = document.createElement('div');
+        div.className = `log-line ${type === 'error' ? 'log-error' : type === 'warn' ? 'log-warn' : ''}`;
+        div.innerHTML = `<span class="log-time">${getTimestamp()}</span> ${message}`;
+        terminal.appendChild(div);
+        
+        // Añadir nuevo cursor al final
+        const newCursor = document.createElement('span');
+        newCursor.className = 'blinking-cursor';
+        newCursor.textContent = '_';
+        terminal.appendChild(newCursor);
+        
+        terminal.scrollTop = terminal.scrollHeight;
+    }
+
+    async function executePolling() {
+        const urlString = inputUrl.value.trim();
+        
+        try {
+            new URL(urlString);
+        } catch (e) {
+            appendLog(`Error de sintaxis: URL inválida (${urlString})`, 'error');
+            return;
+        }
+
+        btnConnect.disabled = true;
+        currentState = 'CONNECTING';
+        appendLog(`Cambiando estado a: ${currentState}`);
+        
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => {
+            controller.abort();
+        }, 8000); // Límite estricto de 8 segundos
+
+        try {
+            currentState = 'HANDSHAKE';
+            appendLog(`Cambiando estado a: ${currentState}`);
+            appendLog(`Ejecutando petición HEAD a ${urlString}...`);
+            
+            let response = await fetch(urlString, { 
+                method: 'HEAD',
+                signal: controller.signal,
+                mode: 'cors'
+            });
+
+            if (response.status === 405 || response.status === 501) {
+                appendLog(`Método HEAD rechazado (HTTP ${response.status}). Reintentando con GET...`, 'warn');
+                response = await fetch(urlString, { 
+                    method: 'GET',
+                    signal: controller.signal,
+                    mode: 'cors'
+                });
+            }
+
+            currentState = 'READY';
+            appendLog(`Cambiando estado a: ${currentState}`);
+            appendLog(`Enlace exitoso. Código de respuesta: HTTP ${response.status}`);
+            
+        } catch (error) {
+            currentState = 'ERROR';
+            appendLog(`Cambiando estado a: ${currentState}`, 'error');
+            
+            if (error.name === 'AbortError') {
+                appendLog(`Fallo de enlace: Límite de tiempo (8s) excedido. El servidor no respondió.`, 'error');
+            } else if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+                appendLog(`Fallo de red detectado.`, 'error');
+                appendLog(`DIAGNÓSTICO: Si estás probando esto desde GitHub Pages, es altamente probable que el servidor destino esté bloqueando la solicitud por políticas de CORS (Cross-Origin Resource Sharing). El endpoint está activo, pero el navegador abortó la lectura.`, 'warn');
+            } else {
+                appendLog(`Excepción no controlada: ${error.message}`, 'error');
+            }
+        } finally {
+            clearTimeout(timeoutId);
+            btnConnect.disabled = false;
+            currentState = 'IDLE';
+            appendLog(`Proceso finalizado. Retornando a estado: ${currentState}`);
+        }
+    }
+
+    btnConnect.addEventListener('click', executePolling);
+    inputUrl.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') executePolling();
+    });
+  </script>
+</body>
+</html>

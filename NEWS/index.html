@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADV41 - Predictor Geoespacial de Impacto</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0f172a; color: #f8fafc; overflow: hidden; }
+        #map-container { width: 100vw; height: 100vh; position: relative; }
+        .hud-overlay {
+            position: absolute; top: 20px; left: 20px; z-index: 1000;
+            background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(10px);
+            border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 12px;
+            padding: 16px; max-width: 380px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        .hud-title { font-size: 1.1rem; font-weight: 700; color: #ef4444; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .hud-data { font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; }
+        .hud-data span { color: #f8fafc; font-weight: 600; }
+        .status-badge {
+            display: inline-block; background: rgba(239, 68, 68, 0.2); color: #fca5a5;
+            padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="map-container">
+        <!-- Panel HUD Táctico del Evento -->
+        <div class="hud-overlay">
+            <div class="status-badge">INETER • EVENTO SÍSMICO</div>
+            <div class="hud-title">⚡ M4.9 - Llano de Piedras</div>
+            <div class="hud-data">
+                <p>📍 <strong>Ubicación:</strong> 5 km SE de Llano de Piedras, Panamá</p>
+                <p>🕒 <strong>Hora:</strong> 29-oct 08:42:57 (Hace 32 min)</p>
+                <p>🌐 <strong>Coordenadas:</strong> 7.620° N, -80.530° O</p>
+                <p>📏 <strong>Profundidad:</strong> 4.0 km</p>
+                <p>📐 <strong>Distancia base:</strong> 177 km de tu ubicación</p>
+                <p>👥 <strong>Radio de impacto:</strong> ~543.3K personas (100km)</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Integración futura con Google Maps API y capas personalizadas -->
+    <script>
+        // Parámetros iniciales inyectados por la habilidad 0x46c84f9493acb866a8465b0eb16ae2da1e404922
+        const eventData = {
+            magnitude: 4.9,
+            source: "Ineter",
+            lat: 7.620,
+            lon: -80.530,
+            depthKm: 4.0,
+            timestamp: "2026-10-29T08:42:57"
+        };
+        console.log("SADV41 Predictor inicializado con éxito para coordenadas:", eventData.lat, eventData.lon);
+    </script>
+</body>
+</html>
