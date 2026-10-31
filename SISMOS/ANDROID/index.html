@@ -1,1 +1,89 @@
+<!-- ============================================================================== -->
+<!-- MODULO SADV41 - SISMOS USGS LIVE (TRIPLE UNIFICACIÓN)                          -->
+<!-- ============================================================================== -->
+<section id="sismos-sadv41" style="width: 100%; max-width: 1000px; border:1px solid #00e5ff; border-radius:16px; padding:18px; background:#0a0a0a; position:relative; overflow:hidden; box-sizing: border-box; margin: 20px auto;">
+  <!-- Brillo de fondo SADV41 -->
+  <div style="position:absolute; top:-50%; left:-50%; width:200%; height:200%; background:radial-gradient(circle at center, rgba(0,229,255,0.07) 0%, transparent 40%); pointer-events:none;"></div>
+  
+  <div style="position:relative; z-index:1;">
+    <!-- Cabecera y Status -->
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+      <h2 style="color:#00e5ff; letter-spacing:0.2em; font-size:13px; margin:0;">SADV41 // SISMOS Y TERREMOTOS // USGS LIVE</h2>
+      <span id="sadv41-sismos-status" style="font-size:10px; color:#555; border:1px solid #1a1a1a; padding:4px 8px; border-radius:20px;">● STANDBY - CARGANDO EN SCROLL</span>
+    </div>
+    <p style="color:#888; font-size:11px; margin:8px 0 14px 0;">Feed oficial USGS • Protocolo Berión A217 • Vigilancia Panamá 7.0-9.8N / -83 a -77W • Auto-refresh 60s</p>
+    
+    <!-- Contenedor con placeholder (Loader) -->
+    <div id="sismos-loader" style="width:100%; height:620px; border-radius:12px; background:#111; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; border:1px dashed #222;">
+      <div style="width:40px; height:40px; border:2px solid #00e5ff; border-top-color:transparent; border-radius:50%; animation:spin 1s linear infinite;"></div>
+      <span style="font-size:11px; color:#666; letter-spacing:0.1em;">SADV41 VIGILANCIA ACTIVA - SCROLL PARA ACTIVAR MAPA</span>
+    </div>
+
+    <!-- Wrapper del Iframe -->
+    <div id="sismos-iframe-wrap" style="display:none; width:100%; height:620px; border-radius:12px; overflow:hidden; background:#111; position:relative;">
+      <!-- El iframe se inyecta por JS -->
+    </div>
+
+    <!-- Botonera de enlaces -->
+    <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+      <a href="./SISMOS/index.html" target="_blank" style="padding:10px 16px; background:#00e5ff; color:#000; border-radius:8px; text-decoration:none; font-weight:800; font-size:12px; letter-spacing:0.05em;">ABRIR MAPA COMPLETO ↗</a>
+      <a href="https://github.com/TheSteef21/usgs" target="_blank" style="padding:10px 16px; border:1px solid #222; color:#e8e8e8; border-radius:8px; text-decoration:none; font-size:12px;">VER CODIGO / API</a>
+      <span style="padding:10px 16px; border:1px solid #1a1a1a; color:#555; border-radius:8px; font-size:10px;">@sismosyterremotos • AUTO IG</span>
+    </div>
+  </div>
+
+  <!-- Estilos embebidos -->
+  <style>
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+
+  <!-- Lógica de carga diferida (Intersection Observer) -->
+  <script>
+    (function(){
+      const section = document.getElementById('sismos-sadv41');
+      const loader = document.getElementById('sismos-loader');
+      const wrap = document.getElementById('sismos-iframe-wrap');
+      const status = document.getElementById('sadv41-sismos-status');
+      let loaded = false;
+
+      function loadMap(){
+        if(loaded) return;
+        loaded = true;
+        status.textContent = '● LIVE - USGS CONECTADO';
+        status.style.color = '#00e5ff';
+        status.style.borderColor = '#00e5ff';
+        
+        const iframe = document.createElement('iframe');
+        iframe.src = './SISMOS/index.html';
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.border = '0';
+        iframe.loading = 'lazy';
+        iframe.setAttribute('allowfullscreen','');
+        iframe.setAttribute('title','SADV41 USGS Live Map');
+        
+        // Mostrar iframe, ocultar loader
+        loader.style.display = 'none';
+        wrap.style.display = 'block';
+        wrap.appendChild(iframe);
+      }
+
+      // Carga el mapa solo cuando el usuario hace scroll hacia él
+      if('IntersectionObserver' in window){
+        const io = new IntersectionObserver((entries)=>{
+          entries.forEach(e=>{
+            if(e.isIntersecting){
+              loadMap();
+              io.disconnect();
+            }
+          });
+        }, { rootMargin: '300px' }); 
+        io.observe(section);
+      } else {
+        // Fallback para navegadores antiguos
+        setTimeout(loadMap, 2000);
+      }
+    })();
+  </script>
+</section>
 
