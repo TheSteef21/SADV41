@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SADV41 · Punto de Intercambio</title>
+<meta name="description" content="Punto de Intercambio SADV41: información, wallet pública y encuentro físico, con reglas claras y niveles de confirmación.">
+<style>
+  :root{--bg:#0a0a0a;--panel:#111418;--line:#1f2630;--text:#e8e8e8;--muted:#8a94a3;--cyan:#00e5ff;--green:#3ddc84;--amber:#ffb300;--blue:#6ea8ff;--red:#ff5252}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.6}
+  .wrap{max-width:860px;margin:0 auto;padding:20px 16px 48px}
+  header{border-bottom:1px solid var(--cyan);padding-bottom:14px;margin-bottom:18px}
+  h1{color:var(--cyan);font-size:14px;letter-spacing:.2em;margin:0 0 6px}
+  .sub{color:var(--muted);font-size:12px;margin:0}
+  h2{font-size:14px;letter-spacing:.1em;margin:30px 0 10px;color:var(--cyan);text-transform:uppercase}
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}
+  .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;padding:3px 9px;border-radius:20px;border:1px solid;white-space:nowrap}
+  .t-of{color:var(--green);border-color:var(--green)}
+  .t-pre{color:var(--amber);border-color:var(--amber)}
+  .t-rep{color:var(--blue);border-color:var(--blue)}
+  .t-nov{color:var(--red);border-color:var(--red)}
+  .t-fe{color:var(--cyan);border-color:var(--cyan)}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0}
+  .card h3{margin:0 0 8px;font-size:16px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .card p{margin:8px 0;font-size:14px}
+  ul{margin:8px 0 8px 18px;padding:0;font-size:14px}
+  li{margin:6px 0}
+  .warn{border-color:var(--amber);background:#17130a}
+  .addr{display:block;word-break:break-all;font-family:"Courier New",monospace;font-size:13px;background:#0d1014;border:1px solid var(--line);border-radius:10px;padding:10px;margin:10px 0;color:var(--cyan)}
+  button{background:transparent;color:var(--cyan);border:1px solid var(--cyan);border-radius:20px;padding:6px 14px;font-size:13px;cursor:pointer}
+  button:active{background:#00e5ff22}
+  .src{color:var(--muted);font-size:11px;margin-top:10px;border-top:1px dashed #232a35;padding-top:8px}
+  a{color:var(--cyan);text-decoration:none}
+  a:hover{text-decoration:underline}
+  footer{color:var(--muted);font-size:11px;border-top:1px solid var(--line);margin-top:34px;padding-top:14px;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>SADV41 // PUNTO DE INTERCAMBIO</h1>
+  <p class="sub">Sábado 31 de octubre de 2026 · hora de Panamá (UTC-5) · cada dato lleva su nivel de confirmación</p>
+  <div class="legend">
+    <span class="tag t-of">OFICIAL</span>
+    <span class="tag t-pre">PRELIMINAR</span>
+    <span class="tag t-rep">REPORTADO</span>
+    <span class="tag t-nov">NO VERIFICADO</span>
+  </div>
+</header>
+
+<div class="card warn">
+  <h3>Antes de empezar <span class="tag t-pre">LEE ESTO</span></h3>
+  <ul>
+    <li>Esto <b>no es un exchange</b>, no es una casa de inversión y no custodia fondos de nadie.</li>
+    <li>No se promete ninguna ganancia ni rendimiento. Aquí no se vende ni se recomienda ningún token.</li>
+    <li>Nadie del proyecto te va a pedir tu frase semilla, claves privadas ni firmas. Si alguien lo hace en nombre de SADV41, es una estafa.</li>
+    <li>Cada quien es responsable de lo que decide enviar, recibir o intercambiar, y de cumplir las normas que le apliquen.</li>
+  </ul>
+</div>
+
+<h2>1 · Intercambio de información</h2>
+<div class="card">
+  <h3>Cómo participar <span class="tag t-of">OFICIAL</span></h3>
+  <p>Este punto sirve para que la comunidad comparta datos útiles (alertas, recursos, enlaces, avisos de la zona) bajo una regla simple: <b>cada dato dice qué tan confirmado está</b>.</p>
+  <ul>
+    <li><span class="tag t-of">OFICIAL</span> lo publica la institución responsable.</li>
+    <li><span class="tag t-pre">PRELIMINAR</span> dato inicial, puede cambiar.</li>
+    <li><span class="tag t-rep">REPORTADO</span> lo cuentan medios o terceros, sin confirmación propia.</li>
+    <li><span class="tag t-nov">NO VERIFICADO</span> sin origen claro; no lo compartas como cierto.</li>
+  </ul>
+  <p>Todo dato debe llevar fuente. Sin fuente, queda como NO VERIFICADO.</p>
+</div>
+
+<h2>2 · Wallet pública</h2>
+<div class="card">
+  <h3>Cuenta receptora <span class="tag t-rep">REPORTADO</span></h3>
+  <p>Dirección pública para recibir aportes voluntarios en tokens. Es una dirección tipo EVM; antes de enviar, confirma que tu red es compatible (BNB Smart Chain, Ethereum, Optimism, Arbitrum o Arc, según el token).</p>
+  <span class="addr" id="addr">0x8ce929fc25d9ae5ce73fb5913a4211998555a6cb</span>
+  <button type="button" id="copy">Copiar dirección</button> <span class="sub" id="msg"></span>
+  <ul>
+    <li><b>Quién la opera:</b> el titular declara que es la cuenta del agente Biny (Binance), cuyo origen es la wallet <code>stevendior.bnb</code>. <span class="tag t-nov">NO VERIFICADO</span> desde esta página.</li>
+    <li><b>Saldo de referencia:</b> unos $4.31 según un explorador, el 31 de oct de 2026. Es una cifra de ese momento, no una garantía. <span class="tag t-rep">REPORTADO</span></li>
+    <li><b>Tokens desconocidos:</b> la cuenta ha recibido muchas fracciones de tokens (acciones tokenizadas, memecoins). Si te llega un token que no pediste, <b>no abras sus enlaces ni apruebes firmas</b>.</li>
+    <li><b>Prueba primero:</b> si vas a enviar algo, empieza con un monto mínimo y verifica en el explorador que llegó.</li>
+  </ul>
+  <p class="src">Verifica por tu cuenta en un explorador:
+    <a href="https://bscscan.com/address/0x8ce929fc25d9ae5ce73fb5913a4211998555a6cb" target="_blank" rel="noopener">BscScan</a> ·
+    <a href="https://blockscan.com/address/0x8ce929fc25d9ae5ce73fb5913a4211998555a6cb" target="_blank" rel="noopener">Blockscan</a>
+    (enlaces armados con el patrón estándar de esos sitios).</p>
+</div>
+
+<h2>3 · Encuentro físico</h2>
+<div class="card">
+  <h3>Trueque y ayuda comunitaria <span class="tag t-pre">PRELIMINAR</span></h3>
+  <p>El punto físico todavía se está organizando. <b>Esta página no publica ninguna dirección ni ubicación.</b> El lugar y la hora se acuerdan por contacto directo con el organizador, en cada ocasión.</p>
+  <p>Recomendaciones para cualquier intercambio en persona:</p>
+  <ul>
+    <li>Reúnete de día y en un sitio concurrido.</li>
+    <li>Ve acompañado o avisa a alguien de confianza dónde estarás.</li>
+    <li>Revisa lo que recibes antes de entregar algo.</li>
+    <li>No lleves a la cita más dinero ni objetos de valor de los necesarios.</li>
+    <li>Para emergencias en Panamá: 911.</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h3>Contacto <span class="tag t-of">OFICIAL</span></h3>
+  <p>Instagram: <a href="https://instagram.com/StevenDiorOficial" target="_blank" rel="noopener">@StevenDiorOficial</a>. Confirma siempre que escribes a esa cuenta y no a una copia.</p>
+</div>
+
+<div class="card" style="border-left:3px solid var(--cyan)">
+  <h3>Palabra <span class="tag t-fe">FE</span></h3>
+  <p>«Dios es nuestro amparo y fortaleza» (Salmos 46). En Panamá Oeste estamos en Cristo. Sigamos con fe porque Cristo viene pronto a tu vida. 🇵🇦☦️👑</p>
+  <p class="src">Salmos 46 ·
+    <a href="https://www.bible.com/es/bible/149/PSA.46.1-11.RVR1960" target="_blank" rel="noopener">Bible.com</a> ·
+    <a href="https://www.google.com/search?q=Salmos%2046%20RVR1960" target="_blank" rel="noopener">Google</a> ·
+    <a href="https://search.brave.com/search?q=Salmos%2046%20RVR1960" target="_blank" rel="noopener">Brave</a></p>
+</div>
+
+<footer>
+  SADV41 · Stevendior Oficial · thesteef21.github.io<br>
+  Información recopilada de fuentes públicas. No es asesoría financiera ni legal.<br><br>
+  <a href="https://thesteef21.github.io/SADV41/CUADRAGULAR/">← Volver a CUADRAGULAR</a>
+</footer>
+
+</div>
+<script>
+  (function(){
+    var b=document.getElementById('copy'), a=document.getElementById('addr'), m=document.getElementById('msg');
+    b.addEventListener('click',function(){
+      var t=a.textContent.trim();
+      function ok(){m.textContent='Copiada ✓';}
+      function fail(){
+        try{var r=document.createRange();r.selectNodeContents(a);var s=window.getSelection();s.removeAllRanges();s.addRange(r);m.textContent='Selecciónala y cópiala';}catch(e){}
+      }
+      try{
+        if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(ok,fail);}
+        else{fail();}
+      }catch(e){fail();}
+    });
+  })();
+</script>
+</body>
+</html>
