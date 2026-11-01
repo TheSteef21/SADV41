@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESPORTS/YH/HW - Registro de Activos</title>
+    <style>
+        :root {
+            --bg-color: #050505;
+            --text-color: #00ffff;
+            --accent-color: #ff003c;
+            --box-bg: #0a1118;
+            --border-color: #00ffff;
+        }
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+        .document {
+            background-color: var(--box-bg);
+            padding: 2rem;
+            max-width: 900px;
+            width: 100%;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+        }
+        .header {
+            text-align: center;
+            border-bottom: 1px dashed var(--border-color);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .tag-oficial { color: #00ff00; font-weight: bold; }
+        .redacted {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 0 4px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+        }
+        h2 {
+            font-size: 1.2rem;
+            border-left: 4px solid var(--border-color);
+            padding-left: 10px;
+            margin-top: 2rem;
+            text-transform: uppercase;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        th, td {
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: rgba(0, 255, 255, 0.05);
+            color: #00ff00;
+        }
+        .token-name { font-weight: bold; }
+        .chain-badge {
+            font-size: 0.8rem;
+            padding: 2px 6px;
+            background: rgba(0, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        .wallet-info {
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="document">
+        <div class="header">
+            SISTEMA TÁCTICO SADV41<br>
+            DIRECTORIO: ESPORTS/YH/HW/index.html<br>
+            <span class="tag-oficial">[ESTADO: DEPURADO / DATOS CIFRADOS]</span>
+        </div>
+
+        <div class="wallet-info">
+            > ORIGEN CONFIRMADO: stevendior.bnb<br>
+            > BÓVEDA DE DESTINO: <span class="redacted">[DIRECCIÓN CLASIFICADA]</span><br>
+            > REDES DETECTADAS: BNB Chain, Arc Chain, Optimism
+        </div>
+
+        <p>
+            Análisis de las transferencias registradas. Se han clasificado los activos digitales detectados en representaciones tokenizadas (acciones/cripto base/fiat) y señales de memecoins/tokens de utilidad acumulados progresivamente.
+        </p>
+
+        <h2>Representaciones Tokenizadas y Activos Base</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Activo / Token</th>
+                    <th>Red (Chain)</th>
+                    <th>Categoría</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="token-name">ERC-20: World Liberty Financial USD</td>
+                    <td><span class="chain-badge">BNB Chain</span></td>
+                    <td>Representación Fiat / Stablecoin</td>
+                </tr>
+                <tr>
+                    <td class="token-name">ERC-20: Wrapped USTC Token</td>
+                    <td><span class="chain-badge">BNB Chain</span></td>
+                    <td>Token Envuelto (Wrapped)</td>
+                </tr>
+                <tr>
+                    <td class="token-name">ERC-20: Venus ADA</td>
+                    <td><span class="chain-badge">BNB Chain</span></td>
+                    <td>Activo Tokenizado / Liquidez</td>
+                </tr>
+                <tr>
+                    <td class="token-name">eth</td>
+                    <td><span class="chain-badge">Optimism</span></td>
+                    <td>Activo Base (Capa 2)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>Memecoins, Utilidad y Señales Acumuladas</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Activo / Token</th>
+                    <th>Red (Chain)</th>
+                    <th>Categoría</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="token-name">ERC-20: Bnb Tiger Inu</td>
+                    <td><span class="chain-badge">BNB Chain</span></td>
+                    <td>Memecoin</td>
+                </tr>
+                <tr>
+                    <td class="token-name">ERC-20: APX Token</td>
+                    <td><span class="chain-badge">BNB Chain</span></td>
+                    <td>Token de Utilidad / Exchange</td>
+                </tr>
+                <tr>
+                    <td class="token-name">ERC-20: WalletConnect</td>
+                    <td><span class="chain-badge">Optimism</span></td>
+                    <td>Protocolo / Utilidad</td>
+                </tr>
+                <tr>
+                    <td class="token-name">ERC-20: BTR token</td>
+                    <td><span class="chain-badge">BNB Chain</span></td>
+                    <td>Altcoin / Utilidad</td>
+                </tr>
+                <tr>
+                    <td class="token-name">ERC-20: ETHGas</td>
+                    <td><span class="chain-badge">BNB Chain</span></td>
+                    <td>Token de Ecosistema</td>
+                </tr>
+                <tr>
+                    <td class="token-name">ERC-20: Long</td>
+                    <td><span class="chain-badge">Arc Chain</span></td>
+                    <td>Token de Ecosistema / Meme</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
