@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+export MAG_MIN=3.7
 BASE_DIR="$HOME/sadv41"
 LOG_FILE="$BASE_DIR/tsec_monitor.log"
 INTERVALO=60
