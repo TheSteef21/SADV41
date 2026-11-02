@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-02T18:02:48Z",
+  "generated": "2026-11-02T18:17:54Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
@@ -249,13 +249,13 @@
     },
     {
       "id": "hv75067641",
-      "mag": 2.78,
-      "place": "12 km E of Leilani Estates, Hawaii",
-      "time": 1793592923710,
+      "mag": 2.79,
+      "place": "12 km ESE of Leilani Estates, Hawaii",
+      "time": 1793592923610,
       "url": "https://earthquake.usgs.gov/earthquakes/eventpage/hv75067641",
-      "lon": -154.796997070312,
-      "lat": 19.4486675262451,
-      "depth": 9.40999984741211,
+      "lon": -154.799833333333,
+      "lat": 19.4343333333333,
+      "depth": 7.21,
       "panama": false
     },
     {
