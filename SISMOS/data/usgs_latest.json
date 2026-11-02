@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T07:58:00Z",
+  "generated": "2026-11-02T08:13:10Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 47,
+  "count": 49,
   "events": [
     {
       "id": "ci41571032",
@@ -14,6 +14,17 @@
       "lon": -115.170829772949,
       "lat": 32.4333343505859,
       "depth": 15.9499998092651,
+      "panama": false
+    },
+    {
+      "id": "us7000tuu3",
+      "mag": 2.6,
+      "place": "10 km SSE of Stonewall Gap, Colorado",
+      "time": 1793600067157,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuu3",
+      "lon": -104.9893,
+      "lat": 37.0631,
+      "depth": 5,
       "panama": false
     },
     {
@@ -58,6 +69,17 @@
       "lon": -154.796997070312,
       "lat": 19.4486675262451,
       "depth": 9.40999984741211,
+      "panama": false
+    },
+    {
+      "id": "pr71538313",
+      "mag": 3,
+      "place": "83 km E of Cruz Bay, U.S. Virgin Islands",
+      "time": 1793590847930,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71538313",
+      "lon": -64.0053333333333,
+      "lat": 18.2796666666667,
+      "depth": 36.3,
       "panama": false
     },
     {

@@ -1,15 +1,15 @@
 {
-  "caption": "🚨 SISMO M3.49953983436486 | 9 km NNE of Delta, B.C., MX\n\n🕒 02/11/2026 02:50 (hora de Panamá)\n📍 Lat 32.43, Lon -115.17 · Profundidad 15.9 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/ci41571032\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "caption": "🚨 SISMO M2.6 | 10 km SSE of Stonewall Gap, Colorado\n\n🕒 02/11/2026 01:14 (hora de Panamá)\n📍 Lat 37.06, Lon -104.99 · Profundidad 5 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuu3\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
   "event": {
-    "id": "ci41571032",
-    "mag": 3.49953983436486,
-    "place": "9 km NNE of Delta, B.C., MX",
-    "time": 1793605811070,
-    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ci41571032",
-    "lon": -115.170829772949,
-    "lat": 32.4333343505859,
-    "depth": 15.9499998092651,
+    "id": "us7000tuu3",
+    "mag": 2.6,
+    "place": "10 km SSE of Stonewall Gap, Colorado",
+    "time": 1793600067157,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuu3",
+    "lon": -104.9893,
+    "lat": 37.0631,
+    "depth": 5,
     "panama": false
   },
-  "generated": "2026-11-02T07:58:01Z"
+  "generated": "2026-11-02T08:13:11Z"
 }
