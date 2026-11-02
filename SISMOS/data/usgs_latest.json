@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T16:01:44Z",
+  "generated": "2026-11-02T16:16:49Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 45,
+  "count": 46,
   "events": [
     {
       "id": "us7000tuxg",
@@ -190,6 +190,17 @@
       "lon": 154.088,
       "lat": -5.5626,
       "depth": 87.891,
+      "panama": false
+    },
+    {
+      "id": "us7000tuty",
+      "mag": 4.1,
+      "place": "106 km E of Levuka, Fiji",
+      "time": 1793596251045,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuty",
+      "lon": -179.6961,
+      "lat": -17.901,
+      "depth": 635.184,
       "panama": false
     },
     {

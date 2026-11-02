@@ -1,15 +1,15 @@
 {
-  "caption": "🚨 SISMO M5.1 | 50 km WSW of Huarmey, Peru\n\n🕒 02/11/2026 10:28 (hora de Panamá)\n📍 Lat -10.17, Lon -78.6 · Profundidad 67.2 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuxg\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "caption": "🚨 SISMO M4.1 | 106 km E of Levuka, Fiji\n\n🕒 02/11/2026 00:10 (hora de Panamá)\n📍 Lat -17.9, Lon -179.7 · Profundidad 635.2 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuty\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
   "event": {
-    "id": "us7000tuxg",
-    "mag": 5.1,
-    "place": "50 km WSW of Huarmey, Peru",
-    "time": 1793633293954,
-    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuxg",
-    "lon": -78.5994,
-    "lat": -10.1699,
-    "depth": 67.239,
+    "id": "us7000tuty",
+    "mag": 4.1,
+    "place": "106 km E of Levuka, Fiji",
+    "time": 1793596251045,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuty",
+    "lon": -179.6961,
+    "lat": -17.901,
+    "depth": 635.184,
     "panama": false
   },
-  "generated": "2026-11-02T16:01:44Z"
+  "generated": "2026-11-02T16:16:50Z"
 }
