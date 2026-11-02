@@ -1,15 +1,15 @@
 {
-  "caption": "🚨 SISMO M4.5 | 168 km SE of San Jose Village, Northern Mariana Islands\n\n🕒 02/11/2026 14:59 (hora de Panamá)\n📍 Lat 13.8, Lon 146.61 · Profundidad 10 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuzd\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "caption": "🚨 SISMO M2.51 | 8 km E of Lower Lake, CA\n\n🕒 02/11/2026 15:34 (hora de Panamá)\n📍 Lat 38.92, Lon -122.52 · Profundidad 0.9 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/nc75461642\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
   "event": {
-    "id": "us7000tuzd",
-    "mag": 4.5,
-    "place": "168 km SE of San Jose Village, Northern Mariana Islands",
-    "time": 1793649544529,
-    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuzd",
-    "lon": 146.6114,
-    "lat": 13.795,
-    "depth": 10,
+    "id": "nc75461642",
+    "mag": 2.51,
+    "place": "8 km E of Lower Lake, CA",
+    "time": 1793651656470,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75461642",
+    "lon": -122.521667480469,
+    "lat": 38.9206657409668,
+    "depth": 0.930000007152557,
     "panama": false
   },
-  "generated": "2026-11-02T20:18:44Z"
+  "generated": "2026-11-02T20:48:55Z"
 }
