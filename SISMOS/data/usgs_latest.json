@@ -1,10 +1,21 @@
 {
-  "generated": "2026-11-02T18:33:00Z",
+  "generated": "2026-11-02T18:48:06Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 45,
+  "count": 43,
   "events": [
+    {
+      "id": "us7000tuy2",
+      "mag": 4,
+      "place": "Izu Islands, Japan region",
+      "time": 1793638705889,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuy2",
+      "lon": 139.1534,
+      "lat": 29.962,
+      "depth": 399.286,
+      "panama": false
+    },
     {
       "id": "us7000tuxy",
       "mag": 5.3,
@@ -464,39 +475,6 @@
       "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tur0",
       "lon": 78.4169,
       "lat": -35.441,
-      "depth": 10,
-      "panama": false
-    },
-    {
-      "id": "us7000tuqy",
-      "mag": 4.6,
-      "place": "101 km SW of Basco, Philippines",
-      "time": 1793558577023,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuqy",
-      "lon": 121.328,
-      "lat": 19.7626,
-      "depth": 38.488,
-      "panama": false
-    },
-    {
-      "id": "us7000tuqw",
-      "mag": 4.1,
-      "place": "70 km W of Ollagüe, Chile",
-      "time": 1793558523372,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuqw",
-      "lon": -68.9287,
-      "lat": -21.1449,
-      "depth": 117.203,
-      "panama": false
-    },
-    {
-      "id": "us7000tuqx",
-      "mag": 5,
-      "place": "Mid-Indian Ridge",
-      "time": 1793558079200,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuqx",
-      "lon": 69.5217,
-      "lat": -23.8735,
       "depth": 10,
       "panama": false
     }

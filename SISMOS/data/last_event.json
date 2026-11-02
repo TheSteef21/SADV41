@@ -1,15 +1,15 @@
 {
-  "caption": "🚨 SISMO M5.3 | 81 km SSE of Palekastro, Greece\n\n🕒 02/11/2026 11:49 (hora de Panamá)\n📍 Lat 34.48, Lon 26.47 · Profundidad 48.5 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuxy\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "caption": "🚨 SISMO M4 | Izu Islands, Japan region\n\n🕒 02/11/2026 11:58 (hora de Panamá)\n📍 Lat 29.96, Lon 139.15 · Profundidad 399.3 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuy2\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
   "event": {
-    "id": "us7000tuxy",
-    "mag": 5.3,
-    "place": "81 km SSE of Palekastro, Greece",
-    "time": 1793638157895,
-    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuxy",
-    "lon": 26.4694,
-    "lat": 34.4807,
-    "depth": 48.525,
+    "id": "us7000tuy2",
+    "mag": 4,
+    "place": "Izu Islands, Japan region",
+    "time": 1793638705889,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuy2",
+    "lon": 139.1534,
+    "lat": 29.962,
+    "depth": 399.286,
     "panama": false
   },
-  "generated": "2026-11-02T17:17:30Z"
+  "generated": "2026-11-02T18:48:07Z"
 }
