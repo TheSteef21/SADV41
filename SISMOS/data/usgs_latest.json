@@ -1,10 +1,21 @@
 {
-  "generated": "2026-11-02T23:19:47Z",
+  "generated": "2026-11-02T23:49:56Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 47,
+  "count": 48,
   "events": [
+    {
+      "id": "uu80162486",
+      "mag": 2.58,
+      "place": "15 km NNE of Milford, Utah",
+      "time": 1793661995950,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/uu80162486",
+      "lon": -112.913666666667,
+      "lat": 38.514,
+      "depth": 3.37,
+      "panama": false
+    },
     {
       "id": "aka2026vtdcvd",
       "mag": 2.5,
