@@ -1,15 +1,15 @@
 {
-  "caption": "🚨 SISMO M4.9 | 17 km SE of Ambelókipoi, Greece\n\n🕒 25/10/2026 00:15 (hora de Panamá)\n📍 Lat 37.65, Lon 21.01 · Profundidad 10 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4sm\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "caption": "🚨 SISMO M4.9 | 175 km WNW of Panguna, Papua New Guinea\n\n🕒 02/11/2026 00:19 (hora de Panamá)\n📍 Lat -5.56, Lon 154.09 · Profundidad 87.9 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuu0\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
   "event": {
-    "id": "us6000u4sm",
+    "id": "us7000tuu0",
     "mag": 4.9,
-    "place": "17 km SE of Ambelókipoi, Greece",
-    "time": 1792905344196,
-    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4sm",
-    "lon": 21.0112,
-    "lat": 37.6512,
-    "depth": 10,
+    "place": "175 km WNW of Panguna, Papua New Guinea",
+    "time": 1793596790104,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuu0",
+    "lon": 154.088,
+    "lat": -5.5626,
+    "depth": 87.891,
     "panama": false
   },
-  "generated": "2026-10-25T05:45:09Z"
+  "generated": "2026-11-02T06:42:32Z"
 }
