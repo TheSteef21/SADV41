@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T09:28:44Z",
+  "generated": "2026-11-02T09:43:50Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 50,
+  "count": 51,
   "events": [
     {
       "id": "nc75461312",
@@ -14,6 +14,17 @@
       "lon": -122.039497375488,
       "lat": 37.9786682128906,
       "depth": 14.9799995422363,
+      "panama": false
+    },
+    {
+      "id": "us7000tuv5",
+      "mag": 4.7,
+      "place": "113 km SW of Basco, Philippines",
+      "time": 1793608967228,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuv5",
+      "lon": 121.1252,
+      "lat": 19.8007,
+      "depth": 35,
       "panama": false
     },
     {
