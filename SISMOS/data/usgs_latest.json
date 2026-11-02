@@ -1,10 +1,21 @@
 {
-  "generated": "2026-11-02T16:16:49Z",
+  "generated": "2026-11-02T16:31:58Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 46,
+  "count": 48,
   "events": [
+    {
+      "id": "us7000tuxi",
+      "mag": 4.7,
+      "place": "193 km ENE of Nagqu, China",
+      "time": 1793633712369,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuxi",
+      "lon": 93.831,
+      "lat": 32.3376,
+      "depth": 10,
+      "panama": false
+    },
     {
       "id": "us7000tuxg",
       "mag": 5.1,
@@ -454,6 +465,17 @@
       "lon": 121.328,
       "lat": 19.7626,
       "depth": 38.488,
+      "panama": false
+    },
+    {
+      "id": "us7000tuqw",
+      "mag": 4.1,
+      "place": "70 km W of Ollagüe, Chile",
+      "time": 1793558523372,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuqw",
+      "lon": -68.9287,
+      "lat": -21.1449,
+      "depth": 117.203,
       "panama": false
     },
     {

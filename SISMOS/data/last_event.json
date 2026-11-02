@@ -1,15 +1,15 @@
 {
-  "caption": "🚨 SISMO M4.1 | 106 km E of Levuka, Fiji\n\n🕒 02/11/2026 00:10 (hora de Panamá)\n📍 Lat -17.9, Lon -179.7 · Profundidad 635.2 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuty\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "caption": "🚨 SISMO M4.7 | 193 km ENE of Nagqu, China\n\n🕒 02/11/2026 10:35 (hora de Panamá)\n📍 Lat 32.34, Lon 93.83 · Profundidad 10 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuxi\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
   "event": {
-    "id": "us7000tuty",
-    "mag": 4.1,
-    "place": "106 km E of Levuka, Fiji",
-    "time": 1793596251045,
-    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuty",
-    "lon": -179.6961,
-    "lat": -17.901,
-    "depth": 635.184,
+    "id": "us7000tuxi",
+    "mag": 4.7,
+    "place": "193 km ENE of Nagqu, China",
+    "time": 1793633712369,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuxi",
+    "lon": 93.831,
+    "lat": 32.3376,
+    "depth": 10,
     "panama": false
   },
-  "generated": "2026-11-02T16:16:50Z"
+  "generated": "2026-11-02T16:31:59Z"
 }
