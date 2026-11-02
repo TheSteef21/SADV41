@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T11:44:41Z",
+  "generated": "2026-11-02T11:59:48Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 45,
+  "count": 43,
   "events": [
     {
       "id": "aka2026vsfdph",
@@ -475,28 +475,6 @@
       "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tupq",
       "lon": 165.6199,
       "lat": -13.8667,
-      "depth": 10,
-      "panama": false
-    },
-    {
-      "id": "us7000tupp",
-      "mag": 4.8,
-      "place": "176 km NW of Port-Olry, Vanuatu",
-      "time": 1793534211778,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tupp",
-      "lon": 165.767,
-      "lat": -14.0776,
-      "depth": 10,
-      "panama": false
-    },
-    {
-      "id": "us7000tupl",
-      "mag": 6,
-      "place": "165 km NW of Port-Olry, Vanuatu",
-      "time": 1793533623778,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tupl",
-      "lon": 165.8242,
-      "lat": -14.1689,
       "depth": 10,
       "panama": false
     }
