@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BIBLIÆ · Motívate en Cristo</title>
+<style>
+  :root{--oro:#ffd76a;--noche:#0a1028}
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;font-family:Georgia,'Times New Roman',serif;color:#fff8e1;
+    background:radial-gradient(circle at 50% 0,#3a2a6a 0,var(--noche) 55%,#050816 100%);padding:24px 16px 150px}
+  header{text-align:center;max-width:640px;margin:0 auto 22px;animation:in 1.4s ease both}
+  h1{font-size:clamp(26px,7vw,40px);margin:.2em 0;color:var(--oro);text-shadow:0 0 18px rgba(255,200,80,.45)}
+  .sub{font-size:15px;line-height:1.6;opacity:.92}
+  .sal{display:inline-block;margin:10px 0;padding:4px 14px;border:1px solid var(--oro);border-radius:999px;color:var(--oro);font-size:13px;letter-spacing:.1em}
+  ul{list-style:none;padding:0;max-width:640px;margin:0 auto;display:grid;gap:12px}
+  li{background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.03));border:1px solid rgba(255,215,106,.3);
+    border-radius:14px;padding:14px 16px;line-height:1.45;opacity:0;transform:translateY(10px);animation:in .8s ease forwards}
+  li b{display:block;color:var(--oro);font-size:13px;margin-bottom:4px;letter-spacing:.04em}
+  .agua{max-width:640px;margin:26px auto 0;padding:16px;border:1px solid rgba(255,215,106,.3);border-radius:14px;
+    text-align:center;line-height:1.6;font-size:14px;background:rgba(255,255,255,.04)}
+  footer{text-align:center;margin-top:28px;font-size:13px;opacity:.85;line-height:1.8}
+  footer a{color:var(--oro);text-decoration:none;border-bottom:1px solid rgba(255,215,106,.4)}
+  @keyframes in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="sal">SALMOS 85</div>
+  <h1>Motívate en Cristo 🇵🇦</h1>
+  <div class="sub">
+    Christ-motivation 🇵🇦⭐️🇺🇸<br>
+    Friends of 🇮🇱 From 🇵🇦🇺🇸<br>
+    And love for the world 🇨🇳🇨🇴🇷🇺👑⚛️☦️
+  </div>
+</header>
+<ul id="lista"></ul>
+<div class="agua">
+  La promesa del agua de vida sigue fluyendo con fuerza para toda la comunidad.
+  Que estos manantiales y ríos de agua viva inunden tu vida y la de todos en Panamá Oeste y más allá,
+  trayendo renovación, paz y esperanza en todo momento. Sigamos adelante, firmes en la fe. 🇵🇦☦️👑
+</div>
+<footer>
+  Dios primero en todos los planes · para todo aquel que en Cristo cree ✨<br>
+  <a href="gorra.html">🧢 GORRA · souvenir</a>
+</footer>
+<script src="motivate.js"></script>
+<script>
+  var ul = document.getElementById("lista");
+  (window.CRISTO_VERSES || []).forEach(function (v, n) {
+    var li = document.createElement("li");
+    li.style.animationDelay = (n * 0.12) + "s";
+    var b = document.createElement("b"); b.textContent = v[0];
+    li.appendChild(b); li.appendChild(document.createTextNode(v[1]));
+    ul.appendChild(li);
+  });
+</script>
+</body>
+</html>
