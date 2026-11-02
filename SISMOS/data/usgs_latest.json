@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T21:19:06Z",
+  "generated": "2026-11-02T21:34:14Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 48,
+  "count": 47,
   "events": [
     {
       "id": "nc75461677",
@@ -520,17 +520,6 @@
       "lon": 78.3627,
       "lat": -35.4346,
       "depth": 10,
-      "panama": false
-    },
-    {
-      "id": "us7000turj",
-      "mag": 4.7,
-      "place": "Kermadec Islands region",
-      "time": 1793568417524,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000turj",
-      "lon": -177.8708,
-      "lat": -27.291,
-      "depth": 150.95,
       "panama": false
     }
   ]
