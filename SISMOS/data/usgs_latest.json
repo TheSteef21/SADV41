@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T10:59:20Z",
+  "generated": "2026-11-02T11:14:26Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 46,
+  "count": 45,
   "events": [
     {
       "id": "nc75461312",
@@ -498,17 +498,6 @@
       "lon": -150.932,
       "lat": 60.198,
       "depth": 70.4,
-      "panama": false
-    },
-    {
-      "id": "us7000tupb",
-      "mag": 4.3,
-      "place": "37 km SSE of Farkhār, Afghanistan",
-      "time": 1793531026375,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tupb",
-      "lon": 70.0514,
-      "lat": 36.2745,
-      "depth": 133.873,
       "panama": false
     }
   ]
