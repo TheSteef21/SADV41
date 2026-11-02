@@ -1,10 +1,21 @@
 {
-  "generated": "2026-11-02T19:33:22Z",
+  "generated": "2026-11-02T19:48:28Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 45,
+  "count": 46,
   "events": [
+    {
+      "id": "aka2026vswaye",
+      "mag": 2.7,
+      "place": "52 km WNW of Ninilchik, Alaska",
+      "time": 1793648423363,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vswaye",
+      "lon": -152.572,
+      "lat": 60.178,
+      "depth": 111.8,
+      "panama": false
+    },
     {
       "id": "us7000tuy2",
       "mag": 4,

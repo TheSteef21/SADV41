@@ -1,15 +1,15 @@
 {
-  "caption": "🚨 SISMO M4 | 69 km NE of Makubetsu, Japan\n\n🕒 02/11/2026 11:33 (hora de Panamá)\n📍 Lat 45.79, Lon 142.48 · Profundidad 330 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuxt\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "caption": "🚨 SISMO M2.7 | 52 km WNW of Ninilchik, Alaska\n\n🕒 02/11/2026 14:40 (hora de Panamá)\n📍 Lat 60.18, Lon -152.57 · Profundidad 111.8 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vswaye\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
   "event": {
-    "id": "us7000tuxt",
-    "mag": 4,
-    "place": "69 km NE of Makubetsu, Japan",
-    "time": 1793637200679,
-    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuxt",
-    "lon": 142.4784,
-    "lat": 45.7897,
-    "depth": 329.961,
+    "id": "aka2026vswaye",
+    "mag": 2.7,
+    "place": "52 km WNW of Ninilchik, Alaska",
+    "time": 1793648423363,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vswaye",
+    "lon": -152.572,
+    "lat": 60.178,
+    "depth": 111.8,
     "panama": false
   },
-  "generated": "2026-11-02T19:33:23Z"
+  "generated": "2026-11-02T19:48:29Z"
 }
