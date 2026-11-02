@@ -1,10 +1,21 @@
 {
-  "generated": "2026-11-02T12:30:01Z",
+  "generated": "2026-11-02T12:45:08Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 43,
+  "count": 41,
   "events": [
+    {
+      "id": "ci41571168",
+      "mag": 2.84,
+      "place": "3 km SW of Brawley, CA",
+      "time": 1793622716240,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ci41571168",
+      "lon": -115.5495,
+      "lat": 32.9618333333333,
+      "depth": 14.9,
+      "panama": false
+    },
     {
       "id": "aka2026vsfdph",
       "mag": 2.5,
@@ -443,39 +454,6 @@
       "lon": -65.037,
       "lat": 19.038,
       "depth": 19.36,
-      "panama": false
-    },
-    {
-      "id": "pr71538228",
-      "mag": 3.28,
-      "place": "10 km S of Santa Isabel, Puerto Rico",
-      "time": 1793536803890,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71538228",
-      "lon": -66.4183333333333,
-      "lat": 17.8685,
-      "depth": 13.96,
-      "panama": false
-    },
-    {
-      "id": "ci41570832",
-      "mag": 2.64,
-      "place": "7 km SSW of Santa Barbara Is., CA",
-      "time": 1793536750750,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ci41570832",
-      "lon": -119.087833333333,
-      "lat": 33.4166666666667,
-      "depth": -0.01,
-      "panama": false
-    },
-    {
-      "id": "nc75460847",
-      "mag": 2.72,
-      "place": "66 km W of Petrolia, CA",
-      "time": 1793536303050,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75460847",
-      "lon": -125.064163208008,
-      "lat": 40.3531684875488,
-      "depth": 0.540000021457672,
       "panama": false
     }
   ]

@@ -1,15 +1,15 @@
 {
-  "caption": "🚨 SISMO M4.4 | 5 km NE of Aíyira, Greece\n\n🕒 02/11/2026 05:11 (hora de Panamá)\n📍 Lat 38.19, Lon 22.4 · Profundidad 10 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuw2\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "caption": "🚨 SISMO M2.84 | 3 km SW of Brawley, CA\n\n🕒 02/11/2026 07:31 (hora de Panamá)\n📍 Lat 32.96, Lon -115.55 · Profundidad 14.9 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/ci41571168\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
   "event": {
-    "id": "us7000tuw2",
-    "mag": 4.4,
-    "place": "5 km NE of Aíyira, Greece",
-    "time": 1793614286346,
-    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuw2",
-    "lon": 22.3953,
-    "lat": 38.1881,
-    "depth": 10,
+    "id": "ci41571168",
+    "mag": 2.84,
+    "place": "3 km SW of Brawley, CA",
+    "time": 1793622716240,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ci41571168",
+    "lon": -115.5495,
+    "lat": 32.9618333333333,
+    "depth": 14.9,
     "panama": false
   },
-  "generated": "2026-11-02T12:30:02Z"
+  "generated": "2026-11-02T12:45:09Z"
 }
