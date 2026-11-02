@@ -32,25 +32,25 @@
   var css = [
     "#cristo-presencia{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:2147483000;",
     "width:min(94vw,520px);font-family:Georgia,'Times New Roman',serif;color:#fff8e1;cursor:pointer;",
-    "background:linear-gradient(135deg,rgba(10,16,40,.88),rgba(40,20,60,.88));",
+    "background:linear-gradient(135deg,rgba(10,16,40,.92),rgba(40,20,60,.92));",
     "border:1px solid rgba(255,215,106,.55);border-radius:18px;padding:10px 16px;text-align:center;",
-    "box-shadow:0 0 22px rgba(255,200,80,.28);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);",
-    "animation:cristoIn 1.2s ease both}",
+    "box-shadow:0 4px 22px rgba(255,200,80,.28);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);",
+    "animation:cristoIn 1.2s ease both; user-select: none; -webkit-tap-highlight-color: transparent;}",
     "#cristo-presencia .cp-t{font-size:12px;letter-spacing:.08em;color:#ffd76a;margin-bottom:4px}",
-    "#cristo-presencia .cp-v{transition:opacity .9s ease,transform .9s ease;font-size:14px;line-height:1.35}",
+    "#cristo-presencia .cp-v{transition:opacity .9s ease,transform .9s ease;font-size:14px;line-height:1.4}",
     "#cristo-presencia .cp-v.off{opacity:0;transform:translateY(6px)}",
-    "#cristo-presencia .cp-r{display:block;margin-top:3px;font-size:12px;color:#ffd76a;font-style:italic}",
-    "#cristo-presencia.min{width:auto;padding:6px 14px;border-radius:999px}",
+    "#cristo-presencia .cp-r{display:block;margin-top:4px;font-size:12px;color:#ffd76a;font-style:italic}",
+    "#cristo-presencia.min{width:auto;padding:8px 16px;border-radius:999px;bottom:16px;}",
     "#cristo-presencia.min .cp-v,#cristo-presencia.min .cp-t{display:none}",
-    "#cristo-presencia .cp-m{display:none;font-size:13px}",
+    "#cristo-presencia .cp-m{display:none;font-size:13px; letter-spacing: 1px;}",
     "#cristo-presencia.min .cp-m{display:inline}",
-    "@keyframes cristoIn{from{opacity:0;transform:translate(-50%,16px)}to{opacity:1;transform:translate(-50%,0)}}"
+    "@keyframes cristoIn{from{opacity:0;transform:translate(-50%,20px)}to{opacity:1;transform:translate(-50%,0)}}"
   ].join("");
 
   function montar() {
     var st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
     var box = document.createElement("div"); box.id = "cristo-presencia";
-    box.innerHTML = '<div class="cp-t"></div><div class="cp-v"></div><span class="cp-m">✝️ Cristo 🇵🇦</span>';
+    box.innerHTML = '<div class="cp-t"></div><div class="cp-v"></div><span class="cp-m">✝️ CRISTO 🇵🇦</span>';
     document.body.appendChild(box);
     var t = box.querySelector(".cp-t"), v = box.querySelector(".cp-v");
     var i = Math.floor(Math.random() * VERSOS.length), l = 0;
