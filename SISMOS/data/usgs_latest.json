@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T18:17:54Z",
+  "generated": "2026-11-02T18:33:00Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 46,
+  "count": 45,
   "events": [
     {
       "id": "us7000tuxy",
@@ -497,17 +497,6 @@
       "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuqx",
       "lon": 69.5217,
       "lat": -23.8735,
-      "depth": 10,
-      "panama": false
-    },
-    {
-      "id": "us7000tuqv",
-      "mag": 4.6,
-      "place": "Mid-Indian Ridge",
-      "time": 1793557823197,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuqv",
-      "lon": 69.5065,
-      "lat": -23.9496,
       "depth": 10,
       "panama": false
     }
