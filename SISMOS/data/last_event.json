@@ -1,15 +1,15 @@
 {
-  "caption": "🚨 SISMO M4.3 | 125 km NNW of Naisano Dua, Indonesia\n\n🕒 02/11/2026 01:52 (hora de Panamá)\n📍 Lat -8.51, Lon 123.44 · Profundidad 10 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuua\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "caption": "🚨 SISMO M2.54 | 2 km WNW of Concord, CA\n\n🕒 02/11/2026 04:23 (hora de Panamá)\n📍 Lat 37.98, Lon -122.04 · Profundidad 15 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/nc75461312\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
   "event": {
-    "id": "us7000tuua",
-    "mag": 4.3,
-    "place": "125 km NNW of Naisano Dua, Indonesia",
-    "time": 1793602379889,
-    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuua",
-    "lon": 123.4432,
-    "lat": -8.5149,
-    "depth": 10,
+    "id": "nc75461312",
+    "mag": 2.54,
+    "place": "2 km WNW of Concord, CA",
+    "time": 1793611416440,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75461312",
+    "lon": -122.039497375488,
+    "lat": 37.9786682128906,
+    "depth": 14.9799995422363,
     "panama": false
   },
-  "generated": "2026-11-02T09:13:37Z"
+  "generated": "2026-11-02T09:28:44Z"
 }

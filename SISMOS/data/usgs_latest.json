@@ -1,10 +1,21 @@
 {
-  "generated": "2026-11-02T09:13:36Z",
+  "generated": "2026-11-02T09:28:44Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 49,
+  "count": 50,
   "events": [
+    {
+      "id": "nc75461312",
+      "mag": 2.54,
+      "place": "2 km WNW of Concord, CA",
+      "time": 1793611416440,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75461312",
+      "lon": -122.039497375488,
+      "lat": 37.9786682128906,
+      "depth": 14.9799995422363,
+      "panama": false
+    },
     {
       "id": "us7000tuuy",
       "mag": 5.1,
