@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T16:31:58Z",
+  "generated": "2026-11-02T17:02:21Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 48,
+  "count": 47,
   "events": [
     {
       "id": "us7000tuxi",
@@ -520,17 +520,6 @@
       "lon": -27.1985,
       "lat": -56.2566,
       "depth": 108.234,
-      "panama": false
-    },
-    {
-      "id": "us7000tuqi",
-      "mag": 4.7,
-      "place": "78 km SSE of Yonakuni, Japan",
-      "time": 1793552478126,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuqi",
-      "lon": 123.2705,
-      "lat": 23.8055,
-      "depth": 18.483,
       "panama": false
     }
   ]
