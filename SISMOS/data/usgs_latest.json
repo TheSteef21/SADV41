@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T12:45:08Z",
+  "generated": "2026-11-02T13:00:17Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 41,
+  "count": 40,
   "events": [
     {
       "id": "ci41571168",
@@ -443,17 +443,6 @@
       "lon": -67.3145,
       "lat": 19.413,
       "depth": 28,
-      "panama": false
-    },
-    {
-      "id": "pr71538243",
-      "mag": 3.22,
-      "place": "77 km N of Charlotte Amalie, U.S. Virgin Islands",
-      "time": 1793537748560,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr71538243",
-      "lon": -65.037,
-      "lat": 19.038,
-      "depth": 19.36,
       "panama": false
     }
   ]
