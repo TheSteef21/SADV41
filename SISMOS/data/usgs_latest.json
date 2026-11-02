@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T08:43:26Z",
+  "generated": "2026-11-02T09:13:36Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 48,
+  "count": 49,
   "events": [
     {
       "id": "us7000tuuy",
@@ -25,6 +25,17 @@
       "lon": -115.170829772949,
       "lat": 32.4333343505859,
       "depth": 15.9499998092651,
+      "panama": false
+    },
+    {
+      "id": "us7000tuua",
+      "mag": 4.3,
+      "place": "125 km NNW of Naisano Dua, Indonesia",
+      "time": 1793602379889,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuua",
+      "lon": 123.4432,
+      "lat": -8.5149,
+      "depth": 10,
       "panama": false
     },
     {
