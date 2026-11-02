@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T08:13:10Z",
+  "generated": "2026-11-02T08:28:20Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 49,
+  "count": 47,
   "events": [
     {
       "id": "ci41571032",
@@ -520,28 +520,6 @@
       "lon": -153.32,
       "lat": 57.983,
       "depth": 45.3,
-      "panama": false
-    },
-    {
-      "id": "us7000tunq",
-      "mag": 4.8,
-      "place": "33 km SE of Jiufen, Taiwan",
-      "time": 1793521207549,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tunq",
-      "lon": 122.0621,
-      "lat": 24.8805,
-      "depth": 118.799,
-      "panama": false
-    },
-    {
-      "id": "tx2026vmrfsu",
-      "mag": 2.7,
-      "place": "10 km WSW of Stanton, Texas",
-      "time": 1793521013064,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/tx2026vmrfsu",
-      "lon": -101.896,
-      "lat": 32.107,
-      "depth": 8.8135,
       "panama": false
     }
   ]
