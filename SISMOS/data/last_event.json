@@ -1,15 +1,15 @@
 {
-  "caption": "🚨 SISMO M2.51 | 8 km E of Lower Lake, CA\n\n🕒 02/11/2026 15:34 (hora de Panamá)\n📍 Lat 38.92, Lon -122.52 · Profundidad 0.9 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/nc75461642\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "caption": "🚨 SISMO M2.79 | 8 km E of Lower Lake, CA\n\n🕒 02/11/2026 16:02 (hora de Panamá)\n📍 Lat 38.9, Lon -122.52 · Profundidad 7.1 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/nc75461677\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
   "event": {
-    "id": "nc75461642",
-    "mag": 2.51,
+    "id": "nc75461677",
+    "mag": 2.79,
     "place": "8 km E of Lower Lake, CA",
-    "time": 1793651656470,
-    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75461642",
-    "lon": -122.521667480469,
-    "lat": 38.9206657409668,
-    "depth": 0.930000007152557,
+    "time": 1793653328810,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75461677",
+    "lon": -122.517997741699,
+    "lat": 38.9039993286133,
+    "depth": 7.11999988555908,
     "panama": false
   },
-  "generated": "2026-11-02T20:48:55Z"
+  "generated": "2026-11-02T21:19:06Z"
 }

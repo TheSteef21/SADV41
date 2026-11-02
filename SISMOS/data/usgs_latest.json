@@ -1,10 +1,32 @@
 {
-  "generated": "2026-11-02T20:48:54Z",
+  "generated": "2026-11-02T21:19:06Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 46,
+  "count": 48,
   "events": [
+    {
+      "id": "nc75461677",
+      "mag": 2.79,
+      "place": "8 km E of Lower Lake, CA",
+      "time": 1793653328810,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75461677",
+      "lon": -122.517997741699,
+      "lat": 38.9039993286133,
+      "depth": 7.11999988555908,
+      "panama": false
+    },
+    {
+      "id": "us7000tv03",
+      "mag": 4.6,
+      "place": "226 km NW of Port-Olry, Vanuatu",
+      "time": 1793652865928,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tv03",
+      "lon": 165.3938,
+      "lat": -13.8072,
+      "depth": 10,
+      "panama": false
+    },
     {
       "id": "nc75461642",
       "mag": 2.51,
