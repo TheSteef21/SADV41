@@ -1,15 +1,15 @@
 {
-  "caption": "🚨 SISMO M2.71 | 7 km NW of The Geysers, CA\n\n🕒 02/11/2026 10:14 (hora de Panamá)\n📍 Lat 38.82, Lon -122.81 · Profundidad 2.8 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/nc75461397\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "caption": "🚨 SISMO M5.1 | 50 km WSW of Huarmey, Peru\n\n🕒 02/11/2026 10:28 (hora de Panamá)\n📍 Lat -10.17, Lon -78.6 · Profundidad 67.2 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuxg\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
   "event": {
-    "id": "nc75461397",
-    "mag": 2.71,
-    "place": "7 km NW of The Geysers, CA",
-    "time": 1793632490010,
-    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75461397",
-    "lon": -122.810333251953,
-    "lat": 38.8219985961914,
-    "depth": 2.78999996185303,
+    "id": "us7000tuxg",
+    "mag": 5.1,
+    "place": "50 km WSW of Huarmey, Peru",
+    "time": 1793633293954,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuxg",
+    "lon": -78.5994,
+    "lat": -10.1699,
+    "depth": 67.239,
     "panama": false
   },
-  "generated": "2026-11-02T15:31:31Z"
+  "generated": "2026-11-02T16:01:44Z"
 }

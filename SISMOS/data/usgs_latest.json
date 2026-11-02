@@ -1,10 +1,21 @@
 {
-  "generated": "2026-11-02T15:46:37Z",
+  "generated": "2026-11-02T16:01:44Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 44,
+  "count": 45,
   "events": [
+    {
+      "id": "us7000tuxg",
+      "mag": 5.1,
+      "place": "50 km WSW of Huarmey, Peru",
+      "time": 1793633293954,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuxg",
+      "lon": -78.5994,
+      "lat": -10.1699,
+      "depth": 67.239,
+      "panama": false
+    },
     {
       "id": "nc75461397",
       "mag": 2.71,
