@@ -1,10 +1,21 @@
 {
-  "generated": "2026-11-02T15:01:21Z",
+  "generated": "2026-11-02T15:31:31Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 44,
+  "count": 45,
   "events": [
+    {
+      "id": "nc75461397",
+      "mag": 2.71,
+      "place": "7 km NW of The Geysers, CA",
+      "time": 1793632490010,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75461397",
+      "lon": -122.810333251953,
+      "lat": 38.8219985961914,
+      "depth": 2.78999996185303,
+      "panama": false
+    },
     {
       "id": "us7000tuwv",
       "mag": 4.7,

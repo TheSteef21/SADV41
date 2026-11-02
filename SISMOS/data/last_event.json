@@ -1,15 +1,15 @@
 {
-  "caption": "🚨 SISMO M4.2 | 30 km WSW of Puerto Madero, Mexico\n\n🕒 01/11/2026 14:50 (hora de Panamá)\n📍 Lat 14.59, Lon -92.68 · Profundidad 57.6 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us7000tur6\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "caption": "🚨 SISMO M2.71 | 7 km NW of The Geysers, CA\n\n🕒 02/11/2026 10:14 (hora de Panamá)\n📍 Lat 38.82, Lon -122.81 · Profundidad 2.8 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/nc75461397\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
   "event": {
-    "id": "us7000tur6",
-    "mag": 4.2,
-    "place": "30 km WSW of Puerto Madero, Mexico",
-    "time": 1793562603569,
-    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tur6",
-    "lon": -92.6768,
-    "lat": 14.5919,
-    "depth": 57.604,
+    "id": "nc75461397",
+    "mag": 2.71,
+    "place": "7 km NW of The Geysers, CA",
+    "time": 1793632490010,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75461397",
+    "lon": -122.810333251953,
+    "lat": 38.8219985961914,
+    "depth": 2.78999996185303,
     "panama": false
   },
-  "generated": "2026-11-02T15:01:22Z"
+  "generated": "2026-11-02T15:31:31Z"
 }
