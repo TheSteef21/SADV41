@@ -1,15 +1,15 @@
 {
-  "caption": "🚨 SISMO M2.51 | 37 km NNW of Creston, Canada\n\n🕒 01/11/2026 20:32 (hora de Panamá)\n📍 Lat 49.4, Lon -116.76 · Profundidad 2 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/uw714133441\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "caption": "🚨 SISMO M4 | 69 km NE of Makubetsu, Japan\n\n🕒 02/11/2026 11:33 (hora de Panamá)\n📍 Lat 45.79, Lon 142.48 · Profundidad 330 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuxt\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
   "event": {
-    "id": "uw714133441",
-    "mag": 2.51,
-    "place": "37 km NNW of Creston, Canada",
-    "time": 1793583172690,
-    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/uw714133441",
-    "lon": -116.760666666667,
-    "lat": 49.3958333333333,
-    "depth": 1.99,
+    "id": "us7000tuxt",
+    "mag": 4,
+    "place": "69 km NE of Makubetsu, Japan",
+    "time": 1793637200679,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuxt",
+    "lon": 142.4784,
+    "lat": 45.7897,
+    "depth": 329.961,
     "panama": false
   },
-  "generated": "2026-11-02T19:03:13Z"
+  "generated": "2026-11-02T19:33:23Z"
 }

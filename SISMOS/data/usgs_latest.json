@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T19:03:13Z",
+  "generated": "2026-11-02T19:33:22Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 43,
+  "count": 45,
   "events": [
     {
       "id": "us7000tuy2",
@@ -28,6 +28,17 @@
       "panama": false
     },
     {
+      "id": "us7000tuxt",
+      "mag": 4,
+      "place": "69 km NE of Makubetsu, Japan",
+      "time": 1793637200679,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuxt",
+      "lon": 142.4784,
+      "lat": 45.7897,
+      "depth": 329.961,
+      "panama": false
+    },
+    {
       "id": "us7000tuxi",
       "mag": 4.7,
       "place": "193 km ENE of Nagqu, China",
@@ -47,6 +58,17 @@
       "lon": -78.5994,
       "lat": -10.1699,
       "depth": 67.239,
+      "panama": false
+    },
+    {
+      "id": "us7000tuxf",
+      "mag": 4.4,
+      "place": "38 km SSW of Makurazaki, Japan",
+      "time": 1793632882444,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuxf",
+      "lon": 130.2288,
+      "lat": 30.9321,
+      "depth": 147.202,
       "panama": false
     },
     {
