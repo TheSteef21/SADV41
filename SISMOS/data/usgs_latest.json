@@ -1,10 +1,32 @@
 {
-  "generated": "2026-11-02T21:34:14Z",
+  "generated": "2026-11-02T22:19:27Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 47,
+  "count": 49,
   "events": [
+    {
+      "id": "aka2026vtbewf",
+      "mag": 2.6,
+      "place": "10 km WSW of Manley Hot Springs, Alaska",
+      "time": 1793657699633,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vtbewf",
+      "lon": -150.842,
+      "lat": 64.966,
+      "depth": 16.4,
+      "panama": false
+    },
+    {
+      "id": "us7000tv08",
+      "mag": 4.2,
+      "place": "201 km W of Port McNeill, Canada",
+      "time": 1793653829183,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tv08",
+      "lon": -129.9302,
+      "lat": 50.7109,
+      "depth": 10,
+      "panama": false
+    },
     {
       "id": "nc75461677",
       "mag": 2.79,

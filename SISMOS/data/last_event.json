@@ -1,15 +1,15 @@
 {
-  "caption": "🚨 SISMO M2.79 | 8 km E of Lower Lake, CA\n\n🕒 02/11/2026 16:02 (hora de Panamá)\n📍 Lat 38.9, Lon -122.52 · Profundidad 7.1 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/nc75461677\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "caption": "🚨 SISMO M2.6 | 10 km WSW of Manley Hot Springs, Alaska\n\n🕒 02/11/2026 17:14 (hora de Panamá)\n📍 Lat 64.97, Lon -150.84 · Profundidad 16.4 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vtbewf\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
   "event": {
-    "id": "nc75461677",
-    "mag": 2.79,
-    "place": "8 km E of Lower Lake, CA",
-    "time": 1793653328810,
-    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/nc75461677",
-    "lon": -122.517997741699,
-    "lat": 38.9039993286133,
-    "depth": 7.11999988555908,
+    "id": "aka2026vtbewf",
+    "mag": 2.6,
+    "place": "10 km WSW of Manley Hot Springs, Alaska",
+    "time": 1793657699633,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vtbewf",
+    "lon": -150.842,
+    "lat": 64.966,
+    "depth": 16.4,
     "panama": false
   },
-  "generated": "2026-11-02T21:19:06Z"
+  "generated": "2026-11-02T22:19:27Z"
 }
