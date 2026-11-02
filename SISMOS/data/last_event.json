@@ -1,15 +1,15 @@
 {
-  "caption": "🚨 SISMO M4 | Izu Islands, Japan region\n\n🕒 02/11/2026 11:58 (hora de Panamá)\n📍 Lat 29.96, Lon 139.15 · Profundidad 399.3 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuy2\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "caption": "🚨 SISMO M2.51 | 37 km NNW of Creston, Canada\n\n🕒 01/11/2026 20:32 (hora de Panamá)\n📍 Lat 49.4, Lon -116.76 · Profundidad 2 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/uw714133441\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
   "event": {
-    "id": "us7000tuy2",
-    "mag": 4,
-    "place": "Izu Islands, Japan region",
-    "time": 1793638705889,
-    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuy2",
-    "lon": 139.1534,
-    "lat": 29.962,
-    "depth": 399.286,
+    "id": "uw714133441",
+    "mag": 2.51,
+    "place": "37 km NNW of Creston, Canada",
+    "time": 1793583172690,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/uw714133441",
+    "lon": -116.760666666667,
+    "lat": 49.3958333333333,
+    "depth": 1.99,
     "panama": false
   },
-  "generated": "2026-11-02T18:48:07Z"
+  "generated": "2026-11-02T19:03:13Z"
 }

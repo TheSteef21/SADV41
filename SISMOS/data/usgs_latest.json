@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-02T18:48:06Z",
+  "generated": "2026-11-02T19:03:13Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
@@ -358,6 +358,17 @@
       "panama": false
     },
     {
+      "id": "uw714133441",
+      "mag": 2.51,
+      "place": "37 km NNW of Creston, Canada",
+      "time": 1793583172690,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/uw714133441",
+      "lon": -116.760666666667,
+      "lat": 49.3958333333333,
+      "depth": 1.99,
+      "panama": false
+    },
+    {
       "id": "pr71538303",
       "mag": 2.52,
       "place": "10 km S of Santa Isabel, Puerto Rico",
@@ -465,17 +476,6 @@
       "lon": -92.6768,
       "lat": 14.5919,
       "depth": 57.604,
-      "panama": false
-    },
-    {
-      "id": "us7000tur0",
-      "mag": 4.8,
-      "place": "Mid-Indian Ridge",
-      "time": 1793559237590,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tur0",
-      "lon": 78.4169,
-      "lat": -35.441,
-      "depth": 10,
       "panama": false
     }
   ]
