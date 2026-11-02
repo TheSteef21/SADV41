@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T07:12:43Z",
+  "generated": "2026-11-02T07:42:53Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 48,
+  "count": 47,
   "events": [
     {
       "id": "us7000tuu0",
@@ -520,17 +520,6 @@
       "lon": -104.9525,
       "lat": 37.0038,
       "depth": 9.248,
-      "panama": false
-    },
-    {
-      "id": "us7000tung",
-      "mag": 4.7,
-      "place": "191 km NW of Port-Olry, Vanuatu",
-      "time": 1793518667343,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tung",
-      "lon": 165.6642,
-      "lat": -13.9872,
-      "depth": 10,
       "panama": false
     }
   ]
