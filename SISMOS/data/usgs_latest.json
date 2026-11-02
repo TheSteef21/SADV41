@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T09:58:57Z",
+  "generated": "2026-11-02T10:29:06Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 50,
+  "count": 49,
   "events": [
     {
       "id": "nc75461312",
@@ -542,17 +542,6 @@
       "lon": 127.7611,
       "lat": -5.9502,
       "depth": 377.883,
-      "panama": false
-    },
-    {
-      "id": "us7000tup4",
-      "mag": 4.2,
-      "place": "118 km E of Miyako, Japan",
-      "time": 1793528340745,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tup4",
-      "lon": 143.3008,
-      "lat": 39.8128,
-      "depth": 39.028,
       "panama": false
     }
   ]
