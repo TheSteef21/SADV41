@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteo de Google Play - SADV41</title>
+    <style>
+        :root {
+            --bg-color: #131314;
+            --text-primary: #e3e3e3;
+            --text-secondary: #c4c7c5;
+            --card-bg-gradient: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            --card-orange: #f29900;
+            --button-blue: #a8c7fa;
+            --button-text: #062e6f;
+        }
+
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 80px;
+        }
+
+        header {
+            width: 100%;
+            padding: 16px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            background-color: var(--bg-color);
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .countdown-box {
+            background-color: #1e1e1e;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .countdown-box p {
+            margin: 0 0 10px 0;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .timer {
+            font-size: 36px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .timer-labels {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 10px;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        .entries-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .entries-display {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            margin: 15px 0;
+        }
+
+        .digit {
+            background-color: #333;
+            color: white;
+            font-size: 24px;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-family: monospace;
+        }
+
+        .points-balance {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .points-balance span {
+            color: #34a853; /* Greenish/Google colors for points */
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
+        }
+
+        .prize-card {
+            background: linear-gradient(145deg, #ffb74d, #f57c00);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            color: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prize-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            background-color: #ffd085;
+        }
+
+        .prize-badge {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .prize-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0 0 4px 0;
+        }
+
+        .prize-desc {
+            font-size: 12px;
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        .how-it-works {
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .how-it-works li {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.4;
+            display: flex;
+            gap: 12px;
+        }
+        
+        .how-it-works ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .fab-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 16px;
+            background-color: rgba(19, 19, 20, 0.95);
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn-participate {
+            background-color: var(--button-blue);
+            color: var(--button-text);
+            width: 100%;
+            max-width: 500px;
+            padding: 14px;
+            border: none;
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+            font-family: inherit;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <span>&times;</span> <span style="margin-left:16px; font-size: 18px;">Google Play</span>
+    </header>
+
+    <div class="container">
+        <h1>Participa en el sorteo para ganar premios</h1>
+        <p class="subtitle">Canjea Puntos de Play por participaciones en el sorteo. Hay más de 2,000 premios en juego. Participa ahora antes de que se acabe el tiempo.</p>
+
+        <div class="countdown-box">
+            <p>El sorteo finaliza en</p>
+            <div class="timer" id="timer">01 : 04 : 44 : 19</div>
+            <div class="timer-labels">
+                <span>Día</span>
+                <span>h</span>
+                <span>Min</span>
+                <span>s</span>
+            </div>
+        </div>
+
+        <div class="entries-section">
+            <h3>Tus participaciones</h3>
+            <p style="font-size: 12px; color: var(--text-secondary);">Puedes participar todas las veces que quieras. Cuantas más participaciones tengas, más probabilidades tendrás de ganar.</p>
+            <div class="entries-display">
+                <div class="digit">0</div>
+                <div class="digit">0</div>
+                <div class="digit">5</div>
+                <div class="digit">5</div>
+                <div class="digit">0</div>
+            </div>
+            <p class="points-balance">Saldo de Puntos de Play: <span>💠 307</span></p>
+        </div>
+
+        <h2 class="section-title">Recompensas y premios</h2>
+        
+        <!-- Premio 1 -->
+        <div class="prize-card">
+            <span class="prize-badge">Cantidad: 1</span>
+            <span class="prize-badge" style="margin-left: 5px;">🏆 Gran premio</span>
+            <div class="prize-title">Entradas para el Wynn Grid Club</div>
+            <p class="prize-desc">Entradas para 3 días del evento de la FÓRMULA 1: HEINEKEN LAS VEGAS GRAND PRIX 2026</p>
+        </div>
+
+        <!-- Premio 2 -->
+        <div class="prize-card">
+            <span class="prize-badge">Cantidad: 50</span>
+            <div class="prize-title">Galaxy Z Fold8 Ultra de 512 GB</div>
+            <p class="prize-desc">Descubre más posibilidades con una pantalla interior expansiva y productividad con múltiples ventanas</p>
+        </div>
+
+        <!-- Premio 3 -->
+        <div class="prize-card">
+            <span class="prize-badge">Cantidad: 5</span>
+            <span class="prize-badge" style="margin-left: 5px;">🏆 Gran premio</span>
+            <div class="prize-title">Razer Boomslang 20th Anniversary Edition</div>
+            <p class="prize-desc">Un mouse para videojuegos Razer de edición de coleccionista que conmemora los 20 años</p>
+        </div>
+        
+        <!-- Premio 4 -->
+        <div class="prize-card">
+            <span class="prize-badge">Cantidad: 1</span>
+            <span class="prize-badge" style="margin-left: 5px;">🏆 Gran premio</span>
+            <div class="prize-title">Réplica a escala 1:1 del casco de carreras de la temporada 2026 de Oscar Piastri</div>
+            <p class="prize-desc">Réplica a escala 1:1 del casco de carreras principal de Oscar</p>
+        </div>
+
+        <h2 class="section-title" style="margin-top: 40px;">Cómo funciona</h2>
+        <div class="how-it-works">
+            <ul>
+                <li>🔹 Canjea tus Puntos de Play por participaciones en el sorteo. 1 Punto de Play = 1 participación. No se requiere realizar una compra...</li>
+                <li>🎁 Cuantas más participaciones tengas, más probabilidades tendrás de ganar. Puedes participar varias veces...</li>
+                <li>👑 El sorteo se realizará cuando el reloj de cuenta regresiva llegue a cero. Nos comunicaremos con los ganadores en un plazo de 1 a 2 semanas...</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="fab-container">
+        <button class="btn-participate">Participar en el sorteo</button>
+    </div>
+
+    <script>
+        // Lógica básica para animar el temporizador (Mock)
+        let days = 1;
+        let hours = 4;
+        let minutes = 44;
+        let seconds = 19;
+
+        setInterval(() => {
+            seconds--;
+            if(seconds < 0) {
+                seconds = 59;
+                minutes--;
+            }
+            if(minutes < 0) {
+                minutes = 59;
+                hours--;
+            }
+            if(hours < 0) {
+                hours = 23;
+                days--;
+            }
+            
+            const format = (num) => num.toString().padStart(2, '0');
+            document.getElementById('timer').innerText = `${format(days)} : ${format(hours)} : ${format(minutes)} : ${format(seconds)}`;
+        }, 1000);
+    </script>
+</body>
+</html>
