@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T12:14:55Z",
+  "generated": "2026-11-02T12:30:01Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 42,
+  "count": 43,
   "events": [
     {
       "id": "aka2026vsfdph",
@@ -14,6 +14,17 @@
       "lon": -154.179,
       "lat": 61.606,
       "depth": 5,
+      "panama": false
+    },
+    {
+      "id": "us7000tuw2",
+      "mag": 4.4,
+      "place": "5 km NE of Aíyira, Greece",
+      "time": 1793614286346,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuw2",
+      "lon": 22.3953,
+      "lat": 38.1881,
+      "depth": 10,
       "panama": false
     },
     {
