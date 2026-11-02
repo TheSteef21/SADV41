@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T09:43:50Z",
+  "generated": "2026-11-02T09:58:57Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 51,
+  "count": 50,
   "events": [
     {
       "id": "nc75461312",
@@ -553,17 +553,6 @@
       "lon": 143.3008,
       "lat": 39.8128,
       "depth": 39.028,
-      "panama": false
-    },
-    {
-      "id": "aka2026vqgirx",
-      "mag": 2.5,
-      "place": "25 km WSW of Aleneva, Alaska",
-      "time": 1793526628082,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vqgirx",
-      "lon": -153.32,
-      "lat": 57.983,
-      "depth": 45.3,
       "panama": false
     }
   ]
