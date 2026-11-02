@@ -1,10 +1,21 @@
 {
-  "generated": "2026-11-02T13:45:53Z",
+  "generated": "2026-11-02T14:16:03Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 42,
+  "count": 43,
   "events": [
+    {
+      "id": "se60628871",
+      "mag": 2.54,
+      "place": "13 km NE of Beersheba Springs, Tennessee",
+      "time": 1793627675780,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/se60628871",
+      "lon": -85.5311666666667,
+      "lat": 35.5405,
+      "depth": 15.79,
+      "panama": false
+    },
     {
       "id": "aka2026vskbeg",
       "mag": 3.1,
