@@ -1,10 +1,21 @@
 {
-  "generated": "2026-11-02T20:03:35Z",
+  "generated": "2026-11-02T20:18:44Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 44,
+  "count": 45,
   "events": [
+    {
+      "id": "us7000tuzd",
+      "mag": 4.5,
+      "place": "168 km SE of San Jose Village, Northern Mariana Islands",
+      "time": 1793649544529,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuzd",
+      "lon": 146.6114,
+      "lat": 13.795,
+      "depth": 10,
+      "panama": false
+    },
     {
       "id": "aka2026vswaye",
       "mag": 2.7,

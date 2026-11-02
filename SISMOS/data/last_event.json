@@ -1,15 +1,15 @@
 {
-  "caption": "🚨 SISMO M2.7 | 52 km WNW of Ninilchik, Alaska\n\n🕒 02/11/2026 14:40 (hora de Panamá)\n📍 Lat 60.18, Lon -152.57 · Profundidad 111.8 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vswaye\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "caption": "🚨 SISMO M4.5 | 168 km SE of San Jose Village, Northern Mariana Islands\n\n🕒 02/11/2026 14:59 (hora de Panamá)\n📍 Lat 13.8, Lon 146.61 · Profundidad 10 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuzd\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
   "event": {
-    "id": "aka2026vswaye",
-    "mag": 2.7,
-    "place": "52 km WNW of Ninilchik, Alaska",
-    "time": 1793648423363,
-    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vswaye",
-    "lon": -152.572,
-    "lat": 60.178,
-    "depth": 111.8,
+    "id": "us7000tuzd",
+    "mag": 4.5,
+    "place": "168 km SE of San Jose Village, Northern Mariana Islands",
+    "time": 1793649544529,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuzd",
+    "lon": 146.6114,
+    "lat": 13.795,
+    "depth": 10,
     "panama": false
   },
-  "generated": "2026-11-02T19:48:29Z"
+  "generated": "2026-11-02T20:18:44Z"
 }
