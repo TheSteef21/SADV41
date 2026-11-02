@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T10:44:13Z",
+  "generated": "2026-11-02T10:59:20Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 48,
+  "count": 46,
   "events": [
     {
       "id": "nc75461312",
@@ -509,28 +509,6 @@
       "lon": 70.0514,
       "lat": 36.2745,
       "depth": 133.873,
-      "panama": false
-    },
-    {
-      "id": "us7000tupa",
-      "mag": 4.2,
-      "place": "147 km WSW of Adak, Alaska",
-      "time": 1793530579846,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tupa",
-      "lon": -178.4305,
-      "lat": 51.1595,
-      "depth": 31.862,
-      "panama": false
-    },
-    {
-      "id": "us7000tup9",
-      "mag": 4.3,
-      "place": "15 km NNE of Semboku, Japan",
-      "time": 1793529863842,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tup9",
-      "lon": 140.7837,
-      "lat": 39.8432,
-      "depth": 120.367,
       "panama": false
     }
   ]
