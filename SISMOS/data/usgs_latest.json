@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T19:48:28Z",
+  "generated": "2026-11-02T20:03:35Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 46,
+  "count": 44,
   "events": [
     {
       "id": "aka2026vswaye",
@@ -487,28 +487,6 @@
       "lon": -177.8708,
       "lat": -27.291,
       "depth": 150.95,
-      "panama": false
-    },
-    {
-      "id": "aka2026vrataq",
-      "mag": 2.7,
-      "place": "7 km E of Ridgeway, Alaska",
-      "time": 1793563325041,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vrataq",
-      "lon": -150.953,
-      "lat": 60.54,
-      "depth": 52.2,
-      "panama": false
-    },
-    {
-      "id": "us7000tur6",
-      "mag": 4.2,
-      "place": "30 km WSW of Puerto Madero, Mexico",
-      "time": 1793562603569,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tur6",
-      "lon": -92.6768,
-      "lat": 14.5919,
-      "depth": 57.604,
       "panama": false
     }
   ]
