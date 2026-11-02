@@ -17,7 +17,8 @@
   ["Mateo 6:33","Mas buscad primeramente el reino de Dios y su justicia, y todas estas cosas os serán añadidas."],
   ["Filipenses 4:13","Todo lo puedo en Cristo que me fortalece."],
   ["Juan 7:38","El que cree en mí, como dice la Escritura, de su interior correrán ríos de agua viva."],
-  ["Apocalipsis 22:17","Y el Espíritu y la Esposa dicen: Ven. Y el que oye, diga: Ven. Y el que tiene sed, venga; y el que quiera, tome del agua de la vida gratuitamente."]
+  ["Apocalipsis 22:17","Y el Espíritu y la Esposa dicen: Ven. Y el que oye, diga: Ven. Y el que tiene sed, venga; y el que quiera, tome del agua de la vida gratuitamente."],
+
   ];
   window.CRISTO_VERSES = VERSOS;
 
@@ -31,29 +32,25 @@
   var css = [
     "#cristo-presencia{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:2147483000;",
     "width:min(94vw,520px);font-family:Georgia,'Times New Roman',serif;color:#fff8e1;cursor:pointer;",
-    "background:linear-gradient(135deg,rgba(10,16,40,.92),rgba(40,20,60,.92));",
+    "background:linear-gradient(135deg,rgba(10,16,40,.88),rgba(40,20,60,.88));",
     "border:1px solid rgba(255,215,106,.55);border-radius:18px;padding:10px 16px;text-align:center;",
-    "box-shadow:0 4px 22px rgba(255,200,80,.28);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);",
-    "animation:cristoIn 1.2s ease both;-webkit-tap-highlight-color:transparent}",
+    "box-shadow:0 0 22px rgba(255,200,80,.28);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);",
+    "animation:cristoIn 1.2s ease both}",
     "#cristo-presencia .cp-t{font-size:12px;letter-spacing:.08em;color:#ffd76a;margin-bottom:4px}",
-    "#cristo-presencia .cp-v{transition:opacity .9s ease,transform .9s ease;font-size:14px;line-height:1.4}",
+    "#cristo-presencia .cp-v{transition:opacity .9s ease,transform .9s ease;font-size:14px;line-height:1.35}",
     "#cristo-presencia .cp-v.off{opacity:0;transform:translateY(6px)}",
-    "#cristo-presencia .cp-r{display:block;margin-top:4px;font-size:12px;color:#ffd76a;font-style:italic}",
-    "#cristo-presencia .cp-g{display:block;margin-top:6px;font-size:11px;letter-spacing:.14em;color:#ffd76a;opacity:.9;text-decoration:none}",
-    "#cristo-presencia.min{width:auto;padding:8px 16px;border-radius:999px}",
+    "#cristo-presencia .cp-r{display:block;margin-top:3px;font-size:12px;color:#ffd76a;font-style:italic}",
+    "#cristo-presencia.min{width:auto;padding:6px 14px;border-radius:999px}",
     "#cristo-presencia.min .cp-v,#cristo-presencia.min .cp-t{display:none}",
-    "#cristo-presencia .cp-m{display:none;font-size:13px;letter-spacing:1px}",
+    "#cristo-presencia .cp-m{display:none;font-size:13px}",
     "#cristo-presencia.min .cp-m{display:inline}",
-    "#cristo-presencia.min .cp-g{display:inline;margin:0 0 0 10px}",
-    "@keyframes cristoIn{from{opacity:0;transform:translate(-50%,20px)}to{opacity:1;transform:translate(-50%,0)}}"
+    "@keyframes cristoIn{from{opacity:0;transform:translate(-50%,16px)}to{opacity:1;transform:translate(-50%,0)}}"
   ].join("");
 
   function montar() {
     var st = document.createElement("style"); st.textContent = css; document.head.appendChild(st);
     var box = document.createElement("div"); box.id = "cristo-presencia";
-    box.innerHTML = '<div class="cp-t"></div><div class="cp-v"></div>' +
-      '<span class="cp-m">✝️ CRISTO 🇵🇦</span>' +
-      '<a class="cp-g" href="https://thesteef21.github.io/SADV41/GORRA/" target="_blank" rel="noopener">🧢 GORRA · souvenir</a>';
+    box.innerHTML = '<div class="cp-t"></div><div class="cp-v"></div><span class="cp-m">✝️ Cristo 🇵🇦</span>';
     document.body.appendChild(box);
     var t = box.querySelector(".cp-t"), v = box.querySelector(".cp-v");
     var i = Math.floor(Math.random() * VERSOS.length), l = 0;
@@ -73,10 +70,7 @@
     }
     mostrar();
     setInterval(mostrar, 9000);
-    box.addEventListener("click", function (e) {
-      if (e.target && e.target.closest && e.target.closest("a")) return; /* el enlace de la gorra no minimiza */
-      box.classList.toggle("min");
-    });
+    box.addEventListener("click", function () { box.classList.toggle("min"); });
   }
 
   if (document.body) montar(); else document.addEventListener("DOMContentLoaded", montar);

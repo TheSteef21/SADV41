@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADV41 - Predictor Geoespacial de Impacto</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0f172a; color: #f8fafc; overflow: hidden; }
+        #map-container { width: 100vw; height: 100vh; position: relative; }
+        #map { width: 100%; height: 100%; }
+        .hud-overlay {
+            position: absolute; top: 20px; left: 20px; z-index: 1000;
+            background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(10px);
+            border: 1px solid rgba(239, 68, 68, 0.4); border-radius: 12px;
+            padding: 16px; max-width: 380px; box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+        .hud-title { font-size: 1.1rem; font-weight: 700; color: #ef4444; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+        .hud-data { font-size: 0.85rem; color: #cbd5e1; line-height: 1.5; }
+        .hud-data span { color: #f8fafc; font-weight: 600; }
+        .status-badge {
+            display: inline-block; background: rgba(239, 68, 68, 0.2); color: #fca5a5;
+            padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-bottom: 8px;
+        }
+        .info-window { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; }
+    </style>
+</head>
+<body>
+
+    <div id="map-container">
+        <!-- Panel HUD Táctico del Evento -->
+        <div class="hud-overlay">
+            <div class="status-badge">INETER • EVENTO SÍSMICO</div>
+            <div class="hud-title">⚡ M4.9 - Llano de Piedras</div>
+            <div class="hud-data">
+                <p>📍 <strong>Ubicación:</strong> 5 km SE de Llano de Piedras, Panamá</p>
+                <p>🕒 <strong>Hora:</strong> 29-oct 08:42:57 (Hace 32 min)</p>
+                <p>🌐 <strong>Coordenadas:</strong> 7.620° N, -80.530° O</p>
+                <p>📏 <strong>Profundidad:</strong> 4.0 km</p>
+                <p>📐 <strong>Distancia base:</strong> 177 km de tu ubicación</p>
+                <p>👥 <strong>Radio de impacto:</strong> ~543.3K personas (100km)</p>
+            </div>
+        </div>
+        
+        <!-- Contenedor del Mapa -->
+        <div id="map"></div>
+    </div>
+
+    <script>
+        // Parámetros unificados inyectados por la habilidad 0x46c84f9493acb866a8465b0eb16ae2da1e404922
+        const eventos = [
+            {
+                lat: 7.620, // Coordenadas precisas del evento
+                lng: -80.530,
+                magnitud: 4.9,
+                tipo: "Sismo Confirmado",
+                fuente: "Ineter",
+                detalles: "Profundidad: 4.0 km. Ubicado a 5 km al SE de Llano de Piedras."
+            },
+            {
+                lat: 8.538, // Coordenadas de monitoreo base
+                lng: -79.734,
+                magnitud: "N/A",
+                tipo: "Zona de Atención",
+                fuente: "SADV41 Predictor",
+                detalles: "Área de monitoreo preventivo y logística a 177 km del epicentro."
+            }
+        ];
+
+        function initMap() {
+            // Centrar el mapa en un punto medio para observar ambos marcadores
+            const map = new google.maps.Map(document.getElementById("map"), {
+                zoom: 7,
+                center: { lat: 8.050, lng: -80.130 },
+                mapTypeId: 'terrain', // Topografía activa para contexto geológico
+                mapTypeControl: false,
+                streetViewControl: false
+            });
+
+            eventos.forEach(evento => {
+                // Escala de colores según magnitud
+                const circleColor = evento.magnitud > 4.5 ? "#ef4444" : "#f59e0b";
+
+                const marker = new google.maps.Marker({
+                    position: { lat: evento.lat, lng: evento.lng },
+                    map: map,
+                    title: evento.tipo
+                });
+
+                // Círculo de impacto visual para eventos sísmicos
+                if (evento.magnitud !== "N/A") {
+                    new google.maps.Circle({
+                        strokeColor: circleColor,
+                        strokeOpacity: 0.8,
+                        strokeWeight: 2,
+                        fillColor: circleColor,
+                        fillOpacity: 0.35,
+                        map: map,
+                        center: { lat: evento.lat, lng: evento.lng },
+                        radius: evento.magnitud * 5000 // Radio dinámico basado en magnitud
+                    });
+                }
+
+                const infoWindow = new google.maps.InfoWindow({
+                    content: `<div class="info-window">
+                                <strong>${evento.tipo}</strong><br>
+                                Magnitud: ${evento.magnitud}<br>
+                                Fuente: ${evento.fuente}<br>
+                                <em>${evento.detalles}</em>
+                              </div>`
+                });
+
+                marker.addListener("click", () => {
+                    infoWindow.open(map, marker);
+                });
+            });
+        }
+        
+        console.log("SADV41 Predictor inicializado con éxito para coordenadas:", eventos[0].lat, eventos[0].lng);
+    </script>
+    <!-- Reemplazar TU_API_KEY con la clave de Google Cloud Console -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=initMap"></script>
+</body>
+</html>
+
+# Secuencia bash para actualizar thesteef21.github.io/SADV41/NEWS/index.html
+
+# 1. Navegar al directorio raíz de tu repositorio local
+cd ruta/a/tu/repositorio/thesteef21.github.io
+
+# 2. Asegurar que la estructura de directorios exista
+mkdir -p SADV41/NEWS
+
+# 3. Guardar el nuevo código fusionado en index.html
+# (Abre el archivo con tu editor preferido, como nano, vim o code, y pega el HTML unificado)
+nano SADV41/NEWS/index.html 
+
+# 4. Registrar los cambios en git
+git add SADV41/NEWS/index.html
+
+# 5. Hacer commit confirmando la predicción y el evento del terreno
+git commit -m "SADV41 Predictor: Integración de HUD táctico y mapa geoespacial (M4.9 Llano de Piedras)"
+
+# 6. Subir a GitHub Pages
+git push origin main
+
+
