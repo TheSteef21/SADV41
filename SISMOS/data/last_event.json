@@ -1,15 +1,15 @@
 {
-  "caption": "🚨 SISMO M2.84 | 3 km SW of Brawley, CA\n\n🕒 02/11/2026 07:31 (hora de Panamá)\n📍 Lat 32.96, Lon -115.55 · Profundidad 14.9 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/ci41571168\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "caption": "🚨 SISMO M3.1 | 63 km SE of Pedro Bay, Alaska\n\n🕒 02/11/2026 08:40 (hora de Panamá)\n📍 Lat 59.32, Lon -153.45 · Profundidad 108.9 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vskbeg\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
   "event": {
-    "id": "ci41571168",
-    "mag": 2.84,
-    "place": "3 km SW of Brawley, CA",
-    "time": 1793622716240,
-    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ci41571168",
-    "lon": -115.5495,
-    "lat": 32.9618333333333,
-    "depth": 14.9,
+    "id": "aka2026vskbeg",
+    "mag": 3.1,
+    "place": "63 km SE of Pedro Bay, Alaska",
+    "time": 1793626853803,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vskbeg",
+    "lon": -153.447,
+    "lat": 59.322,
+    "depth": 108.9,
     "panama": false
   },
-  "generated": "2026-11-02T12:45:09Z"
+  "generated": "2026-11-02T13:45:53Z"
 }

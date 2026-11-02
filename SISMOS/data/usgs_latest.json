@@ -1,10 +1,21 @@
 {
-  "generated": "2026-11-02T13:00:17Z",
+  "generated": "2026-11-02T13:45:53Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 40,
+  "count": 42,
   "events": [
+    {
+      "id": "aka2026vskbeg",
+      "mag": 3.1,
+      "place": "63 km SE of Pedro Bay, Alaska",
+      "time": 1793626853803,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vskbeg",
+      "lon": -153.447,
+      "lat": 59.322,
+      "depth": 108.9,
+      "panama": false
+    },
     {
       "id": "ci41571168",
       "mag": 2.84,
@@ -14,6 +25,17 @@
       "lon": -115.5495,
       "lat": 32.9618333333333,
       "depth": 14.9,
+      "panama": false
+    },
+    {
+      "id": "us7000tuvx",
+      "mag": 4.4,
+      "place": "Banda Sea",
+      "time": 1793618316538,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuvx",
+      "lon": 130.2101,
+      "lat": -6.9321,
+      "depth": 134.744,
       "panama": false
     },
     {
