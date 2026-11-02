@@ -1,10 +1,21 @@
 {
-  "generated": "2026-11-02T07:42:53Z",
+  "generated": "2026-11-02T07:58:00Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
   "count": 47,
   "events": [
+    {
+      "id": "ci41571032",
+      "mag": 3.49953983436486,
+      "place": "9 km NNE of Delta, B.C., MX",
+      "time": 1793605811070,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ci41571032",
+      "lon": -115.170829772949,
+      "lat": 32.4333343505859,
+      "depth": 15.9499998092651,
+      "panama": false
+    },
     {
       "id": "us7000tuu0",
       "mag": 4.9,
@@ -509,17 +520,6 @@
       "lon": -101.896,
       "lat": 32.107,
       "depth": 8.8135,
-      "panama": false
-    },
-    {
-      "id": "us7000tunh",
-      "mag": 3.7,
-      "place": "17 km SSW of Weston, Colorado",
-      "time": 1793519718998,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tunh",
-      "lon": -104.9525,
-      "lat": 37.0038,
-      "depth": 9.248,
       "panama": false
     }
   ]
