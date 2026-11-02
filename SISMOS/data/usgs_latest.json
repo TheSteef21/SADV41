@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T14:46:15Z",
+  "generated": "2026-11-02T15:01:21Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 43,
+  "count": 44,
   "events": [
     {
       "id": "us7000tuwv",
@@ -388,6 +388,17 @@
       "lon": -150.953,
       "lat": 60.54,
       "depth": 52.2,
+      "panama": false
+    },
+    {
+      "id": "us7000tur6",
+      "mag": 4.2,
+      "place": "30 km WSW of Puerto Madero, Mexico",
+      "time": 1793562603569,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tur6",
+      "lon": -92.6768,
+      "lat": 14.5919,
+      "depth": 57.604,
       "panama": false
     },
     {
