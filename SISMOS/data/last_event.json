@@ -1,15 +1,15 @@
 {
-  "caption": "🚨 SISMO M4.7 | 193 km ENE of Nagqu, China\n\n🕒 02/11/2026 10:35 (hora de Panamá)\n📍 Lat 32.34, Lon 93.83 · Profundidad 10 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuxi\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "caption": "🚨 SISMO M5.3 | 81 km SSE of Palekastro, Greece\n\n🕒 02/11/2026 11:49 (hora de Panamá)\n📍 Lat 34.48, Lon 26.47 · Profundidad 48.5 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuxy\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
   "event": {
-    "id": "us7000tuxi",
-    "mag": 4.7,
-    "place": "193 km ENE of Nagqu, China",
-    "time": 1793633712369,
-    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuxi",
-    "lon": 93.831,
-    "lat": 32.3376,
-    "depth": 10,
+    "id": "us7000tuxy",
+    "mag": 5.3,
+    "place": "81 km SSE of Palekastro, Greece",
+    "time": 1793638157895,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuxy",
+    "lon": 26.4694,
+    "lat": 34.4807,
+    "depth": 48.525,
     "panama": false
   },
-  "generated": "2026-11-02T16:31:59Z"
+  "generated": "2026-11-02T17:17:30Z"
 }

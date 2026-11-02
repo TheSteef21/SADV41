@@ -1,10 +1,21 @@
 {
-  "generated": "2026-11-02T17:02:21Z",
+  "generated": "2026-11-02T17:17:29Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
   "count": 47,
   "events": [
+    {
+      "id": "us7000tuxy",
+      "mag": 5.3,
+      "place": "81 km SSE of Palekastro, Greece",
+      "time": 1793638157895,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuxy",
+      "lon": 26.4694,
+      "lat": 34.4807,
+      "depth": 48.525,
+      "panama": false
+    },
     {
       "id": "us7000tuxi",
       "mag": 4.7,
@@ -509,17 +520,6 @@
       "lon": 75.054,
       "lat": 37.336,
       "depth": 10,
-      "panama": false
-    },
-    {
-      "id": "us7000tuqk",
-      "mag": 5.1,
-      "place": "South Sandwich Islands region",
-      "time": 1793553116053,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuqk",
-      "lon": -27.1985,
-      "lat": -56.2566,
-      "depth": 108.234,
       "panama": false
     }
   ]
