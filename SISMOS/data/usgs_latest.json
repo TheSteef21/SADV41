@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T17:32:38Z",
+  "generated": "2026-11-02T18:02:48Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 47,
+  "count": 46,
   "events": [
     {
       "id": "us7000tuxy",
@@ -84,13 +84,13 @@
     },
     {
       "id": "ci41571168",
-      "mag": 2.84,
+      "mag": 2.89,
       "place": "3 km SW of Brawley, CA",
-      "time": 1793622716240,
+      "time": 1793622716160,
       "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ci41571168",
-      "lon": -115.5495,
-      "lat": 32.9618333333333,
-      "depth": 14.9,
+      "lon": -115.547333333333,
+      "lat": 32.959,
+      "depth": 15.81,
       "panama": false
     },
     {
@@ -508,17 +508,6 @@
       "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuqv",
       "lon": 69.5065,
       "lat": -23.9496,
-      "depth": 10,
-      "panama": false
-    },
-    {
-      "id": "us7000tuqq",
-      "mag": 4.1,
-      "place": "117 km NNE of Barishal, Pakistan",
-      "time": 1793555864661,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuqq",
-      "lon": 75.054,
-      "lat": 37.336,
       "depth": 10,
       "panama": false
     }
