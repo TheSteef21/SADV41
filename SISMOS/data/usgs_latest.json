@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T11:29:34Z",
+  "generated": "2026-11-02T11:44:41Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 47,
+  "count": 45,
   "events": [
     {
       "id": "aka2026vsfdph",
@@ -498,28 +498,6 @@
       "lon": 165.8242,
       "lat": -14.1689,
       "depth": 10,
-      "panama": false
-    },
-    {
-      "id": "us7000tupi",
-      "mag": 2.8,
-      "place": "14 km NW of Whites City, New Mexico",
-      "time": 1793533466013,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tupi",
-      "lon": -104.505,
-      "lat": 32.2509,
-      "depth": 5.415,
-      "panama": false
-    },
-    {
-      "id": "aka2026vqjriv",
-      "mag": 4.3,
-      "place": "24 km SE of Kasilof, Alaska",
-      "time": 1793532621662,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vqjriv",
-      "lon": -150.932,
-      "lat": 60.198,
-      "depth": 70.4,
       "panama": false
     }
   ]
