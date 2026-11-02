@@ -1,10 +1,21 @@
 {
-  "generated": "2026-11-02T23:04:41Z",
+  "generated": "2026-11-02T23:19:47Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
   "count": 47,
   "events": [
+    {
+      "id": "aka2026vtdcvd",
+      "mag": 2.5,
+      "place": "26 km SE of Susitna North, Alaska",
+      "time": 1793661172619,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vtdcvd",
+      "lon": -149.459,
+      "lat": 62.01,
+      "depth": 0.1,
+      "panama": false
+    },
     {
       "id": "aka2026vtbewf",
       "mag": 2.6,
@@ -509,17 +520,6 @@
       "lon": 120.4389,
       "lat": -7.3836,
       "depth": 543.9,
-      "panama": false
-    },
-    {
-      "id": "us7000tus5",
-      "mag": 4.5,
-      "place": "86 km WNW of Abra Pampa, Argentina",
-      "time": 1793575085811,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tus5",
-      "lon": -66.523,
-      "lat": -22.5661,
-      "depth": 243.598,
       "panama": false
     }
   ]
