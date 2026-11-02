@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T06:42:32Z",
+  "generated": "2026-11-02T06:57:38Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 50,
+  "count": 49,
   "events": [
     {
       "id": "us7000tuu0",
@@ -542,17 +542,6 @@
       "lon": 165.6455,
       "lat": -13.8611,
       "depth": 10,
-      "panama": false
-    },
-    {
-      "id": "uw714133271",
-      "mag": 2.84512627124786,
-      "place": "31 km W of Yachats, Oregon",
-      "time": 1793515869850,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/uw714133271",
-      "lon": -124.497169494629,
-      "lat": 44.332332611084,
-      "depth": 26.1499996185303,
       "panama": false
     }
   ]
