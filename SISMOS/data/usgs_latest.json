@@ -1,10 +1,21 @@
 {
-  "generated": "2026-11-02T08:28:20Z",
+  "generated": "2026-11-02T08:43:26Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 47,
+  "count": 48,
   "events": [
+    {
+      "id": "us7000tuuy",
+      "mag": 5.1,
+      "place": "19 km WNW of Tomohon, Indonesia",
+      "time": 1793607194014,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuuy",
+      "lon": 124.6476,
+      "lat": 1.392,
+      "depth": 196.646,
+      "panama": false
+    },
     {
       "id": "ci41571032",
       "mag": 3.49953983436486,
