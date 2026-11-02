@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T14:31:09Z",
+  "generated": "2026-11-02T14:46:15Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 44,
+  "count": 43,
   "events": [
     {
       "id": "us7000tuwv",
@@ -476,17 +476,6 @@
       "lon": -104.315,
       "lat": 31.674,
       "depth": 7.2278,
-      "panama": false
-    },
-    {
-      "id": "pr2026305000",
-      "mag": 3.46,
-      "place": "104 km NNW of San Antonio, Puerto Rico",
-      "time": 1793543604440,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/pr2026305000",
-      "lon": -67.3145,
-      "lat": 19.413,
-      "depth": 28,
       "panama": false
     }
   ]
