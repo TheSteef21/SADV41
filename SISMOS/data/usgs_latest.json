@@ -1,10 +1,21 @@
 {
-  "generated": "2026-11-02T14:16:03Z",
+  "generated": "2026-11-02T14:31:09Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 43,
+  "count": 44,
   "events": [
+    {
+      "id": "us7000tuwv",
+      "mag": 4.7,
+      "place": "south of the Fiji Islands",
+      "time": 1793628323380,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuwv",
+      "lon": 179.6708,
+      "lat": -25.6182,
+      "depth": 502.364,
+      "panama": false
+    },
     {
       "id": "se60628871",
       "mag": 2.54,

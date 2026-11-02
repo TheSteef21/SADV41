@@ -1,15 +1,15 @@
 {
-  "caption": "🚨 SISMO M2.54 | 13 km NE of Beersheba Springs, Tennessee\n\n🕒 02/11/2026 08:54 (hora de Panamá)\n📍 Lat 35.54, Lon -85.53 · Profundidad 15.8 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/se60628871\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "caption": "🚨 SISMO M4.7 | south of the Fiji Islands\n\n🕒 02/11/2026 09:05 (hora de Panamá)\n📍 Lat -25.62, Lon 179.67 · Profundidad 502.4 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuwv\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
   "event": {
-    "id": "se60628871",
-    "mag": 2.54,
-    "place": "13 km NE of Beersheba Springs, Tennessee",
-    "time": 1793627675780,
-    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/se60628871",
-    "lon": -85.5311666666667,
-    "lat": 35.5405,
-    "depth": 15.79,
+    "id": "us7000tuwv",
+    "mag": 4.7,
+    "place": "south of the Fiji Islands",
+    "time": 1793628323380,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tuwv",
+    "lon": 179.6708,
+    "lat": -25.6182,
+    "depth": 502.364,
     "panama": false
   },
-  "generated": "2026-11-02T14:16:03Z"
+  "generated": "2026-11-02T14:31:10Z"
 }
