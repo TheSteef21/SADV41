@@ -1,9 +1,9 @@
 {
-  "generated": "2026-11-02T15:31:31Z",
+  "generated": "2026-11-02T15:46:37Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 45,
+  "count": 44,
   "events": [
     {
       "id": "nc75461397",
@@ -487,17 +487,6 @@
       "lon": 123.2705,
       "lat": 23.8055,
       "depth": 18.483,
-      "panama": false
-    },
-    {
-      "id": "tx2026vnfuzk",
-      "mag": 2.7,
-      "place": "55 km S of Whites City, New Mexico",
-      "time": 1793547602290,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/tx2026vnfuzk",
-      "lon": -104.315,
-      "lat": 31.674,
-      "depth": 7.2278,
       "panama": false
     }
   ]
