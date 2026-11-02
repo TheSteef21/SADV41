@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-02T17:17:29Z",
+  "generated": "2026-11-02T17:32:38Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
@@ -172,13 +172,13 @@
     },
     {
       "id": "ci41571032",
-      "mag": 3.49953983436486,
+      "mag": 3.16,
       "place": "9 km NNE of Delta, B.C., MX",
-      "time": 1793605811070,
+      "time": 1793605810990,
       "url": "https://earthquake.usgs.gov/earthquakes/eventpage/ci41571032",
-      "lon": -115.170829772949,
-      "lat": 32.4333343505859,
-      "depth": 15.9499998092651,
+      "lon": -115.162833333333,
+      "lat": 32.4323333333333,
+      "depth": 15.59,
       "panama": false
     },
     {
