@@ -1,10 +1,21 @@
 {
-  "generated": "2026-11-03T00:20:07Z",
+  "generated": "2026-11-03T00:35:13Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
   "count": 49,
   "events": [
+    {
+      "id": "aka2026vtfqar",
+      "mag": 3.4,
+      "place": "86 km W of Akhiok, Alaska",
+      "time": 1793665677237,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vtfqar",
+      "lon": -155.591,
+      "lat": 56.872,
+      "depth": 25.3,
+      "panama": false
+    },
     {
       "id": "us7000tv1e",
       "mag": 4.1,
@@ -531,17 +542,6 @@
       "lon": 129.9514,
       "lat": -6.9205,
       "depth": 93.548,
-      "panama": false
-    },
-    {
-      "id": "us7000tusp",
-      "mag": 4.1,
-      "place": "135 km N of Ruteng, Indonesia",
-      "time": 1793579384872,
-      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tusp",
-      "lon": 120.4389,
-      "lat": -7.3836,
-      "depth": 543.9,
       "panama": false
     }
   ]

@@ -1,15 +1,15 @@
 {
-  "caption": "🚨 SISMO M4.1 | 63 km W of Flaxmere, New Zealand\n\n🕒 02/11/2026 18:35 (hora de Panamá)\n📍 Lat -39.56, Lon 176.04 · Profundidad 62.3 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us7000tv1e\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "caption": "🚨 SISMO M3.4 | 86 km W of Akhiok, Alaska\n\n🕒 02/11/2026 19:27 (hora de Panamá)\n📍 Lat 56.87, Lon -155.59 · Profundidad 25.3 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vtfqar\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
   "event": {
-    "id": "us7000tv1e",
-    "mag": 4.1,
-    "place": "63 km W of Flaxmere, New Zealand",
-    "time": 1793662513864,
-    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tv1e",
-    "lon": 176.0449,
-    "lat": -39.5581,
-    "depth": 62.335,
+    "id": "aka2026vtfqar",
+    "mag": 3.4,
+    "place": "86 km W of Akhiok, Alaska",
+    "time": 1793665677237,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vtfqar",
+    "lon": -155.591,
+    "lat": 56.872,
+    "depth": 25.3,
     "panama": false
   },
-  "generated": "2026-11-03T00:20:08Z"
+  "generated": "2026-11-03T00:35:14Z"
 }
