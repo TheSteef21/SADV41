@@ -1,15 +1,15 @@
 {
-  "caption": "🚨 SISMO M2.58 | 15 km NNE of Milford, Utah\n\n🕒 02/11/2026 18:26 (hora de Panamá)\n📍 Lat 38.51, Lon -112.91 · Profundidad 3.4 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/uu80162486\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "caption": "🚨 SISMO M4.1 | 63 km W of Flaxmere, New Zealand\n\n🕒 02/11/2026 18:35 (hora de Panamá)\n📍 Lat -39.56, Lon 176.04 · Profundidad 62.3 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/us7000tv1e\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
   "event": {
-    "id": "uu80162486",
-    "mag": 2.58,
-    "place": "15 km NNE of Milford, Utah",
-    "time": 1793661995950,
-    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/uu80162486",
-    "lon": -112.913666666667,
-    "lat": 38.514,
-    "depth": 3.37,
+    "id": "us7000tv1e",
+    "mag": 4.1,
+    "place": "63 km W of Flaxmere, New Zealand",
+    "time": 1793662513864,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tv1e",
+    "lon": 176.0449,
+    "lat": -39.5581,
+    "depth": 62.335,
     "panama": false
   },
-  "generated": "2026-11-02T23:49:56Z"
+  "generated": "2026-11-03T00:20:08Z"
 }

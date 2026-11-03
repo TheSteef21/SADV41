@@ -1,10 +1,21 @@
 {
-  "generated": "2026-11-02T23:49:56Z",
+  "generated": "2026-11-03T00:20:07Z",
   "source": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson",
   "min_mag_global": 2.5,
   "min_mag_panama": 2.5,
-  "count": 48,
+  "count": 49,
   "events": [
+    {
+      "id": "us7000tv1e",
+      "mag": 4.1,
+      "place": "63 km W of Flaxmere, New Zealand",
+      "time": 1793662513864,
+      "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us7000tv1e",
+      "lon": 176.0449,
+      "lat": -39.5581,
+      "depth": 62.335,
+      "panama": false
+    },
     {
       "id": "uu80162486",
       "mag": 2.58,
