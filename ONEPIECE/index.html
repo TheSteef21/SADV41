@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SADV41 // Nodo Supremo de Unificación</title>
+<meta name="description" content="Hub maestro SADV41 · Lapizasuli · One Piece × Nike × USArmy 🇵🇦🇮🇱🇺🇸👑">
+<meta name="theme-color" content="#05070a">
+<style>
+:root{--bg:#05070a;--bg2:#0a0e13;--bg3:#11161f;--line:#1e2a3a;--gold:#FFD700;--gold2:#ffb700;--cyan:#00E5FF;--bone:#e8e6e1;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--bg);color:var(--bone);font-family:var(--sans);-webkit-tap-highlight-color:transparent}
+body{display:flex;flex-direction:column;overflow:hidden;
+background-image:linear-gradient(rgba(255,215,0,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.035) 1px,transparent 1px);background-size:32px 32px}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+background:radial-gradient(60% 50% at 0% 0%,rgba(255,215,0,.14),transparent 70%),radial-gradient(50% 45% at 100% 100%,rgba(0,229,255,.12),transparent 70%)}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;
+background:repeating-linear-gradient(0deg,rgba(255,255,255,.02) 0 1px,transparent 1px 3px)}
+.mono{font-family:var(--mono)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+/* header */
+header{position:relative;z-index:10;display:flex;align-items:center;gap:12px;padding:10px 14px;padding-top:max(10px,env(safe-area-inset-top));
+background:rgba(5,7,10,.85);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.logo{flex:none;width:38px;height:38px;background:var(--gold);color:#000;display:grid;place-items:center;font:900 11px var(--mono);letter-spacing:-.05em;box-shadow:0 0 20px rgba(255,215,0,.3)}
+.title{min-width:0;flex:1}
+.title h1{font-size:15px;font-weight:700;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.title h1 span{opacity:.5;font-weight:300}
+.title p{font:10px var(--mono);letter-spacing:.16em;color:var(--cyan);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.flags{font-size:15px;letter-spacing:.15em;flex:none}
+.hbtn{flex:none;font:10px var(--mono);letter-spacing:.12em;border:1px solid var(--line);padding:8px 10px;transition:.15s}
+.hbtn:hover{border-color:var(--cyan);color:var(--cyan)}
+
+/* tabs */
+nav{position:relative;z-index:10;display:flex;gap:6px;padding:8px 14px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--line);background:rgba(10,14,19,.8)}
+nav::-webkit-scrollbar{display:none}
+.tab{flex:none;display:flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid var(--line);background:var(--bg2);font:11px var(--mono);letter-spacing:.1em;transition:.15s;white-space:nowrap}
+.tab i{font-style:normal;color:var(--gold);font-size:13px;transition:.15s}
+.tab b{color:rgba(232,230,225,.35);font-weight:400}
+.tab:hover{border-color:rgba(255,215,0,.5)}
+.tab.on{border-color:var(--cyan);background:rgba(0,229,255,.08);box-shadow:0 0 18px rgba(0,229,255,.12)}
+.tab.on i{color:var(--cyan)}
+.dot{width:6px;height:6px;border-radius:50%;background:#2a3445;flex:none}
+.tab.loaded .dot{background:var(--gold);box-shadow:0 0 8px var(--gold)}
+.tab.on .dot{background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+
+/* stage */
+main{position:relative;z-index:5;flex:1;min-height:0;display:flex;flex-direction:column}
+.view{display:none;flex:1;min-height:0}
+.view.on{display:flex;flex-direction:column}
+.bar{display:flex;align-items:center;gap:8px;padding:8px 14px;border-bottom:1px solid var(--line);background:var(--bg2);font:10px var(--mono);flex-wrap:wrap}
+.bar .url{flex:1;min-width:140px;color:rgba(232,230,225,.45);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar .tag{padding:3px 7px;border:1px solid rgba(0,229,255,.4);color:var(--cyan);background:rgba(0,229,255,.08);letter-spacing:.1em}
+.bar .tag.core{border-color:var(--gold);color:var(--gold);background:rgba(255,215,0,.1)}
+.bar .tag.legacy{border-color:rgba(255,183,0,.5);color:var(--gold2);background:rgba(255,183,0,.1)}
+.btn{padding:6px 10px;border:1px solid var(--line);letter-spacing:.1em;transition:.15s}
+.btn:hover{border-color:var(--cyan);color:var(--cyan)}
+.btn.gold{background:var(--bone);color:#000;font-weight:700;border-color:var(--bone)}
+.btn.gold:hover{background:var(--gold);border-color:var(--gold);color:#000}
+.frame{position:relative;flex:1;min-height:0;background:#000}
+.frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}
+.loader{position:absolute;inset:0;display:grid;place-items:center;background:var(--bg);font:11px var(--mono);letter-spacing:.25em;color:var(--gold);transition:opacity .3s;z-index:2}
+.loader.off{opacity:0;pointer-events:none}
+.loader::after{content:"_";animation:bl 1s steps(2) infinite}
+@keyframes bl{50%{opacity:0}}
+
+/* home */
+#home{overflow-y:auto;padding:22px 14px 40px}
+.wrap{max-width:1200px;margin:0 auto}
+.kick{font:10px var(--mono);letter-spacing:.3em;color:var(--gold);display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.kick::before{content:"";width:24px;height:1px;background:var(--gold)}
+h2{font-size:clamp(30px,7vw,60px);line-height:.92;letter-spacing:-.03em;font-weight:700}
+h2 .g{color:var(--gold)}h2 .c{color:var(--cyan);font-weight:300}
+.lead{font:12px/1.7 var(--mono);color:rgba(232,230,225,.7);max-width:560px;margin-top:16px}
+.lead em{color:var(--gold);font-style:normal}
+.term{margin-top:18px;padding:12px;background:var(--bg2);border:1px solid var(--line);font:11px/1.7 var(--mono);color:rgba(0,229,255,.85);white-space:pre-wrap;min-height:96px;max-width:560px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px;max-width:360px}
+.stat{padding:8px;background:var(--bg2);border:1px solid var(--line);text-align:center;font:9px var(--mono)}
+.stat b{display:block;font-size:15px;color:var(--gold);margin-bottom:2px}
+.stat:nth-child(2) b{color:var(--cyan)}.stat:nth-child(3) b{color:var(--bone)}
+.sec{display:flex;justify-content:space-between;align-items:baseline;margin:34px 0 14px;font:11px var(--mono);letter-spacing:.3em}
+.sec small{font-size:10px;color:rgba(232,230,225,.3);letter-spacing:.1em}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px}
+.card{position:relative;text-align:left;padding:18px;background:var(--bg2);border:1px solid #1a222e;transition:.25s;overflow:hidden;display:flex;flex-direction:column;gap:12px}
+.card::before,.card::after{content:"";position:absolute;width:12px;height:12px;transition:.25s}
+.card::before{top:0;left:0;border-left:1px solid rgba(255,215,0,.4);border-top:1px solid rgba(255,215,0,.4)}
+.card::after{bottom:0;right:0;border-right:1px solid rgba(255,215,0,.2);border-bottom:1px solid rgba(255,215,0,.2)}
+.card:hover{border-color:var(--cyan);box-shadow:0 0 0 1px var(--cyan),0 0 30px rgba(0,229,255,.15),0 0 60px rgba(255,215,0,.08);transform:translateY(-2px)}
+.card:hover::before,.card:hover::after{border-color:var(--cyan)}
+.card .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.card .num{font:700 28px/1 var(--mono);color:rgba(255,215,0,.3);transition:.25s}
+.card:hover .num{color:var(--gold)}
+.card h3{font-size:15px;font-weight:700;letter-spacing:-.01em;line-height:1.2;margin-top:2px}
+.card .path{font:9px var(--mono);color:rgba(0,229,255,.7);word-break:break-all;margin-top:4px}
+.card p{font:11px/1.6 var(--mono);color:rgba(232,230,225,.65);flex:1}
+.card .tag{font:8px var(--mono);padding:3px 6px;border:1px solid rgba(0,229,255,.4);color:var(--cyan);background:rgba(0,229,255,.1);letter-spacing:.1em;flex:none}
+.card .tag.core{border-color:var(--gold);color:var(--gold);background:rgba(255,215,0,.1)}
+.card .tag.legacy{border-color:rgba(255,183,0,.5);color:var(--gold2);background:rgba(255,183,0,.1)}
+.card .act{display:flex;gap:8px}
+.card .act .btn{flex:1;text-align:center;font:10px var(--mono)}
+.card.ghost{border-style:dashed;border-color:rgba(255,215,0,.2);background:var(--bg3);cursor:default}
+.card.ghost:hover{transform:none;box-shadow:none;border-color:rgba(255,215,0,.2)}
+
+/* map */
+.map{background:#080b10;border:1px solid var(--line);padding:14px}
+.map svg{width:100%;height:auto;display:block;background:var(--bg2);border:1px solid var(--line)}
+.map text{font-family:var(--mono)}
+.node{cursor:pointer}
+.node:hover circle:first-child{stroke-width:2.5}
+.pulse{animation:pu 2s ease-in-out infinite}
+@keyframes pu{50%{opacity:.35}}
+
+/* manifest */
+.cols{display:grid;gap:16px;grid-template-columns:1fr}
+@media(min-width:820px){.cols{grid-template-columns:1.2fr .8fr}}
+.manif{background:var(--gold);color:#000;padding:20px;font-family:var(--mono)}
+.manif b{display:block;font-size:11px;letter-spacing:.2em;margin-bottom:8px}
+.manif q{display:block;font-size:12px;line-height:1.55;font-weight:500;quotes:none}
+.manif small{display:block;margin-top:12px;font-size:9px;opacity:.6}
+.how{background:var(--bg2);border:1px solid rgba(255,215,0,.2);padding:20px;font:11px/1.7 var(--mono);color:rgba(232,230,225,.8)}
+.how h4{font-size:12px;letter-spacing:.25em;color:var(--gold);margin-bottom:12px}
+.how ul{list-style:none;display:grid;gap:6px}
+.how li::before{content:"› ";color:var(--cyan)}
+.how kbd{border:1px solid var(--line);padding:1px 6px;color:var(--gold);background:var(--bg)}
+footer{margin-top:34px;padding-top:18px;border-top:1px solid #1a222e;display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;font:10px/1.7 var(--mono);color:rgba(232,230,225,.4)}
+footer a:hover{color:var(--gold)}
+footer .f{color:rgba(232,230,225,.6)}
+
+.toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,30px);opacity:0;background:var(--gold);color:#000;font:700 11px var(--mono);letter-spacing:.15em;padding:10px 16px;z-index:100;transition:.25s;pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+@media(max-width:600px){.flags{display:none}.hbtn.hide-m{display:none}.title h1{font-size:13px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo mono">S41</div>
+  <div class="title">
+    <h1>SADV41 <span>//</span> STEVEN GÓMEZ SERRANO</h1>
+    <p>NODO SUPREMO DE UNIFICACIÓN // LAPIZASULI // 2026</p>
+  </div>
+  <div class="flags">🇵🇦 🇮🇱 🇺🇸 👑</div>
+  <button class="hbtn hide-m" id="fs" title="Pantalla completa (F)">⛶ FULL</button>
+</header>
+
+<nav id="tabs"></nav>
+
+<main>
+  <!-- HOME -->
+  <section class="view on" id="home">
+    <div class="wrap">
+      <div class="kick">UNIFICACIÓN DEFINITIVA</div>
+      <h2>NODO SUPREMO<br><span class="g">DE UNIFICACIÓN</span><br><span class="c">PLUSCUAMPERFECTO</span></h2>
+      <p class="lead">Poneglyph → Museo → Supremo → Nike × USArmy. Una sola página, cinco nodos vivos. Cada uno se carga en su propio panel <em>solo cuando lo abres</em>, sin tocar los originales.</p>
+      <div class="term" id="term"></div>
+      <div class="stats">
+        <div class="stat"><b>5</b>NODOS</div>
+        <div class="stat"><b>1</b>ARCHIVO</div>
+        <div class="stat"><b>0</b>DEPS</div>
+      </div>
+
+      <div class="sec"><span>GRID TÁCTICO // 5 NODOS</span><small>SADV41 PROTOCOL v4.1</small></div>
+      <div class="grid" id="grid"></div>
+
+      <div class="sec"><span>MAPA DE UNIFICACIÓN</span><small>toca un nodo para abrirlo</small></div>
+      <div class="map"><svg id="map" viewBox="0 0 1000 300" role="img" aria-label="Mapa de nodos"></svg></div>
+
+      <div class="sec"><span>PROTOCOLO</span><small>cómo usarlo</small></div>
+      <div class="cols">
+        <div class="how">
+          <h4>DESPLIEGUE // GITHUB PAGES</h4>
+          <ul>
+            <li>Guarda este archivo como <kbd>index.html</kbd> en la raíz del repo <kbd>Lapizasuli</kbd>.</li>
+            <li>Los nodos se enlazan por URL absoluta: no mueves ni modificas ningún original.</li>
+            <li>Atajos: <kbd>0</kbd> inicio · <kbd>1</kbd>–<kbd>5</kbd> nodos · <kbd>←</kbd><kbd>→</kbd> navegar · <kbd>F</kbd> pantalla completa.</li>
+            <li>Cada pestaña se recuerda en la URL (<kbd>#3</kbd>) para compartir enlace directo.</li>
+            <li>Si un nodo no carga embebido, usa <kbd>ABRIR ↗</kbd> para verlo en pestaña propia.</li>
+          </ul>
+        </div>
+        <div class="manif">
+          <b>SADV41 MANIFIESTO</b>
+          <q>"No es una página. Es un Poneglyph digital militar. Antiguo pero futurista. Como si los Gorosei usaran GitHub Pages."</q>
+          <small>— Steven Gómez Serrano // Arraiján // 2026</small>
+        </div>
+      </div>
+
+      <footer>
+        <div><span class="f">STEVEN GÓMEZ SERRANO / SADV41 / 2026</span><br>"Making Arraiján Great Again" · Universo Lapizasuli<br>🇵🇦 Panamá · 🇮🇱 Israel · 🇺🇸 USA · 👑 Soberanía</div>
+        <div><a href="https://instagram.com/stevendioroficial" target="_blank" rel="noopener">@stevendioroficial // Instagram ↗</a><br>thesteef21.github.io/Lapizasuli</div>
+      </footer>
+    </div>
+  </section>
+
+  <!-- NODE VIEWS injected here -->
+</main>
+
+<div class="toast" id="toast">COPIADO ✓</div>
+
+<script>
+(function(){
+"use strict";
+var BASE="https://thesteef21.github.io/Lapizasuli/";
+var NODES=[
+ {n:"01",id:"root",icon:"◉",label:"RAÍZ",title:"Unificación SADV41",path:"/ [ROOT]",url:BASE,status:"CORE",cls:"core",tag:"ORIGEN",
+  desc:"Punto cero. Donde todo converge. La raíz madre SADV41 que contiene la conciencia de Lapizasuli."},
+ {n:"02",id:"poneglyph",icon:"◫",label:"PONEGLYPH",title:"Nodo Poneglyph",path:"assets/OnePiece/index.html",url:BASE+"assets/OnePiece/index.html",status:"OPERATIVO",cls:"",tag:"HISTORIA ETERNA",
+  desc:"Piedra indestructible con historia. El archivo eterno que contiene el Road Poneglyph hacia Laugh Tale."},
+ {n:"03",id:"supremo",icon:"⬢",label:"SUPREMO",title:"Nodo Supremo Pluscuamperfecto",path:"assets/OnePiece/sadv41_x5f_nodo_x5f_supremo_x5f_pluscuamperfecto.html",url:BASE+"assets/OnePiece/sadv41_x5f_nodo_x5f_supremo_x5f_pluscuamperfecto.html",status:"LEGADO",cls:"legacy",tag:"CONCIENCIA MASIVA",heavy:true,
+  desc:"Conciencia colectiva. La mente suprema que observa todos los nodos. Archivo pesado (~2.7 MB): puede tardar en cargar."},
+ {n:"04",id:"museo",icon:"◬",label:"MUSEO",title:"Museo V4 Ultra",path:"NikexOnePiece/museo_x5f_v4_x5f_ultra_x5f_sadv41.html",url:BASE+"NikexOnePiece/museo_x5f_v4_x5f_ultra_x5f_sadv41.html",status:"OPERATIVO",cls:"",tag:"ARCHIVO SAGRADO",heavy:true,
+  desc:"Museo táctico de armaduras, reliquias y prototipos Nike × One Piece × USArmy. Vitrina blindada de la guerra cultural."},
+ {n:"05",id:"nike",icon:"⬣",label:"NIKE × USARMY",title:"One Piece × Nike Hub",path:"NikexOnePiece/index.html",url:BASE+"NikexOnePiece/index.html",status:"OPERATIVO",cls:"",tag:"ARMADURA MODERNA",
+  desc:"Armadura del guerrero moderno. Donde Luffy viste Jordan y la Marina se vuelve streetwear táctico."}
+];
+
+var $=function(s,r){return (r||document).querySelector(s)};
+var tabs=$("#tabs"),main=$("main"),toastEl=$("#toast");
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+
+/* tabs */
+var tb='<button class="tab on" data-i="0"><i>⌂</i>INICIO<b>// 00</b></button>';
+NODES.forEach(function(n,i){tb+='<button class="tab" data-i="'+(i+1)+'"><span class="dot"></span><i>'+n.icon+'</i>'+esc(n.label)+'<b>// '+n.n+'</b></button>'});
+tabs.innerHTML=tb;
+
+/* views */
+NODES.forEach(function(n,i){
+  var v=document.createElement("section");
+  v.className="view";v.id="v"+(i+1);
+  v.innerHTML='<div class="bar"><span class="tag '+n.cls+'">'+n.status+'</span><span class="url">'+esc(n.url)+'</span>'+
+   '<button class="btn" data-copy="'+i+'">COPIAR</button><button class="btn" data-reload="'+i+'">↻</button>'+
+   '<a class="btn gold" href="'+esc(n.url)+'" target="_blank" rel="noopener">ABRIR ↗</a></div>'+
+   '<div class="frame"><div class="loader">CARGANDO '+esc(n.label)+(n.heavy?' // ARCHIVO PESADO':'')+'</div></div>';
+  main.appendChild(v);
+});
+
+/* grid */
+var g="";
+NODES.forEach(function(n,i){
+  g+='<div class="card" tabindex="0" role="button" data-go="'+(i+1)+'"><div class="top"><div style="display:flex;gap:12px"><div class="num">'+n.n+'</div><div><h3>'+esc(n.title)+'</h3><div class="path">'+esc(n.path)+'</div></div></div><span class="tag '+n.cls+'">'+n.status+'</span></div>'+
+  '<p>'+esc(n.desc)+'</p><div class="act"><span class="btn gold" style="font-weight:700">ABRIR NODO</span><button class="btn" data-copy="'+i+'">COPIAR RUTA</button></div></div>';
+});
+g+='<div class="card ghost"><div class="tag core" style="align-self:flex-start">+ NODO FUTURO // RESERVADO</div><h3>SADV41 // EXPANSIÓN INMINENTE</h3><p>Espacio para la próxima fusión: Lapizasuli v2, drops Nike × One Piece, colaboración USArmy. Añade un objeto al arreglo NODES y aparece solo.</p></div>';
+$("#grid").innerHTML=g;
+
+/* map */
+var pts=[[120,150],[300,90],[500,150],[700,90],[880,150]],cols=["#FFD700","#e8e6e1","#FFD700","#00E5FF","#00E5FF"];
+var m='<defs><linearGradient id="lg" x1="0" x2="1"><stop offset="0" stop-color="#FFD700" stop-opacity=".8"/><stop offset="1" stop-color="#00E5FF" stop-opacity=".8"/></linearGradient></defs>'+
+ '<path d="M120,150 C280,80 320,220 500,150 C680,80 720,220 880,150" fill="none" stroke="url(#lg)" stroke-width="1.2" stroke-dasharray="6 6" opacity=".6"/>';
+NODES.forEach(function(n,i){
+  var p=pts[i],c=cols[i];
+  m+='<g class="node" data-go="'+(i+1)+'"><circle cx="'+p[0]+'" cy="'+p[1]+'" r="18" fill="#0a0e13" stroke="'+c+'" stroke-width="1.2"/><circle class="pulse" cx="'+p[0]+'" cy="'+p[1]+'" r="4" fill="'+c+'"/>'+
+  '<text x="'+p[0]+'" y="'+(p[1]+40)+'" text-anchor="middle" fill="'+c+'" font-size="10" letter-spacing="1">'+esc(n.label)+'</text>'+
+  '<text x="'+p[0]+'" y="'+(p[1]+53)+'" text-anchor="middle" fill="#e8e6e1" opacity=".4" font-size="8">'+n.n+'</text></g>';
+});
+$("#map").innerHTML=m;
+
+/* router */
+var cur=0,total=NODES.length;
+function show(i,noHash){
+  i=Math.max(0,Math.min(total,i));cur=i;
+  document.querySelectorAll(".view").forEach(function(v){v.classList.remove("on")});
+  document.querySelectorAll(".tab").forEach(function(t){t.classList.toggle("on",+t.dataset.i===i)});
+  var el=i===0?$("#home"):$("#v"+i);el.classList.add("on");
+  if(i>0)loadFrame(i);
+  var t=document.querySelector('.tab[data-i="'+i+'"]');if(t&&t.scrollIntoView)t.scrollIntoView({inline:"center",block:"nearest"});
+  if(!noHash)history.replaceState(null,"",i===0?location.pathname+location.search:"#"+i);
+  document.title=(i===0?"SADV41 // Nodo Supremo de Unificación":NODES[i-1].title+" // SADV41");
+}
+function loadFrame(i,force){
+  var v=$("#v"+i),fr=$(".frame",v),ifr=$("iframe",fr);
+  if(ifr&&!force)return;
+  if(ifr)ifr.remove();
+  var ld=$(".loader",fr);ld.classList.remove("off");
+  ifr=document.createElement("iframe");
+  ifr.title=NODES[i-1].title;ifr.loading="lazy";ifr.allow="fullscreen; autoplay; clipboard-write";
+  ifr.referrerPolicy="no-referrer-when-downgrade";
+  ifr.addEventListener("load",function(){ld.classList.add("off");document.querySelector('.tab[data-i="'+i+'"]').classList.add("loaded")});
+  ifr.src=NODES[i-1].url;fr.appendChild(ifr);
+  setTimeout(function(){ld.classList.add("off")},NODES[i-1].heavy?12000:6000);
+}
+function toast(t){toastEl.textContent=t;toastEl.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(function(){toastEl.classList.remove("on")},1600)}
+function copy(txt){
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){toast("COPIADO ✓")},fb)}else fb();
+  function fb(){var a=document.createElement("textarea");a.value=txt;a.style.cssText="position:fixed;opacity:0";document.body.appendChild(a);a.select();try{document.execCommand("copy");toast("COPIADO ✓")}catch(e){toast("NO SE PUDO COPIAR")}a.remove()}
+}
+
+document.addEventListener("click",function(e){
+  var t=e.target.closest("[data-copy]");if(t){e.stopPropagation();copy(NODES[+t.dataset.copy].url);return}
+  t=e.target.closest("[data-reload]");if(t){loadFrame(+t.dataset.reload+1,true);return}
+  t=e.target.closest("[data-go]");if(t){show(+t.dataset.go);return}
+  t=e.target.closest(".tab");if(t){show(+t.dataset.i)}
+});
+document.addEventListener("keydown",function(e){
+  if(e.target.matches&&e.target.matches("input,textarea"))return;
+  if(e.key==="Enter"&&e.target.dataset&&e.target.dataset.go){show(+e.target.dataset.go);return}
+  if(e.metaKey||e.ctrlKey||e.altKey)return;
+  if(/^[0-5]$/.test(e.key))show(+e.key);
+  else if(e.key==="ArrowRight")show((cur+1)%(total+1));
+  else if(e.key==="ArrowLeft")show((cur+total)%(total+1));
+  else if(e.key==="f"||e.key==="F")toggleFS();
+});
+function toggleFS(){
+  var d=document,de=d.documentElement;
+  if(!d.fullscreenElement&&de.requestFullscreen)de.requestFullscreen().catch(function(){});
+  else if(d.exitFullscreen)d.exitFullscreen();
+}
+$("#fs").addEventListener("click",toggleFS);
+
+/* terminal intro */
+var TXT="> INICIALIZANDO PROTOCOLO SADV41... OK\n> SINCRONIZANDO NODOS [5/5]... OPERATIVO\n> UNIFICANDO CONCIENCIA LAPIZASULI... COMPLETO\n> HUB MAESTRO ACTIVO // FLAG: 🇵🇦 🇮🇱 🇺🇸 👑";
+var term=$("#term"),k=0,chars=Array.from(TXT);
+if(matchMedia("(prefers-reduced-motion:reduce)").matches){term.textContent=TXT}
+else{var iv=setInterval(function(){term.textContent=chars.slice(0,++k).join("")+"_";if(k>=chars.length){clearInterval(iv);term.textContent=TXT+"_"}},18)}
+
+/* init from hash */
+var h=parseInt((location.hash||"").slice(1),10);
+show(isNaN(h)?0:h,true);
+window.addEventListener("hashchange",function(){var x=parseInt(location.hash.slice(1),10);if(!isNaN(x))show(x,true)});
+})();
+</script>
+</body>
+</html>
