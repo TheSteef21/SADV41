@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LET-REA · SADV41</title>
+<style>
+:root{--bg:#0b0d12;--card:#141824;--line:#252b3b;--tx:#e8ebf3;--mut:#8a93a8;--gold:#d4af37}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,sans-serif;padding:16px}
+main{max-width:720px;margin:0 auto}
+a{color:var(--gold);text-decoration:none}
+h1{font-size:1.7rem;margin:10px 0 2px;color:var(--gold);letter-spacing:.08em}
+.sub{color:var(--mut);margin:0 0 18px;font-size:.95rem}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+label{display:block;font-size:.85rem;color:var(--mut);margin:10px 0 4px}
+input[type=file],select{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);background:#0f1320;color:var(--tx);font-size:1rem}
+.row{display:flex;gap:10px}
+.row>div{flex:1}
+button{padding:12px 16px;border-radius:10px;border:0;font-size:1rem;font-weight:600;cursor:pointer;background:var(--gold);color:#111}
+button.sec{background:#222a3d;color:var(--tx);border:1px solid var(--line)}
+button:disabled{opacity:.5}
+#go{width:100%;margin-top:14px}
+#status{margin-top:10px;color:var(--mut);font-size:.9rem;min-height:1.3em}
+textarea{width:100%;min-height:280px;padding:12px;border-radius:10px;border:1px solid var(--line);background:#0f1320;color:var(--tx);font:15px/1.6 ui-monospace,monospace;resize:vertical}
+.acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.chk{display:flex;align-items:center;gap:8px;margin:0 0 10px;color:var(--tx);font-size:.95rem}
+.note{color:var(--mut);font-size:.82rem;margin-top:6px}
+</style>
+</head>
+<body>
+<main>
+  <a href="../">← SADV41</a>
+  <h1>LET-REA</h1>
+  <p class="sub">Extrae la letra de tus canciones desde audio o video. Todo se procesa en tu dispositivo.</p>
+
+  <div class="card">
+    <label for="file">Audio o video</label>
+    <input id="file" type="file" accept="audio/*,video/*">
+
+    <div class="row">
+      <div>
+        <label for="lang">Idioma</label>
+        <select id="lang">
+          <option value="spanish">Español</option>
+          <option value="english">Inglés</option>
+          <option value="portuguese">Portugués</option>
+          <option value="french">Francés</option>
+          <option value="italian">Italiano</option>
+          <option value="german">Alemán</option>
+          <option value="">Detectar solo</option>
+        </select>
+      </div>
+      <div>
+        <label for="model">Calidad</label>
+        <select id="model">
+          <option value="Xenova/whisper-tiny">Rápida (~40 MB)</option>
+          <option value="Xenova/whisper-base" selected>Equilibrada (~75 MB)</option>
+          <option value="Xenova/whisper-small">Mejor (~250 MB)</option>
+        </select>
+      </div>
+    </div>
+
+    <button id="go">Extraer letra</button>
+    <div id="status"></div>
+    <div class="note">La primera vez descarga el modelo; después queda en caché. Con música muy fuerte puede haber errores: revisa el resultado.</div>
+  </div>
+
+  <div class="card">
+    <label class="chk"><input id="ts" type="checkbox" checked> Mostrar tiempos</label>
+    <textarea id="out" placeholder="Aquí aparecerá la letra..."></textarea>
+    <div class="acts">
+      <button class="sec" id="copy">Copiar</button>
+      <button class="sec" id="dtxt">Descargar .txt</button>
+      <button class="sec" id="dlrc">Descargar .lrc</button>
+    </div>
+  </div>
+</main>
+
+<script type="module">
+import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
+env.allowLocalModels = false;
+
+const $ = id => document.getElementById(id);
+let transcriber = null, loadedModel = null, chunks = [];
+
+const setStatus = t => { $('status').textContent = t; };
+const pad = n => String(n).padStart(2, '0');
+
+function tiempo(t, lrc) {
+  const m = Math.floor(t / 60), s = t - m * 60;
+  return lrc ? `[${pad(m)}:${s.toFixed(2).padStart(5, '0')}]` : `[${pad(m)}:${pad(Math.floor(s))}]`;
+}
+
+function render() {
+  const con = $('ts').checked;
+  $('out').value = chunks.map(c => (con ? tiempo(c.t) + ' ' : '') + c.text).join('\n');
+}
+
+async function leerAudio(file) {
+  const buf = await file.arrayBuffer();
+  const ctx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
+  const dec = await ctx.decodeAudioData(buf);
+  ctx.close();
+  const n = dec.numberOfChannels, len = dec.length, out = new Float32Array(len);
+  for (let c = 0; c < n; c++) {
+    const d = dec.getChannelData(c);
+    for (let i = 0; i < len; i++) out[i] += d[i] / n;
+  }
+  return out;
+}
+
+function descargar(nombre, texto) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([texto], { type: 'text/plain;charset=utf-8' }));
+  a.download = nombre;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+
+$('go').onclick = async () => {
+  const file = $('file').files[0];
+  if (!file) { setStatus('Elige un archivo primero.'); return; }
+  $('go').disabled = true;
+  try {
+    setStatus('Leyendo audio...');
+    const audio = await leerAudio(file);
+
+    const model = $('model').value;
+    if (!transcriber || loadedModel !== model) {
+      setStatus('Descargando modelo...');
+      transcriber = await pipeline('automatic-speech-recognition', model, {
+        progress_callback: p => {
+          if (p.status === 'progress') setStatus(`Descargando modelo... ${Math.round(p.progress)}%`);
+        }
+      });
+      loadedModel = model;
+    }
+
+    setStatus('Transcribiendo... puede tardar unos minutos.');
+    const opts = { chunk_length_s: 30, stride_length_s: 5, return_timestamps: true, task: 'transcribe' };
+    const lang = $('lang').value;
+    if (lang) opts.language = lang;
+
+    const r = await transcriber(audio, opts);
+    chunks = (r.chunks || [])
+      .map(c => ({ t: (c.timestamp && c.timestamp[0]) || 0, text: c.text.trim() }))
+      .filter(c => c.text);
+    if (!chunks.length && r.text) chunks = [{ t: 0, text: r.text.trim() }];
+    render();
+    setStatus(chunks.length ? 'Listo.' : 'No se detectó voz.');
+  } catch (e) {
+    console.error(e);
+    setStatus('Error: ' + (e.message || e));
+  }
+  $('go').disabled = false;
+};
+
+$('ts').onchange = render;
+$('copy').onclick = async () => {
+  try { await navigator.clipboard.writeText($('out').value); setStatus('Copiado.'); }
+  catch { $('out').select(); setStatus('Selecciona y copia manualmente.'); }
+};
+$('dtxt').onclick = () => descargar('letra.txt', $('out').value);
+$('dlrc').onclick = () => descargar('letra.lrc', chunks.map(c => tiempo(c.t, true) + c.text).join('\n'));
+</script>
+</body>
+</html>
