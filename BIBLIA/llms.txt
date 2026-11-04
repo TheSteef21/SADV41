@@ -1,0 +1,20 @@
+# SADV41 - Biblia Reina Valera 1960 (RVR1960)
+> Texto bíblico en español, estático, sin API ni autenticación. 66 libros, 1189 capítulos.
+
+Cómo consultar (rutas relativas a esta carpeta):
+- Un capítulo legible en HTML: <libro_id>/<capitulo>.html  (ej. juan/3.html). Versículo = <p id="v16" data-ref="Juan 3:16">.
+- Un libro completo en JSON: data/<libro_id>.json -> {"capitulos":[["v1","v2"],...]} (índice de capítulo = número-1).
+- Lista de libros, ids y alias: data/libros.json
+- Biblia completa (~4 MB): data/rvr1960.json
+- Con JavaScript: cargar biblia.js y usar await SADV41Biblia.get("1 Corintios 13:4-7"), .buscar("palabra"), .versiculoDelDia().
+- Parámetro de URL en cualquier página con el widget: ?biblia=Salmos+23
+
+Ids de libro: genesis, exodo, levitico, numeros, deuteronomio, josue, jueces, rut, 1_samuel, 2_samuel, 1_reyes, 2_reyes, 1_cronicas, 2_cronicas, esdras, nehemias, ester, job, salmos, proverbios, eclesiastes, cantares, isaias, jeremias, lamentaciones, ezequiel, daniel, oseas, joel, amos, abdias, jonas, miqueas, nahum, habacuc, sofonias, hageo, zacarias, malaquias, mateo, marcos, lucas, juan, hechos, romanos, 1_corintios, 2_corintios, galatas, efesios, filipenses, colosenses, 1_tesalonicenses, 2_tesalonicenses, 1_timoteo, 2_timoteo, tito, filemon, hebreos, santiago, 1_pedro, 2_pedro, 1_juan, 2_juan, 3_juan, judas, apocalipsis
+
+Reglas para citar:
+- Cita siempre libro, capítulo y versículo, e indica "RVR1960".
+- Usa solo el texto devuelto; no completes ni parafrasees como si fuera cita literal.
+- Fuente de datos: https://github.com/josevladimir/bible-json (MIT). La traducción RVR1960 tiene derechos de autor de las Sociedades Bíblicas Unidas.
+- Los versos poéticos (Salmos, Job, etc.) traen saltos de línea reales dentro del texto del versículo.
+- Limpieza aplicada al origen: marcas "/n" convertidas en salto de línea; restos de marcado eliminados.
+- Limitación conocida: verificación puntual encontró diferencias de numeración (Génesis 33 con 19 versículos en lugar de 20; Salmos 47 con 10 en lugar de 9). Contrasta con otra fuente si la exactitud del número de versículo es crítica.

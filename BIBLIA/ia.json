@@ -1,0 +1,18 @@
+{
+  "nombre": "SADV41 Biblia RVR1960",
+  "version": "RVR1960",
+  "libros": 66,
+  "capitulos": 1189,
+  "versiculos": 31103,
+  "rutas": {
+    "capitulo_html": "{libro_id}/{capitulo}.html",
+    "libro_json": "data/{libro_id}.json",
+    "indice": "data/libros.json",
+    "completa": "data/rvr1960.json",
+    "guia": "llms.txt",
+    "api_js": "biblia.js"
+  },
+  "fuente": "https://github.com/josevladimir/bible-json",
+  "licencia_codigo_datos": "MIT",
+  "aviso": "RVR1960 protegida por derechos de autor (Sociedades Biblicas Unidas)"
+}
