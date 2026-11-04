@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - 'BIBLIA/**'
+      - 'generar_html_1909.cjs'
       - 'generar_html_1909.js'
       - '.github/workflows/deploy-biblia.yml'
   workflow_dispatch:
@@ -39,12 +40,14 @@ jobs:
         env:
           REPO: ${{ github.workspace }}
         run: |
-          if [ -f "generar_html_1909.js" ]; then
-            node generar_html_1909.js
-          elif [ -f "BIBLIA/generar_html_1909.js" ]; then
-            node BIBLIA/generar_html_1909.js
+          if [ -f "generar_html_1909.cjs" ]; then
+            node generar_html_1909.cjs BIBLIA/data/rv1909.json
+          elif [ -f "generar_html_1909.js" ]; then
+            node generar_html_1909.js BIBLIA/data/rv1909.json
+          elif [ -f "BIBLIA/generar_html_1909.cjs" ]; then
+            node BIBLIA/generar_html_1909.cjs BIBLIA/data/rv1909.json
           else
-            echo "❌ No se encontró el script generar_html_1909.js"
+            echo "❌ No se encontró el script de generación"
             exit 1
           fi
 
