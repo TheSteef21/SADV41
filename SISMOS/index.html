@@ -48,7 +48,6 @@
       attribution: '&copy; OpenStreetMap'
     }).addTo(map);
 
-    // Cargar Trazo de la Falla Pedro Miguel
     fetch('pedro-miguel-falla.geojson')
       .then(r => r.json())
       .then(g => {
@@ -60,67 +59,83 @@
             }
           }
         }).addTo(map);
-      }).catch(e => console.log('Falla GeoJSON no hallado o en carga local'));
+      }).catch(e => {});
 
     const getColor = m => m >= 6.0 ? '#ef4444' : m >= 5.0 ? '#f97316' : m >= 4.0 ? '#eab308' : '#06b6d4';
     const fmtFecha = t => new Date(t).toLocaleString('es-PA', { timeZone: 'America/Panama' });
 
-    async function cargarSismosNacionales() {
-      const statusEl = document.getElementById('status');
-      const ini = new Date(Date.now() - 30 * 86400000).toISOString(); // Últimos 30 días (Réplicas 7.7)
-      
-      const urlFDSNWS = `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=${ini}&minmagnitude=2.5&minlatitude=5.0&maxlatitude=11.0&minlongitude=-84.5&maxlongitude=-76.0&orderby=time&limit=2000`;
-      const urlFeedCDN = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson';
-
-      let sismos = [];
-
-      try {
-        const res = await fetch(urlFDSNWS);
-        if (!res.ok) throw new Error('FDSNWS Status ' + res.status);
-        const data = await res.json();
-        sismos = data.features || [];
-      } catch (errPrimary) {
-        console.warn('API FDSNWS falló, activando respaldo CDN...', errPrimary);
+    async function fetchConFallback(urls) {
+      for (const url of urls) {
         try {
-          const res2 = await fetch(urlFeedCDN);
-          if (!res2.ok) throw new Error('CDN Status ' + res2.status);
-          const data2 = await res2.json();
-          sismos = (data2.features || []).filter(f => {
-            const [lon, lat] = f.geometry.coordinates;
-            return lat >= 5.0 && lat <= 11.0 && lon >= -84.5 && lon <= -76.0 && f.properties.mag >= 2.5;
-          });
-        } catch (errSecondary) {
-          statusEl.style.background = '#7f1d1d';
-          statusEl.style.color = '#fca5a5';
-          statusEl.textContent = '❌ Error de red al conectar con USGS';
-          return;
+          const res = await fetch(url);
+          if (res.ok) {
+            const data = await res.json();
+            let feat = null;
+            if (data.features) feat = data.features;
+            else if (data.contents) {
+              feat = typeof data.contents === 'string' ? JSON.parse(data.contents).features : data.contents.features;
+            }
+            if (feat && feat.length > 0) return feat;
+          }
+        } catch (e) {
+          console.warn('Falló intento en:', url);
         }
       }
+      throw new Error('Todas las rutas de conexión fallaron');
+    }
 
-      statusEl.style.background = '#065f46';
-      statusEl.style.color = '#6ee7b7';
-      statusEl.textContent = `● LIVE: ${sismos.length} sismos en Panamá (30d)`;
+    async function cargarSismosNacionales() {
+      const statusEl = document.getElementById('status');
+      const ini = new Date(Date.now() - 30 * 86400000).toISOString();
+      const rawUsgs = `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=${ini}&minmagnitude=2.5&minlatitude=5.0&maxlatitude=11.0&minlongitude=-84.5&maxlongitude=-76.0&orderby=time&limit=2000`;
 
-      sismos.forEach(f => {
-        const [lon, lat, depth] = f.geometry.coordinates;
-        const p = f.properties;
-        const radius = Math.max(4, p.mag * 3.5);
+      const fuentes = [
+        rawUsgs,
+        'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson',
+        'https://api.allorigins.win/raw?url=' + encodeURIComponent(rawUsgs),
+        'https://corsproxy.io/?' + encodeURIComponent(rawUsgs),
+        '../../sismos.json',
+        '../sismos.json',
+        './sismos.json'
+      ];
 
-        L.circleMarker([lat, lon], {
-          radius: radius,
-          color: getColor(p.mag),
-          fillColor: getColor(p.mag),
-          fillOpacity: 0.5,
-          weight: 1.5
-        }).addTo(map).bindPopup(`
-          <div style="font-family:sans-serif; font-size:12px; color:#1e293b;">
-            <b style="font-size:14px; color:${getColor(p.mag)}">M${p.mag.toFixed(1)}</b> - ${p.place || 'Panamá'}<br>
-            <b>Hora:</b> ${fmtFecha(p.time)}<br>
-            <b>Profundidad:</b> ${Math.round(depth)} km<br>
-            <a href="${p.url}" target="_blank" rel="noopener">Ver reporte USGS ↗</a>
-          </div>
-        `);
-      });
+      try {
+        const rawFeatures = await fetchConFallback(fuentes);
+        const sismos = rawFeatures.filter(f => {
+          if (!f.geometry || !f.geometry.coordinates) return false;
+          const [lon, lat] = f.geometry.coordinates;
+          return lat >= 5.0 && lat <= 11.0 && lon >= -84.5 && lon <= -76.0 && (f.properties.mag || 0) >= 2.5;
+        });
+
+        statusEl.style.background = '#065f46';
+        statusEl.style.color = '#6ee7b7';
+        statusEl.textContent = `● LIVE: ${sismos.length} sismos en Panamá (30d)`;
+
+        sismos.forEach(f => {
+          const [lon, lat, depth] = f.geometry.coordinates;
+          const p = f.properties;
+          const radius = Math.max(4, p.mag * 3.5);
+
+          L.circleMarker([lat, lon], {
+            radius: radius,
+            color: getColor(p.mag),
+            fillColor: getColor(p.mag),
+            fillOpacity: 0.5,
+            weight: 1.5
+          }).addTo(map).bindPopup(`
+            <div style="font-family:sans-serif; font-size:12px; color:#1e293b;">
+              <b style="font-size:14px; color:${getColor(p.mag)}">M${p.mag.toFixed(1)}</b> - ${p.place || 'Panamá'}<br>
+              <b>Hora:</b> ${fmtFecha(p.time)}<br>
+              <b>Profundidad:</b> ${Math.round(depth)} km<br>
+              <a href="${p.url}" target="_blank" rel="noopener">Ver reporte USGS ↗</a>
+            </div>
+          `);
+        });
+      } catch (err) {
+        statusEl.style.background = '#7f1d1d';
+        statusEl.style.color = '#fca5a5';
+        statusEl.textContent = '❌ Error de red al conectar con USGS';
+      }
     }
 
     cargarSismosNacionales();
