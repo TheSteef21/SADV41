@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """SADV41 Sismos: detecta sismos de Panamá (USGS) y publica en Instagram."""
 import argparse
+import hashlib
 import io
 import json
 import math
 import os
 import re
 import sys
+import time
 from datetime import datetime, timedelta, timezone
 import requests
 from PIL import Image, ImageDraw, ImageFont
@@ -14,6 +16,8 @@ from PIL import Image, ImageDraw, ImageFont
 USGS = "https://earthquake.usgs.gov/fdsnws/event/1/query"
 STATE = "last_event.json"
 IMG = "latest.jpg"
+PAGES_IMG = os.getenv("IMAGE_PUBLIC_URL", "https://thesteef21.github.io/SADV41/latest.jpg")
+GRAPH = "https://graph.facebook.com/v21.0"
 PTY = timezone(timedelta(hours=-5))
 
 def traducir_lugar(place_en):
@@ -28,32 +32,8 @@ def traducir_lugar(place_en):
     return p
 
 def fetch_latest(min_mag):
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36",
-        "Accept": "application/json, text/plain, */*"
-    }
-    
-    # 1. Feed GeoJSON estático (Servido vía CDN, 100% inmune al bloqueo 403)
-    for feed_name in ["2.5_day.geojson", "all_day.geojson"]:
-        try:
-            feed_url = f"https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/{feed_name}"
-            r = requests.get(feed_url, headers=headers, timeout=15)
-            if r.status_code == 200:
-                feats = r.json().get("features", [])
-                panama_feats = []
-                for f in feats:
-                    coords = f["geometry"]["coordinates"]
-                    lon, lat = coords[0], coords[1]
-                    mag = f["properties"]["mag"] or 0
-                    if 5.5 <= lat <= 10.5 and -84.0 <= lon <= -77.0 and mag >= min_mag:
-                        panama_feats.append(f)
-                if panama_feats:
-                    return panama_feats[0]
-        except Exception:
-            pass
-
-    # 2. Fallback a la API FDSNWS con cabeceras de navegador
     start = (datetime.now(timezone.utc) - timedelta(hours=24)).strftime("%Y-%m-%dT%H:%M:%S")
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) SADV41-SismosWatch/1.0"}
     r = requests.get(USGS, params={
         "format": "geojson",
         "orderby": "time",
@@ -86,9 +66,7 @@ def make_image(ev, path):
     pixel_y = int((ytile - cy) * 256)
 
     map_img = Image.new("RGBA", (5 * 256, 5 * 256), "#0a0f14")
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
-    }
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) SADV41-SismosWatch/1.0"}
 
     for i in range(-2, 3):
         for j in range(-2, 3):
