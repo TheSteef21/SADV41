@@ -17,7 +17,7 @@ if ! command -v jq &> /dev/null; then
     exit 1
 fi
 
-curl -s "$USGS_URL" | jq -r --argjson min "$MIN_MAG" --argjson max "$MAX_MAG" '
+curl -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" -H "Accept: application/json" -s "$USGS_URL" | jq -r --argjson min "$MIN_MAG" --argjson max "$MAX_MAG" '
   .features[] 
   | select(
       .properties.mag != null and 

@@ -26,7 +26,7 @@
 #   BBOX          latmin,latmax,lonmin,lonmax    (por defecto 5,11,-86,-76: Panamá y alrededores)
 #   BOT_DIR       carpeta del bot de Instagram   (por defecto ~/sadv41)
 #
-# Requiere: pkg install curl jq git
+# Requiere: pkg install curl -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" -H "Accept: application/json" jq git
 
 set -u
 
@@ -88,12 +88,12 @@ need() {
 
 # ---------- USGS ----------
 usgs() {
-  need curl jq
+  need curl -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" -H "Accept: application/json" jq
   mkdir -p "$DATA_DIR"
   local tmp="$TMP_DIR/feed.json" ev="$TMP_DIR/ev.json"
   rm -f "$ev.new"
 
-  if ! curl -fsS --max-time 30 --retry 2 "$USGS_URL" -o "$tmp"; then
+  if ! curl -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" -H "Accept: application/json" -fsS --max-time 30 --retry 2 "$USGS_URL" -o "$tmp"; then
     log "✗ USGS: no se pudo descargar el feed (no se modificó nada)"; return 1
   fi
   if ! jq -e '.features | type == "array"' "$tmp" >/dev/null 2>&1; then
@@ -210,7 +210,7 @@ publicar() {
 aseo() {
   need curl
   local url="$PAGES_BASE/SATV41/COM/Aseo/" tmp="$TMP_DIR/aseo.html" code ok=1
-  code="$(curl -s -o "$tmp" -w '%{http_code}' --max-time 20 "$url" || true)"
+  code="$(curl -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" -H "Accept: application/json" -s -o "$tmp" -w '%{http_code}' --max-time 20 "$url" || true)"
   if [ "$code" != "200" ]; then
     log "✗ Aseo: la página respondió HTTP $code ($url)"; ok=0
   else

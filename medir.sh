@@ -17,7 +17,7 @@ LAT_MAX=11.0
 LON_MIN=-84.5
 LON_MAX=-75.5
 
-RESPONSE=$(curl -s --connect-timeout 10 "$USGS_URL")
+RESPONSE=$(curl -H "User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36" -H "Accept: application/json" -s --connect-timeout 10 "$USGS_URL")
 
 if [ -z "$RESPONSE" ]; then
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] ERR: No se obtuvo respuesta de USGS" >> "$LOG_FILE"
