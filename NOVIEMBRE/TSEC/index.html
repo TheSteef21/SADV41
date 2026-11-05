@@ -1,27 +1,20 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TSEC · Falla Pedro Miguel + Sismos Panamá M≥2.5 · SADV41</title>
-<link id="lcss" rel="stylesheet" href="lib/leaflet.css" onerror="this.onerror=null;this.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'">
-<style>
-  html,body{margin:0;height:100%;background:#000;color:#e2e8f0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-  #bar{position:fixed;top:0;left:0;right:0;z-index:1000;background:#0b0f19ee;border-bottom:1px solid #1e293b;padding:8px 10px;font-size:13px}
-  #bar b{color:#60a5fa}
-  #bar select,#bar button{background:#1e293b;color:#fff;border:1px solid #334155;border-radius:6px;padding:4px 6px;font-size:12px;margin-right:4px}
-  #bar button.btn-notify{background:#f59e0b;color:#000;font-weight:700;border:none;cursor:pointer}
-  #bar a{color:#00e5ff;text-decoration:none;font-size:12px;margin-left:8px}
-  #estado{display:block;margin-top:4px;opacity:.8;font-size:11px}
-  #map{position:absolute;top:75px;left:0;right:0;bottom:68px;background:#000}
-  .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.9)}
-  .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#0b0f19;color:#e2e8f0}
-  #widget-safe{position:fixed;top:85px;right:10px;z-index:1000;background:#0f172aef;border:1px solid #f59e0b;border-radius:10px;padding:8px 12px;box-shadow:0 4px 12px rgba(0,0,0,0.5);font-size:12px}
-  #widget-safe a{color:#fbbf24;font-weight:bold;text-decoration:none}
-  #nota{position:fixed;left:6px;right:6px;bottom:50px;z-index:1000;background:#0b0f19cc;border:1px solid #1e293b;border-radius:6px;padding:4px 8px;font-size:9.5px;opacity:.75}
-  #biblia-bar{position:fixed;left:6px;right:6px;bottom:6px;z-index:1000;background:#0b0f19dd;border:1px solid #334155;border-radius:8px;padding:6px 10px;font-size:11px;color:#cbd5e1;max-height:38px;overflow-y:auto}
-  #biblia-bar b{color:#f59e0b}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SADV41 · Monitoreo Sísmico TSEC & Falla Pedro Miguel</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    html, body { margin:0; padding:0; height:100%; width:100%; background:#0b0f19; color:#f1f5f9; font-family:system-ui,-apple-system,sans-serif; overflow:hidden; }
+    #header { position:absolute; top:0; left:0; right:0; height:48px; background:#0f172aed; border-bottom:1px solid #1e293b; z-index:1000; display:flex; align-items:center; justify-content:space-between; padding:0 12px; font-size:12px; backdrop-filter:blur(4px); }
+    #header .title { font-weight:700; color:#00e5ff; display:flex; align-items:center; gap:6px; }
+    #status { font-size:11px; padding:3px 8px; border-radius:12px; background:#1e293b; color:#94a3b8; border:1px solid #334155; }
+    #map { position:absolute; top:48px; bottom:30px; left:0; right:0; }
+    #footer { position:absolute; bottom:0; left:0; right:0; height:30px; background:#0b0f19; border-top:1px solid #1e293b; z-index:1000; display:flex; align-items:center; justify-content:space-between; padding:0 12px; font-size:11px; color:#64748b; }
+    #widget-safe { position:fixed; top:60px; right:12px; z-index:1001; background:#0a0a0acc; border:1px solid #00e5ff; border-radius:14px; padding:6px 12px; font-size:11px; color:#00e5ff; text-align:center; text-decoration:none; box-shadow:0 4px 12px #0008; }
+    .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.85) contrast(.9); }
+  </style>
 </head>
 <body>
 <!-- SALMO46-INJECT -->
@@ -30,104 +23,107 @@
  border:1px solid #00e5ff;border-radius:20px;padding:4px 10px;font:600 11px/1.3 system-ui,sans-serif;
  text-decoration:none;letter-spacing:.04em">📖 Salmos 46 · Dios es nuestro amparo</a>
 <!-- /SALMO46-INJECT -->
-<div id="bar">
-  <b>🎚 TSEC</b> · Falla Pedro Miguel + Panamá M≥2.5 <a href="../../SISMOS/">← SISMOS nacional</a> <a href="../">← NOV</a><br>
-  Mag: <select id="mag"><option selected>2.5</option><option>3.0</option><option>3.7</option><option>4.0</option><option>4.5</option></select>
-  Período: <select id="dias"><option value="1" selected>Hoy / 24h</option><option value="7">7 días</option><option value="30">30 días</option></select>
-  <button id="act">Actualizar</button>
-  <button id="btnNotif" class="btn-notify">🔔 Alertas M≥2.5</button>
-  <span id="estado">Cargando…</span>
-</div>
-<div id="widget-safe">🛡️ <b>¡Mantente a salvo!</b><br>Red oficial: <a href="https://www.instagram.com/sismosyterremotos/" target="_blank">@Sismosyterremotos</a><br><a href="https://t.me/Sismosyterremotos" target="_blank" style="color:#38bdf8;font-size:11px;">Telegram Alertas</a></div>
-<div id="map"></div>
-<div id="nota">Trazo falla <b>aprox. no oficial</b> · Distancias calculadas desde Pedro Miguel · Sismos en todo Panamá (7°-10.5°N, -83.5° a -77°W) desde hoy · Datos: USGS · Oficial: IG-UPA / SINAPROC</div>
-<div id="biblia-bar">📖 <b id="v-ref">Cargando versículo...</b>: <span id="v-txt">...</span></div>
-<script>
-(function(){
-  var FAULT_URL='pedro-miguel-falla.geojson';
-  var estado=document.getElementById('estado');
-  var lastQuakes=new Set();
-  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-  function loadScript(src,ok,fail){var s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=fail;document.head.appendChild(s);}
-  function distKm(lat,lon,line){
-    var k=Math.cos(lat*Math.PI/180),best=Infinity;
-    function P(c){return [(c[0]-lon)*111.32*k,(c[1]-lat)*110.57];}
-    for(var i=0;i<line.length-1;i++){
-      var a=P(line[i]),b=P(line[i+1]),dx=b[0]-a[0],dy=b[1]-a[1],L=dx*dx+dy*dy;
-      var t=L?Math.max(0,Math.min(1,-(a[0]*dx+a[1]*dy)/L)):0;
-      var x=a[0]+t*dx,y=a[1]+t*dy,d=Math.sqrt(x*x+y*y);
-      if(d<best)best=d;
-    }return best;
-  }
-  function color(m){return m>=5?'#ef4444':m>=4?'#fb923c':m>=3?'#facc15':'#38bdf8';}
-  function hace(ms){var m=Math.round((Date.now()-ms)/60000);if(m<60)return 'hace '+m+' min';var h=Math.round(m/60);if(h<48)return 'hace '+h+' h';return 'hace '+Math.round(h/24)+' d';}
-  if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
-  document.getElementById('btnNotif').onclick=function(){
-    if(!('Notification' in window)){alert('No soporta notificaciones');return;}
-    Notification.requestPermission().then(p=>{
-      if(p==='granted'){alert('✅ Alertas TSEC activadas M≥2.5');new Notification('🛡️ SADV41 TSEC Activo',{body:'Alertas de sismos Panamá activas desde Falla Pedro Miguel'});}
-      else alert('Permiso denegado');
-    });
-  };
-  function notificarSismo(m,lugar){if(window.Notification&&Notification.permission==='granted'){new Notification('🚨 TSEC M'+m+' - '+lugar,{body:'≈ Dist. Falla Pedro Miguel calculada · @Sismosyterremotos',icon:'https://leafletjs.com/docs/images/logo.png'});}}
-  function cargarBiblia(){
-    var urls=['../../BIBLIA/rv1909.json','https://thesteef21.github.io/SADV41/BIBLIA/rv1909.json','../BIBLIA/rv1909.json','../../BIBLIA/biblia.json'];
-    function tryUrl(i){
-      if(i>=urls.length){document.getElementById('v-ref').textContent='Salmos 46:1';document.getElementById('v-txt').textContent='Dios es nuestro amparo y fortaleza, nuestro pronto auxilio en las tribulaciones.';return;}
-      fetch(urls[i]).then(r=>{if(!r.ok)throw 0;return r.json();}).then(data=>{
-        var libros=Object.keys(data);var lib=libros[Math.floor(Math.random()*libros.length)];
-        var caps=Object.keys(data[lib]);var cap=caps[Math.floor(Math.random()*caps.length)];
-        var vers=Object.keys(data[lib][cap]);var ver=vers[Math.floor(Math.random()*vers.length)];
-        document.getElementById('v-ref').textContent=lib+' '+cap+':'+ver;
-        document.getElementById('v-txt').textContent=data[lib][cap][ver];
-      }).catch(()=>tryUrl(i+1));
-    }tryUrl(0);
-  }
-  function init(){
-    cargarBiblia();
-    var map=L.map('map').setView([8.95,-79.6],9);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OSM'}).addTo(map);
-    var quakes=L.layerGroup().addTo(map),line=null;
-    fetch(FAULT_URL).then(r=>r.json()).then(g=>{
-      L.geoJSON(g,{
-        style:f=>f.geometry.type==='LineString'?{color:'#ef4444',weight:3.5,dashArray:'8 6'}:{},
-        pointToLayer:(f,ll)=>L.circleMarker(ll,{radius:4,color:'#f59e0b',weight:1,fillOpacity:.9}),
-        onEachFeature:(f,layer)=>{
-          var p=f.properties||{},h='<b>'+esc(p.nombre)+'</b>';if(p.tipo)h+='<br>'+esc(p.tipo);if(p.precision)h+='<br><i>'+esc(p.precision)+'</i>';
-          layer.bindPopup(h);if(f.geometry.type==='LineString')line=f.geometry.coordinates;
+
+  <div id="header">
+    <div class="title">🛡️ SADV41 TSEC · Red Sísmica Nacional</div>
+    <div id="status">Cargando sismos del USGS...</div>
+  </div>
+
+  <a id="widget-safe" href="https://t.me/Sismosyterremotos" target="_blank" rel="noopener">
+    🛟 ¡Mantente a salvo!<br><b>@Sismosyterremotos</b>
+  </a>
+
+  <div id="map"></div>
+
+  <div id="footer">
+    <span>Nacional: 5.0°N–11.0°N / -84.5°W–-76.0°W</span>
+    <span>Fuente: USGS FDSNWS / IGC-UP</span>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([8.0, -80.5], 7);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; OpenStreetMap'
+    }).addTo(map);
+
+    // Cargar Trazo de la Falla Pedro Miguel
+    fetch('pedro-miguel-falla.geojson')
+      .then(r => r.json())
+      .then(g => {
+        L.geoJSON(g, {
+          style: { color: '#ef4444', weight: 3, dashArray: '6,6' },
+          onEachFeature: (f, l) => {
+            if (f.properties && f.properties.nombre) {
+              l.bindPopup('<b>' + f.properties.nombre + '</b><br>' + (f.properties.tipo || 'Falla tectónica'));
+            }
+          }
+        }).addTo(map);
+      }).catch(e => console.log('Falla GeoJSON no hallado o en carga local'));
+
+    const getColor = m => m >= 6.0 ? '#ef4444' : m >= 5.0 ? '#f97316' : m >= 4.0 ? '#eab308' : '#06b6d4';
+    const fmtFecha = t => new Date(t).toLocaleString('es-PA', { timeZone: 'America/Panama' });
+
+    async function cargarSismosNacionales() {
+      const statusEl = document.getElementById('status');
+      const ini = new Date(Date.now() - 30 * 86400000).toISOString(); // Últimos 30 días (Réplicas 7.7)
+      
+      const urlFDSNWS = `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=${ini}&minmagnitude=2.5&minlatitude=5.0&maxlatitude=11.0&minlongitude=-84.5&maxlongitude=-76.0&orderby=time&limit=2000`;
+      const urlFeedCDN = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_month.geojson';
+
+      let sismos = [];
+
+      try {
+        const res = await fetch(urlFDSNWS);
+        if (!res.ok) throw new Error('FDSNWS Status ' + res.status);
+        const data = await res.json();
+        sismos = data.features || [];
+      } catch (errPrimary) {
+        console.warn('API FDSNWS falló, activando respaldo CDN...', errPrimary);
+        try {
+          const res2 = await fetch(urlFeedCDN);
+          if (!res2.ok) throw new Error('CDN Status ' + res2.status);
+          const data2 = await res2.json();
+          sismos = (data2.features || []).filter(f => {
+            const [lon, lat] = f.geometry.coordinates;
+            return lat >= 5.0 && lat <= 11.0 && lon >= -84.5 && lon <= -76.0 && f.properties.mag >= 2.5;
+          });
+        } catch (errSecondary) {
+          statusEl.style.background = '#7f1d1d';
+          statusEl.style.color = '#fca5a5';
+          statusEl.textContent = '❌ Error de red al conectar con USGS';
+          return;
         }
-      }).addTo(map);
-      cargar();
-    }).catch(()=>cargar());
-    function cargar(){
-      var mag=document.getElementById('mag').value,dias=+document.getElementById('dias').value;
-      var ini=new Date(Date.now()-dias*864e5).toISOString().slice(0,19);
-      // Todo Panamá: 7 a 10.5N, -83.5 a -77W - desde hoy
-      var url='https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&limit=600&minlatitude=7&maxlatitude=10.5&minlongitude=-83.5&maxlongitude=-77&minmagnitude='+encodeURIComponent(mag)+'&starttime='+ini;
-      estado.textContent='Consultando USGS Panamá (M≥'+mag+') desde hoy…';
-      fetch(url).then(r=>r.json()).then(d=>{
-        quakes.clearLayers();var n=0,cerca=0;
-        (d.features||[]).forEach(f=>{
-          var c=f.geometry.coordinates,p=f.properties,m=p.mag;
-          var dk=line?distKm(c[1],c[0],line):null;
-          n++;if(dk!==null&&dk<=15)cerca++;
-          if(!lastQuakes.has(f.id)&&lastQuakes.size>0)notificarSismo(m,p.place);
-          lastQuakes.add(f.id);
-          var h='<b>M'+esc(m)+'</b> · '+esc(p.place)+'<br>'+hace(p.time)+' · prof. '+esc(Math.round(c[2]))+' km';
-          if(dk!==null)h+='<br>📍 ≈ '+dk.toFixed(1)+' km de Falla Pedro Miguel';
-          if(p.url)h+='<br><a target="_blank" rel="noopener" href="'+esc(p.url)+'">USGS detalle</a>';
-          L.circleMarker([c[1],c[0]],{radius:3+(m||0)*2.2,color:color(m),weight:1,fillColor:color(m),fillOpacity:.65}).bindPopup(h).addTo(quakes);
-        });
-        estado.textContent=n+' sismos (M≥'+mag+') Panamá · '+cerca+' a ≤15km de Pedro Miguel · Desde hoy';
-      }).catch(()=>{estado.textContent='Error USGS - reintentando...';});
+      }
+
+      statusEl.style.background = '#065f46';
+      statusEl.style.color = '#6ee7b7';
+      statusEl.textContent = `● LIVE: ${sismos.length} sismos en Panamá (30d)`;
+
+      sismos.forEach(f => {
+        const [lon, lat, depth] = f.geometry.coordinates;
+        const p = f.properties;
+        const radius = Math.max(4, p.mag * 3.5);
+
+        L.circleMarker([lat, lon], {
+          radius: radius,
+          color: getColor(p.mag),
+          fillColor: getColor(p.mag),
+          fillOpacity: 0.5,
+          weight: 1.5
+        }).addTo(map).bindPopup(`
+          <div style="font-family:sans-serif; font-size:12px; color:#1e293b;">
+            <b style="font-size:14px; color:${getColor(p.mag)}">M${p.mag.toFixed(1)}</b> - ${p.place || 'Panamá'}<br>
+            <b>Hora:</b> ${fmtFecha(p.time)}<br>
+            <b>Profundidad:</b> ${Math.round(depth)} km<br>
+            <a href="${p.url}" target="_blank" rel="noopener">Ver reporte USGS ↗</a>
+          </div>
+        `);
+      });
     }
-    document.getElementById('act').onclick=cargar;document.getElementById('mag').onchange=cargar;document.getElementById('dias').onchange=cargar;
-    setInterval(cargar,180000); // 3 min vivo
-    setInterval(cargarBiblia,30000); // versículo cada 30s
-  }
-  loadScript('lib/leaflet.js',init,function(){loadScript('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',init,function(){estado.textContent='No cargó Leaflet';});});
-})();
-</script>
-  <script src="https://thesteef21.github.io/SADV41/lib/seismic-widget.js" defer></script>
+
+    cargarSismosNacionales();
+  </script>
 </body>
 </html>
