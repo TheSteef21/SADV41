@@ -129,7 +129,7 @@
     function intentar(idx) {
       if(idx >= bibliaPaths.length) {
         document.getElementById('v-ref').textContent = 'Salmos 46:1';
-        document.getElementById('v-txt').textContent = 'Dios es nuestro amparo y fortaleza, nuestro pronto auxilio en las tribulaciones.';
+        document.getElementById('v-txt').textContent = 'Dios es refugio y ayuda en cualquier momento; no estás solo. (resumen propio)';
         return;
       }
       fetch(bibliaPaths[idx])
@@ -192,7 +192,7 @@
           var dk = line ? distKm(c[1], c[0], line) : null;
           n++; if (dk !== null && dk <= 10) cerca++;
 
-          if (!lastQuakes.has(f.id) && lastQuakes.size > 0) {
+          if (!lastQuakes.has(f.id) && lastQuakes.size > 0 && (Date.now() - p.time) < 3600000) {
             notificarSismo(m, p.place);
           }
           lastQuakes.add(f.id);
