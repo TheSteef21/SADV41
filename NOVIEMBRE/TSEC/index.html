@@ -17,6 +17,8 @@
   #nota{position:fixed;left:6px;right:6px;bottom:6px;z-index:1000;background:#0b0f19dd;border:1px solid #1e293b;border-radius:8px;padding:5px 8px;font-size:10.5px;opacity:.85}
   .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#0b0f19;color:#e2e8f0}
   .leaflet-popup-content a{color:#00e5ff}
+  .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.9)}
+.leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.9)}
 </style>
 </head>
 <body>
@@ -64,9 +66,9 @@
 
   function init(){
     var map=L.map('map').setView([8.95,-79.6],9);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
-      maxZoom:18,subdomains:'abcd',
-      attribution:'&copy; OpenStreetMap contributors &copy; CARTO'
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
+      maxZoom:18,
+      attribution:'&copy; OpenStreetMap contributors'
     }).addTo(map);
 
     var quakes=L.layerGroup().addTo(map), line=null;
@@ -95,7 +97,7 @@
         '&minlatitude=5&maxlatitude=11&minlongitude=-84&maxlongitude=-76'+
         '&minmagnitude='+encodeURIComponent(mag)+'&starttime='+ini;
       estado.textContent='Consultando USGS…';
-      fetch(url).then(function(r){return r.json();}).then(function(d){
+      fetch(url).then(function(r){if(!r.ok)throw new Error('HTTP '+r.status);return r.json();}).then(function(d){
         quakes.clearLayers();
         var n=0,cerca=0;
         (d.features||[]).forEach(function(f){
@@ -109,7 +111,7 @@
             .bindPopup(h).addTo(quakes);
         });
         estado.textContent=n+' sismos (M≥'+mag+')'+(line?' · '+cerca+' a ≤10 km del trazo aprox.':'');
-      }).catch(function(){estado.textContent='No pude consultar USGS. Revisa tu conexión.';});
+      }).catch(function(e){estado.textContent='No pude consultar USGS ('+(e&&e.message||'error')+').';});
     }
     document.getElementById('act').onclick=cargar;
     document.getElementById('mag').onchange=cargar;
