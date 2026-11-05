@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
 """SADV41 Sismos: detecta sismos de Panamá (USGS) y publica en Instagram."""
 import argparse
+import hashlib
+import io
 import json
 import math
 import os
 import re
 import sys
-import io
 import time
 from datetime import datetime, timedelta, timezone
 import requests
@@ -31,7 +32,8 @@ def traducir_lugar(place_en):
     return p
 
 def fetch_latest(min_mag):
-    start = (datetime.now(timezone.utc) - timedelta(hours=24)).isoformat()
+    start = (datetime.now(timezone.utc) - timedelta(hours=24)).strftime("%Y-%m-%dT%H:%M:%S")
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) SADV41-SismosWatch/1.0"}
     r = requests.get(USGS, params={
         "format": "geojson",
         "orderby": "time",
@@ -42,7 +44,7 @@ def fetch_latest(min_mag):
         "maxlatitude": 10.5,
         "minlongitude": -84.0,
         "maxlongitude": -77.0,
-    }, timeout=30)
+    }, headers=headers, timeout=30)
     r.raise_for_status()
     feats = r.json().get("features", [])
     return feats[0] if feats else None
@@ -64,11 +66,11 @@ def make_image(ev, path):
     pixel_y = int((ytile - cy) * 256)
 
     map_img = Image.new("RGBA", (5 * 256, 5 * 256), "#0a0f14")
-    headers = {"User-Agent": "SADV41-SismosWatch/1.0"}
+    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) SADV41-SismosWatch/1.0"}
 
     for i in range(-2, 3):
         for j in range(-2, 3):
-            url = f"https://a.basemaps.cartocdn.com/dark_all/{zoom}/{cx+i}/{cy+j}.png"
+            url = f"https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{zoom}/{cy+j}/{cx+i}"
             try:
                 r = requests.get(url, headers=headers, timeout=5)
                 if r.status_code == 200:
@@ -102,7 +104,7 @@ def make_image(ev, path):
 
     d.text((540 + radio + 25, 540 - 45), f"M {mag:.1f}", fill="#ffffff", font=font(65))
     d.text((540 + radio + 25, 540 + 25), lugar_es, fill="#e8eef5", font=font(35))
-    d.text((40, 1010), "SADV41 // Fuente: USGS", font=font(32), fill="#5aa9ff")
+    d.text((40, 1010), "SADV41 // Fuente: USGS", fill="#5aa9ff", font=font(32))
 
     final_img.convert("RGB").save(path, "JPEG", quality=95)
 
@@ -114,47 +116,12 @@ def caption(ev):
             f"Profundidad: {ev['geometry']['coordinates'][2]:.0f} km\n\n"
             f"Fuente: USGS (datos preliminares)\n#Panama #Sismo #SADV41")
 
-def post_to_instagram(img_url, cap_text):
-    token = os.getenv("IG_ACCESS_TOKEN")
-    ig_user_id = os.getenv("IG_USER_ID")
-    if not token or not ig_user_id:
-        print("ℹ️ IG_ACCESS_TOKEN o IG_USER_ID no configurados. Omitiendo post directo a Instagram.")
-        return False
-
-    print("🚀 Creando contenedor multimedia en Graph API...")
-    res = requests.post(f"{GRAPH}/{ig_user_id}/media", data={
-        "image_url": img_url,
-        "caption": cap_text,
-        "access_token": token
-    }, timeout=30)
-    data = res.json()
-    if "id" not in data:
-        print(f"❌ Error al crear contenedor de media: {data}")
-        return False
-
-    creation_id = data["id"]
-    time.sleep(5)
-
-    print(f"🚀 Publicando media {creation_id}...")
-    pub_res = requests.post(f"{GRAPH}/{ig_user_id}/media_publish", data={
-        "creation_id": creation_id,
-        "access_token": token
-    }, timeout=30)
-    pub_data = pub_res.json()
-    if "id" in pub_data:
-        print(f"✅ Publicado con éxito en Instagram (ID: {pub_data['id']})")
-        return True
-    else:
-        print(f"❌ Error al publicar: {pub_data}")
-        return False
-
 def main():
     parser = argparse.ArgumentParser(description="SADV41 Sismos Bot")
     parser.add_argument("--check-panama", action="store_true", help="Consultar sismos en Panamá")
     parser.add_argument("--min-mag", type=float, default=2.5, help="Magnitud mínima")
-    parser.add_argument("--force", action="store_true", help="Forzar generación / publicación")
+    parser.add_argument("--force", action="store_true", help="Forzar generación")
     parser.add_argument("--no-image", action="store_true", help="No generar imagen")
-    parser.add_argument("--post-ig", action="store_true", help="Publicar directamente en Instagram")
     args = parser.parse_args()
 
     ev = fetch_latest(args.min_mag)
@@ -164,11 +131,10 @@ def main():
 
     ev_id = ev["id"]
     last_id = None
-    if os.path.exists(STATE):
+    if os.path.exists(STATE) and not args.force:
         try:
             with open(STATE, "r") as f:
-                st = json.load(f)
-                last_id = st.get("id")
+                last_id = json.load(f).get("id")
         except Exception:
             pass
 
@@ -185,11 +151,6 @@ def main():
 
     with open(STATE, "w") as f:
         json.dump({"id": ev_id, "caption": cap_text, "time": ev["properties"]["time"]}, f, indent=2)
-
-    if args.post_ig:
-        post_to_instagram(PAGES_IMG, cap_text)
-
-    sys.exit(0)
 
 if __name__ == "__main__":
     main()
