@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TSEC · Sismos y falla Pedro Miguel · SADV41</title>
+<link id="lcss" rel="stylesheet" href="lib/leaflet.css"
+      onerror="this.onerror=null;this.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'">
+<style>
+  html,body{margin:0;height:100%;background:#000;color:#e2e8f0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+  #bar{position:fixed;top:0;left:0;right:0;z-index:1000;background:#0b0f19ee;border-bottom:1px solid #1e293b;padding:6px 10px;font-size:13px}
+  #bar b{color:#60a5fa}
+  #bar select,#bar button{background:#1e293b;color:#fff;border:1px solid #334155;border-radius:6px;padding:4px 6px;font-size:12px}
+  #bar a{color:#00e5ff;text-decoration:none;font-size:12px;margin-left:8px}
+  #estado{display:block;margin-top:4px;opacity:.8;font-size:12px}
+  #map{position:absolute;top:70px;left:0;right:0;bottom:0;background:#000}
+  #nota{position:fixed;left:6px;right:6px;bottom:6px;z-index:1000;background:#0b0f19dd;border:1px solid #1e293b;border-radius:8px;padding:5px 8px;font-size:10.5px;opacity:.85}
+  .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#0b0f19;color:#e2e8f0}
+  .leaflet-popup-content a{color:#00e5ff}
+</style>
+</head>
+<body>
+<!-- SALMO46-INJECT -->
+<a href="https://www.bible.com/es/bible/149/PSA.46.1-11.RVR1960" target="_blank" rel="noopener"
+ style="position:fixed;top:8px;left:8px;z-index:2147483647;background:#0a0a0acc;color:#00e5ff;
+ border:1px solid #00e5ff;border-radius:20px;padding:4px 10px;font:600 11px/1.3 system-ui,sans-serif;
+ text-decoration:none;letter-spacing:.04em">📖 Salmos 46 · Dios es nuestro amparo</a>
+<!-- /SALMO46-INJECT -->
+<div id="bar">
+  <b>🎚 TSEC</b> · Sismos y falla Pedro Miguel
+  <a href="../index.html">← NOVIEMBRE</a><br>
+  Mag. mín
+  <select id="mag"><option>2.5</option><option>3</option><option selected>3.7</option><option>4</option><option>5</option></select>
+  Período
+  <select id="dias"><option value="1">24 h</option><option value="7" selected>7 días</option><option value="30">30 días</option></select>
+  <button id="act">Actualizar</button>
+  <span id="estado">Cargando…</span>
+</div>
+<div id="map"></div>
+<div id="nota">Trazo de la falla <b>aproximado</b>, no oficial. Un epicentro tiene varios km de incertidumbre: "cerca de la falla" no significa que la falla lo causó. Datos: USGS. Información oficial: Instituto de Geociencias (UP) y SINAPROC.</div>
+
+<script>
+(function(){
+  var FAULT_URL='pedro-miguel-falla.geojson';
+  var estado=document.getElementById('estado');
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+  function load(src,ok,fail){var s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=fail;document.head.appendChild(s);}
+
+  // Distancia (km) de un punto a una polilínea [[lon,lat],...] (aprox. plana local)
+  function distKm(lat,lon,line){
+    var k=Math.cos(lat*Math.PI/180),best=Infinity;
+    function P(c){return [(c[0]-lon)*111.32*k,(c[1]-lat)*110.57];}
+    for(var i=0;i<line.length-1;i++){
+      var a=P(line[i]),b=P(line[i+1]),dx=b[0]-a[0],dy=b[1]-a[1],L=dx*dx+dy*dy;
+      var t=L?Math.max(0,Math.min(1,-(a[0]*dx+a[1]*dy)/L)):0;
+      var x=a[0]+t*dx,y=a[1]+t*dy,d=Math.sqrt(x*x+y*y);
+      if(d<best)best=d;
+    }
+    return best;
+  }
+  function color(m){return m>=5?'#ef4444':m>=4?'#fb923c':m>=3?'#facc15':'#38bdf8';}
+  function hace(ms){var m=Math.round((Date.now()-ms)/60000);
+    if(m<60)return 'hace '+m+' min'; var h=Math.round(m/60); if(h<48)return 'hace '+h+' h'; return 'hace '+Math.round(h/24)+' d';}
+
+  function init(){
+    var map=L.map('map').setView([8.95,-79.6],9);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
+      maxZoom:18,subdomains:'abcd',
+      attribution:'&copy; OpenStreetMap contributors &copy; CARTO'
+    }).addTo(map);
+
+    var quakes=L.layerGroup().addTo(map), line=null;
+
+    fetch(FAULT_URL).then(function(r){return r.json();}).then(function(g){
+      L.geoJSON(g,{
+        style:function(f){return f.geometry.type==='LineString'?{color:'#ef4444',weight:3,dashArray:'8 6'}:{};},
+        pointToLayer:function(f,ll){return L.circleMarker(ll,{radius:4,color:'#94a3b8',weight:1,fillOpacity:.8});},
+        onEachFeature:function(f,layer){
+          var p=f.properties||{},h='<b>'+esc(p.nombre)+'</b>';
+          if(p.tipo)h+='<br>'+esc(p.tipo);
+          if(p.ruptura_historica)h+='<br>'+esc(p.ruptura_historica);
+          if(p.precision)h+='<br><i>'+esc(p.precision)+'</i>';
+          if(p.nota)h+='<br>'+esc(p.nota);
+          layer.bindPopup(h);
+          if(f.geometry.type==='LineString')line=f.geometry.coordinates;
+        }
+      }).addTo(map);
+      cargar();
+    }).catch(function(){cargar();});
+
+    function cargar(){
+      var mag=document.getElementById('mag').value,dias=+document.getElementById('dias').value;
+      var ini=new Date(Date.now()-dias*864e5).toISOString().slice(0,19);
+      var url='https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&limit=500'+
+        '&minlatitude=5&maxlatitude=11&minlongitude=-84&maxlongitude=-76'+
+        '&minmagnitude='+encodeURIComponent(mag)+'&starttime='+ini;
+      estado.textContent='Consultando USGS…';
+      fetch(url).then(function(r){return r.json();}).then(function(d){
+        quakes.clearLayers();
+        var n=0,cerca=0;
+        (d.features||[]).forEach(function(f){
+          var c=f.geometry.coordinates,p=f.properties,m=p.mag;
+          var dk=line?distKm(c[1],c[0],line):null;
+          n++; if(dk!==null&&dk<=10)cerca++;
+          var h='<b>M'+esc(m)+'</b> · '+esc(p.place)+'<br>'+hace(p.time)+' · prof. '+esc(Math.round(c[2]))+' km';
+          if(dk!==null)h+='<br>≈ '+dk.toFixed(1)+' km del trazo aproximado de la falla';
+          if(p.url)h+='<br><a target="_blank" rel="noopener" href="'+esc(p.url)+'">Detalle USGS</a>';
+          L.circleMarker([c[1],c[0]],{radius:3+(m||0)*2,color:color(m),weight:1,fillColor:color(m),fillOpacity:.55})
+            .bindPopup(h).addTo(quakes);
+        });
+        estado.textContent=n+' sismos (M≥'+mag+')'+(line?' · '+cerca+' a ≤10 km del trazo aprox.':'');
+      }).catch(function(){estado.textContent='No pude consultar USGS. Revisa tu conexión.';});
+    }
+    document.getElementById('act').onclick=cargar;
+    document.getElementById('mag').onchange=cargar;
+    document.getElementById('dias').onchange=cargar;
+  }
+
+  load('lib/leaflet.js',init,function(){
+    load('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',init,function(){estado.textContent='No cargó Leaflet.';});
+  });
+})();
+</script>
+</body>
+</html>
