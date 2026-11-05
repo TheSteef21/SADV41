@@ -1,0 +1,33 @@
+{
+  "type": "FeatureCollection",
+  "name": "Falla Pedro Miguel (trazo aproximado)",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "nombre": "Falla Pedro Miguel",
+        "tipo": "Falla activa transcurrente dextral",
+        "ruptura_historica": "2 mayo 1621 - Terremoto Panamá Viejo",
+        "precision": "APROXIMADA - no oficial",
+        "fuentes": ["Rockwell et al. 2010 BSSA", "Gath & Gonzalez ECI"]
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [-79.610, 9.200],
+          [-79.612, 9.130],
+          [-79.610, 9.070],
+          [-79.605, 9.020],
+          [-79.600, 9.005],
+          [-79.598, 8.975],
+          [-79.590, 8.930],
+          [-79.570, 8.850],
+          [-79.555, 8.795]
+        ]
+      }
+    },
+    {"type":"Feature","properties":{"nombre":"Esclusas Pedro Miguel"},"geometry":{"type":"Point","coordinates":[-79.608,9.015]}},
+    {"type":"Feature","properties":{"nombre":"Esclusas Miraflores"},"geometry":{"type":"Point","coordinates":[-79.595,8.996]}},
+    {"type":"Feature","properties":{"nombre":"Isla Taboga"},"geometry":{"type":"Point","coordinates":[-79.555,8.790]}}
+  ]
+}

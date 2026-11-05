@@ -6,17 +6,10 @@
       "type": "Feature",
       "properties": {
         "nombre": "Falla Pedro Miguel",
-        "tipo": "Falla activa transcurrente dextral (lateral derecha)",
-        "ruptura_historica": "2 de mayo de 1621 (terremoto de Panamá Viejo), desplazamiento >= 2.1 m cerca del Canal",
-        "rupturas": "3 rupturas superficiales en los últimos ~1600 años",
-        "longitud_estimada_km": "30-50+",
-        "precision": "APROXIMADA. Vértices esquemáticos construidos desde puntos de referencia publicados; no es un trazo cartográfico oficial.",
-        "tramos": "Norte (hacia lago Madden): inferido. Centro (Chilibre - esclusas Pedro Miguel/Miraflores): mapeado y trincherado. Sur (Golfo de Panamá, hacia Taboga): inferido.",
-        "fuentes": [
-          "Rockwell et al. 2010, BSSA 100(6), 3097-3129, doi:10.1785/0120090342",
-          "Gath & González (ECI), Borinquén Dam / Camino de Cruces",
-          "Prensa.com: 'Lo que debes saber de la falla de Pedro Miguel'"
-        ]
+        "tipo": "Falla activa transcurrente dextral",
+        "ruptura_historica": "2 mayo 1621 - Terremoto Panamá Viejo",
+        "precision": "APROXIMADA - no oficial",
+        "fuentes": ["Rockwell et al. 2010 BSSA", "Gath & Gonzalez ECI"]
       },
       "geometry": {
         "type": "LineString",
@@ -33,20 +26,8 @@
         ]
       }
     },
-    {
-      "type": "Feature",
-      "properties": { "nombre": "Esclusas Pedro Miguel (referencia)", "nota": "La falla pasa entre estas esclusas y las de Miraflores" },
-      "geometry": { "type": "Point", "coordinates": [-79.608, 9.015] }
-    },
-    {
-      "type": "Feature",
-      "properties": { "nombre": "Esclusas Miraflores (referencia)" },
-      "geometry": { "type": "Point", "coordinates": [-79.595, 8.996] }
-    },
-    {
-      "type": "Feature",
-      "properties": { "nombre": "Isla Taboga (referencia)", "nota": "Extremo sur aproximado de la falla según prensa y estudios" },
-      "geometry": { "type": "Point", "coordinates": [-79.555, 8.790] }
-    }
+    {"type":"Feature","properties":{"nombre":"Esclusas Pedro Miguel"},"geometry":{"type":"Point","coordinates":[-79.608,9.015]}},
+    {"type":"Feature","properties":{"nombre":"Esclusas Miraflores"},"geometry":{"type":"Point","coordinates":[-79.595,8.996]}},
+    {"type":"Feature","properties":{"nombre":"Isla Taboga"},"geometry":{"type":"Point","coordinates":[-79.555,8.790]}}
   ]
 }

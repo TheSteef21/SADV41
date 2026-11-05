@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SISMOS PANAMÁ · M≥2.5 & Falla Pedro Miguel · SADV41</title>
-<link rel="manifest" href="data:application/json,{&quot;name&quot;:&quot;SADV41 Sismos&quot;,&quot;short_name&quot;:&quot;Sismos&quot;,&quot;start_url&quot;:&quot;./&quot;,&quot;display&quot;:&quot;standalone&quot;}">
+<link rel="manifest" href='data:application/json,{"name":"SADV41 Sismos","short_name":"Sismos","start_url":"./","display":"standalone"}'>
 <link id="lcss" rel="stylesheet" href="lib/leaflet.css" onerror="this.onerror=null;this.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'">
 <style>
   html,body{margin:0;height:100%;background:#000;color:#e2e8f0;font-family:system-ui,-apple-system,sans-serif}
@@ -13,17 +13,11 @@
   #bar select,#bar button{background:#1e293b;color:#fff;border:1px solid #334155;border-radius:6px;padding:4px 8px;font-size:12px;margin-right:4px}
   #bar button.btn-notify{background:#0284c7;color:#fff;font-weight:600;border:none;cursor:pointer}
   #estado{display:block;margin-top:4px;opacity:.8;font-size:11px}
-  #map{position:absolute;top:75px;left:0;right:0;bottom:0;background:#000}
-  
-  /* Dark mode OSM filter */
+  #map{position:absolute;top:75px;left:0;right:0;bottom:58px;background:#000}
   .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.9)}
-
-  /* Widget Mantente a Salvo */
   #widget-safe{position:fixed;top:85px;right:10px;z-index:1000;background:#0f172aef;border:1px solid #3b82f6;border-radius:10px;padding:8px 12px;box-shadow:0 4px 12px rgba(0,0,0,0.5);font-size:12px}
   #widget-safe a{color:#38bdf8;font-weight:bold;text-decoration:none}
-
-  /* Versículo Bíblico Footer */
-  #biblia-bar{position:fixed;left:6px;right:6px;bottom:6px;z-index:1000;background:#0b0f19dd;border:1px solid #1e293b;border-radius:8px;padding:6px 10px;font-size:11px;color:#cbd5e1;max-height:50px;overflow-y:auto}
+  #biblia-bar{position:fixed;left:6px;right:6px;bottom:6px;z-index:1000;background:#0b0f19dd;border:1px solid #1e293b;border-radius:8px;padding:6px 10px;font-size:11px;color:#cbd5e1;max-height:46px;overflow-y:auto}
   #biblia-bar b{color:#f59e0b}
 </style>
 </head>
@@ -34,40 +28,24 @@
  border:1px solid #00e5ff;border-radius:20px;padding:4px 10px;font:600 11px/1.3 system-ui,sans-serif;
  text-decoration:none;letter-spacing:.04em">📖 Salmos 46 · Dios es nuestro amparo</a>
 <!-- /SALMO46-INJECT -->
-
 <div id="bar">
-  <b>🎚 SADV41 · SISMOS PANAMÁ</b> (M≥2.5)
-  <br>
+  <b>🎚 SADV41 · SISMOS PANAMÁ</b> (M≥2.5) <a href="../NOVIEMBRE/TSEC/" style="color:#00e5ff;text-decoration:none;margin-left:10px;">→ Ver TSEC (Falla Pedro Miguel)</a><br>
   Mag: <select id="mag"><option selected>2.5</option><option>3.0</option><option>3.7</option><option>4.5</option></select>
   Días: <select id="dias"><option value="1">24 h</option><option value="7" selected>7 días</option><option value="30">30 días</option></select>
   <button id="act">Actualizar</button>
   <button id="btnNotif" class="btn-notify">🔔 Activar Alertas</button>
   <span id="estado">Cargando datos...</span>
 </div>
-
-<!-- Widget @Sismosyterremotos -->
-<div id="widget-safe">
-  🛡️ <b>¡Mantente a salvo!</b><br>
-  Sigue la red: <a href="https://t.me/Sismosyterremotos" target="_blank" rel="noopener">@Sismosyterremotos</a>
-</div>
-
+<div id="widget-safe">🛡️ <b>¡Mantente a salvo!</b><br>Sigue la red: <a href="https://www.instagram.com/sismosyterremotos/" target="_blank">@Sismosyterremotos</a><br><a href="https://t.me/Sismosyterremotos" target="_blank" style="font-size:11px;">Telegram</a></div>
 <div id="map"></div>
-
-<!-- Bar Bíblico -->
-<div id="biblia-bar">
-  📖 <b id="v-ref">Cargando Biblia...</b>: <span id="v-txt"></span>
-</div>
-
+<div id="biblia-bar">📖 <b id="v-ref">Cargando Biblia...</b>: <span id="v-txt"></span></div>
 <script>
 (function(){
-  var FAULT_URL = 'pedro-miguel-falla.geojson';
-  var estado = document.getElementById('estado');
-  var lastQuakes = new Set();
-
+  var FAULT_URL='pedro-miguel-falla.geojson';
+  var estado=document.getElementById('estado');
+  var lastQuakes=new Set();
   function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
   function loadScript(src,ok,fail){var s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=fail;document.head.appendChild(s);}
-
-  // Distancia a falla Pedro Miguel
   function distKm(lat,lon,line){
     var k=Math.cos(lat*Math.PI/180),best=Infinity;
     function P(c){return [(c[0]-lon)*111.32*k,(c[1]-lat)*110.57];}
@@ -76,133 +54,61 @@
       var t=L?Math.max(0,Math.min(1,-(a[0]*dx+a[1]*dy)/L)):0;
       var x=a[0]+t*dx,y=a[1]+t*dy,d=Math.sqrt(x*x+y*y);
       if(d<best)best=d;
-    }
-    return best;
+    }return best;
   }
   function color(m){return m>=5?'#ef4444':m>=4?'#fb923c':m>=3?'#facc15':'#38bdf8';}
-
-  // Notificaciones Web (Android / iOS / PC)
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js').catch(()=>{});
-  }
-
-  document.getElementById('btnNotif').onclick = function() {
-    if (!('Notification' in window)) {
-      alert('Tu navegador no soporta notificaciones web.');
-      return;
-    }
-    Notification.requestPermission().then(perm => {
-      if (perm === 'granted') {
-        alert('✅ Notificaciones activadas para sismos M≥2.5');
-        new Notification('🛡️ SADV41 Alertas Activas', { body: 'Recibirás avisos de sismos en tiempo real.' });
-      } else {
-        alert('⚠️ Permiso de notificación denegado.');
-      }
+  if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(()=>{});}
+  document.getElementById('btnNotif').onclick=function(){
+    if(!('Notification' in window)){alert('Navegador no soporta notificaciones');return;}
+    Notification.requestPermission().then(p=>{
+      if(p==='granted'){alert('✅ Alertas activadas M≥2.5');new Notification('🛡️ SADV41 Alertas Activas',{body:'Recibirás avisos de sismos.'});}
+      else alert('⚠️ Permiso denegado');
     });
   };
-
-  function notificarSismo(m, lugar) {
-    if (window.Notification && Notification.permission === 'granted') {
-      new Notification('🚨 ALERTA SÍSMICA (M' + m + ')', {
-        body: lugar + ' - Mantente a salvo con @Sismosyterremotos',
-        icon: 'https://leafletjs.com/docs/images/logo.png'
-      });
-    }
+  function notificarSismo(m,lugar){if(window.Notification&&Notification.permission==='granted'){new Notification('🚨 ALERTA SÍSMICA M'+m,{body:lugar+' - @Sismosyterremotos'});}}
+  function cargarBiblia(){
+    var urls=['../BIBLIA/rv1909.json','https://thesteef21.github.io/SADV41/BIBLIA/rv1909.json','../../BIBLIA/rv1909.json'];
+    function tryUrl(i){
+      if(i>=urls.length){document.getElementById('v-ref').textContent='Salmos 46:1';document.getElementById('v-txt').textContent='Dios es nuestro amparo y fortaleza.';return;}
+      fetch(urls[i]).then(r=>{if(!r.ok)throw 0;return r.json();}).then(data=>{
+        var libros=Object.keys(data);var lib=libros[Math.floor(Math.random()*libros.length)];
+        var caps=Object.keys(data[lib]);var cap=caps[Math.floor(Math.random()*caps.length)];
+        var vers=Object.keys(data[lib][cap]);var ver=vers[Math.floor(Math.random()*vers.length)];
+        document.getElementById('v-ref').textContent=lib+' '+cap+':'+ver;
+        document.getElementById('v-txt').textContent=data[lib][cap][ver];
+      }).catch(()=>tryUrl(i+1));
+    }tryUrl(0);
   }
-
-  // Cargar versículo de /BIBLIA/
-  function cargarBiblia() {
-    fetch('../BIBLIA/rv1909.json')
-      .then(r => r.json())
-      .then(data => {
-        var libros = Object.keys(data);
-        var lib = libros[Math.floor(Math.random() * libros.length)];
-        var caps = Object.keys(data[lib]);
-        var cap = caps[Math.floor(Math.random() * caps.length)];
-        var vers = Object.keys(data[lib][cap]);
-        var ver = vers[Math.floor(Math.random() * vers.length)];
-        
-        document.getElementById('v-ref').textContent = lib + ' ' + cap + ':' + ver;
-        document.getElementById('v-txt').textContent = data[lib][cap][ver];
-      })
-      .catch(() => {
-        document.getElementById('v-ref').textContent = 'Salmos 46:1';
-        document.getElementById('v-txt').textContent = 'Dios es nuestro amparo y fortaleza, nuestro pronto auxilio en las tribulaciones.';
-      });
-  }
-
   function init(){
     cargarBiblia();
-    var map = L.map('map').setView([8.5, -80.1], 8);
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18,
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(map);
-
-    var quakes = L.layerGroup().addTo(map), line = null;
-
-    fetch(FAULT_URL).then(r => r.json()).then(g => {
-      L.geoJSON(g, {
-        style: f => f.geometry.type === 'LineString' ? {color:'#ef4444', weight:3, dashArray:'6 6'} : {},
-        pointToLayer: (f,ll) => L.circleMarker(ll, {radius:4, color:'#94a3b8', weight:1, fillOpacity:.8}),
-        onEachFeature: (f, layer) => {
-          if(f.geometry.type === 'LineString') line = f.geometry.coordinates;
-        }
-      }).addTo(map);
+    var map=L.map('map').setView([8.5,-80.1],8);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'&copy; OSM'}).addTo(map);
+    var quakes=L.layerGroup().addTo(map),line=null;
+    fetch(FAULT_URL).then(r=>r.json()).then(g=>{
+      L.geoJSON(g,{style:f=>f.geometry.type==='LineString'?{color:'#ef4444',weight:3,dashArray:'6 6'}:{},pointToLayer:(f,ll)=>L.circleMarker(ll,{radius:4,color:'#94a3b8',weight:1,fillOpacity:.8}),onEachFeature:(f,layer)=>{if(f.geometry.type==='LineString')line=f.geometry.coordinates;}}).addTo(map);
       cargar();
-    }).catch(() => cargar());
-
+    }).catch(()=>cargar());
     function cargar(){
-      var mag = document.getElementById('mag').value;
-      var dias = +document.getElementById('dias').value;
-      var ini = new Date(Date.now() - dias * 864e5).toISOString().slice(0,19);
-      
-      // Coordenadas de todo Panamá (Lat 7 a 10, Lon -83 a -77)
-      var url = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&limit=500' +
-        '&minlatitude=7&maxlatitude=10.5&minlongitude=-83.5&maxlongitude=-77' +
-        '&minmagnitude=' + encodeURIComponent(mag) + '&starttime=' + ini;
-
-      estado.textContent = 'Consultando USGS (Panamá)…';
-      fetch(url).then(r => r.json()).then(d => {
-        quakes.clearLayers();
-        var n = 0;
-        (d.features || []).forEach(f => {
-          var c = f.geometry.coordinates, p = f.properties, m = p.mag;
-          var dk = line ? distKm(c[1], c[0], line) : null;
-          n++;
-
-          // Notificar sismo nuevo si se acaba de cargar
-          if (!lastQuakes.has(f.id) && lastQuakes.size > 0) {
-            notificarSismo(m, p.place);
-          }
+      var mag=document.getElementById('mag').value;var dias=+document.getElementById('dias').value;
+      var ini=new Date(Date.now()-dias*864e5).toISOString().slice(0,19);
+      var url='https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&limit=500&minlatitude=7&maxlatitude=10.5&minlongitude=-83.5&maxlongitude=-77&minmagnitude='+encodeURIComponent(mag)+'&starttime='+ini;
+      estado.textContent='Consultando USGS Panamá…';
+      fetch(url).then(r=>r.json()).then(d=>{
+        quakes.clearLayers();var n=0;
+        (d.features||[]).forEach(f=>{
+          var c=f.geometry.coordinates,p=f.properties,m=p.mag;var dk=line?distKm(c[1],c[0],line):null;n++;
+          if(!lastQuakes.has(f.id)&&lastQuakes.size>0)notificarSismo(m,p.place);
           lastQuakes.add(f.id);
-
-          var h = '<b>M' + esc(m) + '</b> · ' + esc(p.place) + '<br>Prof. ' + esc(Math.round(c[2])) + ' km';
-          if (dk !== null) h += '<br>≈ ' + dk.toFixed(1) + ' km de la falla Pedro Miguel';
-          
-          L.circleMarker([c[1], c[0]], {
-            radius: 4 + (m || 0) * 2,
-            color: color(m),
-            weight: 1,
-            fillColor: color(m),
-            fillOpacity: .6
-          }).bindPopup(h).addTo(quakes);
+          var h='<b>M'+esc(m)+'</b> · '+esc(p.place)+'<br>Prof. '+esc(Math.round(c[2]))+' km';if(dk!==null)h+='<br>≈ '+dk.toFixed(1)+' km de falla Pedro Miguel';
+          L.circleMarker([c[1],c[0]],{radius:4+(m||0)*2,color:color(m),weight:1,fillColor:color(m),fillOpacity:.6}).bindPopup(h).addTo(quakes);
         });
-        estado.textContent = n + ' sismos registrados (M≥' + mag + ') en Panamá';
-      }).catch(() => { estado.textContent = 'Reconectando con servicio sísmico...'; });
+        estado.textContent=n+' sismos (M≥'+mag+') en Panamá - desde hoy';
+      }).catch(()=>{estado.textContent='Reconectando...';});
     }
-
-    document.getElementById('act').onclick = cargar;
-    document.getElementById('mag').onchange = cargar;
-    document.getElementById('dias').onchange = cargar;
-    
-    // Auto-actualizar cada 3 minutos para notificaciones en vivo
-    setInterval(cargar, 180000);
+    document.getElementById('act').onclick=cargar;document.getElementById('mag').onchange=cargar;document.getElementById('dias').onchange=cargar;
+    setInterval(cargar,180000);
   }
-
-  loadScript('lib/leaflet.js', init, function(){
-    loadScript('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js', init, function(){ estado.textContent='Error cargando mapa.'; });
-  });
+  loadScript('lib/leaflet.js',init,function(){loadScript('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',init,function(){estado.textContent='Error mapa';});});
 })();
 </script>
 </body>
