@@ -1,0 +1,11 @@
+skill_metadata:
+  name: "sadv41-tabernaculo-core"
+  version: "3.0.0"
+  description: "Consultoría técnica, telemetría sísmica y resiliencia de infraestructura en Burunga."
+  author: "StevenDior / Misión SADV41"
+  legacy_tribute: "Pionero Florencio Serrano (19 de Noviembre)"
+  environment:
+    platform: "Termux / Local Agent Node"
+    backup_power: "LiFePO4 48V 20kWh"
+    grounding: "<5 Ohms (GEM treated)"
+    network: "Dual-WAN Satellite/LTE Failover"

@@ -1,0 +1,304 @@
+#!/usr/bin/env bash
+# ==============================================================================
+# SADV41 · Contadores Estadísticos y Widgets Arrastrables (Draggable UI)
+# ==============================================================================
+set -euo pipefail
+
+REPO="${REPO:-$HOME/sadv41}"
+cd "$REPO" || exit 1
+
+echo "⚡ Integrando contadores y sistema arrasttable en visores..."
+
+mkdir -p "$REPO/NOVIEMBRE/TSEC" "$REPO/SISMOS"
+
+cat << 'HTML' > "$REPO/NOVIEMBRE/TSEC/index.html"
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SADV41 · Telemetría Sísmica Avanzada</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <style>
+    html, body { margin:0; padding:0; height:100%; width:100%; background:#0b0f19; color:#f1f5f9; font-family:system-ui,-apple-system,sans-serif; overflow:hidden; }
+    
+    /* Header Superior */
+    #header { position:absolute; top:0; left:0; right:0; height:52px; background:#0f172aed; border-bottom:1px solid #1e293b; z-index:1000; display:flex; align-items:center; justify-content:space-between; padding:0 12px; gap:8px; backdrop-filter:blur(6px); flex-wrap:wrap; }
+    .header-left { display:flex; align-items:center; gap:10px; }
+    .title { font-weight:700; color:#00e5ff; font-size:13px; white-space:nowrap; }
+    .controls { display:flex; align-items:center; gap:6px; }
+    select { background:#1e293b; color:#00e5ff; border:1px solid #334155; border-radius:6px; padding:4px 8px; font-size:11px; font-weight:600; outline:none; cursor:pointer; }
+    #status { font-size:11px; padding:3px 10px; border-radius:12px; background:#1e293b; color:#94a3b8; border:1px solid #334155; white-space:nowrap; }
+    
+    #map { position:absolute; top:52px; bottom:30px; left:0; right:0; }
+    #footer { position:absolute; bottom:0; left:0; right:0; height:30px; background:#0b0f19; border-top:1px solid #1e293b; z-index:1000; display:flex; align-items:center; justify-content:space-between; padding:0 12px; font-size:11px; color:#64748b; }
+
+    /* Estilos de Widgets Arrastrables */
+    .draggable-widget {
+      position: fixed;
+      z-index: 1005;
+      cursor: move;
+      user-select: none;
+      touch-action: none;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+      backdrop-filter: blur(8px);
+    }
+    .draggable-header {
+      cursor: grab;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #64748b;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .draggable-header:active { cursor: grabbing; }
+
+    /* Widget 1: Enlace Telegram */
+    #widget-safe {
+      top: 64px;
+      right: 12px;
+      background: rgba(10, 10, 15, 0.88);
+      border: 1px solid #00e5ff;
+      border-radius: 12px;
+      padding: 8px 12px;
+      font-size: 11px;
+      color: #00e5ff;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    /* Widget 2: Contadores M7.7 y 90 Días */
+    #widget-stats {
+      top: 140px;
+      right: 12px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid #334155;
+      border-radius: 12px;
+      padding: 10px 14px;
+      min-width: 180px;
+    }
+    .stat-row { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+    .stat-val { font-weight: 800; font-size: 14px; font-family: monospace; }
+    .stat-val.m77 { color: #ef4444; }
+    .stat-val.d90 { color: #38bdf8; }
+
+    .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.85) contrast(.9); }
+  </style>
+</head>
+<body>
+
+  <div id="header">
+    <div class="header-left">
+      <div class="title">🛡️ SADV41 TSEC</div>
+      <div class="controls">
+        <label style="font-size:10px; color:#94a3b8;">Mag:</label>
+        <select id="magSelect">
+          <option value="1.0">M ≥ 1.0 (Todas)</option>
+          <option value="2.0">M ≥ 2.0</option>
+          <option value="2.5" selected>M ≥ 2.5 (Estándar)</option>
+          <option value="3.5">M ≥ 3.5</option>
+          <option value="4.5">M ≥ 4.5</option>
+        </select>
+
+        <label style="font-size:10px; color:#94a3b8;">Días:</label>
+        <select id="periodSelect">
+          <option value="7">7 días</option>
+          <option value="15">15 días</option>
+          <option value="30">30 días</option>
+          <option value="90" selected>90 días</option>
+        </select>
+      </div>
+    </div>
+    <div id="status">Cargando telemetría...</div>
+  </div>
+
+  <!-- Widget Arrastrable 1: Telegram -->
+  <div id="widget-safe" class="draggable-widget">
+    <div class="draggable-header"><span>⠿ Arrastrar</span></div>
+    <a href="https://t.me/Sismosyterremotos" target="_blank" rel="noopener" style="color:inherit; text-decoration:none;">
+      🛟 Mantente informado<br><b style="color:#00e5ff;">@Sismosyterremotos</b>
+    </a>
+  </div>
+
+  <!-- Widget Arrastrable 2: Contadores de Sismicidad -->
+  <div id="widget-stats" class="draggable-widget">
+    <div class="draggable-header">
+      <span>⠿ Módulo de Conteo</span>
+      <span style="color:#00e5ff; font-weight:bold;">SADV41</span>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:11px; color:#94a3b8;">Sismos (90 Días):</span>
+      <span id="cnt-90d" class="stat-val d90">...</span>
+    </div>
+    <div class="stat-row">
+      <span style="font-size:11px; color:#fca5a5;">Réplicas M7.7 (09 Oct):</span>
+      <span id="cnt-m77" class="stat-val m77">...</span>
+    </div>
+  </div>
+
+  <div id="map"></div>
+
+  <div id="footer">
+    <span>Nacional: 5.0°N–11.0°N / -84.5°W–-76.0°W</span>
+    <span>Fuente: USGS FDSNWS / SADV41</span>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    // Inicializar Mapa
+    const map = L.map('map').setView([8.0, -80.5], 7);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18 }).addTo(map);
+    const sismosLayerGroup = L.layerGroup().addTo(map);
+
+    const getColor = m => m >= 7.0 ? '#dc2626' : m >= 6.0 ? '#ef4444' : m >= 5.0 ? '#f97316' : m >= 4.0 ? '#eab308' : m >= 2.5 ? '#06b6d4' : '#a855f7';
+    const fmtFecha = t => new Date(t).toLocaleString('es-PA', { timeZone: 'America/Panama' });
+
+    // Cargar datos y calcular contadores
+    async function cargarDatos() {
+      const minMag = document.getElementById('magSelect').value;
+      const dias = document.getElementById('periodSelect').value;
+      const statusEl = document.getElementById('status');
+
+      statusEl.textContent = 'Actualizando sismos...';
+      sismosLayerGroup.clearLayers();
+
+      const fecha90d = new Date(Date.now() - 90 * 86400000).toISOString();
+      const urlUSGS = `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=${fecha90d}&minlatitude=5.0&maxlatitude=11.0&minlongitude=-84.5&maxlongitude=-76.0&orderby=time&limit=4000`;
+
+      try {
+        const res = await fetch(urlUSGS);
+        const data = await res.json();
+        const features = data.features || [];
+
+        // Fecha corte M7.7: 9 de Octubre de 2026 (17:56:06 UTC = 1760032566000 ms)
+        const timestampM77 = new Date('2026-10-09T17:56:00Z').getTime();
+
+        let count90d = features.length;
+        let countPostM77 = 0;
+        let countFiltrados = 0;
+
+        const limiteDiasSel = new Date(Date.now() - dias * 86400000).getTime();
+
+        features.forEach(f => {
+          const [lon, lat, depth] = f.geometry.coordinates;
+          const mag = f.properties.mag || 0;
+          const time = f.properties.time;
+
+          if (time >= timestampM77) {
+            countPostM77++;
+          }
+
+          if (time >= limiteDiasSel && mag >= parseFloat(minMag)) {
+            countFiltrados++;
+            const radius = Math.max(3.5, mag * 3.5);
+
+            L.circleMarker([lat, lon], {
+              radius: radius,
+              color: getColor(mag),
+              fillColor: getColor(mag),
+              fillOpacity: 0.6,
+              weight: 1.5
+            }).addTo(sismosLayerGroup).bindPopup(`
+              <div style="font-family:sans-serif; font-size:12px; color:#1e293b;">
+                <b style="font-size:14px; color:${getColor(mag)}">M${mag.toFixed(1)}</b> - ${f.properties.place || 'Panamá'}<br>
+                <b>Fecha:</b> ${fmtFecha(time)}<br>
+                <b>Profundidad:</b> ${Math.round(depth)} km<br>
+                <a href="${f.properties.url}" target="_blank" rel="noopener">Reporte USGS ↗</a>
+              </div>
+            `);
+          }
+        });
+
+        // Actualizar Contadores
+        document.getElementById('cnt-90d').textContent = count90d;
+        document.getElementById('cnt-m77').textContent = countPostM77;
+        statusEl.textContent = `● LIVE: ${countFiltrados} visibles (M≥${minMag})`;
+
+      } catch (err) {
+        statusEl.textContent = '❌ Error de red';
+      }
+    }
+
+    document.getElementById('magSelect').addEventListener('change', cargarDatos);
+    document.getElementById('periodSelect').addEventListener('change', cargarDatos);
+
+    // Sistema de Arrastre Unificado (Mouse + Touch)
+    function habilitarArrastre(elem) {
+      let posX = 0, posY = 0, initialX = 0, initialY = 0;
+
+      const dragHeader = elem.querySelector('.draggable-header') || elem;
+
+      dragHeader.addEventListener('mousedown', dragMouseDown);
+      dragHeader.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+      function dragMouseDown(e) {
+        e.preventDefault();
+        initialX = e.clientX;
+        initialY = e.clientY;
+        document.onmouseup = closeDragElement;
+        document.onmousemove = elementDrag;
+      }
+
+      function elementDrag(e) {
+        e.preventDefault();
+        posX = initialX - e.clientX;
+        posY = initialY - e.clientY;
+        initialX = e.clientX;
+        initialY = e.clientY;
+        elem.style.top = (elem.offsetTop - posY) + "px";
+        elem.style.left = (elem.offsetLeft - posX) + "px";
+        elem.style.right = "auto";
+      }
+
+      function closeDragElement() {
+        document.onmouseup = null;
+        document.onmousemove = null;
+      }
+
+      function dragTouchStart(e) {
+        if (e.touches.length === 1) {
+          initialX = e.touches[0].clientX;
+          initialY = e.touches[0].clientY;
+          document.ontouchend = closeTouchDrag;
+          document.ontouchmove = touchElementDrag;
+        }
+      }
+
+      function touchElementDrag(e) {
+        if (e.touches.length === 1) {
+          posX = initialX - e.touches[0].clientX;
+          posY = initialY - e.touches[0].clientY;
+          initialX = e.touches[0].clientX;
+          initialY = e.touches[0].clientY;
+          elem.style.top = (elem.offsetTop - posY) + "px";
+          elem.style.left = (elem.offsetLeft - posX) + "px";
+          elem.style.right = "auto";
+        }
+      }
+
+      function closeTouchDrag() {
+        document.ontouchend = null;
+        document.ontouchmove = null;
+      }
+    }
+
+    // Inicializar widgets arrastrables
+    document.querySelectorAll('.draggable-widget').forEach(habilitarArrastre);
+
+    // Carga Inicial
+    cargarDatos();
+  </script>
+</body>
+</html>
+HTML
+
+cp "$REPO/NOVIEMBRE/TSEC/index.html" "$REPO/SISMOS/index.html"
+
+git add NOVIEMBRE/TSEC/index.html SISMOS/index.html
+git commit -m "feat(ui): integracion de contadores (90d y post-M7.7) y widgets arrastrables" || true
+git push origin main 2>/dev/null || git push origin master 2>/dev/null || true
+
+echo "🚀 Cambios aplicados y sincronizados con GitHub Pages."
