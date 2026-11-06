@@ -1,1 +1,5 @@
-{"type":"Feature","properties":{"mag":5.2,"place":"4 km S of Bajo Corral, Panama","time":1793461818909,"updated":1793462786040,"tz":null,"url":"https://earthquake.usgs.gov/earthquakes/eventpage/us7000tujf","detail":"https://earthquake.usgs.gov/earthquakes/feed/v1.0/detail/us7000tujf.geojson","felt":null,"cdi":null,"mmi":null,"alert":null,"status":"reviewed","tsunami":0,"sig":416,"net":"us","code":"7000tujf","ids":",us7000tujf,","sources":",us,","types":",origin,phase-data,","nst":167,"dmin":1.64,"rms":0.66,"gap":115,"magType":"mww","type":"earthquake","title":"M 5.2 - 4 km S of Bajo Corral, Panama"},"geometry":{"type":"Point","coordinates":[-80.2547,7.5692,10]},"id":"us7000tujf"}
+{
+  "id": "us7000twmq",
+  "caption": "\u26a0\ufe0f Sismo M4.4 - 10 km ESE de Pedas\u00ed, Panam\u00e1\n06/11/2026 02:06 PM (hora Panam\u00e1)\nProfundidad: 10 km\n\nFuente: USGS (datos preliminares)\n#Panama #Sismo #SADV41",
+  "time": 1793992014642
+}
