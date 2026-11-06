@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SSII · Super-Spiritual-Intelligence-Interface</title>
+    <meta name="description" content="SSII: un solo buscador para todo el ecosistema SADV41. Responde solo con el contenido de SADV41." />
+    <meta name="theme-color" content="#0a0e1a" />
+    <!-- sadv41-flyer-ad -->
+    <meta name="facebook-domain-verification" content="fbadcode-Q_GkBRIGXJbY36Sw94R4chMLYQLHajRwZgNAqCuJOvIRANa5Cf6b2fyV_8LFmiotp_TD" />
+    <style>
+        :root { --bg:#0a0e1a; --card:#121830; --text:#f4f6ff; --muted:#9aa3c7; --gold:#f5c542; --cyan:#3ee0e8; --red:#d21034; --blue:#005293; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: radial-gradient(circle at 50% 0%, #16204a 0%, var(--bg) 60%) fixed; color: var(--text);
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; min-height: 100vh;
+            padding: 24px 16px 70px; line-height: 1.5; }
+        main { max-width: 640px; margin: 0 auto; }
+        .flag { height: 4px; border-radius: 4px; margin-bottom: 18px;
+            background: linear-gradient(90deg, var(--red) 0 33%, #fff 33% 66%, var(--blue) 66%); }
+        header { text-align: center; margin-bottom: 22px; }
+        h1 { font-size: 2.2rem; letter-spacing: .12em; color: var(--gold); }
+        .sub { color: var(--cyan); font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; margin-top: 4px; }
+        .lead { color: var(--muted); font-size: .95rem; margin-top: 10px; }
+        .box { background: var(--card); border: 1px solid rgba(245,197,66,.2); border-radius: 18px; padding: 16px;
+            margin-bottom: 18px; box-shadow: 0 10px 30px rgba(0,0,0,.4); }
+        .row { display: flex; gap: 8px; }
+        input[type=text], input[type=password] { flex: 1; min-width: 0; background: #0a0e1a; color: var(--text);
+            border: 1px solid rgba(62,224,232,.35); border-radius: 999px; padding: 12px 16px; font-size: 1rem; }
+        button { background: var(--gold); color: #1a1405; border: 0; border-radius: 999px; padding: 12px 18px;
+            font-weight: 800; font-size: .95rem; cursor: pointer; }
+        button.sec { background: transparent; color: var(--gold); border: 1px solid rgba(245,197,66,.4); font-weight: 600; padding: 8px 14px; font-size: .8rem; }
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+        .chips button { background: transparent; color: var(--cyan); border: 1px solid rgba(62,224,232,.35); font-weight: 600; padding: 6px 12px; font-size: .8rem; }
+        .res { display: block; text-decoration: none; color: inherit; border-top: 1px solid rgba(255,255,255,.08); padding: 12px 2px; }
+        .res:first-child { border-top: 0; }
+        .res b { color: var(--cyan); }
+        .res small { display: block; color: var(--muted); word-break: break-all; font-size: .75rem; }
+        .vacio { color: var(--muted); font-size: .92rem; }
+        h2 { font-size: .8rem; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+        .ia { white-space: pre-wrap; font-size: .95rem; margin-top: 12px; border-left: 3px solid var(--cyan); padding-left: 12px; }
+        .nota { color: var(--muted); font-size: .78rem; margin-top: 8px; }
+        details summary { cursor: pointer; color: var(--gold); font-weight: 600; }
+        a.btn { display: block; text-align: center; text-decoration: none; background: var(--gold); color: #1a1405;
+            border-radius: 999px; padding: 12px; font-weight: 800; margin-top: 12px; }
+        footer { text-align: center; color: var(--muted); font-size: .78rem; margin-top: 24px; }
+        footer a { color: var(--gold); text-decoration: none; }
+    </style>
+</head>
+<body>
+<main>
+    <header>
+        <div class="flag"></div>
+        <h1>SSII</h1>
+        <p class="sub">Super-Spiritual-Intelligence-Interface</p>
+        <p class="lead">Un solo buscador para todo el ecosistema SADV41. Pregunta y recibe guía, no solo datos. Solo responde con el contenido listado aquí.</p>
+    </header>
+
+    <section class="box">
+        <form id="f" class="row">
+            <input type="text" id="q" placeholder="¿Qué buscas? (música, sismos, noticias, Biblia…)" autocomplete="off" />
+            <button type="submit">Buscar</button>
+        </form>
+        <div class="chips" id="chips"></div>
+    </section>
+
+    <section class="box" id="resultados" hidden>
+        <h2>Resultados</h2>
+        <div id="lista"></div>
+        <div id="ia-salida" class="ia" hidden></div>
+    </section>
+
+    <section class="box">
+        <details>
+            <summary>Respuesta con IA (opcional, con tu propia llave de Gemini)</summary>
+            <p class="nota">La IA responde únicamente con las páginas encontradas arriba. Tu llave se guarda solo en este navegador; no pasa por SADV41. Si no pones llave, el buscador funciona igual.</p>
+            <div class="row" style="margin-top:10px">
+                <input type="password" id="llave" placeholder="Tu llave de Gemini" autocomplete="off" />
+                <button type="button" class="sec" id="guardar">Guardar</button>
+            </div>
+            <div class="row" style="margin-top:10px">
+                <button type="button" id="preguntar" style="width:100%">Preguntar a la IA con esta búsqueda</button>
+            </div>
+        </details>
+    </section>
+
+    <section class="box">
+        <h2>Reproductor 432 Hz</h2>
+        <p style="font-size:.95rem">432 Player (Appum Studios): reproduce tus canciones afinadas a 432 Hz o 528 Hz en tiempo real, sin cambiar tus archivos originales.</p>
+        <p class="nota">App externa, no es de SADV41. Es gratis con anuncios; sus funciones extra requieren la versión Pro de pago. Disponible en Google Play (Android).</p>
+        <a class="btn" href="https://play.google.com/store/apps/details?id=com.appums.music_pitcher" target="_blank" rel="noopener">Abrir en Google Play</a>
+    </section>
+
+    <section class="box">
+        <h2>La Mesa de Inteligencias Artificiales</h2>
+        <div id="mesa" class="vacio">Pendiente: los aportes de cada IA para SSII se publicarán aquí.</div>
+        <p style="margin-top:10px"><a href="../M/I/A/" style="color:var(--cyan)">Ver las fichas de la Mesa →</a></p>
+    </section>
+
+    <footer>
+        Proyecto independiente SADV41 · no afiliado a ningún gobierno ni a america.gov.<br />
+        <a href="../">SADV41</a> · Dios primero. ⭐️ 🇵🇦
+    </footer>
+</main>
+
+<script>
+/* ============ CONTENIDO DE SADV41 (edita aquí) ============
+   Cada entrada: t = título, u = enlace, d = descripción, k = palabras clave.
+   Revisa que cada enlace exista antes de publicar.            */
+var BASE = "https://thesteef21.github.io/SADV41/";
+var INDICE = [
+  { t: "Flyer SADV41", u: BASE + "Flyer.html", d: "Flyer de SADV41 (incluye el Salmo 46).", k: "flyer salmo salmos 46 biblia amparo" },
+  { t: "Reproductor 432 Hz", u: "https://play.google.com/store/apps/details?id=com.appums.music_pitcher", d: "432 Player (Appum Studios): reproduce tus canciones afinadas a 432 Hz o 528 Hz. App externa para Android.", k: "432 hz 528 reproductor afinar afinacion frecuencia musica player android" },
+  { t: "M/I/A · Mesa de Inteligencias Artificiales", u: BASE + "M/I/A/", d: "Fichas de cada IA de la Mesa y el protocolo de traspaso de contexto.", k: "ia inteligencia artificial mesa gemini claude grok meta fichas protocolo" },
+  { t: "NEWS · Panamá · USA", u: BASE + "NEWS/PANAMA/USA/", d: "Hub de noticias: crisis de Ueno Bank (Paraguay) y política de EE. UU.", k: "noticias news ueno bank paraguay usa eeuu banco" },
+  { t: "LET-REA", u: BASE + "LET-REA", d: "Extrae letras de música desde audio y video.", k: "letras musica audio video cancion extraer" },
+  { t: "NOVIEMBRE · Mes de la Patria", u: BASE + "NOVIEMBRE/", d: "Feliz Mes de Noviembre y mapa Azuero-Soná.", k: "noviembre patria panama azuero sona mapa" },
+  { t: "SISMOS / TSEC", u: BASE + "A217B/TSEC/", d: "Mapa sísmico y alertas con datos de USGS; se publican en Instagram @sismosyterremotos.", k: "sismos terremotos temblor mapa usgs tsec alerta instagram" },
+  { t: "Consola del Agente", u: BASE + "Agent/", d: "Consola táctica del Agente SADV41.", k: "agente consola wallet binance tactica" },
+  { t: "Tienda StevenDior", u: "https://stevendior-shop.fourthwall.com", d: "Tienda de StevenDior en Fourthwall.", k: "tienda merch comprar ropa fourthwall" },
+  { t: "StevenDior en Spotify", u: "https://open.spotify.com/artist/5imHnTjivt5qDGTeV2gDMT", d: "Perfil de artista de StevenDior en Spotify.", k: "spotify musica artista escuchar canciones albumes" },
+  { t: "StevenDiorOficial en Instagram", u: "https://www.instagram.com/StevenDiorOficial", d: "Cuenta oficial de StevenDior en Instagram.", k: "instagram redes social cuenta" }
+];
+var SUGERENCIAS = ["música", "sismos", "noticias", "inteligencia artificial", "tienda"];
+
+function norm(s) {
+  return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9ñ ]/g, " ");
+}
+function buscar(q, indice) {
+  var palabras = norm(q).split(/\s+/).filter(function (p) { return p.length > 1; });
+  if (!palabras.length) return [];
+  return indice.map(function (e) {
+    var t = norm(e.t), d = norm(e.d), k = norm(e.k), pts = 0;
+    palabras.forEach(function (p) {
+      if (t.indexOf(p) > -1) pts += 3;
+      if (k.indexOf(p) > -1) pts += 2;
+      if (d.indexOf(p) > -1) pts += 1;
+    });
+    return { e: e, pts: pts };
+  }).filter(function (r) { return r.pts > 0; })
+    .sort(function (a, b) { return b.pts - a.pts; })
+    .slice(0, 5).map(function (r) { return r.e; });
+}
+
+function guardar(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+function leer(k) { try { return localStorage.getItem(k) || ""; } catch (e) { return ""; } }
+
+async function preguntarIA(pregunta, encontrados, llave) {
+  var contexto = encontrados.map(function (e) { return "- " + e.t + " (" + e.u + "): " + e.d; }).join("\n");
+  var texto = "Eres SSII, el buscador de SADV41. Responde en español, breve, usando SOLO este contenido. " +
+    "Si la respuesta no está aquí, di que no está en SADV41 y no inventes.\n\nContenido:\n" + contexto +
+    "\n\nPregunta: " + pregunta;
+  var modelos = ["gemini-3.8-flash", "gemini-3.6-flash"], ultimo = "";
+  for (var i = 0; i < modelos.length; i++) {
+    try {
+      var r = await fetch("https://generativelanguage.googleapis.com/v1beta/models/" + modelos[i] + ":generateContent", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "x-goog-api-key": llave },
+        body: JSON.stringify({ contents: [{ parts: [{ text: texto }] }] })
+      });
+      if (!r.ok) { ultimo = "HTTP " + r.status; continue; }
+      var j = await r.json();
+      return j.candidates[0].content.parts[0].text;
+    } catch (e) { ultimo = String(e); }
+  }
+  throw new Error(ultimo || "sin respuesta");
+}
+
+if (typeof document !== "undefined" && document.getElementById("q")) {
+  var $ = function (id) { return document.getElementById(id); };
+  var ultimaBusqueda = [];
+  function mostrar(q) {
+    ultimaBusqueda = buscar(q, INDICE);
+    $("resultados").hidden = false;
+    $("ia-salida").hidden = true;
+    var lista = $("lista");
+    lista.textContent = "";
+    if (!ultimaBusqueda.length) {
+      var v = document.createElement("p"); v.className = "vacio";
+      v.textContent = "No encuentro eso en el contenido de SADV41.";
+      lista.appendChild(v); return;
+    }
+    ultimaBusqueda.forEach(function (e) {
+      var a = document.createElement("a"); a.className = "res"; a.href = e.u; a.target = "_blank"; a.rel = "noopener";
+      var b = document.createElement("b"); b.textContent = e.t;
+      var p = document.createElement("div"); p.textContent = e.d;
+      var s = document.createElement("small"); s.textContent = e.u;
+      a.appendChild(b); a.appendChild(p); a.appendChild(s); lista.appendChild(a);
+    });
+  }
+  $("f").addEventListener("submit", function (ev) { ev.preventDefault(); mostrar($("q").value); });
+  SUGERENCIAS.forEach(function (s) {
+    var b = document.createElement("button"); b.type = "button"; b.textContent = s;
+    b.onclick = function () { $("q").value = s; mostrar(s); };
+    $("chips").appendChild(b);
+  });
+  $("llave").value = leer("ssii_llave");
+  $("guardar").onclick = function () { guardar("ssii_llave", $("llave").value.trim()); $("guardar").textContent = "Guardada ✓"; setTimeout(function () { $("guardar").textContent = "Guardar"; }, 1500); };
+  $("preguntar").onclick = async function () {
+    var q = $("q").value.trim(), llave = $("llave").value.trim();
+    if (!q) { $("q").focus(); return; }
+    if (!llave) { alert("Pega tu llave de Gemini primero."); return; }
+    mostrar(q);
+    var out = $("ia-salida"); out.hidden = false; out.textContent = "Pensando…";
+    try { out.textContent = await preguntarIA(q, ultimaBusqueda, llave); }
+    catch (e) { out.textContent = "No pude consultar la IA (" + e.message + "). Los resultados de arriba siguen vigentes."; }
+  };
+}
+</script>
+</body>
+</html>
