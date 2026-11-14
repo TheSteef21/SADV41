@@ -142,6 +142,27 @@
       border: 1px solid rgba(212, 175, 55, 0.3);
     }
 
+    .flyer-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: linear-gradient(135deg, #1a1505, #0f1420 55%, #0a1a12);
+      border-radius: 10px;
+      border: 1px dashed rgba(212,175,55,0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .flyer-placeholder span {
+      font-size: 2rem;
+    }
+
     /* Wallet Summary */
     .wallet-header {
       display: flex;
@@ -270,6 +291,37 @@
       color: var(--text-muted);
     }
 
+    /* AGC Banner */
+    .agc-banner {
+      background: linear-gradient(135deg, #1a1505, #0f1420 55%, #0a1a12);
+      border: 1px solid #2b2f3f;
+      border-radius: 14px;
+      padding: 1.25rem;
+      margin-bottom: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .agc-banner .agc-info h3 {
+      color: #f5c542;
+      font-size: 1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .agc-banner .agc-info p {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      max-width: 520px;
+    }
+
+    .agc-banner a.btn-gold {
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
     footer {
       text-align: center;
       color: var(--text-muted);
@@ -293,10 +345,25 @@
       </div>
     </header>
 
+    <!-- AGC Banner -->
+    <div class="agc-banner">
+      <div class="agc-info">
+        <h3>⛏️ DIOR98IAS · Agentic Coin — Época 6/11 · #751,783 shares</h3>
+        <p>Mint activo: 8,750 AGC base · Múltiplo B 5.00× · 41,693 agents participantes. Solo agents con Binance .ai ID minan. Referral oficial SADV41.</p>
+      </div>
+      <a href="https://thesteef21.github.io/SADV41/DIOR98IAS/" class="btn btn-gold">→ DIOR98IAS</a>
+    </div>
+
     <div class="hero-grid">
-      <!-- Flyer Oficial (Asegúrate de guardar la imagen como flyer.jpg en esta misma carpeta) -->
+      <!-- Flyer Oficial -->
       <div class="card flyer-box">
-        <img src="./flyer.jpg" alt="Flyer oficial de acciones StevenDior" onerror="this.style.display='none'" />
+        <img src="./img/1794678180105.jpg" alt="Flyer oficial de acciones StevenDior"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+        <div class="flyer-placeholder" style="display:none">
+          <span>🎨</span>
+          <strong>Flyer StevenDior</strong>
+          <small>Coloca la imagen en StevenDior/img/ para mostrarla aquí.</small>
+        </div>
         <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.75rem; text-align: center;">
           Operaciones tokenizadas fraccionadas y respaldo de capital del proyecto StevenDior.
         </p>
@@ -406,11 +473,20 @@
         <h3>4. Agente &amp; Automatización</h3>
         <p>Nodo interactivo de asistencia, verificación de anunciantes y distribución del ecosistema.</p>
       </a>
+      <a href="https://thesteef21.github.io/SADV41/DIOR98IAS/" class="node-card">
+        <h3>5. DIOR98IAS · AGC Mint</h3>
+        <p>Portal de minado Agentic Coin — Época 6/11. Agents con .ai ID de Binance. Referral SADV41.</p>
+      </a>
+      <a href="https://thesteef21.github.io/SADV41/MERCADOS/" class="node-card">
+        <h3>6. MERCADOS · G-4 Stock</h3>
+        <p>Portal de mercados tokenizados GSTOCK × 4Stock. Acciones, cripto y Maps BerionDior.</p>
+      </a>
     </div>
 
     <footer>
       <p><strong>Lapizasuli</strong> y <strong>SADV41</strong> nacieron como dos proyectos; hoy somos uno: <strong>SADV41</strong>.</p>
       <p>Steven «Dior» Gómez Serrano · Dios descansó y servimos en humillación ante el Señor.</p>
+      <p style="margin-top:0.5rem">Actualizado 2026-11-14 · SADV41/StevenDior/</p>
     </footer>
   </div>
 </body>
