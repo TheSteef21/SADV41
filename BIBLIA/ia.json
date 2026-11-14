@@ -1,0 +1,18 @@
+{
+  "nombre": "SADV41 Biblia - Cristo Viene Pronto!",
+  "version": "RV1909",
+  "libros": 66,
+  "capitulos": 1189,
+  "versiculos": 31103,
+  "rutas": {
+    "capitulo_html": "{libro_id}/{capitulo}.html",
+    "libro_json": "data/{libro_id}.json",
+    "indice": "data/libros.json",
+    "completa": "data/rv1909.json",
+    "guia": "llms.txt",
+    "api_js": "biblia.js"
+  },
+  "fuente": "Dominio Público (RV1909)",
+  "licencia_codigo_datos": "Dominio Público / MIT",
+  "aviso": "Texto en Dominio Público (RV1909). ¡Cristo Viene Pronto! 🎚"
+}

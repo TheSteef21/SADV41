@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wallet Dodecaperfecto · SADV41</title>
+<style>
+:root{--bg:#0f172a;--card:#1e293b;--text:#f8fafc;--muted:#94a3b8;--line:#2a364e;--accent:#3b82f6;--bsc:#f59e0b;--eth:#627eea;--arb:#28a0f0;--ok:#34d399;--bad:#f87171}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding:16px}
+h1{margin:0;font-size:1.35rem}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+.muted{color:var(--muted)}
+header{padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:16px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:8px;font-size:.8rem}
+.pill{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:3px 10px;font-size:.75rem}
+.pill.ok{color:var(--ok);border-color:rgba(52,211,153,.4)}
+button{background:rgba(255,255,255,.08);color:var(--text);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:.8rem;cursor:pointer}
+button:hover{background:rgba(255,255,255,.14)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:16px}
+@media(min-width:900px){.grid{grid-template-columns:repeat(4,1fr)}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.card h3{margin:0 0 6px;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.big{font-size:1.6rem;font-weight:800;line-height:1.1}
+.sub{font-size:.75rem;color:var(--muted);margin-top:4px}
+.bar{display:flex;height:8px;border-radius:99px;overflow:hidden;background:#0b1222;margin:10px 0 4px}
+.bar i{display:block;height:100%}
+.monitor{border:1px solid rgba(59,130,246,.4);background:rgba(59,130,246,.08);border-radius:14px;padding:14px;margin-bottom:16px}
+.monitor h2{margin:0 0 8px;font-size:1rem;color:#60a5fa}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.tag{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:.75rem}
+.warn{border:1px solid rgba(239,68,68,.4);background:rgba(239,68,68,.08);border-radius:10px;padding:10px;margin-top:10px;font-size:.82rem;color:#fecaca}
+.warn b{color:#fca5a5}
+.controls{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px}
+input,select{background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:9px 12px;font-size:.85rem;outline:none}
+input{flex:1;min-width:180px}
+.tablebox{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:rgba(30,41,59,.6)}
+table{width:100%;min-width:720px;border-collapse:collapse}
+th,td{padding:10px 12px;text-align:left;white-space:nowrap;border-bottom:1px solid rgba(255,255,255,.05);font-size:.82rem}
+th{cursor:pointer;color:var(--muted);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;background:#0f172a;position:sticky;top:0;user-select:none}
+th:hover{color:#fff}
+tr:hover td{background:rgba(255,255,255,.03)}
+td.net span{border-radius:999px;padding:2px 9px;font-size:.7rem;font-weight:700;border:1px solid}
+.dmg{color:#fbbf24;font-size:.7rem}
+.top{background:rgba(245,158,11,.15);color:#fbbf24;border-radius:6px;padding:1px 6px;font-size:.65rem;font-weight:800;margin-left:6px}
+a.ex{color:var(--muted);text-decoration:none;margin-left:6px}
+a.ex:hover{color:#fff}
+footer{margin-top:20px;padding-top:12px;border-top:1px solid var(--line);font-size:.72rem;color:var(--muted)}
+#toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:8px 16px;font-size:.8rem;opacity:0;transition:opacity .2s;pointer-events:none}
+#toast.on{opacity:1}
+</style>
+</head>
+<body>
+<!-- SALMO46-INJECT -->
+<a href="https://www.bible.com/es/bible/149/PSA.46.1-11.RVR1960" target="_blank" rel="noopener"
+ style="position:fixed;top:8px;left:8px;z-index:2147483647;background:#0a0a0acc;color:#00e5ff;
+ border:1px solid #00e5ff;border-radius:20px;padding:4px 10px;font:600 11px/1.3 system-ui,sans-serif;
+ text-decoration:none;letter-spacing:.04em">📖 Salmos 46 · Dios es nuestro amparo</a>
+<!-- /SALMO46-INJECT -->
+<div class="wrap">
+
+<header>
+  <h1>Dashboard EVM · Dodecaperfecto</h1>
+  <div class="row">
+    <span class="pill mono">0x8CE9…a6CB</span>
+    <button id="copyWallet">Copiar wallet</button>
+    <span class="muted mono">Snapshot: 2 Nov 2026 · Asia/Singapore</span>
+  </div>
+<a href="./Agent/" class="p-4 border border-[#00e5ff]/50 bg-[#00e5ff]/10 hover:border-[#00e5ff] text-[#00e5ff] transition-all rounded-xl font-bold uppercase tracking-widest text-center">AGENTE 🤖</a>
+</header>
+
+<section class="grid">
+  <div class="card">
+    <h3>Valor total</h3>
+    <div class="big" id="total">—</div>
+    <div class="sub" id="count">—</div>
+  </div>
+  <div class="card">
+    <h3>Peso de red</h3>
+    <div class="big" id="bscPct">—</div>
+    <div class="bar" id="bar"></div>
+    <div class="sub mono" id="netLegend"></div>
+  </div>
+  <div class="card">
+    <h3>Posición mayor</h3>
+    <div class="big">GORRA</div>
+    <div class="sub" id="topInfo">—</div>
+  </div>
+  <div class="card">
+    <h3>Monitor Weekly Dust</h3>
+    <div class="big" style="font-size:1.2rem;color:var(--ok)">Ejecutándose</div>
+    <div class="sub">Lun 9 Nov · 09:05 SGT<br>Dom 8 Nov · 8:05 PM Panamá</div>
+    <div class="sub mono" id="cd">⏳ —</div>
+  </div>
+</section>
+
+<section class="monitor">
+  <h2>Weekly Dust &amp; Holding Monitor <span class="muted" style="font-weight:400">· stweeklydust_monitor v.r1</span></h2>
+  <div style="font-size:.85rem">Cada lunes a las 09:00 (Asia/Singapur) revisa el cambio de 7 días de GORRA, NVDAB y SNDKB en BSC y envía una notificación push si alguno se mueve ±25% o más. Solo notifica; no opera.</div>
+  <div class="tags">
+    <span class="tag">Dry run ✓ · 0 errores</span>
+    <span class="tag">NVDAB <span style="color:var(--bad)">−4.45%</span></span>
+    <span class="tag">SNDKB <span style="color:var(--bad)">−7.77%</span></span>
+    <span class="tag">GORRA <span class="muted">sin datos suficientes</span></span>
+    <span class="tag">Señales hoy: 0</span>
+  </div>
+  <div class="warn"><b>⚠ GORRA no puede disparar todavía.</b> Solo reporta 2 velas diarias y la estrategia necesita 8 para calcular el cambio de 7 días. Se activará sola cuando acumule historial, o hay que bajar el requisito en el código.</div>
+</section>
+
+<div class="controls">
+  <input id="q" placeholder="Buscar símbolo o contrato…">
+  <select id="net">
+    <option value="ALL">Todas las redes</option>
+    <option>BSC</option><option>Ethereum</option><option>Arbitrum</option>
+  </select>
+  <select id="size">
+    <option value="ALL">Todos los tamaños</option>
+    <option value="BIG">Mayores a $0.10</option>
+    <option value="DUST">Dust (menos de $0.10)</option>
+  </select>
+  <button id="csv">⤓ CSV</button>
+</div>
+<div class="sub" id="shown" style="margin-bottom:8px"></div>
+
+<div class="tablebox">
+<table>
+  <thead><tr>
+    <th data-k="symbol">Token ↕</th>
+    <th data-k="contract">Contrato ↕</th>
+    <th data-k="network">Red ↕</th>
+    <th data-k="balance">Balance ↕</th>
+    <th data-k="value">Valor (USD) ↕</th>
+  </tr></thead>
+  <tbody id="body"></tbody>
+</table>
+</div>
+
+<footer>
+  Construido para SADV41 · Panamá 507 🇵🇦 · Los datos son una foto del 2 Nov 2026, no se actualizan solos.<br>
+  Filas marcadas “dato dañado” llegaron incompletas en la fuente; su valor es aproximado y no tienen enlace al explorador.
+</footer>
+</div>
+<div id="toast"></div>
+
+<script>
+const NATIVE="0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE";
+// [símbolo, contrato, red, balance, valor USD, dañado]
+const T=[
+["GORRA","0xd03115eDB6794fA06304D43ee46F7f62b71BfFfF","BSC","1,144,954.01",3.68611906],
+["NVDAB","0x02Fca66C1D1aFB4E2A7884261eB00F63598a7436","BSC","0.0047",0.96914],
+["SNDKB","0x3eE4dF61bd4F867E349BEaE8bFE07bc31b4850fb","BSC","0.00051",0.5988318],
+["SADV41","0x9b633Cc361b3e7Aace80340fed9491265F29FffF","BSC","100,000",0.43532008],
+["we are here","0x0891e49C17e7b6867DfaB2cF6BED185B4C174444","BSC","105,578.90",0.3525283],
+["币安包赔","0xf677A174940ab7Bd5325e17ac721C51328064444","BSC","102,018.51",0.35210272],
+["4Broker","0x74361e7D05B6801C3b7D7f1CCE9Aa0D557D5FffF","BSC","101,297.58",0.34568925],
+["XACQ","0x225135f4A71Ecf91fF85715012f1B249b926FFff","BSC","95,500.43",0.34199376],
+["UST","0x23396cF899Ca06c4472205fC903bDB4de249D6fC","BSC","20",0.30849282],
+["GOOGLB","0x3F53De71c126BdaBAe20f9cD64848d317f6C3238","BSC","0.001",0.28348],
+["ETH",NATIVE,"Ethereum","0.0001",0.22689203],
+["四","0xA2299d7179afEbF5667aFbF1E4E45FA051A2ffff","BSC","25,262.79",0.20269359],
+["GANG","0x0c6302401aa5325C2E36F170f52C00B1d220B405","BSC","56.80",0.15572672],
+["BABAB","0x4eF9d3062c7F6ebA4AAE4990c5036598C6eff4ec","BSC","0.0013",0.128869],
+["BNB",NATIVE,"BSC","0.000164",0.11626832],
+["SKHYB","0xCA750eF65f295BBECd685Abf54e82CAf297BDB61","BSC","0.0006",0.09216],
+["xOPAI","0x7DdEF360f3C2DB4CC41C3967984fefa2598cC9A6","BSC","0.01",0.09010548],
+["vxSolvBTC","0xd804dE60aFD05EE6B89aab5D152258fD461B07D5","BSC","0.000001",0.07808117],
+["AIDOGE","0x09E18590E8f76b6Cf471b3cd75fE1A1a9D2B2c2b","Arbitrum","10,000,000,000",0.07785113],
+["LISTA","0xFceB31A79F71AC9CBDCF853519c1b12D379EdC46","BSC","1",0.07689757],
+["Troll","0x52721D159cD90dd76014F73c1440E4Ff983420ac","BSC","100,000,007.51",0.07449542],
+["fUSDC","0xfE60462E93cee34319F48Cfc6AcFbc13c2882Df9","BSC","0.07",0.07238333],
+["BNBTiger","0xAC68931B666E086E9de380CFDb0Fb5704a35dc2D","BSC","100,000,000,000,000,000",0.07074153],
+["QQQB","0x205812CdBed920aFf76C6580abD681a46D11efc7","BSC","0.0001",0.069757],
+["BIBI","0x967B26D369571A8C5a035aaAc1F4b1594287fFFf","BSC","7,906.65",0.06356361],
+["Moolah","0xbAb528425Edb1E0E36D3719bc3307d9C8ccE8888","BSC","1",0.06308123],
+["MRVLB","0x16cd4fe7e8880ECc3ba222795229E20489fc2C76","BSC","0.0003",0.060159],
+["BANANAS31","0x3d4f0513E8a29669B960f9dBcA61861548A9A760","BSC","10",0.05795455],
+["4AGENT","0x5F6A1cE1733Fc4834a526798c0e8Cf85137eFFfF","BSC","—",0.052086,1],
+["…ai (sin nombre completo)",null,"BSC","—",0.05041716,1],
+["Speed","0x51946de84Fc78907342A749979193Fca8e334444","BSC","7,000",0.0493159],
+["PDDB","0x95b0409679B55C31772daA2fB4bEE7B125B77521","BSC","0.0006",0.047322],
+["xSPCX","0x05353Dabf163Fb2fec87f9e0f00f94Eae4AC1631","BSC","0.0003",0.04468898],
+["Totakeke","0xd743d3C50EBdB59938397982f9173D10f3494444","BSC","1,000",0.0420698],
+["SPCXB","0xbe9D156892E55e7154BcD3cB0FEA677F9D3103E1","BSC","0.0003",0.041325],
+["USDa","0x9356086146be5158E98aD827E21b5cF944699894","BSC","0.1",0.0405737],
+["MSTRB","0xE87afb3076AeB0f9B14E368DE8145ae6a2826A14","BSC","0.0003",0.040455],
+["vADA","0x9A0AF7FDb2065Ce470D72664DE73cAE409dA28Ec","BSC","10",0.04024734],
+["USD1","0x8d0D000Ee44948FC98c9B98A4FA4921476f08B0d","BSC","0.04",0.0399596],
+["AAPLB","0x431a3BEE82E2ca41e49895CbECE5bB0F76A89b7A","BSC","0.0001",0.034537],
+["vUSD1","0x0C1DA220D301155b87318B90692Da8dc43B67340","BSC","0.03",0.03120518],
+["HODL","0x137fFd84025C582482E03D3A0B9f74c26dDDFBad","BSC","99,000,000,000",0.03110858],
+["MUB","0xcdf2f3e0fa43C47A6662a91C9E4a7C5f69762699","BSC","0.00003",0.0272739],
+["UP","0x000008D2175F9AEAdDb2430c26f8A6f73c5A0000","BSC","0.2",0.02665018],
+["HOODB",null,"BSC","0.0003",0.025848,1],
+["BabyBome","0xD5d21b98903257ee56c3406EF72a60981bA81703","BSC","500,000,000",0.02563636],
+["MRNAB","0x5fd86da9B05abE396fe9d02a4A213A7c00556503","BSC","0.0001",0.022159],
+["TRUMP","0xb292b9281852AeFC47C58f5b7ec2D90C59035aD4","BSC","4,000",0.02209467],
+["CRCLB","0x80f3D493EBCe97e343c53D29a137942416B4ffC0","BSC","0.0003",0.02202],
+["APX","0x78F5d389F5CDCcFc41594aBaB4B0Ed02F31398b3","BSC","0.1",0.02147501],
+["INTCB","0xe614E2fc6C787035FF51f452e8E826Bfd32D5283","BSC","0.0003",0.0198],
+["NFLXB","0xD6829Ea836b6FA224d099D40E54B31262f874631","BSC","0.0003",0.018675],
+["BabyTroll","0x6ec07DbD9311975b8002079d70C6F6d9E3e1EE5C","BSC","1,000,000,000,000",0.01752234],
+["GWEI","0x30117E4bC17d7B044194b76A38365C53b72F7D49","BSC","0.5",0.01074837],
+["WBNB","0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c","BSC","0.000012",0.0086284],
+["GMEB","0x46cEeFDa28Dd7207059ed19B0acdc026955bb15C","BSC","0.0003",0.007251],
+["PYPLB","0x2806a561fC1F9259B2d54A281796Bde0D92762aE","BSC","0.0001",0.005694],
+["BTR","0xfed13D0c40790220fbdE712987079Eda1Ed75C51","BSC","0.1",0.00455547],
+["xKLSH","0xE0cbb7FFc0883810569d84d78f02bbcB747cFe43","BSC","0.0001",0.00293812],
+["AGPUB","0xa455ae0f04a2b86eee47adCA98985E61D14CbEfb","BSC","0.0003",0.00246],
+["PROMISE","0x5a7A15f8d5DaEAE4e5bA880451CDDF64FA2fAe6D","BSC","100,000,000,000",0.00221019],
+["上等羊","0x81fB3A891DE3768210Bda53EDc9924a7876978F8","BSC","13.88",0.00205121],
+["PYUSD","0x46850aD61C2B7d64d08c9C754F45254596696984","Arbitrum","0.001",0.00099846],
+["IDUO","0x5352aeC2389E54f1974dcfE62dDE3e3fa1ed4444","BSC","58.88",0.00089275],
+["ZAR",null,"BSC","4",0.000761,1],
+["FLNCB","0x4af1D41cd9dD950dcA43984b43aaA2A8702714Ac","BSC","0.0001",0.000576],
+["TapeKey","0x8c8380b8869257f21516F1bE38B3e9D05c06fFfF","BSC","0.04",0.00022363],
+["股票之火","0x4297396dbabD37EB05556Ae154712FE59aD9A378","BSC","2.14",0.00000263]
+].map(r=>({symbol:r[0],contract:r[1],network:r[2],balance:r[3],value:r[4],dmg:!!r[5]}));
+
+const COL={BSC:"#f59e0b",Ethereum:"#627eea",Arbitrum:"#28a0f0"};
+const EXP={BSC:"https://bscscan.com/address/",Ethereum:"https://etherscan.io/address/",Arbitrum:"https://arbiscan.io/address/"};
+const $=id=>document.getElementById(id);
+const money=v=>"$"+(v>=1?v.toFixed(2):v>=0.001?v.toFixed(4):v.toFixed(6));
+const short=c=>c?c.slice(0,6)+"…"+c.slice(-4):"dato dañado";
+let sortK="value",asc=false;
+
+function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.h);toast.h=setTimeout(()=>t.classList.remove("on"),1800)}
+function copy(txt,msg){
+  const done=()=>toast(msg);
+  if(navigator.clipboard)navigator.clipboard.writeText(txt).then(done,()=>toast("No se pudo copiar"));
+  else{const a=document.createElement("textarea");a.value=txt;document.body.appendChild(a);a.select();try{document.execCommand("copy");done()}catch(e){toast("No se pudo copiar")}a.remove()}
+}
+
+// Resumen
+const total=T.reduce((s,t)=>s+t.value,0);
+const byNet={};T.forEach(t=>byNet[t.network]=(byNet[t.network]||0)+t.value);
+$("total").textContent="$"+total.toFixed(2);
+$("count").textContent=T.length+" posiciones detectadas";
+$("bscPct").textContent=Math.round(byNet.BSC/total*100)+"%";
+$("bar").innerHTML=Object.keys(byNet).map(n=>`<i style="width:${byNet[n]/total*100}%;background:${COL[n]}"></i>`).join("");
+$("netLegend").textContent=Object.keys(byNet).map(n=>`${n==="Ethereum"?"ETH":n==="Arbitrum"?"ARB":n} ${money(byNet[n])}`).join(" · ");
+const top=T.reduce((a,b)=>b.value>a.value?b:a);
+$("topInfo").textContent=money(top.value)+" · "+(top.value/total*100).toFixed(1)+"% del portafolio";
+
+// Cuenta regresiva (lun 9 Nov 09:05 SGT = 2026-11-09T01:05Z)
+const target=new Date("2026-11-09T01:05:00Z").getTime();
+setInterval(()=>{
+  const d=target-Date.now();
+  if(d<=0){$("cd").textContent="⏳ Ejecutando…";return}
+  const D=Math.floor(d/864e5),H=Math.floor(d%864e5/36e5),M=Math.floor(d%36e5/6e4),S=Math.floor(d%6e4/1e3);
+  $("cd").textContent=`⏳ ${D}d ${H}h ${M}m ${S}s`;
+},1000);
+
+// Tabla
+function view(){
+  const q=$("q").value.toLowerCase().trim(),n=$("net").value,s=$("size").value;
+  let r=T.filter(t=>{
+    const okQ=!q||t.symbol.toLowerCase().includes(q)||(t.contract||"").toLowerCase().includes(q);
+    const okN=n==="ALL"||t.network===n;
+    const okS=s==="ALL"||(s==="BIG"?t.value>=0.10:t.value<0.10);
+    return okQ&&okN&&okS;
+  });
+  r.sort((a,b)=>{
+    let x=a[sortK],y=b[sortK];
+    if(sortK==="balance"){x=parseFloat(String(x).replace(/,/g,""))||0;y=parseFloat(String(y).replace(/,/g,""))||0}
+    if(typeof x==="string")return asc?x.localeCompare(y||""):(y||"").localeCompare(x);
+    return asc?(x||0)-(y||0):(y||0)-(x||0);
+  });
+  return r;
+}
+function render(){
+  const r=view(),b=$("body");b.textContent="";
+  r.forEach(t=>{
+    const tr=document.createElement("tr");
+    const c1=document.createElement("td");
+    const sy=document.createElement("strong");sy.textContent=t.symbol;c1.appendChild(sy);
+    if(t===top){const s=document.createElement("span");s.className="top";s.textContent=(t.value/total*100).toFixed(1)+"%";c1.appendChild(s)}
+    const c2=document.createElement("td");c2.className="mono muted";
+    const sp=document.createElement("span");sp.textContent=short(t.contract);if(!t.contract)sp.className="dmg";c2.appendChild(sp);
+    if(t.contract){
+      const cb=document.createElement("button");cb.textContent="⎘";cb.style.marginLeft="6px";cb.style.padding="2px 8px";
+      cb.onclick=()=>copy(t.contract,"Contrato copiado");c2.appendChild(cb);
+      if(t.contract.toLowerCase()!==NATIVE.toLowerCase()){
+        const a=document.createElement("a");a.className="ex";a.href=EXP[t.network]+t.contract;a.target="_blank";a.rel="noopener noreferrer";a.textContent="↗";c2.appendChild(a);
+      }
+    }
+    const c3=document.createElement("td");c3.className="net";
+    const ns=document.createElement("span");ns.textContent=t.network;ns.style.color=COL[t.network];ns.style.borderColor=COL[t.network]+"55";ns.style.background=COL[t.network]+"18";c3.appendChild(ns);
+    const c4=document.createElement("td");c4.className="mono";c4.textContent=t.balance;
+    const c5=document.createElement("td");c5.textContent=money(t.value);
+    if(t.dmg){const d=document.createElement("span");d.className="dmg";d.textContent=" · dato dañado";c5.appendChild(d)}
+    [c1,c2,c3,c4,c5].forEach(c=>tr.appendChild(c));b.appendChild(tr);
+  });
+  const sum=r.reduce((s,t)=>s+t.value,0);
+  $("shown").textContent=`Mostrando ${r.length} de ${T.length} · suma ${money(sum)}`;
+}
+document.querySelectorAll("th").forEach(th=>th.onclick=()=>{
+  const k=th.dataset.k;if(sortK===k)asc=!asc;else{sortK=k;asc=k!=="value"}render();
+});
+["q","net","size"].forEach(id=>$(id).addEventListener("input",render));
+$("copyWallet").onclick=()=>copy("0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB","Wallet copiada");
+$("csv").onclick=()=>{
+  const rows=[["symbol","contract","network","balance","value_usd"],...view().map(t=>[t.symbol,t.contract||"",t.network,t.balance,t.value])];
+  const csv=rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(",")).join("\n");
+  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8"}));
+  a.download="wallet_dodecaperfecto_"+T.length+".csv";a.click();toast("CSV exportado");
+};
+render();
+</script>
+<div id="sadv41-noviembre-widget" style="position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:999999;background:linear-gradient(135deg,#00209F 0%,#00209F 30%,#FFFFFF 30%,#FFFFFF 70%,#D21034 70%);color:#111;padding:10px 18px;border-radius:999px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;font-weight:900;font-size:14px;letter-spacing:.3px;box-shadow:0 8px 30px rgba(0,0,0,.35),0 0 0 2px rgba(255,255,255,.9) inset;display:flex;align-items:center;gap:8px;">
+  <span>Feliz Mes de Noviembre</span><span>🇵🇦👑🇺🇸</span>
+  <button onclick="this.parentElement.remove()" style="margin-left:8px;background:rgba(0,0,0,.12);border:0;border-radius:50%;width:22px;height:22px;cursor:pointer;font-weight:900;line-height:1;">×</button>
+</div>
+
+<script src="/SADV41/BIBLIA/biblia.js" defer></script>
+<script src="https://thesteef21.github.io/SADV41/sadv41-drag.js" defer></script><!-- sadv41-drag -->
+  <script src="https://thesteef21.github.io/SADV41/lib/seismic-widget.js" defer></script>
+<!-- sadv41-news -->
+<div id="sadv41-news" style="position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#0a0e1a;color:#f4f6ff;border-top:2px solid #f5c542;font:600 13px/1.35 system-ui,sans-serif;padding:8px 40px 8px 12px;text-align:center"><span style="color:#f5c542">ÚLTIMA NOTICIA</span> · <a href="https://thesteef21.github.io/SADV41/NEWS/PANAMA/USA/#paraguay" target="_blank" rel="noopener" style="color:#3ee0e8;text-decoration:none">Paraguay interviene Ueno Bank y renuncia el presidente del Banco Central 🏦</a><button onclick="this.parentNode.style.display='none'" aria-label="Cerrar" style="position:absolute;right:8px;top:4px;background:none;border:0;color:#9aa3c7;font-size:18px;cursor:pointer">×</button></div>
+<!-- /sadv41-news -->
+<!-- sadv41-home -->
+<a id="sadv41-home" href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" title="SADV41 · Página principal" aria-label="Ir a la página principal de SADV41" style="position:fixed;left:14px;bottom:64px;z-index:2147482999;width:46px;height:46px;border-radius:50%;background:#071642;border:3px solid #d9a93a;box-shadow:0 4px 14px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;text-decoration:none"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><g fill="#d9a93a"><rect x="10.8" y="2" width="2.4" height="20" rx=".6"/><rect x="8" y="4.6" width="8" height="1.8" rx=".5"/><rect x="6" y="9" width="12" height="2.4" rx=".6"/><rect x="8.6" y="16.6" width="6.8" height="1.8" rx=".5" transform="rotate(12 12 17.5)"/></g></svg></a>
+<!-- /sadv41-home -->
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+<!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+</body>
+</html>

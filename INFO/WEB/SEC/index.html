@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SEC · Retro-autoinvestigación · SADV41</title>
+<style>
+:root{--bg:#0b0e14;--c:#141a24;--l:#263146;--t:#e8edf5;--m:#8b97ab;--g:#f0b90b;--ok:#3ecf8e;--bad:#ff6b6b;--tc:#27c4d4}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--t);font:16px/1.5 system-ui,sans-serif;padding:20px 16px 60px;max-width:820px;margin:auto}
+h1{font-size:26px}h1 span{color:var(--g);font-size:.62em;display:block;font-weight:500}
+h2{font-size:17px;color:var(--g);margin:30px 0 10px}
+p.s{color:var(--m);font-size:14px;margin:6px 0 14px}
+.warn{border:1px solid #5a4a12;background:#1d180a;color:#e9d48a;border-radius:12px;padding:10px 14px;font-size:13.5px;margin-top:12px}
+.card{background:var(--c);border:1px solid var(--l);border-radius:14px;padding:14px}
+.grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+label{font-size:12.5px;color:var(--m);display:block;margin-bottom:3px}
+input,select{width:100%;background:#0e131c;border:1px solid var(--l);color:var(--t);border-radius:10px;padding:10px;font:inherit;font-size:15px}
+button{font:inherit;cursor:pointer;color:inherit}
+.btn{background:var(--g);color:#111;border:0;border-radius:10px;padding:9px 14px;font-weight:700;font-size:14px}
+.btn.o{background:transparent;color:var(--t);border:1px solid var(--l);font-weight:500}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+/* visor */
+.win{border:1px solid var(--l);border-radius:14px;overflow:hidden;background:#0e131c}
+.bar{display:flex;gap:6px;align-items:center;padding:8px 10px;background:#111826;border-bottom:1px solid var(--l)}
+.dot{width:10px;height:10px;border-radius:50%;background:#3a465e}
+.tabs{display:flex;gap:4px;margin-left:8px;flex-wrap:wrap}
+.tab{background:transparent;border:1px solid var(--l);border-radius:8px;padding:3px 9px;font-size:12.5px;color:var(--m)}
+.tab.on{background:var(--g);color:#111;border-color:var(--g);font-weight:700}
+.addr{padding:8px 10px;border-bottom:1px solid var(--l);font:12px/1.4 ui-monospace,monospace;color:var(--tc);word-break:break-all}
+.qin{padding:10px;border-bottom:1px solid var(--l)}
+.qin input{font-family:ui-monospace,monospace;font-size:14px}
+.pane{padding:12px;font-size:14px}
+.chips{display:flex;flex-direction:column;gap:6px;margin:8px 0}
+.chip{display:flex;gap:8px;align-items:baseline;font-size:13px}
+.chip code{background:#1a2333;border:1px solid var(--l);border-radius:6px;padding:1px 6px;color:var(--g);font-size:12.5px;white-space:pre-wrap;word-break:break-all}
+.chip code.miss{color:var(--bad);border-color:#5a2a2a}
+.chip i{color:var(--m);font-style:normal}
+.msg{font-size:13px;color:var(--m);margin-top:6px}.msg b{color:var(--bad)}
+/* dorks */
+.grp{margin:12px 0 4px;font-size:13px;color:var(--m);text-transform:uppercase;letter-spacing:.06em}
+.dks{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.dk{text-align:left;background:var(--c);border:1px solid var(--l);border-radius:12px;padding:10px 12px}
+.dk:active,.dk.on{border-color:var(--g)}
+.dk code{display:block;color:var(--g);font-size:13px;word-break:break-all;white-space:pre-wrap}
+.dk small{color:var(--m);font-size:12.5px}
+/* pasos */
+.ck{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--l);font-size:14.5px}
+.ck input{width:20px;height:20px;margin-top:2px;flex:none}
+.ck a{color:var(--tc)}
+h3{font-size:14px;color:var(--m);margin:14px 0 2px}
+/* inspector */
+.drop{border:2px dashed var(--l);border-radius:14px;padding:18px;text-align:center;color:var(--m);font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:10px}
+td,th{border-bottom:1px solid var(--l);padding:6px 4px;text-align:left;vertical-align:top;word-break:break-word}
+th{color:var(--m);font-weight:500;width:36%}
+.bad{color:var(--bad);font-weight:700}.ok{color:var(--ok)}
+footer{margin-top:34px;color:var(--m);font-size:12.5px}
+a{color:var(--tc)}
+</style></head><body>
+
+<h1>SEC <span>Retro-autoinvestigación · SADV41</span></h1>
+<p class="s">Mira tu propia huella como la vería un buscador. Es un sandbox local: nada sale de tu dispositivo hasta que tú pulses «Abrir en el buscador».</p>
+<div class="warn">Uso ético: solo con tus datos o con permiso expreso de la persona. Esta página no incluye reconocimiento facial ni búsquedas masivas sobre terceros.</div>
+
+<h2>1 · Mis datos</h2>
+<div class="card"><div class="grid">
+  <div><label for="f-nombre">Nombre completo</label><input id="f-nombre" data-k="nombre" placeholder="Nombre Apellido" autocomplete="off"></div>
+  <div><label for="f-usuario">Usuario / alias</label><input id="f-usuario" data-k="usuario" placeholder="usuario" autocomplete="off"></div>
+  <div><label for="f-correo">Correo</label><input id="f-correo" data-k="correo" placeholder="tucorreo@mail.com" autocomplete="off"></div>
+  <div><label for="f-dominio">Mi sitio / dominio</label><input id="f-dominio" data-k="dominio" placeholder="midominio.com" autocomplete="off"></div>
+  <div><label for="f-otro">Otro dato mío</label><input id="f-otro" data-k="otro" placeholder="apodo, empresa…" autocomplete="off"></div>
+</div><p class="msg">Se guardan solo en este navegador. Los botones de abajo reemplazan <code>{nombre}</code>, <code>{usuario}</code>, <code>{correo}</code>, <code>{dominio}</code> y <code>{otro}</code>.</p></div>
+
+<h2>2 · Visor (sandbox)</h2>
+<div class="win">
+  <div class="bar"><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    <div class="tabs" id="tabs"></div></div>
+  <div class="addr" id="addr">—</div>
+  <div class="qin"><input id="q" placeholder="Elige un botón de abajo o escribe tu consulta" autocomplete="off" spellcheck="false"></div>
+  <div class="pane">
+    <div id="why" class="msg">Aquí verás cómo el motor lee tu consulta, pieza por pieza.</div>
+    <div class="chips" id="chips"></div>
+    <div id="warn" class="msg"></div>
+    <div class="row">
+      <button class="btn" id="open" disabled>Abrir en el buscador ↗</button>
+      <button class="btn o" id="copy">Copiar consulta</button>
+      <button class="btn o" id="tolog">A la bitácora</button>
+    </div>
+  </div>
+</div>
+<p class="msg">Los buscadores no permiten incrustarse en una página, por eso el visor muestra la consulta y su lectura; el resultado real se abre en una pestaña nueva.</p>
+
+<h2>3 · Botones (códigos)</h2>
+<div id="dorks"></div>
+
+<h2>4 · Pasos del vídeo, aplicados a mí</h2>
+<div class="card" id="pasos"></div>
+
+<h2>5 · Inspector de archivos (local)</h2>
+<div class="drop"><p>Elige una foto JPG o un PDF <b>tuyo</b>. Se lee en tu dispositivo, no se sube a ningún lado.</p>
+<div class="row" style="justify-content:center"><input type="file" id="file" accept=".pdf,.jpg,.jpeg,image/jpeg,application/pdf" style="max-width:300px"></div></div>
+<div id="insp"></div>
+
+<h2>6 · Bitácora de hallazgos</h2>
+<div class="card">
+  <div class="grid">
+    <div><label for="b-url">Dónde lo encontré (URL)</label><input id="b-url" placeholder="https://…"></div>
+    <div><label for="b-nota">Qué es / nota</label><input id="b-nota" placeholder="PDF con mi nombre…"></div>
+    <div><label for="b-est">Estado</label><select id="b-est"><option>pendiente</option><option>retiro solicitado</option><option>resuelto</option></select></div>
+  </div>
+  <div class="row"><button class="btn" id="b-add">Añadir</button><button class="btn o" id="b-exp">Copiar JSON</button></div>
+  <table id="b-tab"></table>
+  <p class="msg">Para borrar cuentas viejas usa <a href="https://justdeleteme.xyz" target="_blank" rel="noopener">JustDeleteMe</a>. Para pedir que Google retire un resultado: <a href="https://support.google.com/websearch/troubleshooter/9685456" target="_blank" rel="noopener">solicitud de retiro</a>.</p>
+</div>
+
+<footer>SADV41 · INFO/WEB/SEC · Informativo. Sin recolección de datos: todo vive en tu navegador.</footer>
+
+<script>
+(function(){
+var $=function(s){return document.querySelector(s)};
+var esc=function(s){return String(s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})};
+var store={get:function(k,d){try{var v=localStorage.getItem('sadv41.sec.'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},
+ set:function(k,v){try{localStorage.setItem('sadv41.sec.'+k,JSON.stringify(v))}catch(e){}}};
+
+/* ---------- perfil ---------- */
+var prof=store.get('prof',{});
+document.querySelectorAll('[data-k]').forEach(function(el){
+  el.value=prof[el.dataset.k]||'';
+  el.addEventListener('input',function(){prof[el.dataset.k]=el.value.trim();store.set('prof',prof);render()});
+});
+
+/* ---------- motores ---------- */
+var ENG={google:['Google','https://www.google.com/search?q='],bing:['Bing','https://www.bing.com/search?q='],
+ yandex:['Yandex','https://yandex.com/search/?text='],ddg:['DuckDuckGo','https://duckduckgo.com/?q=']};
+var eng=store.get('eng','google'); if(!ENG[eng])eng='google';
+var tabs=$('#tabs');
+Object.keys(ENG).forEach(function(k){
+  var b=document.createElement('button');b.className='tab';b.textContent=ENG[k][0];b.dataset.e=k;
+  b.onclick=function(){eng=k;store.set('eng',k);render()};tabs.appendChild(b);
+});
+
+/* ---------- lectura de la consulta ---------- */
+var OPS={site:'Limita los resultados a ese dominio.',filetype:'Solo archivos de ese tipo (pdf, docx, xlsx…).',
+ intext:'La palabra debe estar dentro del texto de la página.',intitle:'La palabra debe estar en el título.',
+ inurl:'La palabra debe estar en la dirección (URL).'};
+function tokens(q){return q.match(/"[^"]*"|\S+/g)||[]}
+function explain(t){
+  if(t.charAt(0)==='"')return 'Frase exacta: esas palabras juntas y en ese orden.';
+  if(t==='OR')return 'O: cualquiera de los dos lados.';
+  var m=t.match(/^(-?)(site|filetype|intext|intitle|inurl):(.*)$/i);
+  if(m)return (m[1]?'EXCLUYE: ':'')+OPS[m[2].toLowerCase()];
+  if(t.charAt(0)==='-'&&t.length>1)return 'Excluye lo que lleve eso.';
+  return 'Palabra libre.';
+}
+function missing(q){var r=[],m,re=/\{(\w+)\}/g;while((m=re.exec(q))){if(!prof[m[1]])r.push(m[1])}return r}
+function fill(q){return q.replace(/\{(\w+)\}/g,function(a,k){return prof[k]||a})}
+
+var Q='';
+function render(){
+  tabs.querySelectorAll('.tab').forEach(function(b){b.classList.toggle('on',b.dataset.e===eng)});
+  var miss=missing(Q),final=fill(Q).trim();
+  $('#addr').textContent=final?ENG[eng][1]+encodeURIComponent(final):'—';
+  $('#chips').innerHTML=tokens(Q).map(function(t){
+    var bad=/\{\w+\}/.test(t)&&miss.some(function(k){return t.indexOf('{'+k+'}')>-1});
+    var shown=bad?t:fill(t);
+    return '<div class="chip"><code'+(bad?' class="miss"':'')+'>'+esc(shown)+'</code><i>'+(bad?'Falta ese dato en «Mis datos».':esc(explain(shown)))+'</i></div>';
+  }).join('');
+  $('#why').textContent=final||Q?'Así lee el motor tu consulta:':'Aquí verás cómo el motor lee tu consulta, pieza por pieza.';
+  $('#warn').innerHTML=miss.length?'<b>Falta:</b> '+miss.map(function(k){return '{'+k+'}'}).join(', ')+' — complétalo arriba.':'';
+  $('#open').disabled=!final||miss.length>0;
+  document.querySelectorAll('.dk').forEach(function(b){b.classList.toggle('on',b.dataset.q===Q)});
+}
+$('#q').addEventListener('input',function(e){Q=e.target.value;render()});
+$('#open').onclick=function(){window.open(ENG[eng][1]+encodeURIComponent(fill(Q).trim()),'_blank','noopener')};
+function copy(txt,btn){
+  var done=function(){if(btn){var o=btn.textContent;btn.textContent='Copiado ✓';setTimeout(function(){btn.textContent=o},1200)}};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,function(){fb()})}else fb();
+  function fb(){var a=document.createElement('textarea');a.value=txt;document.body.appendChild(a);a.select();try{document.execCommand('copy');done()}catch(e){}a.remove()}
+}
+$('#copy').onclick=function(){copy(fill(Q).trim(),this)};
+$('#tolog').onclick=function(){$('#b-nota').value='Consulta: '+fill(Q).trim();$('#b-url').focus();$('#b-url').scrollIntoView({behavior:'smooth',block:'center'})};
+
+/* ---------- botones de códigos ---------- */
+var DORKS=[
+ ['Archivos',[
+  ['filetype:pdf "{nombre}"','PDF públicos que mencionan tu nombre exacto.'],
+  ['filetype:pdf "{usuario}"','PDF que mencionan tu alias.'],
+  ['site:{dominio} filetype:pdf','PDF indexados en tu propio sitio.'],
+  ['filetype:docx OR filetype:xlsx "{nombre}"','Word o Excel indexados con tu nombre.']]],
+ ['Perfiles',[
+  ['site:instagram.com "{usuario}"','Tu alias dentro de Instagram.'],
+  ['site:tiktok.com "{usuario}"','Tu alias dentro de TikTok.'],
+  ['site:github.com "{usuario}"','Tu alias dentro de GitHub.'],
+  ['"{usuario}" -site:instagram.com','Tu alias fuera de tu propio perfil.']]],
+ ['Texto exacto',[
+  ['"{nombre}"','Tu nombre entre comillas.'],
+  ['"{nombre}" "{correo}"','Nombre y correo juntos en una página.'],
+  ['intext:"{correo}"','Tu correo escrito dentro de páginas.'],
+  ['intitle:"{nombre}"','Páginas con tu nombre en el título.'],
+  ['"{otro}"','Tu otro dato (apodo, empresa…).']]],
+ ['Mi sitio',[
+  ['site:{dominio}','Todo lo que está indexado de tu dominio.'],
+  ['"{dominio}" -site:{dominio}','Quién menciona tu dominio desde fuera.']]]
+];
+var dh='';
+DORKS.forEach(function(g){
+  dh+='<div class="grp">'+g[0]+'</div><div class="dks">';
+  g[1].forEach(function(d){dh+='<button class="dk" data-q="'+esc(d[0])+'"><code>'+esc(d[0])+'</code><small>'+esc(d[1])+'</small></button>'});
+  dh+='</div>';
+});
+$('#dorks').innerHTML=dh;
+$('#dorks').addEventListener('click',function(e){
+  var b=e.target.closest('.dk');if(!b)return;
+  Q=b.dataset.q;$('#q').value=Q;render();
+  $('.win').scrollIntoView({behavior:'smooth',block:'start'});
+});
+
+/* ---------- pasos ---------- */
+var LENS='<a href="https://lens.google.com/" target="_blank" rel="noopener">Google Lens</a> · <a href="https://yandex.com/images/" target="_blank" rel="noopener">Yandex Imágenes</a> · <a href="https://www.bing.com/visualsearch" target="_blank" rel="noopener">Bing Visual Search</a>';
+var PASOS=[
+ ['Fotos',[
+  ['i1','Recorta un detalle de una foto tuya (fondo, reflejo, tatuaje): ¿qué revela de ti o de dónde estás?'],
+  ['i2','Búsqueda inversa de tus propias fotos: '+LENS],
+  ['i3','Revisa los metadatos de la foto con el inspector (sección 5).'],
+  ['i4','Busca tu usuario con <code>site:</code> en cada red (sección 3, Perfiles).'],
+  ['i5','Repite en otro buscador: pestañas Bing, Yandex y DuckDuckGo del visor.']]],
+ ['PDF y documentos',[
+  ['p1','Ejecuta los códigos de «Archivos» con tu nombre y alias.'],
+  ['p2','Repite en Yandex y Bing: indexan archivos que Google ya no muestra.'],
+  ['p3','Abre cada PDF encontrado y busca con Ctrl+F tus datos ocultos.'],
+  ['p4','Mira los metadatos del PDF (autor, creador, fecha) con el inspector.'],
+  ['p5','Copia un párrafo único del PDF entre comillas y búscalo para ver dónde más está subido.']]],
+ ['Cierre',[
+  ['c1','Anota cada hallazgo en la bitácora (sección 6).'],
+  ['c2','Pide retiro de lo que no debe estar público y borra cuentas que ya no uses.']]]
+];
+var done=store.get('pasos',{}),ph='';
+PASOS.forEach(function(g){
+  ph+='<h3>'+g[0]+'</h3>';
+  g[1].forEach(function(p){ph+='<label class="ck" style="color:var(--t);font-size:14.5px;margin:0"><input type="checkbox" data-p="'+p[0]+'"'+(done[p[0]]?' checked':'')+'><span>'+p[1]+'</span></label>'});
+});
+$('#pasos').innerHTML=ph;
+$('#pasos').addEventListener('change',function(e){var p=e.target.dataset.p;if(p){done[p]=e.target.checked;store.set('pasos',done)}});
+
+/* ---------- inspector ---------- */
+function row(k,v,cls){return '<tr><th>'+esc(k)+'</th><td'+(cls?' class="'+cls+'"':'')+'>'+esc(v)+'</td></tr>'}
+function pdfDate(s){var m=/^D:(\d{4})(\d\d)?(\d\d)?(\d\d)?(\d\d)?(\d\d)?/.exec(s);return m?m[1]+'-'+(m[2]||'01')+'-'+(m[3]||'01')+' '+(m[4]||'00')+':'+(m[5]||'00'):s}
+function hexStr(h){var b=[];for(var i=0;i<h.length;i+=2)b.push(parseInt(h.substr(i,2),16));
+  if(b[0]===0xFE&&b[1]===0xFF){var s='';for(var j=2;j+1<b.length;j+=2)s+=String.fromCharCode(b[j]<<8|b[j+1]);return s}
+  return b.map(function(c){return String.fromCharCode(c)}).join('')}
+function readPdf(buf){
+  var txt=new TextDecoder('latin1').decode(buf),out=[],m;
+  var re=/\/(Title|Author|Subject|Keywords|Creator|Producer|CreationDate|ModDate)\s*(?:\(((?:\\.|[^\\)])*)\)|<([0-9A-Fa-f\s]+)>)/g;
+  var seen={};
+  while((m=re.exec(txt))){
+    var v=m[2]!=null?m[2].replace(/\\([()\\])/g,'$1'):hexStr(m[3].replace(/\s/g,''));
+    if(/Date$/.test(m[1]))v=pdfDate(v);
+    if(v&&!seen[m[1]]){seen[m[1]]=1;out.push([m[1],v])}
+  }
+  var x=/<dc:creator>[\s\S]*?<rdf:li[^>]*>([^<]*)</.exec(txt);if(x&&x[1]&&!seen.Author)out.push(['Autor (XMP)',x[1]]);
+  var t=/<xmp:CreatorTool>([^<]*)</.exec(txt);if(t)out.push(['Herramienta (XMP)',t[1]]);
+  return out;
+}
+var TAGS0={0x010F:'Marca',0x0110:'Modelo',0x0131:'Software',0x0132:'Fecha',0x013B:'Artista',0x8298:'Copyright'};
+var TAGSE={0x9003:'Fecha original',0xA430:'Dueño de la cámara',0xA431:'Nº de serie'};
+function readExif(buf){
+  var v=new DataView(buf);if(v.byteLength<4||v.getUint16(0)!==0xFFD8)return null;
+  var o=2;
+  while(o+4<v.byteLength){
+    if(v.getUint8(o)!==0xFF)break;
+    var mk=v.getUint8(o+1),len=v.getUint16(o+2);
+    if(mk===0xE1&&v.getUint32(o+4)===0x45786966)return tiff(v,o+10);
+    if(mk===0xDA)break;
+    o+=2+len;
+  }
+  return [];
+}
+function tiff(v,t){
+  var L=v.getUint16(t)===0x4949,out=[],gps={};
+  var g16=function(p){return v.getUint16(p,L)},g32=function(p){return v.getUint32(p,L)};
+  function val(type,cnt,p){
+    if(type===2){var s='';for(var i=0;i<cnt-1;i++)s+=String.fromCharCode(v.getUint8(p+i));return s.trim()}
+    if(type===3)return g16(p);if(type===4)return g32(p);
+    if(type===5){var a=[];for(var j=0;j<cnt;j++){var d=g32(p+j*8+4);a.push(d?g32(p+j*8)/d:0)}return a}
+    return null;
+  }
+  function ifd(off,cb){
+    var n=g16(t+off);
+    for(var i=0;i<n;i++){
+      var e=t+off+2+i*12;if(e+12>v.byteLength)return;
+      var tag=g16(e),type=g16(e+2),cnt=g32(e+4),sz={2:1,3:2,4:4,5:8}[type]||1;
+      var p=sz*cnt>4?t+g32(e+8):e+8;
+      if(p+sz*cnt>v.byteLength)continue;
+      cb(tag,type,cnt,p);
+    }
+  }
+  var exifOff=0,gpsOff=0;
+  ifd(g32(t+4),function(tag,type,cnt,p){
+    if(TAGS0[tag])out.push([TAGS0[tag],val(type,cnt,p)]);
+    if(tag===0x8769)exifOff=g32(p);if(tag===0x8825)gpsOff=g32(p);
+  });
+  if(exifOff)ifd(exifOff,function(tag,type,cnt,p){if(TAGSE[tag])out.push([TAGSE[tag],val(type,cnt,p)])});
+  if(gpsOff){
+    ifd(gpsOff,function(tag,type,cnt,p){if(tag>=1&&tag<=4)gps[tag]=val(type,cnt,p)});
+    if(gps[2]&&gps[4]){
+      var dd=function(a,r){var x=a[0]+a[1]/60+a[2]/3600;return (r==='S'||r==='W')?-x:x};
+      out.push(['GPS (ubicación)',dd(gps[2],gps[1]).toFixed(5)+', '+dd(gps[4],gps[3]).toFixed(5)]);
+    }
+  }
+  return out;
+}
+$('#file').addEventListener('change',function(e){
+  var f=e.target.files[0];if(!f)return;
+  var box=$('#insp');
+  if(f.size>40*1024*1024){box.innerHTML='<p class="msg"><b>Archivo muy grande</b> (máx. 40 MB).</p>';return}
+  var r=new FileReader();
+  r.onload=function(){
+    var buf=r.result,isPdf=/pdf$/i.test(f.type)||/\.pdf$/i.test(f.name),rows='',data;
+    rows+=row('Archivo',f.name)+row('Tamaño',(f.size/1024).toFixed(1)+' KB');
+    if(isPdf){
+      data=readPdf(buf);
+      data.forEach(function(d){rows+=row(d[0],d[1],/Author|Autor|Creator/.test(d[0])?'bad':'')});
+      if(!data.length)rows+=row('Metadatos','No se vieron (pueden ir comprimidos dentro del PDF).','ok');
+    }else{
+      data=readExif(buf);
+      if(data===null)rows+=row('Formato','Solo se lee EXIF de fotos JPG.');
+      else if(!data.length)rows+=row('EXIF','Sin metadatos visibles.','ok');
+      else data.forEach(function(d){rows+=row(d[0],d[1],/GPS|serie|Dueño/.test(d[0])?'bad':'')});
+    }
+    var risk=data&&data.some(function(d){return /GPS|Autor|Author|serie|Dueño/.test(d[0])});
+    box.innerHTML='<table>'+rows+'</table><p class="msg">'+(risk?'<b>Este archivo revela datos personales.</b> Antes de compartirlo, quita los metadatos (una captura de pantalla de la foto no los conserva).':'Lectura básica local; no garantiza que el archivo esté limpio.')+'</p>';
+  };
+  r.readAsArrayBuffer(f);
+});
+
+/* ---------- bitácora ---------- */
+var log=store.get('log',[]);
+function rlog(){
+  var h='<tr><th style="width:auto">Hallazgo</th><th style="width:auto">Estado</th><th style="width:30px"></th></tr>';
+  if(!log.length)h+='<tr><td colspan="3" class="msg">Sin hallazgos todavía.</td></tr>';
+  log.forEach(function(x,i){
+    var u=/^https?:\/\//i.test(x.url)?'<a href="'+esc(x.url)+'" target="_blank" rel="noopener noreferrer">'+esc(x.url.slice(0,48))+'</a><br>':esc(x.url)+(x.url?'<br>':'');
+    h+='<tr><td>'+u+esc(x.nota)+'</td><td><button class="tab" data-c="'+i+'">'+esc(x.est)+'</button></td><td><button class="tab" data-d="'+i+'" aria-label="Borrar">✕</button></td></tr>';
+  });
+  $('#b-tab').innerHTML=h;
+}
+$('#b-add').onclick=function(){
+  var u=$('#b-url').value.trim(),n=$('#b-nota').value.trim();if(!u&&!n)return;
+  log.unshift({url:u,nota:n,est:$('#b-est').value,fecha:new Date().toISOString().slice(0,10)});
+  store.set('log',log);$('#b-url').value='';$('#b-nota').value='';rlog();
+};
+$('#b-tab').addEventListener('click',function(e){
+  var d=e.target.dataset;
+  if(d.d!=null){log.splice(+d.d,1)}
+  else if(d.c!=null){var S=['pendiente','retiro solicitado','resuelto'];log[+d.c].est=S[(S.indexOf(log[+d.c].est)+1)%3]}
+  else return;
+  store.set('log',log);rlog();
+});
+$('#b-exp').onclick=function(){copy(JSON.stringify(log,null,2),this)};
+
+render();rlog();
+})();
+</script>
+<!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+</body></html>

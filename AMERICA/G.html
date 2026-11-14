@@ -1,0 +1,1474 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SADV41 POLITICS // Soberanía Cooperativa & Nodos Unificados</title>
+
+  <!-- Google Fonts: JetBrains Mono, Montserrat, Cinzel, Open Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700;800&family=Montserrat:wght@700;900&family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN para la red Poneglyph y utilidades -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      --pa-blue: #00529F;
+      --pa-red: #DA121A;
+      --pa-white: #FFFFFF;
+      --bg: #05070a;
+      --panel: #0B0F19;
+      --card: #0c111f;
+      --gold: #FFD700;
+      --gold-soft: #ffd76a;
+      --cyan: #00E5FF;
+      --ink: #e8e6e1;
+      --muted: #94a3b8;
+      --line: rgba(255, 255, 255, 0.08);
+      --safe-area-inset-top: 0px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body, #root {
+      margin: 0;
+      min-height: 100%;
+      background: var(--bg);
+      color: var(--ink);
+    }
+
+    body {
+      font-family: 'Inter', 'Open Sans', system-ui, sans-serif;
+      background: radial-gradient(circle at top center, #0e1a2f 0%, var(--bg) 75%);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: clip;
+      padding-bottom: 110px;
+    }
+
+    .cinzel { font-family: 'Cinzel', serif; }
+    .mono { font-family: 'JetBrains Mono', monospace; }
+    .glitch { text-shadow: 2px 0 #ff2a2a, -2px 0 #00f3ff; }
+    .gold-border { border: 1px solid rgba(255, 215, 106, 0.25); }
+    .gold-hover:hover { border-color: var(--gold); box-shadow: 0 0 18px rgba(255, 215, 0, 0.22); }
+    .cyan-hover:hover { border-color: var(--cyan); box-shadow: 0 0 18px rgba(0, 229, 255, 0.22); }
+
+    button, input, select { font: inherit; }
+    button { cursor: pointer; }
+    a { color: inherit; text-decoration: none; }
+    canvas { display: block; }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    /* Franja Tricolor */
+    .tricolor-header { display: flex; height: 8px; width: 100%; }
+    .tricolor-header .blue { flex: 1; background: var(--pa-blue); }
+    .tricolor-header .white { flex: 1; background: var(--pa-white); }
+    .tricolor-header .red { flex: 1; background: var(--pa-red); }
+
+    /* Manifiesto Soberanía Cooperativa */
+    .manifesto-card {
+      background: var(--card);
+      width: 100%;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 215, 0, 0.28);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.65), 0 0 30px rgba(0, 82, 159, 0.22);
+    }
+
+    .frase-central {
+      background: linear-gradient(135deg, rgba(0, 82, 159, 0.88) 0%, rgba(218, 18, 26, 0.78) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+      padding: 24px 20px;
+      border-radius: 16px;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: 600;
+      line-height: 1.55;
+      margin-bottom: 24px;
+      box-shadow: 0 10px 25px rgba(0, 82, 159, 0.35);
+    }
+    .frase-central strong { color: var(--gold); font-weight: 800; }
+
+    .resaltado {
+      background: rgba(255, 215, 0, 0.16);
+      border-bottom: 2px solid var(--gold);
+      color: var(--gold);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+
+    .cierre-soberano {
+      background: rgba(255, 255, 255, 0.04);
+      border-left: 5px solid var(--pa-red);
+      border-right: 5px solid var(--pa-blue);
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      line-height: 1.6;
+      color: #ffffff;
+      margin-top: 22px;
+    }
+
+    /* Animaciones */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { scrollbar-width: none; }
+
+    @keyframes pulseDot { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+    .pulse { animation: pulseDot 1.6s infinite; }
+
+    @keyframes pingSoft { 0% { transform: scale(1); opacity: .8; } 100% { transform: scale(2.2); opacity: 0; } }
+    .ping { animation: pingSoft 1.2s infinite; }
+
+    /* Módulo flotante Presencia Cristo / SADV41 */
+    #cristo-presencia {
+      position: fixed;
+      left: 50%;
+      bottom: 14px;
+      transform: translateX(-50%);
+      z-index: 9999;
+      width: min(94vw, 540px);
+      font-family: Georgia, 'Times New Roman', serif;
+      color: #fff8e1;
+      cursor: pointer;
+      background: linear-gradient(135deg, rgba(10, 16, 40, 0.94), rgba(30, 15, 45, 0.94));
+      border: 1px solid rgba(255, 215, 106, 0.55);
+      border-radius: 16px;
+      padding: 10px 16px;
+      text-align: center;
+      box-shadow: 0 4px 22px rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(8px);
+      user-select: none;
+    }
+    #cristo-presencia .cp-t {
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #ffd76a;
+      margin-bottom: 3px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    #cristo-presencia .cp-v { transition: opacity 0.8s ease; font-size: 13px; line-height: 1.4; }
+    #cristo-presencia .cp-v.off { opacity: 0; }
+    #cristo-presencia .cp-r { display: block; margin-top: 3px; font-size: 11px; color: #ffd76a; font-style: italic; }
+    #cristo-presencia.min { width: auto; padding: 7px 14px; border-radius: 999px; }
+    #cristo-presencia.min .cp-v, #cristo-presencia.min .cp-t { display: none; }
+    #cristo-presencia .cp-m { display: none; font-size: 12px; }
+    #cristo-presencia.min .cp-m { display: inline; }
+
+    @media(min-width:1024px) { .lg-nav { display: flex !important; } }
+    @media(min-width:768px) { .pill-online { display: inline-flex !important; } }
+  </style>
+</head>
+<body>
+
+  <!-- ======================================================================= -->
+  <!-- 1. PORTAL INTERACTIVO SADV41 AMERICA GOV (REACT APP MOUNT)              -->
+  <!-- ======================================================================= -->
+  <div id="root"></div>
+
+  <!-- ======================================================================= -->
+  <!-- 2. SECCIÓN: SVG VECTORIAL SOBERANO & DOCTRINA SADV41 POLITICS           -->
+  <!-- ======================================================================= -->
+  <section id="soberania-svg" class="wrap py-12">
+    <div class="mb-6 flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-4">
+      <div>
+        <span class="mono text-[11px] font-bold tracking-[0.2em] text-[#00E5FF] uppercase">Arte Vectorial Soberano // Arquitectura Trifásica</span>
+        <h2 class="cinzel text-2xl md:text-3xl font-bold text-white mt-1">SADV41 <span class="text-[#FFD700]">POLITICS</span> — El Tridente Pluscuamperfecto</h2>
+      </div>
+      <span class="mono text-[11px] px-3 py-1.5 rounded-full border border-[#FFD700]/40 bg-[#FFD700]/10 text-[#FFD700]">
+        SVG NATIVO • 1200×1350 • ALTA PRECISIÓN
+      </span>
+    </div>
+
+    <!-- CONTENEDOR DEL SVG MONUMENTAL -->
+    <div class="w-full rounded-3xl overflow-hidden border border-[#FFD700]/30 shadow-[0_25px_70px_rgba(0,0,0,0.85)] bg-[#05070a]">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1350" width="100%" height="auto" style="background:#05070a; font-family:'JetBrains Mono', 'Montserrat', system-ui, sans-serif; display:block;">
+        <defs>
+          <!-- Gradientes Soberanos SADV41 -->
+          <radialGradient id="bgGlow" cx="50%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#0e1a2f" stop-opacity="0.95"/>
+            <stop offset="55%" stop-color="#070a12" stop-opacity="0.98"/>
+            <stop offset="100%" stop-color="#05070a" stop-opacity="1"/>
+          </radialGradient>
+
+          <linearGradient id="goldCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#FFD700"/>
+            <stop offset="50%" stop-color="#ffffff"/>
+            <stop offset="100%" stop-color="#00E5FF"/>
+          </linearGradient>
+
+          <linearGradient id="panamaTri" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#00529F"/>
+            <stop offset="33%" stop-color="#00529F"/>
+            <stop offset="33.1%" stop-color="#FFFFFF"/>
+            <stop offset="66%" stop-color="#FFFFFF"/>
+            <stop offset="66.1%" stop-color="#DA121A"/>
+            <stop offset="100%" stop-color="#DA121A"/>
+          </linearGradient>
+
+          <linearGradient id="tridentBeam" x1="0%" y1="100%" x2="0%" y2="0%">
+            <stop offset="0%" stop-color="#00529F" stop-opacity="0.2"/>
+            <stop offset="50%" stop-color="#FFD700" stop-opacity="0.85"/>
+            <stop offset="100%" stop-color="#00E5FF" stop-opacity="1"/>
+          </linearGradient>
+
+          <linearGradient id="cardGlass" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#111624" stop-opacity="0.92"/>
+            <stop offset="100%" stop-color="#090d16" stop-opacity="0.96"/>
+          </linearGradient>
+
+          <!-- Filtros de Resplandor -->
+          <filter id="glowGold" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="6" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+
+          <filter id="glowCyan" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="5" result="blur"/>
+            <feMerge>
+              <feMergeNode in="blur"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+
+          <!-- Patrón de Red Táctica -->
+          <pattern id="grid41" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(0, 229, 255, 0.05)" stroke-width="1"/>
+            <circle cx="0" cy="0" r="1" fill="rgba(255, 215, 0, 0.15)"/>
+          </pattern>
+        </defs>
+
+        <!-- FONDO BASE Y RETÍCULA -->
+        <rect width="1200" height="1350" fill="url(#bgGlow)"/>
+        <rect width="1200" height="1350" fill="url(#grid41)"/>
+
+        <!-- MARCO EXTERIOR SOBERANO -->
+        <rect x="24" y="24" width="1152" height="1302" rx="28" fill="none" stroke="rgba(255, 215, 0, 0.35)" stroke-width="2"/>
+        <rect x="34" y="34" width="1132" height="1282" rx="22" fill="none" stroke="rgba(0, 229, 255, 0.18)" stroke-width="1" stroke-dasharray="8 6"/>
+
+        <!-- FRANJA TRICOLOR SUPERIOR (PANAMÁ) -->
+        <rect x="24" y="24" width="1152" height="10" rx="5" fill="url(#panamaTri)"/>
+
+        <!-- ENCABEZADO INSTITUCIONAL -->
+        <g transform="translate(60, 72)">
+          <text x="0" y="0" fill="#FFD700" font-size="13" font-weight="800" letter-spacing="3">🇵🇦 SADV41.GOV // AMERICA SOVEREIGN POLITICS</text>
+          <text x="1080" y="0" fill="#00E5FF" font-size="13" font-weight="700" letter-spacing="2" text-anchor="end">ORIGEN 0 · 1903 · 1977 · 1999 · 2026</text>
+          <line x1="0" y1="16" x2="1080" y2="16" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+        </g>
+
+        <!-- TÍTULO MONUMENTAL -->
+        <g transform="translate(600, 145)" text-anchor="middle">
+          <text y="0" fill="url(#goldCyan)" font-size="44" font-weight="900" letter-spacing="4" filter="url(#glowGold)">SOBERANÍA COOPERATIVA</text>
+          <text y="34" fill="#94a3b8" font-size="16" font-style="italic" letter-spacing="2">PANAMÁ: PUENTE DEL MUNDO · CORAZÓN DEL UNIVERSO · HELLO BURUNGA</text>
+        </g>
+
+        <!-- NÚCLEO CENTRAL: EL TRIDENTE PLUSCUAMPERFECTO Y LA TRIADA -->
+        <g transform="translate(600, 520)">
+          <circle r="290" fill="none" stroke="rgba(0, 229, 255, 0.14)" stroke-width="1" stroke-dasharray="4 8"/>
+          <circle r="230" fill="none" stroke="rgba(255, 215, 0, 0.22)" stroke-width="1.5"/>
+          <circle r="165" fill="none" stroke="rgba(218, 18, 26, 0.28)" stroke-width="1" stroke-dasharray="12 6"/>
+          <circle r="105" fill="rgba(0, 82, 159, 0.18)" stroke="#FFD700" stroke-width="2" filter="url(#glowGold)"/>
+
+          <!-- Triángulo Equilátero de la Triada Trifásica -->
+          <polygon points="0,-245 212,122 -212,122" fill="rgba(255, 215, 0, 0.04)" stroke="url(#goldCyan)" stroke-width="2.5"/>
+          <polygon points="0,245 212,-122 -212,-122" fill="none" stroke="rgba(0, 229, 255, 0.2)" stroke-width="1" stroke-dasharray="5 5"/>
+
+          <!-- Líneas de Conexión del Tridente -->
+          <line x1="0" y1="190" x2="0" y2="-265" stroke="url(#tridentBeam)" stroke-width="6" stroke-linecap="round" filter="url(#glowGold)"/>
+          <path d="M -125,-120 Q -130,-200 -85,-245" fill="none" stroke="#00E5FF" stroke-width="4" stroke-linecap="round" filter="url(#glowCyan)"/>
+          <path d="M 125,-120 Q 130,-200 85,-245" fill="none" stroke="#DA121A" stroke-width="4" stroke-linecap="round"/>
+          <path d="M -125,-120 L 125,-120" fill="none" stroke="#FFD700" stroke-width="4" stroke-linecap="round"/>
+
+          <!-- Puntas del Tridente -->
+          <polygon points="0,-285 -12,-255 12,-255" fill="#FFD700" filter="url(#glowGold)"/>
+          <polygon points="-85,-262 -98,-235 -75,-240" fill="#00E5FF"/>
+          <polygon points="85,-262 98,-235 75,-240" fill="#DA121A"/>
+
+          <!-- Sello Central: Cruz SADV41 + 41 -->
+          <g transform="translate(0, -10)">
+            <rect x="-7" y="-52" width="14" height="104" rx="3" fill="#FFD700"/>
+            <rect x="-22" y="-36" width="44" height="9" rx="2" fill="#FFD700"/>
+            <rect x="-34" y="-14" width="68" height="13" rx="3" fill="#FFD700"/>
+            <rect x="-18" y="26" width="36" height="9" rx="2" fill="#FFD700" transform="rotate(12 0 30)"/>
+            <circle cx="0" cy="68" r="24" fill="#070A12" stroke="#00E5FF" stroke-width="2"/>
+            <text x="0" y="74" fill="#FFD700" font-size="18" font-weight="900" text-anchor="middle">41</text>
+          </g>
+
+          <!-- VÉRTICE 1 (CÚSPIDE): RICARDO J. ALFARO & LA TRIADA JURÍDICA -->
+          <g transform="translate(0, -325)">
+            <rect x="-240" y="-38" width="480" height="72" rx="14" fill="url(#cardGlass)" stroke="#FFD700" stroke-width="1.8"/>
+            <text x="0" y="-14" fill="#FFD700" font-size="14" font-weight="900" text-anchor="middle" letter-spacing="1.5">PINÁCULO PLUSCUAMPERFECTO · RICARDO J. ALFARO</text>
+            <text x="0" y="6" fill="#ffffff" font-size="11.5" font-weight="700" text-anchor="middle">Tratado Alfaro-Kellogg (1926) · Carta ONU &amp; DD.HH. (1945) · Corte La Haya</text>
+            <text x="0" y="23" fill="#00E5FF" font-size="10.5" text-anchor="middle">Soberanía Jurídica · Neutralidad sin Ejército (1990) · ACP 100% Panameña</text>
+          </g>
+
+          <!-- VÉRTICE 2 (IZQUIERDA): EL TRIDENTE DE ÉLITE -->
+          <g transform="translate(-335, 145)">
+            <rect x="-215" y="-65" width="430" height="130" rx="16" fill="url(#cardGlass)" stroke="#00E5FF" stroke-width="1.8"/>
+            <text x="0" y="-42" fill="#00E5FF" font-size="13" font-weight="900" text-anchor="middle" letter-spacing="1.5">⚡ TRIDENTE DE CONQUISTA GLOBAL</text>
+            <text x="0" y="-18" fill="#FFD700" font-size="12" font-weight="800" text-anchor="middle">LIONEL MESSI 🇦🇷 · 8 Balones de Oro · Mundial 2022 &amp; Visión 10</text>
+            <text x="0" y="3" fill="#ffffff" font-size="12" font-weight="800" text-anchor="middle">CRISTIANO RONALDO 🇵🇹 · +900 Goles · 5 Champions &amp; Mr. UCL</text>
+            <text x="0" y="24" fill="#93c5fd" font-size="12" font-weight="800" text-anchor="middle">KYLIAN MBAPPÉ 🇫🇷 · Campeón 2018 · Hat-Trick Final &amp; Velocidad</text>
+            <text x="0" y="48" fill="#94a3b8" font-size="10.5" text-anchor="middle">Sinergia Trifásica: Precisión + Potencia + Ruptura Soberana</text>
+          </g>
+
+          <!-- VÉRTICE 3 (DERECHA): LA TRIADA IA -->
+          <g transform="translate(335, 145)">
+            <rect x="-215" y="-65" width="430" height="130" rx="16" fill="url(#cardGlass)" stroke="#DA121A" stroke-width="1.8"/>
+            <text x="0" y="-42" fill="#ff6b6b" font-size="13" font-weight="900" text-anchor="middle" letter-spacing="1.5">🧠 TRIADA DE SÍNTESIS IA // M/I/A</text>
+            <text x="0" y="-18" fill="#00E5FF" font-size="12" font-weight="800" text-anchor="middle">GOOGLE GEMINI · Atrio Soberano · Gems &amp; Código Artefacto</text>
+            <text x="0" y="3" fill="#FFD700" font-size="12" font-weight="800" text-anchor="middle">XAI GROK · Telemetría Sísmica Azuero · Verdad Sin Filtros</text>
+            <text x="0" y="24" fill="#ffffff" font-size="12" font-weight="800" text-anchor="middle">META AI SPARK · Expansión Comunitaria &amp; Red Social Viva</text>
+            <text x="0" y="48" fill="#94a3b8" font-size="10.5" text-anchor="middle">47 Nodos Activos · Privacidad Total · Zero Tracking · Cero Ads</text>
+          </g>
+
+          <!-- Nodos Orbitales Pequeños -->
+          <g fill="#FFD700">
+            <circle cx="-230" cy="0" r="5"/><circle cx="230" cy="0" r="5"/>
+            <circle cx="-162" cy="-162" r="4" fill="#00E5FF"/><circle cx="162" cy="-162" r="4" fill="#00E5FF"/>
+            <circle cx="-115" cy="199" r="4" fill="#8b5cf6"/><circle cx="115" cy="199" r="4" fill="#22c55e"/>
+          </g>
+        </g>
+
+        <!-- ECOSISTEMA DE GEMS & GAPPAIs INTEGRADOS -->
+        <g transform="translate(60, 815)">
+          <text x="540" y="0" fill="#FFD700" font-size="14" font-weight="800" text-anchor="middle" letter-spacing="3">❖ CONSTELACIÓN DE GEMS &amp; GAPPAIs SADV41 INTEGRADOS ❖</text>
+          <g transform="translate(0, 20)">
+            <rect x="0" y="0" width="258" height="105" rx="12" fill="#0c111f" stroke="rgba(0,229,255,0.4)" stroke-width="1.2"/>
+            <text x="14" y="24" fill="#00E5FF" font-size="11" font-weight="800">🌋 PREDICTOR GEOESPACIAL</text>
+            <text x="14" y="44" fill="#ffffff" font-size="12" font-weight="700">Azuero Sismo Net · USGS</text>
+            <text x="14" y="63" fill="#94a3b8" font-size="10.5">Vigilia 7.7 · Quinta Marcha</text>
+            <text x="14" y="82" fill="#34d399" font-size="10" font-weight="700">● TELEMETRÍA TSEC ACTIVA</text>
+
+            <rect x="274" y="0" width="258" height="105" rx="12" fill="#0c111f" stroke="rgba(139,92,246,0.5)" stroke-width="1.2"/>
+            <text x="288" y="24" fill="#c4b5fd" font-size="11" font-weight="800">✝️ EXÉGESIS &amp; BIBLIA RVR1960</text>
+            <text x="288" y="44" fill="#ffffff" font-size="12" font-weight="700">Principado de Fe y Paz</text>
+            <text x="288" y="63" fill="#94a3b8" font-size="10.5">Clamor Profético · Salmos 23 &amp; 46</text>
+            <text x="288" y="82" fill="#FFD700" font-size="10" font-weight="700">● ORACIÓN 24/7 BURUNGA</text>
+
+            <rect x="548" y="0" width="258" height="105" rx="12" fill="#0c111f" stroke="rgba(255,215,0,0.45)" stroke-width="1.2"/>
+            <text x="562" y="24" fill="#FFD700" font-size="11" font-weight="800">🎵 STEVENDIOR ARTIST · 432HZ</text>
+            <text x="562" y="44" fill="#ffffff" font-size="12" font-weight="700">Haki · Desmotivaciones · Arte</text>
+            <text x="562" y="63" fill="#94a3b8" font-size="10.5">Letrea · Simbolismo &amp; Poesía</text>
+            <text x="562" y="82" fill="#00E5FF" font-size="10" font-weight="700">● FRECUENCIA SOBERANA</text>
+
+            <rect x="822" y="0" width="258" height="105" rx="12" fill="#0c111f" stroke="rgba(218,18,26,0.5)" stroke-width="1.2"/>
+            <text x="836" y="24" fill="#ff6b6b" font-size="11" font-weight="800">🛞 TURBO TIRE &amp; BASHEA</text>
+            <text x="836" y="44" fill="#ffffff" font-size="12" font-weight="700">Proyecto Patrick · Nodos Élite</text>
+            <text x="836" y="63" fill="#94a3b8" font-size="10.5">Termux Bridge · Analista Criminal</text>
+            <text x="836" y="82" fill="#FFD700" font-size="10" font-weight="700">● BURUNGA HUB OPERATIVO</text>
+          </g>
+        </g>
+
+        <!-- DOCTRINA DIPLOMÁTICA & BANDERAS COOPERATIVAS -->
+        <g transform="translate(60, 975)">
+          <rect x="0" y="0" width="1080" height="155" rx="18" fill="rgba(0, 82, 159, 0.16)" stroke="rgba(255, 255, 255, 0.18)" stroke-width="1.5"/>
+          <text x="540" y="34" fill="#ffffff" font-size="19" font-weight="800" text-anchor="middle">
+            “La <tspan fill="#FFD700">soberanía no es aislamiento</tspan>. La soberanía es <tspan fill="#00E5FF">cooperar de igual a igual</tspan>.”
+          </text>
+          <text x="540" y="62" fill="#cbd5e1" font-size="13" text-anchor="middle">
+            Amistad con todas las naciones · Subordinación a ninguna · El Canal y su administración son 100% panameños.
+          </text>
+          <text x="540" y="102" font-size="26" text-anchor="middle" letter-spacing="14">🇵🇦 🇺🇸 🇮🇱 🇨🇳 🇷🇺 🇮🇳 🇨🇴 🌍</text>
+          <text x="540" y="134" fill="#FFD700" font-size="12" font-weight="800" text-anchor="middle" letter-spacing="2">
+            SADV41/AMERICA · A217B/TSEC · LAPIZASULI/GSADV41 · STEVENDIOR.AI
+          </text>
+        </g>
+
+        <!-- PIE DE FIRMA Y VERSÍCULO SOBERANO -->
+        <g transform="translate(60, 1170)">
+          <line x1="0" y1="0" x2="1080" y2="0" stroke="rgba(255, 215, 0, 0.25)" stroke-width="1"/>
+          <text x="0" y="32" fill="#ffd76a" font-size="12.5" font-style="italic">“El peso falso es abominación a Jehová; mas la pesa cabal es su contentamiento.” — Proverbios 11:1</text>
+          <text x="1080" y="32" fill="#e8e6e1" font-size="12.5" font-weight="800" text-anchor="end">— STEVEN "DIOR" GÓMEZ // BURUNGA, PANAMÁ 🗿⚡️🔐</text>
+          <text x="540" y="72" fill="#64748b" font-size="11" text-anchor="middle" letter-spacing="1.5">
+            UNIFICADO EN TRÍADA: GEMINI + GROK + META · ARTE VECTORIAL SOBERANO SADV41 · 2026
+          </text>
+        </g>
+
+        <!-- FRANJA TRICOLOR INFERIOR -->
+        <rect x="24" y="1316" width="1152" height="10" rx="5" fill="url(#panamaTri)"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ======================================================================= -->
+  <!-- 3. MANIFIESTO POLÍTICO SOBERANÍA COOPERATIVA (PANAMÁ)                   -->
+  <!-- ======================================================================= -->
+  <section id="manifiesto" class="wrap py-8">
+    <main class="manifesto-card">
+      <div class="tricolor-header">
+        <div class="blue"></div>
+        <div class="white"></div>
+        <div class="red"></div>
+      </div>
+
+      <div class="p-6 md:p-10">
+        <div class="flex flex-wrap justify-between items-center gap-2 mb-5 mono text-xs tracking-widest text-[#FFD700] uppercase">
+          <span>🇵🇦 SADV41 POLITICS // ORIGEN 0</span>
+          <span>1903 · 1977 · 1999 · 2026</span>
+        </div>
+
+        <h2 class="cinzel text-3xl md:text-4xl font-black text-center uppercase tracking-wider bg-gradient-to-r from-white via-blue-300 to-white bg-clip-text text-transparent mb-2">
+          Soberanía Cooperativa
+        </h2>
+        <p class="text-center text-sm md:text-base text-slate-400 italic mb-7">
+          Panamá: Puente del Mundo · Corazón del Universo
+        </p>
+
+        <div class="frase-central">
+          La <strong>soberanía no es aislamiento</strong>.<br>
+          La soberanía es <strong>cooperar de igual a igual</strong>.
+        </div>
+
+        <div class="space-y-4 text-slate-300 text-base leading-relaxed">
+          <p>
+            Ninguna nación prospera encerrada en sí misma. Por más de un siglo Panamá ha tendido puentes con el mundo: lazos de amistad, comercio y seguridad con Estados Unidos, socios en Asia, Europa y América Latina, e Israel como socio estratégico de paz y tecnología.
+          </p>
+          <p>
+            Es <span class="resaltado">repudiable tachar la hermandad como dependencia</span> y confundir la prudencia diplomática con sumisión. Cooperar en seguridad y neutralidad no significa ceder el control. Compartir rutas marítimas para el bien de la humanidad es ejercer nuestra vocación histórica con dignidad e inteligencia.
+          </p>
+          <p>
+            Panamá no le debe lealtad ciega a ninguna potencia externa. Le debe lealtad a su Constitución, a su gente y a su memoria. Ese futuro se construye dialogando con respeto mutuo con todos los pueblos de la Tierra.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 my-7">
+          <div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 text-sm">
+            <span class="block mono text-[10px] uppercase tracking-widest text-[#00E5FF] mb-1">01 // Constitución</span>
+            Administración 100 % panameña a cargo de la ACP. Sin concesiones ni tutelas.
+          </div>
+          <div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 text-sm">
+            <span class="block mono text-[10px] uppercase tracking-widest text-[#00E5FF] mb-1">02 // Orden Civil</span>
+            País sin ejército desde 1990. Defensa basada en el derecho internacional y la neutralidad.
+          </div>
+          <div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 text-sm">
+            <span class="block mono text-[10px] uppercase tracking-widest text-[#00E5FF] mb-1">03 // Sentido de Estado</span>
+            Firmeza sin estridencias: amistad con todas las naciones, subordinación a ninguna.
+          </div>
+        </div>
+
+        <div class="text-center text-2xl md:text-3xl tracking-[0.35em] my-6">
+          🇵🇦 🇺🇸 🇮🇱 🇨🇳 🇷🇺 🇮🇳 🇨🇴 🌍
+        </div>
+
+        <div class="cierre-soberano">
+          ¡El Canal es panameño!<br>
+          ¡Nuestra administración es panameña!
+          <span class="block text-[#FFD700] text-lg md:text-xl mt-1.5">¡Y nuestra soberanía se ejerce cooperando!</span>
+        </div>
+
+        <div class="mt-7 pt-5 border-t border-dashed border-[#FFD700]/30 flex flex-wrap justify-center gap-3 mono text-xs">
+          <a href="https://thesteef21.github.io/SADV41/AMERICA" target="_blank" class="px-4 py-2 rounded-lg border border-[#00E5FF]/35 bg-[#00E5FF]/5 text-[#00E5FF] hover:border-[#FFD700] hover:text-[#FFD700] transition-all">SADV41 // AMERICA ↗</a>
+          <a href="https://thesteef21.github.io/SADV41/A217B/TSEC/" target="_blank" class="px-4 py-2 rounded-lg border border-[#00E5FF]/35 bg-[#00E5FF]/5 text-[#00E5FF] hover:border-[#FFD700] hover:text-[#FFD700] transition-all">A217B // TSEC HUB ↗</a>
+          <a href="https://thesteef21.github.io/SADV41/Artist/" target="_blank" class="px-4 py-2 rounded-lg border border-[#00E5FF]/35 bg-[#00E5FF]/5 text-[#00E5FF] hover:border-[#FFD700] hover:text-[#FFD700] transition-all">STEVEN DIOR ARTIST ↗</a>
+          <a href="./Agent/" class="px-4 py-2 rounded-lg border border-[#FFD700]/50 bg-[#FFD700]/10 text-[#FFD700] font-bold hover:bg-[#FFD700]/20 transition-all">AGENTE 🤖 ↗</a>
+        </div>
+
+        <p class="text-right mt-5 mono text-xs text-slate-400 tracking-wider">
+          — STEVEN "DIOR" GÓMEZ // BURUNGA, PANAMÁ 🗿⚡️🔐
+        </p>
+      </div>
+    </main>
+  </section>
+
+  <!-- ======================================================================= -->
+  <!-- 4. PONEGLYPH LINK & A217B / TSEC MULTIPLEXOR UNIFICADO                  -->
+  <!-- ======================================================================= -->
+  <section id="poneglyph-tsec" class="wrap py-10 mono">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      
+      <!-- BLOQUE A: PONEGLYPH NAVIGATION NETWORK -->
+      <div class="p-6 border gold-border rounded-2xl bg-black/60 backdrop-blur-md">
+        <div class="mb-5 border-b border-white/10 pb-3">
+          <h3 class="text-xl font-bold glitch uppercase tracking-widest text-[#ffd76a]">SADV41 // PONEGLYPH LINK</h3>
+          <p class="text-[10px] text-slate-400 uppercase tracking-[0.25em] mt-1">Nodo Central de Unificación de Activos</p>
+        </div>
+
+        <nav class="grid grid-cols-2 sm:grid-cols-3 gap-3 text-[11px] uppercase tracking-widest">
+          <a href="https://thesteef21.github.io/Lapizasuli/assets/USARMY/MOAB.html" target="_blank" class="p-3.5 border border-slate-800 gold-hover transition-all rounded-xl bg-black/40 text-center font-bold">MOAB</a>
+          <a href="https://thesteef21.github.io/Lapizasuli/assets/AI/METO/EsUnMeme.html" target="_blank" class="p-3.5 border border-slate-800 gold-hover transition-all rounded-xl bg-black/40 text-center font-bold">METO</a>
+          <a href="https://thesteef21.github.io/Lapizasuli/assets/TRONO/Logia.html" target="_blank" class="p-3.5 border border-slate-800 gold-hover transition-all rounded-xl bg-black/40 text-center font-bold">LOGIA</a>
+          <a href="https://thesteef21.github.io/Lapizasuli/assets/NUKE/nuke.html" target="_blank" class="p-3.5 border border-slate-800 gold-hover transition-all rounded-xl bg-black/40 text-center font-bold">NUKE</a>
+          <a href="https://thesteef21.github.io/Lapizasuli/assets/USARMY/NUKE.html" target="_blank" class="p-3.5 border border-[#ffd76a]/50 bg-[#ffd76a]/10 gold-hover transition-all rounded-xl text-center font-bold text-[#ffd76a]">USARMY HUB</a>
+          <a href="https://thesteef21.github.io/Lapizasuli/assets/USARMY/PENTAGON/SHABBATH'DO.html" target="_blank" class="p-3.5 border border-[#00e5ff]/40 text-[#00e5ff] cyan-hover bg-[#00e5ff]/5 transition-all rounded-xl text-center font-bold">SHABBATH'DO</a>
+          <a href="https://youtu.be/LFA724f3MWA" target="_blank" class="p-3.5 border border-slate-800 cyan-hover text-cyan-300 transition-all rounded-xl bg-black/40 text-center font-bold">LINKIN PARK</a>
+          <a href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" target="_blank" class="p-3.5 border border-slate-800 gold-hover text-amber-300 transition-all rounded-xl bg-black/40 text-center font-bold">GSADV41 HOME</a>
+          <a href="./Agent/" class="p-3.5 border border-[#00e5ff]/50 bg-[#00e5ff]/10 cyan-hover text-[#00e5ff] transition-all rounded-xl text-center font-bold">AGENTE 🤖</a>
+        </nav>
+      </div>
+
+      <!-- BLOQUE B: A217B // TSEC MULTIPLEXOR -->
+      <div class="p-6 border border-[#00e5ff]/30 rounded-2xl bg-[#0c111f]/85 backdrop-blur-md">
+        <div class="mb-5 border-b border-white/10 pb-3">
+          <h3 class="text-xl font-bold glitch uppercase tracking-widest text-[#00e5ff]">A217B // TSEC MULTIPLEXOR</h3>
+          <p class="text-[10px] text-slate-400 uppercase tracking-[0.25em] mt-1">Red Sísmica Azuero-Soná, Hypersec & USGS</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-[11px] uppercase tracking-wider">
+          <a href="https://thesteef21.github.io/SADV41/TSEC.html" target="_blank" class="p-3 border border-slate-800 gold-hover bg-black/40 transition-all rounded-xl">
+            <span class="block font-bold text-[#ffd76a]">TSEC BASE (Template)</span>
+            <span class="text-[9px] text-slate-400">Raíz de código múltiple</span>
+          </a>
+          <a href="https://thesteef21.github.io/SADV41/NOVIEMBRE/TSEC/" target="_blank" class="p-3 border border-[#00e5ff]/30 cyan-hover bg-[#00e5ff]/5 transition-all rounded-xl">
+            <span class="block font-bold text-[#00e5ff]">NOVIEMBRE TSEC</span>
+            <span class="text-[9px] text-cyan-200/70">Estado: Funcional</span>
+          </a>
+          <a href="https://thesteef21.github.io/SADV41/SISMOS/" target="_blank" class="p-3 border border-red-500/30 hover:border-red-500 bg-red-500/5 transition-all rounded-xl">
+            <span class="block font-bold text-red-400">SISMOS (ÚLTIMA)</span>
+            <span class="text-[9px] text-red-200/70">Monitoreo Activo Reciente</span>
+          </a>
+          <a href="https://thesteef21.github.io/SADV41/TSEC/AZUERO-SON%C3%81/" target="_blank" class="p-3 border border-slate-800 gold-hover bg-black/40 transition-all rounded-xl">
+            <span class="block font-bold text-[#ffd76a]">AZUERO-SONÁ HUB</span>
+            <span class="text-[9px] text-slate-400">Directorio Regional + Meta</span>
+          </a>
+          <a href="https://thesteef21.github.io/usgs/ESPORTS/TSEC.html" target="_blank" class="p-3 border border-[#00e5ff]/30 cyan-hover bg-[#00e5ff]/5 transition-all rounded-xl">
+            <span class="block font-bold text-[#00e5ff]">USGS ESPORTS</span>
+            <span class="text-[9px] text-cyan-200/70">Telemetría Tiempo Real</span>
+          </a>
+          <a href="https://thesteef21.github.io/Lapizasuli/assets/PANAMAHYPERSEC/" target="_blank" class="p-3 border border-slate-800 gold-hover bg-black/40 transition-all rounded-xl">
+            <span class="block font-bold text-[#ffd76a]">PANAMAHYPERSEC</span>
+            <span class="text-[9px] text-slate-400">Directorio Base & TTSECSA</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ======================================================================= -->
+  <!-- 5. STEVEN DIOR FLOW // LEGADO MUSICAL Y AUDIOVISUAL                     -->
+  <!-- ======================================================================= -->
+  <section id="steven-dior-flow" class="wrap py-8 mono">
+    <div class="p-6 md:p-8 border gold-border rounded-2xl bg-black/60 backdrop-blur-md">
+      <div class="mb-6">
+        <h2 class="text-xl md:text-2xl font-bold glitch uppercase tracking-widest text-[#ffd76a]">DOWN BELOW // STEVEN DIOR FLOW</h2>
+        <p class="text-[10px] text-slate-400 uppercase tracking-[0.3em] mt-1">El Legado de Steven "Dior" Gómez & SADV41</p>
+        <p class="text-xs text-amber-200 mt-3 italic leading-relaxed">
+          "La visión más allá de la vista. Inspirado por la profundidad de Stevie Wonder y Ray Charles, este espacio representa la transición desde el umbral de la pandemia hasta la creación de La Isla de la Vida."
+        </p>
+      </div>
+
+      <!-- Canales Oficiales & Influencias -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-[11px] uppercase tracking-wider mb-6">
+        <a href="https://open.spotify.com/playlist/37i9dQZF1E4A7nH5KNziD4?si=gAOaiXXvTG-P9oIzdMr2aA" target="_blank" class="p-4 border border-slate-800 gold-hover bg-white/[0.02] transition-all rounded-xl flex flex-col items-center justify-center text-center">
+          <span class="font-bold text-[#ffd76a]">Playlist Principal</span>
+          <span class="text-[9px] text-slate-400 mt-1">Steven "Dior" Gómez ↗</span>
+        </a>
+        <a href="https://open.spotify.com/playlist/37i9dQZF1E4A7nH5KNziD4?si=-uDAQziMQgaqRPZWun1GRQ&pi=B9s9CGXjRACcr" target="_blank" class="p-4 border border-slate-800 gold-hover bg-white/[0.02] transition-all rounded-xl flex flex-col items-center justify-center text-center">
+          <span class="font-bold text-[#ffd76a]">Radio Steven</span>
+          <span class="text-[9px] text-slate-400 mt-1">Legado Berion ↗</span>
+        </a>
+        <a href="https://open.spotify.com/artist/5imHnTjivt5qDGTeV2gDMT?si=E43kRWiaSNuh1BlG9ddKFw" target="_blank" class="p-4 border border-slate-800 gold-hover bg-white/[0.02] transition-all rounded-xl flex flex-col items-center justify-center text-center">
+          <span class="font-bold text-[#ffd76a]">Cuenta Principal</span>
+          <span class="text-[9px] text-slate-400 mt-1">Perfil Spotify ↗</span>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-[11px] uppercase tracking-wider mb-6">
+        <a href="https://open.spotify.com/artist/1eYhYunlNJlDoQhtYBvPsi?si=WeEoZYGyTBKUCK22WnijsA" target="_blank" class="p-3.5 border border-slate-800 gold-hover bg-white/[0.02] transition-all rounded-xl flex items-center justify-between">
+          <span>Influencia Maestra: Ray Charles</span>
+          <span class="text-[9px] text-amber-300">Spotify ↗</span>
+        </a>
+        <a href="https://open.spotify.com/artist/7guDJrEfX3qb6FEbdPA5qi?si=e7y11Bp0RLq5RPWN0xxn5A" target="_blank" class="p-3.5 border border-slate-800 gold-hover bg-white/[0.02] transition-all rounded-xl flex items-center justify-between">
+          <span>Influencia Maestra: Stevie Wonder</span>
+          <span class="text-[9px] text-amber-300">Spotify ↗</span>
+        </a>
+      </div>
+
+      <!-- Contenido Audiovisual -->
+      <div class="p-4 border border-slate-800 rounded-2xl bg-black/50">
+        <h3 class="text-xs font-bold uppercase tracking-widest text-[#ffd76a] mb-2">Down Below / La Isla de la Vida (Precuela)</h3>
+        <div class="aspect-video w-full rounded-xl overflow-hidden border border-slate-800">
+          <iframe class="w-full h-full" src="https://www.youtube.com/embed/14kwPAV4HYs" title="La Isla de la Vida - Steven Topic" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <div class="mt-6 text-center text-[9px] text-slate-500 uppercase tracking-[0.35em]">
+        NIKE x ONE PIECE // SADV41 // ORIGEN 0 🗿⚡️🔐 — TIEMPO HACE ESPACIO • BURUNGA, PANAMÁ 🇵🇦✨
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================= -->
+  <!-- 6. BOTÓN FLOTANTE SADV41 HOME & MÓDULO PRESENCIA CRISTO                 -->
+  <!-- ======================================================================= -->
+  <a id="sadv41-home" href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" target="_blank" title="SADV41 · Página principal" aria-label="Ir a la página principal de SADV41" style="position:fixed;left:14px;bottom:64px;z-index:9998;width:46px;height:46px;border-radius:50%;background:#071642;border:3px solid #d9a93a;box-shadow:0 4px 14px rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;text-decoration:none">
+    <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+      <g fill="#d9a93a">
+        <rect x="10.8" y="2" width="2.4" height="20" rx=".6"/>
+        <rect x="8" y="4.6" width="8" height="1.8" rx=".5"/>
+        <rect x="6" y="9" width="12" height="2.4" rx=".6"/>
+        <rect x="8.6" y="16.6" width="6.8" height="1.8" rx=".5" transform="rotate(12 12 17.5)"/>
+      </g>
+    </svg>
+  </a>
+
+  <script>
+    (function () {
+      if (window.__cristoPresencia) return;
+      window.__cristoPresencia = true;
+
+      var VERSOS = [
+        ["Proverbios 11:1", "El peso falso es abominación a Jehová; mas la pesa cabal es su contentamiento."],
+        ["Colosenses 3:23", "Y todo lo que hagáis, hacedlo de corazón, como para el Señor y no para los hombres."],
+        ["Proverbios 21:5", "Los pensamientos del diligente ciertamente tienden a la abundancia."],
+        ["Proverbios 16:3", "Encomienda a Jehová tus obras, y tus pensamientos serán afirmados."],
+        ["Salmo 16:6", "Las cuerdas me cayeron en lugares deleitosos; en verdad la heredad es hermosa para mí."],
+        ["Jeremías 29:11", "Porque yo sé los pensamientos que tengo acerca de vosotros, dice Jehová, pensamientos de paz, y no de mal."],
+        ["Salmo 46:1", "Dios es nuestro amparo y fortaleza, nuestro pronto auxilio en las tribulaciones."],
+        ["Filipenses 4:13", "Todo lo puedo en Cristo que me fortalece."]
+      ];
+
+      var LINEAS = [
+        "Motívate en Cristo 🇵🇦",
+        "Christ-motivation 🇵🇦⭐️🇺🇸",
+        "Friends of 🇮🇱 From 🇵🇦🇺🇸",
+        "And love for the world 🇨🇳🇨🇴🇷🇺👑⚛️☦️"
+      ];
+
+      function montar() {
+        var box = document.createElement("div");
+        box.id = "cristo-presencia";
+        box.innerHTML = '<div class="cp-t"></div><div class="cp-v"></div><span class="cp-m">✝️ SADV41 🇵🇦</span>';
+        document.body.appendChild(box);
+
+        var t = box.querySelector(".cp-t"), v = box.querySelector(".cp-v");
+        var i = Math.floor(Math.random() * VERSOS.length), l = 0;
+
+        function mostrar() {
+          v.classList.add("off");
+          setTimeout(function () {
+            var x = VERSOS[i % VERSOS.length];
+            t.textContent = LINEAS[l % LINEAS.length];
+            v.textContent = "";
+            v.appendChild(document.createTextNode("“" + x[1] + "”"));
+            var r = document.createElement("span");
+            r.className = "cp-r";
+            r.textContent = x[0];
+            v.appendChild(r);
+            v.classList.remove("off");
+            i++; l++;
+          }, 800);
+        }
+        mostrar();
+        setInterval(mostrar, 9000);
+        box.addEventListener("click", function () { box.classList.toggle("min"); });
+      }
+
+      if (document.body) montar();
+      else document.addEventListener("DOMContentLoaded", montar);
+    })();
+  </script>
+
+  <!-- ======================================================================= -->
+  <!-- 7. BUNDLE REACT INTERACTIVO (47 NODOS, BUSCADOR IA, SISMOS & BIBLIA)    -->
+  <!-- ======================================================================= -->
+  <script type="module">
+    import React, { useState, useEffect, useRef } from "https://esm.sh/react@18.3.1";
+    import { createRoot } from "https://esm.sh/react-dom@18.3.1/client";
+
+    const NODOS_LIST = [
+      "Burunga Centro","Azuero Sismo Net","Arraiján Oeste","La Chorrera Hub","Panamá Pacifico",
+      "Chitré Alerta","Las Tablas Fe","Pedasi Nodo","Tonosí Sismico","Guararé Central",
+      "Pocrí Conecta","Los Santos Hub","Macaracas Norte","Santiago Veraguas","Atalaya Link",
+      "Soná Sur","Ocu Fe & Paz","Parita Sismo","Pesé Nodo","Las Minas Central",
+      "StevenDior Music","Principado Fe","SADV41 Biblia","Capilla Digital","Wallet Node",
+      "Repo Oficial","M/I/A Mesa","Gemini Atrio","Grok Sismico","Meta Spark",
+      "Claude Ref","USGS Bridge","Azuero Alerta","Oración 24/7","Salmos Live",
+      "Provisión $2.844","Haki 432Hz","Capa 2 Habit","TSEC Telemetría","WebAR Filtro",
+      "Flyer Gen","Logo Circular","Urracá Code","Burunga Fe Paz","Azuero 47 Red",
+      "Panamá Soberana","América Gov Mirror"
+    ];
+
+    function getNodeType(name) {
+      if (/sismo|usgs|azuer|alerta/i.test(name)) return "sismo";
+      if (/fe|paz|biblia|capilla|salmos|oración|oracion|principado/i.test(name)) return "fe";
+      if (/music|haki|stevendior/i.test(name)) return "musica";
+      return "hub";
+    }
+
+    const TYPE_COLORS = { hub: "#FFD700", sismo: "#00E5FF", fe: "#8b5cf6", musica: "#22c55e" };
+
+    const EGG_NODES = [
+      { id: 100, name: "Turbo Tire HQ", x: 22, y: 28, vx: 0, vy: 0, type: "egg" },
+      { id: 101, name: "Llantería 24h", x: 78, y: 24, vx: 0, vy: 0, type: "egg" },
+      { id: 102, name: "Balanceo Pro", x: 30, y: 78, vx: 0, vy: 0, type: "egg" },
+      { id: 103, name: "Vulcanizado Burunga", x: 74, y: 76, vx: 0, vy: 0, type: "egg" }
+    ];
+
+    const VERSES_DB = {
+      "Salmos 23:1-4": "Jehová es mi pastor; nada me faltará. En lugares de delicados pastos me hará descansar; junto a aguas de reposo me pastoreará. Confortará mi alma; me guiará por sendas de justicia por amor de su nombre. Aunque ande en valle de sombra de muerte, no temeré mal alguno, porque tú estarás conmigo.",
+      "Salmos 46:1-3": "Dios es nuestro amparo y fortaleza, nuestro pronto auxilio en las tribulaciones. Por tanto, no temeremos, aunque la tierra sea removida, y se traspasen los montes al corazón del mar.",
+      "Génesis 1:1-3": "En el principio creó Dios los cielos y la tierra. Y la tierra estaba desordenada y vacía, y las tinieblas estaban sobre la faz del abismo, y el Espíritu de Dios se movía sobre la faz de las aguas. Y dijo Dios: Sea la luz; y fue la luz.",
+      "Juan 14:6": "Jesús le dijo: Yo soy el camino, y la verdad, y la vida; nadie viene al Padre, sino por mí.",
+      "Proverbios 3:5-6": "Fíate de Jehová de todo tu corazón, y no te apoyes en tu propia prudencia. Reconócelo en todos tus caminos, y él enderezará tus veredas.",
+      "Proverbios 11:1": "El peso falso es abominación a Jehová; mas la pesa cabal es su contentamiento."
+    };
+
+    function querySADV41(q) {
+      const t = q.toLowerCase();
+      if (/sismo|temblor|usgs|azuer|magnitud/.test(t)) {
+        return {
+          intent: "sismo",
+          answer: `Último evento Azuero — USGS + SADV41 Sismo Net:\n\nM 4.2 — 12 km SSE de Pedasí, Los Santos. Profundidad 10.2 km. Intensidad III en Tonosí, II en Chitré. Sin alerta de tsunami. Réplica < M2.5.\n\nEl nodo Azuero Sismo Net procesó el evento en 8.4s. 47 nodos en vigilancia. Estado: VERDE.`,
+          sources: [
+            { title: "USGS Event us7000n9x — Azuero feed", badge: "Official source" },
+            { title: "SADV41 / Sismología / Azuero Live Dashboard", badge: "Official source" }
+          ],
+          related: ["sismos hoy Panamá", "alerta Azuero ahora", "historial sismico Tonosí"],
+          meta: { mag: "4.2", depth: "10.2km", estado: "VERDE" }
+        };
+      }
+      if (/biblia|salmo|vers|génesis|genesis|juan|proverbios/.test(t)) {
+        return {
+          intent: "biblia",
+          answer: `Salmos 23:1-4 (RVR1960) — SADV41 Principado de Fe y Paz:\n\n"Jehová es mi pastor; nada me faltará. En lugares de delicados pastos me hará descansar; junto a aguas de reposo me pastoreará. Confortará mi alma; me guiará por sendas de justicia por amor de su nombre."\n\nContexto SADV41: Referencia para oración 24/7 Burunga. Audio StevenDior Music disponible.`,
+          sources: [
+            { title: "SADV41 / BIBLIA / RVR1960 — Salmos 23", badge: "Official source" },
+            { title: "Principado de Fe y Paz — Liturgia Diaria", badge: "Verified" }
+          ],
+          related: ["Salmos 46 amparo", "Juan 14:6 camino", "Proverbios 11:1 pesa cabal"],
+          meta: { version: "RVR1960", book: "Salmos 23", audio: "432Hz" }
+        };
+      }
+      if (/soberan|canal|alfaro|polit|panam/.test(t)) {
+        return {
+          intent: "soberanía",
+          answer: `Doctrina SADV41 Politics — Soberanía Cooperativa:\n\n"La soberanía no es aislamiento. La soberanía es cooperar de igual a igual."\n\nBasada en el legado jurídico de Ricardo J. Alfaro (1926/1945), la neutralidad civil de Panamá sin ejército (1990) y la administración 100% panameña del Canal por la ACP.`,
+          sources: [
+            { title: "SADV41.GOV — Manifiesto Soberanía Cooperativa", badge: "Official source" },
+            { title: "Tratado Alfaro-Kellogg & Carta ONU — Archivo Histórico", badge: "Verified" }
+          ],
+          related: ["Ricardo J. Alfaro", "ACP 100% Panameña", "Tríada IA M/I/A"],
+          meta: { canal: "100% PA", ejercito: "Ninguno", doctrina: "Cooperativa" }
+        };
+      }
+      return {
+        intent: "general",
+        answer: `SADV41 GOV réplica America.gov. Busca en 47 nodos comunitarios: sismos Azuero, Biblia RVR1960, doctrina Soberanía Cooperativa y StevenDior Music.\n\nTu consulta "${q}" — En SADV41 no recolectamos tu info. Respuestas desde repo oficial thesteef21/SADV41 verificado. Sin ads. Sin tracking.`,
+        sources: [
+          { title: "SADV41 GOV — Manifiesto Hello Burunga", badge: "Official source" },
+          { title: "America.gov — GSA National Design Studio (ref)", badge: "Ref" }
+        ],
+        related: ["soberanía cooperativa", "sismo Azuero hoy", "Salmos 23"],
+        meta: { nodos: "47", tracking: "Ninguno", ads: "0" }
+      };
+    }
+
+    function App() {
+      const [query, setQuery] = useState("");
+      const [focused, setFocused] = useState(false);
+      const [loading, setLoading] = useState(false);
+      const [result, setResult] = useState(null);
+      const [typedText, setTypedText] = useState("");
+      const [typing, setTyping] = useState(false);
+      const [copyMsg, setCopyMsg] = useState("");
+      const [book, setBook] = useState("Salmos");
+      const [chap, setChap] = useState("23");
+      const [verse, setVerse] = useState("1-4");
+      const [goldenLink, setGoldenLink] = useState(false);
+      const [hoveredNode, setHoveredNode] = useState(null);
+      const [walletMsg, setWalletMsg] = useState("");
+      const [eggOpen, setEggOpen] = useState(false);
+      const [clicks, setClicks] = useState(0);
+
+      const canvasRef = useRef(null);
+      const nodesRef = useRef(
+        NODOS_LIST.map((name, idx) => ({
+          id: idx,
+          name,
+          x: 8 + Math.random() * 84,
+          y: 10 + Math.random() * 80,
+          vx: (Math.random() - 0.5) * 0.25,
+          vy: (Math.random() - 0.5) * 0.25,
+          type: getNodeType(name)
+        }))
+      );
+      const draggedRef = useRef(null);
+      const clickTimesRef = useRef([]);
+
+      function triggerLogoClick() {
+        const now = Date.now();
+        clickTimesRef.current = [...clickTimesRef.current.filter((t) => now - t < 3000), now];
+        const count = clickTimesRef.current.length;
+        setClicks(count);
+        setTimeout(() => setClicks((c) => (c >= count ? 0 : c)), 3000);
+        if (count >= 5) {
+          clickTimesRef.current = [];
+          setClicks(0);
+          setEggOpen(true);
+        }
+      }
+
+      const refKey = `${book} ${chap}:${verse}`;
+      const verseContent = VERSES_DB[refKey] || VERSES_DB["Salmos 23:1-4"];
+
+      function copyLocal(text, msg) {
+        navigator.clipboard?.writeText(text).then(() => {
+          setCopyMsg(msg);
+          setTimeout(() => setCopyMsg(""), 2200);
+        });
+      }
+
+      function handleSearch(override) {
+        const q = (override ?? query).trim() || "SADV41";
+        if (!override && !query.trim()) setQuery("SADV41");
+        if (/\bturbo\b/i.test(q)) {
+          setLoading(false);
+          setTyping(false);
+          setEggOpen(true);
+          return;
+        }
+        setLoading(true);
+        const res = querySADV41(q);
+        setResult(res);
+        setTypedText("");
+        setTyping(true);
+        setTimeout(() => {
+          setLoading(false);
+          let idx = 0;
+          const timer = setInterval(() => {
+            idx += 10;
+            if (idx >= res.answer.length) {
+              setTypedText(res.answer);
+              setTyping(false);
+              clearInterval(timer);
+            } else {
+              setTypedText(res.answer.slice(0, idx));
+            }
+          }, 16);
+        }, 400);
+      }
+
+      useEffect(() => {
+        let animId = 0;
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const resize = () => {
+          const rect = canvas.parentElement?.getBoundingClientRect();
+          if (rect) {
+            canvas.width = rect.width * devicePixelRatio;
+            canvas.height = rect.height * devicePixelRatio;
+            canvas.style.width = rect.width + "px";
+            canvas.style.height = rect.height + "px";
+          }
+        };
+        resize();
+        window.addEventListener("resize", resize);
+
+        const loop = () => {
+          const ctx = canvas.getContext("2d");
+          if (!ctx) return;
+          ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+          ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight);
+          const w = canvas.clientWidth;
+          const h = canvas.clientHeight;
+          const list = nodesRef.current;
+
+          list.forEach((n) => {
+            if (draggedRef.current === n.id) return;
+            n.vx += (50 - n.x) * 0.00025;
+            n.vy += (50 - n.y) * 0.00025;
+            n.vx *= 0.992;
+            n.vy *= 0.992;
+            list.forEach((m) => {
+              if (m.id === n.id) return;
+              const dx = n.x - m.x;
+              const dy = n.y - m.y;
+              const dist = Math.hypot(dx, dy) + 0.1;
+              if (dist < 12) {
+                n.vx += (dx / dist) * 0.035;
+                n.vy += (dy / dist) * 0.035;
+              }
+            });
+            n.x = Math.max(4, Math.min(96, n.x + n.vx));
+            n.y = Math.max(7, Math.min(93, n.y + n.vy));
+          });
+
+          const allNodes = eggOpen ? [...list, ...EGG_NODES] : list;
+          ctx.lineWidth = goldenLink ? 1.1 : 0.55;
+
+          for (let i = 0; i < allNodes.length; i++) {
+            for (let j = i + 1; j < allNodes.length; j++) {
+              const a = allNodes[i];
+              const b = allNodes[j];
+              if (Math.hypot(a.x - b.x, a.y - b.y) < (goldenLink ? 52 : 14)) {
+                ctx.strokeStyle = goldenLink
+                  ? "rgba(255,215,0,.55)"
+                  : a.type === "egg" || b.type === "egg"
+                  ? "rgba(255,215,0,.65)"
+                  : "rgba(255,255,255,.12)";
+                ctx.beginPath();
+                ctx.moveTo((a.x / 100) * w, (a.y / 100) * h);
+                ctx.lineTo((b.x / 100) * w, (b.y / 100) * h);
+                ctx.stroke();
+              }
+            }
+          }
+
+          allNodes.forEach((n) => {
+            const px = (n.x / 100) * w;
+            const py = (n.y / 100) * h;
+            const isHub = n.type === "hub";
+            const isEgg = n.type === "egg";
+            const r = isEgg ? 11 : hoveredNode === n.id ? 11 : isHub ? 7 : 4.5;
+
+            ctx.beginPath();
+            ctx.arc(px, py, r + 8, 0, Math.PI * 2);
+            ctx.fillStyle = isEgg ? "rgba(255,215,0,.35)" : TYPE_COLORS[n.type] + "22";
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(px, py, r, 0, Math.PI * 2);
+            ctx.fillStyle = isEgg ? "#FFD700" : TYPE_COLORS[n.type];
+            ctx.fill();
+            ctx.strokeStyle = isEgg ? "#FFD700" : "rgba(0,0,0,.45)";
+            ctx.lineWidth = isEgg ? 2 : 1.2;
+            ctx.stroke();
+          });
+
+          animId = requestAnimationFrame(loop);
+        };
+
+        animId = requestAnimationFrame(loop);
+        return () => {
+          cancelAnimationFrame(animId);
+          window.removeEventListener("resize", resize);
+        };
+      }, [goldenLink, hoveredNode, eggOpen]);
+
+      function getCoords(e) {
+        const rect = canvasRef.current.getBoundingClientRect();
+        return {
+          x: ((e.clientX - rect.left) / rect.width) * 100,
+          y: ((e.clientY - rect.top) / rect.height) * 100
+        };
+      }
+
+      function onPointerDown(e) {
+        const pt = getCoords(e);
+        const hit = [...nodesRef.current].reverse().find((n) => Math.hypot(n.x - pt.x, n.y - pt.y) < 6);
+        if (hit) {
+          draggedRef.current = hit.id;
+          setHoveredNode(hit.id);
+          e.target.setPointerCapture(e.pointerId);
+        }
+      }
+
+      function onPointerMove(e) {
+        const pt = getCoords(e);
+        if (draggedRef.current !== null) {
+          const n = nodesRef.current[draggedRef.current];
+          if (n) {
+            n.x = Math.max(4, Math.min(96, pt.x));
+            n.y = Math.max(7, Math.min(93, pt.y));
+            n.vx = 0;
+            n.vy = 0;
+          }
+        } else {
+          const hit = nodesRef.current.find((n) => Math.hypot(n.x - pt.x, n.y - pt.y) < 6);
+          setHoveredNode(hit ? hit.id : null);
+        }
+      }
+
+      function onPointerUp() {
+        draggedRef.current = null;
+      }
+
+      const quickPrompts = ["soberanía cooperativa", "sismo Azuero hoy", "Salmos 23", "¿qué es SADV41?"];
+
+      return React.createElement(
+        "div",
+        { style: { background: "radial-gradient(1200px 600px at 15% -10%, rgba(255,215,0,.07), transparent 60%), radial-gradient(900px 500px at 85% 10%, rgba(0,229,255,.07), transparent 60%)" } },
+        /* HEADER STICKY */
+        React.createElement(
+          "header",
+          { style: { position: "sticky", top: 0, zIndex: 50, backdropFilter: "blur(20px)", background: "rgba(7,10,18,.88)", borderBottom: "1px solid var(--line)" } },
+          React.createElement(
+            "div",
+            { className: "wrap", style: { height: 34, display: "flex", alignItems: "center", justifyContent: "space-between" } },
+            React.createElement(
+              "div",
+              { style: { display: "flex", alignItems: "center", gap: 12 } },
+              React.createElement("span", { className: "mono", style: { fontSize: 10, letterSpacing: ".12em", fontWeight: 700, color: "#9aa3b8" } }, "🇵🇦 SADV41.GOV | POLITICS & PRINCIPADO DE FE Y PAZ"),
+              React.createElement(
+                "span",
+                { className: "mono hidden sm:inline", style: { fontSize: 10, color: "#c2c8d6" } },
+                React.createElement("span", { className: "pulse", style: { display: "inline-block", width: 6, height: 6, borderRadius: 99, background: "#00E5FF", marginRight: 6 } }),
+                "Burunga / Azuero — Panamá"
+              )
+            ),
+            React.createElement(
+              "span",
+              { className: "mono", style: { display: "inline-flex", alignItems: "center", gap: 6, borderRadius: 99, border: "1px solid rgba(255,215,0,.35)", background: "rgba(255,215,0,.08)", color: "#FFD700", padding: "2px 10px", fontSize: 10, fontWeight: 700, letterSpacing: ".1em" } },
+              "● LIVE 2026"
+            )
+          ),
+          React.createElement(
+            "div",
+            { className: "wrap", style: { height: 60, display: "flex", alignItems: "center", justifyContent: "space-between", gap: 16 } },
+            React.createElement(
+              "div",
+              { style: { display: "flex", alignItems: "center", gap: 20 } },
+              React.createElement(
+                "div",
+                { style: { display: "flex", alignItems: "center", gap: 10 } },
+                React.createElement(
+                  "button",
+                  {
+                    type: "button",
+                    onClick: triggerLogoClick,
+                    className: "cinzel",
+                    style: {
+                      width: 32, height: 32, borderRadius: 10, display: "grid", placeItems: "center",
+                      fontWeight: 700, fontSize: 13, background: "linear-gradient(135deg,#FFD700,#00E5FF)",
+                      color: "#070A12", border: "none", transform: `scale(${1 + clicks * 0.06})`,
+                      boxShadow: clicks > 0 ? "0 0 18px rgba(255,215,0,.55)" : "none", transition: "transform .15s ease"
+                    }
+                  },
+                  "41"
+                ),
+                React.createElement(
+                  "span",
+                  { className: "cinzel", style: { fontSize: 16, fontWeight: 700 } },
+                  React.createElement("span", { style: { color: "#FFD700" } }, "SADV41 "),
+                  React.createElement("span", { style: { color: "white" } }, "POLITICS "),
+                  React.createElement("span", { style: { color: "rgba(255,255,255,.4)" } }, "GOV")
+                )
+              ),
+              React.createElement(
+                "nav",
+                { style: { display: "none", gap: 18 }, className: "lg-nav mono" },
+                [
+                  { label: "Tridente SVG", href: "#soberania-svg" },
+                  { label: "Manifiesto", href: "#manifiesto" },
+                  { label: "47 Nodos", href: "#47-nodos" },
+                  { label: "Poneglyph & TSEC", href: "#poneglyph-tsec" },
+                  { label: "Biblia", href: "#biblia" },
+                  { label: "StevenDior", href: "#steven-dior-flow" }
+                ].map((item) =>
+                  React.createElement("a", { key: item.label, href: item.href, style: { fontSize: 11, color: "rgba(255,255,255,.7)" }, className: "hover:text-[#FFD700]" }, item.label)
+                )
+              )
+            ),
+            React.createElement(
+              "button",
+              {
+                onClick: () => setWalletMsg("Vista previa local: tu wallet stevendior.ai se abriría aquí. Privacidad total."),
+                style: { height: 34, padding: "0 14px", borderRadius: 99, background: "white", color: "black", fontWeight: 700, fontSize: 12, border: "none" }
+              },
+              "Abrir Wallet"
+            )
+          )
+        ),
+
+        /* HERO & BUSCADOR IA SOBERANO */
+        React.createElement(
+          "section",
+          { className: "wrap", style: { paddingTop: 44, paddingBottom: 32 } },
+          React.createElement(
+            "div",
+            { style: { maxWidth: 780 } },
+            React.createElement(
+              "div",
+              { style: { display: "inline-flex", alignItems: "center", gap: 8, border: "1px solid rgba(0,229,255,.25)", background: "rgba(0,229,255,.06)", borderRadius: 99, padding: "4px 12px", marginBottom: 18 } },
+              React.createElement("span", { className: "mono", style: { fontSize: 10, fontWeight: 700, letterSpacing: ".16em", color: "#00E5FF" } }, "SADV41 SOVEREIGN PORTAL • AMERICA.GOV EDITION")
+            ),
+            React.createElement(
+              "h1",
+              { className: "cinzel", style: { fontSize: "clamp(42px,8vw,76px)", lineHeight: 0.92, fontWeight: 700, margin: 0 } },
+              "Hello, ",
+              React.createElement("span", { style: { color: "#FFD700", textShadow: "0 0 40px rgba(255,215,0,.35)" } }, "Burunga")
+            ),
+            React.createElement(
+              "h2",
+              { className: "cinzel", style: { fontSize: "clamp(26px,4.5vw,42px)", lineHeight: 0.95, fontWeight: 400, color: "rgba(255,255,255,.28)", margin: "10px 0 0" } },
+              "Soberanía Cooperativa • Panama & America"
+            ),
+            React.createElement(
+              "p",
+              { className: "mono", style: { marginTop: 14, fontSize: 12, lineHeight: 1.6, maxWidth: 620, color: "rgba(255,255,255,.55)" } },
+              "Portal unificado SADV41 Politics: busca en los 47 nodos comunitarios, consulta telemetría sísmica Azuero USGS, Biblia RVR1960 y doctrina diplomática soberana. Sin tracking, sin ads."
+            )
+          ),
+
+          /* CAJA DE BÚSQUEDA IA */
+          React.createElement(
+            "div",
+            { style: { marginTop: 28, maxWidth: 780 } },
+            React.createElement(
+              "div",
+              {
+                style: {
+                  borderRadius: 22,
+                  border: `1px solid ${focused ? "#00E5FF" : "rgba(255,255,255,.12)"}`,
+                  background: "#111624",
+                  boxShadow: focused ? "0 0 0 1px #00E5FF, 0 20px 60px -20px rgba(255,215,0,.35)" : "0 20px 60px -30px rgba(0,0,0,.8)"
+                }
+              },
+              React.createElement(
+                "div",
+                { style: { display: "flex", alignItems: "center", gap: 12, padding: "0 16px", height: 58 } },
+                React.createElement("span", { className: "mono", style: { color: "#00E5FF", fontWeight: 800 } }, "🔍"),
+                React.createElement("input", {
+                  value: query,
+                  onChange: (e) => setQuery(e.target.value),
+                  onFocus: () => setFocused(true),
+                  onBlur: () => setFocused(false),
+                  onKeyDown: (e) => e.key === "Enter" && handleSearch(),
+                  placeholder: "Pregunta sobre Soberanía Cooperativa, sismos Azuero, Biblia...",
+                  style: { flex: 1, minWidth: 0, background: "transparent", border: "none", color: "white", fontSize: 14 }
+                }),
+                React.createElement(
+                  "button",
+                  {
+                    onClick: () => handleSearch(),
+                    style: { height: 38, padding: "0 18px", borderRadius: 99, background: "linear-gradient(135deg,#00E5FF,#FFD700)", color: "#070A12", fontWeight: 700, fontSize: 13, border: "none" }
+                  },
+                  loading ? "Buscando…" : "Consultar ➤"
+                )
+              ),
+              React.createElement(
+                "div",
+                { style: { padding: "0 16px 14px", display: "flex", flexWrap: "wrap", gap: 8 } },
+                quickPrompts.map((p) =>
+                  React.createElement(
+                    "button",
+                    {
+                      key: p,
+                      onClick: () => { setQuery(p); handleSearch(p); },
+                      className: "mono",
+                      style: { height: 26, padding: "0 12px", borderRadius: 99, border: "1px solid rgba(255,255,255,.12)", background: "rgba(255,255,255,.04)", color: "rgba(255,255,255,.7)", fontSize: 11 }
+                    },
+                    p
+                  )
+                )
+              ),
+              result &&
+                React.createElement(
+                  "div",
+                  { style: { borderTop: "1px solid rgba(255,255,255,.08)", padding: "18px", background: "rgba(255,255,255,.02)" } },
+                  React.createElement(
+                    "div",
+                    { style: { display: "flex", alignItems: "center", gap: 8, marginBottom: 8 } },
+                    React.createElement("span", { className: "cinzel", style: { width: 26, height: 26, borderRadius: 99, display: "grid", placeItems: "center", background: "rgba(255,215,0,.15)", color: "#FFD700", fontSize: 11, fontWeight: 700 } }, "AI"),
+                    React.createElement("span", { className: "mono", style: { fontSize: 11, fontWeight: 700, color: "#00E5FF" } }, `SADV41 ANSWER • ${result.intent.toUpperCase()}`)
+                  ),
+                  React.createElement("p", { style: { fontSize: 14, lineHeight: 1.6, whiteSpace: "pre-wrap", color: "rgba(255,255,255,.88)" } }, typedText),
+                  React.createElement(
+                    "div",
+                    { style: { display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8, marginTop: 14 } },
+                    Object.entries(result.meta).map(([k, v]) =>
+                      React.createElement(
+                        "div",
+                        { key: k, style: { border: "1px solid rgba(255,255,255,.08)", background: "rgba(255,255,255,.03)", borderRadius: 10, padding: "8px 10px" } },
+                        React.createElement("div", { className: "mono", style: { fontSize: 9, color: "rgba(255,255,255,.45)" } }, k.toUpperCase()),
+                        React.createElement("div", { style: { fontSize: 13, fontWeight: 700 } }, v)
+                      )
+                    )
+                  )
+                )
+            ),
+            walletMsg && React.createElement("p", { className: "mono", style: { fontSize: 11, color: "#FFD700", marginTop: 8 } }, walletMsg)
+          )
+        ),
+
+        /* CANVAS INTERACTIVO 47 NODOS */
+        React.createElement(
+          "section",
+          { id: "47-nodos", className: "wrap", style: { paddingTop: 24, paddingBottom: 36 } },
+          React.createElement(
+            "div",
+            { style: { display: "flex", flexWrap: "wrap", justifyContent: "space-between", gap: 12, alignItems: "end", marginBottom: 16 } },
+            React.createElement(
+              "div",
+              null,
+              React.createElement("h2", { className: "cinzel", style: { fontSize: "clamp(24px,3.5vw,32px)", fontWeight: 700, margin: 0 } }, "47 Nodos ", React.createElement("span", { style: { color: "rgba(255,255,255,.35)" } }, "Comunitarios Live")),
+              React.createElement("p", { className: "mono", style: { fontSize: 12, color: "rgba(255,255,255,.5)", marginTop: 4 } }, "Arrastra cualquier nodo. Física suave en tiempo real • Burunga / Azuero.")
+            ),
+            React.createElement(
+              "button",
+              {
+                onClick: () => { setGoldenLink(true); setTimeout(() => setGoldenLink(false), 2500); },
+                className: "mono",
+                style: { height: 34, padding: "0 16px", borderRadius: 99, border: "1px solid rgba(255,215,0,.35)", background: "rgba(255,215,0,.08)", color: "#FFD700", fontWeight: 700, fontSize: 11 }
+              },
+              "● Conectar Red Dorada (2.5s)"
+            )
+          ),
+          React.createElement(
+            "div",
+            { style: { position: "relative", height: 420, borderRadius: 20, border: "1px solid rgba(255,255,255,.1)", overflow: "hidden", background: "radial-gradient(800px 400px at 50% 0%, rgba(0,229,255,.07), transparent), #0B0F19", touchAction: "none" } },
+            React.createElement("canvas", {
+              ref: canvasRef,
+              onPointerDown: onPointerDown,
+              onPointerMove: onPointerMove,
+              onPointerUp: onPointerUp,
+              onPointerLeave: onPointerUp,
+              style: { width: "100%", height: "100%", cursor: "grab" }
+            }),
+            hoveredNode !== null &&
+              React.createElement(
+                "div",
+                {
+                  className: "mono",
+                  style: {
+                    position: "absolute", pointerEvents: "none", zIndex: 3,
+                    left: `${nodesRef.current[hoveredNode].x}%`, top: `${nodesRef.current[hoveredNode].y}%`,
+                    transform: "translate(-50%,-150%)", background: "rgba(17,22,36,.95)",
+                    border: "1px solid rgba(255,215,0,.4)", borderRadius: 8, padding: "5px 10px", fontSize: 11, whiteSpace: "nowrap", color: "#FFD700"
+                  }
+                },
+                `${nodesRef.current[hoveredNode].name} • ${nodesRef.current[hoveredNode].type.toUpperCase()}`
+              )
+          )
+        ),
+
+        /* MÓDULO BIBLIA RVR1960 LOCAL */
+        React.createElement(
+          "section",
+          { id: "biblia", className: "wrap", style: { paddingBottom: 24 } },
+          React.createElement(
+            "div",
+            { style: { borderRadius: 20, border: "1px solid rgba(255,255,255,.1)", background: "#0B0F19", overflow: "hidden", display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(290px,1fr))" } },
+            React.createElement(
+              "div",
+              { style: { padding: 24, borderRight: "1px solid rgba(255,255,255,.08)", background: "rgba(255,255,255,.02)" } },
+              React.createElement("span", { className: "mono", style: { fontSize: 11, fontWeight: 700, color: "#FFD700" } }, "✝️ BIBLIA.JS MODULE • RVR1960"),
+              React.createElement("h3", { className: "cinzel", style: { fontSize: 20, margin: "8px 0" } }, "Principado de Fe y Paz"),
+              React.createElement(
+                "div",
+                { style: { marginTop: 16, display: "grid", gap: 10 } },
+                React.createElement(
+                  "select",
+                  { value: book, onChange: (e) => setBook(e.target.value), style: { height: 38, borderRadius: 10, border: "1px solid rgba(255,255,255,.15)", background: "#111624", color: "white", padding: "0 12px" } },
+                  ["Salmos", "Proverbios", "Génesis", "Juan"].map((b) => React.createElement("option", { key: b, value: b }, b))
+                ),
+                React.createElement(
+                  "div",
+                  { style: { display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 } },
+                  React.createElement("input", { value: chap, onChange: (e) => setChap(e.target.value), placeholder: "Cap.", style: { height: 38, borderRadius: 10, border: "1px solid rgba(255,255,255,.15)", background: "#111624", color: "white", padding: "0 12px" } }),
+                  React.createElement("input", { value: verse, onChange: (e) => setVerse(e.target.value), placeholder: "Vers.", style: { height: 38, borderRadius: 10, border: "1px solid rgba(255,255,255,.15)", background: "#111624", color: "white", padding: "0 12px" } })
+                ),
+                React.createElement(
+                  "button",
+                  {
+                    onClick: () => copyLocal(`${refKey} — ${verseContent}`, "Versículo copiado al portapapeles."),
+                    style: { height: 36, borderRadius: 99, background: "white", color: "black", fontWeight: 700, fontSize: 12, border: "none" }
+                  },
+                  "Copiar Versículo"
+                ),
+                copyMsg && React.createElement("p", { className: "mono", style: { fontSize: 11, color: "#00E5FF" } }, copyMsg)
+              )
+            ),
+            React.createElement(
+              "div",
+              { style: { padding: 24, display: "flex", flexDirection: "column", justifyContent: "center" } },
+              React.createElement("h4", { className: "cinzel", style: { fontSize: 22, color: "#FFD700", marginBottom: 12 } }, refKey),
+              React.createElement("p", { style: { fontSize: 16, lineHeight: 1.7, color: "rgba(255,255,255,.88)", fontStyle: "italic" } }, `“${verseContent}”`)
+            )
+          )
+        ),
+
+        /* MODAL EASTER EGG TURBO TIRE */
+        eggOpen &&
+          React.createElement(
+            "div",
+            {
+              onClick: () => setEggOpen(false),
+              style: { position: "fixed", inset: 0, zIndex: 100, display: "grid", placeItems: "center", padding: 20, background: "rgba(3,5,10,.82)", backdropFilter: "blur(6px)" }
+            },
+            React.createElement(
+              "div",
+              {
+                onClick: (e) => e.stopPropagation(),
+                style: { width: "100%", maxWidth: 480, background: "#0B0F19", border: "1px solid #FFD700", borderRadius: 20, padding: 26, boxShadow: "0 0 60px rgba(0,229,255,.35)" }
+              },
+              React.createElement("span", { className: "mono", style: { fontSize: 11, fontWeight: 700, color: "#FFD700" } }, "✦ EASTER EGG — SOLO ÉLITE"),
+              React.createElement("h2", { className: "cinzel", style: { fontSize: 24, margin: "12px 0" } }, "TURBO TIRE BURUNGA"),
+              React.createElement("p", { style: { fontSize: 14, lineHeight: 1.6, color: "rgba(255,255,255,.85)" } }, "OPEN desde 2018. Balanceo computarizado, vulcanizado 24h, Windforce 185/65R15 desde $52. Instalación en 25min. A 200m del Super Xtra Burunga. Pago con Yappy."),
+              React.createElement(
+                "button",
+                { onClick: () => setEggOpen(false), style: { marginTop: 18, width: "100%", height: 40, borderRadius: 99, background: "linear-gradient(135deg,#FFD700,#00E5FF)", color: "#070A12", fontWeight: 700, border: "none" } },
+                "Cerrar"
+              )
+            )
+          )
+      );
+    }
+
+    createRoot(document.getElementById("root")).render(React.createElement(App));
+  </script>
+<!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+</body>
+</html>

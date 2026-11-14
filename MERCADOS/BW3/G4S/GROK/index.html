@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>G4Stock · Panel de Posiciones BSC</title>
+<style>
+  :root {
+    --bg: #0f1216;
+    --card: #171b21;
+    --card2: #1c222a;
+    --border: #2a313c;
+    --text: #e8ecef;
+    --muted: #8b95a5;
+    --accent: #f0b90b;
+    --green: #0ecb81;
+    --red: #f6465d;
+    --blue: #1e90ff;
+    --radius: 12px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.45;
+    min-height: 100vh;
+    padding: 12px;
+    padding-bottom: 80px;
+  }
+  h1 { font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; }
+  h2 { font-size: 1.05rem; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .header {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 10px; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border);
+  }
+  .badge {
+    font-size: 0.7rem; padding: 3px 8px; border-radius: 999px;
+    background: #2a2110; color: var(--accent); border: 1px solid #4a3a10;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px;
+    margin-bottom: 14px;
+  }
+  .card.compact { padding: 12px; }
+  label { display: block; font-size: 0.78rem; color: var(--muted); margin-bottom: 4px; }
+  input, select, textarea {
+    width: 100%; background: var(--card2); border: 1px solid var(--border);
+    color: var(--text); border-radius: 8px; padding: 9px 11px; font-size: 0.9rem;
+    outline: none; transition: border-color .15s;
+  }
+  input:focus, select:focus, textarea:focus { border-color: var(--accent); }
+  textarea { min-height: 72px; resize: vertical; font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.82rem; }
+  .row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 10px; }
+  .row > * { flex: 1 1 140px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    background: var(--accent); color: #111; border: none; border-radius: 8px;
+    padding: 9px 14px; font-size: 0.88rem; font-weight: 600; cursor: pointer;
+    transition: opacity .15s, transform .1s;
+  }
+  .btn:active { transform: scale(0.98); }
+  .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+  .btn.secondary { background: var(--card2); color: var(--text); border: 1px solid var(--border); }
+  .btn.ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+  .btn.sm { padding: 6px 10px; font-size: 0.8rem; }
+  .btn-group { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .status {
+    font-size: 0.8rem; color: var(--muted); min-height: 1.2em;
+    margin-top: 6px; word-break: break-word;
+  }
+  .status.ok { color: var(--green); }
+  .status.err { color: var(--red); }
+  .grid-pos { display: grid; gap: 12px; }
+  .pos-card {
+    background: var(--card2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px; position: relative;
+  }
+  .pos-card .title {
+    display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;
+    margin-bottom: 8px; font-weight: 600; font-size: 0.95rem;
+  }
+  .tag {
+    font-size: 0.68rem; padding: 2px 7px; border-radius: 6px; font-weight: 600;
+    white-space: nowrap;
+  }
+  .tag.in { background: #0a2e1f; color: var(--green); }
+  .tag.out { background: #2e1218; color: var(--red); }
+  .tag.farm { background: #1a2233; color: #7db4ff; }
+  .meta { font-size: 0.78rem; color: var(--muted); display: grid; gap: 3px; }
+  .meta b { color: var(--text); font-weight: 500; }
+  .range-bar {
+    height: 6px; background: #2a313c; border-radius: 3px; margin: 10px 0 4px;
+    position: relative; overflow: hidden;
+  }
+  .range-bar .fill {
+    position: absolute; top: 0; bottom: 0; background: linear-gradient(90deg, #0ecb81, #f0b90b);
+    border-radius: 3px;
+  }
+  .range-bar .tick {
+    position: absolute; top: -3px; width: 2px; height: 12px; background: #fff;
+    border-radius: 1px; transform: translateX(-50%);
+  }
+  .range-labels { display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--muted); }
+  .balances { display: flex; flex-wrap: wrap; gap: 10px; }
+  .bal-item {
+    background: var(--card2); border: 1px solid var(--border); border-radius: 8px;
+    padding: 8px 12px; min-width: 110px;
+  }
+  .bal-item .sym { font-size: 0.72rem; color: var(--muted); }
+  .bal-item .val { font-weight: 600; font-size: 0.95rem; }
+  details { margin-top: 8px; }
+  details summary {
+    cursor: pointer; font-size: 0.82rem; color: var(--muted); user-select: none;
+  }
+  details[open] summary { margin-bottom: 8px; }
+  .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; font-size: 0.8rem; }
+  .footer-note {
+    text-align: center; font-size: 0.72rem; color: var(--muted); margin-top: 20px;
+    padding-top: 12px; border-top: 1px solid var(--border);
+  }
+  .tabs { display: flex; gap: 6px; margin-bottom: 12px; overflow-x: auto; padding-bottom: 4px; }
+  .tab {
+    flex: 0 0 auto; padding: 7px 12px; border-radius: 8px; font-size: 0.82rem;
+    background: var(--card2); border: 1px solid var(--border); color: var(--muted); cursor: pointer;
+  }
+  .tab.active { background: #2a2110; color: var(--accent); border-color: #4a3a10; }
+  .hidden { display: none !important; }
+  .progress {
+    height: 4px; background: var(--border); border-radius: 2px; margin-top: 8px; overflow: hidden;
+  }
+  .progress > div { height: 100%; background: var(--accent); width: 0%; transition: width .2s; }
+  @media (min-width: 640px) {
+    body { max-width: 720px; margin: 0 auto; padding: 20px; }
+  }
+</style>
+</head>
+<body>
+  <div class="header">
+    <div>
+      <h1>G4Stock</h1>
+      <div style="font-size:0.78rem;color:var(--muted);margin-top:2px">Panel de posiciones · BSC · solo lectura</div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <span class="badge" id="netBadge">BSC</span>
+      <button class="btn sm secondary" id="btnAuto">Auto: OFF</button>
+    </div>
+  </div>
+
+  <!-- Wallet + RPC -->
+  <div class="card">
+    <div class="row">
+      <div>
+        <label>Wallet</label>
+        <input id="wallet" type="text" spellcheck="false" value="0x4cBf2DB3838341BeCB185892C3af576Dc04e2498" placeholder="0x…">
+      </div>
+      <div>
+        <label>RPC</label>
+        <select id="rpc">
+          <option value="https://bsc-dataseed.binance.org/">bsc-dataseed (oficial)</option>
+          <option value="https://bsc-dataseed1.binance.org/">bsc-dataseed1</option>
+          <option value="https://bsc-dataseed2.binance.org/">bsc-dataseed2</option>
+          <option value="https://rpc.ankr.com/bsc">Ankr</option>
+          <option value="https://1rpc.io/bnb">1rpc</option>
+          <option value="https://bsc.publicnode.com">PublicNode</option>
+        </select>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn" id="btnRefresh">Consultar todo</button>
+      <button class="btn secondary" id="btnOnlyV3">Solo V3</button>
+    </div>
+    <div class="status" id="globalStatus"></div>
+  </div>
+
+  <!-- Saldos -->
+  <div class="card compact">
+    <h2>Saldos wallet</h2>
+    <div class="balances" id="balances">
+      <div class="bal-item"><div class="sym">BNB</div><div class="val" id="balBNB">—</div></div>
+      <div class="bal-item"><div class="sym">4Stock</div><div class="val" id="bal4S">—</div></div>
+      <div class="bal-item"><div class="sym">GSTOCK</div><div class="val" id="balGS">—</div></div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <div class="tab active" data-tab="v3">Posiciones V3</div>
+    <div class="tab" data-tab="v2">LP V2</div>
+    <div class="tab" data-tab="farm">Farming</div>
+    <div class="tab" data-tab="farmv3">Farming V3</div>
+    <div class="tab" data-tab="data">Datos</div>
+    <div class="tab" data-tab="settings">Ajustes</div>
+  </div>
+
+  <!-- ============ V3 ============ -->
+  <section id="tab-v3">
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+        <h2 style="margin:0">Posiciones V3 (NFT)</h2>
+        <span class="status" id="v3Status" style="margin:0"></span>
+      </div>
+      <div class="grid-pos" id="v3List"></div>
+      <div class="status" id="v3Empty" style="display:none">No se encontraron posiciones V3 en esta wallet.</div>
+    </div>
+  </section>
+
+  <!-- ============ V2 ============ -->
+  <section id="tab-v2" class="hidden">
+    <div class="card">
+      <h2>LP PancakeSwap V2</h2>
+      <label>Tokens LP (uno por línea) — se guardan por wallet</label>
+      <textarea id="v2List" placeholder="0x…&#10;0x…"></textarea>
+      <div class="row" style="margin-top:10px">
+        <div>
+          <label>Escanear últimos N pares (fábrica)</label>
+          <input id="v2Range" type="number" min="50" max="2000" value="1000">
+        </div>
+      </div>
+      <div class="btn-group">
+        <button class="btn" id="btnV2Query">Consultar LP</button>
+        <button class="btn secondary" id="btnV2Scan">Buscar en fábrica</button>
+      </div>
+      <div class="status" id="v2Status"></div>
+      <div class="progress hidden" id="v2Progress"><div></div></div>
+      <div class="grid-pos" id="v2Results" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <!-- ============ Farming ============ -->
+  <section id="tab-farm" class="hidden">
+    <div class="card">
+      <h2>Farming (MasterChef)</h2>
+      <label>Contratos (dirección | etiqueta) — uno por línea</label>
+      <textarea id="farmContracts" placeholder="0xa5f8C5Dbd5F286460c9b1D0C4C0C0C0C0C0C0C0C | MasterChef V2&#10;0x... | otro"></textarea>
+      <div class="row" style="margin-top:10px">
+        <div>
+          <label>Límite de pools por contrato</label>
+          <input id="farmLimit" type="number" min="100" max="5000" value="5000" data-farmlimit="5000">
+        </div>
+      </div>
+      <div class="btn-group">
+        <button class="btn" id="btnFarmScan">Buscar mis farms</button>
+      </div>
+      <div class="status" id="farmStatus"></div>
+      <div class="progress hidden" id="farmProgress"><div></div></div>
+      <div class="grid-pos" id="farmResults" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <!-- ============ Farming V3 NFT ============ -->
+  <section id="tab-farmv3" class="hidden">
+    <div class="card">
+      <h2>Farming V3 (NFT)</h2>
+      <p style="font-size:0.8rem;color:var(--muted);margin-bottom:10px">
+        Los NFT depositados en MasterChef V3 ya no aparecen en tu wallet. Pega los tokenIds aquí.
+      </p>
+      <label>TokenIds (uno por línea)</label>
+      <textarea id="farmV3Ids" placeholder="7775410&#10;7775315"></textarea>
+      <div class="row" style="margin-top:10px">
+        <div>
+          <label>MasterChef V3 (editable)</label>
+          <input id="mcV3" type="text" value="0x556B9306565093C855AEA9AE92A594704c2Cd59e" spellcheck="false">
+        </div>
+      </div>
+      <div class="btn-group">
+        <button class="btn" id="btnFarmV3">Consultar NFTs en farming</button>
+      </div>
+      <div class="status" id="farmV3Status"></div>
+      <div class="grid-pos" id="farmV3Results" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <!-- ============ Datos / Export ============ -->
+  <section id="tab-data" class="hidden">
+    <div class="card">
+      <h2>Datos · Exportar</h2>
+      <p style="font-size:0.8rem;color:var(--muted);margin-bottom:12px">
+        Exporta la foto de lo último consultado (no lanza consultas nuevas).
+      </p>
+      <div class="btn-group">
+        <button class="btn" id="btnExportJSON">Exportar JSON</button>
+        <button class="btn secondary" id="btnExportCSV">Exportar CSV</button>
+        <button class="btn ghost" id="btnCopy">Copiar</button>
+      </div>
+      <div class="status" id="exportStatus"></div>
+      <details style="margin-top:14px">
+        <summary>Vista previa del último export</summary>
+        <pre id="exportPreview" class="mono" style="max-height:240px;overflow:auto;background:var(--card2);padding:10px;border-radius:8px;margin-top:8px;font-size:0.75rem;white-space:pre-wrap"></pre>
+      </details>
+    </div>
+  </section>
+
+  <!-- ============ Ajustes ============ -->
+  <section id="tab-settings" class="hidden">
+    <div class="card">
+      <h2>Ajustes</h2>
+      <div class="row">
+        <div>
+          <label>Position Manager V3</label>
+          <input id="posManager" type="text" value="0x46A15B0b27311cedF172AB29E4f4766fbE7F4364" spellcheck="false">
+        </div>
+        <div>
+          <label>Factory V3</label>
+          <input id="factoryV3" type="text" value="0x0BFbCF9fa4f9C56B0F40a671Ad40E0805A091865" spellcheck="false">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Factory V2</label>
+          <input id="factoryV2" type="text" value="0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73" spellcheck="false">
+        </div>
+        <div>
+          <label>Auto-refresh (segundos)</label>
+          <input id="autoSecs" type="number" min="15" max="300" value="60">
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>4Stock</label>
+          <input id="tok4S" type="text" value="0xd270d4e1ec6e6e0d28c0ecb8be966ec75997ffff" spellcheck="false">
+        </div>
+        <div>
+          <label>GSTOCK</label>
+          <input id="tokGS" type="text" value="0xcafdbce93477261db8250e42bdae6e66733f9e20" spellcheck="false">
+        </div>
+      </div>
+      <p style="font-size:0.75rem;color:var(--muted);margin-top:10px">
+        Los cambios se aplican en la siguiente consulta. Los listados se guardan en localStorage por wallet.
+      </p>
+    </div>
+  </section>
+
+  <div class="footer-note">
+    G4Stock · solo lectura · no firma transacciones · SADV41 / Agent<br>
+    Recuerda guardar una copia: este entorno es temporal.
+  </div>
+
+<script>
+(function () {
+  "use strict";
+
+  // ---------- Helpers ----------
+  const $ = (id) => document.getElementById(id);
+  const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+  function shortAddr(a) {
+    if (!a || a.length < 12) return a || "—";
+    return a.slice(0, 6) + "…" + a.slice(-4);
+  }
+
+  function fmtNum(n, digs = 4) {
+    if (n == null || isNaN(n)) return "—";
+    if (Math.abs(n) >= 1000) return n.toLocaleString("en", { maximumFractionDigits: 2 });
+    if (Math.abs(n) < 0.0001 && n !== 0) return n.toExponential(3);
+    return Number(n).toLocaleString("en", { maximumFractionDigits: digs });
+  }
+
+  function toNum(hex) {
+    if (hex == null) return 0n;
+    if (typeof hex === "bigint") return hex;
+    return BigInt(hex);
+  }
+
+  // ---------- Selectors (keccak) ----------
+  const SEL = {
+    balanceOf: "0x70a08231",
+    decimals: "0x313ce567",
+    symbol: "0x95d89b41",
+    tokenOfOwnerByIndex: "0x2f745c59",
+    positions: "0x99fbab88",
+    getPool: "0x1698ee82",          // corregido
+    slot0: "0x3850c7bd",
+    poolLength: "0x081e3eda",
+    userInfo: "0x93f1a40b",
+    lpToken: "0x78ed5d1f",
+    pendingCake: "0xce5f39c6",
+    CAKE: "0x4ca6ef28",
+    ownerOf: "0x6352211e",
+    token0: "0x0dfe1681",
+    token1: "0xd21220a7",
+    fee: "0xddca3f43",
+    getReserves: "0x0902f1ac",
+    totalSupply: "0x18160ddd",
+    allPairs: "0x1e3dd18b",
+    allPairsLength: "0x574f2ba3",
+  };
+
+  // ---------- State ----------
+  let autoTimer = null;
+  let lastSnapshot = {
+    generated: null,
+    wallet: null,
+    rpc: null,
+    v3: [],
+    v2: [],
+    farm: [],
+    farmV3: [],
+    balances: {}
+  };
+  const tokenCache = {}; // address -> {decimals, symbol}
+
+  // ---------- RPC ----------
+  async function rpcCall(method, params) {
+    const url = $("rpc").value;
+    const body = { jsonrpc: "2.0", id: Date.now(), method, params };
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const j = await res.json();
+    if (j.error) throw new Error(j.error.message || JSON.stringify(j.error));
+    return j.result;
+  }
+
+  async function ethCall(to, data) {
+    return rpcCall("eth_call", [{ to, data }, "latest"]);
+  }
+
+  function padAddr(a) {
+    return a.toLowerCase().replace(/^0x/, "").padStart(64, "0");
+  }
+  function padUint(n) {
+    return BigInt(n).toString(16).padStart(64, "0");
+  }
+
+  // ---------- Token meta ----------
+  async function getTokenMeta(addr) {
+    addr = addr.toLowerCase();
+    if (tokenCache[addr]) return tokenCache[addr];
+    let decimals = 18, symbol = shortAddr(addr);
+    try {
+      const dHex = await ethCall(addr, SEL.decimals);
+      decimals = Number(toNum(dHex));
+    } catch (_) {}
+    try {
+      const sHex = await ethCall(addr, SEL.symbol);
+      // decode string (simple)
+      const raw = sHex.slice(2);
+      if (raw.length >= 128) {
+        const offset = parseInt(raw.slice(0, 64), 16) * 2;
+        const len = parseInt(raw.slice(offset, offset + 64), 16);
+        const hexStr = raw.slice(offset + 64, offset + 64 + len * 2);
+        symbol = "";
+        for (let i = 0; i < hexStr.length; i += 2) {
+          const c = parseInt(hexStr.slice(i, i + 2), 16);
+          if (c) symbol += String.fromCharCode(c);
+        }
+      } else if (raw.length === 64) {
+        // bytes32 style
+        symbol = "";
+        for (let i = 0; i < 64; i += 2) {
+          const c = parseInt(raw.slice(i, i + 2), 16);
+          if (c === 0) break;
+          symbol += String.fromCharCode(c);
+        }
+      }
+    } catch (_) {}
+    tokenCache[addr] = { decimals, symbol: symbol || shortAddr(addr) };
+    return tokenCache[addr];
+  }
+
+  async function getBalance(token, wallet) {
+    if (!token || token === "BNB") {
+      const hex = await rpcCall("eth_getBalance", [wallet, "latest"]);
+      return Number(toNum(hex)) / 1e18;
+    }
+    const data = SEL.balanceOf + padAddr(wallet);
+    const hex = await ethCall(token, data);
+    const meta = await getTokenMeta(token);
+    return Number(toNum(hex)) / 10 ** meta.decimals;
+  }
+
+  // ---------- V3 positions ----------
+  async function loadV3(wallet) {
+    const pm = $("posManager").value.trim();
+    const factory = $("factoryV3").value.trim();
+    $("v3Status").textContent = "Leyendo balanceOf…";
+    $("v3List").innerHTML = "";
+    $("v3Empty").style.display = "none";
+
+    const balData = SEL.balanceOf + padAddr(wallet);
+    const balHex = await ethCall(pm, balData);
+    const count = Number(toNum(balHex));
+    if (count === 0) {
+      $("v3Status").textContent = "0 posiciones";
+      $("v3Empty").style.display = "block";
+      lastSnapshot.v3 = [];
+      return [];
+    }
+
+    $("v3Status").textContent = `Encontradas ${count}…`;
+    const positions = [];
+
+    for (let i = 0; i < count; i++) {
+      try {
+        const idxData = SEL.tokenOfOwnerByIndex + padAddr(wallet) + padUint(i);
+        const idHex = await ethCall(pm, idxData);
+        const tokenId = toNum(idHex).toString();
+
+        const posData = SEL.positions + padUint(tokenId);
+        const posHex = await ethCall(pm, posData);
+        // ABI: nonce, operator, token0, token1, fee, tickLower, tickUpper, liquidity, feeGrowth..., tokensOwed0, tokensOwed1
+        // offsets (32 bytes each): 0 nonce, 1 operator, 2 token0, 3 token1, 4 fee, 5 tickLower, 6 tickUpper, 7 liquidity, ... 11 tokensOwed0, 12 tokensOwed1
+        const words = [];
+        const raw = posHex.slice(2);
+        for (let w = 0; w < 13; w++) words.push("0x" + raw.slice(w * 64, (w + 1) * 64));
+
+        const token0 = "0x" + words[2].slice(-40);
+        const token1 = "0x" + words[3].slice(-40);
+        const fee = Number(toNum(words[4]));
+        let tickLower = Number(toNum(words[5]));
+        if (tickLower >= 2 ** 23) tickLower -= 2 ** 24; // signed
+        let tickUpper = Number(toNum(words[6]));
+        if (tickUpper >= 2 ** 23) tickUpper -= 2 ** 24;
+        const liquidity = toNum(words[7]);
+        const tokensOwed0 = toNum(words[11]);
+        const tokensOwed1 = toNum(words[12]);
+
+        // pool
+        let pool = null, tick = null, sqrtPriceX96 = null;
+        try {
+          const gpData = SEL.getPool + padAddr(token0) + padAddr(token1) + padUint(fee);
+          const poolHex = await ethCall(factory, gpData);
+          pool = "0x" + poolHex.slice(-40);
+          if (pool !== "0x0000000000000000000000000000000000000000") {
+            const slotHex = await ethCall(pool, SEL.slot0);
+            const sraw = slotHex.slice(2);
+            sqrtPriceX96 = toNum("0x" + sraw.slice(0, 64));
+            let t = Number(toNum("0x" + sraw.slice(64, 128)));
+            if (t >= 2 ** 23) t -= 2 ** 24;
+            tick = t;
+          }
+        } catch (e) {
+          console.warn("pool/slot0", e);
+        }
+
+        const m0 = await getTokenMeta(token0);
+        const m1 = await getTokenMeta(token1);
+
+        // amounts from liquidity (simplified Uniswap V3 math)
+        let amount0 = 0, amount1 = 0;
+        if (liquidity > 0n && tick != null && sqrtPriceX96 != null) {
+          const Q96 = 2n ** 96n;
+          const sqrtP = sqrtPriceX96;
+          const sqrtA = BigInt(Math.floor(Math.sqrt(1.0001 ** tickLower) * Number(Q96)));
+          const sqrtB = BigInt(Math.floor(Math.sqrt(1.0001 ** tickUpper) * Number(Q96)));
+          if (tick < tickLower) {
+            amount0 = Number(liquidity * (sqrtB - sqrtA) / (sqrtA * sqrtB / Q96)) / 10 ** m0.decimals;
+            amount1 = 0;
+          } else if (tick >= tickUpper) {
+            amount0 = 0;
+            amount1 = Number(liquidity * (sqrtB - sqrtA) / Q96) / 10 ** m1.decimals;
+          } else {
+            amount0 = Number(liquidity * (sqrtB - sqrtP) / (sqrtP * sqrtB / Q96)) / 10 ** m0.decimals;
+            amount1 = Number(liquidity * (sqrtP - sqrtA) / Q96) / 10 ** m1.decimals;
+          }
+        }
+
+        const fee0 = Number(tokensOwed0) / 10 ** m0.decimals;
+        const fee1 = Number(tokensOwed1) / 10 ** m1.decimals;
+        const inRange = tick != null && tick >= tickLower && tick < tickUpper;
+        const price = tick != null ? 1.0001 ** tick : null;
+
+        const pos = {
+          tokenId, token0, token1, fee, tickLower, tickUpper, tick, inRange,
+          liquidity: liquidity.toString(), amount0, amount1, fee0, fee1,
+          symbol0: m0.symbol, symbol1: m1.symbol, decimals0: m0.decimals, decimals1: m1.decimals,
+          pool, price
+        };
+        positions.push(pos);
+        renderV3Card(pos);
+      } catch (e) {
+        console.warn("pos", i, e);
+      }
+    }
+
+    $("v3Status").textContent = `${positions.length} posiciones`;
+    lastSnapshot.v3 = positions;
+    return positions;
+  }
+
+  function renderV3Card(p) {
+    const el = document.createElement("div");
+    el.className = "pos-card";
+    const rangePct = (p.tick != null && p.tickUpper > p.tickLower)
+      ? Math.max(0, Math.min(100, ((p.tick - p.tickLower) / (p.tickUpper - p.tickLower)) * 100))
+      : 50;
+    el.innerHTML = `
+      <div class="title">
+        <span>${p.symbol0} / ${p.symbol1} <span class="mono" style="font-weight:400;color:var(--muted)">#${p.tokenId}</span></span>
+        <span class="tag ${p.inRange ? "in" : "out"}">${p.inRange ? "EN RANGO" : "FUERA"}</span>
+      </div>
+      <div class="meta">
+        <div>Fee tier: <b>${(p.fee / 10000).toFixed(2)}%</b> · Tick actual: <b>${p.tick ?? "—"}</b></div>
+        <div>Rango: <b>${p.tickLower}</b> → <b>${p.tickUpper}</b></div>
+        <div>${p.symbol0}: <b>${fmtNum(p.amount0)}</b> · ${p.symbol1}: <b>${fmtNum(p.amount1)}</b></div>
+        <div>Comisiones: <b>${fmtNum(p.fee0)} ${p.symbol0}</b> + <b>${fmtNum(p.fee1)} ${p.symbol1}</b></div>
+      </div>
+      <div class="range-bar">
+        <div class="fill" style="left:${Math.max(0, rangePct - 8)}%;width:16%"></div>
+        <div class="tick" style="left:${rangePct}%"></div>
+      </div>
+      <div class="range-labels"><span>${p.tickLower}</span><span>${p.tickUpper}</span></div>
+    `;
+    $("v3List").appendChild(el);
+  }
+
+  // ---------- Balances ----------
+  async function loadBalances(wallet) {
+    const t4 = $("tok4S").value.trim();
+    const tG = $("tokGS").value.trim();
+    try {
+      const [bnb, a4, aG] = await Promise.all([
+        getBalance("BNB", wallet),
+        getBalance(t4, wallet),
+        getBalance(tG, wallet)
+      ]);
+      $("balBNB").textContent = fmtNum(bnb, 5);
+      $("bal4S").textContent = fmtNum(a4);
+      $("balGS").textContent = fmtNum(aG);
+      lastSnapshot.balances = { BNB: bnb, "4Stock": a4, GSTOCK: aG };
+    } catch (e) {
+      $("globalStatus").textContent = "Error saldos: " + e.message;
+      $("globalStatus").className = "status err";
+    }
+  }
+
+  // ---------- V2 (simplified) ----------
+  async function queryV2List() {
+    const wallet = $("wallet").value.trim();
+    const lines = $("v2List").value.split("\n").map(s => s.trim()).filter(Boolean);
+    $("v2Status").textContent = `Consultando ${lines.length} LP…`;
+    $("v2Results").innerHTML = "";
+    const out = [];
+    for (const lp of lines) {
+      try {
+        const balData = SEL.balanceOf + padAddr(wallet);
+        const balHex = await ethCall(lp, balData);
+        const bal = toNum(balHex);
+        if (bal === 0n) continue;
+        const tsHex = await ethCall(lp, SEL.totalSupply);
+        const total = toNum(tsHex);
+        const share = total > 0n ? Number(bal * 10000n / total) / 100 : 0;
+        // try token0/token1 if it is a pair
+        let s0 = "?", s1 = "?", a0 = 0, a1 = 0;
+        try {
+          const t0Hex = await ethCall(lp, SEL.token0);
+          const t1Hex = await ethCall(lp, SEL.token1);
+          const t0 = "0x" + t0Hex.slice(-40);
+          const t1 = "0x" + t1Hex.slice(-40);
+          const m0 = await getTokenMeta(t0);
+          const m1 = await getTokenMeta(t1);
+          s0 = m0.symbol; s1 = m1.symbol;
+          const resHex = await ethCall(lp, SEL.getReserves);
+          const r0 = toNum("0x" + resHex.slice(2, 66));
+          const r1 = toNum("0x" + resHex.slice(66, 130));
+          a0 = Number(r0 * bal / total) / 10 ** m0.decimals;
+          a1 = Number(r1 * bal / total) / 10 ** m1.decimals;
+        } catch (_) {}
+        const card = {
+          lp, balance: bal.toString(), share, symbol0: s0, symbol1: s1, amount0: a0, amount1: a1
+        };
+        out.push(card);
+        const el = document.createElement("div");
+        el.className = "pos-card";
+        el.innerHTML = `
+          <div class="title"><span>${s0} / ${s1}</span><span class="tag farm">V2</span></div>
+          <div class="meta">
+            <div>LP: <b class="mono">${shortAddr(lp)}</b></div>
+            <div>Participación: <b>${share.toFixed(4)}%</b></div>
+            <div>${s0}: <b>${fmtNum(a0)}</b> · ${s1}: <b>${fmtNum(a1)}</b></div>
+          </div>`;
+        $("v2Results").appendChild(el);
+      } catch (e) {
+        console.warn(lp, e);
+      }
+    }
+    $("v2Status").textContent = `${out.length} LP con saldo`;
+    lastSnapshot.v2 = out;
+    // persist list
+    try { localStorage.setItem("g4stock_v2_" + wallet.toLowerCase(), $("v2List").value); } catch (_) {}
+  }
+
+  // ---------- Farming scan (simplified, respects limit) ----------
+  async function scanFarms() {
+    const wallet = $("wallet").value.trim();
+    const contracts = $("farmContracts").value.split("\n").map(l => {
+      const p = l.split("|").map(s => s.trim());
+      return { addr: p[0], label: p[1] || shortAddr(p[0]) };
+    }).filter(c => c.addr && c.addr.startsWith("0x"));
+    let limit = Math.min(5000, Math.max(1, parseInt($("farmLimit").value, 10) || 5000));
+    $("farmResults").innerHTML = "";
+    $("farmProgress").classList.remove("hidden");
+    const out = [];
+    let totalCalls = 0;
+
+    for (const c of contracts) {
+      $("farmStatus").textContent = `Contrato ${c.label}…`;
+      let len = limit;
+      try {
+        const lenHex = await ethCall(c.addr, SEL.poolLength);
+        len = Math.min(limit, Number(toNum(lenHex)));
+      } catch (e) {
+        $("farmStatus").textContent = `${c.label}: no expone poolLength (${e.message})`;
+        continue;
+      }
+      const batch = 20;
+      let fails = 0;
+      for (let start = 0; start < len; start += batch) {
+        const end = Math.min(start + batch, len);
+        $("farmStatus").textContent = `${c.label}: pools ${start}–${end - 1} / ${len} · fallos ${fails}`;
+        $("farmProgress").querySelector("div").style.width = ((start / len) * 100).toFixed(1) + "%";
+        for (let pid = start; pid < end; pid++) {
+          try {
+            const data = SEL.userInfo + padUint(pid) + padAddr(wallet);
+            const uiHex = await ethCall(c.addr, data);
+            const amount = toNum("0x" + uiHex.slice(2, 66));
+            totalCalls++;
+            if (amount === 0n) continue;
+            // found
+            let lp = null;
+            try {
+              const lpHex = await ethCall(c.addr, SEL.lpToken + padUint(pid));
+              lp = "0x" + lpHex.slice(-40);
+            } catch (_) {}
+            const card = { contract: c.addr, label: c.label, pid, amount: amount.toString(), lp };
+            out.push(card);
+            const el = document.createElement("div");
+            el.className = "pos-card";
+            el.innerHTML = `
+              <div class="title"><span>Farm #${pid} · ${c.label}</span><span class="tag farm">FARM</span></div>
+              <div class="meta">
+                <div>Depositado: <b>${amount.toString()}</b> (raw)</div>
+                <div>LP: <b class="mono">${lp ? shortAddr(lp) : "—"}</b></div>
+              </div>`;
+            $("farmResults").appendChild(el);
+          } catch (e) {
+            fails++;
+            totalCalls++;
+            if (fails % 5 === 0) await sleep(300);
+          }
+        }
+        if (fails > 0) await sleep(200);
+      }
+    }
+    $("farmProgress").classList.add("hidden");
+    $("farmStatus").textContent = `${out.length} farms · ~${totalCalls} llamadas`;
+    lastSnapshot.farm = out;
+  }
+
+  // ---------- Farming V3 NFT ----------
+  async function loadFarmV3() {
+    const wallet = $("wallet").value.trim();
+    const mc = $("mcV3").value.trim();
+    const ids = $("farmV3Ids").value.split("\n").map(s => s.trim()).filter(Boolean);
+    $("farmV3Results").innerHTML = "";
+    $("farmV3Status").textContent = `Consultando ${ids.length} tokenIds…`;
+    const out = [];
+    const pm = $("posManager").value.trim();
+
+    for (const id of ids) {
+      try {
+        const ownHex = await ethCall(pm, SEL.ownerOf + padUint(id));
+        const owner = "0x" + ownHex.slice(-40);
+        let where = "wallet";
+        if (owner.toLowerCase() === mc.toLowerCase()) where = "MasterChef V3";
+        else if (owner.toLowerCase() !== wallet.toLowerCase()) where = shortAddr(owner);
+
+        // positions
+        const posData = SEL.positions + padUint(id);
+        const posHex = await ethCall(pm, posData);
+        const raw = posHex.slice(2);
+        const words = [];
+        for (let w = 0; w < 13; w++) words.push("0x" + raw.slice(w * 64, (w + 1) * 64));
+        const token0 = "0x" + words[2].slice(-40);
+        const token1 = "0x" + words[3].slice(-40);
+        const fee = Number(toNum(words[4]));
+        let tickLower = Number(toNum(words[5])); if (tickLower >= 2**23) tickLower -= 2**24;
+        let tickUpper = Number(toNum(words[6])); if (tickUpper >= 2**23) tickUpper -= 2**24;
+        const m0 = await getTokenMeta(token0);
+        const m1 = await getTokenMeta(token1);
+
+        let pending = null;
+        if (where === "MasterChef V3") {
+          try {
+            const pHex = await ethCall(mc, SEL.pendingCake + padUint(id));
+            // try real decimals via CAKE()
+            let dec = 18, sym = "CAKE";
+            try {
+              const cakeHex = await ethCall(mc, SEL.CAKE);
+              const cake = "0x" + cakeHex.slice(-40);
+              const meta = await getTokenMeta(cake);
+              dec = meta.decimals; sym = meta.symbol;
+            } catch (_) {}
+            pending = { value: Number(toNum(pHex)) / 10 ** dec, symbol: sym };
+          } catch (_) {}
+        }
+
+        const card = { tokenId: id, owner, where, token0, token1, fee, tickLower, tickUpper, symbol0: m0.symbol, symbol1: m1.symbol, pending };
+        out.push(card);
+        const el = document.createElement("div");
+        el.className = "pos-card";
+        el.innerHTML = `
+          <div class="title">
+            <span>${m0.symbol} / ${m1.symbol} <span class="mono" style="font-weight:400;color:var(--muted)">#${id}</span></span>
+            <span class="tag farm">${where}</span>
+          </div>
+          <div class="meta">
+            <div>Rango ticks: <b>${tickLower}</b> → <b>${tickUpper}</b> · fee ${(fee/10000).toFixed(2)}%</div>
+            ${pending ? `<div>Recompensa pendiente: <b>${fmtNum(pending.value)} ${pending.symbol}</b></div>` : ""}
+            <div>Owner: <b class="mono">${shortAddr(owner)}</b></div>
+          </div>`;
+        $("farmV3Results").appendChild(el);
+      } catch (e) {
+        console.warn(id, e);
+      }
+    }
+    $("farmV3Status").textContent = `${out.length} NFTs`;
+    lastSnapshot.farmV3 = out;
+    try { localStorage.setItem("g4stock_farmv3_" + wallet.toLowerCase(), $("farmV3Ids").value); } catch (_) {}
+  }
+
+  // ---------- Export ----------
+  function buildSnapshot() {
+    lastSnapshot.generated = new Date().toISOString();
+    lastSnapshot.wallet = $("wallet").value.trim();
+    lastSnapshot.rpc = $("rpc").value;
+    lastSnapshot.managers = {
+      positionManager: $("posManager").value.trim(),
+      factoryV3: $("factoryV3").value.trim(),
+      factoryV2: $("factoryV2").value.trim(),
+      masterChefV3: $("mcV3").value.trim()
+    };
+    return lastSnapshot;
+  }
+
+  function download(filename, text, mime) {
+    const blob = new Blob([text], { type: mime });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(a.href), 2000);
+  }
+
+  function exportJSON() {
+    const snap = buildSnapshot();
+    const txt = JSON.stringify(snap, (k, v) => typeof v === "bigint" ? v.toString() : v, 2);
+    $("exportPreview").textContent = txt;
+    download("g4stock-" + (snap.wallet || "export").slice(0, 10) + ".json", txt, "application/json");
+    $("exportStatus").textContent = "JSON generado";
+    $("exportStatus").className = "status ok";
+    lastExportText = txt;
+    lastExportMime = "application/json";
+    lastExportName = "g4stock.json";
+  }
+
+  function csvEscape(v) {
+    if (v == null) return "";
+    const s = String(v);
+    if (/[",\n\r]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+    return s;
+  }
+
+  function exportCSV() {
+    const snap = buildSnapshot();
+    const rows = [];
+    // header
+    rows.push(["seccion","contratopool","id","token0","token1","feepct","estado","preciot1port0","limiteinferior","limite_superior","cantidad0","cantidad1","comisiones0","comisiones1","saldolp","participacionpct","valor_t1","nota"].join(","));
+
+    (snap.v3 || []).forEach(p => {
+      rows.push([
+        "posiciones V3", p.pool || "", p.tokenId, p.token0, p.token1, (p.fee/10000).toFixed(4),
+        p.inRange ? "EN RANGO" : "FUERA", p.price != null ? p.price : "", p.tickLower, p.tickUpper,
+        p.amount0, p.amount1, p.fee0, p.fee1, "", "", "", ""
+      ].map(csvEscape).join(","));
+    });
+    (snap.v2 || []).forEach(p => {
+      rows.push([
+        "LP V2", p.lp, "", p.symbol0, p.symbol1, "", "", "", "", "",
+        p.amount0, p.amount1, "", "", p.balance, p.share, "", ""
+      ].map(csvEscape).join(","));
+    });
+    (snap.farm || []).forEach(p => {
+      rows.push([
+        "farming", p.contract, p.pid, "", "", "", "", "", "", "",
+        "", "", "", "", p.amount, "", "", p.label
+      ].map(csvEscape).join(","));
+    });
+    (snap.farmV3 || []).forEach(p => {
+      rows.push([
+        "farming V3", p.owner, p.tokenId, p.token0, p.token1, (p.fee/10000).toFixed(4),
+        p.where, "", p.tickLower, p.tickUpper, "", "", "", "", "", "", "",
+        p.pending ? (p.pending.value + " " + p.pending.symbol) : ""
+      ].map(csvEscape).join(","));
+    });
+
+    const bom = "\uFEFF";
+    const txt = bom + rows.join("\r\n");
+    $("exportPreview").textContent = txt.slice(0, 2000) + (txt.length > 2000 ? "\n…" : "");
+    download("g4stock-" + (snap.wallet || "export").slice(0, 10) + ".csv", txt, "text/csv;charset=utf-8");
+    $("exportStatus").textContent = "CSV generado (UTF-8 BOM + CRLF)";
+    $("exportStatus").className = "status ok";
+    lastExportText = txt;
+    lastExportMime = "text/csv";
+    lastExportName = "g4stock.csv";
+  }
+
+  let lastExportText = "";
+  let lastExportMime = "text/plain";
+  let lastExportName = "export.txt";
+
+  async function copyLast() {
+    if (!lastExportText) {
+      $("exportStatus").textContent = "Primero exporta JSON o CSV";
+      $("exportStatus").className = "status err";
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(lastExportText);
+      $("exportStatus").textContent = "Copiado al portapapeles";
+      $("exportStatus").className = "status ok";
+    } catch (_) {
+      // fallback
+      const ta = document.createElement("textarea");
+      ta.value = lastExportText;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+      $("exportStatus").textContent = "Copiado (fallback)";
+      $("exportStatus").className = "status ok";
+    }
+  }
+
+  // ---------- Main refresh ----------
+  async function refreshAll(onlyV3 = false) {
+    const wallet = $("wallet").value.trim();
+    if (!/^0x[a-fA-F0-9]{40}$/.test(wallet)) {
+      $("globalStatus").textContent = "Wallet inválida";
+      $("globalStatus").className = "status err";
+      return;
+    }
+    $("globalStatus").textContent = "Consultando…";
+    $("globalStatus").className = "status";
+    try {
+      await loadBalances(wallet);
+      await loadV3(wallet);
+      if (!onlyV3) {
+        // V2 / farm no se auto-ejecutan por coste
+      }
+      $("globalStatus").textContent = "Listo · " + new Date().toLocaleTimeString();
+      $("globalStatus").className = "status ok";
+    } catch (e) {
+      $("globalStatus").textContent = "Error: " + e.message;
+      $("globalStatus").className = "status err";
+    }
+  }
+
+  // ---------- Auto ----------
+  function toggleAuto() {
+    if (autoTimer) {
+      clearInterval(autoTimer);
+      autoTimer = null;
+      $("btnAuto").textContent = "Auto: OFF";
+      return;
+    }
+    const secs = Math.max(15, parseInt($("autoSecs").value, 10) || 60);
+    $("btnAuto").textContent = "Auto: ON";
+    refreshAll(true);
+    autoTimer = setInterval(() => refreshAll(true), secs * 1000);
+  }
+
+  // ---------- Tabs ----------
+  document.querySelectorAll(".tab").forEach(t => {
+    t.addEventListener("click", () => {
+      document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
+      t.classList.add("active");
+      ["v3","v2","farm","farmv3","data","settings"].forEach(id => {
+        $("tab-" + id).classList.toggle("hidden", id !== t.dataset.tab);
+      });
+    });
+  });
+
+  // ---------- Events ----------
+  $("btnRefresh").addEventListener("click", () => refreshAll(false));
+  $("btnOnlyV3").addEventListener("click", () => refreshAll(true));
+  $("btnAuto").addEventListener("click", toggleAuto);
+  $("btnV2Query").addEventListener("click", queryV2List);
+  $("btnV2Scan").addEventListener("click", () => {
+    $("v2Status").textContent = "El escaneo de fábrica es pesado. Usa la lista manual o sube el rango con cuidado.";
+    $("v2Status").className = "status";
+    // placeholder: full factory scan omitted for safety in this rebuild; list path is the reliable one
+  });
+  $("btnFarmScan").addEventListener("click", scanFarms);
+  $("btnFarmV3").addEventListener("click", loadFarmV3);
+  $("btnExportJSON").addEventListener("click", exportJSON);
+  $("btnExportCSV").addEventListener("click", exportCSV);
+  $("btnCopy").addEventListener("click", copyLast);
+
+  // restore lists
+  try {
+    const w = $("wallet").value.trim().toLowerCase();
+    const v2 = localStorage.getItem("g4stock_v2_" + w);
+    if (v2) $("v2List").value = v2;
+    const fv3 = localStorage.getItem("g4stock_farmv3_" + w);
+    if (fv3) $("farmV3Ids").value = fv3;
+  } catch (_) {}
+
+  // default farm contracts placeholder (user should verify)
+  if (!$("farmContracts").value.trim()) {
+    $("farmContracts").value = "0xa5f8C5Dbd5F286460c9b1D0C4C0C0C0C0C0C0C0C | MasterChef V2 (ejemplo – verifica)\n0x73fe5d1a00000000000000000000000000000000 | otro";
+  }
+
+  // initial
+  $("globalStatus").textContent = "Listo. Pulsa «Consultar todo» o activa Auto.";
+})();
+</script>
+<!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+</body>
+</html>

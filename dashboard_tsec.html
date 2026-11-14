@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>USGS • SADV41 • SISMOS Y TERREMOTOS</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+  :root { --bg:#0a0a0a; --fg:#e8e8e8; --accent:#ff3b30; --sadv41:#00e5ff; }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--fg);font-family:Inter,system-ui,sans-serif}
+  header{padding:18px 20px;border-bottom:1px solid #222;display:flex;justify-content:space-between;align-items:center}
+  header h1{font-size:14px;letter-spacing:0.2em}
+  header h1 span{color:var(--sadv41)}
+  #map{height:62vh;width:100%;background:#111}
+  .panel{padding:18px;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .card{border:1px solid #222;padding:14px;border-radius:12px;background:#0f0f0f}
+  .card h3{font-size:11px;letter-spacing:0.15em;color:#888;margin-bottom:8px}
+  .quake{padding:10px 0;border-bottom:1px solid #1a1a1a;display:flex;justify-content:space-between}
+  .quake:last-child{border:0}
+  .mag{font-weight:900;padding:4px 8px;border-radius:6px;background:#1a1a1a}
+  .mag.crit{background:var(--accent);color:white}
+  .mag.high{background:#ff9500;color:black}
+  .mag.med{background:#ffcc00;color:black}
+  .footer{padding:20px;text-align:center;font-size:11px;color:#666;letter-spacing:0.1em}
+  @media(max-width:800px){.panel{grid-template-columns:1fr}}
+
+  /* ESTILOS ACORDEÓN TSEC (Flash-lite) */
+  .tsec-accordion { background: #0c1017; border: 1px solid #0369a1; border-radius: 6px; margin-bottom: 10px; font-family: monospace; overflow: hidden; }
+  .tsec-accordion summary { background: #080d16; color: #38bdf8; padding: 12px 15px; cursor: pointer; font-weight: bold; font-size: 12px; outline: none; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid transparent; transition: background 0.2s; }
+  .tsec-accordion summary:hover { background: #111827; }
+  .tsec-accordion[open] summary { border-bottom: 1px solid #0369a1; }
+  .tsec-content { padding: 15px; font-size: 11px; color: #cbd5e1; line-height: 1.6; background: #050505; }
+  .tsec-content ul { margin: 5px 0 0 15px; padding: 0; }
+  .tsec-content li { margin-bottom: 5px; }
+  .tsec-panel { padding: 0 18px 18px 18px; }
+</style>
+</head>
+<body>
+<!-- SALMO46-INJECT -->
+<a href="https://www.bible.com/es/bible/149/PSA.46.1-11.RVR1960" target="_blank" rel="noopener"
+ style="position:fixed;top:8px;left:8px;z-index:2147483647;background:#0a0a0acc;color:#00e5ff;
+ border:1px solid #00e5ff;border-radius:20px;padding:4px 10px;font:600 11px/1.3 system-ui,sans-serif;
+ text-decoration:none;letter-spacing:.04em">📖 Salmos 46 · Dios es nuestro amparo</a>
+<!-- /SALMO46-INJECT -->
+<!-- NODO STEVENDIOR.AI OMNIPRESENTE -->
+<div id="stevendior-agent-hub" style="position:fixed; bottom:24px; left:50%; transform:translateX(-50%); z-index:99999; display:flex; gap:12px; background:rgba(3,6,15,0.92); padding:10px 24px; border-radius:50px; border:1px solid rgba(212,175,55,0.4); box-shadow:0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(212,175,55,0.2); backdrop-filter:blur(12px); align-items:center; white-space:nowrap; font-family:monospace;">
+    <span style="color:#d4af37; font-size:12px; font-weight:bold; letter-spacing:1px; padding-right:8px; border-right:1px solid rgba(255,255,255,0.1);">STEVENDIOR.AI</span>
+    <a href="https://thesteef21.github.io/SADV41/Agent/" target="_blank" style="background:#00f3ff; color:#000; font-size:10px; font-weight:bold; padding:6px 14px; border-radius:20px; text-decoration:none; box-shadow:0 0 12px rgba(0,243,255,0.4); text-transform:uppercase; transition:all 0.3s;">Agent Hub</a>
+    <a href="https://web3.binance.com/agent-id/stevendior?src=user_share0x8ce929fc25d9ae5ce73fb5913a4211998555a6cb" target="_blank" style="background:#F3BA2F; color:#000; font-size:10px; font-weight:bold; padding:6px 14px; border-radius:20px; text-decoration:none; box-shadow:0 0 12px rgba(243,186,47,0.4); text-transform:uppercase; transition:all 0.3s;">Binance ID</a>
+</div>
+<header>
+  <h1>SADV41 // <span>USGS LIVE</span> // SISMOSYTERREMOTOS</h1>
+  <div style="font-size:10px;color:#888">FEED: all_day.geojson • AUTO REFRESH 60s</div>
+<a href="./Agent/" class="p-4 border border-[#00e5ff]/50 bg-[#00e5ff]/10 hover:border-[#00e5ff] text-[#00e5ff] transition-all rounded-xl font-bold uppercase tracking-widest text-center">AGENTE 🤖</a>
+</header>
+<div id="map"></div>
+<div class="panel">
+  <div class="card">
+    <h3>ÚLTIMOS SISMOS - GLOBAL (USGS)</h3>
+    <div id="list">Cargando...</div>
+  </div>
+  <div class="card">
+    <h3>PANAMÁ + CENTROAMÉRICA - FILTRO SADV41</h3>
+    <div id="list-pa">Cargando...</div>
+    <div style="margin-top:14px;font-size:10px;color:#555">
+      Bounding: 7.0-9.8N, -83 - -77W • Protocolo BERIÓN A217<br/>
+      Fuente: earthquake.usgs.gov • No almacena, solo visualiza.
+    </div>
+  </div>
+</div>
+
+<!-- PANEL GEOPOLÍTICO TSEC / LANDSAT 9 -->
+<div class="tsec-panel">
+  <div class="card" style="grid-column: 1 / -1;">
+    <h3 style="color: #38bdf8;">🛰️ PANEL GEOPOLÍTICO: LANDSAT 9 (TSEC)</h3>
+    <p style="font-size: 11px; color: #888; margin-bottom: 15px;">Monitoreo activo y sincronización de telemetría orbital y terrestre. Despliega las tarjetas para inspeccionar especificaciones.</p>
+    
+    <details class="tsec-accordion">
+        <summary>🌍 Misión y Órbitas de Revisión <span>[+]</span></summary>
+        <div class="tsec-content">
+            <strong>Órbita Sincrónica Solar:</strong> Gira alrededor de la Tierra a una altitud nominal de 705 kilómetros.<br>
+            <strong>Ciclo de Repetición:</strong> Compleja cobertura global cada 16 días, permitiendo un monitoreo ambiental constante y estricto sincronizado con la red terrestre TSEC.
+        </div>
+    </details>
+    <details class="tsec-accordion">
+        <summary>📷 Instrumentos de Captura (OLI-2 & TIRS-2) <span>[+]</span></summary>
+        <div class="tsec-content">
+            <ul>
+                <li><strong>OLI-2:</strong> Captura la luz reflejada en el espectro visible, cercano al infrarrojo (NIR) y de onda corta (SWIR). Fundamental para índices de vegetación (NDVI).</li>
+                <li><strong>TIRS-2:</strong> Mide la emisión térmica de la superficie terrestre en dos bandas térmicas de alta precisión.</li>
+            </ul>
+        </div>
+    </details>
+    <details class="tsec-accordion">
+        <summary>📊 Resolución Espacial y Espectral <span>[+]</span></summary>
+        <div class="tsec-content">
+            <ul>
+                <li><strong>Resolución Multiespectral:</strong> Píxeles de 30 metros por lado en las bandas ópticas e infrarrojas.</li>
+                <li><strong>Resolución Pancromática:</strong> Detalle de alta nitidez a 15 metros.</li>
+                <li><strong>Profundidad Radiométrica:</strong> Codificación de 14 bits (más de 16,384 niveles de gris por banda).</li>
+            </ul>
+        </div>
+    </details>
+    <details class="tsec-accordion">
+        <summary>📡 Integración con el Hub SADV41 <span>[+]</span></summary>
+        <div class="tsec-content">
+            Los datos crudos son procesados localmente en entornos ligeros (como Termux) para extraer métricas clave como el NDVI asegurando que la telemetría orbital y la actividad sísmica converjan de manera eficiente.
+        </div>
+    </details>
+  </div>
+</div>
+
+<div class="footer">STEVENDIOR OFICIAL • MISION SADV41 • thesteef21.github.io/SADV41 • 2026</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const FEED = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_day.geojson';
+const map = L.map('map',{zoomControl:false}).setView([8.9,-80.2],5);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'© USGS © CARTO'}).addTo(map);
+
+function severity(m){
+ if(m>=7) return {cls:'crit',label:'CRITICO'};
+ if(m>=6) return {cls:'high',label:'ALTO'};
+ if(m>=5) return {cls:'med',label:'MEDIO'};
+ return {cls:'',label:'VIGILANCIA'};
+}
+function isPanama(lat,lon){
+ return lat>=7 && lat<=9.8 && lon>=-83 && lon<=-77;
+}
+
+async function load(){
+ try{
+  const r = await fetch(FEED); const data = await r.json();
+  const list = document.getElementById('list'); const listPA = document.getElementById('list-pa');
+  list.innerHTML=''; listPA.innerHTML='';
+  map.eachLayer(l=>{ if(l instanceof L.CircleMarker) map.removeLayer(l) });
+
+  const panamaQuakes = [];
+
+  data.features.sort((a,b)=>b.properties.mag-a.properties.mag).forEach(f=>{
+    const [lon,lat,depth] = f.geometry.coordinates;
+    const {mag,place,time} = f.properties;
+    const sev = severity(mag);
+    const date = new Date(time).toLocaleString('es-PA');
+    
+    const marker = L.circleMarker([lat,lon],{
+      radius: Math.max(4, mag*2.5),
+      color: sev.cls==='crit' ? '#ff3b30' : sev.cls==='high' ? '#ff9500' : '#00e5ff',
+      weight:2, fillOpacity:0.6
+    }).addTo(map).bindPopup(`<b>M${mag} ${place}</b><br/>${date}<br/>Prof: ${depth}km<br/>${sev.label}`);
+
+    const row = `<div class="quake"><div><span class="mag ${sev.cls}">M${mag}</span> ${place}<br/><span style="font-size:10px;color:#666">${date} • ${depth}km</span></div><div style="font-size:10px;color:#888">${sev.label}</div></div>`;
+
+    if(isPanama(lat,lon)) { panamaQuakes.push(f); listPA.innerHTML+=row; }
+  });
+
+  // Global list (top 20)
+  data.features.slice(0,20).forEach(f=>{
+    const {mag,place,time} = f.properties;
+    const sev = severity(mag);
+    const date = new Date(time).toLocaleString('es-PA');
+    list.innerHTML+= `<div class="quake"><div><span class="mag ${sev.cls}">M${mag}</span> ${place}<br/><span style="font-size:10px;color:#666">${date}</span></div><div style="font-size:10px">${sev.label}</div></div>`;
+  });
+
+  if(panamaQuakes.length===0) listPA.innerHTML='<div style="color:#666;padding:20px 0">Sin sismos en bounding Panamá últimas 24h. Vigilancia activa SADV41.</div>';
+
+ }catch(e){ console.error(e); document.getElementById('list').innerHTML='Error cargando USGS'; }
+}
+load(); setInterval(load,60000);
+</script>
+  <!-- StevenDior.ai Floating Status Widget --><div class="fixed bottom-5 right-5 z-50 flex items-center gap-3 bg-slate-950/90 border border-slate-800 text-slate-100 px-4 py-2.5 rounded-full shadow-2xl backdrop-blur-md font-mono text-xs transition-all hover:border-emerald-500/50"><span class="relative flex h-2.5 w-2.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span></span><span class="tracking-wide"><strong class="text-emerald-400 font-semibold">StevenDior.ai</strong> trabajando... 👋🏽🗿🇵🇦🏛</span></div>
+<script src="https://thesteef21.github.io/SADV41/Agent/SAT/GOB/satv41-widget.js" defer></script>
+<!-- WIDGET DISCLAIMER BSTOCKS - SADV41 PROTOCOL -->
+<div class="mt-6 bg-slate-950 p-4 rounded-2xl border border-rose-500/30 space-y-3 text-xs font-mono shadow-2xl">
+    <div class="flex items-center gap-2 border-b border-slate-800 pb-2">
+        <span class="text-rose-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
+            ⚠️ DESCARGO DE RESPONSABILIDAD DE RIESGO (DISCLAIMER - bStocks)
+        </span>
+    </div>
+    
+    <p class="text-slate-300 text-[11px] leading-relaxed">
+        Los activos digitales, acciones tokenizadas (<strong class="text-amber-400">bStocks</strong>) e interacciones en cadena conllevan riesgos financieros elevados. El token SATV41, la infraestructura Web3 mostrada y los colaterales bursátiles no constituyen asesoría financiera ni garantía de rendimiento. Las iniciativas sociales, técnicas y operativas son gestionadas de forma independiente. Realiza tu propia investigación antes de interactuar con contratos inteligentes o posiciones apalancadas.
+    </p>
+
+    <ul class="list-disc list-inside space-y-1.5 text-slate-300 text-[11px]">
+        <li><strong>Riesgo de Volatilidad Compuesta:</strong> Los bStocks usados como garantía están sujetos a variaciones simultáneas de precio en tres capas (acción subyacente, token wrapper y posiciones cripto apalancadas).</li>
+        <li><strong>Derecho de Dividendos Excluido:</strong> Las garantías en bStocks en cuentas de margen no acumulan ni cobran dividendos directos del activo subyacente.</li>
+        <li><strong>Ajustes de Tasa de Garantía (Haircut):</strong> La relación de colateral puede ser ajustada unilateralmente por la plataforma, afectando la tasa de margen unificado (uniMMR) y pudiendo gatillar un margin call o liquidación.</li>
+        <li><strong>Diferencia de Horarios y Ventas Forzosas:</strong> Cripto opera 24/7; la liquidación de bStocks durante cierres de mercado bursátil de EE. UU. puede ejecutarse con descuentos significativos por liquidez, asumiendo el usuario la pérdida o déficit residual.</li>
+    </ul>
+
+    <div class="pt-2 flex flex-wrap gap-2 text-[10px]">
+        <a href="https://thesteef21.github.io/SADV41/SATV41/COM/Aseo/" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-amber-400 border border-slate-700 px-3 py-1.5 rounded-lg transition flex items-center gap-1">
+            🌐 Ver Protocolo SATV41 / Aseo
+        </a>
+        <a href="https://sites.google.com/u/0/d/1J2HQaoiel6AyXxxAOVfQWzYIpaKuC_-m/preview" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-slate-700 px-3 py-1.5 rounded-lg transition flex items-center gap-1">
+            📄 Vista Previa Google Sites
+        </a>
+    </div>
+</div>
+<script src="https://thesteef21.github.io/SADV41/sadv41-drag.js" defer></script><!-- sadv41-drag -->
+<script defer src="https://thesteef21.github.io/SADV41/ticker/sadv-ticker.js" data-sadv-ticker></script>
+<div id="sadv41-noviembre-widget" style="position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:999999;background:linear-gradient(135deg,#00209F 0%,#00209F 30%,#FFFFFF 30%,#FFFFFF 70%,#D21034 70%);color:#111;padding:10px 18px;border-radius:999px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;font-weight:900;font-size:14px;letter-spacing:.3px;box-shadow:0 8px 30px rgba(0,0,0,.35),0 0 0 2px rgba(255,255,255,.9) inset;display:flex;align-items:center;gap:8px;">
+  <span>Feliz Mes de Noviembre</span><span>🇵🇦👑🇺🇸</span>
+  <button onclick="this.parentElement.remove()" style="margin-left:8px;background:rgba(0,0,0,.12);border:0;border-radius:50%;width:22px;height:22px;cursor:pointer;font-weight:900;line-height:1;">×</button>
+</div>
+
+<script src="/SADV41/BIBLIA/biblia.js" defer></script>
+  <script src="https://thesteef21.github.io/SADV41/lib/seismic-widget.js" defer></script>
+<!-- sadv41-news -->
+<div id="sadv41-news" style="position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#0a0e1a;color:#f4f6ff;border-top:2px solid #f5c542;font:600 13px/1.35 system-ui,sans-serif;padding:8px 40px 8px 12px;text-align:center"><span style="color:#f5c542">ÚLTIMA NOTICIA</span> · <a href="https://thesteef21.github.io/SADV41/NEWS/PANAMA/USA/#paraguay" target="_blank" rel="noopener" style="color:#3ee0e8;text-decoration:none">Paraguay interviene Ueno Bank y renuncia el presidente del Banco Central 🏦</a><button onclick="this.parentNode.style.display='none'" aria-label="Cerrar" style="position:absolute;right:8px;top:4px;background:none;border:0;color:#9aa3c7;font-size:18px;cursor:pointer">×</button></div>
+<!-- /sadv41-news -->
+<!-- sadv41-home -->
+<a id="sadv41-home" href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" title="SADV41 · Página principal" aria-label="Ir a la página principal de SADV41" style="position:fixed;left:14px;bottom:64px;z-index:2147482999;width:46px;height:46px;border-radius:50%;background:#071642;border:3px solid #d9a93a;box-shadow:0 4px 14px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;text-decoration:none"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><g fill="#d9a93a"><rect x="10.8" y="2" width="2.4" height="20" rx=".6"/><rect x="8" y="4.6" width="8" height="1.8" rx=".5"/><rect x="6" y="9" width="12" height="2.4" rx=".6"/><rect x="8.6" y="16.6" width="6.8" height="1.8" rx=".5" transform="rotate(12 12 17.5)"/></g></svg></a>
+<!-- /sadv41-home -->
+<!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+</body>
+</html>

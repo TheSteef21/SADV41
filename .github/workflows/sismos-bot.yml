@@ -1,0 +1,44 @@
+name: SADV41 Sismos Bot M鈮�2.5 Auto
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+jobs:
+  check-and-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install requests pillow
+      - name: Check sismos
+        id: check
+        env:
+          IMAGE_PUBLIC_URL: https://thesteef21.github.io/SADV41/latest.jpg
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: |
+          python3 instagram_bot.py --check-panama --min-mag 2.5 || true
+          [ -f latest.jpg ] && echo "new_image=true" >> $GITHUB_OUTPUT || true
+      - name: Commit
+        if: steps.check.outputs.new_image == 'true'
+        run: |
+          git config user.name "SADV41-Bot"
+          git config user.email "bot@sadv41.org"
+          git add latest.jpg last_event.json || true
+          git diff --cached --quiet || (git commit -m "auto: sismo M>=2.5 $(date -u)" && git push)
+      - name: Wait Pages
+        if: steps.check.outputs.new_image == 'true'
+        run: sleep 90
+      - name: Post IG
+        if: steps.check.outputs.new_image == 'true'
+        env:
+          IMAGE_PUBLIC_URL: https://thesteef21.github.io/SADV41/latest.jpg
+          IG_ACCESS_TOKEN: ${{ secrets.IG_ACCESS_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: |
+          [ -z "$IG_ACCESS_TOKEN" ] && exit 0
+          python3 instagram_bot.py --check-panama --min-mag 2.5 --force --post-ig

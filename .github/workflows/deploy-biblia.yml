@@ -1,0 +1,64 @@
+name: Despliegue Biblia RV1909 a GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'BIBLIA/**'
+      - 'generar_html_1909.cjs'
+      - 'generar_html_1909.js'
+      - '.github/workflows/deploy-biblia.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generar archivos estáticos de la RV1909
+        env:
+          REPO: ${{ github.workspace }}
+        run: |
+          if [ -f "generar_html_1909.cjs" ]; then
+            node generar_html_1909.cjs BIBLIA/data/rv1909.json
+          elif [ -f "generar_html_1909.js" ]; then
+            node generar_html_1909.js BIBLIA/data/rv1909.json
+          elif [ -f "BIBLIA/generar_html_1909.cjs" ]; then
+            node BIBLIA/generar_html_1909.cjs BIBLIA/data/rv1909.json
+          else
+            echo "❌ No se encontró el script de generación"
+            exit 1
+          fi
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Subir artefacto para Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'
+
+      - name: Desplegar a GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

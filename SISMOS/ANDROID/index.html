@@ -1,0 +1,261 @@
+<!-- ============================================================================== -->
+<!-- MODULO SADV41 - SISMOS USGS LIVE (TRIPLE UNIFICACIÓN)                          -->
+<!-- ============================================================================== -->
+<section id="sismos-sadv41" style="width: 100%; max-width: 1000px; border:1px solid #00e5ff; border-radius:16px; padding:18px; background:#0a0a0a; position:relative; overflow:hidden; box-sizing: border-box; margin: 20px auto;">
+  <!-- Brillo de fondo SADV41 -->
+  <div style="position:absolute; top:-50%; left:-50%; width:200%; height:200%; background:radial-gradient(circle at center, rgba(0,229,255,0.07) 0%, transparent 40%); pointer-events:none;"></div>
+  
+  <div style="position:relative; z-index:1;">
+    <!-- Cabecera y Status -->
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+      <h2 style="color:#00e5ff; letter-spacing:0.2em; font-size:13px; margin:0;">SADV41 // SISMOS Y TERREMOTOS // USGS LIVE</h2>
+      <span id="sadv41-sismos-status" style="font-size:10px; color:#555; border:1px solid #1a1a1a; padding:4px 8px; border-radius:20px;">● STANDBY - CARGANDO EN SCROLL</span>
+    </div>
+    <p style="color:#888; font-size:11px; margin:8px 0 14px 0;">Feed oficial USGS • Protocolo Berión A217 • Vigilancia Panamá 7.0-9.8N / -83 a -77W • Auto-refresh 60s</p>
+    
+    <!-- Contenedor con placeholder (Loader) -->
+    <div id="sismos-loader" style="width:100%; height:620px; border-radius:12px; background:#111; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:12px; border:1px dashed #222;">
+      <div style="width:40px; height:40px; border:2px solid #00e5ff; border-top-color:transparent; border-radius:50%; animation:spin 1s linear infinite;"></div>
+      <span style="font-size:11px; color:#666; letter-spacing:0.1em;">SADV41 VIGILANCIA ACTIVA - SCROLL PARA ACTIVAR MAPA</span>
+    </div>
+
+    <!-- Wrapper del Iframe -->
+    <div id="sismos-iframe-wrap" style="display:none; width:100%; height:620px; border-radius:12px; overflow:hidden; background:#111; position:relative;">
+      <!-- El iframe se inyecta por JS -->
+    </div>
+
+    <!-- Botonera de enlaces -->
+    <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+      <a href="./SISMOS/index.html" target="_blank" style="padding:10px 16px; background:#00e5ff; color:#000; border-radius:8px; text-decoration:none; font-weight:800; font-size:12px; letter-spacing:0.05em;">ABRIR MAPA COMPLETO ↗</a>
+      <a href="https://github.com/TheSteef21/usgs" target="_blank" style="padding:10px 16px; border:1px solid #222; color:#e8e8e8; border-radius:8px; text-decoration:none; font-size:12px;">VER CODIGO / API</a>
+      <span style="padding:10px 16px; border:1px solid #1a1a1a; color:#555; border-radius:8px; font-size:10px;">@sismosyterremotos • AUTO IG</span>
+    </div>
+  </div>
+
+  <!-- Estilos embebidos -->
+  <style>
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+
+  <!-- Lógica de carga diferida (Intersection Observer) -->
+  <script>
+    (function(){
+      const section = document.getElementById('sismos-sadv41');
+      const loader = document.getElementById('sismos-loader');
+      const wrap = document.getElementById('sismos-iframe-wrap');
+      const status = document.getElementById('sadv41-sismos-status');
+      let loaded = false;
+
+      function loadMap(){
+        if(loaded) return;
+        loaded = true;
+        status.textContent = '● LIVE - USGS CONECTADO';
+        status.style.color = '#00e5ff';
+        status.style.borderColor = '#00e5ff';
+        
+        const iframe = document.createElement('iframe');
+        iframe.src = './SISMOS/index.html';
+        iframe.style.width = '100%';
+        iframe.style.height = '100%';
+        iframe.style.border = '0';
+        iframe.loading = 'lazy';
+        iframe.setAttribute('allowfullscreen','');
+        iframe.setAttribute('title','SADV41 USGS Live Map');
+        
+        // Mostrar iframe, ocultar loader
+        loader.style.display = 'none';
+        wrap.style.display = 'block';
+        wrap.appendChild(iframe);
+      }
+
+      // Carga el mapa solo cuando el usuario hace scroll hacia él
+      if('IntersectionObserver' in window){
+        const io = new IntersectionObserver((entries)=>{
+          entries.forEach(e=>{
+            if(e.isIntersecting){
+              loadMap();
+              io.disconnect();
+            }
+          });
+        }, { rootMargin: '300px' }); 
+        io.observe(section);
+      } else {
+        // Fallback para navegadores antiguos
+        setTimeout(loadMap, 2000);
+      }
+    })();
+  </script>
+</section>
+
+
+
+
+
+<div id="sadv41-noviembre-widget" style="position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:999999;background:linear-gradient(135deg,#00209F 0%,#00209F 30%,#FFFFFF 30%,#FFFFFF 70%,#D21034 70%);color:#111;padding:10px 18px;border-radius:999px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;font-weight:900;font-size:14px;letter-spacing:.3px;box-shadow:0 8px 30px rgba(0,0,0,.35),0 0 0 2px rgba(255,255,255,.9) inset;display:flex;align-items:center;gap:8px;">
+  <span>Feliz Mes de Noviembre</span><span>🇵🇦👑🇺🇸</span>
+  <button onclick="this.parentElement.remove()" style="margin-left:8px;background:rgba(0,0,0,.12);border:0;border-radius:50%;width:22px;height:22px;cursor:pointer;font-weight:900;line-height:1;">×</button>
+</div>
+
+
+<script src="/SADV41/BIBLIA/biblia.js" defer></script>
+
+<script src="https://thesteef21.github.io/SADV41/sadv41-drag.js" defer></script><!-- sadv41-drag -->
+
+<!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->

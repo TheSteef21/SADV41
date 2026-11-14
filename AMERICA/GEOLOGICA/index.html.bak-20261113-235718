@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SADV41 · AMÉRICA GEOLÓGICA</title>
+  
+  <!-- MapLibre GL JS (Motor Vectorial del Primer Código) -->
+  <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet" />
+  <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+
+  <style>
+    :root {
+      --bg-void: #0a0f14;
+      --bg-panel: rgba(15, 25, 35, 0.88);
+      --border-subtle: #1c2733;
+      --border-active: #2a3a4d;
+      --cyan-sadv: #32d4ff;
+      --cyan-bright: #00e5ff;
+      --gold-sadv: #f5c542;
+      --red-alert: #ef4444;
+      --text-main: #e8eef5;
+      --text-muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; width: 100%; background: var(--bg-void); color: var(--text-main); font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; overflow: hidden; }
+
+    /* Header Táctico Híbrido */
+    #header {
+      position: fixed; top: 0; left: 0; right: 0; height: 56px;
+      background: rgba(10, 15, 20, 0.92);
+      border-bottom: 1px solid var(--border-subtle);
+      z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 14px 0 215px; /* Espacio reservado para Salmos 46 */
+      gap: 10px;
+      backdrop-filter: blur(10px);
+    }
+
+    @media (max-width: 768px) {
+      #header { padding: 8px 12px; height: auto; flex-wrap: wrap; padding-top: 38px; }
+    }
+
+    .brand-group { display: flex; align-items: center; gap: 10px; }
+    .badge-live { display: inline-flex; align-items: center; gap: 6px; background: rgba(50, 212, 255, 0.1); border: 1px solid var(--cyan-sadv); color: var(--cyan-sadv); font-size: 10px; font-weight: 800; padding: 3px 8px; border-radius: 999px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .pulse-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--cyan-sadv); animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.3); } }
+
+    .title { font-weight: 900; color: #fff; font-size: 14px; letter-spacing: -0.02em; white-space: nowrap; }
+    .title span { color: var(--cyan-sadv); }
+
+    .controls { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    select, .btn-region {
+      background: #1c2733; color: var(--text-main);
+      border: 1px solid var(--border-active);
+      border-radius: 10px; padding: 5px 10px;
+      font-size: 11px; font-weight: 700; outline: none; cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    select:hover, .btn-region:hover { background: #233243; border-color: var(--cyan-sadv); }
+    .btn-region.active { background: var(--cyan-sadv); color: var(--bg-void); border-color: var(--cyan-sadv); }
+
+    #status {
+      font-size: 11px; font-weight: 700; padding: 4px 12px;
+      border-radius: 999px; background: #0f1923;
+      color: var(--cyan-sadv); border: 1px solid var(--border-active);
+      white-space: nowrap; font-family: ui-monospace, monospace;
+    }
+
+    /* Contenedor Principal MapLibre */
+    #map { position: absolute; top: 56px; bottom: 34px; left: 0; right: 0; width: 100%; }
+    @media (max-width: 768px) { #map { top: 88px; } }
+
+    /* Widgets Arrastrables */
+    .draggable-widget {
+      position: fixed;
+      z-index: 1005;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-active);
+      border-radius: 14px;
+      padding: 10px 14px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(12px);
+      user-select: none;
+      touch-action: none;
+    }
+    .draggable-header {
+      cursor: grab;
+      font-size: 9px; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 6px; padding-bottom: 4px;
+      border-bottom: 1px dashed var(--border-active);
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .draggable-header:active { cursor: grabbing; }
+
+    /* Widget 1: Telegram & Enlace Rápido */
+    #widget-safe { top: 70px; right: 14px; width: 210px; border-color: rgba(50, 212, 255, 0.4); }
+    .tg-link { display: flex; align-items: center; justify-content: space-between; text-decoration: none; color: var(--text-main); font-size: 11px; font-weight: 700; }
+    .tg-link:hover b { text-decoration: underline; }
+
+    /* Widget 2: Telemetría y Contadores */
+    #widget-stats { top: 152px; right: 14px; width: 210px; }
+    .stat-row { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; font-size: 11px; }
+    .stat-val { font-weight: 900; font-size: 14px; font-family: ui-monospace, monospace; }
+    .stat-val.cyan { color: var(--cyan-sadv); }
+    .stat-val.red { color: var(--red-alert); }
+    .stat-val.gold { color: var(--gold-sadv); }
+
+    /* Widget 3: Escala Cromática */
+    #widget-legend { bottom: 48px; right: 14px; width: 210px; }
+    .legend-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-top: 4px; }
+    .leg-item { display: flex; align-items: center; gap: 4px; font-size: 10px; font-weight: 700; color: var(--text-muted); }
+    .leg-dot { width: 8px; height: 8px; border-radius: 50%; shrink: 0; }
+
+    /* Botón Agente Flotante */
+    .btn-agent {
+      position: fixed; right: 14px; bottom: 138px; z-index: 1004;
+      padding: 8px 14px; border: 1px solid rgba(0, 229, 255, 0.5);
+      background: rgba(10, 15, 20, 0.9); color: var(--cyan-bright);
+      border-radius: 12px; font-size: 11px; font-weight: 900;
+      text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none;
+      backdrop-filter: blur(8px); transition: all 0.2s;
+    }
+    .btn-agent:hover { border-color: var(--cyan-bright); background: rgba(0, 229, 255, 0.15); transform: translateY(-1px); }
+
+    /* Popups MapLibre Personalizados */
+    .maplibregl-popup-content {
+      background: #0f1923 !important;
+      color: #e8eef5 !important;
+      border: 1px solid #2a3a4d !important;
+      border-radius: 12px !important;
+      padding: 12px !important;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.8) !important;
+      font-family: system-ui, sans-serif;
+    }
+    .maplibregl-popup-tip { border-top-color: #2a3a4d !important; border-bottom-color: #2a3a4d !important; }
+    .maplibregl-popup-close-button { color: #94a3b8 !important; font-size: 16px; padding: 4px 8px; }
+  </style>
+</head>
+<body>
+
+<!-- SALMO46-INJECT -->
+<a href="https://www.bible.com/es/bible/149/PSA.46.1-11.RVR1960" target="_blank" rel="noopener"
+ style="position:fixed;top:12px;left:12px;z-index:2147483647;background:#0a0a0ae6;color:#00e5ff;
+ border:1px solid #00e5ff;border-radius:20px;padding:5px 11px;font:700 11px/1.3 system-ui,sans-serif;
+ text-decoration:none;letter-spacing:.04em;box-shadow:0 4px 12px rgba(0,0,0,0.5)">📖 Salmos 46 · Dios es nuestro amparo</a>
+<!-- /SALMO46-INJECT -->
+
+  <!-- Header Principal -->
+  <header id="header">
+    <div class="brand-group">
+      <span class="badge-live"><span class="pulse-dot"></span> USGS LIVE</span>
+      <div class="title">🛡️ SADV41 · <span>AMÉRICA GEOLÓGICA</span></div>
+    </div>
+
+    <div class="controls">
+      <select id="regionSelect" title="Sector Geográfico">
+        <option value="AMERICA" selected>🌎 Continente Americano</option>
+        <option value="CENTROAMERICA">🌋 Centroamérica & Caribe</option>
+        <option value="PANAMA">🇵🇦 Istmo de Panamá (Local)</option>
+        <option value="SURAMERICA">🏔️ Cinturón Andino / Suramérica</option>
+        <option value="NORTEAMERICA">🌲 Norteamérica & Falla San Andrés</option>
+      </select>
+
+      <select id="magSelect" title="Magnitud Mínima">
+        <option value="1.5">M ≥ 1.5</option>
+        <option value="2.5" selected>M ≥ 2.5 (Estándar)</option>
+        <option value="4.0">M ≥ 4.0 (Moderado)</option>
+        <option value="5.0">M ≥ 5.0 (Fuerte)</option>
+        <option value="6.0">M ≥ 6.0 (Mayor)</option>
+      </select>
+
+      <select id="periodSelect" title="Ventana Temporal">
+        <option value="7">7 Días</option>
+        <option value="15">15 Días</option>
+        <option value="30" selected>30 Días</option>
+        <option value="90">90 Días</option>
+      </select>
+    </div>
+
+    <div id="status">INICIALIZANDO...</div>
+  </header>
+
+  <!-- Widget Arrastrable 1: Canal Telegram -->
+  <div id="widget-safe" class="draggable-widget">
+    <div class="draggable-header"><span>⠿ Alerta Sísmica</span><span>LIVE</span></div>
+    <a href="https://t.me/Sismosyterremotos" target="_blank" rel="noopener" class="tg-link">
+      <span>🛟 Canal Oficial:<br><b style="color:#32d4ff;">@Sismosyterremotos</b></span>
+      <span style="font-size:16px;">↗</span>
+    </a>
+  </div>
+
+  <!-- Widget Arrastrable 2: Contadores Dinámicos -->
+  <div id="widget-stats" class="draggable-widget">
+    <div class="draggable-header">
+      <span>⠿ Telemetría Activa</span>
+      <span style="color:#32d4ff;">SADV41</span>
+    </div>
+    <div class="stat-row">
+      <span style="color:#94a3b8;">Eventos Visibles:</span>
+      <span id="cnt-visibles" class="stat-val cyan">0</span>
+    </div>
+    <div class="stat-row">
+      <span style="color:#94a3b8;">Máxima Magnitud:</span>
+      <span id="cnt-maxmag" class="stat-val gold">M0.0</span>
+    </div>
+    <div class="stat-row">
+      <span style="color:#fca5a5;">Post-M7.7 (09 Oct):</span>
+      <span id="cnt-m77" class="stat-val red">0</span>
+    </div>
+  </div>
+
+  <!-- Widget Arrastrable 3: Leyenda de Magnitud -->
+  <div id="widget-legend" class="draggable-widget">
+    <div class="draggable-header"><span>⠿ Escala Richter / Mw</span></div>
+    <div class="legend-grid">
+      <div class="leg-item"><span class="leg-dot" style="background:#a855f7"></span>&lt; 2.5</div>
+      <div class="leg-item"><span class="leg-dot" style="background:#32d4ff"></span>2.5–3.9</div>
+      <div class="leg-item"><span class="leg-dot" style="background:#eab308"></span>4.0–4.9</div>
+      <div class="leg-item"><span class="leg-dot" style="background:#f97316"></span>5.0–5.9</div>
+      <div class="leg-item"><span class="leg-dot" style="background:#ef4444"></span>6.0–6.9</div>
+      <div class="leg-item"><span class="leg-dot" style="background:#dc2626;box-shadow:0 0 6px #dc2626"></span>7.0+</div>
+    </div>
+  </div>
+
+  <!-- Acceso Directo Agente -->
+  <a href="./Agent/" class="btn-agent">AGENTE 🤖</a>
+
+  <!-- Mapa Vectorial MapLibre GL -->
+  <div id="map"></div>
+
+  <!-- Scripts de Ecosistema SADV41 -->
+  <script src="/SADV41/BIBLIA/biblia.js" defer></script>
+  <script src="https://thesteef21.github.io/SADV41/sadv41-drag.js" defer></script>
+
+  <!-- Barra de Noticias SADV41 -->
+  <div id="sadv41-news" style="position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#0a0e1a;color:#f4f6ff;border-top:2px solid #f5c542;font:600 12px/1.35 system-ui,sans-serif;padding:7px 40px 7px 12px;text-align:center">
+    <span style="color:#f5c542">ÚLTIMA NOTICIA</span> · 
+    <a href="https://thesteef21.github.io/SADV41/NEWS/PANAMA/USA/#paraguay" target="_blank" rel="noopener" style="color:#3ee0e8;text-decoration:none">Paraguay interviene Ueno Bank y renuncia el presidente del Banco Central 🏦</a>
+    <button onclick="this.parentNode.style.display='none'" aria-label="Cerrar" style="position:absolute;right:10px;top:3px;background:none;border:0;color:#9aa3c7;font-size:18px;cursor:pointer">×</button>
+  </div>
+
+  <!-- Botón Home Cruz Dorada -->
+  <a id="sadv41-home" href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" title="SADV41 · Página principal" aria-label="Ir a la página principal de SADV41" style="position:fixed;left:14px;bottom:48px;z-index:2147482999;width:44px;height:44px;border-radius:50%;background:#071642;border:2.5px solid #d9a93a;box-shadow:0 4px 14px rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;text-decoration:none">
+    <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><g fill="#d9a93a"><rect x="10.8" y="2" width="2.4" height="20" rx=".6"/><rect x="8" y="4.6" width="8" height="1.8" rx=".5"/><rect x="6" y="9" width="12" height="2.4" rx=".6"/><rect x="8.6" y="16.6" width="6.8" height="1.8" rx=".5" transform="rotate(12 12 17.5)"/></g></svg>
+  </a>
+
+  <script>
+    // Configuración de Regiones Geológicas de América
+    const REGIONES = {
+      AMERICA:       { center: [-82.0, 12.0], zoom: 2.3, bbox: { minlat: -58.0, maxlat: 72.0, minlon: -170.0, maxlon: -32.0 } },
+      CENTROAMERICA: { center: [-85.5, 13.0], zoom: 5.0, bbox: { minlat: 5.0,   maxlat: 22.0, minlon: -96.0,  maxlon: -75.0 } },
+      PANAMA:        { center: [-80.2, 8.3],  zoom: 6.8, bbox: { minlat: 5.0,   maxlat: 11.0, minlon: -84.5,  maxlon: -76.0 } },
+      SURAMERICA:    { center: [-68.0, -18.0],zoom: 3.1, bbox: { minlat: -58.0, maxlat: 13.0, minlon: -85.0,  maxlon: -34.0 } },
+      NORTEAMERICA:  { center: [-105.0, 38.0],zoom: 3.2, bbox: { minlat: 14.0,  maxlat: 72.0, minlon: -170.0, maxlon: -52.0 } }
+    };
+
+    // Inicializar MapLibre GL con estilo oscuro vector/raster híbrido de alta velocidad
+          const CARTO_KEY = 'cb1_4ne6_1_3c19f375f3946685db2cfede';
+      const map = new maplibregl.Map({
+        container: 'map',
+        style: `https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json?key=${CARTO_KEY}`,
+        center: REGIONES.AMERICA.center,
+        zoom: REGIONES.AMERICA.zoom
+      });
+
+    map.addControl(new maplibregl.NavigationControl(), 'top-left');
+    map.addControl(new maplibregl.GlobeControl(), 'top-left');
+
+    const getColor = m => m >= 7.0 ? '#dc2626' : m >= 6.0 ? '#ef4444' : m >= 5.0 ? '#f97316' : m >= 4.0 ? '#eab308' : m >= 2.5 ? '#32d4ff' : '#a855f7';
+    const fmtFecha = t => new Date(t).toLocaleString('es-PA', { timeZone: 'America/Panama', dateStyle: 'short', timeStyle: 'medium' });
+
+    map.on('load', () => {
+      // Fuente GeoJSON para sismos
+      map.addSource('sismos-src', {
+        type: 'geojson',
+        data: { type: 'FeatureCollection', features: [] }
+      });
+
+      // Halo exterior de energía sísmica
+      map.addLayer({
+        id: 'sismos-halo',
+        type: 'circle',
+        source: 'sismos-src',
+        paint: {
+          'circle-radius': ['interpolate', ['linear'], ['get', 'mag'], 1, 6, 4, 14, 7, 36],
+          'circle-color': ['get', 'color'],
+          'circle-opacity': 0.22
+        }
+      });
+
+      // Núcleo del epicentro
+      map.addLayer({
+        id: 'sismos-core',
+        type: 'circle',
+        source: 'sismos-src',
+        paint: {
+          'circle-radius': ['interpolate', ['linear'], ['get', 'mag'], 1, 3, 4, 7, 7, 18],
+          'circle-color': ['get', 'color'],
+          'circle-stroke-width': 1.5,
+          'circle-stroke-color': '#ffffff',
+          'circle-opacity': 0.9
+        }
+      });
+
+      // Interactividad Popup
+      map.on('click', 'sismos-core', (e) => {
+        const props = e.features[0].properties;
+        const coords = e.features[0].geometry.coordinates.slice();
+        new maplibregl.Popup()
+          .setLngLat(coords)
+          .setHTML(`
+            <div style="font-size:12px; line-height:1.45;">
+              <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:4px;">
+                <b style="font-size:15px; color:${props.color};">M ${Number(props.mag).toFixed(1)}</b>
+                <span style="font-size:10px; background:#1c2733; padding:2px 6px; border-radius:6px; color:#94a3b8;">Prof: ${Math.round(props.depth)} km</span>
+              </div>
+              <div style="font-weight:700; color:#fff; margin-bottom:4px;">${props.place}</div>
+              <div style="font-size:11px; color:#94a3b8;">🕒 ${props.fechaLocal} (Hora PA)</div>
+              <a href="${props.url}" target="_blank" rel="noopener" style="display:inline-block; margin-top:6px; color:#32d4ff; font-weight:700; text-decoration:none;">Ver ficha USGS ↗</a>
+            </div>
+          `)
+          .addTo(map);
+      });
+
+      map.on('mouseenter', 'sismos-core', () => map.getCanvas().style.cursor = 'pointer');
+      map.on('mouseleave', 'sismos-core', () => map.getCanvas().style.cursor = '');
+
+      cargarDatos(true);
+    });
+
+    async function cargarDatos(volar = false) {
+      const regionKey = document.getElementById('regionSelect').value;
+      const minMag = parseFloat(document.getElementById('magSelect').value);
+      const dias = parseInt(document.getElementById('periodSelect').value);
+      const statusEl = document.getElementById('status');
+      const reg = REGIONES[regionKey];
+
+      if (volar) {
+        map.flyTo({ center: reg.center, zoom: reg.zoom, essential: true, duration: 1200 });
+      }
+
+      statusEl.textContent = 'SINCRONIZANDO USGS...';
+
+      const fechaInicio = new Date(Date.now() - dias * 86400000).toISOString();
+      const urlUSGS = `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=${fechaInicio}&minmagnitude=${minMag}&minlatitude=${reg.bbox.minlat}&maxlatitude=${reg.bbox.maxlat}&minlongitude=${reg.bbox.minlon}&maxlongitude=${reg.bbox.maxlon}&orderby=time&limit=3500`;
+
+      try {
+        const res = await fetch(urlUSGS);
+        const data = await res.json();
+        const rawFeatures = data.features || [];
+
+        const timestampM77 = new Date('2026-10-09T17:56:00Z').getTime();
+        let countPostM77 = 0;
+        let maxMag = 0;
+
+        const processedFeatures = rawFeatures.map(f => {
+          const [lon, lat, depth] = f.geometry.coordinates;
+          const mag = f.properties.mag || 0;
+          const time = f.properties.time;
+
+          if (time >= timestampM77) countPostM77++;
+          if (mag > maxMag) maxMag = mag;
+
+          return {
+            type: 'Feature',
+            geometry: { type: 'Point', coordinates: [lon, lat] },
+            properties: {
+              mag: mag,
+              depth: depth,
+              place: f.properties.place || 'Región Americana',
+              url: f.properties.url,
+              color: getColor(mag),
+              fechaLocal: fmtFecha(time)
+            }
+          };
+        });
+
+        map.getSource('sismos-src').setData({
+          type: 'FeatureCollection',
+          features: processedFeatures
+        });
+
+        document.getElementById('cnt-visibles').textContent = processedFeatures.length;
+        document.getElementById('cnt-maxmag').textContent = `M${maxMag.toFixed(1)}`;
+        document.getElementById('cnt-m77').textContent = countPostM77;
+        statusEl.textContent = `● LIVE: ${processedFeatures.length} SISMOS`;
+
+      } catch (err) {
+        statusEl.textContent = '❌ ERROR TELEMETRÍA';
+      }
+    }
+
+    document.getElementById('regionSelect').addEventListener('change', () => cargarDatos(true));
+    document.getElementById('magSelect').addEventListener('change', () => cargarDatos(false));
+    document.getElementById('periodSelect').addEventListener('change', () => cargarDatos(false));
+
+    // Sistema de Arrastre Unificado (Mouse + Touch) para Widgets
+    function habilitarArrastre(elem) {
+      let posX = 0, posY = 0, initialX = 0, initialY = 0;
+      const dragHeader = elem.querySelector('.draggable-header') || elem;
+
+      dragHeader.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        initialX = e.clientX; initialY = e.clientY;
+        document.onmouseup = () => { document.onmouseup = null; document.onmousemove = null; };
+        document.onmousemove = (ev) => {
+          ev.preventDefault();
+          posX = initialX - ev.clientX; posY = initialY - ev.clientY;
+          initialX = ev.clientX; initialY = ev.clientY;
+          elem.style.top = (elem.offsetTop - posY) + "px";
+          elem.style.left = (elem.offsetLeft - posX) + "px";
+          elem.style.right = "auto"; elem.style.bottom = "auto";
+        };
+      });
+
+      dragHeader.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          initialX = e.touches[0].clientX; initialY = e.touches[0].clientY;
+          document.ontouchend = () => { document.ontouchend = null; document.ontouchmove = null; };
+          document.ontouchmove = (ev) => {
+            if (ev.touches.length === 1) {
+              posX = initialX - ev.touches[0].clientX; posY = initialY - ev.touches[0].clientY;
+              initialX = ev.touches[0].clientX; initialY = ev.touches[0].clientY;
+              elem.style.top = (elem.offsetTop - posY) + "px";
+              elem.style.left = (elem.offsetLeft - posX) + "px";
+              elem.style.right = "auto"; elem.style.bottom = "auto";
+            }
+          };
+        }
+      }, { passive: false });
+    }
+
+    document.querySelectorAll('.draggable-widget').forEach(habilitarArrastre);
+  </script>
+</body>
+</html>

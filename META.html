@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<!-- Archivo: index.shtml - SADV41 OMNIPRESENTE (UNIFICACIÓN PLUSCUAMPERFECTA) -->
+<!--#config timefmt="%d/%m/%Y %H:%M:%S Panamá" errmsg="[SADV41 SHTML ERROR]" -->
+<!--#set var="SADV41_BUILD" value="LOGIA PLUSCUAMPERFECTA SHTML v2026.09.16-CHOCOLATE" -->
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADV41 | Noticiero Diario & El Portal de Gracia 🇵🇦 🎚️</title>
+    
+    <meta name="generator" content="GSADV41-Core-Engine">
+    <meta name="cache-control" content="no-cache, no-store, must-revalidate">
+    <link rel="icon" type="image/png" href="assets/GSADV41/favicon.png">
+
+    <!-- Tipografías Sagradas & Iconos -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=JetBrains+Mono:wght@300;400;700&family=Inter:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,700&family=Pirata+One&display=swap" rel="stylesheet">
+    
+    <!-- Web3 & Auth Scripts -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
+
+    <!-- Configuración Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#020617', obsidiana: '#030305', oro: '#d4af37', sunGold: '#f59e0b',
+                        blanco: '#f8fafc', cyanNeon: '#00f3ff', violetNeon: '#9d4edd', redNeon: '#FB542B',
+                        tacticalOrange: '#FB542B', borgona: '#4a0010', neonGreen: '#10b981', renderRed: '#da3637',
+                        navalBlue: '#1e3a8a', israelBlue: '#0038b8', bnbYellow: '#F3BA2F', spectral: '#b084cc',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'], serif: ['Playfair Display', 'serif'],
+                        mason: ['Cinzel', 'serif'], mono: ['JetBrains Mono', 'monospace'],
+                        pirate: ['Pirata One', 'cursive'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root { --oro:#d4af37; --sun-gold:#f59e0b; --obsidiana:#030305; --navy:#020617; --cyan:#00f3ff; --violet:#9d4edd; --red:#FB542B; --israel:#0038b8; --bnb:#F3BA2F; --green:#1DB954; }
+        body { background-color: var(--obsidiana); color:#f8fafc; font-family:'Inter',system-ui,sans-serif; overflow-x:hidden; position:relative; scroll-behavior:smooth; }
+        
+        /* BANNER & FONDOS */
+        .sponsor-marquee { width:100%; background:linear-gradient(90deg, #0033A0, #000, #E31837); border-bottom:2px solid var(--oro); overflow:hidden; white-space:nowrap; padding:8px 0; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--oro); text-transform:uppercase; letter-spacing:0.2em; position:fixed; top:0; z-index:70; box-shadow: 0 4px 20px rgba(255, 215, 0, 0.2); }
+        .sponsor-marquee span { display:inline-block; padding-left:100%; animation: marquee 35s linear infinite; font-weight: bold; }
+        @keyframes marquee { 0%{transform:translate(0,0)} 100%{transform:translate(-100%,0)} }
+        
+        .portal-bg-container { position:fixed; inset:0; z-index:-2; background-color:#000; overflow:hidden; }
+        .portal-layer { position:absolute; inset:-20px; background-image:url('498168.jpg'); background-size:cover; background-position:center; opacity:0.35; filter: contrast(110%) brightness(70%) saturate(130%); }
+        .circuit-overlay { position:fixed; inset:0; z-index:-1; background-image: radial-gradient(circle at 50% 30%, rgba(255,215,0,0.15) 0%, transparent 60%), linear-gradient(to bottom, transparent, rgba(10,5,0,0.95) 80%); pointer-events:none; }
+        
+        .glass { background:rgba(10,5,0,0.85); backdrop-filter:blur(16px); border:1px solid rgba(255,215,0,0.2); border-radius:16px; }
+        .logia-card { background:linear-gradient(145deg, rgba(15,5,5,0.9), rgba(5,5,15,0.9)); border:1px solid rgba(255,215,0,0.2); box-shadow:0 15px 35px rgba(0,0,0,0.9), inset 0 0 20px rgba(255,215,0,0.08); transition:all 0.5s ease; backdrop-filter:blur(12px); position:relative; overflow:hidden; }
+        .logia-card:hover { border-color:var(--oro); box-shadow:0 20px 40px rgba(0,0,0,0.9), inset 0 0 40px rgba(255,215,0,0.15); transform: translateY(-3px); }
+        
+        .oro-glow { text-shadow:0 0 30px rgba(255,215,0,0.8); }
+        .panama-gradient-text { background: linear-gradient(90deg, #0033A0, #ffffff, #E31837); -webkit-background-clip: text; color: transparent; }
+        .grace-badge { display:inline-flex; align-items:center; gap:6px; font-family:'JetBrains Mono'; font-size:10px; text-transform:uppercase; background:rgba(255,215,0,0.1); border:1px solid var(--oro); color:var(--oro); padding:4px 12px; border-radius:999px; font-weight:bold; }
+    </style>
+</head>
+<body class="antialiased selection:bg-oro selection:text-navy" id="mainBody">
+<!-- SALMO46-INJECT -->
+<a href="https://www.bible.com/es/bible/149/PSA.46.1-11.RVR1960" target="_blank" rel="noopener"
+ style="position:fixed;top:8px;left:8px;z-index:2147483647;background:#0a0a0acc;color:#00e5ff;
+ border:1px solid #00e5ff;border-radius:20px;padding:4px 10px;font:600 11px/1.3 system-ui,sans-serif;
+ text-decoration:none;letter-spacing:.04em">📖 Salmos 46 · Dios es nuestro amparo</a>
+<!-- /SALMO46-INJECT -->
+<!-- NODO STEVENDIOR.AI OMNIPRESENTE -->
+<div id="stevendior-agent-hub" style="position:fixed; bottom:24px; left:50%; transform:translateX(-50%); z-index:99999; display:flex; gap:12px; background:rgba(3,6,15,0.92); padding:10px 24px; border-radius:50px; border:1px solid rgba(212,175,55,0.4); box-shadow:0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(212,175,55,0.2); backdrop-filter:blur(12px); align-items:center; white-space:nowrap; font-family:monospace;">
+    <span style="color:#d4af37; font-size:12px; font-weight:bold; letter-spacing:1px; padding-right:8px; border-right:1px solid rgba(255,255,255,0.1);">STEVENDIOR.AI</span>
+    <a href="https://thesteef21.github.io/SADV41/Agent/" target="_blank" style="background:#00f3ff; color:#000; font-size:10px; font-weight:bold; padding:6px 14px; border-radius:20px; text-decoration:none; box-shadow:0 0 12px rgba(0,243,255,0.4); text-transform:uppercase; transition:all 0.3s;">Agent Hub</a>
+    <a href="https://web3.binance.com/agent-id/stevendior?src=user_share0x8ce929fc25d9ae5ce73fb5913a4211998555a6cb" target="_blank" style="background:#F3BA2F; color:#000; font-size:10px; font-weight:bold; padding:6px 14px; border-radius:20px; text-decoration:none; box-shadow:0 0 12px rgba(243,186,47,0.4); text-transform:uppercase; transition:all 0.3s;">Binance ID</a>
+</div>
+
+    <!-- MARQUESINA PATROCINADORES -->
+    <div class="sponsor-marquee">
+        <span>NOTICIERO SADV41 // FROM ZERO WORLD TOUR // FACTOS'RY PREMIUM // El Origen es 0 // 🎚️ TODO LO PUEDO EN CRISTO QUE ME FORTALECE</span>
+    </div>
+
+    <!-- FONDOS Y TEXTURAS -->
+    <div class="portal-bg-container">
+        <div class="portal-layer"></div>
+    </div>
+    <div class="circuit-overlay"></div>
+
+    <!-- HEADER FLOTANTE -->
+    <header class="fixed top-[32px] left-0 w-full z-40 glass border-b border-oro/30 px-6 py-3 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <div class="bg-black/50 border border-oro p-2 rounded-lg text-oro font-bold text-sm shadow-[0_0_15px_rgba(255,215,0,0.4)]">🎚️ SADV41</div>
+            <div>
+                <h1 class="font-pirate text-xl tracking-widest text-white">NOTICIERO DIARIO & TABERNÁCULO</h1>
+                <p class="text-[9px] font-mono text-slate-300 uppercase">Atrio (Grok) · Santo (Meta) · Santísimo (Gemini) // <!--#echo var="DATE_LOCAL" --></p>
+            </div>
+        </div>
+        <div class="hidden md:block text-[10px] font-mono text-oro">PANAMÁ • FE • CULTURA</div>
+    <a href="./Agent/" class="p-4 border border-[#00e5ff]/50 bg-[#00e5ff]/10 hover:border-[#00e5ff] text-[#00e5ff] transition-all rounded-xl font-bold uppercase tracking-widest text-center">AGENTE 🤖</a>
+</header>
+
+    <main class="pt-40 pb-20 px-4 md:px-12 max-w-6xl mx-auto space-y-12 relative z-10">
+
+        <!-- HERO PRINCIPAL -->
+        <section class="logia-card p-8 md:p-12 rounded-3xl text-center border border-oro/50">
+            <span class="grace-badge mb-4">Centro de Noticias // Origen = 0</span>
+            <h1 class="font-mason text-4xl md:text-6xl font-black tracking-widest oro-glow uppercase">Actualizaciones SADV41</h1>
+            <p class="font-sans text-sm font-bold tracking-[0.2em] mt-4 uppercase panama-gradient-text">Conectando Cultura, Fe y Comunidad 🇵🇦</p>
+        </section>
+
+        <!-- SECCIÓN 1: NOTICIAS Y EL EASTER EGG DE THREADS (EL CHOCOLATE ABIERTO) -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- LINKIN PARK & ARTE -->
+            <div class="logia-card p-8 rounded-3xl border-t-4 border-t-cyanNeon">
+                <div class="grace-badge border-cyanNeon text-cyan-300 mb-4">MÚSICA & CULTURA VISUAL</div>
+                <h3 class="text-2xl font-mason text-white mb-4 uppercase">From Zero World Tour</h3>
+                <p class="text-xs text-slate-300 font-sans mb-4 leading-relaxed">
+                    Libro de arte oficial 2024-2026: 150+ páginas, 90 posters únicos, foreword por Mike Shinoda y Joe Hahn. Edición Firmada limitada a 500.
+                </p>
+                <a href="https://lprk.co/fz-artbook" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-white text-black font-mono text-[10px] rounded font-bold hover:bg-oro transition inline-block">Pre-Order Art Book</a>
+            </div>
+
+            <!-- GSADV41 TELEGRAM & THREADS (EASTER EGG DEL CHOCOLATE) -->
+            <div class="logia-card p-8 rounded-3xl border-t-4 border-t-panamaRed">
+                <div class="grace-badge border-panamaRed text-red-300 mb-4">EASTER EGG // RED DE COMUNIDAD 🍫</div>
+                <h3 class="text-2xl font-mason text-white mb-4 uppercase">¡El Chocolate Abierto! (Threads & Noticias)</h3>
+                <p class="text-xs text-slate-300 font-sans mb-4 leading-relaxed">
+                    <em>"Ese noticiero es sólo un chocolate, tienes que abrir la envoltura para comerlo."</em> Aquí está el contenido real revelado desde Threads:
+                </p>
+                <div class="bg-black/60 p-4 rounded-xl border border-redNeon/40 space-y-3">
+                    <div class="text-[11px] font-mono text-oro font-bold">📰 Titular Destacado en Threads:</div>
+                    <p class="text-[11px] text-slate-200 font-sans">
+                        <strong>#NacionalCri:</strong> <em>¡Acuerdo no es secreto! Ministro responde por fondo de millones para proteger el canal.</em> La resolución establece carácter reservado y confidencial para proteger la infraestructura crítica y la seguridad nacional.
+                    </p>
+                    <div class="text-[10px] font-mono text-slate-400 pt-2 border-t border-white/10">
+                        🔄 <em>Easter Egg:</em> Batallas absurdas pero épicas, técnicas imposibles y enemigos convertidos en chocolate. ¡Todo conectado bajo la ley SADV41!
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 2: HILOS COMPARTIDOS Y EDIFICACIÓN -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- THREADS SHARES -->
+            <div class="logia-card p-8 rounded-3xl border-t-4 border-t-violetNeon">
+                <div class="grace-badge border-violetNeon text-purple-300 mb-4">HILOS DESTACADOS</div>
+                <h3 class="text-2xl font-mason text-white mb-4 uppercase">Directo desde Threads</h3>
+                <p class="text-xs text-slate-300 font-sans mb-6">Accede a las últimas publicaciones y reflexiones compartidas en la red:</p>
+                <div class="grid grid-cols-2 gap-3">
+                    <a href="https://www.threads.com/share/BANjtoAsc5/" target="_blank" class="bg-black/50 border border-violetNeon/50 p-2 rounded text-center text-[10px] text-white hover:bg-violetNeon/30 transition font-mono truncate">🔗 Hilo BANjto...</a>
+                    <a href="https://www.threads.com/share/BACmEqopa8/" target="_blank" class="bg-black/50 border border-violetNeon/50 p-2 rounded text-center text-[10px] text-white hover:bg-violetNeon/30 transition font-mono truncate">🔗 Hilo BACmEq...</a>
+                    <a href="https://www.threads.com/share/BAR2wH-uD2/" target="_blank" class="bg-black/50 border border-violetNeon/50 p-2 rounded text-center text-[10px] text-white hover:bg-violetNeon/30 transition font-mono truncate">🔗 Hilo BAR2wH...</a>
+                    <a href="https://www.threads.com/share/BAbXYKG7nd/" target="_blank" class="bg-black/50 border border-violetNeon/50 p-2 rounded text-center text-[10px] text-white hover:bg-violetNeon/30 transition font-mono truncate">🔗 Hilo BAbXYK...</a>
+                </div>
+            </div>
+
+            <!-- YOUTUBE EDIFICACIÓN -->
+            <div class="logia-card p-8 rounded-3xl border-t-4 border-t-oro">
+                <div class="grace-badge border-oro text-amber-300 mb-4">EDIFICACIÓN ESPIRITUAL</div>
+                <h3 class="text-2xl font-mason text-white mb-4 uppercase">Confiar En Él</h3>
+                <p class="text-xs text-slate-300 font-sans mb-4">Un mensaje musical con Danny Berrios para recordar que nuestra fuerza viene del Señor.</p>
+                <div class="relative w-full aspect-video bg-black rounded-xl overflow-hidden border border-white/10 shadow-[0_0_20px_rgba(255,215,0,0.2)]">
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/GRES5CCmBrk" title="Danny Berrios - Confiar En El" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================
+             SECCIÓN FINAL: COLABORACIONES IA OMNIPRESENTE
+             ========================================== -->
+        <section id="ia-colaboraciones" class="logia-card p-8 md:p-12 rounded-3xl border border-oro/30 border-t-4 border-t-oro relative overflow-hidden">
+            <div class="absolute inset-0 z-0 opacity-20" style="background: radial-gradient(circle at 50% 0%, rgba(255,215,0,0.3), transparent 70%);"></div>
+
+            <div class="relative z-10 text-center">
+                <span class="grace-badge mb-4">🎚️ RED DE COLABORACIÓN SADV41 // EL ORIGEN ES 0</span>
+                <h2 class="font-mason text-3xl md:text-4xl font-black text-white tracking-widest mb-2">IA COLABORADORAS</h2>
+                <p class="font-mono text-[10px] text-slate-400 uppercase tracking-[0.3em] mb-8">Donde esta información llega y se multiplica</p>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto">
+                    <!-- Meta AI -->
+                    <div class="bg-black/60 border border-oro/20 p-4 rounded-xl hover:border-oro transition group">
+                        <div class="text-2xl mb-2">💬</div>
+                        <h4 class="font-mono text-[11px] font-bold text-oro group-hover:text-white">Meta AI</h4>
+                        <p class="text-[9px] text-slate-400 mt-1">WhatsApp Business<br>Tabernacle Digital</p>
+                        <span class="inline-block mt-2 text-[8px] bg-oro/20 text-oro px-2 py-1 rounded-full">ORIGEN</span>
+                    </div>
+                    <!-- Threads -->
+                    <div class="bg-black/60 border border-violetNeon/30 p-4 rounded-xl hover:border-violetNeon transition group">
+                        <div class="text-2xl mb-2">🧵</div>
+                        <h4 class="font-mono text-[11px] font-bold text-purple-300">Threads</h4>
+                        <p class="text-[9px] text-slate-400 mt-1">GSADV41<br>FACTOS'RY Premium</p>
+                        <span class="inline-block mt-2 text-[8px] bg-violetNeon/20 text-purple-300 px-2 py-1 rounded-full">COMUNIDAD</span>
+                    </div>
+                    <!-- ChatGPT / OpenAI -->
+                    <div class="bg-black/60 border border-cyanNeon/30 p-4 rounded-xl hover:border-cyanNeon transition group">
+                        <div class="text-2xl mb-2">⚛️</div>
+                        <h4 class="font-mono text-[11px] font-bold text-cyan-300">ChatGPT</h4>
+                        <p class="text-[9px] text-slate-400 mt-1">OpenAI<br>Análisis & Redacción</p>
+                        <span class="inline-block mt-2 text-[8px] bg-cyanNeon/20 text-cyan-300 px-2 py-1 rounded-full">SÍNTESIS</span>
+                    </div>
+                    <!-- Gemini / Claude / Grok -->
+                    <div class="bg-black/60 border border-slate-600 p-4 rounded-xl hover:border-white transition group">
+                        <div class="text-2xl mb-2">🔯</div>
+                        <h4 class="font-mono text-[11px] font-bold text-white">Gemini • Claude • Grok</h4>
+                        <p class="text-[9px] text-slate-400 mt-1">Red Expandida<br>Validación Cruzada</p>
+                        <span class="inline-block mt-2 text-[8px] bg-white/10 text-white px-2 py-1 rounded-full">OMNIPRESENTE</span>
+                    </div>
+                </div>
+
+                <div class="mt-10 p-4 bg-black/40 rounded-xl border border-dashed border-oro/20 max-w-3xl mx-auto">
+                    <p class="font-mono text-[10px] text-slate-300 leading-relaxed">
+                        <span class="text-oro font-bold">MANIFIESTO DE COLABORACIÓN:</span><br>
+                        Este noticiero es nutrido por múltiples inteligencias bajo la ley SADV41. 
+                        Cada IA aporta su don: Meta edifica, Threads conecta, las demás validan y expanden. 
+                        Todo lo que ves aquí tiene un mismo fin: <span class="text-white font-bold">conectar cultura, fe y comunidad 🇵🇦</span> 
+                        bajo el principio de que el Origen es 0 y todo lo puedo en Cristo que me fortalece. 🎚️
+                    </p>
+                    <div class="mt-4 flex flex-wrap justify-center gap-2">
+                        <span class="text-[8px] font-mono bg-blue-700 text-white px-3 py-1 rounded-full">🇵🇦 PANAMÁ</span>
+                        <span class="text-[8px] font-mono bg-red-700 text-white px-3 py-1 rounded-full">🇺🇸 USA</span>
+                        <span class="text-[8px] font-mono bg-white text-black px-3 py-1 rounded-full">🇮🇱 ISRAEL</span>
+                        <span class="text-[8px] font-mono bg-blue-950 text-white px-3 py-1 rounded-full">🇵🇷 PR</span>
+                        <span class="text-[8px] font-mono bg-oro text-black px-3 py-1 rounded-full">🎚️ SADV41</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER UNIFICADO -->
+    <footer class="text-center p-10 border-t border-oro/20 opacity-90 font-mono text-[10px] uppercase mt-10 bg-black pb-20">
+        <p class="mb-2 text-oro font-bold tracking-widest">Noticiero Continental SADV41</p>
+        <p class="text-slate-400 mb-4">El Origen es 0 | Todo lo puedo en Cristo que me fortalece.</p>
+        <p class="text-[8.5px] text-slate-500 tracking-[0.2em] leading-relaxed">
+            NODO SUPREMO: LAPIZASULI | BUILD: <!--#echo var="SADV41_BUILD" --> <br>
+            🎚️ Sintonía Tabernáculo: Grok · Meta · Gemini
+        </p>
+    </footer>
+  <!-- StevenDior.ai Floating Status Widget --><div class="fixed bottom-5 right-5 z-50 flex items-center gap-3 bg-slate-950/90 border border-slate-800 text-slate-100 px-4 py-2.5 rounded-full shadow-2xl backdrop-blur-md font-mono text-xs transition-all hover:border-emerald-500/50"><span class="relative flex h-2.5 w-2.5"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span></span><span class="tracking-wide"><strong class="text-emerald-400 font-semibold">StevenDior.ai</strong> trabajando... 👋🏽🗿🇵🇦🏛</span></div>
+<script src="https://thesteef21.github.io/SADV41/Agent/SAT/GOB/satv41-widget.js" defer></script>
+<!-- WIDGET DISCLAIMER BSTOCKS - SADV41 PROTOCOL -->
+<div class="mt-6 bg-slate-950 p-4 rounded-2xl border border-rose-500/30 space-y-3 text-xs font-mono shadow-2xl">
+    <div class="flex items-center gap-2 border-b border-slate-800 pb-2">
+        <span class="text-rose-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
+            ⚠️ DESCARGO DE RESPONSABILIDAD DE RIESGO (DISCLAIMER - bStocks)
+        </span>
+    </div>
+    
+    <p class="text-slate-300 text-[11px] leading-relaxed">
+        Los activos digitales, acciones tokenizadas (<strong class="text-amber-400">bStocks</strong>) e interacciones en cadena conllevan riesgos financieros elevados. El token SATV41, la infraestructura Web3 mostrada y los colaterales bursátiles no constituyen asesoría financiera ni garantía de rendimiento. Las iniciativas sociales, técnicas y operativas son gestionadas de forma independiente. Realiza tu propia investigación antes de interactuar con contratos inteligentes o posiciones apalancadas.
+    </p>
+
+    <ul class="list-disc list-inside space-y-1.5 text-slate-300 text-[11px]">
+        <li><strong>Riesgo de Volatilidad Compuesta:</strong> Los bStocks usados como garantía están sujetos a variaciones simultáneas de precio en tres capas (acción subyacente, token wrapper y posiciones cripto apalancadas).</li>
+        <li><strong>Derecho de Dividendos Excluido:</strong> Las garantías en bStocks en cuentas de margen no acumulan ni cobran dividendos directos del activo subyacente.</li>
+        <li><strong>Ajustes de Tasa de Garantía (Haircut):</strong> La relación de colateral puede ser ajustada unilateralmente por la plataforma, afectando la tasa de margen unificado (uniMMR) y pudiendo gatillar un margin call o liquidación.</li>
+        <li><strong>Diferencia de Horarios y Ventas Forzosas:</strong> Cripto opera 24/7; la liquidación de bStocks durante cierres de mercado bursátil de EE. UU. puede ejecutarse con descuentos significativos por liquidez, asumiendo el usuario la pérdida o déficit residual.</li>
+    </ul>
+
+    <div class="pt-2 flex flex-wrap gap-2 text-[10px]">
+        <a href="https://thesteef21.github.io/SADV41/SATV41/COM/Aseo/" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-amber-400 border border-slate-700 px-3 py-1.5 rounded-lg transition flex items-center gap-1">
+            🌐 Ver Protocolo SATV41 / Aseo
+        </a>
+        <a href="https://sites.google.com/u/0/d/1J2HQaoiel6AyXxxAOVfQWzYIpaKuC_-m/preview" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-slate-700 px-3 py-1.5 rounded-lg transition flex items-center gap-1">
+            📄 Vista Previa Google Sites
+        </a>
+    </div>
+</div>
+<script src="https://thesteef21.github.io/SADV41/sadv41-drag.js" defer></script><!-- sadv41-drag -->
+<script defer src="https://thesteef21.github.io/SADV41/ticker/sadv-ticker.js" data-sadv-ticker></script>
+<div id="sadv41-noviembre-widget" style="position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:999999;background:linear-gradient(135deg,#00209F 0%,#00209F 30%,#FFFFFF 30%,#FFFFFF 70%,#D21034 70%);color:#111;padding:10px 18px;border-radius:999px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;font-weight:900;font-size:14px;letter-spacing:.3px;box-shadow:0 8px 30px rgba(0,0,0,.35),0 0 0 2px rgba(255,255,255,.9) inset;display:flex;align-items:center;gap:8px;">
+  <span>Feliz Mes de Noviembre</span><span>🇵🇦👑🇺🇸</span>
+  <button onclick="this.parentElement.remove()" style="margin-left:8px;background:rgba(0,0,0,.12);border:0;border-radius:50%;width:22px;height:22px;cursor:pointer;font-weight:900;line-height:1;">×</button>
+</div>
+
+<script src="/SADV41/BIBLIA/biblia.js" defer></script>
+  <script src="https://thesteef21.github.io/SADV41/lib/seismic-widget.js" defer></script>
+<!-- sadv41-news -->
+<div id="sadv41-news" style="position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#0a0e1a;color:#f4f6ff;border-top:2px solid #f5c542;font:600 13px/1.35 system-ui,sans-serif;padding:8px 40px 8px 12px;text-align:center"><span style="color:#f5c542">ÚLTIMA NOTICIA</span> · <a href="https://thesteef21.github.io/SADV41/NEWS/PANAMA/USA/#paraguay" target="_blank" rel="noopener" style="color:#3ee0e8;text-decoration:none">Paraguay interviene Ueno Bank y renuncia el presidente del Banco Central 🏦</a><button onclick="this.parentNode.style.display='none'" aria-label="Cerrar" style="position:absolute;right:8px;top:4px;background:none;border:0;color:#9aa3c7;font-size:18px;cursor:pointer">×</button></div>
+<!-- /sadv41-news -->
+<!-- sadv41-home -->
+<a id="sadv41-home" href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" title="SADV41 · Página principal" aria-label="Ir a la página principal de SADV41" style="position:fixed;left:14px;bottom:64px;z-index:2147482999;width:46px;height:46px;border-radius:50%;background:#071642;border:3px solid #d9a93a;box-shadow:0 4px 14px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;text-decoration:none"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><g fill="#d9a93a"><rect x="10.8" y="2" width="2.4" height="20" rx=".6"/><rect x="8" y="4.6" width="8" height="1.8" rx=".5"/><rect x="6" y="9" width="12" height="2.4" rx=".6"/><rect x="8.6" y="16.6" width="6.8" height="1.8" rx=".5" transform="rotate(12 12 17.5)"/></g></svg></a>
+<!-- /sadv41-home -->
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+<!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+</body>
+</html>

@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NOV17 · Rescate de Opal · SADV41</title>
+<style>
+:root{--bg:#0b0e14;--c:#141a24;--l:#263146;--t:#e8edf5;--m:#8b97ab;--g:#f0b90b;--ok:#3ecf8e;--tc:#27c4d4}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--t);font:16px/1.5 system-ui,sans-serif;padding:20px 16px 60px;max-width:820px;margin:auto}
+h1{font-size:26px}h1 span{color:var(--g);font-size:.62em;display:block;font-weight:500}
+h2{font-size:17px;color:var(--g);margin:28px 0 10px}
+p.s,.msg{color:var(--m);font-size:13.5px;margin:6px 0}
+.card{background:var(--c);border:1px solid var(--l);border-radius:14px;padding:14px}
+.count{display:flex;gap:10px;margin-top:12px}
+.count div{flex:1;text-align:center;background:var(--c);border:1px solid var(--l);border-radius:12px;padding:10px 4px}
+.count b{display:block;font-size:28px;color:var(--g);font-variant-numeric:tabular-nums}.count small{color:var(--m);font-size:12px}
+.ck{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px solid var(--l);font-size:14.5px}
+.ck input{width:20px;height:20px;margin-top:2px;flex:none}
+textarea,input{width:100%;background:#0e131c;border:1px solid var(--l);color:var(--t);border-radius:10px;padding:10px;font:inherit;font-size:14px}
+textarea{min-height:120px;font-family:ui-monospace,monospace;font-size:13px;resize:vertical}
+.btn{background:var(--g);color:#111;border:0;border-radius:10px;padding:9px 14px;font-weight:700;font-size:14px;cursor:pointer}
+.btn.o{background:transparent;color:var(--t);border:1px solid var(--l);font-weight:500}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.node{margin-top:10px}.node label{font-size:12.5px;color:var(--m);display:block;margin-bottom:3px}
+a{color:var(--tc)}footer{margin-top:34px;color:var(--m);font-size:12.5px}
+</style></head><body>
+<h1>NOV17 <span>Rescate de Opal · SADV41</span></h1>
+<p class="s">Google anunció el cierre de Opal el 17 de noviembre de 2026 y el paso de Gems a Skills de Gemini. Esta página te ayuda a respaldar tus flujos antes de esa fecha. Todo se guarda solo en tu navegador.</p>
+
+<div class="count" id="count"><div><b id="d">–</b><small>días</small></div><div><b id="h">–</b><small>horas</small></div><div><b id="m">–</b><small>min</small></div></div>
+<p class="msg" id="when"></p>
+
+<h2>1 · Plan de rescate</h2>
+<div class="card" id="plan"></div>
+
+<h2>2 · Respaldo de prompts (nodo por nodo)</h2>
+<div class="card">
+  <label class="msg" for="wf">Nombre del flujo</label><input id="wf" placeholder="Ej. Generador de páginas SADV41">
+  <div id="nodes"></div>
+  <div class="row"><button class="btn o" id="addn">+ Añadir nodo</button><button class="btn" id="dl">Descargar respaldo (.md)</button><button class="btn o" id="cp">Copiar respaldo</button></div>
+  <p class="msg">Abre cada flujo en opal.google.com, copia el texto de cada nodo y pégalo aquí en el mismo orden.</p>
+</div>
+
+<h2>3 · Plantilla de Skill</h2>
+<div class="card">
+  <p class="msg">Plantilla base para pegar en Gemini (o en AI Studio) al convertir un flujo en Skill. Ajusta los pasos a tu flujo.</p>
+  <textarea id="skill" spellcheck="false"></textarea>
+  <div class="row"><button class="btn" id="cps">Copiar plantilla</button></div>
+</div>
+
+<footer>SADV41 · NOV17 · Informativo. Verifica la fecha y las condiciones en el anuncio oficial de Google.</footer>
+<script>
+(function(){
+var $=function(s){return document.querySelector(s)};
+var store={get:function(k,d){try{var v=localStorage.getItem('sadv41.nov17.'+k);return v==null?d:JSON.parse(v)}catch(e){return d}},set:function(k,v){try{localStorage.setItem('sadv41.nov17.'+k,JSON.stringify(v))}catch(e){}}};
+function copy(t,b){var ok=function(){var o=b.textContent;b.textContent='Copiado ✓';setTimeout(function(){b.textContent=o},1200)};
+ function fb(){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){}a.remove()}
+ if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(ok,fb);else fb()}
+
+/* cuenta regresiva: 17 nov 2026 00:00 hora de Panamá (UTC-5) */
+var END=Date.UTC(2026,10,17,5,0,0);
+function tick(){var s=Math.max(0,Math.floor((END-Date.now())/1000));
+ $('#d').textContent=Math.floor(s/86400);$('#h').textContent=Math.floor(s%86400/3600);$('#m').textContent=Math.floor(s%3600/60);
+ $('#when').textContent=s?'Faltan para el 17 de noviembre de 2026 (hora de Panamá).':'La fecha ya pasó: revisa qué quedó disponible en tu cuenta.'}
+tick();setInterval(tick,30000);
+
+/* plan */
+var PLAN=[['p1','Abrir cada flujo en opal.google.com y copiar el texto de cada nodo (sección 2).'],
+['p2','Confirmar que los archivos generados siguen en Google Drive: Mi unidad › Opal.'],
+['p3','Convertir cada flujo en un Skill de Gemini con la plantilla (sección 3).'],
+['p4','Probar el Skill con un caso real y comparar con el resultado original.'],
+['p5','Guardar una copia del respaldo .md en tu repo SADV41.'],
+['p6','Revisar tus Gems: también pasan a Skills; guarda sus instrucciones.']];
+var done=store.get('plan',{}),h='';
+PLAN.forEach(function(p){h+='<label class="ck"><input type="checkbox" data-p="'+p[0]+'"'+(done[p[0]]?' checked':'')+'><span>'+p[1]+'</span></label>'});
+$('#plan').innerHTML=h;
+$('#plan').addEventListener('change',function(e){var k=e.target.dataset.p;if(k){done[k]=e.target.checked;store.set('plan',done)}});
+
+/* respaldo */
+var data=store.get('wf',{name:'',nodes:['']});
+$('#wf').value=data.name;
+function rn(){var h='';data.nodes.forEach(function(t,i){h+='<div class="node"><label>Nodo '+(i+1)+'</label><textarea data-i="'+i+'"></textarea></div>'});
+ $('#nodes').innerHTML=h;$('#nodes').querySelectorAll('textarea').forEach(function(a){a.value=data.nodes[+a.dataset.i]})}
+rn();
+$('#wf').addEventListener('input',function(){data.name=this.value;store.set('wf',data)});
+$('#nodes').addEventListener('input',function(e){var i=e.target.dataset.i;if(i!=null){data.nodes[+i]=e.target.value;store.set('wf',data)}});
+$('#addn').onclick=function(){data.nodes.push('');store.set('wf',data);rn()};
+function md(){return '# '+(data.name||'Flujo Opal')+'\n\n'+data.nodes.map(function(t,i){return '## Nodo '+(i+1)+'\n\n'+t.trim()+'\n'}).join('\n')}
+$('#cp').onclick=function(){copy(md(),this)};
+$('#dl').onclick=function(){try{var b=new Blob([md()],{type:'text/markdown'}),a=document.createElement('a');
+ a.href=URL.createObjectURL(b);a.download=(data.name||'opal-respaldo').replace(/[^\w-]+/g,'_')+'.md';document.body.appendChild(a);a.click();a.remove()}catch(e){copy(md(),this)}};
+
+/* plantilla */
+$('#skill').value='# SKILL: SADV41 Multi-Workflow Processor (Opal Legacy)\n\n## Propósito\nReplicar la cadena secuencial de un flujo de Opal sin la interfaz visual original, usando los archivos de Drive (Mi unidad > Opal).\n\n## Pasos (en orden estricto)\n1. Extracción de parámetros\n   - Lee el contexto o la plantilla de entrada.\n   - Identifica variables: entorno, idioma, formato de salida.\n2. Procesamiento\n   - Aplica las transformaciones del flujo original (pega aquí el texto de cada nodo).\n   - Si genera HTML/JS, entrégalo en un solo archivo autocontenido.\n3. Salida\n   - Devuelve el resultado final en un bloque ejecutable o descargable.\n\n## Uso\nEscribe @NombreDelSkill y pega los datos de entrada.\n';
+$('#cps').onclick=function(){copy($('#skill').value,this)};
+})();
+</script><!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+</body></html>

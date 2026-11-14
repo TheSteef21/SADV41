@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SADV41 FIFA Hub - Live Translator & Teleprompter Engine</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Custom Fonts & Tailwind Configuration -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'sadv-bg': '#0b0f19',
+            'sadv-card': '#020617',
+            'sadv-header': '#0f172a',
+            'sadv-border': '#1e293b',
+            'sadv-cyan': '#00ffcc',
+            'sadv-yellow': '#fed100',
+            'sadv-green': '#009c3b',
+            'sadv-blue': '#002776',
+            'sadv-alert': '#ff0055'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['Fira Code', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #020617;
+      --border: #1e293b;
+      --neon-cyan: #00ffcc;
+      --brasil-yellow: #fed100;
+      --brasil-green: #009c3b;
+      --brasil-blue: #002776;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: #e2e8f0;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+    }
+
+    /* Cyber scanlines overlay */
+    .scanline-overlay {
+      background: linear-gradient(
+        to bottom,
+        rgba(255,255,255,0),
+        rgba(255,255,255,0) 50%,
+        rgba(0, 0, 0, 0.3) 50%,
+        rgba(0, 0, 0, 0.3)
+      );
+      background-size: 100% 4px;
+      pointer-events: none;
+    }
+
+    /* Neon glows & HUD borders */
+    .glow-border-cyan {
+      box-shadow: 0 0 15px rgba(0, 255, 204, 0.15);
+      border-color: rgba(0, 255, 204, 0.4);
+    }
+    
+    .glow-border-yellow {
+      box-shadow: 0 0 15px rgba(254, 209, 0, 0.15);
+      border-color: rgba(254, 209, 0, 0.4);
+    }
+
+    /* Teleprompter Display Screen */
+    .prompter-box {
+      background: radial-gradient(circle at center, #050b14 0%, #000000 100%);
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.9), 0 0 10px rgba(0, 255, 204, 0.1);
+    }
+
+    .prompter-text {
+      font-family: 'Fira Code', monospace;
+    }
+
+    .prompter-text .interim {
+      color: var(--neon-cyan);
+      opacity: 0.85;
+      font-style: italic;
+      border-bottom: 2px dashed rgba(0, 255, 204, 0.5);
+      animation: pulse-interim 1.2s infinite ease-in-out;
+    }
+
+    .prompter-text .translated {
+      color: var(--brasil-yellow);
+      display: block;
+      margin-top: 6px;
+      font-weight: 700;
+      background: rgba(254, 209, 0, 0.08);
+      padding: 6px 12px;
+      border-left: 3px solid var(--brasil-yellow);
+      border-radius: 4px;
+    }
+
+    @keyframes pulse-interim {
+      0%, 100% { opacity: 0.85; }
+      50% { opacity: 0.4; }
+    }
+
+    /* Custom Scrollbars */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #020617;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00ffcc;
+    }
+
+    /* Instagram Reel Wrapper Override */
+    blockquote.instagram-media {
+      background: #000000 !important;
+      border: 1px solid #1e293b !important;
+      border-radius: 12px !important;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8) !important;
+      margin: 0 auto !important;
+      max-width: 100% !important;
+      min-width: 280px !important;
+      width: 100% !important;
+    }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen text-slate-200 antialiased selection:bg-sadv-cyan selection:text-black">
+
+  <!-- ================= HEADER HUD ================= -->
+  <header class="sticky top-0 z-50 bg-sadv-card/90 backdrop-blur-md border-b border-sadv-border px-4 py-3 sm:px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+      
+      <!-- Brand & Title -->
+      <div class="flex items-center gap-3">
+        <div class="relative flex items-center justify-center w-10 h-10 rounded-lg bg-slate-900 border border-sadv-cyan/50 text-sadv-cyan font-mono font-bold text-lg shadow-[0_0_12px_rgba(0,255,204,0.3)]">
+          S41
+          <span class="absolute -top-1 -right-1 flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sadv-cyan opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-sadv-cyan"></span>
+          </span>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-mono font-black text-xl tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-sadv-cyan via-emerald-400 to-sadv-yellow">
+              SADV41 FIFA // HUB MULTINIVEL
+            </h1>
+            <span class="text-xs font-mono px-2 py-0.5 rounded bg-sadv-cyan/10 border border-sadv-cyan/30 text-sadv-cyan hidden sm:inline-block">v4.1.0</span>
+          </div>
+          <p class="text-xs text-slate-400 font-mono">
+            Orquestador de Módulos Ocultos & Live Translator Relay &bull; Protocolo <span class="text-sadv-cyan">@sadv41ai</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Telemetry Status Controls Header -->
+      <div class="flex items-center gap-3 flex-wrap justify-center sm:justify-end">
+        <div id="system-status-badge" class="font-mono text-xs px-3 py-1.5 rounded-full bg-emerald-950/60 border border-sadv-cyan text-sadv-cyan flex items-center gap-2 shadow-[0_0_10px_rgba(0,255,204,0.2)]">
+          <span class="w-2 h-2 rounded-full bg-sadv-cyan animate-pulse"></span>
+          <span>SISTEMA PLUSCUAMPERFECTO: ACTIVO</span>
+        </div>
+        
+        <div class="font-mono text-xs px-3 py-1.5 rounded-lg bg-slate-900 border border-sadv-border text-slate-300 flex items-center gap-2">
+          <svg class="w-3.5 h-3.5 text-sadv-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <span id="live-clock">00:00:00 UTC</span>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= MAIN DASHBOARD GRID ================= -->
+  <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+    <!-- LEFT COLUMN: STREAM INPUT & SPEECH TRANSLATOR CONTROLLER (5 Cols) -->
+    <section class="lg:col-span-5 flex flex-col gap-6">
+      
+      <!-- CARD: STREAM PLAYER & SIGNAL INPUT -->
+      <div class="bg-sadv-card border border-sadv-border rounded-xl overflow-hidden flex flex-col shadow-xl glow-border-cyan transition-all duration-300">
+        
+        <!-- Header -->
+        <div class="px-4 py-3 bg-sadv-header border-b border-sadv-border flex items-center justify-between font-mono text-xs">
+          <div class="flex items-center gap-2 text-sadv-cyan">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+            <span class="font-bold">SADV41 STREAM INPUT & MEDIA ENGINE</span>
+          </div>
+          <span class="text-slate-400">FEED ID: #LIVE-01</span>
+        </div>
+
+        <!-- Media Display (Canvas / Video) -->
+        <div class="relative bg-black aspect-video flex items-center justify-center overflow-hidden group">
+          
+          <video id="video-source" class="w-full h-full object-cover hidden" controls crossorigin="anonymous">
+            <!-- Dynamic Video Fallback Source -->
+            <source src="video-sample.mp4" type="video/mp4">
+            Tu navegador no soporta el reproductor de video.
+          </video>
+
+          <!-- Generated Canvas Synthesizer Fallback -->
+          <canvas id="stream-canvas" class="w-full h-full object-cover"></canvas>
+          
+          <!-- Scanline effect overlay -->
+          <div class="absolute inset-0 scanline-overlay"></div>
+
+          <!-- Video Controls Floating Overlay -->
+          <div class="absolute bottom-2 left-2 right-2 px-3 py-1.5 rounded-lg bg-slate-950/80 backdrop-blur border border-slate-800 flex items-center justify-between text-xs font-mono text-slate-300">
+            <span id="audio-input-label" class="flex items-center gap-1.5 text-emerald-400">
+              <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+              CANVAS SYNTH ACTIVE
+            </span>
+            <div class="flex items-center gap-2">
+              <button id="btn-toggle-mic" class="px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-sadv-cyan border border-sadv-cyan/30 transition">
+                MIC INPUT
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Translator Control Panel -->
+        <div class="p-4 flex flex-col gap-4 bg-slate-950/60">
+          
+          <!-- Speech Engine Language Pickers -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-mono text-slate-400 mb-1">RECONOCER AUDIO (SOURCE):</label>
+              <select id="select-lang" class="w-full bg-slate-900 border border-sadv-border rounded-lg px-3 py-2 text-xs font-mono text-sadv-cyan focus:outline-none focus:border-sadv-cyan transition">
+                <option value="es-ES">Español (es-ES)</option>
+                <option value="en-US">English (en-US)</option>
+                <option value="pt-BR">Português (pt-BR)</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-mono text-slate-400 mb-1">TRADUCIR A (TARGET):</label>
+              <select id="target-lang" class="w-full bg-slate-900 border border-sadv-border rounded-lg px-3 py-2 text-xs font-mono text-sadv-yellow focus:outline-none focus:border-sadv-yellow transition">
+                <option value="en">English (EN)</option>
+                <option value="es">Español (ES)</option>
+                <option value="pt">Português (PT)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Control Action Buttons -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <button id="btn-start" class="col-span-2 sm:col-span-1 px-3 py-2 rounded-lg bg-sadv-cyan/10 hover:bg-sadv-cyan hover:text-black border border-sadv-cyan text-sadv-cyan font-mono text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-[0_0_10px_rgba(0,255,204,0.1)]">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M4 4l12 6-12 6V4z"/></svg>
+              INICIAR
+            </button>
+            
+            <button id="btn-stop" class="col-span-2 sm:col-span-1 px-3 py-2 rounded-lg bg-rose-950/30 hover:bg-rose-600 hover:text-white border border-rose-500/50 text-rose-400 font-mono text-xs font-bold transition flex items-center justify-center gap-1.5">
+              <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path d="M5 5h10v10H5z"/></svg>
+              DETENER
+            </button>
+
+            <button id="btn-clear" class="px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-sadv-border text-slate-300 font-mono text-xs font-semibold transition">
+              LIMPIAR
+            </button>
+
+            <button id="btn-autoscroll" class="px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 border border-sadv-border text-sadv-yellow font-mono text-xs font-semibold transition">
+              SCROLL: ON
+            </button>
+          </div>
+
+          <!-- Live Status Bar -->
+          <div class="flex items-center justify-between text-xs font-mono pt-2 border-t border-slate-900">
+            <span class="text-slate-400">ESTADO DEL PROCESADOR:</span>
+            <div id="status" class="px-2.5 py-1 rounded bg-slate-900 border border-sadv-border text-slate-300 font-bold">
+              STANDBY / EN ESPERA
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD: INSTAGRAM REEL EMBED (@sadv41ai - Seleção Brasil) -->
+      <div class="bg-sadv-card border border-sadv-yellow/30 rounded-xl overflow-hidden flex flex-col shadow-xl glow-border-yellow">
+        
+        <!-- Reel Header Badge -->
+        <div class="px-4 py-3 bg-slate-900 border-b border-slate-800 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-1 rounded text-xs font-black tracking-wider bg-gradient-to-r from-sadv-green via-sadv-yellow to-sadv-blue text-white shadow">
+              SELEÇÃO BRASIL 🇧🇷
+            </span>
+            <span class="font-mono text-xs text-sadv-cyan font-bold">@sadv41ai</span>
+          </div>
+          <span class="text-xs font-mono text-slate-400">REEL EMBED</span>
+        </div>
+
+        <!-- Instagram Reel Media Wrapper -->
+        <div class="p-4 flex items-center justify-center bg-slate-950/80 min-h-[420px]">
+          <div class="w-full max-w-[360px] flex justify-center">
+            <blockquote class="instagram-media" 
+                        data-instgrm-permalink="https://www.instagram.com/reel/DfkzZrKSDYQ/?vrfl=MWwycjd4d2gxcml5MQ==" 
+                        data-instgrm-version="14">
+            </blockquote>
+          </div>
+        </div>
+
+        <!-- Footer Caption -->
+        <div class="px-4 py-2.5 bg-slate-900/90 border-t border-slate-800 font-mono text-xs text-slate-400 flex items-center justify-between">
+          <span>INSTAGRAM MEDIA SYNC</span>
+          <a href="https://www.instagram.com/reel/DfkzZrKSDYQ/" target="_blank" rel="noopener noreferrer" class="text-sadv-yellow hover:underline flex items-center gap-1">
+            VER EN INSTAGRAM &rarr;
+          </a>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- RIGHT COLUMN: TELEPROMPTER & SYSTEM TELEMETRY (7 Cols) -->
+    <section class="lg:col-span-7 flex flex-col gap-6">
+
+      <!-- CARD: TELEPROMPTER & LIVE SUBTITLES SCREEN -->
+      <div class="flex-1 bg-sadv-card border border-sadv-border rounded-xl overflow-hidden flex flex-col shadow-2xl min-h-[460px]">
+        
+        <!-- Prompter Header -->
+        <div class="px-4 py-3 bg-sadv-header border-b border-sadv-border flex items-center justify-between font-mono text-xs">
+          <div class="flex items-center gap-2 text-sadv-yellow">
+            <svg class="w-4 h-4 animate-spin" fill="none" stroke="currentColor" viewBox="0 0 24 24" style="animation-duration: 8s;">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+            <span class="font-bold tracking-wider">TELEPROMPTER & SUBTÍTULOS EN VIVO</span>
+          </div>
+          
+          <div class="flex items-center gap-2">
+            <button id="btn-font-down" class="w-6 h-6 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold flex items-center justify-center">
+              -
+            </button>
+            <span id="font-size-label" class="text-slate-400">1.5rem</span>
+            <button id="btn-font-up" class="w-6 h-6 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold flex items-center justify-center">
+              +
+            </button>
+          </div>
+        </div>
+
+        <!-- Prompter Screen Container -->
+        <div id="prompter-box" class="prompter-box flex-1 p-6 overflow-y-auto relative min-h-[360px] flex flex-col justify-between">
+          
+          <!-- Background Grid Matrix Effect -->
+          <div class="absolute inset-0 bg-[linear-gradient(to_right,#1e293b15_1px,transparent_1px),linear-gradient(to_bottom,#1e293b15_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none"></div>
+
+          <!-- Text Display Content Area -->
+          <div id="prompter-content" class="prompter-text relative z-10 text-slate-100 transition-all duration-200 leading-relaxed space-y-4">
+            <div class="p-4 rounded-lg bg-slate-900/60 border border-slate-800/80 text-slate-400 text-sm font-mono flex items-center gap-3">
+              <span class="w-2.5 h-2.5 rounded-full bg-sadv-cyan animate-pulse"></span>
+              SADV41 Teleprompter iniciado. Haga clic en <strong class="text-sadv-cyan">"INICIAR"</strong> y hable por el micrófono o active la pista multimedia para renderizar transcripciones y traducciones en tiempo real.
+            </div>
+          </div>
+
+          <!-- Prompter Indicator Footer Overlay -->
+          <div class="sticky bottom-0 pt-4 mt-4 border-t border-slate-800/60 flex items-center justify-between text-xs font-mono text-slate-500 bg-black/40 backdrop-blur">
+            <span class="flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-sadv-yellow"></span>
+              TRADUCCIÓN EN TIEMPO REAL (MYMEMORY RELAY)
+            </span>
+            <span id="prompter-count">0 REGLONES GENERADOS</span>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- CARD: SADV41 DIAGNOSTICS & TELEMETRY CONSOLE -->
+      <div class="bg-sadv-card border border-sadv-border rounded-xl overflow-hidden flex flex-col shadow-xl">
+        
+        <!-- Console Header -->
+        <div class="px-4 py-2.5 bg-slate-900 border-b border-sadv-border flex items-center justify-between font-mono text-xs">
+          <div class="flex items-center gap-2 text-slate-300">
+            <span class="text-sadv-cyan font-bold">&gt;_</span>
+            <span class="font-bold">SADV41 TELEMETRÍA Y EVENTOS DE SISTEMA</span>
+          </div>
+          <button id="btn-clear-console" class="text-slate-500 hover:text-slate-300 transition">
+            CLEAR CONSOLE
+          </button>
+        </div>
+
+        <!-- Console Output Area -->
+        <div id="telemetry-log" class="p-3 bg-slate-950 font-mono text-[11px] leading-relaxed h-44 overflow-y-auto text-slate-400 space-y-1">
+          <div><span class="text-sadv-cyan">[00:00:00]</span> <span class="text-emerald-400">[SYS_INIT]</span> SADV41 Hub Host Engine inicializado correctamente.</div>
+          <div><span class="text-sadv-cyan">[00:00:01]</span> <span class="text-yellow-400">[MEDIA_RELAY]</span> Sintetizador de video Canvas listo.</div>
+          <div><span class="text-sadv-cyan">[00:00:01]</span> <span class="text-blue-400">[INSTAGRAM_EMBED]</span> Cargando SDK oficial @sadv41ai...</div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="bg-sadv-card border-t border-sadv-border px-4 py-3 mt-auto">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 font-mono text-xs text-slate-400">
+      <div>
+        SADV41 Engine Architecture &bull; <span class="text-sadv-cyan">@sadv41ai</span> 2026
+      </div>
+      <div class="flex items-center gap-4">
+        <span class="flex items-center gap-1">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span> WEB SPEECH API: ONLINE
+        </span>
+        <span class="flex items-center gap-1">
+          <span class="w-2 h-2 rounded-full bg-sadv-yellow"></span> TRANSLATION RELAY: ONLINE
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= INSTAGRAM EMBED SCRIPT ================= -->
+  <script async src="https://www.instagram.com/embed.js"></script>
+
+  <!-- ================= APPLICATION ENGINE SCRIPT ================= -->
+  <script>
+    (function () {
+      // DOM Elements
+      const btnStart = document.getElementById('btn-start');
+      const btnStop = document.getElementById('btn-stop');
+      const btnClear = document.getElementById('btn-clear');
+      const btnAutoscroll = document.getElementById('btn-autoscroll');
+      const btnToggleMic = document.getElementById('btn-toggle-mic');
+      const btnClearConsole = document.getElementById('btn-clear-console');
+      const btnFontUp = document.getElementById('btn-font-up');
+      const btnFontDown = document.getElementById('btn-font-down');
+      
+      const video = document.getElementById('video-source');
+      const canvas = document.getElementById('stream-canvas');
+      const prompterContent = document.getElementById('prompter-content');
+      const prompterBox = document.getElementById('prompter-box');
+      const statusBadge = document.getElementById('status');
+      const selectLang = document.getElementById('select-lang');
+      const targetLang = document.getElementById('target-lang');
+      const telemetryLog = document.getElementById('telemetry-log');
+      const liveClock = document.getElementById('live-clock');
+      const prompterCount = document.getElementById('prompter-count');
+      const fontSizeLabel = document.getElementById('font-size-label');
+      const audioInputLabel = document.getElementById('audio-input-label');
+
+      // State Variables
+      let recognition = null;
+      let isRunning = false;
+      let autoScroll = true;
+      let lineCounter = 0;
+      let fontSizeRem = 1.5;
+      let micStream = null;
+      let isMicActive = false;
+
+      // ----------------------------------------------------
+      // 1. TELEMETRY LOGGING SYSTEM
+      // ----------------------------------------------------
+      function logTelemetry(type, message, level = 'info') {
+        const now = new Date();
+        const timeStr = now.toTimeString().split(' ')[0];
+        
+        let colorClass = 'text-slate-400';
+        if (level === 'success') colorClass = 'text-emerald-400';
+        if (level === 'warn') colorClass = 'text-sadv-yellow';
+        if (level === 'error') colorClass = 'text-rose-500';
+        if (level === 'cyan') colorClass = 'text-sadv-cyan';
+
+        const logEntry = document.createElement('div');
+        logEntry.innerHTML = `<span class="text-sadv-cyan">[${timeStr}]</span> <span class="${colorClass}">[${type}]</span> ${message}`;
+        telemetryLog.appendChild(logEntry);
+        telemetryLog.scrollTop = telemetryLog.scrollHeight;
+      }
+
+      btnClearConsole.addEventListener('click', () => {
+        telemetryLog.innerHTML = '';
+        logTelemetry('CONSOLE', 'Consola de telemetría purgada.');
+      });
+
+      // ----------------------------------------------------
+      // 2. REAL-TIME CLOCK
+      // ----------------------------------------------------
+      function updateClock() {
+        const now = new Date();
+        liveClock.textContent = now.toUTCString().split(' ')[4] + ' UTC';
+      }
+      setInterval(updateClock, 1000);
+      updateClock();
+
+      // ----------------------------------------------------
+      // 3. CANVAS SYNTHESIZER FOR STREAM FALLBACK
+      // ----------------------------------------------------
+      const ctx = canvas.getContext('2d');
+      let animFrameId = null;
+      
+      function resizeCanvas() {
+        canvas.width = canvas.parentElement.clientWidth || 400;
+        canvas.height = canvas.parentElement.clientHeight || 225;
+      }
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      function drawStreamSynth() {
+        if (video.style.display !== 'none' && !video.paused) {
+          // If real video is playing, sync canvas with video
+          ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+        } else {
+          // Dynamic Synth Visualizer Pattern
+          ctx.fillStyle = '#020617';
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          // Grid lines
+          ctx.strokeStyle = '#1e293b';
+          ctx.lineWidth = 1;
+          const time = Date.now() * 0.002;
+          
+          for (let x = 0; x < canvas.width; x += 30) {
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, canvas.height);
+            ctx.stroke();
+          }
+          
+          for (let y = 0; y < canvas.height; y += 30) {
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(canvas.width, y);
+            ctx.stroke();
+          }
+
+          // Audio Waveform Visualizer simulation
+          ctx.beginPath();
+          ctx.lineWidth = 2;
+          ctx.strokeStyle = isRunning ? '#00ffcc' : '#fed100';
+          
+          const cy = canvas.height / 2;
+          for (let x = 0; x < canvas.width; x += 5) {
+            const freq = isRunning ? 0.05 : 0.02;
+            const amp = isRunning ? 25 : 8;
+            const y = cy + Math.sin(x * freq + time) * Math.cos(x * 0.01 + time) * amp;
+            if (x === 0) ctx.moveTo(x, y);
+            else ctx.lineTo(x, y);
+          }
+          ctx.stroke();
+
+          // HUD overlay text on canvas
+          ctx.fillStyle = '#00ffcc';
+          ctx.font = '12px "Fira Code", monospace';
+          ctx.fillText(`SADV41 // ENGINE FEED: ${isRunning ? 'TRANSMITTING' : 'IDLE'}`, 15, 25);
+          ctx.fillStyle = '#94a3b8';
+          ctx.fillText(`SPEECH RECOGNITION: ${selectLang.value}`, 15, 45);
+        }
+
+        animFrameId = requestAnimationFrame(drawStreamSynth);
+      }
+      drawStreamSynth();
+
+      // ----------------------------------------------------
+      // 4. SPEECH RECONITION & TRANSLATION ENGINE
+      // ----------------------------------------------------
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if (!SpeechRecognition) {
+        statusBadge.textContent = "ERROR: NO SPEECH API";
+        statusBadge.className = "px-2.5 py-1 rounded bg-rose-950 text-rose-400 font-bold border border-rose-500";
+        logTelemetry('SPEECH_ENGINE', 'Web Speech API no disponible en este navegador.', 'error');
+        return;
+      }
+
+      function initRecognition() {
+        recognition = new SpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.lang = selectLang.value;
+
+        recognition.onstart = () => {
+          isRunning = true;
+          statusBadge.textContent = "ESCUCHANDO & PROCESANDO...";
+          statusBadge.className = "px-2.5 py-1 rounded bg-emerald-950 text-sadv-cyan font-bold border border-sadv-cyan animate-pulse";
+          logTelemetry('SPEECH_ENGINE', `Reconocimiento iniciado en idioma [${selectLang.value}]`, 'success');
+        };
+
+        recognition.onerror = (event) => {
+          logTelemetry('SPEECH_ERROR', `Error detectado: ${event.error}`, 'error');
+          statusBadge.textContent = `ERROR: ${event.error.toUpperCase()}`;
+          statusBadge.className = "px-2.5 py-1 rounded bg-rose-950 text-rose-400 font-bold border border-rose-500";
+        };
+
+        recognition.onend = () => {
+          if (isRunning) {
+            logTelemetry('SPEECH_ENGINE', 'Reinicio automático de SpeechRecognition...', 'warn');
+            try { recognition.start(); } catch(e) {}
+          } else {
+            statusBadge.textContent = "STANDBY / DETENIDO";
+            statusBadge.className = "px-2.5 py-1 rounded bg-slate-900 text-slate-400 font-bold border border-sadv-border";
+            logTelemetry('SPEECH_ENGINE', 'Reconocimiento de voz detenido.', 'cyan');
+          }
+        };
+
+        recognition.onresult = async (event) => {
+          let interimTranscript = '';
+          let finalTranscript = '';
+
+          for (let i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) {
+              finalTranscript += event.results[i][0].transcript;
+            } else {
+              interimTranscript += event.results[i][0].transcript;
+            }
+          }
+
+          if (finalTranscript) {
+            lineCounter++;
+            prompterCount.textContent = `${lineCounter} REGLONES GENERADOS`;
+
+            const sourceLangCode = selectLang.value.split('-')[0];
+            const targetLangCode = targetLang.value;
+            
+            logTelemetry('SPEECH_INPUT', `Final: "${finalTranscript}"`, 'cyan');
+            
+            // Async Translation
+            const translatedText = await translateText(finalTranscript, sourceLangCode, targetLangCode);
+            
+            // Append line block
+            appendPrompterBlock(finalTranscript, translatedText);
+          }
+
+          if (interimTranscript) {
+            updateInterimDisplay(interimTranscript);
+          }
+        };
+      }
+
+      // Append text line into Prompter
+      function appendPrompterBlock(original, translated) {
+        // Remove existing interim line
+        const existingInterim = document.getElementById('interim-line');
+        if (existingInterim) existingInterim.remove();
+
+        const block = document.createElement('div');
+        block.className = "p-3 rounded-lg bg-slate-900/80 border border-slate-800 transition-all hover:border-sadv-cyan/50";
+        block.innerHTML = `
+          <div class="text-slate-200 font-medium">${original}</div>
+          <div class="translated font-mono text-sadv-yellow text-sm">➜ ${translated}</div>
+        `;
+
+        prompterContent.appendChild(block);
+
+        if (autoScroll) {
+          prompterBox.scrollTop = prompterBox.scrollHeight;
+        }
+      }
+
+      function updateInterimDisplay(interimText) {
+        let interimElem = document.getElementById('interim-line');
+        if (!interimElem) {
+          interimElem = document.createElement('div');
+          interimElem.id = 'interim-line';
+          interimElem.className = 'p-3 rounded-lg bg-slate-950/60 border border-sadv-cyan/30';
+          prompterContent.appendChild(interimElem);
+        }
+        interimElem.innerHTML = `<span class="interim font-mono text-sadv-cyan">${interimText}...</span>`;
+        
+        if (autoScroll) {
+          prompterBox.scrollTop = prompterBox.scrollHeight;
+        }
+      }
+
+      // MyMemory Public Relay API Integration
+      async function translateText(text, sourceLang, targetLangCode) {
+        logTelemetry('TRANSLATION_REQ', `Enviando paquete a MyMemory API [${sourceLang} -> ${targetLangCode}]...`);
+        try {
+          const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${sourceLang}|${targetLangCode}`);
+          const data = await res.json();
+          
+          if (data.responseData && data.responseData.translatedText) {
+            logTelemetry('TRANSLATION_RES', `Respuesta recibida exitosamente.`, 'success');
+            return data.responseData.translatedText;
+          } else {
+            return text;
+          }
+        } catch (err) {
+          logTelemetry('TRANSLATION_FAIL', `Fallo de conexión en relay: ${err.message}`, 'error');
+          return text;
+        }
+      }
+
+      // ----------------------------------------------------
+      // 5. CONTROLS & EVENT LISTENERS
+      // ----------------------------------------------------
+      btnStart.addEventListener('click', () => {
+        if (!recognition) initRecognition();
+        recognition.lang = selectLang.value;
+        isRunning = true;
+        try { recognition.start(); } catch(e) {}
+        logTelemetry('USER_ACTION', 'Botón INICIAR presionado.');
+      });
+
+      btnStop.addEventListener('click', () => {
+        isRunning = false;
+        if (recognition) recognition.stop();
+        logTelemetry('USER_ACTION', 'Botón DETENER presionado.');
+      });
+
+      btnClear.addEventListener('click', () => {
+        prompterContent.innerHTML = '';
+        lineCounter = 0;
+        prompterCount.textContent = `0 REGLONES GENERADOS`;
+        logTelemetry('USER_ACTION', 'Pantalla del Teleprompter limpiada.');
+      });
+
+      btnAutoscroll.addEventListener('click', () => {
+        autoScroll = !autoScroll;
+        btnAutoscroll.textContent = `SCROLL: ${autoScroll ? 'ON' : 'OFF'}`;
+        btnAutoscroll.className = autoScroll 
+          ? 'px-3 py-2 rounded-lg bg-slate-900 border border-sadv-border text-sadv-yellow font-mono text-xs font-semibold transition'
+          : 'px-3 py-2 rounded-lg bg-slate-900 border border-sadv-border text-slate-500 font-mono text-xs font-semibold transition';
+        logTelemetry('USER_ACTION', `Auto-Scroll alternado a: ${autoScroll}`);
+      });
+
+      // Microphone Stream Toggle
+      btnToggleMic.addEventListener('click', async () => {
+        if (!isMicActive) {
+          try {
+            micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            isMicActive = true;
+            btnToggleMic.textContent = "MIC: ONLINE";
+            btnToggleMic.className = "px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-500 transition";
+            audioInputLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span> MIC HARDWARE ACTIVE`;
+            logTelemetry('HARDWARE_MIC', 'Micrófono local activado y acoplado al canal SADV41.', 'success');
+          } catch (err) {
+            logTelemetry('HARDWARE_MIC', `Permiso de micrófono denegado/error: ${err.message}`, 'error');
+          }
+        } else {
+          if (micStream) {
+            micStream.getTracks().forEach(track => track.stop());
+          }
+          isMicActive = false;
+          btnToggleMic.textContent = "MIC INPUT";
+          btnToggleMic.className = "px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-sadv-cyan border border-sadv-cyan/30 transition";
+          audioInputLabel.innerHTML = `<span class="w-2 h-2 rounded-full bg-sadv-yellow animate-pulse"></span> CANVAS SYNTH ACTIVE`;
+          logTelemetry('HARDWARE_MIC', 'Micrófono desactivado.', 'warn');
+        }
+      });
+
+      // Teleprompter Font Resizing
+      btnFontUp.addEventListener('click', () => {
+        if (fontSizeRem < 2.5) {
+          fontSizeRem += 0.2;
+          prompterContent.style.fontSize = `${fontSizeRem}rem`;
+          fontSizeLabel.textContent = `${fontSizeRem.toFixed(1)}rem`;
+        }
+      });
+
+      btnFontDown.addEventListener('click', () => {
+        if (fontSizeRem > 0.9) {
+          fontSizeRem -= 0.2;
+          prompterContent.style.fontSize = `${fontSizeRem}rem`;
+          fontSizeLabel.textContent = `${fontSizeRem.toFixed(1)}rem`;
+        }
+      });
+
+      // Handle Language Selector Updates
+      selectLang.addEventListener('change', () => {
+        if (recognition) {
+          recognition.lang = selectLang.value;
+          logTelemetry('CONFIG', `Idioma de reconocimiento modificado a: ${selectLang.value}`);
+        }
+      });
+
+      targetLang.addEventListener('change', () => {
+        logTelemetry('CONFIG', `Idioma objetivo de traducción modificado a: ${targetLang.value}`);
+      });
+
+      // Trigger Instagram Embed processor when DOM ready
+      window.addEventListener('load', () => {
+        logTelemetry('SYS_LOAD', 'Entorno SADV41 compilado y renderizado.', 'success');
+        if (window.instgrm && window.instgrm.Embeds) {
+          window.instgrm.Embeds.process();
+          logTelemetry('INSTAGRAM_EMBED', 'Procesador oficial de Instagram ejecutado.', 'success');
+        }
+      });
+
+    })();
+  </script>
+<!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+</body>
+</html>

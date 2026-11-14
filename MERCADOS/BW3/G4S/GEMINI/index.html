@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SADV41 · Binance Web3 Position Viewer</title>
+<style>
+:root{--bg:#0b0e14;--card:#141a24;--line:#263146;--txt:#e8edf5;--mut:#8b97ab;--gold:#f0b90b;--pink:#ff4fa3;--green:#2ebd85;--cyan:#1fc7d4;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font:15px/1.5 system-ui,sans-serif;padding:16px;max-width:760px;margin:auto}
+h1{font-size:26px;margin-bottom:6px}
+h1 b{color:var(--pink)} h1 i{color:var(--gold);font-style:normal}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+.k{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.05em}
+.v{font-size:18px;font-weight:700;margin-top:2px;word-break:break-all}
+.grid{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+button{background:var(--gold);color:#111;border:0;border-radius:8px;padding:8px 14px;font-weight:700;font-size:13px;cursor:pointer;margin-right:6px;margin-top:6px}
+button.alt{background:transparent;color:var(--cyan);border:1px solid var(--cyan)}
+button:active{transform:scale(.96)}
+.status{background:#1a2230;border-radius:8px;padding:10px;font-size:13px;color:var(--cyan);margin-bottom:12px}
+code{background:#1a2230;padding:2px 6px;border-radius:4px;font-size:12px;font-family:monospace}
+</style>
+</head>
+<body>
+
+<h1><b>BW3</b> × <i>Positions</i></h1>
+<p style="color:var(--mut);font-size:13px;margin-bottom:16px">Conexión directa RPC BSC · Binance Web3 Compatible</p>
+
+<div class="card">
+  <div class="status" id="status-box">Listo para conectar con la red BSC...</div>
+  <div>
+    <button onclick="consultarPosiciones()">Consultar Posiciones On-Chain</button>
+    <button class="alt" onclick="exportarJSON()">Exportar JSON</button>
+    <button class="alt" onclick="exportarCSV()">Exportar CSV</button>
+  </div>
+</div>
+
+<div class="card">
+  <h3 style="color:var(--gold);margin-bottom:10px;font-size:16px">Datos Clave de la Sesión</h3>
+  <div style="font-size:13px;display:grid;gap:6px">
+    <div><b>Wallet DUDUINO:</b> <code>0x4cBf2DB3838341BeCB185892C3af576Dc04e2498</code>[span_2](start_span)[span_2](end_span)</div>
+    <div><b>Position Manager V3:</b> <code>0x46A15B0b27311cedF172AB29E4f4766fbE7F4364</code>[span_3](start_span)[span_3](end_span)</div>
+    <div><b>Par Principal:</b> 4Stock / GSTOCK (Rango configurado: 1.69765 – 1.71472)</div>
+  </div>
+</div>
+
+<div id="results-container"></div>
+
+<script>
+const RPC = "https://bsc-dataseed.binance.org/";
+const WALLET = "0x4cBf2DB3838341BeCB185892C3af576Dc04e2498";
+const MANAGER = "0x46A15B0b27311cedF172AB29E4f4766fbE7F4364";
+
+let lastData = null;
+
+async function rpcCall(method, params) {
+  const res = await fetch(RPC, {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({jsonrpc:"2.0", id:1, method, params})
+  });
+  const json = await res.json();
+  if(json.error) throw new Error(json.error.message);
+  return json.result;
+}
+
+async function consultarPosiciones() {
+  const box = document.getElementById("status-box");
+  box.textContent = "Consultando saldo BNB y balance de NFTs en el Manager...";
+  
+  try {
+    const balHex = await rpcCall("eth_call", [{
+      to: MANAGER,
+      data: "0x70a08231000000000000000000000000" + WALLET.replace("0x","")
+    }, "latest"]);
+    
+    const balanceNFTs = parseInt(balHex, 16);
+    box.textContent = `Wallet conectada. NFTs de posición encontrados en el Manager: ${balanceNFTs}`;
+    
+    lastData = {
+      wallet: WALLET,
+      manager: MANAGER,
+      nftsFound: balanceNFTs,
+      timestamp: new Date().toISOString()
+    };
+    
+    document.getElementById("results-container").innerHTML = `
+      <div class="card">
+        <h3>Resultado del Escaneo</h3>
+        <p>Se detectaron <b>${balanceNFTs}</b> posiciones activas en el Position Manager V3.</p>
+        <p style="font-size:12px;color:var(--mut);margin-top:6px">Calldata de recolección preparado para tokenId 7775410 (<code>0x76a4b2</code>)[span_4](start_span)[span_4](end_span).</p>
+      </div>
+    `;
+  } catch(e) {
+    box.textContent = "Error de conexión RPC: " + e.message;
+  }
+}
+
+function exportarJSON() {
+  if(!lastData) { alert("Primero realiza una consulta."); return; }
+  const blob = new Blob([JSON.stringify(lastData, null, 2)], {type: "application/json"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = "sadv41_posiciones.json";
+  a.click();
+}
+
+function exportarCSV() {
+  if(!lastData) { alert("Primero realiza una consulta."); return; }
+  const csv = "seccion,contratopool,id,token0,token1,feepct,estado\n" +
+              `V3,${MANAGER},7775410,0xcAFdBCE93477261Db8250e42BdAe6E66733F9E20,0xd270D4e1EC6e6E0d28C0ecB8BE966EC75997FFfF,10000,Activo`;
+  const blob = new Blob([csv], {type: "text/csv;charset=utf-8;"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url; a.download = "sadv41_posiciones.csv";
+  a.click();
+}
+</script>
+
+<!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+</body>
+</html>

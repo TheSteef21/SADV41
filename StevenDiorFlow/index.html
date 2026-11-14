@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADV41 | Boxdrop - Importaciones & Alibaba Action</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Ethers.js for Web3 Payments -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        navy: '#070a12',
+                        card: '#0d1322',
+                        alibabaOrange: '#ff6a00'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #070a12; color: #f1f5f9; }
+        .glow-orange { box-shadow: 0 0 25px rgba(255, 106, 0, 0.25); }
+        .gradient-text { background: linear-gradient(135deg, #ff6a00 0%, #ffa200 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 sm:p-6 selection:bg-orange-500 selection:text-black">
+<!-- SALMO46-INJECT -->
+<a href="https://www.bible.com/es/bible/149/PSA.46.1-11.RVR1960" target="_blank" rel="noopener"
+ style="position:fixed;top:8px;left:8px;z-index:2147483647;background:#0a0a0acc;color:#00e5ff;
+ border:1px solid #00e5ff;border-radius:20px;padding:4px 10px;font:600 11px/1.3 system-ui,sans-serif;
+ text-decoration:none;letter-spacing:.04em">📖 Salmos 46 · Dios es nuestro amparo</a>
+<!-- /SALMO46-INJECT -->
+
+    <!-- Flyer Container Minimalista -->
+    <div class="max-w-xl w-full bg-card p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl space-y-5 relative overflow-hidden glow-orange">
+        
+        <!-- Decorative Glow Background -->
+        <div class="absolute -top-24 -right-24 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <!-- Header / Marca -->
+        <div class="text-center space-y-2 border-b border-slate-800 pb-4">
+            <div class="inline-block bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs px-3.5 py-1 rounded-full font-bold tracking-widest uppercase">
+                📦 BOXDROP • SADV41 PROTOCOL
+            </div>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+                ¡TE TRAEMOS TU <span class="gradient-text">PRODUCTO!</span>
+            </h1>
+            <p class="text-xs sm:text-sm text-slate-300">
+                Ese que viste en redes sociales o en Alibaba. De China & USA directo a Panamá 🇵🇦✨
+            </p>
+        </div>
+
+        <!-- Navegación y Accesos del Ecosistema SADV41 -->
+        <div class="space-y-2">
+            <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block text-center">Navegación del Ecosistema SADV41</span>
+            <div class="grid grid-cols-2 gap-2 text-xs font-semibold">
+                <a href="https://thesteef21.github.io/SADV41/StevenDiorFlow/" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/80 p-2.5 rounded-xl text-center transition flex items-center justify-center gap-1.5">
+                    🎵 StevenDiorFlow
+                </a>
+                <a href="https://thesteef21.github.io/SADV41/Agent/" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/80 p-2.5 rounded-xl text-center transition flex items-center justify-center gap-1.5">
+                    🤖 Agent Hub
+                </a>
+                <a href="https://thesteef21.github.io/SADV41/Agent/Boxdrop/" target="_blank" class="bg-orange-500/10 hover:bg-orange-500/20 text-orange-400 border border-orange-500/30 p-2.5 rounded-xl text-center transition flex items-center justify-center gap-1.5">
+                    📦 Boxdrop
+                </a>
+                <a href="https://thesteef21.github.io/SADV41/Agent/UnlockPhone/" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700/80 p-2.5 rounded-xl text-center transition flex items-center justify-center gap-1.5">
+                    🔓 UnlockPhone
+                </a>
+            </div>
+            <!-- Enlace adicional Google Sites / Pay -->
+            <div class="pt-1">
+                <a href="https://sites.google.com/u/0/d/1t2dbokSuMNP9nkftLeYvSt5S6r_m2GUZ/preview" target="_blank" class="block w-full bg-slate-900 hover:bg-slate-800 text-amber-400 border border-slate-800 p-2 rounded-xl text-center text-[11px] transition">
+                    🌐 Ver Vista Previa Google Sites (Pay & Acciones)
+                </a>
+            </div>
+        </div>
+
+        <!-- Dirección Única Multired Web3 -->
+        <div class="bg-slate-950 p-3.5 rounded-2xl border border-slate-800 space-y-1.5 text-center">
+            <div class="flex justify-between items-center text-[11px]">
+                <span class="text-orange-400 font-bold uppercase tracking-wider">Billetera Autorizada</span>
+                <button onclick="copyAddress()" class="text-slate-400 hover:text-white transition flex items-center gap-1 text-[10px]">
+                    <i class="fa-regular fa-copy"></i> Copiar
+                </button>
+            </div>
+            <div class="bg-slate-900 p-2.5 rounded-xl border border-slate-800 font-mono text-xs text-emerald-400 break-all select-all">
+                0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB
+            </div>
+        </div>
+
+        <!-- Pago Directo Cripto / Web3 -->
+        <div class="bg-slate-900/50 p-3.5 rounded-2xl border border-slate-800 space-y-2.5">
+            <div class="flex justify-between items-center">
+                <span class="text-xs font-bold text-slate-300">💳 Pago Rápido Web3</span>
+                <button id="btnConnect" onclick="connectWallet()" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-3 py-1.5 rounded-lg text-[11px] transition">
+                    ⚡ <span id="walletBtnText">Conectar Wallet</span>
+                </button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <input id="inputPayAmount" type="number" step="0.001" placeholder="Monto BNB" class="bg-slate-950 border border-slate-700 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-orange-500 font-mono">
+                <button onclick="payDirectCrypto()" class="sm:col-span-2 bg-gradient-to-r from-orange-500 to-amber-500 text-slate-950 font-bold py-2 px-4 rounded-xl text-xs transition shadow-lg hover:opacity-95">
+                    🚀 Enviar Pago Cripto Directo
+                </button>
+            </div>
+        </div>
+
+        <!-- Botón WhatsApp y Footer -->
+        <div class="space-y-2.5 pt-1 text-center">
+            <a href="https://wa.me/50769362166?text=Hola%20Boxdrop,%20vi%20un%20producto%20en%20redes%20sociales/Alibaba%20y%20quiero%20cotizarlo." target="_blank" rel="noopener noreferrer" class="block w-full bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold py-3 rounded-2xl text-xs transition shadow-lg flex items-center justify-center gap-2">
+                <i class="fa-brands fa-whatsapp text-base"></i> Cotizar en WhatsApp (+507 69362166)
+            </a>
+            <p class="text-[10px] text-slate-500">SADV41 Protocolo Descentralizado • Alibaba Action Hub</p>
+        </div>
+
+    </div>
+
+    <!-- Script Web3 -->
+    <script>
+        const TARGET_WALLET = "0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB";
+
+        function copyAddress() {
+            navigator.clipboard.writeText(TARGET_WALLET);
+            alert("¡Dirección copiada al portapapeles!");
+        }
+
+        async function connectWallet() {
+            if (window.ethereum) {
+                try {
+                    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+                    const acc = accounts[0];
+                    document.getElementById('walletBtnText').innerText = `${acc.slice(0,6)}...${acc.slice(-4)}`;
+                } catch (e) {
+                    console.error(e);
+                }
+            } else {
+                alert("Por favor usa una Web3 Wallet compatible (MetaMask / Binance Web3 Wallet).");
+            }
+        }
+
+        async function payDirectCrypto() {
+            const amount = document.getElementById('inputPayAmount').value;
+            if (!amount || parseFloat(amount) <= 0) {
+                alert("Por favor ingresa un monto válido.");
+                return;
+            }
+            if (!window.ethereum) {
+                alert("No se detectó Web3 Wallet.");
+                return;
+            }
+            try {
+                const provider = new ethers.providers.Web3Provider(window.ethereum);
+                const signer = provider.getSigner();
+                const tx = await signer.sendTransaction({
+                    to: TARGET_WALLET,
+                    value: ethers.utils.parseEther(amount)
+                });
+                alert(`¡Transacción enviada! Hash: ${tx.hash}`);
+                await tx.wait();
+                alert("¡Pago confirmado exitosamente!");
+            } catch (e) {
+                alert(`Error: ${e.message}`);
+            }
+        }
+    </script>
+<script src="https://thesteef21.github.io/SADV41/sadv41-drag.js" defer></script><!-- sadv41-drag -->
+<script defer src="https://thesteef21.github.io/SADV41/ticker/sadv-ticker.js" data-sadv-ticker></script>
+<div id="sadv41-noviembre-widget" style="position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:999999;background:linear-gradient(135deg,#00209F 0%,#00209F 30%,#FFFFFF 30%,#FFFFFF 70%,#D21034 70%);color:#111;padding:10px 18px;border-radius:999px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;font-weight:900;font-size:14px;letter-spacing:.3px;box-shadow:0 8px 30px rgba(0,0,0,.35),0 0 0 2px rgba(255,255,255,.9) inset;display:flex;align-items:center;gap:8px;">
+  <span>Feliz Mes de Noviembre</span><span>🇵🇦👑🇺🇸</span>
+  <button onclick="this.parentElement.remove()" style="margin-left:8px;background:rgba(0,0,0,.12);border:0;border-radius:50%;width:22px;height:22px;cursor:pointer;font-weight:900;line-height:1;">×</button>
+</div>
+
+<script src="/SADV41/BIBLIA/biblia.js" defer></script>
+  <script src="https://thesteef21.github.io/SADV41/lib/seismic-widget.js" defer></script>
+<!-- sadv41-news -->
+<div id="sadv41-news" style="position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#0a0e1a;color:#f4f6ff;border-top:2px solid #f5c542;font:600 13px/1.35 system-ui,sans-serif;padding:8px 40px 8px 12px;text-align:center"><span style="color:#f5c542">ÚLTIMA NOTICIA</span> · <a href="https://thesteef21.github.io/SADV41/NEWS/PANAMA/USA/#paraguay" target="_blank" rel="noopener" style="color:#3ee0e8;text-decoration:none">Paraguay interviene Ueno Bank y renuncia el presidente del Banco Central 🏦</a><button onclick="this.parentNode.style.display='none'" aria-label="Cerrar" style="position:absolute;right:8px;top:4px;background:none;border:0;color:#9aa3c7;font-size:18px;cursor:pointer">×</button></div>
+<!-- /sadv41-news -->
+<!-- sadv41-home -->
+<a id="sadv41-home" href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" title="SADV41 · Página principal" aria-label="Ir a la página principal de SADV41" style="position:fixed;left:14px;bottom:64px;z-index:2147482999;width:46px;height:46px;border-radius:50%;background:#071642;border:3px solid #d9a93a;box-shadow:0 4px 14px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;text-decoration:none"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><g fill="#d9a93a"><rect x="10.8" y="2" width="2.4" height="20" rx=".6"/><rect x="8" y="4.6" width="8" height="1.8" rx=".5"/><rect x="6" y="9" width="12" height="2.4" rx=".6"/><rect x="8.6" y="16.6" width="6.8" height="1.8" rx=".5" transform="rotate(12 12 17.5)"/></g></svg></a>
+<!-- /sadv41-home -->
+<a href="./Agent/" class="p-4 border border-[#00e5ff]/50 bg-[#00e5ff]/10 hover:border-[#00e5ff] text-[#00e5ff] transition-all rounded-xl font-bold uppercase tracking-widest text-center">AGENTE 🤖</a>
+<!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+</body>
+</html>

@@ -1,0 +1,532 @@
+```html
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emprendedores V41 | El Cuarto Producto</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Configuration & Custom Styles -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        lapiz: {
+                            900: '#0a1128', // Very dark blue
+                            800: '#121f47', // Deep lapislazuli
+                            600: '#1d4ed8', // Bright blue
+                            400: '#60a5fa', // Light blue accent
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #030712; /* Tailwind gray-950 */
+            color: #f8fafc;
+        }
+        
+        /* Glassmorphism utility */
+        .glass-card {
+            background: rgba(18, 31, 71, 0.3);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(96, 165, 250, 0.15);
+        }
+        
+        .glass-card:hover {
+            border-color: rgba(96, 165, 250, 0.4);
+            box-shadow: 0 0 30px rgba(29, 78, 216, 0.2);
+        }
+
+        /* Subtle scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030712;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e3a8a;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #3b82f6;
+        }
+    </style>
+</head>
+<body class="relative overflow-x-hidden selection:bg-lapiz-600 selection:text-white">
+<!-- SALMO46-INJECT -->
+<a href="https://www.bible.com/es/bible/149/PSA.46.1-11.RVR1960" target="_blank" rel="noopener"
+ style="position:fixed;top:8px;left:8px;z-index:2147483647;background:#0a0a0acc;color:#00e5ff;
+ border:1px solid #00e5ff;border-radius:20px;padding:4px 10px;font:600 11px/1.3 system-ui,sans-serif;
+ text-decoration:none;letter-spacing:.04em">📖 Salmos 46 · Dios es nuestro amparo</a>
+<!-- /SALMO46-INJECT -->
+
+    <!-- Ambient Background Glows -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-lapiz-600/20 blur-[150px] rounded-full pointer-events-none -z-10"></div>
+    <div class="absolute bottom-0 right-0 w-[600px] h-[400px] bg-purple-900/10 blur-[120px] rounded-full pointer-events-none -z-10"></div>
+
+    <!-- Navigation -->
+    <nav class="absolute top-0 w-full z-50 py-6 px-6 lg:px-12 flex justify-between items-center opacity-0 animate-fade-in-up">
+        <div class="flex items-center gap-2">
+            <i class="ph-fill ph-hexagon text-lapiz-400 text-3xl"></i>
+            <span class="text-xl font-bold tracking-wider text-white">V41<span class="text-lapiz-400">.</span></span>
+        </div>
+        <ul class="hidden md:flex gap-8 text-sm font-medium text-gray-400">
+            <li><a href="#estrategias" class="hover:text-white transition-colors">Naming</a></li>
+            <li><a href="#portafolio" class="hover:text-white transition-colors">Portafolio</a></li>
+            <li><a href="#contacto" class="hover:text-white transition-colors">Contacto</a></li>
+        </ul>
+        <a href="#portafolio" class="hidden md:inline-block px-5 py-2 text-sm font-semibold rounded-full bg-white/10 hover:bg-white/20 border border-white/10 transition-all">
+            Ver Ecosistema
+        </a>
+    <a href="./Agent/" class="p-4 border border-[#00e5ff]/50 bg-[#00e5ff]/10 hover:border-[#00e5ff] text-[#00e5ff] transition-all rounded-xl font-bold uppercase tracking-widest text-center">AGENTE 🤖</a>
+</nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 px-6 lg:px-12 text-center">
+        <div class="max-w-4xl mx-auto z-10">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lapiz-800/50 border border-lapiz-400/30 text-lapiz-400 text-xs font-semibold uppercase tracking-widest mb-8 opacity-0 animate-fade-in-up" style="animation-delay: 0.1s;">
+                <i class="ph ph-cpu"></i> Constante SADV41
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-6 leading-tight opacity-0 animate-fade-in-up" style="animation-delay: 0.2s;">
+                Emprendedores V41: <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-lapiz-400 via-blue-400 to-cyan-300">El Cuarto Producto</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-3xl mx-auto opacity-0 animate-fade-in-up leading-relaxed" style="animation-delay: 0.3s;">
+                Orquestando un ecosistema donde <strong>3 motores de inteligencia artificial</strong> y <strong>3 niveles de servicio</strong> convergen en un vehículo comercial absoluto. No es solo una herramienta, es la agencia que procesa y sostiene toda tu operación digital.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 opacity-0 animate-fade-in-up" style="animation-delay: 0.4s;">
+                <a href="#estrategias" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-lapiz-600 hover:bg-blue-600 text-white font-semibold transition-all shadow-[0_0_20px_rgba(29,78,216,0.4)] hover:shadow-[0_0_30px_rgba(29,78,216,0.6)]">
+                    Explorar Nomenclaturas
+                </a>
+                <a href="#portafolio" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-card hover:bg-white/10 text-white font-semibold transition-all">
+                    Ver Portafolio de Servicios
+                </a>
+            </div>
+        </div>
+
+        <!-- Floating Abstract Element -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-gray-500 opacity-50">
+            <i class="ph ph-caret-down text-3xl"></i>
+        </div>
+    </section>
+
+    <!-- NAMING STRATEGIES SECTION -->
+    <section id="estrategias" class="py-24 px-6 lg:px-12 relative z-10 bg-lapiz-900/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Estrategias de Marca <span class="text-lapiz-400">Principal</span></h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">El nombre de la marca paraguas debe proyectar arquitectura técnica y escalabilidad. Opciones basadas en la constante matemática SADV41.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Column 1: Fórmula y Constante -->
+                <div class="glass-card p-8 rounded-2xl transition-transform duration-300 transform hover:-translate-y-2 group">
+                    <div class="w-14 h-14 rounded-xl bg-lapiz-800 flex items-center justify-center mb-6 group-hover:bg-lapiz-600 transition-colors">
+                        <i class="ph ph-math-operations text-3xl text-lapiz-400 group-hover:text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-6 border-b border-white/10 pb-4">Fórmula y Constante</h3>
+                    <ul class="space-y-6">
+                        <li>
+                            <h4 class="text-lg font-semibold text-white mb-1"><i class="ph-fill ph-caret-right text-lapiz-400 text-sm mr-1"></i> Vértice 41</h4>
+                            <p class="text-sm text-gray-400 leading-relaxed">Punto exacto donde tres líneas (IA/Productos) forman una nueva estructura 3D. Transmite precisión y liderazgo.</p>
+                        </li>
+                        <li>
+                            <h4 class="text-lg font-semibold text-white mb-1"><i class="ph-fill ph-caret-right text-lapiz-400 text-sm mr-1"></i> PentaCore Digital</h4>
+                            <p class="text-sm text-gray-400 leading-relaxed">Refleja el resultado (5). Sugiere que la empresa es el "núcleo" que procesa desde el diseño básico hasta contratos en Web3.</p>
+                        </li>
+                        <li>
+                            <h4 class="text-lg font-semibold text-white mb-1"><i class="ph-fill ph-caret-right text-lapiz-400 text-sm mr-1"></i> 4D Tech</h4>
+                            <p class="text-sm text-gray-400 leading-relaxed">Posiciona el "cuarto producto", integrando automatización avanzada e IA más allá del desarrollo web tradicional (3D).</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Column 2: Unidad Tecnológica -->
+                <div class="glass-card p-8 rounded-2xl transition-transform duration-300 transform hover:-translate-y-2 group relative overflow-hidden">
+                    <!-- Highlight background for recommended column -->
+                    <div class="absolute inset-0 bg-gradient-to-b from-lapiz-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    
+                    <div class="relative z-10">
+                        <div class="w-14 h-14 rounded-xl bg-lapiz-800 flex items-center justify-center mb-6 group-hover:bg-lapiz-600 transition-colors">
+                            <i class="ph ph-stack text-3xl text-lapiz-400 group-hover:text-white"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-6 border-b border-white/10 pb-4">Unidad Tecnológica</h3>
+                        <ul class="space-y-6">
+                            <li>
+                                <h4 class="text-lg font-semibold text-white mb-1"><i class="ph-fill ph-caret-right text-lapiz-400 text-sm mr-1"></i> TrinoStack</h4>
+                                <p class="text-sm text-gray-400 leading-relaxed">Fusiona la "Trinidad" con "Stack" (React, Node, Web3). Nombre altamente comercial para software B2B.</p>
+                            </li>
+                            <li>
+                                <h4 class="text-lg font-semibold text-white mb-1"><i class="ph-fill ph-caret-right text-lapiz-400 text-sm mr-1"></i> SADV41 Nexus</h4>
+                                <p class="text-sm text-gray-400 leading-relaxed">El puente definitivo que une interfaces gráficas, lógica de datos y la infraestructura blockchain.</p>
+                            </li>
+                            <li>
+                                <h4 class="text-lg font-semibold text-white mb-1"><i class="ph-fill ph-caret-right text-lapiz-400 text-sm mr-1"></i> Omni 41</h4>
+                                <p class="text-sm text-gray-400 leading-relaxed">Representa la capacidad de cubrir absolutamente todo el espectro digital, desde plantillas hasta telemetría.</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Column 3: Agencia de Autor -->
+                <div class="glass-card p-8 rounded-2xl transition-transform duration-300 transform hover:-translate-y-2 group">
+                    <div class="w-14 h-14 rounded-xl bg-lapiz-800 flex items-center justify-center mb-6 group-hover:bg-lapiz-600 transition-colors">
+                        <i class="ph ph-pen-nib text-3xl text-lapiz-400 group-hover:text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-6 border-b border-white/10 pb-4">Agencia de Autor</h3>
+                    <ul class="space-y-6">
+                        <li>
+                            <h4 class="text-lg font-semibold text-white mb-1"><i class="ph-fill ph-caret-right text-lapiz-400 text-sm mr-1"></i> Lapizasuli Studio</h4>
+                            <p class="text-sm text-gray-400 leading-relaxed">Eleva el repositorio actual a una marca de agencia. Transmite la creatividad del azul intenso y rigor técnico para comercializar bajo una firma unificada.</p>
+                        </li>
+                    </ul>
+                    
+                    <div class="mt-12 p-4 bg-lapiz-800/50 rounded-xl border border-lapiz-400/20 text-center">
+                        <i class="ph-fill ph-lightbulb text-yellow-400 text-2xl mb-2"></i>
+                        <p class="text-xs text-gray-300">Este enfoque capitaliza los activos y repositorios existentes, dotándolos de un valor comercial inmediato.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICE TIERS SECTION -->
+    <section id="portafolio" class="py-24 px-6 lg:px-12 relative z-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">El Ecosistema Comercial</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">El despliegue de los 3 productos independientes que operan bajo la marca principal, orquestados por IA (Gemini, Meta, Grok).</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+                
+                <!-- Nivel Básico -->
+                <div class="glass-card rounded-2xl flex flex-col relative overflow-hidden group">
+                    <div class="h-2 w-full bg-gray-500"></div>
+                    <div class="p-8 flex-grow flex flex-col">
+                        <span class="text-xs font-bold text-gray-400 tracking-wider uppercase mb-2">Producto 1</span>
+                        <h3 class="text-2xl font-bold mb-2">Nivel Básico</h3>
+                        <p class="text-lapiz-400 font-semibold mb-6">Herramientas Operativas y Visuales</p>
+                        
+                        <p class="text-gray-400 text-sm mb-8 flex-grow">
+                            Diseño de identidad gráfica, logotipos, arte promocional y desarrollo de herramientas web estáticas para controles internos (ej. registro de ventas local).
+                        </p>
+                        
+                        <div class="border-t border-white/10 pt-6">
+                            <div class="text-sm text-gray-400 mb-1">Valor Estimado:</div>
+                            <div class="text-2xl font-bold text-white">$150 - $350 <span class="text-sm font-normal text-gray-500">/proyecto</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nivel Profesional (Highlighted) -->
+                <div class="glass-card rounded-2xl flex flex-col relative overflow-hidden group transform md:-translate-y-4 shadow-[0_0_30px_rgba(29,78,216,0.15)] border-lapiz-400/40">
+                    <div class="absolute top-0 right-0 bg-lapiz-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg z-10">
+                        MÁS SOLICITADO
+                    </div>
+                    <div class="h-2 w-full bg-gradient-to-r from-lapiz-400 to-blue-500"></div>
+                    <div class="p-8 flex-grow flex flex-col bg-lapiz-900/40">
+                        <span class="text-xs font-bold text-lapiz-400 tracking-wider uppercase mb-2">Producto 2</span>
+                        <h3 class="text-2xl font-bold mb-2">Nivel Profesional</h3>
+                        <p class="text-blue-300 font-semibold mb-6">Aplicaciones Dinámicas y Automatización</p>
+                        
+                        <p class="text-gray-300 text-sm mb-8 flex-grow">
+                            Interfaces desarrolladas en React/FastAPI, consumo en tiempo real de API USGS (GeoJSON), flujos automatizados (Make.com), secuencias OpenCV y bots integrados.
+                        </p>
+                        
+                        <div class="border-t border-white/10 pt-6">
+                            <div class="text-sm text-gray-400 mb-1">Valor Estimado:</div>
+                            <div class="text-3xl font-bold text-white text-transparent bg-clip-text bg-gradient-to-r from-lapiz-400 to-cyan-300">$500 - $1,200 <span class="text-sm font-normal text-gray-500">/proyecto</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nivel Empresarial -->
+                <div class="glass-card rounded-2xl flex flex-col relative overflow-hidden group">
+                    <div class="h-2 w-full bg-gradient-to-r from-purple-500 to-pink-500"></div>
+                    <div class="p-8 flex-grow flex flex-col">
+                        <span class="text-xs font-bold text-purple-400 tracking-wider uppercase mb-2">Producto 3</span>
+                        <h3 class="text-2xl font-bold mb-2">Nivel Empresarial</h3>
+                        <p class="text-purple-300 font-semibold mb-6">Arquitectura Web3 y Sistemas Complejos</p>
+                        
+                        <p class="text-gray-400 text-sm mb-8 flex-grow">
+                            Implementación de autenticación criptográfica, despliegue de dApps (Reown AppKit) y arquitecturas en la nube que integran ecosistemas de pagos descentralizados.
+                        </p>
+                        
+                        <div class="border-t border-white/10 pt-6">
+                            <div class="text-sm text-gray-400 mb-1">Valor Estimado:</div>
+                            <div class="text-2xl font-bold text-white">$1,500 - $3,000+ <span class="text-sm font-normal text-gray-500">/proyecto</span></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-white/10 mt-12 py-12 px-6 bg-[#02040a]">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-2">
+                <i class="ph-fill ph-hexagon text-lapiz-400 text-2xl"></i>
+                <span class="text-lg font-bold text-white">V41<span class="text-lapiz-400">.</span></span>
+            </div>
+            
+            <p class="text-gray-500 text-sm">
+                &copy; 2026. Arquitectura propulsada por la <span class="text-gray-300 font-semibold">Constante SADV41</span>.
+            </p>
+            
+            <div class="flex gap-4">
+                <a href="#" class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-gray-400 hover:text-white hover:bg-lapiz-600 transition-all">
+                    <i class="ph-fill ph-github-logo text-xl"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full glass-card flex items-center justify-center text-gray-400 hover:text-white hover:bg-lapiz-600 transition-all">
+                    <i class="ph-fill ph-twitter-logo text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+<script src="https://thesteef21.github.io/SADV41/Agent/SAT/GOB/satv41-widget.js" defer></script>
+<!-- WIDGET DISCLAIMER BSTOCKS - SADV41 PROTOCOL -->
+<div class="mt-6 bg-slate-950 p-4 rounded-2xl border border-rose-500/30 space-y-3 text-xs font-mono shadow-2xl">
+    <div class="flex items-center gap-2 border-b border-slate-800 pb-2">
+        <span class="text-rose-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
+            ⚠️ DESCARGO DE RESPONSABILIDAD DE RIESGO (DISCLAIMER - bStocks)
+        </span>
+    </div>
+    
+    <p class="text-slate-300 text-[11px] leading-relaxed">
+        Los activos digitales, acciones tokenizadas (<strong class="text-amber-400">bStocks</strong>) e interacciones en cadena conllevan riesgos financieros elevados. El token SATV41, la infraestructura Web3 mostrada y los colaterales bursátiles no constituyen asesoría financiera ni garantía de rendimiento. Las iniciativas sociales, técnicas y operativas son gestionadas de forma independiente. Realiza tu propia investigación antes de interactuar con contratos inteligentes o posiciones apalancadas.
+    </p>
+
+    <ul class="list-disc list-inside space-y-1.5 text-slate-300 text-[11px]">
+        <li><strong>Riesgo de Volatilidad Compuesta:</strong> Los bStocks usados como garantía están sujetos a variaciones simultáneas de precio en tres capas (acción subyacente, token wrapper y posiciones cripto apalancadas).</li>
+        <li><strong>Derecho de Dividendos Excluido:</strong> Las garantías en bStocks en cuentas de margen no acumulan ni cobran dividendos directos del activo subyacente.</li>
+        <li><strong>Ajustes de Tasa de Garantía (Haircut):</strong> La relación de colateral puede ser ajustada unilateralmente por la plataforma, afectando la tasa de margen unificado (uniMMR) y pudiendo gatillar un margin call o liquidación.</li>
+        <li><strong>Diferencia de Horarios y Ventas Forzosas:</strong> Cripto opera 24/7; la liquidación de bStocks durante cierres de mercado bursátil de EE. UU. puede ejecutarse con descuentos significativos por liquidez, asumiendo el usuario la pérdida o déficit residual.</li>
+    </ul>
+
+    <div class="pt-2 flex flex-wrap gap-2 text-[10px]">
+        <a href="https://thesteef21.github.io/SADV41/SATV41/COM/Aseo/" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-amber-400 border border-slate-700 px-3 py-1.5 rounded-lg transition flex items-center gap-1">
+            🌐 Ver Protocolo SATV41 / Aseo
+        </a>
+        <a href="https://sites.google.com/u/0/d/1J2HQaoiel6AyXxxAOVfQWzYIpaKuC_-m/preview" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-slate-700 px-3 py-1.5 rounded-lg transition flex items-center gap-1">
+            📄 Vista Previa Google Sites
+        </a>
+    </div>
+</div>
+<script src="https://thesteef21.github.io/SADV41/sadv41-drag.js" defer></script><!-- sadv41-drag -->
+<script defer src="https://thesteef21.github.io/SADV41/ticker/sadv-ticker.js" data-sadv-ticker></script>
+<div id="sadv41-noviembre-widget" style="position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:999999;background:linear-gradient(135deg,#00209F 0%,#00209F 30%,#FFFFFF 30%,#FFFFFF 70%,#D21034 70%);color:#111;padding:10px 18px;border-radius:999px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;font-weight:900;font-size:14px;letter-spacing:.3px;box-shadow:0 8px 30px rgba(0,0,0,.35),0 0 0 2px rgba(255,255,255,.9) inset;display:flex;align-items:center;gap:8px;">
+  <span>Feliz Mes de Noviembre</span><span>🇵🇦👑🇺🇸</span>
+  <button onclick="this.parentElement.remove()" style="margin-left:8px;background:rgba(0,0,0,.12);border:0;border-radius:50%;width:22px;height:22px;cursor:pointer;font-weight:900;line-height:1;">×</button>
+</div>
+
+<script src="/SADV41/BIBLIA/biblia.js" defer></script>
+  <script src="https://thesteef21.github.io/SADV41/lib/seismic-widget.js" defer></script>
+<!-- sadv41-news -->
+<div id="sadv41-news" style="position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#0a0e1a;color:#f4f6ff;border-top:2px solid #f5c542;font:600 13px/1.35 system-ui,sans-serif;padding:8px 40px 8px 12px;text-align:center"><span style="color:#f5c542">ÚLTIMA NOTICIA</span> · <a href="https://thesteef21.github.io/SADV41/NEWS/PANAMA/USA/#paraguay" target="_blank" rel="noopener" style="color:#3ee0e8;text-decoration:none">Paraguay interviene Ueno Bank y renuncia el presidente del Banco Central 🏦</a><button onclick="this.parentNode.style.display='none'" aria-label="Cerrar" style="position:absolute;right:8px;top:4px;background:none;border:0;color:#9aa3c7;font-size:18px;cursor:pointer">×</button></div>
+<!-- /sadv41-news -->
+<!-- sadv41-home -->
+<a id="sadv41-home" href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" title="SADV41 · Página principal" aria-label="Ir a la página principal de SADV41" style="position:fixed;left:14px;bottom:64px;z-index:2147482999;width:46px;height:46px;border-radius:50%;background:#071642;border:3px solid #d9a93a;box-shadow:0 4px 14px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;text-decoration:none"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><g fill="#d9a93a"><rect x="10.8" y="2" width="2.4" height="20" rx=".6"/><rect x="8" y="4.6" width="8" height="1.8" rx=".5"/><rect x="6" y="9" width="12" height="2.4" rx=".6"/><rect x="8.6" y="16.6" width="6.8" height="1.8" rx=".5" transform="rotate(12 12 17.5)"/></g></svg></a>
+<!-- /sadv41-home -->
+<!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+</body>
+</html>
+```

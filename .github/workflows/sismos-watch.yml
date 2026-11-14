@@ -1,0 +1,38 @@
+name: SADV41 Sismos Watch
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-python@v5
+        with: 
+          python-version: '3.11'
+          
+      - run: pip install requests Pillow
+      
+      - name: Check USGS Panama
+        run: python instagram_bot.py --check-panama --min-mag 4.5
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          IMAGE_PUBLIC_URL: https://thesteef21.github.io/usgs/latest.jpg
+          
+      - name: Commit latest image for Pages
+        run: |
+          if [ -f latest.jpg ]; then
+            git config user.name "SADV41-BOT"
+            git config user.email "bot@sadv41.io"
+            git add latest.jpg || true
+            git commit -m "auto: update latest sismo image [skip ci]" || true
+            git push || true
+          fi

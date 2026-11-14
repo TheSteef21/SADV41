@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteo de Google Play - SADV41</title>
+    <style>
+        :root {
+            --bg-color: #131314;
+            --text-primary: #e3e3e3;
+            --text-secondary: #c4c7c5;
+            --card-bg-gradient: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            --card-orange: #f29900;
+            --button-blue: #a8c7fa;
+            --button-text: #062e6f;
+        }
+
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 80px;
+        }
+
+        header {
+            width: 100%;
+            padding: 16px;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            position: sticky;
+            top: 0;
+            background-color: var(--bg-color);
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+
+        .countdown-box {
+            background-color: #1e1e1e;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .countdown-box p {
+            margin: 0 0 10px 0;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .timer {
+            font-size: 36px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        .timer-labels {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 10px;
+            color: var(--text-secondary);
+            margin-top: 5px;
+        }
+
+        .entries-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .entries-display {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            margin: 15px 0;
+        }
+
+        .digit {
+            background-color: #333;
+            color: white;
+            font-size: 24px;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-family: monospace;
+        }
+
+        .points-balance {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        .points-balance span {
+            color: #34a853; /* Greenish/Google colors for points */
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-size: 18px;
+            margin-bottom: 16px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
+        }
+
+        .prize-card {
+            background: linear-gradient(145deg, #ffb74d, #f57c00);
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 16px;
+            color: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prize-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            background-color: #ffd085;
+        }
+
+        .prize-badge {
+            background: rgba(255, 255, 255, 0.3);
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .prize-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0 0 4px 0;
+        }
+
+        .prize-desc {
+            font-size: 12px;
+            margin: 0;
+            opacity: 0.8;
+        }
+
+        .how-it-works {
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .how-it-works li {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.4;
+            display: flex;
+            gap: 12px;
+        }
+        
+        .how-it-works ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .fab-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 16px;
+            background-color: rgba(19, 19, 20, 0.95);
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+        }
+
+        .btn-participate {
+            background-color: var(--button-blue);
+            color: var(--button-text);
+            width: 100%;
+            max-width: 500px;
+            padding: 14px;
+            border: none;
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            text-align: center;
+            font-family: inherit;
+        }
+
+    </style>
+</head>
+<body>
+<!-- SALMO46-INJECT -->
+<a href="https://www.bible.com/es/bible/149/PSA.46.1-11.RVR1960" target="_blank" rel="noopener"
+ style="position:fixed;top:8px;left:8px;z-index:2147483647;background:#0a0a0acc;color:#00e5ff;
+ border:1px solid #00e5ff;border-radius:20px;padding:4px 10px;font:600 11px/1.3 system-ui,sans-serif;
+ text-decoration:none;letter-spacing:.04em">📖 Salmos 46 · Dios es nuestro amparo</a>
+<!-- /SALMO46-INJECT -->
+
+    <header>
+        <span>&times;</span> <span style="margin-left:16px; font-size: 18px;">Google Play</span>
+    <a href="./Agent/" class="p-4 border border-[#00e5ff]/50 bg-[#00e5ff]/10 hover:border-[#00e5ff] text-[#00e5ff] transition-all rounded-xl font-bold uppercase tracking-widest text-center">AGENTE 🤖</a>
+</header>
+
+    <div class="container">
+        <h1>Participa en el sorteo para ganar premios</h1>
+        <p class="subtitle">Canjea Puntos de Play por participaciones en el sorteo. Hay más de 2,000 premios en juego. Participa ahora antes de que se acabe el tiempo.</p>
+
+        <div class="countdown-box">
+            <p>El sorteo finaliza en</p>
+            <div class="timer" id="timer">01 : 04 : 44 : 19</div>
+            <div class="timer-labels">
+                <span>Día</span>
+                <span>h</span>
+                <span>Min</span>
+                <span>s</span>
+            </div>
+        </div>
+
+        <div class="entries-section">
+            <h3>Tus participaciones</h3>
+            <p style="font-size: 12px; color: var(--text-secondary);">Puedes participar todas las veces que quieras. Cuantas más participaciones tengas, más probabilidades tendrás de ganar.</p>
+            <div class="entries-display">
+                <div class="digit">0</div>
+                <div class="digit">0</div>
+                <div class="digit">5</div>
+                <div class="digit">5</div>
+                <div class="digit">0</div>
+            </div>
+            <p class="points-balance">Saldo de Puntos de Play: <span>💠 307</span></p>
+        </div>
+
+        <h2 class="section-title">Recompensas y premios</h2>
+        
+        <!-- Premio 1 -->
+        <div class="prize-card">
+            <span class="prize-badge">Cantidad: 1</span>
+            <span class="prize-badge" style="margin-left: 5px;">🏆 Gran premio</span>
+            <div class="prize-title">Entradas para el Wynn Grid Club</div>
+            <p class="prize-desc">Entradas para 3 días del evento de la FÓRMULA 1: HEINEKEN LAS VEGAS GRAND PRIX 2026</p>
+        </div>
+
+        <!-- Premio 2 -->
+        <div class="prize-card">
+            <span class="prize-badge">Cantidad: 50</span>
+            <div class="prize-title">Galaxy Z Fold8 Ultra de 512 GB</div>
+            <p class="prize-desc">Descubre más posibilidades con una pantalla interior expansiva y productividad con múltiples ventanas</p>
+        </div>
+
+        <!-- Premio 3 -->
+        <div class="prize-card">
+            <span class="prize-badge">Cantidad: 5</span>
+            <span class="prize-badge" style="margin-left: 5px;">🏆 Gran premio</span>
+            <div class="prize-title">Razer Boomslang 20th Anniversary Edition</div>
+            <p class="prize-desc">Un mouse para videojuegos Razer de edición de coleccionista que conmemora los 20 años</p>
+        </div>
+        
+        <!-- Premio 4 -->
+        <div class="prize-card">
+            <span class="prize-badge">Cantidad: 1</span>
+            <span class="prize-badge" style="margin-left: 5px;">🏆 Gran premio</span>
+            <div class="prize-title">Réplica a escala 1:1 del casco de carreras de la temporada 2026 de Oscar Piastri</div>
+            <p class="prize-desc">Réplica a escala 1:1 del casco de carreras principal de Oscar</p>
+        </div>
+
+        <h2 class="section-title" style="margin-top: 40px;">Cómo funciona</h2>
+        <div class="how-it-works">
+            <ul>
+                <li>🔹 Canjea tus Puntos de Play por participaciones en el sorteo. 1 Punto de Play = 1 participación. No se requiere realizar una compra...</li>
+                <li>🎁 Cuantas más participaciones tengas, más probabilidades tendrás de ganar. Puedes participar varias veces...</li>
+                <li>👑 El sorteo se realizará cuando el reloj de cuenta regresiva llegue a cero. Nos comunicaremos con los ganadores en un plazo de 1 a 2 semanas...</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="fab-container">
+        <button class="btn-participate">Participar en el sorteo</button>
+    </div>
+
+    <script>
+        // Lógica básica para animar el temporizador (Mock)
+        let days = 1;
+        let hours = 4;
+        let minutes = 44;
+        let seconds = 19;
+
+        setInterval(() => {
+            seconds--;
+            if(seconds < 0) {
+                seconds = 59;
+                minutes--;
+            }
+            if(minutes < 0) {
+                minutes = 59;
+                hours--;
+            }
+            if(hours < 0) {
+                hours = 23;
+                days--;
+            }
+            
+            const format = (num) => num.toString().padStart(2, '0');
+            document.getElementById('timer').innerText = `${format(days)} : ${format(hours)} : ${format(minutes)} : ${format(seconds)}`;
+        }, 1000);
+    </script>
+<div id="sadv41-noviembre-widget" style="position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:999999;background:linear-gradient(135deg,#00209F 0%,#00209F 30%,#FFFFFF 30%,#FFFFFF 70%,#D21034 70%);color:#111;padding:10px 18px;border-radius:999px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;font-weight:900;font-size:14px;letter-spacing:.3px;box-shadow:0 8px 30px rgba(0,0,0,.35),0 0 0 2px rgba(255,255,255,.9) inset;display:flex;align-items:center;gap:8px;">
+  <span>Feliz Mes de Noviembre</span><span>🇵🇦👑🇺🇸</span>
+  <button onclick="this.parentElement.remove()" style="margin-left:8px;background:rgba(0,0,0,.12);border:0;border-radius:50%;width:22px;height:22px;cursor:pointer;font-weight:900;line-height:1;">×</button>
+</div>
+
+<script src="/SADV41/BIBLIA/biblia.js" defer></script>
+<script src="https://thesteef21.github.io/SADV41/sadv41-drag.js" defer></script><!-- sadv41-drag -->
+  <script src="https://thesteef21.github.io/SADV41/lib/seismic-widget.js" defer></script>
+<!-- sadv41-news -->
+<div id="sadv41-news" style="position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#0a0e1a;color:#f4f6ff;border-top:2px solid #f5c542;font:600 13px/1.35 system-ui,sans-serif;padding:8px 40px 8px 12px;text-align:center"><span style="color:#f5c542">ÚLTIMA NOTICIA</span> · <a href="https://thesteef21.github.io/SADV41/NEWS/PANAMA/USA/#paraguay" target="_blank" rel="noopener" style="color:#3ee0e8;text-decoration:none">Paraguay interviene Ueno Bank y renuncia el presidente del Banco Central 🏦</a><button onclick="this.parentNode.style.display='none'" aria-label="Cerrar" style="position:absolute;right:8px;top:4px;background:none;border:0;color:#9aa3c7;font-size:18px;cursor:pointer">×</button></div>
+<!-- /sadv41-news -->
+<!-- sadv41-home -->
+<a id="sadv41-home" href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" title="SADV41 · Página principal" aria-label="Ir a la página principal de SADV41" style="position:fixed;left:14px;bottom:64px;z-index:2147482999;width:46px;height:46px;border-radius:50%;background:#071642;border:3px solid #d9a93a;box-shadow:0 4px 14px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;text-decoration:none"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><g fill="#d9a93a"><rect x="10.8" y="2" width="2.4" height="20" rx=".6"/><rect x="8" y="4.6" width="8" height="1.8" rx=".5"/><rect x="6" y="9" width="12" height="2.4" rx=".6"/><rect x="8.6" y="16.6" width="6.8" height="1.8" rx=".5" transform="rotate(12 12 17.5)"/></g></svg></a>
+<!-- /sadv41-home -->
+<!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+</body>
+</html>

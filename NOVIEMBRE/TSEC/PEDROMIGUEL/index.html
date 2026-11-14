@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TSEC · Falla Pedro Miguel & Sismos M≥2.5 · SADV41</title>
+<link rel="manifest" href="data:application/json,{&quot;name&quot;:&quot;SADV41 Pedro Miguel&quot;,&quot;short_name&quot;:&quot;PedroMiguel&quot;,&quot;start_url&quot;:&quot;./&quot;,&quot;display&quot;:&quot;standalone&quot;}">
+<link id="lcss" rel="stylesheet" href="lib/leaflet.css" onerror="this.onerror=null;this.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css'">
+<style>
+  html,body{margin:0;height:100%;background:#000;color:#e2e8f0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+  #bar{position:fixed;top:0;left:0;right:0;z-index:1000;background:#0b0f19ee;border-bottom:1px solid #1e293b;padding:6px 10px;font-size:12.5px}
+  #bar b{color:#60a5fa}
+  #bar select,#bar button{background:#1e293b;color:#fff;border:1px solid #334155;border-radius:6px;padding:3px 7px;font-size:11.5px;margin-right:3px}
+  #bar button.btn-notify{background:#0284c7;color:#fff;font-weight:600;border:none;cursor:pointer}
+  #bar a{color:#00e5ff;text-decoration:none;font-size:11.5px;margin-left:6px}
+  #estado{display:block;margin-top:4px;opacity:.85;font-size:11px}
+  #map{position:absolute;top:72px;left:0;right:0;bottom:0;background:#000}
+
+  /* Filtro Modo Oscuro OpenStreetMap sin API Key */
+  .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.9)}
+  .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#0b0f19;color:#e2e8f0}
+  .leaflet-popup-content a{color:#00e5ff}
+
+  /* Widget Floating: Mantente a Salvo */
+  #widget-safe{position:fixed;top:82px;right:10px;z-index:1000;background:#0f172aef;border:1px solid #3b82f6;border-radius:8px;padding:8px 12px;box-shadow:0 4px 12px rgba(0,0,0,0.6);font-size:11.5px}
+  #widget-safe a{color:#38bdf8;font-weight:bold;text-decoration:none}
+
+  /* Bar Bíblico Inferior */
+  #biblia-bar{position:fixed;left:6px;right:6px;bottom:6px;z-index:1000;background:#0b0f19ee;border:1px solid #1e293b;border-radius:8px;padding:5px 10px;font-size:11px;color:#cbd5e1;max-height:48px;overflow-y:auto}
+  #biblia-bar b{color:#f59e0b}
+</style>
+</head>
+<body>
+<!-- SALMO46-INJECT -->
+<a href="https://www.bible.com/es/bible/149/PSA.46.1-11.RVR1960" target="_blank" rel="noopener"
+ style="position:fixed;top:8px;left:8px;z-index:2147483647;background:#0a0a0acc;color:#00e5ff;
+ border:1px solid #00e5ff;border-radius:20px;padding:4px 10px;font:600 11px/1.3 system-ui,sans-serif;
+ text-decoration:none;letter-spacing:.04em">📖 Salmos 46 · Dios es nuestro amparo</a>
+<!-- /SALMO46-INJECT -->
+
+<div id="bar">
+  <b>🎚 TSEC · PEDRO MIGUEL</b> (M≥2.5)
+  <a href="../index.html">← TSEC</a> | <a href="../../../SISMOS/index.html">SISMOS</a><br>
+  Mag: <select id="mag"><option selected>2.5</option><option>3.0</option><option>3.7</option><option>4.5</option></select>
+  Días: <select id="dias"><option value="1">24 h</option><option value="7" selected>7 días</option><option value="30">30 días</option></select>
+  <button id="act">Actualizar</button>
+  <button id="btnNotif" class="btn-notify">🔔 Activar Alertas</button>
+  <span id="estado">Cargando datos...</span>
+</div>
+
+<!-- Widget @Sismosyterremotos -->
+<div id="widget-safe">
+  🛡️ <b>¡Mantente a salvo!</b><br>
+  Sigue la red: <a href="https://t.me/Sismosyterremotos" target="_blank" rel="noopener">@Sismosyterremotos</a>
+</div>
+
+<div id="map"></div>
+
+<!-- Bar Bíblico -->
+<div id="biblia-bar">
+  📖 <b id="v-ref">Cargando Biblia...</b>: <span id="v-txt"></span>
+</div>
+
+<script>
+(function(){
+  var FAULT_URL = 'pedro-miguel-falla.geojson';
+  var estado = document.getElementById('estado');
+  var lastQuakes = new Set();
+
+  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+  function loadScript(src,ok,fail){var s=document.createElement('script');s.src=src;s.onload=ok;s.onerror=fail;document.head.appendChild(s);}
+
+  // Distancia (km) a la traza de la Falla Pedro Miguel
+  function distKm(lat,lon,line){
+    var k=Math.cos(lat*Math.PI/180),best=Infinity;
+    function P(c){return [(c[0]-lon)*111.32*k,(c[1]-lat)*110.57];}
+    for(var i=0;i<line.length-1;i++){
+      var a=P(line[i]),b=P(line[i+1]),dx=b[0]-a[0],dy=b[1]-a[1],L=dx*dx+dy*dy;
+      var t=L?Math.max(0,Math.min(1,-(a[0]*dx+a[1]*dy)/L)):0;
+      var x=a[0]+t*dx,y=a[1]+t*dy,d=Math.sqrt(x*x+y*y);
+      if(d<best)best=d;
+    }
+    return best;
+  }
+
+  function color(m){return m>=5?'#ef4444':m>=4?'#fb923c':m>=3?'#facc15':'#38bdf8';}
+  function hace(ms){
+    var m=Math.round((Date.now()-ms)/60000);
+    if(m<60)return 'hace '+m+' min';
+    var h=Math.round(m/60);
+    if(h<48)return 'hace '+h+' h';
+    return 'hace '+Math.round(h/24)+' d';
+  }
+
+  // Notificaciones Web (Android / iOS / PC)
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(()=>{});
+  }
+
+  document.getElementById('btnNotif').onclick = function() {
+    if (!('Notification' in window)) {
+      alert('Tu navegador o dispositivo no soporta notificaciones push nativas.');
+      return;
+    }
+    Notification.requestPermission().then(perm => {
+      if (perm === 'granted') {
+        alert('✅ Notificaciones activadas en tu dispositivo');
+        new Notification('🛡️ SADV41 Pedro Miguel Alertas', {
+          body: 'Notificaciones activas para eventos sísmicos en Panamá (M≥2.5).'
+        });
+      } else {
+        alert('⚠️ Permisos de notificación denegados.');
+      }
+    });
+  };
+
+  function notificarSismo(m, lugar) {
+    if (window.Notification && Notification.permission === 'granted') {
+      new Notification('🚨 ALERTA SÍSMICA PANAMÁ (M' + m + ')', {
+        body: lugar + ' - Mantente a salvo con @Sismosyterremotos',
+        icon: 'https://leafletjs.com/docs/images/logo.png'
+      });
+    }
+  }
+
+  // Versículos Bíblicos desde /BIBLIA/
+  function cargarBiblia() {
+    var bibliaPaths = ['../../../BIBLIA/rv1909.json', '/SADV41/BIBLIA/rv1909.json'];
+    function intentar(idx) {
+      if(idx >= bibliaPaths.length) {
+        document.getElementById('v-ref').textContent = 'Salmos 46:1';
+        document.getElementById('v-txt').textContent = 'Dios es refugio y ayuda en cualquier momento; no estás solo. (resumen propio)';
+        return;
+      }
+      fetch(bibliaPaths[idx])
+        .then(r => r.json())
+        .then(data => {
+          var libros = Object.keys(data);
+          var lib = libros[Math.floor(Math.random() * libros.length)];
+          var caps = Object.keys(data[lib]);
+          var cap = caps[Math.floor(Math.random() * caps.length)];
+          var vers = Object.keys(data[lib][cap]);
+          var ver = vers[Math.floor(Math.random() * vers.length)];
+          document.getElementById('v-ref').textContent = lib + ' ' + cap + ':' + ver;
+          document.getElementById('v-txt').textContent = data[lib][cap][ver];
+        })
+        .catch(() => intentar(idx + 1));
+    }
+    intentar(0);
+  }
+
+  function init(){
+    cargarBiblia();
+    var map = L.map('map').setView([8.95, -79.6], 9);
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    var quakes = L.layerGroup().addTo(map), line = null;
+
+    fetch(FAULT_URL).then(r => r.json()).then(g => {
+      L.geoJSON(g, {
+        style: f => f.geometry.type === 'LineString' ? {color:'#ef4444', weight:3, dashArray:'8 6'} : {},
+        pointToLayer: (f,ll) => L.circleMarker(ll, {radius:4, color:'#94a3b8', weight:1, fillOpacity:.8}),
+        onEachFeature: (f, layer) => {
+          var p = f.properties || {}, h = '<b>' + esc(p.nombre) + '</b>';
+          if(p.tipo) h += '<br>' + esc(p.tipo);
+          if(p.ruptura_historica) h += '<br>' + esc(p.ruptura_historica);
+          layer.bindPopup(h);
+          if(f.geometry.type === 'LineString') line = f.geometry.coordinates;
+        }
+      }).addTo(map);
+      cargar();
+    }).catch(() => cargar());
+
+    function cargar(){
+      var mag = document.getElementById('mag').value;
+      var dias = +document.getElementById('dias').value;
+      var ini = new Date(Date.now() - dias * 864e5).toISOString().slice(0,19);
+
+      var url = 'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&orderby=time&limit=500' +
+        '&minlatitude=5&maxlatitude=11&minlongitude=-84&maxlongitude=-76' +
+        '&minmagnitude=' + encodeURIComponent(mag) + '&starttime=' + ini;
+
+      estado.textContent = 'Consultando USGS…';
+      fetch(url).then(r => r.json()).then(d => {
+        quakes.clearLayers();
+        var n = 0, cerca = 0;
+        (d.features || []).forEach(f => {
+          var c = f.geometry.coordinates, p = f.properties, m = p.mag;
+          var dk = line ? distKm(c[1], c[0], line) : null;
+          n++; if (dk !== null && dk <= 10) cerca++;
+
+          if (!lastQuakes.has(f.id) && lastQuakes.size > 0 && (Date.now() - p.time) < 3600000) {
+            notificarSismo(m, p.place);
+          }
+          lastQuakes.add(f.id);
+
+          var h = '<b>M' + esc(m) + '</b> · ' + esc(p.place) + '<br>' + hace(p.time) + ' · prof. ' + esc(Math.round(c[2])) + ' km';
+          if (dk !== null) h += '<br>≈ ' + dk.toFixed(1) + ' km de la falla Pedro Miguel';
+          if (p.url) h += '<br><a target="_blank" rel="noopener" href="' + esc(p.url) + '">Detalle USGS</a>';
+
+          L.circleMarker([c[1], c[0]], {
+            radius: 3 + (m || 0) * 2,
+            color: color(m),
+            weight: 1,
+            fillColor: color(m),
+            fillOpacity: .55
+          }).bindPopup(h).addTo(quakes);
+        });
+        estado.textContent = n + ' sismos (M≥' + mag + ')' + (line ? ' · ' + cerca + ' a ≤10 km de la falla' : '');
+      }).catch(() => { estado.textContent = 'Reconectando con USGS...'; });
+    }
+
+    document.getElementById('act').onclick = cargar;
+    document.getElementById('mag').onchange = cargar;
+    document.getElementById('dias').onchange = cargar;
+    setInterval(cargar, 180000);
+  }
+
+  loadScript('lib/leaflet.js', init, function(){
+    loadScript('https://unpkg.com/leaflet@1.9.4/dist/leaflet.js', init, function(){ estado.textContent='Error cargando Leaflet.'; });
+  });
+})();
+</script>
+  <script src="https://thesteef21.github.io/SADV41/lib/seismic-widget.js" defer></script>
+<script src="/SADV41/BIBLIA/biblia.js" defer></script>
+<script src="https://thesteef21.github.io/SADV41/sadv41-drag.js" defer></script><!-- sadv41-drag -->
+<!-- sadv41-news -->
+<div id="sadv41-news" style="position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#0a0e1a;color:#f4f6ff;border-top:2px solid #f5c542;font:600 13px/1.35 system-ui,sans-serif;padding:8px 40px 8px 12px;text-align:center"><span style="color:#f5c542">ÚLTIMA NOTICIA</span> · <a href="https://thesteef21.github.io/SADV41/NEWS/PANAMA/USA/#paraguay" target="_blank" rel="noopener" style="color:#3ee0e8;text-decoration:none">Paraguay interviene Ueno Bank y renuncia el presidente del Banco Central 🏦</a><button onclick="this.parentNode.style.display='none'" aria-label="Cerrar" style="position:absolute;right:8px;top:4px;background:none;border:0;color:#9aa3c7;font-size:18px;cursor:pointer">×</button></div>
+<!-- /sadv41-news -->
+<!-- sadv41-home -->
+<a id="sadv41-home" href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" title="SADV41 · Página principal" aria-label="Ir a la página principal de SADV41" style="position:fixed;left:14px;bottom:64px;z-index:2147482999;width:46px;height:46px;border-radius:50%;background:#071642;border:3px solid #d9a93a;box-shadow:0 4px 14px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;text-decoration:none"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><g fill="#d9a93a"><rect x="10.8" y="2" width="2.4" height="20" rx=".6"/><rect x="8" y="4.6" width="8" height="1.8" rx=".5"/><rect x="6" y="9" width="12" height="2.4" rx=".6"/><rect x="8.6" y="16.6" width="6.8" height="1.8" rx=".5" transform="rotate(12 12 17.5)"/></g></svg></a>
+<!-- /sadv41-home -->
+<a href="./Agent/" class="p-4 border border-[#00e5ff]/50 bg-[#00e5ff]/10 hover:border-[#00e5ff] text-[#00e5ff] transition-all rounded-xl font-bold uppercase tracking-widest text-center">AGENTE 🤖</a>
+<!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+</body>
+</html>

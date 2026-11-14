@@ -1,0 +1,38 @@
+{
+  "name": "SADV41 | Logia Pluscuamperfecta - AI Federal Panama American Reserve",
+  "short_name": "SADV41",
+  "description": "Logia Pluscuamperfecta • AI Federal Panama American Reserve • Unidad Espacio-Tiempo Panameña • Metatron 4D • Turbologia - ORIGEN 0",
+  "start_url": "./GSADV41.html",
+  "display": "standalone",
+  "background_color": "#030305",
+  "theme_color": "#030305",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "pidul_logo_512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "INSIGNIA/IMG-20260917-WA3831.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "INSIGNIA/IMG-20260917-WA0869.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "https://thesteef21.github.io/Lapizasuli/assets/GSADV41/favicon.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["lifestyle", "social", "utilities", "finance"],
+  "lang": "es"
+}

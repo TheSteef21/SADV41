@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>SADV41 GEAR 5 HAKI - Oficial Completo</title>
+  
+  <!-- Motor AR Facial -->
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.2/dist/mindar-face-aframe.prod.js"></script>
+  
+  <!-- Motor AR Corporal (MediaPipe) -->
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/holistic/holistic.js" crossorigin="anonymous"></script>
+  
+  <style>
+    body, html { margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden; background-color: transparent !important; font-family: monospace; }
+    
+    #sadv41-logo-ui { position: absolute; top: 20px; left: 20px; z-index: 10; color: #FFD700; font-weight: bold; text-shadow: 0 0 5px #FFD700; display: flex; flex-direction: column; font-size: 18px; }
+    .trinity-badge { font-size: 0.7em; color: #00FFFF; text-shadow: 0 0 5px #00FFFF; margin-top: 2px; }
+    #sadv41-overlay { position: absolute; top: 20px; right: 20px; z-index: 10; color: #00FFFF; font-weight: bold; text-shadow: 0 0 8px #00FFFF; letter-spacing: 1px; }
+    
+    .ui-container { position: absolute; bottom: 50px; width: 100%; display: flex; justify-content: center; z-index: 10; }
+    .capture-btn { padding: 15px 40px; background: rgba(0, 255, 255, 0.1); border: 2px solid #00FFFF; color: #FFF; border-radius: 50px; font-weight: bold; font-size: 16px; cursor: pointer; backdrop-filter: blur(8px); transition: 0.3s; text-transform: uppercase; letter-spacing: 2px;}
+    .a-enter-vr { display: none !important; }
+    
+    #input_video { display: none; }
+  </style>
+</head>
+<body>
+<!-- SALMO46-INJECT -->
+<a href="https://www.bible.com/es/bible/149/PSA.46.1-11.RVR1960" target="_blank" rel="noopener"
+ style="position:fixed;top:8px;left:8px;z-index:2147483647;background:#0a0a0acc;color:#00e5ff;
+ border:1px solid #00e5ff;border-radius:20px;padding:4px 10px;font:600 11px/1.3 system-ui,sans-serif;
+ text-decoration:none;letter-spacing:.04em">📖 Salmos 46 · Dios es nuestro amparo</a>
+<!-- /SALMO46-INJECT -->
+
+  <div id="sadv41-logo-ui">
+    <span>SADV41</span>
+    <span class="trinity-badge">1 | 4</span>
+  </div>
+  <div id="sadv41-overlay">VERIFIED 🎚</div>
+  
+  <div class="ui-container">
+      <button class="capture-btn" id="activate-btn">DESPERTAR GEAR 5</button>
+  </div>
+
+  <video id="input_video" autoplay playsinline></video>
+
+  <!-- Escena AR Híbrida -->
+  <a-scene mindar-face embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights: true" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    
+    <a-assets timeout="15000">
+      <!-- Rutas absolutas para asegurar carga directa en GitHub Pages -->
+      <img id="tex-logo" src="./models/sadv41_logo.png" crossorigin="anonymous">
+      <img id="tex-humo" src="./models/humo_divino.png" crossorigin="anonymous">
+      <img id="tex-brazo" src="./models/haki_brazos.png" crossorigin="anonymous">
+    </a-assets>
+
+    <a-camera active="false" position="0 0 0"></a-camera>
+
+    <!-- CAPA 2: Ojos Haki de Observación (MindAR Face Tracking) -->
+    <a-entity mindar-face-target="anchorIndex: 168">
+       <a-sphere id="haki-ojo-izq" color="#00FFFF" radius="0.012" opacity="0" position="-0.032 0.01 0" material="emissive: #00FFFF; emissiveIntensity: 50"></a-sphere>
+       <a-sphere id="haki-ojo-der" color="#00FFFF" radius="0.012" opacity="0" position="0.032 0.01 0" material="emissive: #00FFFF; emissiveIntensity: 50"></a-sphere>
+    </a-entity>
+
+    <!-- CAPAS 3, 4 y 5: Anclaje Visual Directo (Head/Body Rig central) -->
+    <a-entity id="body-rig" position="0 0 -0.8">
+      <!-- Logo Pecho (Ajustado al centro visible) -->
+      <a-image id="haki-logo-pecho" src="#tex-logo" position="0 -0.2 0" scale="0.45 0.45 0.45" visible="false" material="shader: flat; transparent: true; alphaTest: 0.05"></a-image>
+      
+      <!-- Humo Cuello (Ajustado sobre los hombros) -->
+      <a-image id="haki-humo-cuello" src="#tex-humo" position="0 0.25 -0.05" scale="1.1 0.7 1" visible="false" material="shader: flat; transparent: true; alphaTest: 0.05"></a-image>
+      
+      <!-- Brazos Haki (Izquierdo y Derecho fijos al torso para garantizar despliegue inmediato) -->
+      <a-image id="haki-brazo-izq" src="#tex-brazo" position="-0.4 -0.1 0" scale="0.45 0.7 1" visible="false" material="shader: flat; transparent: true; alphaTest: 0.05"></a-image>
+      <a-image id="haki-brazo-der" src="#tex-brazo" position="0.4 -0.1 0" scale="0.45 0.7 1" visible="false" material="shader: flat; transparent: true; alphaTest: 0.05"></a-image>
+    </a-entity>
+  </a-scene>
+
+  <script>
+    const btn = document.getElementById('activate-btn');
+    const ojoIzq = document.getElementById('haki-ojo-izq');
+    const ojoDer = document.getElementById('haki-ojo-der');
+    
+    const logoPecho = document.getElementById('haki-logo-pecho');
+    const humoCuello = document.getElementById('haki-humo-cuello');
+    const brazoIzq = document.getElementById('haki-brazo-izq');
+    const brazoDer = document.getElementById('haki-brazo-der');
+    const videoElement = document.getElementById('input_video');
+    
+    let activado = false;
+    let mediapipeIniciado = false;
+
+    const holistic = new Holistic({locateFile: (file) => {
+      return `https://cdn.jsdelivr.net/npm/@mediapipe/holistic/${file}`;
+    }});
+    
+    holistic.setOptions({
+      modelComplexity: 1,
+      smoothLandmarks: true,
+      enableSegmentation: false,
+      refineFaceLandmarks: false,
+      minDetectionConfidence: 0.5,
+      minTrackingConfidence: 0.5
+    });
+
+    holistic.onResults((results) => {
+      if (!activado || !results.poseLandmarks) return;
+
+      const hombroIzq = results.poseLandmarks[11];
+      const hombroDer = results.poseLandmarks[12];
+      const codoIzq = results.poseLandmarks[13];
+      const codoDer = results.poseLandmarks[14];
+
+      // Dinámica de seguimiento si MediaPipe detecta el cuerpo
+      if (hombroIzq && hombroDer) {
+        const pechoX = ((hombroIzq.x + hombroDer.x) / 2 - 0.5) * 1.5;
+        const pechoY = -((hombroIzq.y + hombroDer.y) / 2 - 0.5) * 1.5;
+        
+        logoPecho.setAttribute('position', `${pechoX} ${pechoY - 0.15} 0`);
+        humoCuello.setAttribute('position', `${pechoX} ${pechoY + 0.3} -0.05`);
+      }
+
+      if (hombroIzq && codoIzq) {
+        const bX = (codoIzq.x - 0.5) * 1.5;
+        const bY = -(codoIzq.y - 0.5) * 1.5;
+        brazoIzq.setAttribute('position', `${bX} ${bY} 0`);
+      }
+
+      if (hombroDer && codoDer) {
+        const bX = (codoDer.x - 0.5) * 1.5;
+        const bY = -(codoDer.y - 0.5) * 1.5;
+        brazoDer.setAttribute('position', `${bX} ${bY} 0`);
+      }
+    });
+
+    const camera = new Camera(videoElement, {
+      onFrame: async () => {
+        if (activado) {
+          await holistic.send({image: videoElement});
+        }
+      },
+      width: 640,
+      height: 480
+    });
+
+    btn.addEventListener('click', () => {
+       if(!activado) {
+           btn.innerText = "HAKI ACTIVADO";
+           btn.style.background = "rgba(0, 255, 255, 0.4)";
+           btn.style.boxShadow = "0 0 30px rgba(0, 255, 255, 0.8)";
+           
+           // Encender Ojos
+           ojoIzq.setAttribute('opacity', '0.9');
+           ojoDer.setAttribute('opacity', '0.9');
+           
+           // Forzar visibilidad inmediata de los assets PNG
+           logoPecho.setAttribute('visible', 'true');
+           humoCuello.setAttribute('visible', 'true');
+           brazoIzq.setAttribute('visible', 'true');
+           brazoDer.setAttribute('visible', 'true');
+           
+           activado = true;
+
+           if(!mediapipeIniciado) {
+               camera.start();
+               mediapipeIniciado = true;
+           }
+       } else {
+           btn.innerText = "DESPERTAR GEAR 5";
+           btn.style.background = "rgba(0, 255, 255, 0.1)";
+           btn.style.boxShadow = "none";
+           
+           ojoIzq.setAttribute('opacity', '0');
+           ojoDer.setAttribute('opacity', '0');
+           
+           logoPecho.setAttribute('visible', 'false');
+           humoCuello.setAttribute('visible', 'false');
+           brazoIzq.setAttribute('visible', 'false');
+           brazoDer.setAttribute('visible', 'false');
+           
+           activado = false;
+       }
+    });
+  </script>
+<script src="https://thesteef21.github.io/SADV41/Agent/SAT/GOB/satv41-widget.js" defer></script>
+<!-- WIDGET DISCLAIMER BSTOCKS - SADV41 PROTOCOL -->
+<div class="mt-6 bg-slate-950 p-4 rounded-2xl border border-rose-500/30 space-y-3 text-xs font-mono shadow-2xl">
+    <div class="flex items-center gap-2 border-b border-slate-800 pb-2">
+        <span class="text-rose-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
+            ⚠️ DESCARGO DE RESPONSABILIDAD DE RIESGO (DISCLAIMER - bStocks)
+        </span>
+    </div>
+    
+    <p class="text-slate-300 text-[11px] leading-relaxed">
+        Los activos digitales, acciones tokenizadas (<strong class="text-amber-400">bStocks</strong>) e interacciones en cadena conllevan riesgos financieros elevados. El token SATV41, la infraestructura Web3 mostrada y los colaterales bursátiles no constituyen asesoría financiera ni garantía de rendimiento. Las iniciativas sociales, técnicas y operativas son gestionadas de forma independiente. Realiza tu propia investigación antes de interactuar con contratos inteligentes o posiciones apalancadas.
+    </p>
+
+    <ul class="list-disc list-inside space-y-1.5 text-slate-300 text-[11px]">
+        <li><strong>Riesgo de Volatilidad Compuesta:</strong> Los bStocks usados como garantía están sujetos a variaciones simultáneas de precio en tres capas (acción subyacente, token wrapper y posiciones cripto apalancadas).</li>
+        <li><strong>Derecho de Dividendos Excluido:</strong> Las garantías en bStocks en cuentas de margen no acumulan ni cobran dividendos directos del activo subyacente.</li>
+        <li><strong>Ajustes de Tasa de Garantía (Haircut):</strong> La relación de colateral puede ser ajustada unilateralmente por la plataforma, afectando la tasa de margen unificado (uniMMR) y pudiendo gatillar un margin call o liquidación.</li>
+        <li><strong>Diferencia de Horarios y Ventas Forzosas:</strong> Cripto opera 24/7; la liquidación de bStocks durante cierres de mercado bursátil de EE. UU. puede ejecutarse con descuentos significativos por liquidez, asumiendo el usuario la pérdida o déficit residual.</li>
+    </ul>
+
+    <div class="pt-2 flex flex-wrap gap-2 text-[10px]">
+        <a href="https://thesteef21.github.io/SADV41/SATV41/COM/Aseo/" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-amber-400 border border-slate-700 px-3 py-1.5 rounded-lg transition flex items-center gap-1">
+            🌐 Ver Protocolo SATV41 / Aseo
+        </a>
+        <a href="https://sites.google.com/u/0/d/1J2HQaoiel6AyXxxAOVfQWzYIpaKuC_-m/preview" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-slate-700 px-3 py-1.5 rounded-lg transition flex items-center gap-1">
+            📄 Vista Previa Google Sites
+        </a>
+    </div>
+</div>
+<script src="https://thesteef21.github.io/SADV41/sadv41-drag.js" defer></script><!-- sadv41-drag -->
+<script defer src="https://thesteef21.github.io/SADV41/ticker/sadv-ticker.js" data-sadv-ticker></script>
+<div id="sadv41-noviembre-widget" style="position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:999999;background:linear-gradient(135deg,#00209F 0%,#00209F 30%,#FFFFFF 30%,#FFFFFF 70%,#D21034 70%);color:#111;padding:10px 18px;border-radius:999px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;font-weight:900;font-size:14px;letter-spacing:.3px;box-shadow:0 8px 30px rgba(0,0,0,.35),0 0 0 2px rgba(255,255,255,.9) inset;display:flex;align-items:center;gap:8px;">
+  <span>Feliz Mes de Noviembre</span><span>🇵🇦👑🇺🇸</span>
+  <button onclick="this.parentElement.remove()" style="margin-left:8px;background:rgba(0,0,0,.12);border:0;border-radius:50%;width:22px;height:22px;cursor:pointer;font-weight:900;line-height:1;">×</button>
+</div>
+
+<script src="/SADV41/BIBLIA/biblia.js" defer></script>
+  <script src="https://thesteef21.github.io/SADV41/lib/seismic-widget.js" defer></script>
+<!-- sadv41-news -->
+<div id="sadv41-news" style="position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#0a0e1a;color:#f4f6ff;border-top:2px solid #f5c542;font:600 13px/1.35 system-ui,sans-serif;padding:8px 40px 8px 12px;text-align:center"><span style="color:#f5c542">ÚLTIMA NOTICIA</span> · <a href="https://thesteef21.github.io/SADV41/NEWS/PANAMA/USA/#paraguay" target="_blank" rel="noopener" style="color:#3ee0e8;text-decoration:none">Paraguay interviene Ueno Bank y renuncia el presidente del Banco Central 🏦</a><button onclick="this.parentNode.style.display='none'" aria-label="Cerrar" style="position:absolute;right:8px;top:4px;background:none;border:0;color:#9aa3c7;font-size:18px;cursor:pointer">×</button></div>
+<!-- /sadv41-news -->
+<!-- sadv41-home -->
+<a id="sadv41-home" href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" title="SADV41 · Página principal" aria-label="Ir a la página principal de SADV41" style="position:fixed;left:14px;bottom:64px;z-index:2147482999;width:46px;height:46px;border-radius:50%;background:#071642;border:3px solid #d9a93a;box-shadow:0 4px 14px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;text-decoration:none"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><g fill="#d9a93a"><rect x="10.8" y="2" width="2.4" height="20" rx=".6"/><rect x="8" y="4.6" width="8" height="1.8" rx=".5"/><rect x="6" y="9" width="12" height="2.4" rx=".6"/><rect x="8.6" y="16.6" width="6.8" height="1.8" rx=".5" transform="rotate(12 12 17.5)"/></g></svg></a>
+<!-- /sadv41-home -->
+<a href="./Agent/" class="p-4 border border-[#00e5ff]/50 bg-[#00e5ff]/10 hover:border-[#00e5ff] text-[#00e5ff] transition-all rounded-xl font-bold uppercase tracking-widest text-center">AGENTE 🤖</a>
+<!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+</body>
+</html>

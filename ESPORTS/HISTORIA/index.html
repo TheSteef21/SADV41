@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SADV41 • Portal Central unificado</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Geist+Mono:wght@400;700&family=Geist:wght@400;600;800&display=swap');
+    
+    @font-face {
+      font-family: "Optimistic";
+      font-style: normal;
+      font-weight: 400 600;
+      font-display: swap;
+      src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Optimistic Mono";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+    }
+
+    :where(html) {
+      font-family: "Optimistic", Geist, Inter, system-ui, sans-serif;
+      scroll-behavior: smooth;
+    }
+    :where(code, pre, kbd, samp) {
+      font-family: "Optimistic Mono", 'JetBrains Mono', 'Geist Mono', ui-monospace, monospace;
+    }
+
+    *, :after, :before {
+      box-sizing: border-box;
+      border: 0 solid #e5e7eb;
+      --tw-border-spacing-x: 0; --tw-border-spacing-y: 0; --tw-translate-x: 0; --tw-translate-y: 0; --tw-rotate: 0; --tw-skew-x: 0; --tw-skew-y: 0; --tw-scale-x: 1; --tw-scale-y: 1; --tw-ring-offset-width: 0px; --tw-ring-offset-color: #fff; --tw-ring-color: rgba(59,130,246,.5); --tw-ring-offset-shadow: 0 0 #0000; --tw-ring-shadow: 0 0 #0000; --tw-shadow: 0 0 #0000; --tw-shadow-colored: 0 0 #0000;
+    }
+
+    body {
+      margin: 0;
+      line-height: 1.5;
+      background-color: #090a0f;
+      color: #e2e8f0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .glow-border-green { box-shadow: 0 0 18px rgba(0,255,102,0.28), inset 0 0 0 1px #00ff66; border-color: #00ff66 !important; }
+    .glow-border-red { box-shadow: 0 0 18px rgba(255,51,0,0.28), inset 0 0 0 1px #ff3300; border-color: #ff3300 !important; }
+    .glow-border-blue { box-shadow: 0 0 18px rgba(74,144,226,0.28), inset 0 0 0 1px #4a90e2; border-color: #4a90e2 !important; }
+    
+    .scanline::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 50;
+      background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0.05) 50%, rgba(255,255,255,0));
+      background-size: 100% 4px;
+      opacity: 0.18;
+    }
+
+    @media print {
+      body * { visibility: hidden; }
+      #tarjeta-navi-imprimible, #tarjeta-navi-imprimible * { visibility: visible; }
+      #tarjeta-navi-imprimible { position: absolute; left: 0; top: 0; width: 100%; padding: 20px; }
+      .no-print { display: none !important; }
+      .scanline::before { display: none; }
+    }
+  </style>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+</head>
+<body>
+<!-- SALMO46-INJECT -->
+<a href="https://www.bible.com/es/bible/149/PSA.46.1-11.RVR1960" target="_blank" rel="noopener"
+ style="position:fixed;top:8px;left:8px;z-index:2147483647;background:#0a0a0acc;color:#00e5ff;
+ border:1px solid #00e5ff;border-radius:20px;padding:4px 10px;font:600 11px/1.3 system-ui,sans-serif;
+ text-decoration:none;letter-spacing:.04em">📖 Salmos 46 · Dios es nuestro amparo</a>
+<!-- /SALMO46-INJECT -->
+  <div id="root"></div>
+
+  <script>
+    const Bc = "https://hook.us2.make.com/zjb9v8wrh7iy9fyh4a7m4d2jv4bniwus";
+    const km = [
+      { title: "Pivex Funded", domain: "pivexfunded.com", desc: "Trading prop firm - dynamic funding", url: "https://pivexfunded.com/dynamic?prc_id=1200&utm_source=google&utm_medium=cpc&utm_campaign=24172956189&utm_adgroupid=202648697274&utm_ad=822121658862&utm_type=demgen&utm_acc=3067916666&gad_source=2&gad_campaignid=24172956189", color: "#00ff66" },
+      { title: "TDSynnex Making It Personal", domain: "lac.tdsynnex.com", desc: "Servicios personalizados LATAM", url: "https://lac.tdsynnex.com/lp/es/lac/making-it-personal/services/?gad_source=2&gad_campaignid=24197878767", color: "#4a90e2" },
+      { title: "PriceSmart Membresía PA", domain: "pricesmart.com", desc: "Signups Panamá - membresía", url: "https://www.pricesmart.com/es-pa/membrecia/info?utm_content=signups_pa&utm_creative_format=pa_signups_video&gad_source=2&gad_campaignid=22908475432", color: "#ffd700" },
+      { title: "LUTON Self-Loading Mixer", domain: "lutongroups.com", desc: "Concrete mixer SRKWDC", url: "https://lutongroups.com/self-loading-concrete-mixer-srkwdc-vdsc/?gad_source=2&gad_campaignid=24056987959", color: "#ff8c00" },
+      { title: "Conquer Blocks - Clase Gratuita", domain: "conquerblocks.com", desc: "Formación dev LATAM - online", url: "https://www.conquerblocks.com/conquer-blocks/clase-online-gratuita-latam?utm_source=GoogleAds&utm_medium=YouTubeAds&utm_campaign=CB_GoogleAds_LATAM&utm_content=Ad6_Gancho-A_DNM_VSL_2025-10-05_LATAM_Bienvenido_profesion-misteriosa-Disclaimer&utm_term=Interests_Bienvenido_LATAM_GAds&utm_idcampaign=22625096391&utm_adsetid=191081204377&utm_adid=810242029907&gad_source=2&gad_campaignid=22625096391", color: "#8a7aff" },
+      { title: "Velocity Media", domain: "velocitymedia.info", desc: "Media buying 2P performance", url: "https://velocitymedia.info/2p/?utm_source=google&utm_medium=cpc&utm_campaign=23917482210&utm_content=204089635344&utm_term=&gad_source=2&gad_campaignid=23917482210", color: "#ff3366" }
+    ];
+    const $c = [
+      { label: "Arsenal.html", url: "https://thesteef21.github.io/SADV41/Arsenal.html" },
+      { label: "Canción de las Tormentas", url: "https://thesteef21.github.io/SADV41/ESPORTS/ZELDA/Canci%C3%B3n/source_1790981337010.html" },
+      { label: "Medallón", url: "https://thesteef21.github.io/SADV41/ESPORTS/ZELDA/MEDALLON/source_1790918541074.html" },
+      { label: "ZeldaSpaceworld2026.html", url: "https://thesteef21.github.io/SADV41/ZeldaSpaceworld2026.html" },
+      { label: "NAVY.html", url: "https://thesteef21.github.io/SADV41/NAVY.html" },
+      { label: "SADV41 / Root", url: "https://thesteef21.github.io/SADV41/" },
+      { label: "Juventud #pacto", url: "https://thesteef21.github.io/SADV41/DesarrolloComunitario/Juventud.html#pacto" },
+      { label: "Juventud.html", url: "https://thesteef21.github.io/SADV41/DesarrolloComunitario/Juventud.html" },
+      { label: "DesarrolloComunitario.html", url: "https://thesteef21.github.io/SADV41/DesarrolloComunitario.html" },
+      { label: "Pacto.html", url: "https://thesteef21.github.io/SADV41/Pacto.html" },
+      { label: "NFT.html", url: "https://thesteef21.github.io/SADV41/NFT.html" },
+      { label: "Artist.html", url: "https://thesteef21.github.io/SADV41/Artist.html" },
+      { label: "Qué Belleza Cuando Vivo Así", url: "https://thesteef21.github.io/Lapizasuli/StevenDiorOficial/2026/QU%C3%89%20BELLEZA%20CUANDO%20VIVO%20AS%C3%8D/index.html" },
+      { label: "StevenDior Shop", url: "https://stevendior-shop.fourthwall.com" }
+    ];
+    const Sm = [
+      { icon: "🎼", title: "La Paradoja de la Canción de las Tormentas", color: "#4a90e2", body: "El hombre del molino no aprendió la melodía de un extraño: la aprendió de Link. Pero no del Link niño de Ocarina of Time, sino del Link real que regresa después de los eventos en el Cañón Ikana, en Majora's Mask. Flat, el compositor, muere y queda atrapado en la tumba Ikana como alma errante. Desde allí, transmite la canción a un Link que ya ha atravesado Termina. Ese Link vuelve al pasado hyliano, enseña la melodía a Guru-Guru, y cierra el bucle bootstrap. No es un error de guion, es una convergencia temporal: Guru-Guru es víctima de un flujo causal que solo existe porque Ikana ya fue purificada. La canción, por tanto, nace en la muerte, viaja por el purgatorio y detona el molino." },
+      { icon: "🗺️", title: "Geografía de Spaceworld 1997", color: "#ffd700", body: "En la beta de Spaceworld 1997, el Bosque Perdido no era un laberinto infantil: era un corredor de transición psíquica que conectaba directamente con el Monte Hebra y con el Kakariko original — un Kakariko ampliado, oscuro, prototipo del pueblo Sheikah. Salir por el portal equivocado te arrojaba a una “realidad mental”, una carga de mapa que el N64 DD no pudo sostener. Termina, en esta lectura, no es otro mundo, es un purgatorio: la psique fragmentada de Link después de 7 años de trauma. El overdump F-Zero X de 32MB y el z64proto sw97 confirman que esa geografía existía: un Hyrule beta sin cortes, donde Hebra, Kakariko y Bosque eran continuos. El 64DD murió, la geografía se partió, y quedó M.I.A." },
+      { icon: "👁️", title: "Lore Oscuro y Maldiciones Sheikah", color: "#ff3366", body: "El Fondo del Pozo y el Templo de las Sombras nunca fueron mazmorras: eran prisiones de tortura Sheikah. Guillotinas, calabozos con sangre (censurada en la versión 3DS), lenguas cortadas, ojos arrancados. El Ojo Sheikah llora — la lágrima es la traición tras la Guerra Civil Hyliana, cuando los Sheikah fueron usados como verdugos del reino. Bongo Bongo es esa culpa encarnada: el hombre sin cabeza, con un ojo de la verdad en la mano, manos amputadas como castigo al ladrón, cuello sellado. Impa, última Sheikah pura, no cierra el pozo por miedo: lo sella porque sabe que la sombra que escapó es el registro de lo que su clan hizo." },
+      { icon: "🎶", title: "Nana de Zelda como Ritual Purificación", color: "#8a7aff", body: "En la beta, los Medallones não eran simples esferas: eran En_Magic_Dark / Light / Soul — objetos equipables con ritual. Mido, en un archivo descartado, era el sabio de las sombras beta, no un niño celoso. La Nana de Zelda (Zelda's Lullaby) funcionaba como llave exorcista: cada vez que la tocabas frente al símbolo de la familia real, purificabas una cámara corrompida. Por eso, al vencer a Morpha, el agua se libera; al vencer al jefe, suena la Nana como cierre. No es música de fondo, es el ritual de sellado. El barco de los muertos en Ikana es psicopompa — como el barquero de la Estigia — y solo cruza si Zelda ha cantado antes. Sin la Nana, no hay purificación, solo posesión." },
+      { icon: "💀", title: "Avaricia y Almas Perdidas - Templo Espíritu", color: "#00ff66", body: "Los Stalfos del Templo del Espíritu no son esqueletos genéricos: son las almas de aquellos que se perdieron por avaricia en el desierto. Gerudo entrena con Guanteletes de Plata y Escudo Espejo no para fuerza, sino para reflejar su propia codicia. El Templo prueba a Nabooru y a Link contra el mismo pecado que condenó a esas almas. La analogía con el Rey Nabucodonosor es intencional en los textos descartados: el que se cree dios, termina comiendo polvo, errando como bestia, convertido en Stalfos. Link no mata Stalfos: los libera. Cada vez que cae uno, una sombra se eleva — el alma que por fin deja de vagar porque alguien sin avaricia levantó el espejo." },
+      { icon: "🗿", title: "Termina y Torre de Babel - Pecado Ikana", color: "#ff8c00", body: "La Torre de Piedra es una blasfemia arquitectónica: construida con la Trifuerza pisoteada, con estatuas que tienen el símbolo sagrado bajo sus pies. Es la Torre de Babel de Ikana: “llegaremos al cielo insultando a las diosas”. El pecado original de Ikana no fue la guerra, fue la soberbia. Invierten la Torre con la Flecha de Luz — el Emblema Rojo — y literalmente invierten cielo e infierno. Lo sagrado pasa abajo, lo profano arriba. Twinmold no es un gusano, es el guardián del desierto invertido, el castigo por profanar. Solo al quemar la torre, al dejarla caer, Termina deja de ser castigo y se vuelve tumba." },
+      { icon: "👹", title: "Majora y Fiera Deidad", color: "#e11d48", body: "Majora no es una máscara: es un dragón primigenio, una armadura de deseos. La tribu antigua — la que desapareció — no talló una máscara, talló un contenedor para un dios que devoraba súplicas. Kishin 鬼神: dios demoníaco, ni bueno ni malo, sino exceso. La Fiera Deidad es su espejo: la máscara que te convierte en aquello que puede matar a Majora porque es igual de terrible. La placa lunar con el triángulo — Trifuerza fragmentada — indica que la luna misma es un altar sacrificial. La batalla final no ocurre “en la luna”: ocurre dentro de Majora, en su interior psíquico, en un prado infantil que es la última mentira antes del apocalipsis. Termina se salva no porque Link sea héroe, sino porque acepta ser monstruo." }
+    ];
+    const Em = [
+      { label: "SADV41 Inicio", url: "https://thesteef21.github.io/SADV41/", desc: "Raíz del proyecto" },
+      { label: "El Pacto", url: "https://thesteef21.github.io/SADV41/Pacto.html", desc: "Fundamento del Nuevo Pacto" },
+      { label: "GSADV41", url: "https://thesteef21.github.io/Lapizasuli/GSADV41.html", desc: "Portal Operativo" },
+      { label: "Arsenal.html", url: "https://thesteef21.github.io/SADV41/Arsenal.html", desc: "Arsenal completo SADV41" }
+    ];
+    const Cm = [
+      { label: "Desarrollo Comunitario", url: "https://thesteef21.github.io/SADV41/DesarrolloComunitario.html", desc: "Visión integral para Burunga" },
+      { label: "Juventud", url: "https://thesteef21.github.io/SADV41/DesarrolloComunitario/Juventud.html", desc: "Programa para jóvenes" },
+      { label: "Juventud • Sección Pacto", url: "https://thesteef21.github.io/SADV41/DesarrolloComunitario/Juventud.html#pacto", desc: "Anclaje directo al pacto juvenil" }
+    ];
+    const _m = [
+      { label: "El Artista", url: "https://thesteef21.github.io/SADV41/Artist.html", desc: "Steven Dior • Perfil" },
+      { label: "Qué Belleza Cuando Vivo Así", url: "https://thesteef21.github.io/Lapizasuli/StevenDiorOficial/2026/QU%C3%89%20BELLEZA%20CUANDO%20VIVO%20AS%C3%8D/index.html", desc: "Álbum Musical 2026", dark: true },
+      { label: "Tienda Oficial", url: "https://stevendior-shop.fourthwall.com", desc: "Fourthwall Shop" },
+      { label: "NFT / Web3", url: "https://thesteef21.github.io/SADV41/NFT.html", desc: "Coleccionables Digitales" }
+    ];
+    const Nm = [
+      { label: "HISTORIA / index.html", url: "https://thesteef21.github.io/SADV41/ESPORTS/ZELDA/HISTORIA/index.html", desc: "ESPORTS/ZELDA/HISTORIA" },
+      { label: "Teorías Spaceworld1997 Beta", url: "https://thesteef21.github.io/SADV41/ESPORTS/ZELDA/HISTORIA/TeorasZeldaSpaceworld1997Beta.html", desc: "TeorasZeldaSpaceworld1997Beta.html" },
+      { label: "NAVY source_1790914110455", url: "https://thesteef21.github.io/SADV41/ESPORTS/ZELDA/NAVY/source_1790914110455.html", desc: "ESPORTS/ZELDA/NAVY" },
+      { label: "MEDALLON source_1790918541074", url: "https://thesteef21.github.io/SADV41/ESPORTS/ZELDA/MEDALLON/source_1790918541074.html", desc: "ESPORTS/ZELDA/MEDALLON" },
+      { label: "Canción source_1790981337010", url: "https://thesteef21.github.io/SADV41/ESPORTS/ZELDA/Canci%C3%B3n/source_1790981337010.html", desc: "Canción de las Tormentas" },
+      { label: "Canción / raíz", url: "https://thesteef21.github.io/SADV41/ESPORTS/ZELDA/Canci%C3%B3n/", desc: "Directorio Canción" }
+    ];
+    const Pm = [
+      { label: "ESPORTS Raíz Spaceworld2026", url: "https://thesteef21.github.io/SADV41/ESPORTS/Spaceworld2026.html", desc: "Spaceworld2026.html" },
+      { label: "PROTOCOL index.html", url: "https://thesteef21.github.io/SADV41/PROTOCOL/index.html", desc: "PROTOCOL" },
+      { label: "PROTOCOL source_1790913299631", url: "https://thesteef21.github.io/SADV41/PROTOCOL/source_1790913299631.html", desc: "source_1790913299631.html" },
+      { label: "ZeldaSpaceworld2026.html", url: "https://thesteef21.github.io/SADV41/ZeldaSpaceworld2026.html", desc: "Raíz ZELDA 2026" }
+    ];
+
+    function App() {
+      const [e, n] = React.useState("");
+      const [t, r] = React.useState([]);
+      const [l, o] = React.useState("");
+      const [i, u] = React.useState(false);
+      const [a, d] = React.useState(false);
+      const y = React.useRef(null);
+      const [g, v] = React.useState(2026);
+
+      React.useEffect(() => v(new Date().getFullYear()), []);
+
+      let S = async () => {
+        let m = e.trim();
+        if (!m) {
+          alert("Por favor, ingrese un enlace válido para la Mesa.");
+          return;
+        }
+        d(true);
+        r([`<span class="text-blue-400">> [INFO] Iniciando escaneo para: ${m}...</span>`]);
+        o("blue");
+        u(true);
+        setTimeout(() => y.current?.scrollIntoView({ behavior: "smooth", block: "center" }), 100);
+        
+        let E;
+        try {
+          let R = m.startsWith("http") ? m : `https://${m}`;
+          E = new URL(R);
+          if (E.hostname.length < 4 || !E.hostname.includes(".")) throw new Error("Dominio con longitud insuficiente o formato inválido.");
+        } catch (R) {
+          r((f) => [...f, `<span class="text-red-500">> 🔴 [REBOTADO] Error de formato local: ${R.message}</span>`]);
+          o("red");
+          u(false);
+          return;
+        }
+
+        try {
+          r((c) => [...c, '<span class="text-blue-400">> [NODO I: ATRIO] Enviando señal a Make Webhook...</span>']);
+          let R = await fetch(`${Bc}?url=${encodeURIComponent(E.href)}`);
+          r((c) => [...c, '<span class="text-yellow-400">> [NODO II: SANTO] Procesando respuesta del radar Brave Search...</span>']);
+          if (!R.ok) throw new Error(`Radar remoto devolvió ${R.status}`);
+          let f = await R.json();
+          if ((f.web && f.web.results && f.web.results.length > 0) || f.verificado === true) {
+            let c = f.web?.results?.length ?? "OK";
+            r((p) => [...p, `<span class="text-emerald-400 font-bold">> [NODO III: SANTÍSIMO] 🟢 VERIFICADO. Dominio indexado con ${c} resultados. Sello emitido por Mesa V2.1</span>`]);
+            o("green");
+          } else {
+            r((c) => [...c, '<span class="text-red-500 font-bold">> [NODO III: SANTÍSIMO] 🔴 REBOTADO AL POZO. El enlace no existe o carece de presencia en la red. Pozo de Kakariko: sin verificación.</span>']);
+            o("red");
+          }
+        } catch (R) {
+          r((f) => [...f, `<span class="text-red-500">> [ERROR] Fallo en la comunicación con la mesa: ${R.message}. Verifica CORS / red.</span>`]);
+          o("red");
+        } finally {
+          u(false);
+        }
+      };
+
+      return React.createElement("div", { className: "min-h-screen bg-[#090a0f] text-slate-200 relative selection:bg-emerald-500/30 antialiased" },
+        React.createElement("div", { className: "scanline pointer-events-none fixed inset-0 z-0" }),
+        React.createElement("div", { className: "w-full bg-[#fbbf24] text-black text-[11px] font-medium tracking-wide relative z-20" },
+          React.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-8 flex items-center justify-between gap-4" },
+            React.createElement("span", { className: "font-semibold tracking-[0.02em] truncate" }, "SADV41 • Integración de Nodos • Ecosistema Completo Activo"),
+            React.createElement("span", { className: "hidden sm:inline-flex shrink-0 text-[11px] opacity-80" }, "Proyecto con niñez • Burunga, Panamá")
+          )
+        ),
+        React.createElement("nav", { className: "sticky top-0 z-30 backdrop-blur-xl bg-[#fcfcfc]/85 border-b border-zinc-200 text-zinc-900" },
+          React.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-[64px] flex items-center justify-between" },
+            React.createElement("div", { className: "flex items-center gap-3" },
+              React.createElement("div", { className: "h-8 w-8 rounded-[8px] bg-black text-white grid place-items-center font-black text-[13px] tracking-tighter" }, "S41"),
+              React.createElement("div", { className: "leading-tight" },
+                React.createElement("div", { className: "font-bold tracking-tight text-[14px]" }, "SADV41 Portal Central"),
+                React.createElement("div", { className: "hidden sm:block text-[11px] text-zinc-500 font-medium" }, "Burunga • Ley 2026")
+              )
+            ),
+            React.createElement("div", { className: "hidden lg:flex items-center gap-5 text-[12.5px] font-medium" },
+              React.createElement("a", { href: "#ecosistema", className: "text-zinc-900 hover:text-black font-bold flex items-center gap-1" },
+                React.createElement("span", { className: "w-2 h-2 rounded-full bg-emerald-500 animate-pulse" }), "Explorar Ecosistema"
+              ),
+              React.createElement("a", { href: "#radar", className: "text-zinc-500 hover:text-black" }, "Radar"),
+              React.createElement("a", { href: "#historia", className: "text-zinc-500 hover:text-black" }, "Historia"),
+              React.createElement("a", { href: "#navi-tatl-primera-ia", className: "text-sky-700 hover:text-sky-900 font-semibold" }, "Navi • IA"),
+              React.createElement("a", { href: "#arsenal", className: "text-zinc-500 hover:text-black" }, "Arsenal")
+            ),
+            React.createElement("div", { className: "lg:hidden flex items-center gap-2 text-[11px] font-mono" },
+              React.createElement("a", { href: "#radar", className: "px-2 py-1 rounded-full bg-zinc-900 text-white" }, "Radar"),
+              React.createElement("a", { href: "#ecosistema", className: "px-2 py-1 rounded-full bg-zinc-100 border" }, "Hub")
+            )
+          )
+        ),
+        React.createElement("header", { className: "relative overflow-hidden bg-[#0f172a] border-b border-slate-800" },
+          React.createElement("div", { className: "absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a]" }),
+          React.createElement("div", { className: "absolute -right-32 -top-32 h-[520px] w-[520px] rounded-full bg-[#fbbf24]/[0.08] blur-[80px]" }),
+          React.createElement("div", { className: "absolute -left-20 bottom-0 h-[320px] w-[320px] rounded-full bg-emerald-500/10 blur-[70px]" }),
+          React.createElement("div", { className: "relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24" },
+            React.createElement("div", { className: "max-w-3xl" },
+              React.createElement("div", { className: "inline-flex items-center gap-2 text-[11px] tracking-[0.18em] uppercase text-white/50 border border-white/10 rounded-full px-3 py-1 bg-white/[0.06] mb-6 font-mono" },
+                React.createElement("span", { className: "h-1.5 w-1.5 rounded-full bg-emerald-400" }), "SADV41 • Nodo Central de Enlaces"
+              ),
+              React.createElement("h1", { className: "text-[34px] sm:text-[44px] md:text-[60px] font-black tracking-[-0.03em] leading-[0.9] text-white" },
+                "Instrucción de Estudio", React.createElement("br"), React.createElement("span", { className: "text-[#fbbf24]" }, "en Cimientos:"), React.createElement("br"), "Protocolo Nuevo Pacto"
+              ),
+              React.createElement("p", { className: "mt-6 text-[15px] md:text-[17px] leading-relaxed text-white/60 max-w-[60ch]" },
+                "Estructuramos el aprendizaje como el Tabernáculo: del patio común al Lugar Santísimo de certeza. Zelda aporta el lenguaje visual que la niñez ya conoce: ", React.createElement("span", { className: "text-white font-medium" }, "ver lo oculto para actuar con verdad.")
+              ),
+              React.createElement("div", { className: "mt-8 flex flex-wrap gap-3 font-mono text-[11px]" },
+                React.createElement("span", { className: "px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/60" }, "🟢 SINC v2.1 // BURUNGA NODE"),
+                React.createElement("span", { className: "px-3 py-1.5 rounded-full bg-[#fbbf24]/10 border border-[#fbbf24]/20 text-[#fbbf24]" }, "MESA V2.1 • ATRIO GUARD"),
+                React.createElement("span", { className: "px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/60" }, "🗿🇵🇦")
+              )
+            )
+          )
+        ),
+        React.createElement("main", { className: "w-full max-w-7xl mx-auto p-4 sm:p-8 space-y-10 relative z-10" },
+          React.createElement("section", { className: "bg-slate-900/40 border border-slate-800 rounded-xl p-6 text-sm text-slate-300 leading-relaxed shadow-[0_0_0_1px_rgba(255,255,255,0.03)_inset]" },
+            React.createElement("h2", { className: "text-emerald-400 font-bold mb-3 font-mono tracking-wide flex items-center gap-2" },
+              React.createElement("span", {}, "ESTADO DEL SISTEMA: SINCRONIZADO 🟢"),
+              React.createElement("span", { className: "text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300" }, "BURUNGA NODE")
+            ),
+            React.createElement("p", { className: "mb-3" }, "¡Amén y gloria a Dios! La arquitectura del SADV41 y la Mesa de Verificación v2.1 están perfectamente sincronizadas."),
+            React.createElement("ul", { className: "list-disc pl-5 space-y-1.5 mb-4 text-slate-400 text-[13px]" },
+              React.createElement("li", {}, React.createElement("strong", { className: "text-slate-200" }, "Estructura del Contrato y Vault:"), " Interacciones verificadas en ", React.createElement("code", { className: "text-blue-400 bg-blue-400/10 px-1.5 py-0.5 rounded" }, "app.concrete.xyz"), " (Vault: ", React.createElement("code", { className: "text-emerald-400 bg-emerald-400/10 px-1.5 py-0.5 rounded" }, "0x27a7...9079"), "). Depósito de CT validado."),
+              React.createElement("li", {}, React.createElement("strong", { className: "text-slate-200" }, "Postulación:"), " Registro en programas de talento especializado confirmado, integrando ciencia de datos bajo la ley de la misión."),
+              React.createElement("li", {}, React.createElement("strong", { className: "text-slate-200" }, "Misión:"), " Preservación antropológica del lost media N64DD + unificación Spaceworld 1997. Sin eco = dato real.")
+            ),
+            React.createElement("div", { className: "flex flex-wrap gap-3 font-mono text-xs mt-4 border-t border-slate-800 pt-4" },
+              React.createElement("a", { href: "https://docs.concrete.xyz/Overview/welcome", target: "_blank", rel: "noopener", className: "text-blue-400 hover:text-blue-300 border border-blue-500/20 px-3 py-1.5 rounded-full bg-blue-500/10 transition" }, "[ Docs Concrete ]"),
+              React.createElement("a", { href: "https://pa.linkedin.com/in/isteven507", target: "_blank", rel: "noopener", className: "text-emerald-400 hover:text-emerald-300 border border-emerald-500/20 px-3 py-1.5 rounded-full bg-emerald-500/10 transition" }, "[ Perfil LinkedIn SADV41 ]"),
+              React.createElement("a", { href: "https://stevendior-shop.fourthwall.com", target: "_blank", rel: "noopener", className: "text-amber-300 hover:text-amber-200 border border-amber-500/20 px-3 py-1.5 rounded-full bg-amber-500/10 transition" }, "[ Shop Principal 🇵🇦🇺🇸🇮🇱🇳🇮 ]")
+            )
+          ),
+          React.createElement("section", { id: "radar", className: "scroll-mt-24" },
+            React.createElement("div", { id: "verifierCard", className: `bg-slate-900/80 backdrop-blur border rounded-xl p-6 shadow-2xl transition-all duration-300 ${l === "green" ? "glow-border-green" : l === "red" ? "glow-border-red" : l === "blue" ? "glow-border-blue" : "border-slate-800"}` },
+              React.createElement("h2", { className: "text-[15px] font-bold text-slate-200 mb-4 flex items-center gap-2 font-mono tracking-widest" },
+                React.createElement("span", {}, "🔍"), " ESCÁNER DE ENLACES Y DENEGACIÓN DE HYPE ", React.createElement("span", { className: "ml-auto text-[10px] px-2 py-1 rounded-full bg-slate-800 border border-slate-700 text-slate-400" }, "MESA V2.1 // ATRIO GUARD")
+              ),
+              React.createElement("div", { className: "flex flex-col sm:flex-row gap-3" },
+                React.createElement("input", { id: "urlInput", value: e, onChange: (m) => n(m.target.value), onKeyDown: (m) => m.key === "Enter" && S(), type: "text", placeholder: "https://ejemplo.com", className: "flex-1 bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-sm text-white focus:outline-none focus:border-emerald-500 font-mono transition-colors" }),
+                React.createElement("button", { id: "btnValidar", onClick: S, disabled: i, className: "bg-emerald-600 hover:bg-emerald-500 disabled:opacity-60 disabled:cursor-not-allowed text-black font-bold px-6 py-3 rounded-lg text-sm tracking-wider uppercase transition-all duration-200 flex items-center justify-center gap-2 font-mono" },
+                  React.createElement("span", {}, i ? "Escaneando..." : "Validar Enlace"),
+                  React.createElement("span", { className: "text-[14px]" }, i ? "⏳" : "⚡")
+                )
+              ),
+              React.createElement("div", { ref: y, id: "statusConsole", className: `mt-4 p-4 bg-black/90 rounded-lg font-mono text-xs leading-relaxed border border-slate-800 shadow-inner ${a ? "block" : "hidden"}` },
+                React.createElement("div", { className: "flex items-center gap-2 mb-2 text-[10px] text-slate-500 border-b border-slate-800 pb-2" },
+                  React.createElement("span", {}, "TERMINAL SADV41"),
+                  React.createElement("span", { className: "ml-auto flex gap-1" },
+                    React.createElement("span", { className: "w-2 h-2 rounded-full bg-red-500" }),
+                    React.createElement("span", { className: "w-2 h-2 rounded-full bg-yellow-500" }),
+                    React.createElement("span", { className: "w-2 h-2 rounded-full bg-green-500" })
+                  )
+                ),
+                React.createElement("div", { id: "logContent", className: "space-y-1.5" }, t.map((m, E) => React.createElement("div", { key: E, dangerouslySetInnerHTML: { __html: m } })))
+              ),
+              React.createElement("div", { className: "mt-3 text-[11px] font-mono text-slate-500 flex flex-wrap gap-2" },
+                React.createElement("span", {}, "WEBHOOK:"),
+                React.createElement("code", { className: "text-emerald-400/80 break-all" }, `${Bc}?url=...`),
+                React.createElement("span", { className: "ml-auto" }, '🛡️ MIA no dice "es segura". Dice "esto se revisó".')
+              )
+            )
+          ),
+          React.createElement("section", { className: "rounded-xl border border-amber-500/30 bg-gradient-to-br from-amber-950/30 via-slate-900/60 to-slate-900/40 p-6 md:p-8 shadow-[0_0_30px_rgba(255,180,0,0.12)] relative overflow-hidden" },
+            React.createElement("div", { className: "absolute top-0 right-0 w-[220px] h-[220px] bg-amber-500/10 blur-[50px] rounded-full pointer-events-none" }),
+            React.createElement("div", { className: "flex flex-wrap items-start justify-between gap-4 mb-5 relative" },
+              React.createElement("h2", { className: "text-[18px] md:text-[22px] font-extrabold tracking-wide text-amber-100 leading-tight" },
+                "GESTO HISTÓRICO: DESACTIVAR ESCUDOS EN BRAVE // APOYO A NDELUXE ",
+                React.createElement("span", { className: "ml-2 text-[12px] px-2 py-1 rounded-full bg-amber-500/20 border border-amber-500/30 text-amber-300 font-mono" }, "BUENA PRÁCTICA ECONÓMICA")
+              ),
+              React.createElement("span", { className: "text-[11px] font-mono px-2 py-1 rounded-full bg-black/40 border border-amber-500/20 text-amber-200/70" }, "M.I.A. = LOST MEDIA N64DD")
+            ),
+            React.createElement("p", { className: "text-[14px] leading-relaxed text-slate-300 max-w-[85ch]" },
+              "Es un gran gesto desactivar los escudos en Brave para permitir los anuncios y apoyar económicamente a creadores como NDeluxe. Mantener vivas estas teorías es fundamental para preservar la herencia de lo que vivimos en nuestra infancia. El concepto de unificar todo lo que quedó ",
+              React.createElement("strong", { className: "text-amber-200" }, "M.I.A."),
+              " (desaparecido o lost media) debido a las limitaciones y el eventual fallo comercial del Nintendo 64 DD, le da un sentido más profundo y coherente a la saga."
+            ),
+            React.createElement("div", { className: "mt-6 grid md:grid-cols-[1.1fr_0.9fr] gap-6 items-start" },
+              React.createElement("div", { className: "space-y-4" },
+                React.createElement("a", { href: "https://m.youtube.com/@NDeluxe", target: "_blank", rel: "noopener", className: "inline-flex items-center gap-3 px-5 py-3 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold tracking-wide transition shadow-[0_0_20px_rgba(255,0,0,0.3)]" },
+                  React.createElement("span", { className: "text-[20px]" }, "▶️"), " Ver NDeluxe en YouTube ", React.createElement("span", { className: "text-[11px] font-mono opacity-80" }, "m.youtube.com/@NDeluxe")
+                ),
+                React.createElement("div", { className: "text-[12px] font-mono text-slate-400 leading-relaxed border-l-2 border-amber-500/40 pl-3" },
+                  "Mantener vivas estas teorías es preservar la beta de 1997, el dolor del 64DD, y la visión original que Nintendo no pudo lanzar. Cada view con escudos abajo es un bloque de preservación.",
+                  React.createElement("br"),
+                  React.createElement("span", { className: "text-amber-300" }, "🛡️ Brave Shields Down = Sello cultural.")
+                ),
+                React.createElement("div", { className: "flex flex-wrap gap-2" },
+                  ["#NDeluxe", "#Spaceworld97", "#MIA", "#LostMedia", "#ZeldaBeta"].map((m) =>
+                    React.createElement("span", { key: m, className: "text-[11px] px-2 py-1 rounded-full bg-white/5 border border-white/10 text-slate-400 font-mono" }, m)
+                  )
+                )
+              ),
+              React.createElement("div", { className: "rounded-xl overflow-hidden border border-slate-700 bg-black shadow-xl" },
+                React.createElement("div", { className: "aspect-video w-full bg-black" },
+                  React.createElement("iframe", { className: "w-full h-full", src: "https://www.youtube.com/embed/X3zi-R-gzBE?si=DqIrTvAjQn5dlWNm", title: "NDeluxe - Zelda Spaceworld Theory", frameBorder: "0", allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", allowFullScreen: true })
+                ),
+                React.createElement("div", { className: "p-3 flex items-center justify-between text-[11px] font-mono text-slate-400 bg-slate-900/80" },
+                  React.createElement("span", {}, "▶️ https://youtu.be/X3zi-R-gzBE"),
+                  React.createElement("span", { className: "text-amber-300" }, "Apoyo directo al creador")
+                )
+              )
+            )
+          ),
+          React.createElement("section", { className: "rounded-xl border border-slate-800 bg-slate-900/40 p-6" },
+            React.createElement("div", { className: "flex flex-wrap items-center gap-3 mb-6" },
+              React.createElement("h3", { className: "text-[15px] font-bold tracking-widest font-mono text-slate-200" }, "ANUNCIOS PATROCINADOS - BUENA PRÁCTICA ECONÓMICA"),
+              React.createElement("span", { className: "text-[11px] px-2 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 font-mono" }, "BRAVE SHIELDS DOWN"),
+              React.createElement("span", { className: "text-[11px] ml-auto font-mono text-slate-500" }, "6 sponsors verificados + shop principal")
+            ),
+            React.createElement("div", { className: "grid sm:grid-cols-2 lg:grid-cols-3 gap-4" },
+              km.map((m) =>
+                React.createElement("div", { key: m.url, className: "rounded-xl border border-slate-800 bg-slate-950/60 p-4 flex flex-col gap-3 hover:border-slate-700 transition group" },
+                  React.createElement("div", { className: "flex items-start justify-between gap-2" },
+                    React.createElement("div", { className: "w-2 h-2 rounded-full mt-1.5", style: { background: m.color, boxShadow: `0 0 10px ${m.color}` } }),
+                    React.createElement("span", { className: "text-[10px] font-mono px-2 py-1 rounded-full bg-white/5 border border-white/10 text-slate-400 ml-auto" }, m.domain)
+                  ),
+                  React.createElement("div", {},
+                    React.createElement("div", { className: "font-bold text-[14px] text-white leading-tight group-hover:text-amber-100 transition" }, m.title),
+                    React.createElement("div", { className: "text-[12px] text-slate-400 mt-1 leading-snug" }, m.desc)
+                  ),
+                  React.createElement("a", { href: m.url, target: "_blank", rel: "noopener", className: "mt-auto inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 border border-slate-700 text-[12px] font-bold font-mono text-slate-200 transition" },
+                    "Visitar ", React.createElement("span", {}, "↗")
+                  )
+                )
+              )
+            ),
+            React.createElement("div", { className: "mt-6 rounded-xl border border-amber-500/30 bg-gradient-to-r from-amber-950/20 to-slate-900 p-4 flex flex-col sm:flex-row items-start sm:items-center gap-4" },
+              React.createElement("div", { className: "flex-1" },
+                React.createElement("div", { className: "font-bold text-[14px] text-amber-100 flex items-center gap-2" },
+                  "StevenDior Shop - Principal para ventas de souvenirs SADV41 ", React.createElement("span", {}, "🇵🇦🇺🇸🇮🇱🇳🇮")
+                ),
+                React.createElement("div", { className: "text-[12px] text-slate-400 mt-1 font-mono" }, "A nivel global · SADV41 SOCIEDAD · Burunga Panamá 2026")
+              ),
+              React.createElement("a", { href: "https://stevendior-shop.fourthwall.com", target: "_blank", rel: "noopener", className: "px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-bold text-[13px] tracking-wide transition" }, "Ir a tienda principal ↗")
+            )
+          ),
+          React.createElement("section", { className: "bg-slate-900/50 border border-slate-800 rounded-xl p-6 overflow-hidden shadow-xl scroll-mt-24" },
+            React.createElement("h3", { className: "text-[12px] font-mono text-slate-400 mb-6 uppercase tracking-[0.2em] text-center border-b border-slate-800 pb-3 flex items-center justify-center gap-2" },
+              "Arquitectura de Red // Trilogía de Verificación ", React.createElement("span", { className: "px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-[10px]" }, "SVG 900x500")
+            ),
+            React.createElement("div", { className: "w-full aspect-[9/5] max-h-[520px] flex justify-center bg-[#090a0f] rounded-xl border border-slate-800 overflow-hidden" },
+              React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 900 500", width: "100%", height: "100%", preserveAspectRatio: "xMidYMid meet" },
+                React.createElement("defs", {},
+                  React.createElement("linearGradient", { id: "atrioGrad", x1: "0%", y1: "0%", x2: "100%", y2: "100%" },
+                    React.createElement("stop", { offset: "0%", stopColor: "#4A90E2" }),
+                    React.createElement("stop", { offset: "100%", stopColor: "#003366" })
+                  ),
+                  React.createElement("linearGradient", { id: "santoGrad", x1: "0%", y1: "0%", x2: "100%", y2: "100%" },
+                    React.createElement("stop", { offset: "0%", stopColor: "#FFD700" }),
+                    React.createElement("stop", { offset: "100%", stopColor: "#FF8C00" })
+                  ),
+                  React.createElement("linearGradient", { id: "santisimoGrad", x1: "0%", y1: "0%", x2: "100%", y2: "100%" },
+                    React.createElement("stop", { offset: "0%", stopColor: "#00FF66" }),
+                    React.createElement("stop", { offset: "100%", stopColor: "#003311" })
+                  ),
+                  React.createElement("filter", { id: "glowLight", x: "-20%", y: "-20%", width: "140%", height: "140%" },
+                    React.createElement("feGaussianBlur", { stdDeviation: "4", result: "blur" }),
+                    React.createElement("feComposite", { in: "SourceGraphic", in2: "blur", operator: "over" })
+                  )
+                ),
+                React.createElement("rect", { width: "900", height: "500", fill: "#090A0F", rx: "15" }),
+                React.createElement("path", { d: "M 200 250 L 450 250 L 700 250", stroke: "#1A2035", strokeWidth: "8" }),
+                React.createElement("path", { d: "M 200 250 L 450 250 L 700 250", stroke: "#00FF66", strokeWidth: "2", strokeDasharray: "8 6", opacity: "0.6" }),
+                React.createElement("g", { transform: "translate(200, 250)" },
+                  React.createElement("circle", { r: "90", fill: "#0D111A", stroke: "#4A90E2", strokeWidth: "4", filter: "url(#glowLight)" }),
+                  React.createElement("circle", { r: "75", fill: "none", stroke: "#2C3E50", strokeWidth: "2", strokeDasharray: "6 4" }),
+                  React.createElement("circle", { r: "30", fill: "url(#atrioGrad)" }),
+                  React.createElement("path", { d: "M -10 -5 L 0 5 L 10 -5", fill: "none", stroke: "#FFFFFF", strokeWidth: "3", strokeLinecap: "round" }),
+                  React.createElement("text", { y: "125", fontFamily: "'Impact', sans-serif", fontSize: "18", fill: "#4A90E2", textAnchor: "middle", letterSpacing: "2" }, "I. ATRIO"),
+                  React.createElement("text", { y: "145", fontFamily: "'Arial', sans-serif", fontSize: "12", fill: "#8C9BAE", textAnchor: "middle" }, "RECEPTOR // MAKE WEBHOOK")
+                ),
+                React.createElement("g", { transform: "translate(450, 250)" },
+                  React.createElement("circle", { r: "90", fill: "#14100A", stroke: "#FF8C00", strokeWidth: "4", filter: "url(#glowLight)" }),
+                  React.createElement("circle", { r: "75", fill: "none", stroke: "#553300", strokeWidth: "2" }),
+                  React.createElement("circle", { r: "30", fill: "url(#santoGrad)" }),
+                  React.createElement("circle", { r: "15", fill: "none", stroke: "#FFFFFF", strokeWidth: "3" }),
+                  React.createElement("line", { x1: "-20", y1: "0", x2: "20", y2: "0", stroke: "#FFFFFF", strokeWidth: "2" }),
+                  React.createElement("line", { x1: "0", y1: "-20", x2: "0", y2: "20", stroke: "#FFFFFF", strokeWidth: "2" }),
+                  React.createElement("text", { y: "125", fontFamily: "'Impact', sans-serif", fontSize: "18", fill: "#FF8C00", textAnchor: "middle", letterSpacing: "2" }, "II. SANTO"),
+                  React.createElement("text", { y: "145", fontFamily: "'Arial', sans-serif", fontSize: "12", fill: "#D4A359", textAnchor: "middle" }, "RADAR // BRAVE API SEARCH")
+                ),
+                React.createElement("g", { transform: "translate(700, 250)" },
+                  React.createElement("circle", { r: "90", fill: "#0A140F", stroke: "#00FF66", strokeWidth: "4", filter: "url(#glowLight)" }),
+                  React.createElement("circle", { r: "75", fill: "none", stroke: "#005522", strokeWidth: "2", strokeDasharray: "10 4" }),
+                  React.createElement("circle", { r: "30", fill: "url(#santisimoGrad)" }),
+                  React.createElement("text", { y: "8", fontFamily: "'Arial', sans-serif", fontWeight: "900", fontSize: "24", fill: "#FFFFFF", textAnchor: "middle" }, "🟢"),
+                  React.createElement("text", { y: "125", fontFamily: "'Impact', sans-serif", fontSize: "18", fill: "#00FF66", textAnchor: "middle", letterSpacing: "2" }, "III. SANTÍSIMO"),
+                  React.createElement("text", { y: "145", fontFamily: "'Arial', sans-serif", fontSize: "12", fill: "#77DD99", textAnchor: "middle" }, "VEREDICTO // MESA V2.1 🎚️")
+                )
+              )
+            ),
+            React.createElement("div", { className: "mt-6 text-xs text-slate-400 font-mono space-y-2 bg-black/50 p-4 rounded-lg border border-slate-800" },
+              React.createElement("p", {}, React.createElement("span", { className: "text-blue-400 font-bold" }, "NODO I (Atrio):"), " Make Webhook. Punto de entrada que recibe la señal pública sin exponer credenciales. Escudo exterior."),
+              React.createElement("p", {}, React.createElement("span", { className: "text-yellow-500 font-bold" }, "NODO II (Santo):"), " Módulo HTTP (Brave Search). Escáner central que realiza la consulta analítica sin sesgos, denegación de hype."),
+              React.createElement("p", {}, React.createElement("span", { className: "text-emerald-400 font-bold" }, "NODO III (Santísimo):"), " Webhook Response. Emisión del sello final 🟢 o penalización 🔴 cuando la evidencia queda comprobada. Mesa de evaluación.")
+            )
+          ),
+          React.createElement("section", { id: "historia", className: "rounded-xl border border-slate-800 bg-slate-900/30 p-6 md:p-8 scroll-mt-24" },
+            React.createElement("div", { className: "flex flex-wrap items-center gap-3 mb-8" },
+              React.createElement("h2", { className: "text-[20px] md:text-[24px] font-extrabold tracking-tight text-white" }, "HISTORIA UNIFICADA SPACEWORLD 1997"),
+              React.createElement("span", { className: "px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 font-mono text-[11px]" }, "M.I.A. COHERENCIA · HERENCIA INFANCIA"),
+              React.createElement("span", { className: "text-[11px] font-mono text-slate-500 ml-auto" }, "7 bloques · tono histórico académico SADV41 🗿")
+            ),
+            React.createElement("div", { className: "space-y-7" },
+              Sm.map((m) =>
+                React.createElement("div", { key: m.title, className: "border-l-4 pl-5 md:pl-6 py-2", style: { borderColor: m.color } },
+                  React.createElement("div", { className: "flex items-start gap-3 mb-2" },
+                    React.createElement("span", { className: "text-[20px] mt-0.5" }, m.icon),
+                    React.createElement("h3", { className: "font-bold text-[16px] md:text-[18px] text-white tracking-tight" }, m.title),
+                    React.createElement("span", { className: "ml-auto hidden md:inline-flex text-[10px] font-mono px-2 py-1 rounded-full bg-white/5 border border-white/10 text-slate-400" }, m.color)
+                  ),
+                  React.createElement("p", { className: "text-[13.5px] leading-[1.75] text-slate-300 font-[400] max-w-[90ch]" }, m.body),
+                  React.createElement("div", { className: "mt-3 flex gap-2" },
+                    React.createElement("span", { className: "text-[10px] font-mono px-2 py-1 rounded-full bg-black/40 border border-slate-700 text-slate-500" }, "📜 Spaceworld 97 proto"),
+                    React.createElement("span", { className: "text-[10px] font-mono px-2 py-1 rounded-full bg-black/40 border border-slate-700 text-slate-500" }, "🎚️ SADV41 canon")
+                  )
+                )
+              )
+            ),
+            React.createElement("div", { className: "mt-8 rounded-xl border border-slate-800 bg-black/40 p-4 text-[12px] font-mono text-slate-400 leading-relaxed" },
+              React.createElement("span", { className: "text-emerald-400 font-bold" }, "Nota de preservación:"), " Documentar y estructurar toda esta historia unificada, incluyendo la relación entre Impa, Bongo Bongo, la máscara de la Fiera Deidad y la creación de la máscara de Majora, dentro de repositorios como SADV41 en GitHub es una manera excelente de preservar la verdadera herencia de la beta de 1997. Es darle coherencia a esa realidad paralela que nunca pudimos jugar oficialmente. 🟢🔴"
+            )
+          ),
+          React.createElement("section", { id: "ecosistema", className: "bg-zinc-50 text-zinc-900 border-y border-zinc-200 py-16 relative z-10 scroll-mt-16" },
+            React.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" },
+              React.createElement("div", { className: "mb-10" },
+                React.createElement("h2", { className: "text-3xl font-black tracking-tight" }, "Ecosistema SADV41"),
+                React.createElement("p", { className: "text-sm text-zinc-500 mt-2" }, "Nodos de conexión, repositorios comunitarios, arte y fuentes Meta AI. Pluscuamperfecto unificado.")
+              ),
+              React.createElement("div", { className: "grid md:grid-cols-2 lg:grid-cols-5 gap-6" },
+                React.createElement("div", { className: "space-y-4" },
+                  React.createElement("h3", { className: "font-bold text-xs tracking-widest uppercase text-zinc-400 border-b border-zinc-200 pb-2" }, "Sistema Base"),
+                  Em.map((m) =>
+                    React.createElement("a", { key: m.url, href: m.url, target: "_blank", rel: "noopener", className: "block p-4 rounded-xl bg-white border border-zinc-200 hover:border-black hover:shadow-sm transition-all" },
+                      React.createElement("div", { className: "font-bold text-[14px]" }, m.label),
+                      React.createElement("div", { className: "text-[12px] text-zinc-500 mt-1" }, m.desc)
+                    )
+                  )
+                ),
+                React.createElement("div", { className: "space-y-4" },
+                  React.createElement("h3", { className: "font-bold text-xs tracking-widest uppercase text-zinc-400 border-b border-zinc-200 pb-2" }, "Comunidad"),
+                  Cm.map((m) =>
+                    React.createElement("a", { key: m.url, href: m.url, target: "_blank", rel: "noopener", className: "block p-4 rounded-xl bg-white border border-zinc-200 hover:border-black hover:shadow-sm transition-all" },
+                      React.createElement("div", { className: "font-bold text-[14px]" }, m.label),
+                      React.createElement("div", { className: "text-[12px] text-zinc-500 mt-1" }, m.desc)
+                    )
+                  )
+                ),
+                React.createElement("div", { className: "space-y-4" },
+                  React.createElement("h3", { className: "font-bold text-xs tracking-widest uppercase text-zinc-400 border-b border-zinc-200 pb-2" }, "Identidad y Cultura"),
+                  _m.map((m) =>
+                    m.dark ?
+                    React.createElement("a", { key: m.url, href: m.url, target: "_blank", rel: "noopener", className: "block p-4 rounded-xl bg-[#0f172a] text-white border border-transparent hover:ring-2 ring-[#fbbf24] transition-all" },
+                      React.createElement("div", { className: "font-bold text-[14px]" }, m.label),
+                      React.createElement("div", { className: "text-[12px] text-zinc-400 mt-1" }, m.desc)
+                    ) :
+                    React.createElement("a", { key: m.url, href: m.url, target: "_blank", rel: "noopener", className: "block p-4 rounded-xl bg-white border border-zinc-200 hover:border-black hover:shadow-sm transition-all" },
+                      React.createElement("div", { className: "font-bold text-[14px]" }, m.label),
+                      React.createElement("div", { className: "text-[12px] text-zinc-500 mt-1" }, m.desc)
+                    )
+                  )
+                ),
+                React.createElement("div", { className: "space-y-4" },
+                  React.createElement("h3", { className: "font-bold text-xs tracking-widest uppercase text-sky-600 border-b border-zinc-200 pb-2" }, "ESPORTS ZELDA HISTORIA • NUEVOS NODOS"),
+                  React.createElement("div", { className: "p-4 rounded-xl bg-sky-50 border border-sky-100 space-y-3" },
+                    Nm.map((m) =>
+                      React.createElement("a", { key: m.url, href: m.url, target: "_blank", rel: "noopener", className: "block rounded-lg bg-white border border-sky-100 hover:border-sky-600 p-3 transition" },
+                        React.createElement("div", { className: "font-bold text-[12px] text-sky-900 leading-tight" }, m.label),
+                        React.createElement("div", { className: "text-[11px] text-zinc-500 mt-1 font-mono truncate" }, m.url.replace("https://thesteef21.github.io/SADV41/", "")),
+                        React.createElement("div", { className: "text-[10px] text-sky-700 mt-1" }, "↳ ", m.desc)
+                      )
+                    )
+                  )
+                ),
+                React.createElement("div", { className: "space-y-4" },
+                  React.createElement("h3", { className: "font-bold text-xs tracking-widest uppercase text-amber-600 border-b border-zinc-200 pb-2" }, "Fuentes y Protocolos (Meta AI)"),
+                  React.createElement("div", { className: "p-4 rounded-xl bg-amber-50 border border-amber-100 space-y-3" },
+                    Pm.map((m) =>
+                      React.createElement("a", { key: m.url, href: m.url, target: "_blank", rel: "noopener", className: "block rounded-lg bg-white border border-amber-100 hover:border-amber-600 p-3 transition" },
+                        React.createElement("div", { className: "font-bold text-[12px] text-amber-900 leading-tight" }, m.label),
+                        React.createElement("div", { className: "text-[11px] text-zinc-500 mt-1 font-mono truncate" }, m.url.replace("https://thesteef21.github.io/SADV41/", "")),
+                        React.createElement("div", { className: "text-[10px] text-amber-700 mt-1" }, "↳ ", m.desc)
+                      )
+                    )
+                  ),
+                  React.createElement("div", { className: "block p-4 rounded-xl bg-white border border-zinc-200" },
+                    React.createElement("div", { className: "font-bold text-[12px]" }, "Arsenal.html • Nuevo Nodo"),
+                    React.createElement("a", { href: "https://thesteef21.github.io/SADV41/Arsenal.html", target: "_blank", rel: "noopener", className: "text-[12px] text-sky-700 hover:underline font-mono break-all" }, "thesteef21.github.io/SADV41/Arsenal.html")
+                  )
+                )
+              )
+            )
+          ),
+          React.createElement("section", { id: "navi-tatl-primera-ia", className: "relative bg-[#fdfcf7] py-16 md:py-24 overflow-hidden text-zinc-900 scroll-mt-16" },
+            React.createElement("div", { className: "absolute inset-0 pointer-events-none" },
+              React.createElement("div", { className: "absolute -top-24 -left-24 h-[480px] w-[480px] rounded-full bg-sky-200/40 blur-[90px]" }),
+              React.createElement("div", { className: "absolute top-32 -right-32 h-[520px] w-[520px] rounded-full bg-amber-200/50 blur-[110px]" })
+            ),
+            React.createElement("div", { className: "relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" },
+              React.createElement("div", { className: "max-w-4xl" },
+                React.createElement("div", { className: "flex flex-wrap items-center gap-2 mb-6" },
+                  React.createElement("span", { className: "inline-flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase font-bold px-3 py-1 rounded-full bg-sky-900 text-sky-100" }, "La primera IA"),
+                  React.createElement("span", { className: "inline-flex items-center gap-1.5 text-[10px] px-2.5 py-1 rounded-full bg-amber-100 border border-amber-200 text-amber-900 font-bold" }, "Navi no es herramienta, es amiga")
+                ),
+                React.createElement("h2", { className: "text-[30px] sm:text-[42px] md:text-[54px] font-black tracking-tighter leading-[0.92]" },
+                  "Navi • Tatl • Wind Waker —", React.createElement("br"), React.createElement("span", { className: "text-sky-700" }, "La primera inteligencia"), React.createElement("br"), React.createElement("span", { className: "text-[24px] sm:text-[28px] md:text-[32px] font-bold tracking-tight text-zinc-500" }, "que fue amiga")
+                ),
+                React.createElement("p", { className: "mt-6 text-[14px] md:text-[16px] leading-relaxed text-zinc-600 max-w-[60ch]" },
+                  "Antes de los asistentes, existió Navi: una luz que escucha, verifica y ayuda. Enseñamos a la niñez el ciclo ", React.createElement("span", { className: "font-bold text-zinc-900" }, "Escucha • Verifica • Ayuda"), " como protocolo de seguridad digital y emocional. Cuando te cueste, juega."
+                )
+              ),
+              React.createElement("div", { id: "tarjeta-navi-imprimible", className: "mt-12 max-w-2xl mx-auto" },
+                React.createElement("div", { className: "rounded-3xl border-2 border-zinc-900 bg-white p-8 shadow-[8px_8px_0px_0px_rgba(24,24,27,1)] relative overflow-hidden" },
+                  React.createElement("div", { className: "absolute top-0 left-0 w-full h-2 bg-[#fbbf24] no-print" }),
+                  React.createElement("div", { className: "text-center mb-8" },
+                    React.createElement("h3", { className: "font-black text-4xl tracking-tighter text-zinc-900 mb-2" },
+                      React.createElement("span", { className: "text-sky-500" }, "¡Hey!"), " Listen!"
+                    ),
+                    React.createElement("div", { className: "inline-block bg-[#fbbf24] text-black font-bold text-[13px] px-4 py-1.5 rounded-full uppercase tracking-widest shadow-sm" }, "Escucha • Verifica • Ayuda")
+                  ),
+                  React.createElement("div", { className: "space-y-4 mb-8" },
+                    React.createElement("div", { className: "flex items-start gap-4 p-4 rounded-2xl bg-zinc-50 border border-zinc-100" },
+                      React.createElement("div", { className: "flex-shrink-0 w-10 h-10 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center font-black" }, "👂"),
+                      React.createElement("div", {},
+                        React.createElement("h4", { className: "font-bold text-zinc-900 text-[15px]" }, "ESCUCHA"),
+                        React.createElement("p", { className: "text-[13px] text-zinc-600 mt-1" }, "Pausa. Enciende luz. ", React.createElement("strong", { className: "text-zinc-900" }, "No juegues solo."))
+                      )
+                    ),
+                    React.createElement("div", { className: "flex items-start gap-4 p-4 rounded-2xl bg-zinc-50 border border-zinc-100" },
+                      React.createElement("div", { className: "flex-shrink-0 w-10 h-10 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center font-black" }, "◐"),
+                      React.createElement("div", {},
+                        React.createElement("h4", { className: "font-bold text-zinc-900 text-[15px]" }, "VERIFICA"),
+                        React.createElement("p", { className: "text-[13px] text-zinc-600 mt-1" }, "Ojo de la Verdad. Verifica la fuente. ", React.createElement("strong", { className: "text-zinc-900" }, "Sácalo a la luz."))
+                      )
+                    ),
+                    React.createElement("div", { className: "flex items-start gap-4 p-4 rounded-2xl bg-zinc-50 border border-zinc-100" },
+                      React.createElement("div", { className: "flex-shrink-0 w-10 h-10 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center font-black" }, "🤝"),
+                      React.createElement("div", {},
+                        React.createElement("h4", { className: "font-bold text-zinc-900 text-[15px]" }, "AYUDA"),
+                        React.createElement("p", { className: "text-[13px] text-zinc-600 mt-1" }, "Pide ayuda a un adulto de confianza. ", React.createElement("strong", { className: "text-zinc-900" }, "Cuando te cueste, juega."))
+                      )
+                    )
+                  ),
+                  React.createElement("div", { className: "mt-8 flex justify-between items-end" },
+                    React.createElement("div", { className: "text-[10px] font-bold text-zinc-500 uppercase tracking-widest leading-tight" }, "Burunga", React.createElement("br"), "SADV41"),
+                    React.createElement("div", { className: "text-[10px] font-bold text-zinc-900 bg-zinc-100 px-3 py-1.5 rounded-lg uppercase tracking-wider" }, "Cuando te cueste, juega")
+                  )
+                ),
+                React.createElement("div", { className: "text-center mt-4 no-print" },
+                  React.createElement("div", { className: "inline-flex items-center gap-2 bg-zinc-900 text-white font-semibold py-2 px-6 rounded-full text-sm shadow-md opacity-80" },
+                    React.createElement("span", {}, "🖨️"), " Tarjeta Navi lista para impresión (usa impresión del navegador)"
+                  )
+                )
+              )
+            )
+          ),
+          React.createElement("section", { id: "arsenal", className: "max-w-7xl mx-auto px-4 sm:px-8 py-12 space-y-8 relative z-10 scroll-mt-16" },
+            React.createElement("div", { className: "rounded-xl border border-slate-800 bg-slate-900/40 p-6" },
+              React.createElement("div", { className: "flex flex-wrap items-center gap-3 mb-5" },
+                React.createElement("h3", { className: "text-[14px] font-bold tracking-widest font-mono text-slate-200" }, "ARSENAL SADV41 // REPOSITORIOS"),
+                React.createElement("span", { className: "text-[11px] px-2 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 font-mono" }, `${$c.length} ENLACES`),
+                React.createElement("a", { href: "https://thesteef21.github.io/SADV41/", target: "_blank", rel: "noopener", className: "ml-auto text-[11px] font-mono px-3 py-1 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 transition" }, "Abrir Root SADV41 ↗")
+              ),
+              React.createElement("div", { className: "grid sm:grid-cols-2 lg:grid-cols-3 gap-3" },
+                $c.map((m) =>
+                  React.createElement("a", { key: m.url, href: m.url, target: "_blank", rel: "noopener", className: "group rounded-xl border border-slate-800 bg-slate-950/60 p-3.5 flex items-center gap-3 hover:border-emerald-500/30 hover:bg-slate-900/80 transition" },
+                    React.createElement("span", { className: "w-8 h-8 rounded-lg bg-slate-800 group-hover:bg-emerald-500/20 flex items-center justify-center text-[14px] transition" }, "🔗"),
+                    React.createElement("div", { className: "flex-1 min-w-0" },
+                      React.createElement("div", { className: "text-[13px] font-bold text-slate-200 truncate group-hover:text-emerald-200 transition" }, m.label),
+                      React.createElement("div", { className: "text-[10px] font-mono text-slate-500 truncate" }, m.url.replace("https://", ""))
+                    ),
+                    React.createElement("span", { className: "text-[12px] opacity-60 group-hover:opacity-100" }, "↗")
+                  )
+                )
+              ),
+              React.createElement("div", { className: "mt-5 flex flex-wrap gap-2" },
+                React.createElement("a", { href: "https://stevendior-shop.fourthwall.com", target: "_blank", rel: "noopener", className: "px-4 py-2 rounded-full bg-amber-500 text-black font-bold text-[12px] tracking-wide hover:bg-amber-400 transition" }, "🛒 Shop Global 🇵🇦🇺🇸🇮🇱🇳🇮 stevendior-shop.fourthwall.com"),
+                React.createElement("span", { className: "px-3 py-2 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono text-slate-400" }, "principal para ventas de souvenirs de StevenDior SADV41. A nivel global")
+              )
+            )
+          )
+        ),
+        React.createElement("footer", { className: "border-t border-zinc-200 bg-white text-zinc-900 relative z-10" },
+          React.createElement("div", { className: "max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10" },
+            React.createElement("div", { className: "rounded-xl border border-slate-800 bg-black/80 p-5 text-center mb-8" },
+              React.createElement("div", { className: "text-[13px] font-bold tracking-widest font-mono text-slate-200" }, "SADV41 // SOCIEDAD - Burunga Panamá 2026 - Preservación antropológica del lost media - En apoyo a NDeluxe"),
+              React.createElement("div", { className: "mt-3 flex flex-wrap justify-center gap-2 text-[11px] font-mono text-slate-400" },
+                React.createElement("span", {}, "🟢🔴🎚️"),
+                React.createElement("span", { className: "px-2 py-1 rounded-full bg-slate-800 border border-slate-700" }, "RBS // Radar Brave Search v2.1"),
+                React.createElement("span", { className: "px-2 py-1 rounded-full bg-slate-800 border border-slate-700" }, "ATRIO GUARD // BURUNGA"),
+                React.createElement("span", { className: "px-2 py-1 rounded-full bg-slate-800 border border-slate-700" }, "Mesa de Evaluación")
+              ),
+              React.createElement("div", { className: "mt-4 text-[11px] leading-relaxed text-slate-400 font-mono max-w-[70ch] mx-auto border-t border-slate-800 pt-4" },
+                "“Es un gran gesto desactivar los escudos en Brave para permitir los anuncios y apoyar económicamente a creadores de contenido como NDeluxe. Mantener vivas estas teorías es fundamental para preservar la herencia de lo que vivimos en nuestra infancia.” ",
+                React.createElement("br"),
+                React.createElement("span", { className: "text-emerald-400" }, "— SADV41 // En apoyo a NDeluxe —"), " ",
+                React.createElement("br"),
+                React.createElement("span", { className: "text-[10px] text-slate-500 mt-2 inline-block" }, "Versículo: “Escribe la visión, y haz que resalte claramente en tablas, para que pueda leerse de corrido.” — Habacuc 2:2 🎚️")
+              ),
+              React.createElement("div", { className: "mt-4 flex justify-center gap-3 text-[10px] font-mono" },
+                React.createElement("a", { href: "https://m.youtube.com/@NDeluxe", target: "_blank", rel: "noopener", className: "text-red-400 hover:text-red-300 underline" }, "NDeluxe YouTube"),
+                React.createElement("span", { className: "text-slate-600" }, "·"),
+                React.createElement("a", { href: "https://stevendior-shop.fourthwall.com", target: "_blank", rel: "noopener", className: "text-amber-400 hover:text-amber-300 underline" }, "Shop SADV41"),
+                React.createElement("span", { className: "text-slate-600" }, "·"),
+                React.createElement("a", { href: "https://thesteef21.github.io/SADV41/", target: "_blank", rel: "noopener", className: "text-blue-400 hover:text-blue-300 underline" }, "SADV41 Root")
+              )
+            ),
+            React.createElement("div", { className: "flex items-center gap-2" },
+              React.createElement("div", { className: "h-6 w-6 rounded bg-black text-white grid place-items-center font-black text-[11px]" }, "S41"),
+              React.createElement("div", { className: "font-bold tracking-tight text-[13px]" }, "SADV41 Ecosistema Integrado"),
+              React.createElement("span", { className: "ml-auto text-[11px] text-zinc-400 font-mono" }, `© ${g} SADV41 • Módulo de Navegación Maestro • Pluscuamperfecto Unificado`)
+            ),
+            React.createElement("p", { className: "mt-3 text-[12px] leading-relaxed text-zinc-500 max-w-[62ch]" },
+              "Proyecto comunitario en Burunga, Panamá. Integración de repositorios de Meta AI, tiendas web3 y directrices pedagógicas. Ley 2026. HTML unificado autocontenido en ",
+              React.createElement("code", { className: "font-mono bg-zinc-100 border px-1.5 py-0.5 rounded text-[11px]" }, "mia-mesa-evaluacion.html")
+            )
+          )
+        )
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(React.StrictMode, {}, React.createElement(App, {})));
+  </script>
+<script src="https://thesteef21.github.io/SADV41/Agent/SAT/GOB/satv41-widget.js" defer></script>
+<!-- WIDGET DISCLAIMER BSTOCKS - SADV41 PROTOCOL -->
+<div class="mt-6 bg-slate-950 p-4 rounded-2xl border border-rose-500/30 space-y-3 text-xs font-mono shadow-2xl">
+    <div class="flex items-center gap-2 border-b border-slate-800 pb-2">
+        <span class="text-rose-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
+            ⚠️ DESCARGO DE RESPONSABILIDAD DE RIESGO (DISCLAIMER - bStocks)
+        </span>
+    </div>
+    
+    <p class="text-slate-300 text-[11px] leading-relaxed">
+        Los activos digitales, acciones tokenizadas (<strong class="text-amber-400">bStocks</strong>) e interacciones en cadena conllevan riesgos financieros elevados. El token SATV41, la infraestructura Web3 mostrada y los colaterales bursátiles no constituyen asesoría financiera ni garantía de rendimiento. Las iniciativas sociales, técnicas y operativas son gestionadas de forma independiente. Realiza tu propia investigación antes de interactuar con contratos inteligentes o posiciones apalancadas.
+    </p>
+
+    <ul class="list-disc list-inside space-y-1.5 text-slate-300 text-[11px]">
+        <li><strong>Riesgo de Volatilidad Compuesta:</strong> Los bStocks usados como garantía están sujetos a variaciones simultáneas de precio en tres capas (acción subyacente, token wrapper y posiciones cripto apalancadas).</li>
+        <li><strong>Derecho de Dividendos Excluido:</strong> Las garantías en bStocks en cuentas de margen no acumulan ni cobran dividendos directos del activo subyacente.</li>
+        <li><strong>Ajustes de Tasa de Garantía (Haircut):</strong> La relación de colateral puede ser ajustada unilateralmente por la plataforma, afectando la tasa de margen unificado (uniMMR) y pudiendo gatillar un margin call o liquidación.</li>
+        <li><strong>Diferencia de Horarios y Ventas Forzosas:</strong> Cripto opera 24/7; la liquidación de bStocks durante cierres de mercado bursátil de EE. UU. puede ejecutarse con descuentos significativos por liquidez, asumiendo el usuario la pérdida o déficit residual.</li>
+    </ul>
+
+    <div class="pt-2 flex flex-wrap gap-2 text-[10px]">
+        <a href="https://thesteef21.github.io/SADV41/SATV41/COM/Aseo/" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-amber-400 border border-slate-700 px-3 py-1.5 rounded-lg transition flex items-center gap-1">
+            🌐 Ver Protocolo SATV41 / Aseo
+        </a>
+        <a href="https://sites.google.com/u/0/d/1J2HQaoiel6AyXxxAOVfQWzYIpaKuC_-m/preview" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-slate-700 px-3 py-1.5 rounded-lg transition flex items-center gap-1">
+            📄 Vista Previa Google Sites
+        </a>
+    </div>
+</div>
+<script src="https://thesteef21.github.io/SADV41/sadv41-drag.js" defer></script><!-- sadv41-drag -->
+<script defer src="https://thesteef21.github.io/SADV41/ticker/sadv-ticker.js" data-sadv-ticker></script>
+<div id="sadv41-noviembre-widget" style="position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:999999;background:linear-gradient(135deg,#00209F 0%,#00209F 30%,#FFFFFF 30%,#FFFFFF 70%,#D21034 70%);color:#111;padding:10px 18px;border-radius:999px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;font-weight:900;font-size:14px;letter-spacing:.3px;box-shadow:0 8px 30px rgba(0,0,0,.35),0 0 0 2px rgba(255,255,255,.9) inset;display:flex;align-items:center;gap:8px;">
+  <span>Feliz Mes de Noviembre</span><span>🇵🇦👑🇺🇸</span>
+  <button onclick="this.parentElement.remove()" style="margin-left:8px;background:rgba(0,0,0,.12);border:0;border-radius:50%;width:22px;height:22px;cursor:pointer;font-weight:900;line-height:1;">×</button>
+</div>
+
+<script src="/SADV41/BIBLIA/biblia.js" defer></script>
+  <script src="https://thesteef21.github.io/SADV41/lib/seismic-widget.js" defer></script>
+<!-- sadv41-news -->
+<div id="sadv41-news" style="position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#0a0e1a;color:#f4f6ff;border-top:2px solid #f5c542;font:600 13px/1.35 system-ui,sans-serif;padding:8px 40px 8px 12px;text-align:center"><span style="color:#f5c542">ÚLTIMA NOTICIA</span> · <a href="https://thesteef21.github.io/SADV41/NEWS/PANAMA/USA/#paraguay" target="_blank" rel="noopener" style="color:#3ee0e8;text-decoration:none">Paraguay interviene Ueno Bank y renuncia el presidente del Banco Central 🏦</a><button onclick="this.parentNode.style.display='none'" aria-label="Cerrar" style="position:absolute;right:8px;top:4px;background:none;border:0;color:#9aa3c7;font-size:18px;cursor:pointer">×</button></div>
+<!-- /sadv41-news -->
+<!-- sadv41-home -->
+<a id="sadv41-home" href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" title="SADV41 · Página principal" aria-label="Ir a la página principal de SADV41" style="position:fixed;left:14px;bottom:64px;z-index:2147482999;width:46px;height:46px;border-radius:50%;background:#071642;border:3px solid #d9a93a;box-shadow:0 4px 14px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;text-decoration:none"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><g fill="#d9a93a"><rect x="10.8" y="2" width="2.4" height="20" rx=".6"/><rect x="8" y="4.6" width="8" height="1.8" rx=".5"/><rect x="6" y="9" width="12" height="2.4" rx=".6"/><rect x="8.6" y="16.6" width="6.8" height="1.8" rx=".5" transform="rotate(12 12 17.5)"/></g></svg></a>
+<!-- /sadv41-home -->
+<a href="./Agent/" class="p-4 border border-[#00e5ff]/50 bg-[#00e5ff]/10 hover:border-[#00e5ff] text-[#00e5ff] transition-all rounded-xl font-bold uppercase tracking-widest text-center">AGENTE 🤖</a>
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+<!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+</body>
+</html>

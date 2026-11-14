@@ -1,0 +1,142 @@
+nohup: ignoring input
+2026-10-22T03:44:54Z INF Thank you for trying Cloudflare Tunnel. Doing so, without a Cloudflare account, is a quick way to experiment and try it out. However, be aware that these account-less Tunnels have no uptime guarantee, are subject to the Cloudflare Online Services Terms of Use (https://www.cloudflare.com/website-terms/), and Cloudflare reserves the right to investigate your use of Tunnels for violations of such terms. If you intend to use Tunnels in production you should use a pre-created named tunnel by following: https://developers.cloudflare.com/cloudflare-one/connections/connect-apps
+2026-10-22T03:44:54Z INF Requesting new quick Tunnel on trycloudflare.com...
+2026-10-22T03:44:58Z INF +--------------------------------------------------------------------------------------------+
+2026-10-22T03:44:58Z INF |  Your quick Tunnel has been created! Visit it at (it may take some time to be reachable):  |
+2026-10-22T03:44:58Z INF |  https://enhanced-temp-shipped-vegas.trycloudflare.com                                     |
+2026-10-22T03:44:58Z INF +--------------------------------------------------------------------------------------------+
+2026-10-22T03:44:58Z INF Cannot determine default configuration path. No file [config.yml config.yaml] in [~/.cloudflared ~/.cloudflare-warp ~/cloudflare-warp /etc/cloudflared /usr/local/etc/cloudflared]
+2026-10-22T03:44:58Z INF Version 2026.6.1 (Checksum 9170a9ab6599ab83fec189aacac24d201953047202907d183f7feb6b637d9584)
+2026-10-22T03:44:58Z INF GOOS: android, GOVersion: go1.26.4, GoArch: arm64
+2026-10-22T03:44:58Z INF Settings: map[ha-connections:1 protocol:quic url:http://localhost:3000]
+2026-10-22T03:44:58Z INF Autoupdate frequency is set autoupdateFreq=86400000
+2026-10-22T03:45:08Z ERR Failed to fetch features, default to disable error="lookup cfd-features.argotunnel.com on 8.8.4.4:53: dial udp 8.8.4.4:53: i/o timeout"
+2026-10-22T03:45:08Z INF Generated Connector ID: e93a5178-af34-40f2-9d65-750a434728a6
+2026-10-22T03:45:28Z WRN Unable to lookup protocol percentage.
+2026-10-22T03:45:28Z INF Initial protocol quic
+2026-10-22T03:45:28Z INF ICMP proxy will use 10.158.197.225 as source for IPv4
+2026-10-22T03:45:28Z INF ICMP proxy will use :: as source for IPv6
+2026-10-22T03:45:28Z WRN The user running cloudflared process has a GID (group ID) that is not within ping_group_range. You might need to add that user to a group within that range, or instead update the range to encompass a group the user is already in by modifying /proc/sys/net/ipv4/ping_group_range. Otherwise cloudflared will not be able to ping this network error="open /proc/sys/net/ipv4/ping_group_range: permission denied"
+2026-10-22T03:45:28Z INF ICMP proxy will use 10.158.197.225 as source for IPv4
+2026-10-22T03:45:28Z INF ICMP proxy will use :: as source for IPv6
+2026-10-22T03:45:28Z INF Starting metrics server on 127.0.0.1:20241/metrics
+2026-10-22T03:45:28Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.200.23
+2026-10-22T03:45:29Z INF Registered tunnel connection connIndex=0 connection=556f8174-8d7e-419b-b640-b5cae8016436 event=0 ip=198.41.200.23 location=mia05 protocol=quic
+2026-10-22T03:45:35Z INF +-------------------------------------------------------------------------------------+
+2026-10-22T03:45:35Z INF |                               CONNECTIVITY PRE-CHECKS                               |
+2026-10-22T03:45:35Z INF +-------------------------------------------------------------------------------------+
+2026-10-22T03:45:35Z INF |  COMPONENT         TARGET                     STATUS  DETAILS                       |
+2026-10-22T03:45:35Z INF |  DNS Resolution    region1.v2.argotunnel.com  PASS    DNS Resolved successfully     |
+2026-10-22T03:45:35Z INF |  DNS Resolution    region2.v2.argotunnel.com  PASS    DNS Resolved successfully     |
+2026-10-22T03:45:35Z INF |  UDP Connectivity  region1.v2.argotunnel.com  PASS    QUIC connection successful    |
+2026-10-22T03:45:35Z INF |  UDP Connectivity  region2.v2.argotunnel.com  PASS    QUIC connection successful    |
+2026-10-22T03:45:35Z INF |  TCP Connectivity  region1.v2.argotunnel.com  PASS    HTTP/2 connection successful  |
+2026-10-22T03:45:35Z INF |  TCP Connectivity  region2.v2.argotunnel.com  PASS    HTTP/2 connection successful  |
+2026-10-22T03:45:35Z INF |  Cloudflare API    api.cloudflare.com:443     PASS    API is reachable              |
+2026-10-22T03:45:35Z INF |                                                                                     |
+2026-10-22T03:45:35Z INF |  SUMMARY: Environment is healthy. cloudflared will use 'quic' as primary protocol.  |
+2026-10-22T03:45:35Z INF +-------------------------------------------------------------------------------------+
+2026-10-22T03:45:35Z INF precheck component="DNS Resolution" details="DNS Resolved successfully" run_id=1818acfb-f09d-4ae9-989e-93c78e0b30d8 status=pass target=region1.v2.argotunnel.com
+2026-10-22T03:45:35Z INF precheck component="DNS Resolution" details="DNS Resolved successfully" run_id=1818acfb-f09d-4ae9-989e-93c78e0b30d8 status=pass target=region2.v2.argotunnel.com
+2026-10-22T03:45:35Z INF precheck component="UDP Connectivity" details="QUIC connection successful" run_id=1818acfb-f09d-4ae9-989e-93c78e0b30d8 status=pass target=region1.v2.argotunnel.com
+2026-10-22T03:45:35Z INF precheck component="UDP Connectivity" details="QUIC connection successful" run_id=1818acfb-f09d-4ae9-989e-93c78e0b30d8 status=pass target=region2.v2.argotunnel.com
+2026-10-22T03:45:35Z INF precheck component="TCP Connectivity" details="HTTP/2 connection successful" run_id=1818acfb-f09d-4ae9-989e-93c78e0b30d8 status=pass target=region1.v2.argotunnel.com
+2026-10-22T03:45:35Z INF precheck component="TCP Connectivity" details="HTTP/2 connection successful" run_id=1818acfb-f09d-4ae9-989e-93c78e0b30d8 status=pass target=region2.v2.argotunnel.com
+2026-10-22T03:45:35Z INF precheck component="Cloudflare API" details="API is reachable" run_id=1818acfb-f09d-4ae9-989e-93c78e0b30d8 status=pass target=api.cloudflare.com:443
+2026-10-22T03:45:35Z INF precheck complete hard_fail=false run_id=1818acfb-f09d-4ae9-989e-93c78e0b30d8 suggested_protocol=quic
+2026-10-22T04:27:06Z ERR failed to accept incoming stream requests error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.200.23
+2026-10-22T04:27:06Z ERR failed to run the datagram handler error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.200.23
+2026-10-22T04:27:06Z ERR failed to serve tunnel connection error="accept stream listener encountered a failure while serving" connIndex=0 event=0 ip=198.41.200.23
+2026-10-22T04:27:06Z ERR Serve tunnel error error="accept stream listener encountered a failure while serving" connIndex=0 event=0 ip=198.41.200.23
+2026-10-22T04:27:06Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.200.23
+2026-10-22T04:27:06Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.200.23
+2026-10-22T04:27:07Z INF Registered tunnel connection connIndex=0 connection=de39f742-7228-4bb9-b060-8ccfbc86d76c event=0 ip=198.41.200.23 location=mia05 protocol=quic
+2026-10-22T04:45:18Z ERR Failed to refresh feature selector error="lookup cfd-features.argotunnel.com on 8.8.4.4:53: dial udp 8.8.4.4:53: i/o timeout"
+2026-10-22T05:23:08Z ERR failed to run the datagram handler error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.200.23
+2026-10-22T05:23:08Z ERR failed to accept incoming stream requests error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.200.23
+2026-10-22T05:23:08Z ERR failed to serve tunnel connection error="datagram manager encountered a failure while serving" connIndex=0 event=0 ip=198.41.200.23
+2026-10-22T05:23:08Z ERR Serve tunnel error error="datagram manager encountered a failure while serving" connIndex=0 event=0 ip=198.41.200.23
+2026-10-22T05:23:08Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.200.23
+2026-10-22T05:23:08Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.200.23
+2026-10-22T05:23:13Z ERR Failed to dial a quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.200.23
+2026-10-22T05:23:13Z INF Retrying connection in up to 4s connIndex=0 event=0 ip=198.41.200.23
+2026-10-22T05:23:15Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.200.53
+2026-10-22T05:23:20Z ERR Failed to dial a quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.200.53
+2026-10-22T05:23:20Z INF Retrying connection in up to 8s connIndex=0 event=0 ip=198.41.200.53
+2026-10-22T05:23:24Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.200.33
+2026-10-22T05:23:28Z INF Registered tunnel connection connIndex=0 connection=ac47a554-72eb-4005-801a-269af4c1f2eb event=0 ip=198.41.200.33 location=mia09 protocol=quic
+2026-10-22T05:25:37Z ERR Failed to refresh DNS local resolver error="lookup region1.v2.argotunnel.com: i/o timeout"
+2026-10-22T05:38:29Z ERR failed to accept incoming stream requests error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.200.33
+2026-10-22T05:38:29Z ERR failed to run the datagram handler error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.200.33
+2026-10-22T05:38:29Z ERR failed to serve tunnel connection error="accept stream listener encountered a failure while serving" connIndex=0 event=0 ip=198.41.200.33
+2026-10-22T05:38:29Z ERR Serve tunnel error error="accept stream listener encountered a failure while serving" connIndex=0 event=0 ip=198.41.200.33
+2026-10-22T05:38:29Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.200.33
+2026-10-22T05:38:29Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.200.33
+2026-10-22T05:38:34Z ERR Failed to dial a quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.200.33
+2026-10-22T05:38:34Z INF Retrying connection in up to 4s connIndex=0 event=0 ip=198.41.200.33
+2026-10-22T05:38:35Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.200.193
+2026-10-22T05:38:40Z ERR Failed to dial a quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.200.193
+2026-10-22T05:38:40Z INF Retrying connection in up to 8s connIndex=0 event=0 ip=198.41.200.193
+2026-10-22T05:38:45Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.200.13
+2026-10-22T05:38:50Z ERR Failed to dial a quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.200.13
+2026-10-22T05:38:50Z INF Retrying connection in up to 16s connIndex=0 event=0 ip=198.41.200.13
+2026-10-22T05:38:55Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.200.113
+2026-10-22T05:39:00Z ERR Failed to dial a quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.200.113
+2026-10-22T05:39:00Z INF Retrying connection in up to 32s connIndex=0 event=0 ip=198.41.200.113
+2026-10-22T05:39:23Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.200.43
+2026-10-22T05:39:23Z INF Registered tunnel connection connIndex=0 connection=30a3eec7-6386-4c63-afa9-05346f182355 event=0 ip=198.41.200.43 location=mia08 protocol=quic
+2026-10-22T05:45:18Z ERR Failed to refresh feature selector error="lookup cfd-features.argotunnel.com on 8.8.4.4:53: dial udp 8.8.4.4:53: i/o timeout"
+2026-10-22T06:45:18Z ERR Failed to refresh feature selector error="lookup cfd-features.argotunnel.com on 8.8.4.4:53: dial udp 8.8.4.4:53: i/o timeout"
+2026-10-22T06:54:32Z ERR failed to run the datagram handler error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.200.43
+2026-10-22T06:54:32Z ERR failed to accept incoming stream requests error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.200.43
+2026-10-22T06:54:33Z ERR failed to serve tunnel connection error="accept stream listener encountered a failure while serving" connIndex=0 event=0 ip=198.41.200.43
+2026-10-22T06:54:33Z ERR Serve tunnel error error="accept stream listener encountered a failure while serving" connIndex=0 event=0 ip=198.41.200.43
+2026-10-22T06:54:33Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.200.43
+2026-10-22T06:54:34Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.200.43
+2026-10-22T06:54:35Z INF Registered tunnel connection connIndex=0 connection=38bacb48-0855-4e54-880c-4d2a2392bee6 event=0 ip=198.41.200.43 location=mia08 protocol=quic
+2026-10-22T07:45:18Z ERR Failed to refresh feature selector error="lookup cfd-features.argotunnel.com on 8.8.4.4:53: dial udp 8.8.4.4:53: i/o timeout"
+2026-10-22T07:55:48Z ERR Failed to refresh DNS local resolver error="lookup region1.v2.argotunnel.com: i/o timeout"
+2026-10-22T08:00:53Z ERR Failed to refresh DNS local resolver error="lookup region1.v2.argotunnel.com: i/o timeout"
+2026-10-22T08:01:59Z ERR failed to run the datagram handler error="timeout: no recent network activity" connIndex=0 event=0 ip=198.41.200.43
+2026-10-22T08:01:59Z ERR failed to accept incoming stream requests error="failed to accept QUIC stream: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.200.43
+2026-10-22T08:01:59Z ERR failed to serve tunnel connection error="datagram manager encountered a failure while serving" connIndex=0 event=0 ip=198.41.200.43
+2026-10-22T08:01:59Z ERR Serve tunnel error error="datagram manager encountered a failure while serving" connIndex=0 event=0 ip=198.41.200.43
+2026-10-22T08:01:59Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.200.43
+2026-10-22T08:02:00Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.200.43
+2026-10-22T08:02:05Z ERR Failed to dial a quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.200.43
+2026-10-22T08:02:05Z INF Retrying connection in up to 4s connIndex=0 event=0 ip=198.41.200.43
+2026-10-22T08:02:09Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.192.27
+2026-10-22T08:02:14Z ERR Failed to dial a quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.192.27
+2026-10-22T08:02:14Z INF Retrying connection in up to 8s connIndex=0 event=0 ip=198.41.192.27
+2026-10-22T08:02:20Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.200.43
+2026-10-22T08:02:25Z ERR Failed to dial a quic connection error="failed to dial to edge with quic: timeout: no recent network activity" connIndex=0 event=0 ip=198.41.200.43
+2026-10-22T08:02:25Z INF Retrying connection in up to 16s connIndex=0 event=0 ip=198.41.200.43
+2026-10-22T08:02:29Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.200.73
+2026-10-22T08:02:29Z INF Registered tunnel connection connIndex=0 connection=636817ed-1156-4feb-943d-640ee46ba284 event=0 ip=198.41.200.73 location=mia09 protocol=quic
+2026-10-22T08:45:18Z ERR Failed to refresh feature selector error="lookup cfd-features.argotunnel.com on 8.8.4.4:53: dial udp 8.8.4.4:53: i/o timeout"
+2026-10-22T09:45:18Z ERR Failed to refresh feature selector error="lookup cfd-features.argotunnel.com on 8.8.4.4:53: dial udp 8.8.4.4:53: i/o timeout"
+2026-10-22T10:45:18Z ERR Failed to refresh feature selector error="lookup cfd-features.argotunnel.com on 8.8.4.4:53: dial udp 8.8.4.4:53: i/o timeout"
+2026-10-22T11:45:18Z ERR Failed to refresh feature selector error="lookup cfd-features.argotunnel.com on 8.8.4.4:53: dial udp 8.8.4.4:53: i/o timeout"
+2026-10-22T12:45:18Z ERR Failed to refresh feature selector error="lookup cfd-features.argotunnel.com on 8.8.4.4:53: dial udp 8.8.4.4:53: i/o timeout"
+2026-10-22T13:45:18Z ERR Failed to refresh feature selector error="lookup cfd-features.argotunnel.com on 8.8.4.4:53: dial udp 8.8.4.4:53: i/o timeout"
+2026-10-22T14:45:18Z ERR Failed to refresh feature selector error="lookup cfd-features.argotunnel.com on 8.8.4.4:53: dial udp 8.8.4.4:53: i/o timeout"
+2026-10-22T15:45:18Z ERR Failed to refresh feature selector error="lookup cfd-features.argotunnel.com on 8.8.4.4:53: dial udp 8.8.4.4:53: i/o timeout"
+2026-10-22T16:45:18Z ERR Failed to refresh feature selector error="lookup cfd-features.argotunnel.com on 8.8.4.4:53: dial udp 8.8.4.4:53: i/o timeout"
+2026-10-22T17:45:18Z ERR Failed to refresh feature selector error="lookup cfd-features.argotunnel.com on 8.8.4.4:53: dial udp 8.8.4.4:53: i/o timeout"
+2026-10-22T18:45:18Z ERR Failed to refresh feature selector error="lookup cfd-features.argotunnel.com on 8.8.4.4:53: dial udp 8.8.4.4:53: i/o timeout"
+2026-10-22T19:45:18Z ERR Failed to refresh feature selector error="lookup cfd-features.argotunnel.com on 8.8.4.4:53: dial udp 8.8.4.4:53: i/o timeout"
+2026-10-22T20:45:18Z ERR Failed to refresh feature selector error="lookup cfd-features.argotunnel.com on 8.8.4.4:53: dial udp 8.8.4.4:53: i/o timeout"
+2026-10-22T20:54:16Z ERR failed to run the datagram handler error="write udp [::]:33743->198.41.200.73:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.200.73
+2026-10-22T20:54:16Z ERR failed to accept incoming stream requests error="failed to accept QUIC stream: write udp [::]:33743->198.41.200.73:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.200.73
+2026-10-22T20:54:16Z ERR failed to serve tunnel connection error="datagram manager encountered a failure while serving" connIndex=0 event=0 ip=198.41.200.73
+2026-10-22T20:54:16Z ERR Serve tunnel error error="datagram manager encountered a failure while serving" connIndex=0 event=0 ip=198.41.200.73
+2026-10-22T20:54:16Z INF Retrying connection in up to 1s connIndex=0 event=0 ip=198.41.200.73
+2026-10-22T20:54:18Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.200.73
+2026-10-22T20:54:18Z ERR Failed to dial a quic connection error="failed to dial to edge with quic: write udp [::]:33743->198.41.200.73:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.200.73
+2026-10-22T20:54:18Z INF Retrying connection in up to 4s connIndex=0 event=0 ip=198.41.200.73
+2026-10-22T20:54:19Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.200.53
+2026-10-22T20:54:19Z ERR Failed to dial a quic connection error="failed to dial to edge with quic: write udp [::]:33743->198.41.200.53:7844: sendmsg: network is unreachable" connIndex=0 event=0 ip=198.41.200.53
+2026-10-22T20:54:19Z INF Retrying connection in up to 8s connIndex=0 event=0 ip=198.41.200.53
+2026-10-22T20:54:23Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveID(65074) CurveP256] connIndex=0 event=0 ip=198.41.200.233
+2026-10-22T20:54:24Z INF Registered tunnel connection connIndex=0 connection=37bc3fb9-aa6d-4833-ac58-389c116d7e8c event=0 ip=198.41.200.233 location=mia05 protocol=quic
+2026-10-22T21:45:18Z ERR Failed to refresh feature selector error="lookup cfd-features.argotunnel.com on 8.8.4.4:53: dial udp 8.8.4.4:53: i/o timeout"

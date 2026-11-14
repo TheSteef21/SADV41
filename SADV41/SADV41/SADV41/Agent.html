@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Panel de tareas · Agentic Wallet</title>
+<style>
+  :root {
+    --bg:#0b0e11; --card:#15191e; --card2:#1b2027; --line:#2b3139;
+    --txt:#eaecef; --dim:#848e9c; --yellow:#f0b90b; --red:#f6465d;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--txt);
+       font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+  .wrap{max-width:940px;margin:0 auto;padding:28px 18px 60px}
+  header h1{font-size:22px;margin:0 0 6px}
+  header p{margin:0;color:var(--dim);font-size:13.5px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-top:18px}
+  .card h2{font-size:15px;margin:0 0 12px}
+  .badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11.5px;
+         border:1px solid var(--line);color:var(--dim);white-space:nowrap}
+  .badge.need{border-color:#5a4a12;color:var(--yellow);background:#1f1a06}
+  .badge.risk{border-color:#5c2029;color:var(--red);background:#1e0d10}
+  .wallet{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+  .addr{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13.5px;
+        background:var(--card2);border:1px solid var(--line);border-radius:99px;
+        padding:9px 12px;display:flex;gap:10px;align-items:center;min-width:250px}
+  .addr span{color:var(--dim)}
+  button{font:inherit;cursor:pointer;border-radius:99px;border:1px solid var(--line);
+         background:var(--card2);color:var(--txt);padding:9px 14px;transition:.15s}
+  button:hover:not(:disabled){border-color:#3d4650}
+  button.primary{background:var(--yellow);color:#12161c;border-color:var(--yellow);font-weight:600}
+  button:disabled{opacity:.45;cursor:not-allowed}
+  ul.tasks{list-style:none;margin:0;padding:0}
+  ul.tasks li{border-top:1px solid var(--line);padding:15px 0;display:flex;gap:14px;align-items:flex-start}
+  ul.tasks li:first-child{border-top:0;padding-top:0}
+  .num{flex:0 0 26px;height:26px;border-radius:8px;background:var(--card2);border:1px solid var(--line);
+       display:grid;place-items:center;font-size:12.5px;color:var(--dim)}
+  .task-body{flex:1;min-width:0}
+  .task-title{font-weight:600;margin:0 0 5px}
+  .task-note{margin:5px 0 0;color:var(--dim);font-size:13px}
+  .row-badges{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:7px}
+  .note{background:#12161c;border:1px solid var(--line);border-left:3px solid var(--yellow);
+        border-radius:10px;padding:12px 14px;font-size:13px;color:#c6ccd4;margin-top:14px}
+  .note.warn{border-left-color:var(--red)}
+  .hidden{display:none}
+  ol.steps{margin:10px 0 0;padding-left:20px;color:#c6ccd4;font-size:13.5px}
+  ol.steps li{margin:6px 0}
+  code{background:#12161c;border:1px solid var(--line);border-radius:5px;padding:1px 5px;font-size:12.5px}
+  #toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(20px);
+         background:#1b2027;border:1px solid var(--line);border-radius:10px;padding:11px 16px;
+         font-size:13.5px;max-width:90vw;opacity:0;pointer-events:none;transition:.25s;z-index:9}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+  footer{margin-top:26px;color:var(--dim);text-align:center;font-size:12px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Panel de tareas · Agentic Wallet</h1>
+    <p>Interfaz de control. Firma y operaciones ejecutadas mediante tu nodo SADV41 Agent.</p>
+  </header>
+
+  <section class="card">
+    <h2>Wallet</h2>
+    <div class="wallet">
+      <div>
+        <div class="addr"><span>Dirección:</span><b id="addr">0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB</b></div>
+        <p class="task-note">Estado: <span id="status">stevendior.ai Activo</span></p>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="primary" id="btnConnect">Conectar Agentic Wallet</button>
+        <button id="btnCopy">Copiar dirección</button>
+      </div>
+    </div>
+    <div class="note hidden" id="authNote">
+      El inicio de sesión de Agentic Wallet se completa enviando «Sign in to my Agentic Wallet» desde tu WhatsApp vinculado.
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Tareas solicitadas</h2>
+    <ul class="tasks">
+      <li>
+        <div class="num">1</div>
+        <div class="task-body">
+          <div class="row-badges"><span class="badge need">Requiere sesión</span><span class="badge">0 riesgo</span></div>
+          <p class="task-title">Iniciar sesión en mi Agentic Wallet</p>
+          <p class="task-note">Login delegado al widget o comando del bot WhatsApp.</p>
+        </div>
+        <button data-task="wallet_login" data-label="Iniciar sesión">Ejecutar</button>
+      </li>
+      <li>
+        <div class="num">2</div>
+        <div class="task-body">
+          <div class="row-badges"><span class="badge need">Requiere confirmación</span><span class="badge risk">Riesgo de capital</span></div>
+          <p class="task-title">Mover mi USDT inactivo al pool DeFi de mayor APY en BNB Chain</p>
+          <p class="task-note">Dispara la búsqueda de pool en BNB Chain y envío de orden a confirmación.</p>
+        </div>
+        <button data-task="defi_deposit" data-label="Depositar USDT en pool">Ejecutar</button>
+      </li>
+      <li>
+        <div class="num">3</div>
+        <div class="task-body">
+          <div class="row-badges"><span class="badge need">Requiere confirmación</span><span class="badge risk">Pérdida total posible</span></div>
+          <p class="task-title">Buscar el mercado de predicción de fútbol más activo y apostar 10 USD</p>
+          <p class="task-note">Evalúa volumen en tiempo real y ejecuta orden de 10 USD.</p>
+        </div>
+        <button data-task="prediction_bet" data-label="Apostar 10 USD">Ejecutar</button>
+      </li>
+      <li>
+        <div class="num">4</div>
+        <div class="task-body">
+          <div class="row-badges"><span class="badge need">Requiere automatización</span><span class="badge">Regla del usuario</span></div>
+          <p class="task-title">Comprar NVDA en caída de -4 %, vender la mitad al +10 %, hasta que lo detenga</p>
+          <p class="task-note">Activa la regla en el motor de ejecuciones continuo en Termux.</p>
+        </div>
+        <button data-task="nvda_rule" data-label="Activar regla NVDA">Ejecutar</button>
+      </li>
+      <li>
+        <div class="num">5</div>
+        <div class="task-body">
+          <div class="row-badges"><span class="badge">Solo lectura</span></div>
+          <p class="task-title">Mostrar la dirección de la wallet e indicar cómo depositar</p>
+          <p class="task-note">Consulta la dirección asignada a stevendior.ai.</p>
+        </div>
+        <button data-task="wallet_address" data-label="Ver dirección">Ejecutar</button>
+      </li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Cómo depositar fondos</h2>
+    <ol class="steps">
+      <li>Copia la dirección de la wallet en la tarjeta superior y verifica que sea de la red correcta.</li>
+      <li>Envía solo USDT por <code>BNB Chain (BEP20)</code> si tu wallet opera en BNB Chain; otra red puede hacer que los fondos se pierdan.</li>
+      <li>Haz primero una transferencia mínima de prueba y confirma el saldo antes de enviar el resto.</li>
+      <li>Guarda el hash de la transacción: es la única prueba verificable del depósito.</li>
+    </ol>
+    <div class="note warn">
+      Dirección única por usuario: esta plantilla no inventa ni muestra direcciones de ejemplo. Si el campo sigue en «—», no envíes nada todavía.
+    </div>
+  </section>
+
+  <footer>
+    Nodo SADV41 · Operaciones aseguradas mediante firma en backend.
+  </footer>
+</div>
+
+<div id="toast"></div>
+
+<script>
+  const CONFIG = {
+    endpoint: "",
+    walletAddress: "0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB"
+  };
+
+  const $ = (s) => document.querySelector(s);
+
+  function toast(msg) {
+    const t = $('#toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => t.classList.remove('show'), 4200);
+  }
+
+  if (CONFIG.walletAddress) {
+    $('#addr').textContent = CONFIG.walletAddress;
+  }
+
+  $('#btnCopy').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText($('#addr').textContent);
+      toast('Dirección copiada.');
+    } catch (e) {
+      toast('No se pudo copiar; selecciónala manualmente.');
+    }
+  });
+
+  $('#btnConnect').addEventListener('click', () => {
+    if (!CONFIG.endpoint) {
+      $('#authNote').classList.remove('hidden');
+      toast('Envía "Sign in to my Agentic Wallet" en WhatsApp para vincular.');
+      return;
+    }
+    window.location.href = CONFIG.endpoint.replace(/\/$/, '') + '/auth/start';
+  });
+
+  document.querySelectorAll('[data-task]').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const slug = btn.dataset.task;
+      const label = btn.dataset.label;
+
+      if (!CONFIG.endpoint) {
+        toast('Comando «' + label + '» registrado. Envía la instrucción por WhatsApp a tu Agente.');
+        return;
+      }
+
+      btn.disabled = true;
+      try {
+        const res = await fetch(CONFIG.endpoint.replace(/\/$/, '') + '/tasks/' + slug, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ confirm: true })
+        });
+        const data = await res.json().catch(() => ({}));
+        toast(res.ok ? 'Enviado al nodo: ' + (data.message || 'Procesando en Termux...') : 'Error: ' + (data.error || res.status));
+      } catch (e) {
+        toast('Nodo no disponible actualmente.');
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  });
+</script>
+<section id="cs-sadv" style="margin:20px 16px;padding:14px;border:1px solid #d9a93a;border-radius:14px;background:#050a1c;color:#cfe;font:13px ui-monospace,monospace">
+<div style="color:#f4d77a;margin-bottom:8px">CONSOLA · escribe /ayuda</div>
+<div id="cs-out" style="max-height:220px;overflow:auto;white-space:pre-wrap"></div>
+<form id="cs-f" style="display:flex;gap:6px;margin-top:8px"><input id="cs-i" autocomplete="off" placeholder="/saldo  /gas  /wallet  /orden ..." style="flex:1;min-width:0;padding:10px;border-radius:8px;border:1px solid #d9a93a;background:#000;color:#fff;font:inherit"><button style="padding:10px 14px;border-radius:8px;border:1px solid #d9a93a;background:rgba(217,169,58,.2);color:#fff;font:inherit">Enviar</button></form>
+</section>
+<script>(function(){
+var W="0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB",RPC="https://bsc-dataseed.binance.org";
+var o=document.getElementById('cs-out'),f=document.getElementById('cs-f'),i=document.getElementById('cs-i');
+function p(t){o.textContent+=t+"\n";o.scrollTop=o.scrollHeight}
+async function rpc(m,a){var r=await fetch(RPC,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:m,params:a})});var j=await r.json();if(j.error)throw new Error(j.error.message);return j.result}
+async function cp(t){try{await navigator.clipboard.writeText(t);p("Copiado.")}catch(e){p("No se pudo copiar.")}}
+async function run(l){
+var s=l.trim().split(/\s+/),c=s[0],r=s.slice(1),a=r.join(' ');
+try{
+if(c==='/ayuda'){p("/saldo [0x...]  BNB de una dirección (por defecto tu wallet)\n/gas            precio de gas en BSC\n/wallet         copia tu dirección\n/orden texto    prepara la orden para pegar en Binance AI Pro\n/limpiar        borra la consola")}
+else if(c==='/saldo'){var ad=r[0]||W;if(!/^0x[0-9a-fA-F]{40}$/.test(ad)){p("Dirección inválida.");return}
+var b=BigInt(await rpc('eth_getBalance',[ad.toLowerCase(),'latest']));p("BNB: "+(Number(b)/1e18).toFixed(6))}
+else if(c==='/gas'){var g=BigInt(await rpc('eth_gasPrice',[]));p("Gas: "+(Number(g)/1e9).toFixed(3)+" Gwei")}
+else if(c==='/wallet'){p(W);cp(W)}
+else if(c==='/orden'){if(!a){p("Escribe la orden después de /orden.");return}
+var t="Con mi Agentic Wallet: "+a+"\nAntes de ejecutar, muéstrame el detalle (red, comisión, destino) y espera mi confirmación.";p(t);cp(t)}
+else if(c==='/limpiar'){o.textContent=""}
+else p("Comando no reconocido. Escribe /ayuda")
+}catch(e){p("Error: "+e.message)}}
+f.addEventListener('submit',function(e){e.preventDefault();var v=i.value;if(!v)return;p("> "+v);i.value="";run(v)});
+p("Consola lista.");
+})();</script>
+
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+<!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+</body>
+</html>

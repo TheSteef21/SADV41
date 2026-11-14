@@ -1,0 +1,426 @@
+#Cristo
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADV41 - Fuerza, Fe y Convicción</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        darkblue: {
+                            900: '#0a1128',
+                            800: '#111c3d',
+                            700: '#1a2954'
+                        },
+                        gold: {
+                            DEFAULT: '#d4af37',
+                            light: '#ebd98a',
+                            dark: '#aa8822'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a1128;
+            color: #e5e7eb;
+        }
+        .glow-text {
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+        .glass-card {
+            background: linear-gradient(145deg, rgba(17, 28, 61, 0.9) 0%, rgba(10, 17, 40, 0.95) 100%);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(212, 175, 55, 0.15);
+            backdrop-filter: blur(10px);
+        }
+        .svg-logo-container {
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.2));
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col selection:bg-gold selection:text-darkblue-900">
+<!-- SALMO46-INJECT -->
+<a href="https://www.bible.com/es/bible/149/PSA.46.1-11.RVR1960" target="_blank" rel="noopener"
+ style="position:fixed;top:8px;left:8px;z-index:2147483647;background:#0a0a0acc;color:#00e5ff;
+ border:1px solid #00e5ff;border-radius:20px;padding:4px 10px;font:600 11px/1.3 system-ui,sans-serif;
+ text-decoration:none;letter-spacing:.04em">📖 Salmos 46 · Dios es nuestro amparo</a>
+<!-- /SALMO46-INJECT -->
+
+    <!-- Header & Logo Area -->
+    <header class="pt-16 pb-10 px-4 flex flex-col items-center justify-center relative overflow-hidden">
+        <!-- Background subtle glow -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-gold/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+        <!-- Inline SVG Logo -->
+        <div class="w-64 h-64 mb-8 svg-logo-container relative z-10">
+            <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="w-full h-full drop-shadow-2xl">
+                <defs>
+                    <path id="topArc" d="M 60,200 A 140,140 0 0,1 340,200" />
+                    <path id="bottomArc" d="M 340,200 A 140,140 0 0,1 60,200" />
+                    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#ebd98a" />
+                        <stop offset="50%" stop-color="#d4af37" />
+                        <stop offset="100%" stop-color="#aa8822" />
+                    </linearGradient>
+                    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="#1a2954" />
+                        <stop offset="100%" stop-color="#0a1128" />
+                    </radialGradient>
+                </defs>
+                
+                <!-- Base Circle -->
+                <circle cx="200" cy="200" r="190" fill="url(#bgGrad)" stroke="url(#goldGrad)" stroke-width="8" />
+                
+                <!-- Inner Decorative Circles -->
+                <circle cx="200" cy="200" r="175" fill="none" stroke="url(#goldGrad)" stroke-width="2" stroke-dasharray="6,4" />
+                <circle cx="200" cy="200" r="145" fill="none" stroke="url(#goldGrad)" stroke-width="1.5" />
+                
+                <!-- Texts on Paths -->
+                <text font-family="Cinzel, serif" font-weight="700" font-size="24" fill="url(#goldGrad)" letter-spacing="2">
+                    <textPath href="#topArc" startOffset="50%" text-anchor="middle">ORGULLO DE SER PANAMEÑO</textPath>
+                </text>
+                <text font-family="Cinzel, serif" font-weight="700" font-size="24" fill="url(#goldGrad)" letter-spacing="2">
+                    <textPath href="#bottomArc" startOffset="50%" text-anchor="middle">SADV41 BY STEVENDIOR</textPath>
+                </text>
+                
+                <!-- Center Emblem (Compass / Star representing the Brújula que guía Dios) -->
+                <g transform="translate(200, 200)">
+                    <path d="M 0,-70 L 15,-15 L 70,0 L 15,15 L 0,70 L -15,15 L -70,0 L -15,-15 Z" fill="url(#goldGrad)" />
+                    <!-- Sub-star -->
+                    <path d="M 0,-45 L 8,-8 L 45,0 L 8,8 L 0,45 L -8,8 L -45,0 L -8,-8 Z" fill="#0a1128" opacity="0.6"/>
+                    <!-- Center Gem -->
+                    <circle cx="0" cy="0" r="6" fill="#ebd98a" />
+                </g>
+
+                <!-- Four corner stars -->
+                <circle cx="100" cy="200" r="3" fill="#ebd98a" />
+                <circle cx="300" cy="200" r="3" fill="#ebd98a" />
+            </svg>
+        </div>
+
+        <div class="text-center z-10 relative">
+            <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-gold mb-6 tracking-wide glow-text uppercase">
+                SADV41
+            </h1>
+            <h2 class="font-serif text-2xl md:text-3xl text-gold-light mb-4">
+                Fuerza, Fe y Convicción
+            </h2>
+            <div class="w-24 h-1 bg-gold mx-auto mb-6 rounded-full opacity-70"></div>
+            <p class="font-serif text-lg md:text-xl italic text-gray-300 max-w-2xl mx-auto leading-relaxed px-4">
+                "Para que las mujeres sepan que hay un hombre fuerte a beneficio de esas mujeres fuertes también."
+            </p>
+        </div>
+    <a href="./Agent/" class="p-4 border border-[#00e5ff]/50 bg-[#00e5ff]/10 hover:border-[#00e5ff] text-[#00e5ff] transition-all rounded-xl font-bold uppercase tracking-widest text-center">AGENTE 🤖</a>
+</header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-5xl mx-auto px-4 py-8 w-full z-10">
+        
+        <!-- Section 1: Manantiales de Vida -->
+        <section class="glass-card rounded-2xl p-8 md:p-12 mb-12 border-t-2 border-gold/40">
+            <div class="flex items-center gap-4 mb-8">
+                <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                <h3 class="font-serif text-2xl md:text-3xl text-gold font-bold uppercase tracking-wider">Manantiales de Vida</h3>
+            </div>
+            
+            <div class="space-y-6 text-gray-300 font-serif">
+                <blockquote class="border-l-4 border-gold pl-6 py-2 italic text-lg bg-darkblue-900/30 rounded-r-lg">
+                    «El que cree en mí, como dice la Escritura, de su interior correrán ríos de agua viva.» <br>
+                    <span class="text-gold-light text-base block mt-2 font-semibold">— Juan 7:38</span>
+                </blockquote>
+                
+                <blockquote class="border-l-4 border-gold pl-6 py-2 italic text-lg bg-darkblue-900/30 rounded-r-lg">
+                    «Y el Espíritu y la Esposa dicen: Ven. Y el que oye, diga: Ven. Y el que tiene sed, venga; y el que quiera, tome del agua de la vida gratuitamente.» <br>
+                    <span class="text-gold-light text-base block mt-2 font-semibold">— Apocalipsis 22:17</span>
+                </blockquote>
+
+                <p class="text-lg leading-relaxed pt-4 font-sans text-gray-200">
+                    La promesa del agua de vida sigue fluyendo con fuerza para toda la comunidad. Que estos manantiales y ríos de agua viva inunden tu vida y la de todos en Panamá Oeste y más allá, trayendo renovación, paz y esperanza en todo momento. Sigamos adelante, firmes en la fe. 🇵🇦☦️👑
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 2: Convicción y Sentimiento -->
+        <section class="glass-card rounded-2xl p-8 md:p-12 mb-12 border-t-2 border-gold/40">
+            <div class="flex items-center gap-4 mb-8">
+                <svg class="w-8 h-8 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path></svg>
+                <h3 class="font-serif text-2xl md:text-3xl text-gold font-bold uppercase tracking-wider">Convicción y Sentimiento</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-6 text-gray-200">
+                <div class="p-6 bg-darkblue-900/50 rounded-xl border border-gold/10 hover:border-gold/30 transition-colors">
+                    <p class="font-sans leading-relaxed text-lg">
+                        <strong class="text-gold font-serif text-xl block mb-2">Neurociencia real:</strong> 
+                        desde que decides "todo saldrá bien", las oportunidades empiezan a aparecer de verdad.
+                    </p>
+                </div>
+                
+                <div class="p-6 bg-darkblue-900/50 rounded-xl border border-gold/10 hover:border-gold/30 transition-colors">
+                    <p class="font-sans leading-relaxed text-lg">
+                        Creer en Cristo desde tiempos de mi abuelo fue difícil... Ya con mis años no me preocupa la cercanía ni tanto la amistad porque está encarnado. Son los sentimientos y mis emociones una <strong class="text-gold font-serif">brújula que guía Dios</strong>.
+                    </p>
+                </div>
+                
+                <div class="p-6 bg-darkblue-900/50 rounded-xl border border-gold/10 hover:border-gold/30 transition-colors">
+                    <p class="font-sans leading-relaxed text-lg">
+                        El Espíritu Santo lleva a confesarme abiertamente y sin temor. No hay otra forma, entre todos mis mecanismos.
+                    </p>
+                </div>
+                
+                <div class="p-6 bg-darkblue-900/50 rounded-xl border border-gold/10 hover:border-gold/30 transition-colors">
+                    <p class="font-sans leading-relaxed text-lg">
+                        Esta es una declaración de fe bajo resiliencia. Confío plenamente en el Cristo en el que creí, creo y no hay "creeré" porque está pasando.
+                    </p>
+                </div>
+
+                <div class="p-6 bg-darkblue-900/50 rounded-xl border border-gold/10 hover:border-gold/30 transition-colors">
+                    <p class="font-sans leading-relaxed text-lg">
+                        No asumo mi rol por influencia ni por planes mundanos, sino bajo la influencia pura del Espíritu Santo. Estoy aquí para servir, para aprender y para recordar.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Enlaces Oficiales -->
+        <section class="mb-12">
+            <div class="text-center mb-10">
+                <h3 class="font-serif text-2xl md:text-3xl text-gold font-bold uppercase tracking-wider mb-4">Enlaces Oficiales</h3>
+                <div class="w-16 h-1 bg-gold mx-auto rounded-full opacity-50"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <a href="https://thesteef21.github.io/SADV41/NEUROCIENCIAS/" target="_blank" rel="noopener noreferrer" class="group relative flex items-center justify-center p-4 border border-gold/50 rounded-xl overflow-hidden hover:border-gold transition-all duration-300 bg-darkblue-800/80 hover:bg-gold/10">
+                    <span class="font-serif font-bold text-gold group-hover:text-gold-light tracking-wide text-center">Neurociencias</span>
+                </a>
+                
+                <a href="https://thesteef21.github.io/SADV41/SISMOS/" target="_blank" rel="noopener noreferrer" class="group relative flex items-center justify-center p-4 border border-gold/50 rounded-xl overflow-hidden hover:border-gold transition-all duration-300 bg-darkblue-800/80 hover:bg-gold/10">
+                    <span class="font-serif font-bold text-gold group-hover:text-gold-light tracking-wide text-center">Sismos</span>
+                </a>
+
+                <a href="https://thesteef21.github.io/SADV41/DOC/TOR/" target="_blank" rel="noopener noreferrer" class="group relative flex items-center justify-center p-4 border border-gold/50 rounded-xl overflow-hidden hover:border-gold transition-all duration-300 bg-darkblue-800/80 hover:bg-gold/10">
+                    <span class="font-serif font-bold text-gold group-hover:text-gold-light tracking-wide text-center">Documentos TOR</span>
+                </a>
+
+                <a href="https://thesteef21.github.io/SADV41/Binance/Wallet/DEX/" target="_blank" rel="noopener noreferrer" class="group relative flex items-center justify-center p-4 border border-gold/50 rounded-xl overflow-hidden hover:border-gold transition-all duration-300 bg-darkblue-800/80 hover:bg-gold/10">
+                    <span class="font-serif font-bold text-gold group-hover:text-gold-light tracking-wide text-center">Binance DEX</span>
+                </a>
+
+                <a href="https://thesteef21.github.io/SADV41/SISMOS/ANDROID/FAITH/" target="_blank" rel="noopener noreferrer" class="group relative flex items-center justify-center p-4 border border-gold/50 rounded-xl overflow-hidden hover:border-gold transition-all duration-300 bg-darkblue-800/80 hover:bg-gold/10">
+                    <span class="font-serif font-bold text-gold group-hover:text-gold-light tracking-wide text-center">Sismos Faith</span>
+                </a>
+
+                <a href="https://stevendior-shop.fourthwall.com/products/sadv41-mision" target="_blank" rel="noopener noreferrer" class="group relative flex items-center justify-center p-4 border border-gold/50 rounded-xl overflow-hidden hover:border-gold transition-all duration-300 bg-darkblue-800/80 hover:bg-gold/10">
+                    <span class="font-serif font-bold text-gold group-hover:text-gold-light tracking-wide text-center">Tienda SADV41</span>
+                </a>
+
+                <a href="https://thesteef21.github.io/SADV41/CUADRAGULAR/" target="_blank" rel="noopener noreferrer" class="group relative flex items-center justify-center p-4 border border-gold/50 rounded-xl overflow-hidden hover:border-gold transition-all duration-300 bg-darkblue-800/80 hover:bg-gold/10">
+                    <span class="font-serif font-bold text-gold group-hover:text-gold-light tracking-wide text-center">Cuadrangular</span>
+                </a>
+
+                <a href="https://thesteef21.github.io/SADV41/GORRA/GTAVI/" target="_blank" rel="noopener noreferrer" class="group relative flex items-center justify-center p-4 border border-gold/50 rounded-xl overflow-hidden hover:border-gold transition-all duration-300 bg-darkblue-800/80 hover:bg-gold/10">
+                    <span class="font-serif font-bold text-gold group-hover:text-gold-light tracking-wide text-center">Gorra GTAVI</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer Area -->
+    <footer class="mt-auto border-t border-gold/20 py-8 bg-darkblue-900 relative z-10">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <p class="text-2xl md:text-3xl tracking-widest leading-loose">
+                🇮🇱🇺🇸🇵🇦☦️⚛️👑✨️😊🤙🏼🇨🇳🇨🇴🇷🇺⭐️👍🏼🗿😇
+            </p>
+            <p class="mt-4 text-xs text-gray-500 font-sans">
+                &copy; <script>document.write(new Date().getFullYear())</script> SADV41 by StevenDior. Todos los derechos reservados.
+            </p>
+        </div>
+    </footer>
+
+<div id="sadv41-noviembre-widget" style="position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:999999;background:linear-gradient(135deg,#00209F 0%,#00209F 30%,#FFFFFF 30%,#FFFFFF 70%,#D21034 70%);color:#111;padding:10px 18px;border-radius:999px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;font-weight:900;font-size:14px;letter-spacing:.3px;box-shadow:0 8px 30px rgba(0,0,0,.35),0 0 0 2px rgba(255,255,255,.9) inset;display:flex;align-items:center;gap:8px;">
+  <span>Feliz Mes de Noviembre</span><span>🇵🇦👑🇺🇸</span>
+  <button onclick="this.parentElement.remove()" style="margin-left:8px;background:rgba(0,0,0,.12);border:0;border-radius:50%;width:22px;height:22px;cursor:pointer;font-weight:900;line-height:1;">×</button>
+</div>
+
+<script src="/SADV41/BIBLIA/biblia.js" defer></script>
+<script src="https://thesteef21.github.io/SADV41/sadv41-drag.js" defer></script><!-- sadv41-drag -->
+  <script src="https://thesteef21.github.io/SADV41/lib/seismic-widget.js" defer></script>
+<!-- sadv41-news -->
+<div id="sadv41-news" style="position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#0a0e1a;color:#f4f6ff;border-top:2px solid #f5c542;font:600 13px/1.35 system-ui,sans-serif;padding:8px 40px 8px 12px;text-align:center"><span style="color:#f5c542">ÚLTIMA NOTICIA</span> · <a href="https://thesteef21.github.io/SADV41/NEWS/PANAMA/USA/#paraguay" target="_blank" rel="noopener" style="color:#3ee0e8;text-decoration:none">Paraguay interviene Ueno Bank y renuncia el presidente del Banco Central 🏦</a><button onclick="this.parentNode.style.display='none'" aria-label="Cerrar" style="position:absolute;right:8px;top:4px;background:none;border:0;color:#9aa3c7;font-size:18px;cursor:pointer">×</button></div>
+<!-- /sadv41-news -->
+<!-- sadv41-home -->
+<a id="sadv41-home" href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" title="SADV41 · Página principal" aria-label="Ir a la página principal de SADV41" style="position:fixed;left:14px;bottom:64px;z-index:2147482999;width:46px;height:46px;border-radius:50%;background:#071642;border:3px solid #d9a93a;box-shadow:0 4px 14px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;text-decoration:none"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><g fill="#d9a93a"><rect x="10.8" y="2" width="2.4" height="20" rx=".6"/><rect x="8" y="4.6" width="8" height="1.8" rx=".5"/><rect x="6" y="9" width="12" height="2.4" rx=".6"/><rect x="8.6" y="16.6" width="6.8" height="1.8" rx=".5" transform="rotate(12 12 17.5)"/></g></svg></a>
+<!-- /sadv41-home -->
+<!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+</body>
+</html>
+#Te Ama ❤️👋🏽 Flia. Serrano ❣️

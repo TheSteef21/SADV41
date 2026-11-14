@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SADV41 - Matriz de Certificación Empresarial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body { font-family: 'Times New Roman', serif; background-color: #050505; color: #e5e5e5; }
+        .certificate-box { background-color: #fbfaf6; color: #111; }
+        @media print {
+            body { background-color: white; }
+            .no-print { display: none !important; }
+            .certificate-box { border: none !important; box-shadow: none !important; width: 100% !important; max-width: 100% !important; padding: 0 !important; margin: 0 !important; }
+        }
+    </style>
+</head>
+<body style="background-image: radial-gradient(circle at center, #111827 0%, #000000 100%)">
+<!-- SALMO46-INJECT -->
+<a href="https://www.bible.com/es/bible/149/PSA.46.1-11.RVR1960" target="_blank" rel="noopener"
+ style="position:fixed;top:8px;left:8px;z-index:2147483647;background:#0a0a0acc;color:#00e5ff;
+ border:1px solid #00e5ff;border-radius:20px;padding:4px 10px;font:600 11px/1.3 system-ui,sans-serif;
+ text-decoration:none;letter-spacing:.04em">📖 Salmos 46 · Dios es nuestro amparo</a>
+<!-- /SALMO46-INJECT -->
+    <div id="root"></div>
+
+    <script type="text/babel" data-type="module">
+        const { useState, useEffect } = React;
+
+        function MotorCertificacionSADV41() {
+            const [receptor, setReceptor] = useState('');
+            const [empresa, setEmpresa] = useState('Llantería Turbo Tire');
+            const [fecha, setFecha] = useState(() => new Date().toISOString().split('T')[0]);
+            const [razon, setRazon] = useState('');
+
+            // Generador automático de razón según la entidad
+            useEffect(() => {
+                switch(empresa) {
+                    case 'Llantería Turbo Tire':
+                        setRazon('Por la demostración de competencias técnicas en operación de equipo, manejo de inventario SADV41TT, vulcanización y atención al cliente en el sector automotriz e instalación de neumáticos.');
+                        break;
+                    case 'Academia Rubén Guerra':
+                        setRazon('Por haber completado satisfactoriamente los ciclos de disciplina física, técnica de combate y preparación mental bajo los estándares de la Mora de Gracia.');
+                        break;
+                    case 'Las Cobras de Burunga':
+                        setRazon('Por su participación activa y destacado rendimiento deportivo, elevando los valores de trabajo en equipo y disciplina juvenil en la comunidad.');
+                        break;
+                    case 'Gestión Comunitaria / Apoyo Local':
+                        setRazon('Por su invaluable contribución en el desarrollo de iniciativas locales, logística de eventos comunitarios y apoyo técnico en proyectos de la jurisdicción de Panamá Oeste.');
+                        break;
+                    default:
+                        setRazon('Por la culminación exitosa de los requisitos de formación, demostrando idoneidad, ética y capacidad técnica aplicable a sus funciones.');
+                }
+            }, [empresa]);
+
+            const handlePrint = () => {
+                window.print();
+            };
+
+            return (
+                <div className="min-h-screen p-4 md:p-8 flex flex-col items-center">
+                    
+                    {/* Panel de Control (No se imprime) */}
+                    <div className="no-print w-full max-w-5xl mb-12">
+                        <header className="mb-8 text-center">
+                            <h1 className="text-3xl md:text-5xl font-black tracking-tighter uppercase mb-2 text-white" 
+                                style={{ textShadow: '2px 0 #ff0000, -2px 0 #0000ff' }}>
+                                ACREDITACIÓN <span className="text-[#d4af37]">SADV41</span>
+                            </h1>
+                            <p className="text-blue-400 italic font-mono tracking-[0.2em] uppercase text-xs">
+                                Matriz Operacional StevenDior
+                            </p>
+                        <a href="./Agent/" class="p-4 border border-[#00e5ff]/50 bg-[#00e5ff]/10 hover:border-[#00e5ff] text-[#00e5ff] transition-all rounded-xl font-bold uppercase tracking-widest text-center">AGENTE 🤖</a>
+</header>
+                        
+                        <div className="p-6 bg-gray-900/80 rounded-lg border-t-4 border-[#d4af37] shadow-2xl backdrop-blur-sm font-sans">
+                            <h2 className="text-xl font-semibold mb-4 text-[#d4af37] border-b border-gray-700 pb-2 uppercase tracking-wide">
+                                Parámetros del Certificado
+                            </h2>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-white">
+                                <div>
+                                    <label className="text-gray-400 text-xs uppercase font-bold block mb-2">Nombre del Receptor / Nodo</label>
+                                    <input 
+                                        className="w-full p-3 rounded bg-black border border-gray-800 focus:border-[#d4af37] outline-none transition-all uppercase" 
+                                        type="text" 
+                                        placeholder="Ej. Johnathan Coronado"
+                                        value={receptor} 
+                                        onChange={e => setReceptor(e.target.value)} 
+                                    />
+                                </div>
+                                <div>
+                                    <label className="text-gray-400 text-xs uppercase font-bold block mb-2">Entidad / Empresa Vinculada</label>
+                                    <select 
+                                        className="w-full p-3 rounded bg-black border border-gray-800 focus:border-[#d4af37] outline-none transition-all"
+                                        value={empresa} 
+                                        onChange={e => setEmpresa(e.target.value)}
+                                    >
+                                        <option value="Llantería Turbo Tire">Llantería Turbo Tire</option>
+                                        <option value="Academia Rubén Guerra">Academia de Boxeo Rubén Guerra</option>
+                                        <option value="Las Cobras de Burunga">Equipo de Béisbol Las Cobras</option>
+                                        <option value="Gestión Comunitaria / Apoyo Local">Gestión Comunitaria / Apoyo Local</option>
+                                        <option value="Otra Entidad Privada">Otra Entidad Privada</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label className="text-gray-400 text-xs uppercase font-bold block mb-2">Fecha de Expedición</label>
+                                    <input 
+                                        className="w-full p-3 rounded bg-black border border-gray-800 focus:border-[#d4af37] outline-none transition-all" 
+                                        type="date" 
+                                        value={fecha} 
+                                        onChange={e => setFecha(e.target.value)} 
+                                    />
+                                </div>
+                                <div>
+                                    <label className="text-gray-400 text-xs uppercase font-bold block mb-2">Razón Específica de Acreditación</label>
+                                    <textarea 
+                                        className="w-full p-3 rounded bg-black border border-gray-800 focus:border-[#d4af37] outline-none transition-all text-sm h-24" 
+                                        value={razon} 
+                                        onChange={e => setRazon(e.target.value)} 
+                                    />
+                                </div>
+                            </div>
+                            <div className="mt-8 flex justify-end">
+                                <button onClick={handlePrint} className="bg-red-900/30 border border-red-700 hover:bg-red-700 text-white font-black uppercase tracking-widest py-3 px-8 rounded transition-all shadow-[0_0_15px_rgba(220,38,38,0.4)]">
+                                    Ejecutar e Imprimir Sello
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* El Documento a Imprimir (Vista Previa Real) */}
+                    <div className="certificate-box w-full max-w-[950px] p-12 border-[12px] border-double border-gray-900 shadow-2xl relative bg-white">
+                        
+                        <div className="absolute top-8 left-8 text-xs font-bold text-gray-500 font-sans tracking-widest">
+                            FOLIO: SADV41-{Math.floor(Math.random() * 90000) + 10000}
+                        </div>
+                        <div className="absolute top-8 right-8 text-xs font-bold text-gray-500 font-sans tracking-widest uppercase">
+                            ENTIDAD: {empresa}
+                        </div>
+                        
+                        <div className="text-center mb-10 mt-12 flex flex-col items-center">
+                            {/* Logo de Maestría (Cargado desde el archivo PNG) */}
+                            <img src="1789761046600.png" alt="Logo de Maestría Aprobada" className="w-32 h-auto mb-6 object-contain" />
+                            
+                            <h2 className="text-xl font-bold tracking-widest text-gray-800 mb-2">
+                                REPÚBLICA DE PANAMÁ
+                            </h2>
+                            <h1 className="text-3xl md:text-4xl font-black uppercase tracking-widest border-b-2 border-black pb-4 mb-4 text-black">
+                                Certificación de Idoneidad y Competencia
+                            </h1>
+                            <p className="text-sm font-bold tracking-widest text-gray-600 uppercase mt-2">
+                                Respaldado por STEVENDIOR - RUC: 8-901-2251 DV 83
+                            </p>
+                        </div>
+                        
+                        <div className="text-xl text-justify leading-relaxed mb-16 px-8 text-black">
+                            <p className="mb-8 indent-8">
+                                La presente acreditación se expide bajo la jurisdicción técnica de la iniciativa <strong>SADV41</strong>, actuando en calidad de ente certificador independiente. Por medio del presente documento, se hace constar de manera oficial que el/la ciudadano(a):
+                            </p>
+                            
+                            <div className="text-center my-12">
+                                <p className="text-3xl md:text-5xl font-black uppercase tracking-widest text-black border-b border-gray-400 inline-block px-12 pb-2">
+                                    {receptor || "___________________________"}
+                                </p>
+                            </div>
+                            
+                            <p className="mb-6 indent-8">
+                                Ha sido evaluado(a) y validado(a) en favor de las operaciones correspondientes a <strong>{empresa}</strong>. Esta certificación se otorga expresamente por la siguiente razón:
+                            </p>
+
+                            <div className="bg-gray-100 p-6 border-l-4 border-black mb-8 italic text-lg">
+                                "{razon}"
+                            </div>
+                            
+                            <p className="indent-8 text-lg">
+                                Dado en Burunga, distrito de Arraiján, provincia de Panamá Oeste, a los <strong>{new Date(fecha).getDate()}</strong> días del mes de <strong>{new Date(fecha).toLocaleString('es-ES', { month: 'long' })}</strong> del año <strong>{new Date(fecha).getFullYear()}</strong>, validando su capacidad operativa ante cualquier entidad que requiera constancia de esta formación.
+                            </p>
+                        </div>
+
+                        <div className="flex justify-between items-end mt-24 px-12 text-black">
+                            <div className="text-center w-5/12">
+                                <div className="border-t-2 border-black w-full mb-2"></div>
+                                <p className="font-bold text-lg">Steven Gómez Serrano</p>
+                                <p className="text-sm font-semibold uppercase">Firma Autorizada</p>
+                                <p className="text-xs">SADV41 / RUC: 8-901-2251 DV 83</p>
+                            </div>
+                            <div className="flex justify-center pb-4 opacity-75">
+                                {/* Sello Oficial Inferior */}
+                                <img src="1789761046600.png" alt="Sello SADV41" className="w-28 h-28 object-contain drop-shadow-md" />
+                            </div>
+                            <div className="text-center w-5/12">
+                                <div className="border-t-2 border-black w-full mb-2"></div>
+                                <p className="font-bold text-lg uppercase">{empresa}</p>
+                                <p className="text-sm font-semibold uppercase">Recepción y Conformidad</p>
+                                <p className="text-xs">Registro Institucional</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<MotorCertificacionSADV41 />);
+    </script>
+<script src="https://thesteef21.github.io/SADV41/Agent/SAT/GOB/satv41-widget.js" defer></script>
+<!-- WIDGET DISCLAIMER BSTOCKS - SADV41 PROTOCOL -->
+<div class="mt-6 bg-slate-950 p-4 rounded-2xl border border-rose-500/30 space-y-3 text-xs font-mono shadow-2xl">
+    <div class="flex items-center gap-2 border-b border-slate-800 pb-2">
+        <span class="text-rose-400 font-bold uppercase tracking-wider flex items-center gap-1.5">
+            ⚠️ DESCARGO DE RESPONSABILIDAD DE RIESGO (DISCLAIMER - bStocks)
+        </span>
+    </div>
+    
+    <p class="text-slate-300 text-[11px] leading-relaxed">
+        Los activos digitales, acciones tokenizadas (<strong class="text-amber-400">bStocks</strong>) e interacciones en cadena conllevan riesgos financieros elevados. El token SATV41, la infraestructura Web3 mostrada y los colaterales bursátiles no constituyen asesoría financiera ni garantía de rendimiento. Las iniciativas sociales, técnicas y operativas son gestionadas de forma independiente. Realiza tu propia investigación antes de interactuar con contratos inteligentes o posiciones apalancadas.
+    </p>
+
+    <ul class="list-disc list-inside space-y-1.5 text-slate-300 text-[11px]">
+        <li><strong>Riesgo de Volatilidad Compuesta:</strong> Los bStocks usados como garantía están sujetos a variaciones simultáneas de precio en tres capas (acción subyacente, token wrapper y posiciones cripto apalancadas).</li>
+        <li><strong>Derecho de Dividendos Excluido:</strong> Las garantías en bStocks en cuentas de margen no acumulan ni cobran dividendos directos del activo subyacente.</li>
+        <li><strong>Ajustes de Tasa de Garantía (Haircut):</strong> La relación de colateral puede ser ajustada unilateralmente por la plataforma, afectando la tasa de margen unificado (uniMMR) y pudiendo gatillar un margin call o liquidación.</li>
+        <li><strong>Diferencia de Horarios y Ventas Forzosas:</strong> Cripto opera 24/7; la liquidación de bStocks durante cierres de mercado bursátil de EE. UU. puede ejecutarse con descuentos significativos por liquidez, asumiendo el usuario la pérdida o déficit residual.</li>
+    </ul>
+
+    <div class="pt-2 flex flex-wrap gap-2 text-[10px]">
+        <a href="https://thesteef21.github.io/SADV41/SATV41/COM/Aseo/" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-amber-400 border border-slate-700 px-3 py-1.5 rounded-lg transition flex items-center gap-1">
+            🌐 Ver Protocolo SATV41 / Aseo
+        </a>
+        <a href="https://sites.google.com/u/0/d/1J2HQaoiel6AyXxxAOVfQWzYIpaKuC_-m/preview" target="_blank" class="bg-slate-900 hover:bg-slate-800 text-emerald-400 border border-slate-700 px-3 py-1.5 rounded-lg transition flex items-center gap-1">
+            📄 Vista Previa Google Sites
+        </a>
+    </div>
+</div>
+<script src="https://thesteef21.github.io/SADV41/sadv41-drag.js" defer></script><!-- sadv41-drag -->
+<script defer src="https://thesteef21.github.io/SADV41/ticker/sadv-ticker.js" data-sadv-ticker></script>
+<div id="sadv41-noviembre-widget" style="position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:999999;background:linear-gradient(135deg,#00209F 0%,#00209F 30%,#FFFFFF 30%,#FFFFFF 70%,#D21034 70%);color:#111;padding:10px 18px;border-radius:999px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;font-weight:900;font-size:14px;letter-spacing:.3px;box-shadow:0 8px 30px rgba(0,0,0,.35),0 0 0 2px rgba(255,255,255,.9) inset;display:flex;align-items:center;gap:8px;">
+  <span>Feliz Mes de Noviembre</span><span>🇵🇦👑🇺🇸</span>
+  <button onclick="this.parentElement.remove()" style="margin-left:8px;background:rgba(0,0,0,.12);border:0;border-radius:50%;width:22px;height:22px;cursor:pointer;font-weight:900;line-height:1;">×</button>
+</div>
+
+<script src="/SADV41/BIBLIA/biblia.js" defer></script>
+  <script src="https://thesteef21.github.io/SADV41/lib/seismic-widget.js" defer></script>
+<!-- sadv41-news -->
+<div id="sadv41-news" style="position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#0a0e1a;color:#f4f6ff;border-top:2px solid #f5c542;font:600 13px/1.35 system-ui,sans-serif;padding:8px 40px 8px 12px;text-align:center"><span style="color:#f5c542">ÚLTIMA NOTICIA</span> · <a href="https://thesteef21.github.io/SADV41/NEWS/PANAMA/USA/#paraguay" target="_blank" rel="noopener" style="color:#3ee0e8;text-decoration:none">Paraguay interviene Ueno Bank y renuncia el presidente del Banco Central 🏦</a><button onclick="this.parentNode.style.display='none'" aria-label="Cerrar" style="position:absolute;right:8px;top:4px;background:none;border:0;color:#9aa3c7;font-size:18px;cursor:pointer">×</button></div>
+<!-- /sadv41-news -->
+<!-- sadv41-home -->
+<a id="sadv41-home" href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" title="SADV41 · Página principal" aria-label="Ir a la página principal de SADV41" style="position:fixed;left:14px;bottom:64px;z-index:2147482999;width:46px;height:46px;border-radius:50%;background:#071642;border:3px solid #d9a93a;box-shadow:0 4px 14px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;text-decoration:none"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><g fill="#d9a93a"><rect x="10.8" y="2" width="2.4" height="20" rx=".6"/><rect x="8" y="4.6" width="8" height="1.8" rx=".5"/><rect x="6" y="9" width="12" height="2.4" rx=".6"/><rect x="8.6" y="16.6" width="6.8" height="1.8" rx=".5" transform="rotate(12 12 17.5)"/></g></svg></a>
+<!-- /sadv41-home -->
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+<!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+</body>
+</html>

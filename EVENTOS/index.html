@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evento · Steven Dior Oficial</title>
+<meta name="description" content="Música, entrenamiento, seguridad y comunidad. Únete al evento en WhatsApp.">
+<meta name="theme-color" content="#070a12">
+<meta property="og:title" content="Evento · Steven Dior Oficial">
+<meta property="og:description" content="Música, entrenamiento, seguridad y comunidad. Únete al evento en WhatsApp.">
+<meta property="og:type" content="website">
+<style>
+:root{
+  --bg:#070a12;--bg2:#0b0f19;--card:rgba(255,255,255,.035);--line:rgba(255,255,255,.1);
+  --tx:#eceef4;--mut:#9aa3b8;--gold:#ffd24a;--cyan:#27e3f0;--wa:#25d366;--wa-d:#128c4a;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 var(--sans);
+  background:radial-gradient(1100px 600px at 12% -8%,rgba(255,210,74,.09),transparent 60%),
+             radial-gradient(900px 520px at 92% 4%,rgba(39,227,240,.08),transparent 60%),
+             linear-gradient(180deg,var(--bg),var(--bg2) 60%,var(--bg))}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+.eyebrow{font:600 12px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--cyan)}
+h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.01em;margin:0}
+h2{font-size:clamp(26px,4.4vw,40px);line-height:1.12}
+.lead{color:var(--mut);max-width:60ch}
+
+/* top bar */
+nav{position:sticky;top:0;z-index:20;backdrop-filter:blur(14px);background:rgba(7,10,18,.72);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:54px;gap:12px}
+.brand{font:600 13px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;text-decoration:none;white-space:nowrap}
+.brand b{color:var(--gold)}
+nav .links{display:none;gap:22px;font-size:14px;color:var(--mut)}
+nav .links a{text-decoration:none}
+nav .links a:hover{color:var(--tx)}
+@media(min-width:760px){nav .links{display:flex}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:13px 22px;font:600 15px/1 var(--sans);text-decoration:none;border:1px solid var(--line);color:var(--tx);background:rgba(255,255,255,.05);cursor:pointer;transition:transform .15s,background .15s}
+.btn:hover{background:rgba(255,255,255,.1);transform:translateY(-1px)}
+.btn.wa{background:linear-gradient(180deg,var(--wa),var(--wa-d));border-color:transparent;color:#04170c;box-shadow:0 10px 30px -10px rgba(37,211,102,.55)}
+.btn.wa:hover{background:linear-gradient(180deg,#34e377,var(--wa-d))}
+.btn.sm{padding:9px 16px;font-size:13px}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+
+/* hero */
+.hero{padding:64px 0 120px;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(40px,9vw,84px);line-height:1;margin:16px 0 18px}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero .lead{font-size:clamp(17px,2.4vw,20px)}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.pill{font-size:13px;color:var(--mut);border:1px solid var(--line);border-radius:999px;padding:7px 14px;background:var(--card)}
+.pill b{color:var(--tx);font-weight:600}
+#wave{position:absolute;inset:auto 0 0 0;width:100%;height:120px;opacity:.55;pointer-events:none}
+
+/* pillars */
+section{padding:56px 0}
+.pillars{display:grid;gap:14px;margin-top:30px;grid-template-columns:1fr}
+@media(min-width:640px){.pillars{grid-template-columns:1fr 1fr}}
+@media(min-width:980px){.pillars{grid-template-columns:repeat(4,1fr)}}
+.pillar{padding:22px;border:1px solid var(--line);border-radius:18px;background:var(--card);text-decoration:none;display:block;transition:border-color .2s,transform .2s}
+.pillar:hover{border-color:rgba(255,210,74,.5);transform:translateY(-3px)}
+.pillar .n{font:600 12px/1 var(--sans);letter-spacing:.16em;color:var(--gold)}
+.pillar h3{font-size:24px;margin:12px 0 6px}
+.pillar p{margin:0;color:var(--mut);font-size:14.5px}
+
+/* split blocks */
+.split{display:grid;gap:26px;grid-template-columns:1fr;align-items:start}
+@media(min-width:860px){.split{grid-template-columns:1fr 1fr;gap:44px}}
+.panel{border:1px solid var(--line);border-radius:20px;background:var(--card);padding:22px}
+.panel h3{font-size:20px;margin-bottom:12px}
+.list{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:10px}
+.list li{display:flex;gap:12px;color:var(--mut);font-size:15px}
+.list li::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;background:var(--gold);margin-top:.62em}
+.list b{color:var(--tx);font-weight:600}
+
+/* music */
+.player{display:flex;align-items:center;gap:14px}
+.disc{flex:none;width:64px;height:64px;border-radius:50%;background:conic-gradient(from 20deg,var(--gold),var(--cyan),#8b5cf6,var(--gold));display:grid;place-items:center;animation:spin 9s linear infinite}
+.disc::after{content:"";width:18px;height:18px;border-radius:50%;background:var(--bg)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.player h3{margin:0;font-size:19px}
+.player small{color:var(--mut)}
+.row{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+
+/* training */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
+.stat{padding:14px 10px;border:1px solid var(--line);border-radius:14px;text-align:center;background:rgba(0,0,0,.18)}
+.stat b{display:block;font:600 clamp(20px,5vw,30px)/1.1 var(--serif);color:var(--gold)}
+.stat span{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.bars{display:grid;gap:12px}
+.bar .top{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);margin-bottom:5px}
+.bar .top b{color:var(--tx);font-weight:600}
+.track{height:10px;border-radius:99px;background:rgba(255,255,255,.07);overflow:hidden}
+.fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--cyan),var(--gold));transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
+.note{font-size:12.5px;color:var(--mut);margin-top:14px}
+
+/* security */
+details{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:0 18px;margin-top:10px}
+summary{cursor:pointer;list-style:none;padding:16px 0;font:600 16px/1.3 var(--sans);display:flex;justify-content:space-between;gap:10px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--gold);font-size:20px;line-height:1}
+details[open] summary::after{content:"–"}
+details .list{margin:0 0 18px}
+.srcs{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+
+/* community */
+.cta-card{margin-top:30px;border-radius:24px;padding:clamp(24px,5vw,48px);border:1px solid rgba(37,211,102,.35);
+  background:radial-gradient(600px 240px at 85% 0%,rgba(37,211,102,.16),transparent 65%),var(--card);text-align:center}
+.cta-card h2{margin-bottom:10px}
+.cta-card .lead{margin:0 auto 24px}
+.links-grid{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:18px}
+#cd{display:flex;gap:10px;justify-content:center;margin:0 0 24px}
+#cd div{min-width:64px;padding:10px;border:1px solid var(--line);border-radius:12px;background:rgba(0,0,0,.2)}
+#cd b{display:block;font:600 26px/1 var(--serif);color:var(--gold)}
+#cd span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+
+footer{padding:34px 0 110px;border-top:1px solid var(--line);color:var(--mut);font-size:13px;text-align:center}
+
+
+/* ===== Palacio de las Garzas ===== */
+section.palacio{padding:0;margin:56px 0 0;background:linear-gradient(180deg,#f8f3e7,#eee5cf);color:#10285f;position:relative}
+.arcada{height:30px;background:#0c2a75 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='30'><path d='M4 30V17a18 18 0 0 1 36 0v13' fill='none' stroke='%23d8b45a' stroke-width='2'/></svg>") repeat-x center bottom;border-bottom:3px solid #c9a24a}
+.arcada.bajo{transform:scaleY(-1);margin-top:0}
+.pal-in{padding:54px 0 60px}
+.palacio .eyebrow{color:#9a741f}
+.palacio h2{color:#0c2a75;margin:14px 0 12px}
+.palacio .lead{color:#3f4c6b}
+.ribbon{display:inline-flex;align-items:center;gap:10px;background:#0c2a75;color:#fff;padding:9px 18px;border-radius:6px;border:2px solid #3a5fb5;font:700 12.5px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;box-shadow:inset 0 0 0 2px rgba(255,255,255,.14)}
+.ribbon i{font-style:normal;color:#ff6b7d}
+.ribbon i.b{color:#8fb0ff}
+.pal-head{display:grid;gap:24px;grid-template-columns:1fr;align-items:center}
+@media(min-width:860px){.pal-head{grid-template-columns:1.4fr .6fr}}
+.sello{justify-self:center;width:min(220px,60vw);aspect-ratio:1;border-radius:50%;border:3px double #c9a24a;background:radial-gradient(circle at 50% 35%,#fff,#f1e8d0);display:grid;place-items:center;color:#0c2a75;box-shadow:0 20px 40px -24px rgba(12,42,117,.5)}
+.sello svg{width:62%;height:62%}
+.gcards{display:grid;gap:22px;margin-top:38px;grid-template-columns:1fr}
+@media(min-width:640px){.gcards{grid-template-columns:1fr 1fr}}
+@media(min-width:980px){.gcards{grid-template-columns:repeat(3,1fr)}}
+.gcard{display:flex;flex-direction:column;text-decoration:none;color:#10285f;background:#fffdf6;border:1px solid #dcc994;border-radius:26px 26px 14px 14px;padding:10px 10px 16px;box-shadow:0 1px 0 #fff inset,0 18px 38px -24px rgba(12,42,117,.55);transition:transform .2s,box-shadow .2s}
+.gcard:hover{transform:translateY(-5px);box-shadow:0 1px 0 #fff inset,0 26px 44px -22px rgba(12,42,117,.6)}
+.gcard:focus-visible{outline-color:#0c2a75}
+.garco{position:relative;aspect-ratio:16/10;overflow:hidden;border:3px double #c9a24a;border-radius:50% 50% 10px 10px / 64% 64% 10px 10px;background:radial-gradient(circle at 50% 30%,#2a52b0,#0c2a75 70%);display:grid;place-items:center;color:#fff}
+.garco img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.garco svg.g{width:34%;height:auto;opacity:.95}
+.garco .plat{position:absolute;bottom:9px;left:0;right:0;text-align:center;font:700 11px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:#f3dca0}
+.play{position:absolute;inset:auto;width:54px;height:54px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center;box-shadow:0 6px 20px rgba(0,0,0,.35)}
+.play::after{content:"";margin-left:4px;border-left:15px solid #0c2a75;border-top:10px solid transparent;border-bottom:10px solid transparent}
+.gbody{padding:14px 10px 0;display:flex;flex-direction:column;gap:6px;flex:1}
+.gnum{font:600 12px/1 var(--serif);letter-spacing:.2em;color:#9a741f}
+.gtit{font:600 19px/1.25 var(--serif);color:#0c2a75;margin:0}
+.gnota{font-size:13.5px;color:#55617f;margin:0}
+.gbtn{margin-top:auto;padding-top:10px;display:inline-flex;align-items:center;gap:8px;font:700 13px/1 var(--sans);letter-spacing:.06em;color:#0c2a75}
+.gbtn::after{content:"↗";color:#9a741f}
+.pal-note{margin-top:26px;font-size:12.5px;color:#5b6684;max-width:70ch}
+
+
+/* ===== Alianzas y patrocinios ===== */
+.aliado{display:grid;gap:26px;grid-template-columns:1fr;align-items:start}
+@media(min-width:900px){.aliado{grid-template-columns:1fr 1fr;gap:44px}}
+.vol{border:1px solid rgba(255,210,74,.38);border-radius:22px;padding:clamp(20px,4vw,30px);background:radial-gradient(520px 220px at 100% 0%,rgba(255,210,74,.10),transparent 65%),var(--card)}
+.vol h3{font-size:24px;margin:8px 0 6px}
+.vol .tag{font:600 11.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.vol p{color:var(--mut);margin:6px 0 0;font-size:15px}
+.srv{display:grid;gap:12px;margin:20px 0}
+.srv div{display:flex;gap:14px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);border-radius:14px;background:rgba(0,0,0,.18)}
+.srv svg{flex:none;width:28px;height:28px;stroke:var(--cyan);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
+.srv b{display:block;font-size:15px}
+.srv span{font-size:13.5px;color:var(--mut)}
+.vol .row{margin-top:6px}
+.aviso{margin-top:16px;padding:12px 14px;border-left:3px solid var(--gold);background:rgba(255,210,74,.06);border-radius:0 10px 10px 0;font-size:13px;color:var(--mut)}
+.aviso b{color:var(--tx)}
+
+
+/* ===== Radar (enlaces que llegan a mi atención) ===== */
+.radar{display:grid;gap:12px;margin-top:26px;grid-template-columns:1fr}
+@media(min-width:760px){.radar{grid-template-columns:1fr 1fr}}
+.rd{display:flex;gap:14px;align-items:flex-start;text-decoration:none;padding:16px;border:1px solid var(--line);border-radius:16px;background:var(--card);transition:border-color .2s,transform .2s}
+.rd:hover{border-color:rgba(39,227,240,.55);transform:translateY(-2px)}
+.rd .pt{flex:none;width:10px;height:10px;border-radius:50%;background:var(--cyan);margin-top:.55em;box-shadow:0 0 0 4px rgba(39,227,240,.15)}
+.rd small{display:block;font:600 11.5px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--mut);margin-bottom:6px}
+.rd b{display:block;font:600 18px/1.3 var(--serif)}
+.rd span{display:block;font-size:13.5px;color:var(--mut);margin-top:4px}
+.rd em{font-style:normal;color:var(--gold);font-size:13px;display:inline-block;margin-top:8px}
+
+/* sticky mobile CTA */
+.sticky{position:fixed;left:12px;right:12px;bottom:12px;z-index:30;display:flex;transition:transform .25s}
+.sticky .btn{flex:1;justify-content:center;padding:15px}
+.sticky.off{transform:translateY(140%)}
+@media(min-width:860px){.sticky{display:none}}
+
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.fill{width:var(--w)!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="garza" viewBox="0 0 64 64"><g fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M17 37c0-8 12-11 23-7 6 2 9 6 5 10-6 6-22 6-28-3z" fill="currentColor" fill-opacity=".12"/>
+<path d="M17 37 6 43l13-2"/>
+<path d="M40 30c9-8-4-12-3-20"/>
+<circle cx="36.5" cy="9" r="2"/>
+<path d="M38.5 9.4 51 12"/>
+<path d="M29 45v15M35 45v13"/><path d="M29 60h-4M35 58h-4"/>
+<path d="M24 36c6 3 13 2 18-2" opacity=".6"/>
+</g></symbol></defs></svg>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">Steven <b>Dior</b> · Evento</a>
+    <div class="links">
+      <a href="#musica">Música</a><a href="#entrenamiento">Entrenamiento</a><a href="#seguridad">Seguridad</a><a href="#palacio">Palacio</a><a href="#comunidad">Comunidad</a><a href="#alianzas">Alianzas</a>
+    </div>
+    <a class="btn wa sm" href="#" data-evento>Unirme</a>
+  </div>
+<a href="./Agent/" class="p-4 border border-[#00e5ff]/50 bg-[#00e5ff]/10 hover:border-[#00e5ff] text-[#00e5ff] transition-all rounded-xl font-bold uppercase tracking-widest text-center">AGENTE 🤖</a>
+</nav>
+
+<header class="hero" id="top">
+  <canvas id="wave" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <span class="eyebrow">Evento en WhatsApp</span>
+    <h1>Música, cuerpo,<br><em>cuidado</em> y comunidad.</h1>
+    <p class="lead">Un solo evento para estar al día con lo nuevo de la música, entrenar con constancia, mantenernos seguros y crecer juntos. Entra, activa el recordatorio y sé parte desde el primer día.</p>
+    <div class="cta-row">
+      <a class="btn wa" href="#" data-evento>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.5 3.5A11.8 11.8 0 0 0 2.2 17.7L1 23l5.4-1.4A11.8 11.8 0 0 0 12 23.1h0A11.8 11.8 0 0 0 20.5 3.5zM12 21.1a9.7 9.7 0 0 1-5-1.4l-.4-.2-3.2.8.9-3.1-.2-.4A9.7 9.7 0 1 1 12 21.1zm5.3-7.3c-.3-.1-1.7-.8-2-.9s-.5-.1-.7.1-.8.9-.9 1.1-.3.2-.6.1a7.9 7.9 0 0 1-3.9-3.4c-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5l-.9-2.1c-.2-.5-.5-.5-.7-.5h-.6a1.2 1.2 0 0 0-.9.4 3.7 3.7 0 0 0-1.1 2.7 6.4 6.4 0 0 0 1.4 3.4 14.7 14.7 0 0 0 5.6 4.9c2 .8 2.8.9 3.8.7a3.2 3.2 0 0 0 2.1-1.5 2.6 2.6 0 0 0 .2-1.5c-.1-.1-.3-.2-.6-.3z"/></svg>
+        Unirme al evento
+      </a>
+      <button class="btn" id="share" type="button">Compartir</button>
+    </div>
+    <div class="meta">
+      <span class="pill">Fecha: <b id="fechaTxt">se anuncia en el evento</b></span>
+      <span class="pill">Canal: <b>WhatsApp Business</b></span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="reveal" style="padding-top:20px">
+    <div class="wrap">
+      <span class="eyebrow">Cuatro ejes</span>
+      <h2 style="margin-top:12px">Todo lo que vive en el evento</h2>
+      <div class="pillars">
+        <a class="pillar" href="#musica"><span class="n">01</span><h3>Música</h3><p>Estrenos, adelantos y sesiones. Sonido a 432 Hz y letras con mensaje.</p></a>
+        <a class="pillar" href="#entrenamiento"><span class="n">02</span><h3>Entrenamiento</h3><p>Rutinas, retos de la semana y el registro real de cada salida.</p></a>
+        <a class="pillar" href="#seguridad"><span class="n">03</span><h3>Seguridad</h3><p>Alertas sísmicas de fuentes oficiales y hábitos para cuidarte, en la calle y en línea.</p></a>
+        <a class="pillar" href="#comunidad"><span class="n">04</span><h3>Comunidad</h3><p>Un espacio sano para compartir, preguntar y apoyarnos.</p></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÚSICA -->
+  <section id="musica" class="reveal">
+    <div class="wrap split">
+      <div>
+        <span class="eyebrow">01 · Música</span>
+        <h2 style="margin:12px 0 14px">Artista independiente, con un sonido propio</h2>
+        <p class="lead">Siete años haciendo música por cuenta propia. En el evento recibes primero lo nuevo: sencillos, avances de estudio y las historias detrás de cada canción.</p>
+        <ul class="list">
+          <li><span><b>Nuevos lanzamientos</b> antes de que lleguen a las plataformas.</span></li>
+          <li><span><b>Sesiones en 432 Hz</b> para escuchar con calma o entrenar.</span></li>
+          <li><span><b>Tú decides:</b> pide temas y comparte los que te acompañan.</span></li>
+        </ul>
+      </div>
+      <div class="panel">
+        <div class="player">
+          <div class="disc" aria-hidden="true"></div>
+          <div><small>Sencillo · nuevo lanzamiento</small><h3>Qué belleza cuando vivo así</h3></div>
+        </div>
+        <div class="row">
+          <a class="btn" href="https://open.spotify.com/artist/5imHnTjivt5qDGTeV2gDMT" target="_blank" rel="noopener">Escuchar en Spotify</a>
+          <a class="btn" href="https://www.instagram.com/StevenDiorOficial" target="_blank" rel="noopener">Instagram</a>
+        </div>
+        <p class="note">Abre Spotify para escuchar el sencillo completo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ENTRENAMIENTO -->
+  <section id="entrenamiento" class="reveal">
+    <div class="wrap split">
+      <div class="panel" aria-label="Registro de las últimas tres salidas">
+        <h3>Últimas 3 salidas a correr</h3>
+        <div class="stats">
+          <div class="stat"><b>22.8</b><span>km totales</span></div>
+          <div class="stat"><b>3 h 09</b><span>en movimiento</span></div>
+          <div class="stat"><b>8:17</b><span>min/km medio</span></div>
+        </div>
+        <div class="bars" id="bars">
+          <div class="bar" data-v="9.69"><div class="top"><span><b>Salida A</b> · 1 h 22 min</span><span>9.69 km · 8:28/km</span></div><div class="track"><div class="fill"></div></div></div>
+          <div class="bar" data-v="7.60"><div class="top"><span><b>Salida B</b> · 1 h 02 min</span><span>7.60 km · 8:11/km</span></div><div class="track"><div class="fill"></div></div></div>
+          <div class="bar" data-v="5.52"><div class="top"><span><b>Salida C</b> · 45 min</span><span>5.52 km · 8:13/km</span></div><div class="track"><div class="fill"></div></div></div>
+        </div>
+        <p class="note">Datos reales de la app de entrenamiento. Racha actual: 2 semanas seguidas.</p>
+      </div>
+      <div>
+        <span class="eyebrow">02 · Entrenamiento</span>
+        <h2 style="margin:12px 0 14px">Constancia por encima de intensidad</h2>
+        <p class="lead">No hace falta ser atleta. La idea es moverse al menos una vez por semana, medir el progreso y celebrar cada salida.</p>
+        <ul class="list">
+          <li><span><b>Reto semanal:</b> una meta simple que cualquiera puede cumplir.</span></li>
+          <li><span><b>Registro abierto:</b> distancias y ritmos reales, sin filtros.</span></li>
+          <li><span><b>Hidratación y descanso:</b> recordatorios para entrenar con cabeza.</span></li>
+          <li><span><b>Playlist de ritmo:</b> música para acompañar el paso.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEGURIDAD -->
+  <section id="seguridad" class="reveal">
+    <div class="wrap">
+      <span class="eyebrow">03 · Seguridad</span>
+      <h2 style="margin:12px 0 14px">Informados y protegidos</h2>
+      <p class="lead">Compartimos avisos solo de fuentes oficiales y consejos prácticos. Sin rumores, sin alarmismo.</p>
+
+      <details open>
+        <summary>Alertas sísmicas confiables</summary>
+        <ul class="list">
+          <li><span>Los avisos se comparten con la <b>fuente y la hora</b> del reporte.</span></li>
+          <li><span>Fuentes de referencia: <b>Ineter</b>, <b>EMSC</b>, <b>USGS</b> y la entidad de protección civil de tu país.</span></li>
+          <li><span>Un sismo pequeño no es motivo de pánico; <b>un aviso sin fuente</b> sí es motivo de duda.</span></li>
+        </ul>
+        <div class="srcs" style="margin-bottom:18px">
+          <a class="btn sm" href="https://thesteef21.github.io/SADV41/A217B/TSEC/" target="_blank" rel="noopener">Ver mapa sísmico</a>
+        </div>
+      </details>
+      <details>
+        <summary>Si tiembla: qué hacer</summary>
+        <ul class="list">
+          <li><span><b>Agáchate, cúbrete y sujétate</b> bajo una mesa firme o junto a un muro interior.</span></li>
+          <li><span>Aléjate de ventanas, espejos y objetos que puedan caer.</span></li>
+          <li><span>Al terminar, revisa si hay heridos, fugas o daños antes de volver a entrar.</span></li>
+          <li><span>Usa mensajes de texto: dejan libres las líneas para emergencias.</span></li>
+        </ul>
+      </details>
+      <details>
+        <summary>Seguridad digital en WhatsApp</summary>
+        <ul class="list">
+          <li><span><b>Nunca compartas</b> el código de verificación de 6 dígitos, ni siquiera con un «amigo».</span></li>
+          <li><span>Activa la <b>verificación en dos pasos</b> en Ajustes → Cuenta.</span></li>
+          <li><span>Desconfía de premios, «inversiones» garantizadas y enlaces con prisa.</span></li>
+          <li><span>Este evento <b>no te pedirá claves ni datos bancarios</b> por mensaje. Los patrocinios se gestionan solo por el canal de la sección «Alianzas»; si alguien más pide dinero en su nombre, repórtalo.</span></li>
+        </ul>
+      </details>
+      <details>
+        <summary>Seguridad al entrenar</summary>
+        <ul class="list">
+          <li><span>Avisa a alguien tu ruta y hora de regreso.</span></li>
+          <li><span>Prefiere zonas iluminadas y evita auriculares a todo volumen en la calle.</span></li>
+          <li><span>No publiques tu ubicación en tiempo real ni el mapa de tu ruta habitual.</span></li>
+        </ul>
+      </details>
+    </div>
+  </section>
+
+
+  <!-- PALACIO DE LAS GARZAS -->
+  <section id="palacio" class="palacio reveal" style="padding:0">
+    <div class="arcada" aria-hidden="true"></div>
+    <div class="wrap pal-in">
+      <div class="pal-head">
+        <div>
+          <span class="ribbon"><i>★</i> Noviembre patrio <i class="b">★</i></span>
+          <h2>Palacio de las Garzas</h2>
+          <p class="lead" id="palTxt">Sede de la Presidencia de la República, en el Casco Antiguo, y nombrado por las garzas que habitan su patio. Recibí una invitación del presidente José Raúl Mulino, y por eso cada enlace de esta sección lleva su marco: arcos, oro y las garzas del palacio.</p>
+        </div>
+        <div class="sello" aria-hidden="true"><svg viewBox="0 0 64 64" stroke="currentColor"><use href="#garza"/></svg></div>
+      </div>
+      <div class="gcards" id="gcards"></div>
+      <p class="pal-note">Enlaces a publicaciones externas, abiertos en su plataforma original. Este sitio es independiente y no está afiliado a la Presidencia ni al Gobierno de Panamá.</p>
+    </div>
+    <div class="arcada bajo" aria-hidden="true"></div>
+  </section>
+
+  <!-- COMUNIDAD -->
+  <section id="comunidad" class="reveal">
+    <div class="wrap">
+      <span class="eyebrow">04 · Comunidad</span>
+      <h2 style="margin:12px 0 14px">Un espacio para todos</h2>
+      <p class="lead">Respeto, buen ánimo y ayuda mutua. Aquí se aprende, se comparte y se celebra lo bueno.</p>
+      <ul class="list" style="max-width:62ch">
+        <li><span><b>Sé amable:</b> cero insultos, cero acoso.</span></li>
+        <li><span><b>Sin spam:</b> nada de cadenas, ventas no pedidas ni enlaces dudosos.</span></li>
+        <li><span><b>Verifica antes de reenviar</b> cualquier noticia o alerta.</span></li>
+        <li><span><b>Cuida la privacidad:</b> no compartas datos personales de nadie.</span></li>
+      </ul>
+
+      <div class="cta-card">
+        <h2>Entra al evento</h2>
+        <p class="lead" id="ctaTxt">Toca el botón, pulsa «Me interesa» y recibe el recordatorio directo en tu WhatsApp.</p>
+        <div id="cd" hidden aria-live="off"></div>
+        <a class="btn wa" href="#" data-evento>Unirme en WhatsApp</a>
+        <div class="links-grid">
+          <a class="btn sm" href="https://open.spotify.com/artist/5imHnTjivt5qDGTeV2gDMT" target="_blank" rel="noopener">Spotify</a>
+          <a class="btn sm" href="https://www.instagram.com/StevenDiorOficial" target="_blank" rel="noopener">Instagram</a>
+          <a class="btn sm" href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener">Tienda</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- RADAR -->
+  <section id="radar" class="reveal">
+    <div class="wrap">
+      <span class="eyebrow">Radar</span>
+      <h2 style="margin:12px 0 14px">Lo que llega a mi atención</h2>
+      <p class="lead">Comparto aquí enlaces y noticias cuando me parecen útiles para la comunidad. Sin imposición: tú decides si los abres. Son referencias de terceros y <b>no implican alianza ni patrocinio</b>.</p>
+      <div class="radar" id="radar-list"></div>
+    </div>
+  </section>
+
+  <!-- ALIANZAS Y PATROCINIOS -->
+  <section id="alianzas" class="reveal">
+    <div class="wrap aliado">
+      <div>
+        <span class="eyebrow">Alianzas y patrocinios</span>
+        <h2 style="margin:12px 0 14px">Impulsa la misión y el contenido</h2>
+        <p class="lead">¿Quieres patrocinar los espacios independientes de música, entrenamiento y tecnología? Suma tu marca o apoya el desarrollo técnico de la iniciativa.</p>
+        <ul class="list">
+          <li><span><b>Canal directo:</b> coordinación comercial y técnica por WhatsApp al <b>6620-0767</b>.</span></li>
+          <li><span><b>Propuestas:</b> colaboraciones, espacios publicitarios y patrocinio de eventos.</span></li>
+          <li><span><b>Destino de los aportes:</b> mantenimiento de plataformas, producción musical y herramientas comunitarias.</span></li>
+        </ul>
+        <div class="row">
+          <a class="btn wa" id="waPatro" href="https://wa.me/50766200767?text=Hola%2C%20vengo%20desde%20la%20p%C3%A1gina%20del%20evento%20y%20quiero%20hablar%20sobre%20patrocinio%20o%20inspecci%C3%B3n%20de%20viviendas%20y%20edificios." target="_blank" rel="noopener">Contactar por WhatsApp</a>
+          <a class="btn" href="tel:+50766200767">Llamar 6620-0767</a>
+        </div>
+      </div>
+
+      <div class="vol">
+        <span class="tag">Aliado técnico</span>
+        <h3>Volcano Administración</h3>
+        <p>Inspección de viviendas y edificios tras el terremoto del 9 de octubre de 2026, que dejó daños en inmuebles de varias regiones del país.</p>
+        <div class="srv">
+          <div>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 14.5V5a2 2 0 0 1 4 0v9.5a4 4 0 1 1-4 0z"/><path d="M12 9v7"/></svg>
+            <p style="margin:0"><b>Termografía</b><span>Detección de humedad, fugas y fallas de aislamiento con cámara térmica.</span></p>
+          </div>
+          <div>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h9a3 3 0 0 1 3 3v8"/><path d="M3 5v6M15 19h6M18 16v6"/><path d="M12 8V5"/></svg>
+            <p style="margin:0"><b>Plomería</b><span>Revisión de tuberías, uniones y conexiones afectadas por el movimiento.</span></p>
+          </div>
+          <div>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V7l8-4 8 4v14"/><path d="M9 21v-6h6v6M9 10h.01M15 10h.01M9 13h.01M15 13h.01"/></svg>
+            <p style="margin:0"><b>Viviendas y edificios</b><span>Inspección y diagnóstico de inmuebles para propietarios y administraciones.</span></p>
+          </div>
+        </div>
+        <a class="btn wa sm" href="https://wa.me/50766200767?text=Hola%2C%20vengo%20desde%20la%20p%C3%A1gina%20del%20evento%20y%20quiero%20hablar%20sobre%20patrocinio%20o%20inspecci%C3%B3n%20de%20viviendas%20y%20edificios." target="_blank" rel="noopener">Solicitar inspección</a>
+        <p class="aviso"><b>Importante:</b> una inspección con termografía o plomería no reemplaza la evaluación estructural de un ingeniero o arquitecto idóneo ni las indicaciones de las autoridades. Si ves grietas grandes, inclinación o ruidos en la estructura, evacúa y avisa a protección civil.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Steven Dior Oficial · Proyecto independiente, sin afiliación a la Presidencia ni al Gobierno de Panamá. Información de carácter general: no sustituye las indicaciones de las autoridades.</div>
+</footer>
+
+<div class="sticky" id="sticky"><a class="btn wa" href="#" data-evento>Unirme al evento</a></div>
+
+<script>
+/* ===== Configuración ===== */
+const EVENTO = {
+  url: "https://event.whatsapp.com/q9fotAAF3kgdDXt_U3RldmVuIERpb3IgT2ZpY2lhbA",
+  // Cuando tengas la fecha, escríbela así (hora de Panamá, UTC-5): "2026-12-05T19:00:00-05:00"
+  fecha: ""
+};
+
+/* Enlaces al evento */
+document.querySelectorAll("[data-evento]").forEach(a=>{a.href=EVENTO.url;a.target="_blank";a.rel="noopener"});
+
+/* Fecha / cuenta regresiva (solo si hay fecha) */
+(function(){
+  if(!EVENTO.fecha) return;
+  const t=new Date(EVENTO.fecha); if(isNaN(t)) return;
+  document.getElementById("fechaTxt").textContent=t.toLocaleString("es-PA",{dateStyle:"long",timeStyle:"short",timeZone:"America/Panama"});
+  const cd=document.getElementById("cd"); cd.hidden=false;
+  function tick(){
+    let s=Math.max(0,Math.floor((t-Date.now())/1000));
+    const d=Math.floor(s/86400),h=Math.floor(s%86400/3600),m=Math.floor(s%3600/60),x=s%60;
+    cd.innerHTML=[[d,"días"],[h,"horas"],[m,"min"],[x,"seg"]].map(a=>`<div><b>${String(a[0]).padStart(2,"0")}</b><span>${a[1]}</span></div>`).join("");
+  }
+  tick(); setInterval(tick,1000);
+})();
+
+
+/* ===== Palacio de las Garzas: enlaces ===== */
+/* Edita "titulo" y "nota" de cada tarjeta cuando quieras (enlaces ya sin rastreadores). */
+const ENLACES = [
+  {tipo:"instagram", titulo:"Reel de Instagram",            nota:"", url:"https://www.instagram.com/reel/DfYOeLmRjY4/"},
+  {tipo:"youtube",   titulo:"Video en YouTube",             nota:"", url:"https://youtu.be/dav_0zPI1io", yt:"dav_0zPI1io"},
+  {tipo:"youtube",   titulo:"Transmisión en YouTube",       nota:"", url:"https://www.youtube.com/live/OlTfSficLc4", yt:"OlTfSficLc4"},
+  {tipo:"x",         titulo:"Publicación en X de @joseraulmulino", nota:"", url:"https://x.com/joseraulmulino/status/2118403715480613128"},
+  {tipo:"youtube",   titulo:"Video en YouTube",             nota:"", url:"https://youtu.be/d-qIqAAam0w", yt:"d-qIqAAam0w"},
+  {tipo:"instagram", titulo:"Reel de Instagram",            nota:"", url:"https://www.instagram.com/reel/DfaddHmo7a9/"}
+];
+(function(){
+  const NOMBRE={instagram:"Instagram",youtube:"YouTube",x:"X"}, ROM=["I","II","III","IV","V","VI","VII","VIII"];
+  const box=document.getElementById("gcards");
+  ENLACES.forEach((e,i)=>{
+    const a=document.createElement("a");a.className="gcard";a.href=e.url;a.target="_blank";a.rel="noopener noreferrer";
+    a.setAttribute("aria-label",e.titulo+" en "+NOMBRE[e.tipo]);
+    const arco=document.createElement("div");arco.className="garco";
+    arco.innerHTML='<svg class="g" viewBox="0 0 64 64" stroke="currentColor" aria-hidden="true"><use href="#garza"/></svg>';
+    if(e.yt){
+      const im=new Image();im.alt="";im.loading="lazy";im.referrerPolicy="no-referrer";
+      im.src="https://i.ytimg.com/vi/"+e.yt+"/hqdefault.jpg";
+      im.onerror=()=>im.remove();
+      im.onload=()=>{const g=arco.querySelector("svg.g");if(g)g.style.display="none"};
+      arco.prepend(im);
+      const pl=document.createElement("span");pl.className="play";arco.append(pl);
+    }
+    const pt=document.createElement("span");pt.className="plat";pt.textContent=NOMBRE[e.tipo];arco.append(pt);
+    const cuerpo=document.createElement("div");cuerpo.className="gbody";
+    cuerpo.innerHTML='<span class="gnum">'+ROM[i]+'</span><h3 class="gtit"></h3>'+(e.nota?'<p class="gnota"></p>':'')+'<span class="gbtn">Abrir en '+NOMBRE[e.tipo]+'</span>';
+    cuerpo.querySelector(".gtit").textContent=e.titulo;
+    if(e.nota)cuerpo.querySelector(".gnota").textContent=e.nota;
+    a.append(arco,cuerpo);box.append(a);
+  });
+})();
+
+
+/* ===== Radar: agrega aquí lo que quieras compartir (enlaces limpios, sin rastreadores) ===== */
+const RADAR=[
+  {fuente:"Tienda oficial de la FIFA · sitio externo", titulo:"Camisetas de las ciudades sede", nota:"Novedades de la tienda oficial para el Mundial.", url:"https://store.fifa.com/es/pages/host-city-jerseys", fecha:"7 nov 2026"}
+];
+(function(){
+  const box=document.getElementById("radar-list");
+  RADAR.forEach(r=>{
+    const a=document.createElement("a");a.className="rd";a.href=r.url;a.target="_blank";a.rel="noopener noreferrer";
+    a.innerHTML='<i class="pt" aria-hidden="true"></i><div><small></small><b></b><span></span><em></em></div>';
+    a.querySelector("small").textContent=r.fuente;
+    a.querySelector("b").textContent=r.titulo;
+    a.querySelector("span").textContent=r.nota||"";
+    a.querySelector("em").textContent="Compartido "+r.fecha+" · Abrir ↗";
+    box.append(a);
+  });
+})();
+
+/* Compartir */
+document.getElementById("share").addEventListener("click",async()=>{
+  const data={title:document.title,text:"Música, entrenamiento, seguridad y comunidad. Únete al evento:",url:EVENTO.url};
+  try{ if(navigator.share){await navigator.share(data);return} }catch(e){ if(e&&e.name==="AbortError")return }
+  try{ await navigator.clipboard.writeText(EVENTO.url); const b=document.getElementById("share"); b.textContent="Enlace copiado ✓"; setTimeout(()=>b.textContent="Compartir",2200) }catch(e){ prompt("Copia el enlace:",EVENTO.url) }
+});
+
+/* Barras de entrenamiento + aparición al hacer scroll */
+const maxKm=9.69;
+document.querySelectorAll(".bar").forEach(b=>{const w=(parseFloat(b.dataset.v)/maxKm*100).toFixed(1)+"%";b.querySelector(".fill").style.setProperty("--w",w);b.dataset.w=w});
+const io="IntersectionObserver" in window?new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return; e.target.classList.add("in");
+  e.target.querySelectorAll(".bar").forEach(b=>b.querySelector(".fill").style.width=b.dataset.w);
+  io.unobserve(e.target)}),{threshold:.15}):null;
+document.querySelectorAll(".reveal").forEach(s=>{ if(io)io.observe(s); else{s.classList.add("in");s.querySelectorAll(".bar").forEach(b=>b.querySelector(".fill").style.width=b.dataset.w)} });
+
+/* Botón fijo móvil: se oculta cuando ya se ve el bloque final */
+const st=document.getElementById("sticky"), fin=document.querySelector(".cta-card");
+if("IntersectionObserver" in window) new IntersectionObserver(e=>st.classList.toggle("off",e[0].isIntersecting)).observe(fin);
+
+/* Onda 432 Hz del héroe */
+(function(){
+  const c=document.getElementById("wave"),x=c.getContext("2d");
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let W,H,dpr;
+  function size(){dpr=devicePixelRatio||1;W=c.clientWidth;H=c.clientHeight;c.width=W*dpr;c.height=H*dpr;x.setTransform(dpr,0,0,dpr,0,0)}
+  addEventListener("resize",size);size();
+  function draw(t){
+    x.clearRect(0,0,W,H);
+    [[.9,"#ffd24a",1.0],[.6,"#27e3f0",1.7]].forEach(([a,col,f])=>{
+      x.beginPath();
+      for(let i=0;i<=W;i+=4){
+        const y=H/2+Math.sin(i/W*Math.PI*4*f+t/900)*H*.3*a*Math.sin(i/W*Math.PI);
+        i?x.lineTo(i,y):x.moveTo(i,y)}
+      x.strokeStyle=col;x.globalAlpha=.7;x.lineWidth=1.5;x.stroke()});
+    x.globalAlpha=1; if(!reduce)requestAnimationFrame(draw)
+  }
+  requestAnimationFrame(draw);
+})();
+</script>
+<!-- sadv41-home -->
+<a id="sadv41-home" href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" title="SADV41 · Página principal" aria-label="Ir a la página principal de SADV41" style="position:fixed;left:14px;bottom:64px;z-index:2147482999;width:46px;height:46px;border-radius:50%;background:#071642;border:3px solid #d9a93a;box-shadow:0 4px 14px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;text-decoration:none"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><g fill="#d9a93a"><rect x="10.8" y="2" width="2.4" height="20" rx=".6"/><rect x="8" y="4.6" width="8" height="1.8" rx=".5"/><rect x="6" y="9" width="12" height="2.4" rx=".6"/><rect x="8.6" y="16.6" width="6.8" height="1.8" rx=".5" transform="rotate(12 12 17.5)"/></g></svg></a>
+<!-- /sadv41-home -->
+<!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+</body>
+</html>

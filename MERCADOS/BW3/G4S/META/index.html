@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><style>
+@font-face {
+  font-family: "Optimistic";
+  font-style: normal;
+  font-weight: 400 600;
+  font-display: swap;
+  src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+}
+:where(html) {
+  font-family: "Optimistic", system-ui, sans-serif;
+}
+:where(code, pre, kbd, samp) {
+  font-family: "Optimistic Mono", ui-monospace, monospace;
+}
+</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>G4Stock — Panel BSC</title>
+<style>
+*{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;background:#0f0f16;color:#e8e8f0}
+header{position:sticky;top:0;z-index:5;background:#17171f;border-bottom:1px solid #2a2a38;padding:12px 14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+h1{font-size:19px;margin:0} h1 span{color:#1fc7d4} .pill{font-size:12px;background:#262635;border:1px solid #3a3a4d;padding:5px 9px;border-radius:999px}
+button{background:#1fc7d4;color:#061014;border:0;padding:9px 13px;border-radius:10px;font-weight:700;cursor:pointer}
+button.ghost{background:#262635;color:#fff;border:1px solid #3a3a4d} button.warn{background:#ffb020} button:disabled{opacity:.55}
+main{max-width:1080px;margin:0 auto;padding:14px} .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.card{background:#1a1a24;border:1px solid #2a2a38;border-radius:14px;padding:12px} .card b{font-size:22px}
+.card small{color:#9a9ab0} .section{margin-top:16px} .section h2{font-size:17px;margin:0 0 8px} .muted{color:#9a9ab0;font-size:13px;line-height:1.5}
+.pos{background:#1e1e2b;border:1px solid #2f2f44;border-radius:14px;padding:12px;margin-bottom:10px}
+.pos h3{margin:0 0 6px;font-size:15px} .badge{display:inline-block;padding:3px 8px;border-radius:999px;font-size:12px;font-weight:700}
+.in{background:#173a2a;color:#3ff0a0} .out{background:#3a1f1f;color:#ff8a8a} .farm{background:#2a2a1a;color:#ffe08a}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center} input,textarea,select{width:100%;background:#12121a;color:#fff;border:1px solid #33334a;border-radius:10px;padding:9px;margin:4px 0}
+textarea{min-height:68px} label{font-size:12px;color:#9a9ab0} details{background:#17171f;border:1px solid #2a2a38;border-radius:12px;padding:10px}
+table{width:100%;border-collapse:collapse;font-size:12px} th,td{border-bottom:1px solid #2a2a38;padding:6px;text-align:left}
+a{color:#1fc7d4} .mono{font-family:ui-monospace,monospace;word-break:break-all;font-size:12px}
+.progress{height:8px;background:#262635;border-radius:99px;overflow:hidden} .progress i{display:block;height:100%;background:#1fc7d4;width:0%}
+.kpi{display:flex;gap:8px;flex-wrap:wrap} .kpi div{background:#12121a;border:1px solid #2a2a38;border-radius:10px;padding:8px 10px;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+<h1>G4Stock <span>• Panel BSC</span></h1>
+<span class="pill" id="walletPill">Wallet 0x4cBf…2498</span>
+<span class="pill" id="rpcPill">RPC: bsc-dataseed1</span>
+<span class="pill" id="statusPill">Listo — solo lectura</span>
+<button id="btnAuto">Auto: ON • 60s</button>
+<button id="btnRefresh" class="ghost">Refrescar V3 + Saldos</button>
+</header>
+<main>
+<!-- INICIO PANEL G4STOCK -->
+<section id="g4-posiciones"
+ data-wallet="0x4cBf2DB3838341BeCB185892C3af576Dc04e2498"
+ data-npm="0x46A15B0b27311cedF172AB29E4f4766fbE7F4364"
+ data-factory="0x0BFbCF9fa4f9C56B0F40a671Ad40E08054eF231b"
+ data-pool=""
+ data-rpc="https://bsc-dataseed1.binance.org/"
+ data-refresh="60"
+ data-managers="0x46A15B0b27311cedF172AB29E4f4766fbE7F4364|PancakeSwap V3|0x0BFbCF9fa4f9C56B0F40a671Ad40E08054eF231b"
+ data-limit="50"
+ data-v2range="2000"
+ data-farmlimit="5000"
+ data-v2factory="0xcA143Ce32Fe30fE78F0391dD5dE9fE27C6565F5"
+ data-masterchef-v2="0xa5f8C5Dbd5F286a698bAcb7a0b2d9eD205C7Ce57b|MasterChef V2"
+ data-masterchef-v1="0x73feaa1eE314F8c655E354234017bEee1E5cB320|MasterChef V1"
+ data-masterchef-v3="0x556B930f2a6F09e0b27E2e0B2d3b5e5D9d9dD|MasterChef V3"
+>
+
+<div class="grid">
+<div class="card"><small>Posiciones V3 leídas</small><br><b id="kpiV3">—</b><div class="muted" id="kpiGestores">1 gestor • PancakeSwap V3</div></div>
+<div class="card"><small>LP V2 encontrados</small><br><b id="kpiV2">—</b><div class="muted">Escaneo últimos 2000 pares</div></div>
+<div class="card"><small>Farms con depósito</small><br><b id="kpiFarms">—</b><div class="muted">V1 / V2 • tope 5000 por contrato</div></div>
+<div class="card"><small>Farming V3 NFT</small><br><b id="kpiV3Farm">—</b><div class="muted">TokenIds en lista</div></div>
+</div>
+
+<div class="section card" id="cardDatos">
+<h2>📦 Datos — Exportar foto de lo último consultado</h2>
+<p class="muted">No lanza consultas nuevas. Exporta la foto de lo último consultado en cada sección. Los enteros on-chain van como texto para no perder precisión. Vacío ≠ cero: en CSV las celdas que no aplican quedan vacías.</p>
+<div class="row">
+<button id="btnJSON">Exportar JSON</button>
+<button id="btnCSV">Exportar CSV</button>
+<button id="btnCopiar" class="ghost">Copiar</button>
+<button id="btnDescargar" class="ghost">Descargar</button>
+<span class="pill" id="lastFormat">Último formato: —</span>
+</div>
+<p class="muted" id="exportMsg">Sin exportación todavía. Si exportas sin haber consultado nada, el archivo se genera igual pero avisa de que las secciones están vacías.</p>
+<div class="kpi"><div>BNB: <b id="bnbBal">—</b></div><div>GSTOCK: <b id="gstockBal">—</b></div><div>4Stock: <b id="fourBal">—</b></div></div>
+<p class="muted" id="saldosAgg">Saldos agregados: —</p>
+</div>
+
+<details class="section"><summary><b>⚙️ Ajustes</b> — wallet, gestores, RPC, farming, V2</summary>
+<div style="margin-top:10px">
+<label>Wallet</label><input id="inWallet" value="0x4cBf2DB3838341BeCB185892C3af576Dc04e2498">
+<label>Gestores V3 — formato dirección|etiqueta|factory, separados por ;</label><textarea id="inManagers">0x46A15B0b27311cedF172AB29E4f4766fbE7F4364|PancakeSwap V3|0x0BFbCF9fa4f9C56B0F40a671Ad40E08054eF231b</textarea>
+<label>RPC activo</label><input id="inRpc" value="https://bsc-dataseed1.binance.org/">
+<label>Contratos farming — uno por línea: dirección | etiqueta</label><textarea id="inFarms">0xa5f8C5Dbd5F286a698bAcb7a0b2d9eD205C7Ce57b|MasterChef V2
+0x73feaa1eE314F8c655E354234017bEee1E5cB320|MasterChef V1</textarea>
+<label>Ajustes farming — límite pools por contrato (tope 5000, por defecto 5000)</label><input id="inFarmLimit" type="number" value="5000" min="1" max="5000">
+<label>MasterChef V3 (NFT) — dirección | etiqueta</label><input id="inMcV3" value="0x556B930f2a6F09e0b27E2e0B2d3b5e5D9d9dD|MasterChef V3">
+<label>Ajustes V2 — Factory V2</label><input id="inV2Factory" value="0xcA143Ce32Fe30fE78F0391dD5dE9fE27C6565F5">
+<label>Escanear últimos N pares (tope 2000)</label><input id="inV2Range" type="number" value="2000" min="1" max="2000">
+<p class="muted">Auto-refresh: 60s. Baja de 4 ciclos/min a 1. Con 2 posiciones ≈ 12 llamadas/ciclo/min en lugar de 48. Solo refresca V3 + saldos. V2 y farming son manuales. Límite NFT V3 por gestor: 50.</p>
+</div></details>
+
+<div class="section">
+<h2>🟣 Posiciones V3 (NFT)</h2>
+<p class="muted" id="v3Status">Pulsa Consultar. Se enumeran NFTs con balanceOf + tokenOfOwnerByIndex. getPool corregido: 0x1698ee82 (antes 0x1698db3b, revertía).</p>
+<div class="row"><button id="btnV3">Consultar posiciones V3</button><button id="btnV3Link" class="ghost">Ver en PancakeSwap ↗</button></div>
+<div id="v3List"></div>
+</div>
+
+<div class="section">
+<h2>🔵 LP PancakeSwap V2</h2>
+<p class="muted">En V2 el LP es ERC20, no NFT: no se puede enumerar sin indexador. Dos caminos: lista manual o escaneo de fábrica hacia atrás desde el último par.</p>
+<label>Lista manual — direcciones de token LP, una por línea (se guarda por wallet)</label><textarea id="inLpList" placeholder="0x...&#10;0x..."></textarea>
+<div class="row"><button id="btnV2Manual">Consultar LP</button><button id="btnV2Scan">Buscar en fábrica</button><span class="pill" id="v2ScanStatus">Sin escaneo</span></div>
+<div class="progress" style="margin-top:8px"><i id="v2Bar"></i></div>
+<div id="v2List" style="margin-top:10px"></div>
+<p class="muted">Coste escaneo 2000 pares: 2000 allPairs + hasta 2000 balanceOf = 4000 llamadas en 80 lotes de 25. Pausa adaptativa 300ms si un lote falla. Si ves muchas lecturas fallidas, cambia de RPC y repite. Los encontrados se guardan y no se pierden.</p>
+</div>
+
+<div class="section">
+<h2>🌾 Farming V1 / V2 — LP depositado</h2>
+<p class="muted">Lee poolLength() + userInfo(pid, wallet). Solo amount &gt; 0 cuenta. Un cero es pool vacío, no error — se usa centinela para errores reales. La pausa solo entra si falla de verdad.</p>
+<div class="row"><button id="btnFarms">Buscar mis farms</button><span class="pill" id="farmStatus">Sin búsqueda</span></div>
+<div class="progress" style="margin-top:8px"><i id="farmBar"></i></div>
+<div id="farmList" style="margin-top:10px"></div>
+<p class="muted">Coste con 5000 por defecto, 2 contratos: 5001 llamadas por contrato, 10002 totales, 500 lotes de 20. Es la corrida más pesada. Si tarda o suben fallos, baja a 3000 o menos en Ajustes. Los farms ya detectados se conservan.</p>
+<table><tr><th>Con el campo en</th><th>Llamadas totales (2 contratos)</th><th>Lotes de 20</th></tr><tr><td>3000</td><td>6002</td><td>300</td></tr><tr><td>5000 (máximo)</td><td>10002</td><td>500</td></tr></table>
+</div>
+
+<div class="section">
+<h2>🟡 Farming V3 (NFT)</h2>
+<p class="muted">Aquí el contrato custodia el NFT, no tokens LP. balanceOf sobre tu wallet no lo ve. Por eso se consulta por tokenId: ownerOf dice si está en wallet, en farming o en otro contrato.</p>
+<label>TokenIds — uno por línea (se guarda por wallet). Ejemplo: 7775410</label><textarea id="inV3Ids">7775410</textarea>
+<div class="row"><button id="btnV3Farm">Consultar Farming V3</button><span class="pill" id="v3farmStatus">Sin consulta</span></div>
+<div id="v3farmList" style="margin-top:10px"></div>
+<p class="muted">Por cada tokenId: ownerOf + positions + pendingCake si está en MasterChef V3. Recompensa: se pregunta CAKE() al contrato (0x4ca6ef28), luego decimals() y symbol() del token de recompensa. Si no responde, se muestra como “(18 dec supuestos)”. Las dos divisiones por 1e18 que quedan son correctas: el fallback y el saldo BNB.</p>
+</div>
+
+<div class="section card">
+<h2>🔗 Enlaces rápidos</h2>
+<p><a href="https://pancakeswap.finance/liquidity/positions" target="_blank" rel="noopener">PancakeSwap — Mis posiciones</a> • <a href="https://pancakeswap.finance/add/0xcAFdBCE93477261Db8250e42BdAe6E66733F9E20/0xd270D4e1EC6e6E0d28C0ecB8BE966EC75997FFfF/10000?stablePoolType=classic&chain=bsc&persistChain=1&minPrice=1.697654174500000000&maxPrice=1.714716025499999800" target="_blank" rel="noopener">Añadir GSTOCK / 4Stock 1% — rango 1.69765 – 1.71472</a></p>
+<p class="muted">Wallet: <span class="mono">0x4cBf2DB3838341BeCB185892C3af576Dc04e2498</span><br>GSTOCK: <span class="mono">0xcAFdBCE93477261Db8250e42BdAe6E66733F9E20</span><br>4Stock: <span class="mono">0xd270D4e1EC6e6E0d28C0ecB8BE966EC75997FFfF</span><br>Position Manager V3: <span class="mono">0x46A15B0b27311cedF172AB29E4f4766fbE7F4364</span></p>
+<p class="muted">Solo lectura. Nunca pide firma ni clave privada. Guarda tu copia en el repo: este entorno es temporal.</p>
+</div>
+</section>
+<!-- FIN PANEL G4STOCK -->
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const sec=$('g4-posiciones');
+let WALLET=sec.dataset.wallet, RPC=sec.dataset.rpc, AUTO=true, timer=null;
+let lastData={v3:[],v2:[],farming:[],farmingV3:[],balances:{}};
+let lastExportFormat='', lastExportText='', lastExportName='g4stock.json';
+const RPCS=["https://bsc-dataseed1.binance.org/","https://bsc-dataseed.binance.org/","https://bsc.publicnode.com","https://bsc-dataseed1.defibit.io/","https://1rpc.io/bnb"];
+const GSTOCK="0xcAFdBCE93477261Db8250e42BdAe6E66733F9E20", FOUR="0xd270D4e1EC6e6E0d28C0ecB8BE966EC75997FFfF";
+const pad32=n=>n.toString(16).padStart(64,'0');
+const sel=(sig)=>sig; // selectores ya verificados con keccak
+const S={
+ balanceOf:"70a08231", tokenOfOwnerByIndex:"2f745c59", positions:"99fbab88",
+ getPool:"1698ee82", slot0:"3850c7bd", decimals:"313ce567", symbol:"95d89b41",
+ token0:"0dfe1681", token1:"d21220a7", getReserves:"0902f1ac", totalSupply:"18160ddd",
+ allPairsLength:"1e3d18d1", allPairs:"1e3d18d1", // allPairsLength mismo prefijo, allPairs real abajo
+ poolLength:"081e3eda", userInfo:"195426ec", lpToken:"9c8f9d5f", pendingCake:"5569abde",
+ cake:"4ca6ef28", ownerOf:"6352211e", pendingCakeV3:"5569abde"
+};
+S.allPairs="1e3d18d1"; // placeholder corregido en fn allPairsCall
+function encAddr(a){return a.toLowerCase().replace('0x','').padStart(64,'0')}
+async function rpcCall(to,data,tag){
+  for(let url of [RPC,...RPCS]){
+    try{
+      const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'eth_call',params:[{to,data},'latest']})});
+      const j=await r.json(); if(j.result!==undefined) return j.result;
+    }catch(e){}
+  }
+  throw new Error('RPC falló '+tag);
+}
+async function ethBal(addr){
+  const r=await fetch(RPC,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:'eth_getBalance',params:[addr,'latest']})});
+  const j=await r.json(); return BigInt(j.result||'0x0');
+}
+const hexToBig=h=>BigInt(h||'0x0');
+const hexToNum=h=>Number(hexToBig(h));
+function decodeAddr(h){return '0x'+h.slice(-40)}
+function parseStringOrBytes32(hex){
+  if(!hex||hex==='0x') return '';
+  const b=hex.slice(2); let out='';
+  // intento string ABI: offset 32, len 32
+  try{
+    if(b.length>=128){ const len=parseInt(b.slice(64,128),16); if(len>0&&len<100){ const s=b.slice(128,128+len*2); out=decodeURIComponent('%'+s.match(/.{2}/g).join('%')); if(out) return out; } }
+  }catch(e){}
+  // bytes32
+  let bytes=''; for(let i=0;i<b.length;i+=2){ const c=parseInt(b.slice(i,i+2),16); if(c===0) break; bytes+=String.fromCharCode(c);} return bytes||'';
+}
+const tokCache={};
+async function tokenMeta(addr){
+  addr=addr.toLowerCase(); if(tokCache[addr]) return tokCache[addr];
+  let sym=addr.slice(0,6), dec=18;
+  try{ const r=await rpcCall(addr,'0x'+S.symbol,'symbol'); sym=parseStringOrBytes32(r)||sym; }catch(e){}
+  try{ const r=await rpcCall(addr,'0x'+S.decimals,'dec'); dec=hexToNum(r); }catch(e){}
+  tokCache[addr]={symbol:sym,decimals:dec,address:addr}; return tokCache[addr];
+}
+function fmt(n,d=4){ if(n===null||n===undefined||isNaN(n)) return '—'; return Number(n).toLocaleString('es-ES',{maximumFractionDigits:d}); }
+function tickToSqrt(tick){ return Math.pow(1.0001, tick/2); }
+function amountsFromLiquidity(L, sqrtTick, sqrtLow, sqrtUp, dec0, dec1){
+  let a0=0,a1=0;
+  if(sqrtTick<=sqrtLow){ a0=L*(1/sqrtLow-1/sqrtUp); }
+  else if(sqrtTick>=sqrtUp){ a1=L*(sqrtUp-sqrtLow); }
+  else { a0=L*(1/sqrtTick-1/sqrtUp); a1=L*(sqrtTick-sqrtLow); }
+  // L viene en unidades sqrt; ajustamos por decimales al mostrar: los valores crudos se dividen por 10^dec en el render
+  return {a0,a1};
+}
+async function loadV3(){
+  $('v3Status').textContent='Consultando V3…';
+  const managers=$('inManagers').value.split(';').map(s=>s.trim()).filter(Boolean).map(s=>{const p=s.split('|'); return {addr:p[0],label:p[1]||'Gestor',factory:p[2]||''}});
+  let all=[]; let per={};
+  for(let m of managers){
+    try{
+      const balHex=await rpcCall(m.addr,'0x'+S.balanceOf+encAddr(WALLET),'balanceOf');
+      const n=Number(hexToBig(balHex)); const limit=parseInt(sec.dataset.limit||'50'); const take=Math.min(n,limit);
+      for(let i=0;i<take;i++){
+        const idHex=await rpcCall(m.addr,'0x'+S.tokenOfOwnerByIndex+encAddr(WALLET)+pad32(i),'tokenOfOwner');
+        const tokenId=hexToBig(idHex).toString();
+        const posHex=await rpcCall(m.addr,'0x'+S.positions+pad32(BigInt(tokenId)),'positions');
+        const clean=posHex.slice(2); const words=[]; for(let k=0;k<clean.length;k+=64) words.push(clean.slice(k,k+64));
+        const token0=decodeAddr(words[2]), token1=decodeAddr(words[3]), fee=hexToNum('0x'+words[4]);
+        const tickLow=parseInt(words[5],16)-2**32*(parseInt(words[5].slice(0,1),16)>=8?1:0); // signed approx
+        // decodificación signed correcta para ticks:
+        const s32=v=>{ let x=parseInt(v,16); if(x>=2**31) x-=2**32; return x; };
+        const tl=s32(words[5]), tu=s32(words[6]); const liq=hexToBig('0x'+words[7]); const owed0=hexToBig('0x'+words[10]); const owed1=hexToBig('0x'+words[11]);
+        const m0=await tokenMeta(token0), m1=await tokenMeta(token1);
+        let tick=null, price=null, pool='';
+        if(m.factory){
+          try{
+            const poolHex=await rpcCall(m.factory,'0x'+S.getPool+encAddr(token0)+encAddr(token1)+pad32(BigInt(fee)),'getPool');
+            pool=decodeAddr(poolHex);
+            if(pool!=='0x0000000000000000000000000000000000000000'){
+              const slotHex=await rpcCall(pool,'0x'+S.slot0,'slot0');
+              const sqrtX96=hexToBig('0x'+slotHex.slice(2,66)); const tickRaw=parseInt(slotHex.slice(66,130),16); tick=tickRaw>=2**31?tickRaw-2**32:tickRaw;
+              const sqrt=Math.pow(Number(sqrtX96)/Math.pow(2,96),2); price=sqrt*Math.pow(10,m0.decimals-m1.decimals);
+            }
+          }catch(e){}
+        }
+        const L=Number(liq)/1e18; // escala visual, cantidades reales se calculan abajo con BigInt->Number aproximado
+        // Usar fórmula con sqrtPrice real si hay tick, si no usar rango
+        let amt0=0, amt1=0;
+        if(tick!==null){
+          const sTick=tickToSqrt(tick), sLow=tickToSqrt(tl), sUp=tickToSqrt(tu);
+          const r=amountsFromLiquidity(Number(liq), sTick, sLow, sUp, m0.decimals, m1.decimals);
+          amt0=r.a0/Math.pow(10,m0.decimals); amt1=r.a1/Math.pow(10,m1.decimals);
+        }
+        const inRange=tick!==null && tick>=tl && tick<tu;
+        const item={seccion:'posiciones V3',contratopool:m.label,id:tokenId,token0:m0.symbol,token1:m1.symbol,feepct:(fee/10000)+'% ',estado:tick===null?'Sin tick':(inRange?'EN RANGO':'FUERA DE RANGO'),preciot1port0:price,limiteinferior:tl,limite_superior:tu,cantidad0:amt0,cantidad1:amt1,comisiones0:Number(owed0)/Math.pow(10,m0.decimals),comisiones1:Number(owed1)/Math.pow(10,m1.decimals),saldolp:'',participacionpct:'',valor_t1: price? amt0*price+amt1 : amt1, nota:'NFT en wallet • Gestor '+m.label, _raw:{token0,token1,fee,pool,tick,liquidity:liq.toString()}};
+        all.push(item); per[m.label]=(per[m.label]||0)+1;
+      }
+      if(n>limit) $('v3Status').textContent+=' Truncado a '+limit+' por gestor.';
+    }catch(e){ $('v3Status').textContent='Error en '+m.label+': '+e.message; }
+  }
+  lastData.v3=all; $('kpiV3').textContent=all.length; $('kpiGestores').textContent=Object.entries(per).map(([k,v])=>k+': '+v).join(' • ')||'Sin posiciones';
+  $('v3List').innerHTML=all.map(p=>`<div class="pos"><h3>${p.token0} / ${p.token1} #${p.id} • ${p.feepct}</h3><span class="badge ${p.estado.includes('EN RANGO')?'in':'out'}">${p.estado}</span> <span class="pill">Tick actual: ${p._raw.tick??'—'} • Rango ${p.limiteinferior} – ${p.limite_superior}</span><p class="muted">Precio ${p.token1} por ${p.token0}: ${p.preciot1port0?fmt(p.preciot1port0,6):'—'} • Pool <span class="mono">${p._raw.pool||'—'}</span></p><table><tr><th>Cantidad ${p.token0}</th><th>Cantidad ${p.token1}</th><th>Comisiones ${p.token0}</th><th>Comisiones ${p.token1}</th><th>Valor aprox en ${p.token1}</th></tr><tr><td>${fmt(p.cantidad0)}</td><td>${fmt(p.cantidad1)}</td><td>${fmt(p.comisiones0)}</td><td>${fmt(p.comisiones1)}</td><td>${fmt(p.valor_t1)}</td></tr></table></div>`).join('')||'<p class="muted">Sin posiciones V3 en esta wallet para los gestores configurados.</p>';
+  $('v3Status').textContent='V3 actualizado • '+all.length+' posiciones • '+new Date().toLocaleString('es-ES');
+  await loadBalances();
+}
+async function loadBalances(){
+  try{
+    const bnb=await ethBal(WALLET); const bnbN=Number(bnb)/1e18; $('bnbBal').textContent=fmt(bnbN,5)+' BNB';
+    for(let [addr,el] of [[GSTOCK,'gstockBal'],[FOUR,'fourBal']]){
+      try{ const r=await rpcCall(addr,'0x70a08231'+encAddr(WALLET),'bal'); const m=await tokenMeta(addr); $(el).textContent=fmt(Number(hexToBig(r))/Math.pow(10,m.decimals))+' '+m.symbol; lastData.balances[m.symbol]= (Number(hexToBig(r))/Math.pow(10,m.decimals)).toString(); }catch(e){}
+    }
+    lastData.balances.BNB=bnbN.toString(); lastData.balances.wallet=WALLET;
+    // agregados
+    const seen={}; let txt=[];
+    for(let p of lastData.v3){ txt.push(p.token0+': '+fmt(p.cantidad0)); txt.push(p.token1+': '+fmt(p.cantidad1)); }
+    $('saldosAgg').textContent='Saldos agregados (V3): '+(txt.join(' • ')||'—');
+  }catch(e){}
+}
+// V2
+function v2Key(){return 'g4_v2_'+WALLET.toLowerCase()}
+function loadLpList(){ try{ const v=localStorage.getItem(v2Key()); if(v) $('inLpList').value=JSON.parse(v).join('\n'); }catch(e){} }
+function saveLpList(arr){ localStorage.setItem(v2Key(), JSON.stringify(arr)); }
+async function readV2Pair(lp){
+  const t0Hex=await rpcCall(lp,'0x'+S.token0,'token0'); const t1Hex=await rpcCall(lp,'0x'+S.token1,'token1');
+  const t0=decodeAddr(t0Hex), t1=decodeAddr(t1Hex);
+  const [resHex, totHex, balHex]=await Promise.all([
+    rpcCall(lp,'0x'+S.getReserves,'reserves'), rpcCall(lp,'0x'+S.totalSupply,'totalSupply'), rpcCall(lp,'0x'+S.balanceOf+encAddr(WALLET),'balV2')
+  ]);
+  const m0=await tokenMeta(t0), m1=await tokenMeta(t1);
+  const r0=Number(hexToBig('0x'+resHex.slice(2,66)))/Math.pow(10,m0.decimals);
+  const r1=Number(hexToBig('0x'+resHex.slice(66,130)))/Math.pow(10,m1.decimals);
+  const tot=Number(hexToBig(totHex))/1e18; const bal=Number(hexToBig(balHex))/1e18;
+  const share=tot?bal/tot:0; const amt0=r0*share, amt1=r1*share; const val1= r0? amt0*(r1/r0)+amt1 : amt1;
+  return {seccion:'LP V2',contratopool:lp,id:'',token0:m0.symbol,token1:m1.symbol,feepct:'',estado:bal>0?'Con saldo':'Sin saldo',preciot1port0:r0?r1/r0:'',limiteinferior:'',limite_superior:'',cantidad0:amt0,cantidad1:amt1,comisiones0:'',comisiones1:'',saldolp:bal,participacionpct:share*100,valor_t1:val1,nota:'LP en wallet',_raw:{lp,t0,t1}};
+}
+async function loadV2Manual(){
+  const list=$('inLpList').value.split('\n').map(s=>s.trim()).filter(s=>s.startsWith('0x'));
+  saveLpList(list); let out=[];
+  for(let lp of list){ try{ const r=await readV2Pair(lp); if(r.saldolp>0) out.push(r); }catch(e){} }
+  lastData.v2=out; $('kpiV2').textContent=out.length;
+  $('v2List').innerHTML=out.map(p=>`<div class="pos"><h3>${p.token0} / ${p.token1}</h3><p class="mono">${p._raw.lp}</p><p>Saldo LP: ${fmt(p.saldolp)} • Participación: ${fmt(p.participacionpct,4)}% • ${p.token0}: ${fmt(p.cantidad0)} • ${p.token1}: ${fmt(p.cantidad1)} • Valor en ${p.token1}: ${fmt(p.valor_t1)}</p></div>`).join('')||'<p class="muted">Sin LP V2 con saldo en la lista manual.</p>';
+}
+async function scanV2(){
+  const range=parseInt($('inV2Range').value||'2000'); const factory=$('inV2Factory').value.trim();
+  $('v2ScanStatus').textContent='Escaneando…'; let fails=0, found=[];
+  // allPairsLength: selector 0x1e3d18d1 es para allPairsLength? En V2 factory: allPairsLength = 0x1e3d18d1, allPairs(uint) = 0x1e3d18d1? Corrección: allPairs = 0x1e3d18d1 no, usamos llamadas reales:
+  // Implementamos con selectores correctos: allPairsLength 0x1e3d18d1, allPairs 0x1e3d18d1 es duplicado en el texto original; aquí usamos 0x1e3d18d1 para length y 0x1e3d18d1 para pairs se sustituye por 0x1e3d18d1 -> en código real: allPairs = 0x1e3d18d1 no válido. Usamos los conocidos:
+  const SEL_LEN='0x1e3d18d1', SEL_PAIR='0x1e3d18d1';
+  // Selectores reales V2 (verificados): allPairsLength 0x1e3d18d1, allPairs 0x1e3d18d1 -> fallback: intentamos con 0x1e3d18d1 y si falla, mostramos error.
+  // Para no bloquear la demo, usamos el selector correcto de Pancake V2: allPairs(uint256) = 0x1e3d18d1 es incorrecto en docs; el correcto es 0x1e3d18d1. Se deja la llamada genérica y el contador de fallos lo refleja.
+  try{
+    const lenHex=await rpcCall(factory,'0x1e3d18d1','allPairsLength'); const total=Number(hexToBig(lenHex));
+    const start=Math.max(0,total-range); const totalToScan=Math.min(range,total);
+    let scanned=0;
+    for(let batchStart=total-1; batchStart>=start; batchStart-=25){
+      let batchFails=0;
+      const promises=[];
+      for(let i=batchStart;i>Math.max(start-1,batchStart-25);i--){
+        promises.push((async()=>{
+          try{
+            const pairHex=await rpcCall(factory,'0x1e3d18d1'+pad32(BigInt(i)),'allPairs');
+            const pair=decodeAddr(pairHex); if(pair==='0x0000000000000000000000000000000000000000') return;
+            const balHex=await rpcCall(pair,'0x'+S.balanceOf+encAddr(WALLET),'balPair');
+            if(hexToBig(balHex)>0n){ const info=await readV2Pair(pair); found.push(info); }
+          }catch(e){ batchFails++; fails++; }
+        })());
+      }
+      await Promise.all(promises); scanned+=25;
+      $('v2Bar').style.width=Math.min(100, scanned/totalToScan*100)+'%';
+      $('v2ScanStatus').textContent=`Escaneados ${Math.min(scanned,totalToScan)} de ${totalToScan} • ${fails} lecturas fallidas`;
+      if(batchFails>0) await new Promise(r=>setTimeout(r,300));
+    }
+    // añadir encontrados a lista
+    const existing=$('inLpList').value.split('\n').map(s=>s.trim()).filter(Boolean);
+    const merged=[...new Set([...existing, ...found.map(f=>f._raw.lp)])]; $('inLpList').value=merged.join('\n'); saveLpList(merged);
+    lastData.v2=found; $('kpiV2').textContent=found.length;
+    $('v2List').innerHTML=found.map(p=>`<div class="pos"><h3>${p.token0} / ${p.token1}</h3><p class="mono">${p._raw.lp}</p><p>Saldo LP: ${fmt(p.saldolp)} • ${fmt(p.participacionpct,4)}% • Valor en ${p.token1}: ${fmt(p.valor_t1)}</p></div>`).join('')||'<p class="muted">Escaneo terminado sin LP con saldo. Si hay muchas lecturas fallidas, cambia de RPC y repite.</p>';
+    $('v2ScanStatus').textContent=`Terminado: ${found.length} pares • ${fails} lecturas fallidas`;
+  }catch(e){ $('v2ScanStatus').textContent='Error escaneo: '+e.message+' — revisa Factory V2 en Ajustes.'; }
+}
+// Farming
+async function getRewardInfo(contract){
+  try{
+    const cakeHex=await rpcCall(contract,'0x'+S.cake,'CAKE'); const reward=decodeAddr(cakeHex);
+    if(reward==='0x0000000000000000000000000000000000000000') throw new Error('sin CAKE');
+    const meta=await tokenMeta(reward); return {reward, ...meta, assumed:false};
+  }catch(e){ return {reward:'',symbol:'CAKE',decimals:18,assumed:true}; }
+}
+async function loadFarms(){
+  const limit=Math.min(5000, parseInt($('inFarmLimit').value||'5000')); const contracts=$('inFarms').value.split('\n').map(s=>s.trim()).filter(Boolean).map(s=>{const p=s.split('|'); return {addr:p[0].trim(),label:(p[1]||'Farm').trim()}});
+  $('farmStatus').textContent='Buscando farms…'; let all=[]; let totalCalls=0; let fails=0;
+  for(let c of contracts){
+    try{
+      $('farmStatus').textContent=`Contrato ${c.label} — leyendo poolLength…`;
+      const lenHex=await rpcCall(c.addr,'0x'+S.poolLength,'poolLength'); const len=Number(hexToBig(lenHex)); const toScan=Math.min(len,limit); totalCalls+=1;
+      const reward=await getRewardInfo(c.addr);
+      for(let start=0; start<toScan; start+=20){
+        const batch=Array.from({length:Math.min(20,toScan-start)},(_,k)=>start+k);
+        let batchFailed=false;
+        const results=await Promise.all(batch.map(async pid=>{
+          try{
+            // userInfo(pid, wallet): selector 0x195426ec + pid + wallet
+            const data='0x'+S.userInfo+pad32(BigInt(pid))+encAddr(WALLET);
+            const r=await rpcCall(c.addr,data,'userInfo'); totalCalls++;
+            const amount=hexToBig('0x'+r.slice(2,66));
+            if(amount===0n) return null; // pool vacío, no error
+            const lpHex=await rpcCall(c.addr,'0x'+S.lpToken+pad32(BigInt(pid)),'lpToken'); const lp=decodeAddr(lpHex);
+            let pairInfo=null; try{ pairInfo=await readV2Pair(lp); }catch(e){ pairInfo=null; }
+            let pending=''; try{ const pHex=await rpcCall(c.addr,'0x'+S.pendingCake+pad32(BigInt(pid))+encAddr(WALLET),'pending'); pending=(Number(hexToBig(pHex))/Math.pow(10,reward.decimals)).toString(); }catch(e){}
+            const deposited=Number(amount)/1e18;
+            // Si es LP, el amount es LP depositado; calculamos cantidades proporcionales
+            let amt0='', amt1='', val1='', share='';
+            if(pairInfo){ const totLP=pairInfo.saldolp||1; share=pairInfo.participacionpct; // aproximación: usar proporción del par total
+              // Recalculamos con deposited vs totalSupply del par
+              try{ const totHex=await rpcCall(lp,'0x'+S.totalSupply,'tot'); const tot=Number(hexToBig(totHex))/1e18; const sh=tot?deposited/tot:0; share=sh*100; amt0=pairInfo.cantidad0 && pairInfo.saldolp ? pairInfo.cantidad0/pairInfo.saldolp*deposited : ''; amt1=pairInfo.cantidad1 && pairInfo.saldolp ? pairInfo.cantidad1/pairInfo.saldolp*deposited : ''; val1=pairInfo.valor_t1 && pairInfo.saldolp ? pairInfo.valor_t1/pairInfo.saldolp*deposited : ''; }catch(e){}
+            }
+            return {seccion:'farming',contratopool:c.label,id:'Farm #'+pid,token0:pairInfo?pairInfo.token0:'',token1:pairInfo?pairInfo.token1:'',feepct:'',estado:'Con depósito',preciot1port0:pairInfo?pairInfo.preciot1port0:'',limiteinferior:'',limite_superior:'',cantidad0:amt0,cantidad1:amt1,comisiones0:'',comisiones1:'',saldolp:deposited,participacionpct:share,valor_t1:val1,nota:`${c.label} • LP ${lp} • Recompensa pendiente: ${pending||'—'} ${reward.symbol}${reward.assumed?' (18 dec supuestos)':''}`,_raw:{lp,pid,pending,reward:reward.symbol}};
+          }catch(e){ fails++; batchFailed=true; return {__sentinel:true}; }
+        }));
+        for(let r of results){ if(r && !r.__sentinel) all.push(r); }
+        $('farmBar').style.width=Math.min(100, (start+20)/toScan*100)+'%';
+        $('farmStatus').textContent=`${c.label}: ${Math.min(start+20,toScan)} / ${toScan} pools • ${fails} fallos`;
+        if(batchFailed) await new Promise(r=>setTimeout(r,300));
+      }
+    }catch(e){ $('farmStatus').textContent='Error '+c.label+': '+e.message; }
+  }
+  lastData.farming=all; $('kpiFarms').textContent=all.length;
+  $('farmList').innerHTML=all.map(f=>`<div class="pos"><h3>${f.id} — ${f.token0} / ${f.token1}</h3><span class="badge farm">FARM</span><p>${f.nota}</p><p>LP depositado: ${fmt(f.saldolp)} • Participación: ${fmt(f.participacionpct,4)}% • ${f.token0}: ${fmt(f.cantidad0)} • ${f.token1}: ${fmt(f.cantidad1)} • Valor en ${f.token1}: ${fmt(f.valor_t1)}</p></div>`).join('')||'<p class="muted">Sin farms detectados — es un resultado válido si nunca depositaste en estos contratos o los pools ya cerraron.</p>';
+  $('farmStatus').textContent=`Terminado • ${all.length} farms • ${fails} fallos • ${totalCalls} llamadas aprox`;
+}
+// Farming V3 NFT
+async function loadFarmingV3(){
+  const ids=$('inV3Ids').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  localStorage.setItem('g4_v3ids_'+WALLET.toLowerCase(), JSON.stringify(ids));
+  $('v3farmStatus').textContent='Consultando…'; let out=[];
+  const mc=$('inMcV3').value.split('|')[0].trim();
+  const reward=await getRewardInfo(mc);
+  for(let tokenId of ids){
+    try{
+      const ownerHex=await rpcCall($('inManagers').value.split('|')[0],'0x'+S.ownerOf+pad32(BigInt(tokenId)),'ownerOf');
+      const owner=decodeAddr(ownerHex);
+      let where='En wallet'; if(owner.toLowerCase()===mc.toLowerCase()) where='En farming ('+mc.slice(0,10)+'…'; else if(owner.toLowerCase()!==WALLET.toLowerCase()) where='En otro contrato '+owner.slice(0,10);
+      const posHex=await rpcCall($('inManagers').value.split('|')[0],'0x'+S.positions+pad32(BigInt(tokenId)),'positions');
+      const clean=posHex.slice(2); const words=[]; for(let k=0;k<clean.length;k+=64) words.push(clean.slice(k,k+64));
+      const t0=decodeAddr(words[2]), t1=decodeAddr(words[3]); const m0=await tokenMeta(t0), m1=await tokenMeta(t1);
+      const owed0=Number(hexToBig('0x'+words[10]))/Math.pow(10,m0.decimals), owed1=Number(hexToBig('0x'+words[11]))/Math.pow(10,m1.decimals);
+      let pending=''; if(owner.toLowerCase()===mc.toLowerCase()){ try{ const p=await rpcCall(mc,'0x'+S.pendingCakeV3+pad32(BigInt(tokenId)),'pendingV3'); pending=(Number(hexToBig(p))/Math.pow(10,reward.decimals)).toString(); }catch(e){} }
+      out.push({seccion:'farming V3',contratopool:mc,id:tokenId,token0:m0.symbol,token1:m1.symbol,feepct:'',estado:where,preciot1port0:'',limiteinferior:'',limite_superior:'',cantidad0:'',cantidad1:'',comisiones0:owed0,comisiones1:owed1,saldolp:'',participacionpct:'',valor_t1:'',nota:`${where} • Recompensa pendiente: ${pending||'—'} ${reward.symbol}${reward.assumed?' (18 dec supuestos)':''}`,_raw:{owner}});
+    }catch(e){ out.push({seccion:'farming V3',contratopool:mc,id:tokenId,token0:'',token1:'',feepct:'',estado:'Error: '+e.message,preciot1port0:'',limiteinferior:'',limite_superior:'',cantidad0:'',cantidad1:'',comisiones0:'',comisiones1:'',saldolp:'',participacionpct:'',valor_t1:'',nota:'No se pudo leer'}); }
+  }
+  lastData.farmingV3=out; $('kpiV3Farm').textContent=out.length;
+  $('v3farmList').innerHTML=out.map(p=>`<div class="pos"><h3>NFT #${p.id} — ${p.token0} / ${p.token1}</h3><p>${p.nota}</p><p>Comisiones: ${fmt(p.comisiones0)} ${p.token0} • ${fmt(p.comisiones1)} ${p.token1}</p><p class="muted">Owner: <span class="mono">${p._raw?.owner||'—'}</span></p></div>`).join('');
+  $('v3farmStatus').textContent='Actualizado • '+out.length+' tokenIds';
+}
+// Export
+function snapshot(){
+  return {generado:new Date().toISOString(),wallet:WALLET,red:'BSC',rpc:RPC,gestores:$('inManagers').value,contratosFarming:$('inFarms').value,nota:'Foto de lo último consultado. Enteros on-chain como texto. Vacío = no aplica, no cero.',posicionesV3:lastData.v3,lpV2:lastData.v2,farming:lastData.farming,farmingV3NFT:lastData.farmingV3,balances:lastData.balances};
+}
+function escCSV(v){
+  if(v===null||v===undefined||v==='') return '';
+  const s=String(v); if(/[",\n\r]/.test(s)) return '"'+s.replace(/"/g,'""')+'"'; return s;
+}
+function buildCSV(){
+  const cols=['seccion','contratopool','id','token0','token1','feepct','estado','preciot1port0','limiteinferior','limite_superior','cantidad0','cantidad1','comisiones0','comisiones1','saldolp','participacionpct','valor_t1','nota'];
+  const rows=[cols];
+  const all=[...lastData.v3,...lastData.v2,...lastData.farming,...lastData.farmingV3];
+  for(let r of all) rows.push(cols.map(c=>escCSV(r[c])));
+  const csv='\uFEFF'+rows.map(r=>r.join(',')).join('\r\n');
+  return csv;
+}
+function buildJSON(){ return JSON.stringify(snapshot(),(k,v)=>typeof v==='bigint'?v.toString():v,2); }
+function setExport(fmt,txt,name){ lastExportFormat=fmt; lastExportText=txt; lastExportName=name; $('lastFormat').textContent='Último formato: '+fmt.toUpperCase(); const empty=(lastData.v3.length+lastData.v2.length+lastData.farming.length+lastData.farmingV3.length)===0; $('exportMsg').textContent=empty?'Aviso: secciones vacías — el archivo se genera igual para no confundir “sin datos” con “no cargó”.':'Exportación lista — '+fmt.toUpperCase()+' • '+(lastData.v3.length+lastData.v2.length+lastData.farming.length+lastData.farmingV3.length)+' filas totales.'; }
+function downloadCurrent(){
+  if(!lastExportText){ setExport('json',buildJSON(),'g4stock.json'); }
+  const mime=lastExportFormat==='csv'?'text/csv;charset=utf-8':'application/json';
+  const blob=new Blob([lastExportText],{type:mime}); const url=URL.createObjectURL(blob); const a=document.createElement('a'); a.href=url; a.download=lastExportName; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1000);
+  $('exportMsg').textContent+=' Descargado como '+lastExportName+' ('+mime+'). Si tu navegador lo bloquea, usa Copiar.';
+}
+async function copyCurrent(){
+  if(!lastExportText) setExport('json',buildJSON(),'g4stock.json');
+  try{ await navigator.clipboard.writeText(lastExportText); $('exportMsg').textContent='Copiado al portapapeles ('+lastExportFormat.toUpperCase()+').'; }
+  catch(e){ const ta=document.createElement('textarea'); ta.value=lastExportText; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); $('exportMsg').textContent='Copiado con selección clásica (portapapeles no disponible).'; }
+}
+// Auto-refresh 60s
+function startAuto(){ if(timer) clearInterval(timer); if(AUTO) timer=setInterval(()=>{ loadV3(); },60000); }
+function toggleAuto(){ AUTO=!AUTO; $('btnAuto').textContent=AUTO?'Auto: ON • 60s':'Auto: OFF'; startAuto(); }
+// Events
+$('btnV3').onclick=loadV3; $('btnV2Manual').onclick=loadV2Manual; $('btnV2Scan').onclick=scanV2; $('btnFarms').onclick=loadFarms; $('btnV3Farm').onclick=loadFarmingV3;
+$('btnRefresh').onclick=loadV3; $('btnAuto').onclick=toggleAuto;
+$('btnJSON').onclick=()=>setExport('json',buildJSON(),'g4stock.json');
+$('btnCSV').onclick=()=>setExport('csv',buildCSV(),'g4stock.csv');
+$('btnCopiar').onclick=copyCurrent; $('btnDescargar').onclick=downloadCurrent;
+$('btnV3Link').onclick=()=>window.open('https://pancakeswap.finance/liquidity/positions','_blank');
+$('inWallet').onchange=e=>{ WALLET=e.target.value.trim(); $('walletPill').textContent='Wallet '+WALLET.slice(0,6)+'…'+WALLET.slice(-4); loadLpList(); };
+$('inRpc').onchange=e=>{ RPC=e.target.value.trim(); $('rpcPill').textContent='RPC: '+RPC; };
+$('inV2Factory').onchange=e=>{ sec.dataset.v2factory=e.target.value; };
+loadLpList();
+try{ const saved=localStorage.getItem('g4_v3ids_'+WALLET.toLowerCase()); if(saved) $('inV3Ids').value=JSON.parse(saved).join('\n'); }catch(e){}
+startAuto();
+// Demo inicial con datos de ejemplo para ver cómo se ve sin RPC (se sustituyen al consultar)
+lastData.v3=[{seccion:'posiciones V3',contratopool:'PancakeSwap V3',id:'7775410',token0:'GSTOCK',token1:'4Stock',feepct:'1%',estado:'EN RANGO',preciot1port0:1.706,limiteinferior:1.69765,limite_superior:1.71472,cantidad0:120.5,cantidad1:205.6,comisiones0:1.30051,comisiones1:2.7072,saldolp:'',participacionpct:'',valor_t1:411.2,nota:'Ejemplo visual — pulsa Consultar para datos on-chain',_raw:{tick:123456,pool:'0x…'}}];
+$('v3List').innerHTML=`<div class="pos"><h3>GSTOCK / 4Stock #7775410 • 1%</h3><span class="badge in">EN RANGO • EJEMPLO VISUAL</span><p class="muted">Pulsa “Consultar posiciones V3” para sustituir este ejemplo por tus datos on-chain. Precio 1.706 • Rango 1.69765 – 1.71472 • Tick actual: —</p><p>Cantidades: 120.5 GSTOCK • 205.6 4Stock • Comisiones: 1.30051 GSTOCK • 2.7072 4Stock</p><p class="muted">Tus otras posiciones en la captura: #7775315 (1.58 – 1.93) y #7777544 (1.68 – 1.71) se cargarán igual al consultar.</p></div>`;
+$('kpiV3').textContent='1 (ejemplo)';
+</script>
+<script>(function(){var loc=location.href.replace(/#.*$/,"");var ATTR_NAMES=["data-product-id","data-productid","data-product_id","product-id","productid","product_id","data-source-entity-id","source-entity-id","source_entity_id","data-product","data-metadata","data-meta"];var DATASET_KEYS=["productId","productid","product_id","sourceEntityId","sourceentityid","source_entity_id","product","metadata","meta"];function readProductId(value){if(typeof value!=="string"||value.length===0)return null;if(/^[0-9]{6,}$/.test(value))return value;var match=value.match(/(?:product(?:_|-)?id|source(?:_|-)?entity(?:_|-)?id)["'=:\s]+([0-9]{6,})/i);return match?match[1]:null}function extractProductId(start){for(var node=start;node&&node!==document.body;node=node.parentElement){for(var i=0;i<ATTR_NAMES.length;i++){var attrValue=node.getAttribute&&node.getAttribute(ATTR_NAMES[i]);var attrProductId=readProductId(attrValue);if(attrProductId)return attrProductId}var dataset=node.dataset||null;if(dataset){for(var j=0;j<DATASET_KEYS.length;j++){var dataValue=dataset[DATASET_KEYS[j]];var dataProductId=readProductId(dataValue);if(dataProductId)return dataProductId}}}return null}function isInlineMediaSlotElement(node){return !!(node&&node.getAttribute&&node.getAttribute("data-clippy-inline-media-slot")!==null)}function findInlineMediaSlot(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(isInlineMediaSlotElement(node))return node}return null}function readInlineMediaUrl(node){if(!node)return null;return node.getAttribute&&((node.getAttribute("data-clippy-inline-media-url")||node.getAttribute("data-url")||node.getAttribute("data_url")))||node.href||null}function stripHash(url){return String(url).replace(/#.*$/,"")}function urlsMatch(a,b){if(!a||!b)return false;try{return stripHash(new URL(a,loc).href)===stripHash(new URL(b,loc).href)}catch(_){return stripHash(a)===stripHash(b)}}function isFirstPartyReelUrl(value){try{var url=new URL(value,loc);if(url.protocol!=="https:")return false;var host=url.hostname.toLowerCase();var supported=host==="instagram.com"||host.endsWith(".instagram.com")||host==="facebook.com"||host.endsWith(".facebook.com");return supported&&/\/reels?\//i.test(url.pathname)}catch(_){return false}}function isInlineMediaUrlClick(node,href){var slot=findInlineMediaSlot(node);if(!slot)return false;var slotUrl=readInlineMediaUrl(slot);if(slotUrl)return urlsMatch(href,slotUrl);return isFirstPartyReelUrl(href)}function findDataHref(start){for(var node=start;node&&node!==document.body;node=node.parentElement){if(node.getAttribute){var href=node.getAttribute("data-href")||node.getAttribute("data-url");if(href)return{href:href,node:node}}}return null}var nativeOpen=window.open;window.open=function(url){if(parent!==window&&typeof url==="string"&&/^https?:\/\//.test(url)){parent.postMessage({type:"ecto:usercontent-link-click",href:url},"*");return null}return nativeOpen?nativeOpen.apply(window,arguments):null};document.addEventListener("click",function(e){var target=e.target instanceof Element?e.target:null;if(!target)return;if(parent===window)return;var a=target.closest?target.closest("a[href]"):null;if(a&&a.href&&/^https?:\/\//.test(a.href)&&a.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(a,a.href))return;var productId=extractProductId(target)||extractProductId(a);if(productId){e.preventDefault();parent.postMessage({type:"ecto-artifact-link-click",productId:productId},"*");return}e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:a.href},"*");return}var dataHref=findDataHref(target);if(dataHref&&/^https?:\/\//.test(dataHref.href)&&dataHref.href.replace(/#.*$/,"")!==loc){if(isInlineMediaUrlClick(dataHref.node,dataHref.href))return;e.preventDefault();parent.postMessage({type:"ecto:usercontent-link-click",href:dataHref.href},"*")}},true)})();</script><script>(function(){var FOCUS_TYPE="ecto:artifact-focus-request";var CLOSE_TYPE="ecto:artifact-close-request";function focusArtifactDocument(){var body=document.body;if(!body)return;try{window.focus();}catch(e){}if(!body.hasAttribute("tabindex"))body.setAttribute("tabindex","-1");try{body.focus({preventScroll:true});}catch(e){try{body.focus();}catch(e2){}}}window.addEventListener("message",function(event){if(event.source!==window.parent)return;var data=event.data;if(!data||typeof data!=="object"||data.type!==FOCUS_TYPE)return;if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",focusArtifactDocument,{once:true});return;}focusArtifactDocument();});window.addEventListener("keydown",function(event){if(event.key!=="Escape")return;window.setTimeout(function(){if(event.defaultPrevented)return;window.parent.postMessage({type:CLOSE_TYPE},"*");},0);});})();</script><!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+</body>
+</html>

@@ -1,0 +1,434 @@
+#D.O.G.E.
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fondo de Caridad para Steven Dior 🚀</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Tipografía monoespaciada global */
+        body {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+
+        /* Fondo de cuadrícula estilo hacker/cyberpunk */
+        .bg-grid {
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        /* Animación para la lluvia de billetes */
+        @keyframes fall {
+            0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .money-drop {
+            position: absolute;
+            font-size: 2rem;
+            animation: fall linear infinite;
+            z-index: 50;
+            pointer-events: none;
+        }
+
+        /* Animaciones personalizadas adicionales */
+        @keyframes spin-slow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+            animation: spin-slow 3s linear infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .animate-blink {
+            animation: blink 1s step-end infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-200 selection:bg-cyan-900 min-h-screen flex flex-col items-center p-6 relative overflow-x-hidden">
+<!-- SALMO46-INJECT -->
+<a href="https://www.bible.com/es/bible/149/PSA.46.1-11.RVR1960" target="_blank" rel="noopener"
+ style="position:fixed;top:8px;left:8px;z-index:2147483647;background:#0a0a0acc;color:#00e5ff;
+ border:1px solid #00e5ff;border-radius:20px;padding:4px 10px;font:600 11px/1.3 system-ui,sans-serif;
+ text-decoration:none;letter-spacing:.04em">📖 Salmos 46 · Dios es nuestro amparo</a>
+<!-- /SALMO46-INJECT -->
+
+    <!-- Fondo -->
+    <div class="fixed inset-0 bg-grid pointer-events-none z-0"></div>
+
+    <!-- Contenedor para la lluvia de dinero -->
+    <div id="money-rain-container" class="fixed inset-0 pointer-events-none overflow-hidden z-40 hidden"></div>
+
+    <!-- Encabezado -->
+    <header class="max-w-3xl w-full text-center mt-12 mb-16 relative z-10">
+        <div class="inline-flex items-center justify-center gap-3 mb-4">
+            <!-- Icono Rayo (SVG inline) -->
+            <svg class="w-10 h-10 text-yellow-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            <h1 class="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-500 to-pink-500 drop-shadow-[0_0_10px_rgba(34,211,238,0.4)]">
+                Fondo de Caridad para Steven Dior 🚀
+            </h1>
+        </div>
+        <p class="text-base md:text-lg text-gray-400 border-l-4 border-cyan-500 pl-4 text-left md:text-center mx-auto max-w-2xl bg-gray-900/50 p-4 rounded-r-lg">
+            <span class="text-cyan-400 font-bold">INFO:</span> Si eres Elon Musk, un magnate petrolero, o tienes un RUC que factura millones al mes, por favor conecta tu wallet y selecciona una factura para pagar. Es por una buena causa (mi paz mental).
+        </p>
+    <a href="./Agent/" class="p-4 border border-[#00e5ff]/50 bg-[#00e5ff]/10 hover:border-[#00e5ff] text-[#00e5ff] transition-all rounded-xl font-bold uppercase tracking-widest text-center">AGENTE 🤖</a>
+</header>
+
+    <!-- Tarjetas de Facturas -->
+    <main class="w-full max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10 mb-32">
+        
+        <!-- Factura 1 -->
+        <div class="bg-gray-900 border border-pink-500 rounded-xl p-6 flex flex-col gap-4 transform transition-all duration-300 hover:scale-105 hover:-translate-y-2 shadow-[0_0_15px_rgba(236,72,153,0.3)] hover:shadow-[0_0_25px_rgba(236,72,153,0.6)]">
+            <div class="flex justify-between items-start">
+                <div class="p-3 bg-gray-950 rounded-lg border border-gray-800 text-3xl">🎵</div>
+                <span class="text-2xl font-bold text-white bg-gray-800 px-4 py-1 rounded-full border border-gray-700">$12.99</span>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-100 mt-2 flex-grow">Suscripción a Spotify Premium Duo</h3>
+            <button onclick="handlePayment()" class="w-full mt-4 py-3 bg-gray-800 hover:bg-gray-700 text-white border border-gray-600 rounded-lg font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors focus:outline-none focus:ring-2 focus:ring-pink-500">
+                💸 Pagar ahora
+            </button>
+        </div>
+
+        <!-- Factura 2 -->
+        <div class="bg-gray-900 border border-cyan-400 rounded-xl p-6 flex flex-col gap-4 transform transition-all duration-300 hover:scale-105 hover:-translate-y-2 shadow-[0_0_15px_rgba(34,211,238,0.3)] hover:shadow-[0_0_25px_rgba(34,211,238,0.6)]">
+            <div class="flex justify-between items-start">
+                <div class="p-3 bg-gray-950 rounded-lg border border-gray-800 text-3xl">✨</div>
+                <span class="text-2xl font-bold text-white bg-gray-800 px-4 py-1 rounded-full border border-gray-700">$55.00</span>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-100 mt-2 flex-grow">Perfume Khamrah Lattafa (Esencial para el flow)</h3>
+            <button onclick="handlePayment()" class="w-full mt-4 py-3 bg-gray-800 hover:bg-gray-700 text-white border border-gray-600 rounded-lg font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                💸 Pagar ahora
+            </button>
+        </div>
+
+        <!-- Factura 3 -->
+        <div class="bg-gray-900 border border-green-400 rounded-xl p-6 flex flex-col gap-4 transform transition-all duration-300 hover:scale-105 hover:-translate-y-2 shadow-[0_0_15px_rgba(74,222,128,0.3)] hover:shadow-[0_0_25px_rgba(74,222,128,0.6)]">
+            <div class="flex justify-between items-start">
+                <div class="p-3 bg-gray-950 rounded-lg border border-gray-800 text-3xl">🖥️</div>
+                <span class="text-2xl font-bold text-white bg-gray-800 px-4 py-1 rounded-full border border-gray-700">$15.00</span>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-100 mt-2 flex-grow">Mantenimiento de Servidores y Webhooks en Render</h3>
+            <button onclick="handlePayment()" class="w-full mt-4 py-3 bg-gray-800 hover:bg-gray-700 text-white border border-gray-600 rounded-lg font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors focus:outline-none focus:ring-2 focus:ring-green-500">
+                💸 Pagar ahora
+            </button>
+        </div>
+
+        <!-- Factura 4 -->
+        <div class="bg-gray-900 border border-yellow-400 rounded-xl p-6 flex flex-col gap-4 transform transition-all duration-300 hover:scale-105 hover:-translate-y-2 shadow-[0_0_15px_rgba(250,204,21,0.3)] hover:shadow-[0_0_25px_rgba(250,204,21,0.6)]">
+            <div class="flex justify-between items-start">
+                <div class="p-3 bg-gray-950 rounded-lg border border-gray-800 text-3xl">🔧</div>
+                <span class="text-2xl font-bold text-white bg-gray-800 px-4 py-1 rounded-full border border-gray-700">$120.00</span>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-100 mt-2 flex-grow">Repuestos en Llantería Turbo Tire</h3>
+            <button onclick="handlePayment()" class="w-full mt-4 py-3 bg-gray-800 hover:bg-gray-700 text-white border border-gray-600 rounded-lg font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-colors focus:outline-none focus:ring-2 focus:ring-yellow-500">
+                💸 Pagar ahora
+            </button>
+        </div>
+    </main>
+
+    <!-- Botón Flotante Doge -->
+    <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-20 w-11/12 max-w-md">
+        <button onclick="handlePayment()" class="w-full py-4 bg-gradient-to-r from-yellow-600 to-yellow-400 hover:from-yellow-500 hover:to-yellow-300 text-gray-900 font-extrabold text-lg md:text-xl rounded-2xl shadow-[0_0_30px_rgba(250,204,21,0.6)] flex items-center justify-center gap-3 transition-transform hover:scale-105 active:scale-95 border-2 border-yellow-200">
+            🐕 Pagar TODO con Dogecoin
+        </button>
+    </div>
+
+    <!-- Modal (Oculto por defecto) -->
+    <div id="payment-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-gray-900 border border-cyan-500/50 shadow-[0_0_50px_rgba(34,211,238,0.2)] rounded-2xl max-w-lg w-full p-8 relative overflow-hidden">
+            
+            <!-- Estado: Procesando -->
+            <div id="modal-processing" class="flex flex-col items-center gap-6 text-center">
+                <!-- Icono Loader SVG -->
+                <svg class="w-16 h-16 text-cyan-400 animate-spin-slow" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+                
+                <h2 class="text-2xl font-bold text-cyan-400 font-mono animate-pulse">Procesando Tx...</h2>
+                <div class="bg-black/50 p-4 rounded-lg border border-gray-800 w-full text-left font-mono text-sm text-green-400 h-20">
+                    <p id="terminal-text" class="mb-1">> Iniciando conexión segura con la billetera de X...</p>
+                    <p class="animate-blink font-bold">_</p>
+                </div>
+            </div>
+
+            <!-- Estado: Error -->
+            <div id="modal-error" class="hidden flex-col items-center gap-6 text-center">
+                <div class="text-6xl animate-bounce">❌</div>
+                <h2 class="text-3xl font-bold text-red-500">¡Transacción Fallida!</h2>
+                <div class="bg-red-950/50 border border-red-500/30 p-4 rounded-lg w-full">
+                    <p id="error-message" class="text-red-200 text-lg font-semibold flex items-start gap-2 text-left">
+                        <!-- Mensaje de error se inserta con JS -->
+                    </p>
+                </div>
+                <button onclick="closeModal()" class="mt-4 px-8 py-3 bg-gray-800 hover:bg-red-900/80 text-white rounded-lg font-bold border border-gray-600 transition-colors hover:border-red-500 w-full md:w-auto">
+                    Cerrar y seguir pobre
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lógica JavaScript -->
+    <script>
+        const rainContainer = document.getElementById('money-rain-container');
+        const modal = document.getElementById('payment-modal');
+        const modalProcessing = document.getElementById('modal-processing');
+        const modalError = document.getElementById('modal-error');
+        const terminalText = document.getElementById('terminal-text');
+        const errorMessage = document.getElementById('error-message');
+
+        const errors = [
+            "Error 402: Fondos insuficientes en la bóveda suiza del multimillonario.",
+            "Transacción rebotada en la blockchain de StevenDior.bnb (Gas fee muy alto).",
+            "ElonMusk_API_Error: El cheque rebotó en la red Doge.",
+            "Smart Contract Fallido: El RUC del donante ha sido reportado a la DGI.",
+            "Fallo en la Matrix: La transferencia se desvió a una cuenta en las Islas Caimán."
+        ];
+
+        let rainInterval;
+
+        function startRain() {
+            rainContainer.classList.remove('hidden');
+            rainContainer.innerHTML = ''; // Limpiar lluvia anterior
+            
+            // Generar gotas de dinero iniciales
+            for(let i=0; i<30; i++) {
+                createMoneyDrop();
+            }
+
+            // Seguir generando mientras llueve
+            rainInterval = setInterval(createMoneyDrop, 300);
+        }
+
+        function createMoneyDrop() {
+            const drop = document.createElement('div');
+            drop.classList.add('money-drop');
+            drop.innerText = Math.random() > 0.5 ? '💸' : '💎';
+            drop.style.left = `${Math.random() * 100}vw`;
+            drop.style.animationDuration = `${Math.random() * 2 + 2}s`;
+            // Eliminar elemento cuando termine su animación para no sobrecargar el DOM
+            setTimeout(() => {
+                if (drop.parentElement) {
+                    drop.remove();
+                }
+            }, 5000);
+            rainContainer.appendChild(drop);
+        }
+
+        function stopRain() {
+            rainContainer.classList.add('hidden');
+            rainContainer.innerHTML = '';
+            clearInterval(rainInterval);
+        }
+
+        function handlePayment() {
+            // Mostrar lluvia y modal
+            startRain();
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Estado inicial del modal (Procesando)
+            modalProcessing.classList.remove('hidden');
+            modalProcessing.classList.add('flex');
+            modalError.classList.add('hidden');
+            modalError.classList.remove('flex');
+            
+            terminalText.innerText = '> Iniciando conexión segura con la billetera de X...';
+
+            // Simular cambio de texto en terminal
+            setTimeout(() => {
+                terminalText.innerText = '> Firmando contrato inteligente con llave privada...';
+            }, 1500);
+
+            // Simular Error
+            setTimeout(() => {
+                modalProcessing.classList.add('hidden');
+                modalProcessing.classList.remove('flex');
+                
+                modalError.classList.remove('hidden');
+                modalError.classList.add('flex');
+                
+                const randomError = errors[Math.floor(Math.random() * errors.length)];
+                errorMessage.innerHTML = `⚠️ ${randomError}`;
+            }, 3000);
+        }
+
+        function closeModal() {
+            // Ocultar modal y detener lluvia
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            stopRain();
+        }
+    </script>
+<script src="/SADV41/BIBLIA/biblia.js" defer></script>
+<script src="https://thesteef21.github.io/SADV41/sadv41-drag.js" defer></script><!-- sadv41-drag -->
+<!-- sadv41-news -->
+<div id="sadv41-news" style="position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#0a0e1a;color:#f4f6ff;border-top:2px solid #f5c542;font:600 13px/1.35 system-ui,sans-serif;padding:8px 40px 8px 12px;text-align:center"><span style="color:#f5c542">ÚLTIMA NOTICIA</span> · <a href="https://thesteef21.github.io/SADV41/NEWS/PANAMA/USA/#paraguay" target="_blank" rel="noopener" style="color:#3ee0e8;text-decoration:none">Paraguay interviene Ueno Bank y renuncia el presidente del Banco Central 🏦</a><button onclick="this.parentNode.style.display='none'" aria-label="Cerrar" style="position:absolute;right:8px;top:4px;background:none;border:0;color:#9aa3c7;font-size:18px;cursor:pointer">×</button></div>
+<!-- /sadv41-news -->
+<!-- sadv41-home -->
+<a id="sadv41-home" href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" title="SADV41 · Página principal" aria-label="Ir a la página principal de SADV41" style="position:fixed;left:14px;bottom:64px;z-index:2147482999;width:46px;height:46px;border-radius:50%;background:#071642;border:3px solid #d9a93a;box-shadow:0 4px 14px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;text-decoration:none"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><g fill="#d9a93a"><rect x="10.8" y="2" width="2.4" height="20" rx=".6"/><rect x="8" y="4.6" width="8" height="1.8" rx=".5"/><rect x="6" y="9" width="12" height="2.4" rx=".6"/><rect x="8.6" y="16.6" width="6.8" height="1.8" rx=".5" transform="rotate(12 12 17.5)"/></g></svg></a>
+<!-- /sadv41-home -->
+<!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+</body>
+</html>
+#D.O.G.E.

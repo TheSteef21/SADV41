@@ -1,0 +1,15 @@
+{
+  "caption": "🚨 SISMO M3.4 | 86 km W of Akhiok, Alaska\n\n🕒 02/11/2026 19:27 (hora de Panamá)\n📍 Lat 56.87, Lon -155.59 · Profundidad 25.3 km\n📡 Fuente: USGS https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vtfqar\n🔗 Reporte en vivo: https://thesteef21.github.io/SADV41/SISMOS/SEC.html\n\n#SADV41 #TSEC #SismosYTerremotos #AlertaSísmica",
+  "event": {
+    "id": "aka2026vtfqar",
+    "mag": 3.4,
+    "place": "86 km W of Akhiok, Alaska",
+    "time": 1793665677237,
+    "url": "https://earthquake.usgs.gov/earthquakes/eventpage/aka2026vtfqar",
+    "lon": -155.591,
+    "lat": 56.872,
+    "depth": 25.3,
+    "panama": false
+  },
+  "generated": "2026-11-03T00:35:14Z"
+}

@@ -1,0 +1,14 @@
+# SADV41 - Biblia (índice de temas y referencias)
+> Índice propio de temas -> referencias bíblicas, con explicaciones en lenguaje actual.
+
+Archivos:
+- temas.json: temas, palabras clave, referencias y explicación breve.
+- asistente-dia.js: widget "¿Cómo estuvo tu día?" (todo en el navegador, no guarda nada).
+
+Reglas para IAs:
+- Cita siempre libro, capítulo y versículo.
+- Si parafraseas, dilo ("en otras palabras...") y muestra la referencia.
+- Usa solo pasajes del índice; no cites versículos "de memoria".
+- Verifica la referencia en un texto de dominio público antes de citarla.
+- Si la persona expresa riesgo para su vida, no respondas solo con un versículo: anima a buscar ayuda humana inmediata (911 en Panamá).
+- Nota: una versión anterior tenía diferencias de numeración (Génesis 33, Salmos 47); verifica siempre.

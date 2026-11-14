@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SADV41 - Live Voice Translator & Prompter</title>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #1e293b;
+      --accent: #00ffcc;
+      --text: #e2e8f0;
+      --highlight: #ffee00;
+    }
+
+    body {
+      margin: 0;
+      padding: 16px;
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, sans-serif;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      height: 95vh;
+    }
+
+    @media (max-width: 900px) {
+      body { grid-template-columns: 1fr; }
+    }
+
+    .player-section, .prompter-section {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 6px;
+      background: #000;
+    }
+
+    .controls {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    button, select {
+      background: var(--card-bg);
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background: var(--accent);
+      color: #000;
+    }
+
+    /* Prompter Teleprompter Style */
+    .prompter-container {
+      flex: 1;
+      background: #000;
+      border: 1px solid #334155;
+      border-radius: 6px;
+      padding: 20px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      position: relative;
+    }
+
+    .prompter-text {
+      font-size: 1.6rem;
+      line-height: 1.5;
+      color: var(--text);
+      transition: all 0.2s ease;
+    }
+
+    .prompter-text .interim {
+      color: var(--accent);
+      opacity: 0.8;
+      font-style: italic;
+    }
+
+    .prompter-text .translated {
+      color: var(--highlight);
+      display: block;
+      margin-top: 4px;
+      font-weight: bold;
+    }
+
+    .status-badge {
+      font-size: 0.8rem;
+      padding: 4px 8px;
+      border-radius: 4px;
+      background: #334155;
+      width: fit-content;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sección de Video / Entrada de Audio -->
+  <div class="player-section">
+    <h3>SADV41 Stream Input</h3>
+    <video id="video-source" controls crossorigin="anonymous">
+      <!-- Reemplazar con source dinámico o stream local -->
+      <source src="video-sample.mp4" type="video/mp4">
+      Tu navegador no soporta el reproductor de video.
+    </video>
+
+    <div class="controls">
+      <button id="btn-start">Iniciar Prompter & Traducción</button>
+      <button id="btn-stop">Detener</button>
+      <select id="select-lang">
+        <option value="es-ES">Reconocer: Español (es-ES)</option>
+        <option value="en-US">Reconocer: Inglés (en-US)</option>
+      </select>
+      <select id="target-lang">
+        <option value="en">Traducir a: Inglés</option>
+        <option value="es">Traducir a: Español</option>
+      </select>
+    </div>
+
+    <div id="status" class="status-badge">Estado: En espera</div>
+  </div>
+
+  <!-- Sección del Prompter en Vivo -->
+  <div class="prompter-section">
+    <h3>Teleprompter & Subtítulos en Vivo</h3>
+    <div class="prompter-container" id="prompter-box">
+      <div id="prompter-content" class="prompter-text">
+        <span class="interim">Esperando señal de voz...</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Algoritmo de Procesamiento e Integración Web Speech API + Translation Relay
+    (function () {
+      const btnStart = document.getElementById('btn-start');
+      const btnStop = document.getElementById('btn-stop');
+      const video = document.getElementById('video-source');
+      const prompterContent = document.getElementById('prompter-content');
+      const prompterBox = document.getElementById('prompter-box');
+      const statusBadge = document.getElementById('status');
+      const selectLang = document.getElementById('select-lang');
+      const targetLang = document.getElementById('target-lang');
+
+      let recognition = null;
+      let isRunning = false;
+
+      // Verificación de compatibilidad con Web Speech API
+      const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+      if (!SpeechRecognition) {
+        statusBadge.textContent = "Error: Web Speech API no soportada en este navegador.";
+        statusBadge.style.background = "#991b1b";
+        return;
+      }
+
+      function initRecognition() {
+        recognition = new SpeechRecognition();
+        recognition.continuous = true;
+        recognition.interimResults = true;
+        recognition.lang = selectLang.value;
+
+        recognition.onstart = () => {
+          isRunning = true;
+          statusBadge.textContent = "Estado: Escuchando y Procesando...";
+          statusBadge.style.background = "#166534";
+        };
+
+        recognition.onerror = (event) => {
+          console.error("Error en reconocimiento de voz:", event.error);
+          statusBadge.textContent = `Error: ${event.error}`;
+        };
+
+        recognition.onend = () => {
+          if (isRunning) {
+            // Auto-reiniciar si se detiene automáticamente durante reproducción
+            recognition.start();
+          } else {
+            statusBadge.textContent = "Estado: Detenido";
+            statusBadge.style.background = "#334155";
+          }
+        };
+
+        recognition.onresult = async (event) => {
+          let interimTranscript = '';
+          let finalTranscript = '';
+
+          for (let i = event.resultIndex; i < event.results.length; ++i) {
+            if (event.results[i].isFinal) {
+              finalTranscript += event.results[i][0].transcript;
+            } else {
+              interimTranscript += event.results[i][0].transcript;
+            }
+          }
+
+          // Renderizar texto reconocido en el Prompter
+          let htmlOutput = '';
+          
+          if (finalTranscript) {
+            // Traducción simulada/relay rápida
+            const translatedText = await translateText(finalTranscript, selectLang.value.split('-')[0], targetLang.value);
+            htmlOutput += `<div>${finalTranscript}<span class="translated">➜ ${translatedText}</span></div>`;
+          }
+
+          if (interimTranscript) {
+            htmlOutput += `<span class="interim">${interimTranscript}</span>`;
+          }
+
+          if (htmlOutput) {
+            prompterContent.innerHTML = htmlOutput;
+            // Auto-scroll al final del Prompter
+            prompterBox.scrollTop = prompterBox.scrollHeight;
+          }
+        };
+      }
+
+      // Función de traducción asíncrona via API pública LibreTranslate/MyMemory
+      async function translateText(text, sourceLang, targetLangCode) {
+        try {
+          const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${sourceLang}|${targetLangCode}`);
+          const data = await res.json();
+          return data.responseData?.translatedText || text;
+        } catch (err) {
+          console.warn("Fallo en traducción remota, mostrando original:", err);
+          return text;
+        }
+      }
+
+      // Eventos de control
+      btnStart.addEventListener('click', () => {
+        if (!recognition) initRecognition();
+        recognition.lang = selectLang.value;
+        isRunning = true;
+        recognition.start();
+        if (video.paused) video.play();
+      });
+
+      btnStop.addEventListener('click', () => {
+        isRunning = false;
+        if (recognition) recognition.stop();
+        video.pause();
+      });
+    })();
+  </script>
+<!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+</body>
+</html>

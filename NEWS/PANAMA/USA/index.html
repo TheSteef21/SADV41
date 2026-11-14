@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SADV41 // PONEGLYPH, STEVEN DIOR & NEWS HUB</title>
+
+  <!-- Google Fonts: JetBrains Mono & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    @font-face {
+      font-family: "Optimistic";
+      font-style: normal;
+      font-weight: 400 600;
+      font-display: swap;
+      src: url("/fonts/OptimisticAI_VF_Optimized.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Optimistic Mono";
+      font-style: normal;
+      font-weight: 400;
+      font-display: swap;
+      src: url("/fonts/OptimisticMono_W_TextRegular.woff2") format("woff2");
+    }
+
+    :root {
+      --bg: #050507;
+      --card: #0c111f;
+      --gold: #ffd76a;
+      --cyan: #00e5ff;
+      --fg: #e8e6e1;
+      --border: rgba(255, 215, 106, 0.2);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'JetBrains Mono', ui-monospace, monospace;
+      margin: 0;
+      min-height: 100vh;
+    }
+
+    .glitch { text-shadow: 2px 0 #ff2a2a, -2px 0 #00f3ff; }
+    .gold-border { border: 1px solid var(--border); }
+    .gold-hover:hover { border-color: var(--gold); box-shadow: 0 0 15px rgba(255, 215, 106, 0.2); }
+    .gold-bg { background: rgba(255, 215, 106, 0.03); }
+
+    /* Módulo flotante Presencia Cristo / SADV41 */
+    #cristo-presencia {
+      position: fixed; left: 50%; bottom: 14px; transform: translateX(-50%);
+      z-index: 9999; width: min(94vw, 520px);
+      font-family: Georgia, 'Times New Roman', serif; color: #fff8e1;
+      cursor: pointer;
+      background: linear-gradient(135deg, rgba(10, 16, 40, 0.92), rgba(40, 20, 60, 0.92));
+      border: 1px solid rgba(255, 215, 106, 0.55); border-radius: 18px;
+      padding: 10px 16px; text-align: center;
+      box-shadow: 0 4px 22px rgba(255, 200, 80, 0.28);
+      backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+      animation: cristoIn 1.2s ease both; user-select: none;
+    }
+    #cristo-presencia .cp-t { font-size: 12px; letter-spacing: 0.08em; color: #ffd76a; margin-bottom: 4px; }
+    #cristo-presencia .cp-v { transition: opacity 0.9s ease, transform 0.9s ease; font-size: 14px; line-height: 1.4; }
+    #cristo-presencia .cp-v.off { opacity: 0; transform: translateY(6px); }
+    #cristo-presencia .cp-r { display: block; margin-top: 4px; font-size: 12px; color: #ffd76a; font-style: italic; }
+    #cristo-presencia.min { width: auto; padding: 8px 16px; border-radius: 999px; bottom: 16px; }
+    #cristo-presencia.min .cp-v, #cristo-presencia.min .cp-t { display: none; }
+    #cristo-presencia .cp-m { display: none; font-size: 13px; letter-spacing: 1px; }
+    #cristo-presencia.min .cp-m { display: inline; }
+    @keyframes cristoIn {
+      from { opacity: 0; transform: translate(-50%, 20px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+  </style>
+</head>
+<body class="flex flex-col items-center justify-start min-h-screen p-4 pt-8 pb-28 text-center">
+
+    <!-- HEADER / PONEGLYPH NODE -->
+    <header class="mb-8 p-6 border gold-border rounded-2xl bg-black/60 backdrop-blur-md max-w-2xl w-full">
+        <h1 class="text-2xl font-bold glitch uppercase tracking-widest mb-2">SADV41 // PONEGLYPH LINK</h1>
+        <p class="text-[10px] text-slate-400 uppercase tracking-[0.3em]">Nodo Central de Unificación de Activos</p>
+    </header>
+
+    <!-- PONEGLYPH NAVIGATION NETWORK -->
+    <nav class="grid grid-cols-2 md:grid-cols-3 gap-4 w-full max-w-2xl text-[10px] uppercase tracking-widest mb-10">
+        <a href="https://thesteef21.github.io/Lapizasuli/assets/USARMY/MOAB.html" class="p-4 border border-slate-800 hover:border-[#ffd76a] transition-all rounded-xl bg-black/30">MOAB</a>
+        <a href="https://thesteef21.github.io/Lapizasuli/assets/AI/METO/EsUnMeme.html" class="p-4 border border-slate-800 hover:border-[#ffd76a] transition-all rounded-xl bg-black/30">METO</a>
+        <a href="https://thesteef21.github.io/Lapizasuli/assets/TRONO/Logia.html" class="p-4 border border-slate-800 hover:border-[#ffd76a] transition-all rounded-xl bg-black/30">LOGIA</a>
+        <a href="https://thesteef21.github.io/Lapizasuli/assets/NUKE/nuke.html" class="p-4 border border-slate-800 hover:border-[#ffd76a] transition-all rounded-xl bg-black/30">NUKE</a>
+        <a href="https://thesteef21.github.io/Lapizasuli/assets/USARMY/NUKE.html" class="p-4 border border-[#ffd76a]/50 bg-[#ffd76a]/10 hover:border-[#ffd76a] transition-all rounded-xl">USARMY HUB</a>
+        <a href="https://thesteef21.github.io/Lapizasuli/assets/USARMY/PENTAGON/SHABBATH'DO.html" class="p-4 border border-[#00e5ff]/40 text-[#00e5ff] hover:bg-[#00e5ff]/10 transition-all rounded-xl font-bold">SHABBATH'DO</a>
+    <a href="./Agent/" class="p-4 border border-[#00e5ff]/50 bg-[#00e5ff]/10 hover:border-[#00e5ff] text-[#00e5ff] transition-all rounded-xl font-bold uppercase tracking-widest text-center">AGENTE 🤖</a>
+</nav>
+
+    <!-- REACT APP MOUNT (NEWS Panamá USA) -->
+    <section class="w-full max-w-2xl mb-8 p-6 border border-[#00e5ff]/30 rounded-2xl bg-[#0c111f]/80 backdrop-blur-md">
+        <h2 class="text-xl font-bold glitch uppercase tracking-widest mb-4 text-[#00e5ff]">NEWS · Panamá · USA</h2>
+        <div id="root" class="min-h-[150px] text-left">
+            <!-- El bundle de React inyectará la app aquí -->
+        </div>
+    </section>
+
+    <!-- CONCEPTO DOWN BELOW // STEVEN DIOR FLOW -->
+    <section class="mb-8 p-6 border gold-border rounded-2xl bg-black/60 backdrop-blur-md max-w-2xl w-full">
+        <h2 class="text-xl font-bold glitch uppercase tracking-widest mb-2 text-[#ffd76a]">DOWN BELOW // STEVEN DIOR</h2>
+        <p class="text-[10px] text-slate-400 uppercase tracking-[0.3em]">El Legado de Steven "Dior" Gómez & SADV41</p>
+        <p class="text-[11px] text-amber-200 mt-3 italic">"La visión más allá de la vista. Inspirado por la profundidad de Stevie Wonder y Ray Charles, este espacio representa la transición desde el umbral de la pandemia hasta la creación de La Isla de la Vida."</p>
+    </section>
+
+    <!-- CANALES OFICIALES & STREAMING -->
+    <section class="w-full max-w-2xl mb-6">
+        <h3 class="text-xs uppercase tracking-[0.2em] text-slate-400 mb-3 text-left">Canales Oficiales y Streaming</h3>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-[11px] uppercase tracking-wider">
+            <a href="https://open.spotify.com/playlist/37i9dQZF1E4A7nH5KNziD4?si=gAOaiXXvTG-P9oIzdMr2aA" target="_blank" class="p-4 border border-slate-800 gold-hover hover:border-[#ffd76a] gold-bg transition-all rounded-xl flex flex-col items-center justify-center">
+                <span class="font-bold text-[#ffd76a]">Playlist Principal</span>
+                <span class="text-[9px] text-slate-400 mt-1">Steven "Dior" Gómez</span>
+            </a>
+            <a href="https://open.spotify.com/playlist/37i9dQZF1E4A7nH5KNziD4?si=-uDAQziMQgaqRPZWun1GRQ&pi=B9s9CGXjRACcr" target="_blank" class="p-4 border border-slate-800 gold-hover hover:border-[#ffd76a] gold-bg transition-all rounded-xl flex flex-col items-center justify-center">
+                <span class="font-bold text-[#ffd76a]">Radio Steven</span>
+                <span class="text-[9px] text-slate-400 mt-1">Legado Berion</span>
+            </a>
+            <a href="https://open.spotify.com/artist/5imHnTjivt5qDGTeV2gDMT?si=E43kRWiaSNuh1BlG9ddKFw" target="_blank" class="p-4 border border-slate-800 gold-hover hover:border-[#ffd76a] gold-bg transition-all rounded-xl flex flex-col items-center justify-center">
+                <span class="font-bold text-[#ffd76a]">Cuenta Principal</span>
+                <span class="text-[9px] text-slate-400 mt-1">Perfil Spotify</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- INFLUENCIAS MAESTRAS -->
+    <section class="w-full max-w-2xl mb-6">
+        <h3 class="text-xs uppercase tracking-[0.2em] text-slate-400 mb-3 text-left">Influencias Maestras del Legado</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-[11px] uppercase tracking-wider">
+            <a href="https://open.spotify.com/artist/1eYhYunlNJlDoQhtYBvPsi?si=WeEoZYGyTBKUCK22WnijsA" target="_blank" class="p-3 border border-slate-800 gold-hover hover:border-[#ffd76a] gold-bg transition-all rounded-xl flex items-center justify-between">
+                <span>Ray Charles</span>
+                <span class="text-[9px] text-amber-300">Ver en Spotify ↗</span>
+            </a>
+            <a href="https://open.spotify.com/artist/7guDJrEfX3qb6FEbdPA5qi?si=e7y11Bp0RLq5RPWN0xxn5A" target="_blank" class="p-3 border border-slate-800 gold-hover hover:border-[#ffd76a] gold-bg transition-all rounded-xl flex items-center justify-between">
+                <span>Stevie Wonder</span>
+                <span class="text-[9px] text-amber-300">Ver en Spotify ↗</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- CONTENIDO AUDIOVISUAL -->
+    <section class="w-full max-w-2xl mb-8 p-5 border border-slate-800 rounded-2xl bg-black/40">
+        <h3 class="text-xs font-bold uppercase tracking-widest text-[#ffd76a] mb-2 text-left">Down Below / La Isla de la Vida (Precuela)</h3>
+        <p class="text-[11px] text-slate-300 italic mb-4 text-left">"Como los maestros que no necesitaron la vista para transformar el mundo, esta canción busca ver más allá de lo que el sistema intenta encubrir."</p>
+        <div class="aspect-video w-full rounded-xl overflow-hidden border border-slate-800">
+            <iframe class="w-full h-full" src="https://www.youtube.com/embed/14kwPAV4HYs" title="La Isla de la Vida - Steven Topic" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="mt-8 text-[8px] text-slate-500 uppercase tracking-[0.4em]">
+        NIKE x ONE PIECE // SADV41 // ORIGEN 0 🗿⚡️🔐 <br>
+        BURUNGA - PANAMÁ 🇵🇦✨
+    </footer>
+
+    <!-- PRESENCIA MOTÍVATE EN CRISTO SCRIPT -->
+    <script>
+      (function () {
+        if (window.__cristoPresencia) return;
+        window.__cristoPresencia = true;
+
+        var VERSOS = [
+          ["Proverbios 11:1", "El peso falso es abominación a Jehová; mas la pesa cabal es su contentamiento."],
+          ["Colosenses 3:23", "Y todo lo que hagáis, hacedlo de corazón, como para el Señor y no para los hombres."],
+          ["Proverbios 21:5", "Los pensamientos del diligente ciertamente tienden a la abundancia."],
+          ["Proverbios 16:3", "Encomienda a Jehová tus obras, y tus pensamientos serán afirmados."],
+          ["Salmo 16:6", "Las cuerdas me cayeron en lugares deleitosos; en verdad la heredad es hermosa para mí."],
+          ["Jeremías 29:11", "Porque yo sé los pensamientos que tengo acerca de vosotros, dice Jehová, pensamientos de paz, y no de mal."],
+          ["Salmo 46:1", "Dios es nuestro amparo y fortaleza, nuestro pronto auxilio en las tribulaciones."],
+          ["Filipenses 4:13", "Todo lo puedo en Cristo que me fortalece."]
+        ];
+
+        var LINEAS = [
+          "Motívate en Cristo 🇵🇦",
+          "Christ-motivation 🇵🇦⭐️🇺🇸",
+          "Friends of 🇮🇱 From 🇵🇦🇺🇸",
+          "And love for the world 🇨🇳🇨🇴🇷🇺👑⚛️☦️"
+        ];
+
+        function montar() {
+          var box = document.createElement("div"); 
+          box.id = "cristo-presencia";
+          box.innerHTML = '<div class="cp-t"></div><div class="cp-v"></div><span class="cp-m">✝️ CRISTO 🇵🇦</span>';
+          document.body.appendChild(box);
+          
+          var t = box.querySelector(".cp-t"), v = box.querySelector(".cp-v");
+          var i = Math.floor(Math.random() * VERSOS.length), l = 0;
+
+          function mostrar() {
+            v.classList.add("off");
+            setTimeout(function () {
+              var x = VERSOS[i % VERSOS.length];
+              t.textContent = LINEAS[l % LINEAS.length];
+              v.textContent = "";
+              v.appendChild(document.createTextNode("“" + x[1] + "”"));
+              var r = document.createElement("span"); 
+              r.className = "cp-r"; 
+              r.textContent = x[0];
+              v.appendChild(r);
+              v.classList.remove("off");
+              i++; l++;
+            }, 900);
+          }
+          mostrar();
+          setInterval(mostrar, 9000);
+          box.addEventListener("click", function () { box.classList.toggle("min"); });
+        }
+
+        if (document.body) montar(); else document.addEventListener("DOMContentLoaded", montar);
+      })();
+    </script>
+
+    <!-- REACT APP SCRIPT -->
+    <script type="module">
+        /* 
+         * ⚠️ NOTA DE INTEGRACIÓN:
+         * El bloque de código React que proporcionaste estaba truncado (se cortaba abruptamente en:
+         * 'typeof l.componentDidMount==="function"&&(e.flags|=4194308)}function i').
+         * 
+         * Solo necesitas pegar el bundle completo generado por tu build (.js) aquí dentro 
+         * para que la aplicación React se inyecte automáticamente en el <div id="root"> de arriba.
+         */
+    </script>
+<!-- TESTIMONIO-2012:INI -->
+<style>
+#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
+ max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
+ border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
+ backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
+@keyframes t2012in{to{opacity:1}}
+</style>
+<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+<!-- TESTIMONIO-2012:FIN -->
+<!-- SADV41 Universal Draggable Floating Engine -->
+<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
+  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
+    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
+      🛍️ Tienda oficial
+    </a>
+  </div>
+  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
+    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
+  </a>
+</div>
+
+<script>
+(function() {
+  function makeElementDraggable(elmnt) {
+    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
+    elmnt.dataset.sadv41Draggable = "true";
+
+    // Asegurar propiedades de posicionamiento sin romper el diseño
+    const style = window.getComputedStyle(elmnt);
+    if (style.position !== 'fixed' && style.position !== 'absolute') {
+      elmnt.style.position = 'fixed';
+    }
+    elmnt.style.touchAction = 'none';
+    elmnt.style.userSelect = 'none';
+
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    let isDragging = false;
+
+    elmnt.onmousedown = dragMouseDown;
+    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
+
+    function dragMouseDown(e) {
+      e = e || window.event;
+      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+      e.preventDefault();
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      document.onmouseup = closeDragElement;
+      document.onmousemove = elementDrag;
+    }
+
+    function elementDrag(e) {
+      e = e || window.event;
+      e.preventDefault();
+      isDragging = true;
+      pos1 = pos3 - e.clientX;
+      pos2 = pos4 - e.clientY;
+      pos3 = e.clientX;
+      pos4 = e.clientY;
+      
+      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+      elmnt.style.bottom = 'auto';
+      elmnt.style.right = 'auto';
+    }
+
+    function closeDragElement() {
+      document.onmouseup = null;
+      document.onmousemove = null;
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    function dragTouchStart(e) {
+      if (e.touches.length === 1) {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
+        let touch = e.touches[0];
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+        document.addEventListener('touchend', closeTouchDrag, { passive: false });
+        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
+      }
+    }
+
+    function elementTouchDrag(e) {
+      if (e.touches.length === 1) {
+        let touch = e.touches[0];
+        isDragging = true;
+        pos1 = pos3 - touch.clientX;
+        pos2 = pos4 - touch.clientY;
+        pos3 = touch.clientX;
+        pos4 = touch.clientY;
+
+        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+        elmnt.style.bottom = 'auto';
+        elmnt.style.right = 'auto';
+        e.preventDefault();
+      }
+    }
+
+    function closeTouchDrag() {
+      document.removeEventListener('touchend', closeTouchDrag);
+      document.removeEventListener('touchmove', elementTouchDrag);
+      setTimeout(() => { isDragging = false; }, 50);
+    }
+
+    elmnt.addEventListener('click', function(e) {
+      if (isDragging) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    }, true);
+  }
+
+  function initUniversalDraggable() {
+    // 1. Contenedores flotantes SADV41
+    const sadvContainer = document.getElementById('sadv41-floating-container');
+    const menu = document.getElementById('sadv41-menu');
+    if (sadvContainer) {
+      makeElementDraggable(sadvContainer);
+      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
+      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
+    }
+
+    // 2. Selección explícita de todos los botones e íconos flotantes
+    // Incluye: Menú lateral, Barra inferior (STEVENDIOR.AI, AGENT HUB, BINANCE ID) y Logo SAT GOB
+    const selectors = [
+      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
+      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
+      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
+      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
+    ];
+
+    document.querySelectorAll(selectors.join(',')).forEach(el => {
+      // Aplicar al contenedor del elemento flotante si existe
+      const target = el.closest('div') || el;
+      makeElementDraggable(target);
+    });
+
+    // 3. Fallback: Buscar cualquier elemento en el DOM con position: fixed que no sea un header/footer rígido
+    document.querySelectorAll('body *').forEach(el => {
+      const style = window.getComputedStyle(el);
+      if (style.position === 'fixed' && style.zIndex > 10) {
+        makeElementDraggable(el);
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
+  } else {
+    initUniversalDraggable();
+  }
+})();
+</script>
+<!-- End SADV41 Universal Draggable Floating Engine -->
+</body>
+</html>
