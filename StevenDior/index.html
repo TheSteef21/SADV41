@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StevenDior · Acciones &amp; Ecosistema SADV41</title>
+  <meta name="description" content="Portafolio de respaldo, acciones tokenizadas e interconexiones de inversión de StevenDior dentro de SADV41." />
+  <style>
+    :root {
+      --bg-dark: #070b14;
+      --card-bg: #0f172a;
+      --card-border: #1e293b;
+      --gold: #d4af37;
+      --gold-light: #f3e5ab;
+      --green: #10b981;
+      --red: #ef4444;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #0f1f38 0%, var(--bg-dark) 65%);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-bottom: 3rem;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 1.5rem;
+    }
+
+    /* Header */
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 2rem;
+    }
+
+    .brand-badge {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 0.25rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      background: linear-gradient(90deg, var(--gold-light), var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Nav Interconnections */
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      padding: 0.65rem 1.2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.92;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #d4af37, #aa8218);
+      color: #070b14;
+    }
+
+    .btn-outline {
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid var(--card-border);
+      color: var(--text-main);
+    }
+
+    /* Grid Layout */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 1.5rem;
+      align-items: start;
+      margin-bottom: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 1.25rem;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    }
+
+    .flyer-box img {
+      width: 100%;
+      border-radius: 10px;
+      display: block;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    /* Wallet Summary */
+    .wallet-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .wallet-tag {
+      font-size: 0.8rem;
+      color: var(--gold);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .apr-badge {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--green);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .metric-item {
+      background: rgba(7, 11, 20, 0.6);
+      padding: 0.85rem;
+      border-radius: 10px;
+      border: 1px solid var(--card-border);
+    }
+
+    .metric-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .metric-value {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    /* Table */
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+
+    th {
+      text-align: left;
+      color: var(--text-muted);
+      font-weight: 600;
+      padding: 0.6rem 0.5rem;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    td {
+      padding: 0.7rem 0.5rem;
+      border-bottom: 1px solid rgba(30, 41, 59, 0.5);
+    }
+
+    .ticker {
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+
+    .company {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .pos { color: var(--green); font-weight: 600; }
+    .neg { color: var(--red); font-weight: 600; }
+    .right { text-align: right; }
+
+    /* Interconnections */
+    .section-title {
+      font-size: 1.25rem;
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+
+    .nodes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .node-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.1rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .node-card:hover {
+      border-color: var(--gold);
+    }
+
+    .node-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.4rem;
+      color: var(--gold-light);
+    }
+
+    .node-card p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--card-border);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand-badge">SADV41 · Ecosistema Financiero &amp; Artístico</div>
+      <h1>StevenDior · Acciones &amp; Respaldo</h1>
+      <p class="subtitle">Sinceridad A Disposición Vívida · 4 Evangelios · 1 Cristo · Álbum 2026</p>
+      <div class="nav-links">
+        <a href="https://thesteef21.github.io/SADV41/index/html/" class="btn btn-outline">🏠 Portal Principal SADV41</a>
+        <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" class="btn btn-gold">🛍️ Tienda Oficial</a>
+        <a href="https://thesteef21.github.io/SADV41/index/html/Agent/" class="btn btn-outline">🤖 Agente SADV41</a>
+        <a href="https://thesteef21.github.io/SADV41/Cristo/" class="btn btn-outline">✝️ 2012 · Cristo no me soltó</a>
+      </div>
+    </header>
+
+    <div class="hero-grid">
+      <!-- Flyer Oficial (Asegúrate de guardar la imagen como flyer.jpg en esta misma carpeta) -->
+      <div class="card flyer-box">
+        <img src="./flyer.jpg" alt="Flyer oficial de acciones StevenDior" onerror="this.style.display='none'" />
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.75rem; text-align: center;">
+          Operaciones tokenizadas fraccionadas y respaldo de capital del proyecto StevenDior.
+        </p>
+      </div>
+
+      <!-- Cartera DUDUINO -->
+      <div class="card">
+        <div class="wallet-header">
+          <span class="wallet-tag">CARTERA: DUDUINO</span>
+          <span class="apr-badge">Staking hasta 5.25% APR</span>
+        </div>
+
+        <div class="metrics">
+          <div class="metric-item">
+            <div class="metric-label">Balance Total en Cartera</div>
+            <div class="metric-value">$149,92</div>
+          </div>
+          <div class="metric-item">
+            <div class="metric-label">Total en Acciones (Stocks)</div>
+            <div class="metric-value" style="color: var(--gold-light);">$36,37</div>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Activo</th>
+                <th>Precio / Var.</th>
+                <th class="right">Participación</th>
+                <th class="right">Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="ticker">TSLAB</span><span class="company">Tesla</span></td>
+                <td>$385,81 <span class="neg">-0.91%</span></td>
+                <td class="right">0,014324</td>
+                <td class="right">$5,52</td>
+              </tr>
+              <tr>
+                <td><span class="ticker">NVDAB</span><span class="company">NVIDIA</span></td>
+                <td>$159,93 <span class="neg">-0.24%</span></td>
+                <td class="right">0,034157</td>
+                <td class="right">$5,46</td>
+              </tr>
+              <tr>
+                <td><span class="ticker">KOon</span><span class="company">Coca-Cola</span></td>
+                <td>$99,37 <span class="pos">+1.96%</span></td>
+                <td class="right">0,052343</td>
+                <td class="right">$5,20</td>
+              </tr>
+              <tr>
+                <td><span class="ticker">MCDon</span><span class="company">McDonald's</span></td>
+                <td>$272,09 <span class="neg">-0.53%</span></td>
+                <td class="right">0,017902</td>
+                <td class="right">$4,87</td>
+              </tr>
+              <tr>
+                <td><span class="ticker">BABAB</span><span class="company">Alibaba</span></td>
+                <td>$93,44 <span class="neg">-0.72%</span></td>
+                <td class="right">0,015383</td>
+                <td class="right">$1,43</td>
+              </tr>
+              <tr>
+                <td><span class="ticker">AAPLB</span><span class="company">Apple</span></td>
+                <td>$356,56 <span class="neg">-0.46%</span></td>
+                <td class="right">0,0014648</td>
+                <td class="right">$0,5223</td>
+              </tr>
+              <tr>
+                <td><span class="ticker">GOOGLB</span><span class="company">Alphabet</span></td>
+                <td>$290,83 <span class="neg">-1.53%</span></td>
+                <td class="right">0,0017509</td>
+                <td class="right">$0,50923</td>
+              </tr>
+              <tr>
+                <td><span class="ticker">QQQB</span><span class="company">Invesco QQQ</span></td>
+                <td>$672,40 <span class="neg">-0.66%</span></td>
+                <td class="right">0,00075696</td>
+                <td class="right">$0,50898</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.85rem;">
+          + 36 activos adicionales de menor denominación en cartera (Low value).
+        </p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Interconexiones del Ecosistema StevenDior</h2>
+    <div class="nodes-grid">
+      <a href="https://thesteef21.github.io/SADV41/index/html/#apoyanos" class="node-card">
+        <h3>1. Aportes On-Chain</h3>
+        <p>Recepción directa mediante redes blockchain verificadas en el módulo «Apóyanos» de SADV41.</p>
+      </a>
+      <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" class="node-card">
+        <h3>2. Merchandising Oficial</h3>
+        <p>Adquisición de indumentaria y artículos oficiales WEAR / SADV41 Artist en Fourthwall.</p>
+      </a>
+      <a href="https://thesteef21.github.io/SADV41/Artist.html" class="node-card">
+        <h3>3. Producción &amp; Álbum 2026</h3>
+        <p>Catálogo musical de Steven «Dior» Gómez Serrano unificado bajo el sello SADV41 (ex-Lapizasuli).</p>
+      </a>
+      <a href="https://thesteef21.github.io/SADV41/index/html/Agent/" class="node-card">
+        <h3>4. Agente &amp; Automatización</h3>
+        <p>Nodo interactivo de asistencia, verificación de anunciantes y distribución del ecosistema.</p>
+      </a>
+    </div>
+
+    <footer>
+      <p><strong>Lapizasuli</strong> y <strong>SADV41</strong> nacieron como dos proyectos; hoy somos uno: <strong>SADV41</strong>.</p>
+      <p>Steven «Dior» Gómez Serrano · Dios descansó y servimos en humillación ante el Señor.</p>
+    </footer>
+  </div>
+</body>
+</html>
