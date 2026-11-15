@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALGO/RITMO — ELITE · SADV41</title>
+<meta name="description" content="SADV41 ELITE · ALGO/RITMO — Carrusel de algoritmo musical. YouTube Shorts seleccionados por StevenDior.">
+<style>
+:root {
+  --bg: #07080c;
+  --card: #0f1118;
+  --gold: #f5c542;
+  --gold2: #ffdf7e;
+  --text: #f2f2f2;
+  --mut: #8892a4;
+  --line: #1e2333;
+  --accent: #1a1a2e;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  padding: 28px 16px 20px;
+  border-bottom: 1px solid var(--line);
+}
+.badge {
+  display: inline-block;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.header h1 {
+  font-size: 32px;
+  letter-spacing: .06em;
+  background: linear-gradient(90deg, var(--gold2), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+}
+.header p {
+  color: var(--mut);
+  font-size: 13px;
+  margin-top: 6px;
+}
+.nav-top {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+.btn {
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  letter-spacing: .04em;
+}
+.btn-gold { background: var(--gold); color: #07080c; }
+.btn-out  { background: #12151f; border: 1px solid var(--line); color: var(--text); }
+
+/* COUNTER */
+.counter-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+  flex-wrap: wrap;
+}
+.counter-bar span {
+  font-size: 12px;
+  color: var(--mut);
+}
+.counter-bar b { color: var(--gold); }
+
+/* CARRUSEL WRAPPER */
+.carousel-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 12px 16px;
+  gap: 16px;
+}
+
+/* FRAME DEL SHORTS */
+.shorts-frame {
+  position: relative;
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 9/16;
+  background: #000;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 0 40px rgba(245,197,66,.12), 0 8px 32px rgba(0,0,0,.7);
+  border: 1px solid var(--line);
+}
+.shorts-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* CONTROLES */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.ctrl-btn {
+  background: #12151f;
+  border: 1px solid var(--line);
+  color: var(--text);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .15s, border-color .15s;
+  flex-shrink: 0;
+}
+.ctrl-btn:hover { background: #1e2333; border-color: var(--gold); }
+.ctrl-btn:active { transform: scale(.93); }
+
+.pos-label {
+  font-size: 15px;
+  color: var(--gold);
+  font-weight: 800;
+  min-width: 60px;
+  text-align: center;
+  letter-spacing: .04em;
+}
+
+/* BARRA DE PROGRESO */
+.progress-wrap {
+  width: 100%;
+  max-width: 340px;
+}
+.progress-track {
+  width: 100%;
+  height: 4px;
+  background: #1e2333;
+  border-radius: 99px;
+  overflow: hidden;
+  cursor: pointer;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold2));
+  border-radius: 99px;
+  transition: width .3s ease;
+}
+
+/* DOTS */
+.dots {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 340px;
+  padding: 4px 0;
+}
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #1e2333;
+  cursor: pointer;
+  transition: background .2s, transform .2s;
+  flex-shrink: 0;
+}
+.dot.active { background: var(--gold); transform: scale(1.3); }
+.dot:hover { background: #f5c54288; }
+
+/* INFO DEL VIDEO */
+.vid-info {
+  width: 100%;
+  max-width: 340px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-size: 12px;
+}
+.vid-info .vid-id {
+  font-family: monospace;
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.vid-info .vid-link a {
+  color: var(--mut);
+  text-decoration: none;
+  word-break: break-all;
+  font-size: 11px;
+}
+.vid-info .vid-link a:hover { color: var(--gold); }
+
+/* GRID MINIATURAS */
+.thumb-section {
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 0 12px 48px;
+}
+.thumb-section h2 {
+  color: var(--gold);
+  font-size: 14px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+}
+.thumb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 8px;
+}
+.thumb-item {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color .2s, transform .15s;
+  aspect-ratio: 9/16;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px;
+}
+.thumb-item:hover { border-color: var(--gold); transform: scale(1.03); }
+.thumb-item.active { border-color: var(--gold); box-shadow: 0 0 10px rgba(245,197,66,.3); }
+.thumb-item img {
+  width: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 6px;
+}
+.thumb-item .tn {
+  font-size: 10px;
+  color: var(--mut);
+  text-align: center;
+  font-family: monospace;
+}
+.thumb-item .tnum {
+  font-size: 11px;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+footer {
+  text-align: center;
+  color: var(--mut);
+  font-size: 11px;
+  padding: 16px;
+  border-top: 1px solid var(--line);
+}
+footer a { color: var(--gold); text-decoration: none; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="badge">SADV41 · ELITE</div>
+  <h1>ALGO / RITMO</h1>
+  <p>Algoritmo musical curado · 41 entradas · YouTube Shorts</p>
+  <div class="nav-top">
+    <a href="../../embbed/" class="btn btn-out">📋 Ver todos los links</a>
+    <a href="https://thesteef21.github.io/SADV41/index/html/" class="btn btn-out">🏠 Portal SADV41</a>
+    <a href="https://thesteef21.github.io/SADV41/DIOR98IAS/" class="btn btn-gold">⛏️ DIOR98IAS</a>
+  </div>
+</div>
+
+<div class="counter-bar">
+  <span>Video <b id="cur">1</b> de <b>41</b></span>
+  <span>ID: <b id="vid-id-top">cUHOnH_Fz1E</b></span>
+  <span style="color:#555">|</span>
+  <span><b style="color:var(--gold)">◀ ▶</b> para navegar</span>
+</div>
+
+<div class="carousel-wrap">
+
+  <div class="shorts-frame">
+    <iframe id="yt-frame"
+      src="https://www.youtube.com/embed/cUHOnH_Fz1E?autoplay=0&rel=0&modestbranding=1"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <div class="controls">
+    <button class="ctrl-btn" id="btn-prev" aria-label="Anterior">◀</button>
+    <span class="pos-label"><span id="cur2">1</span> / 41</span>
+    <button class="ctrl-btn" id="btn-next" aria-label="Siguiente">▶</button>
+  </div>
+
+  <div class="progress-wrap">
+    <div class="progress-track" id="prog-track">
+      <div class="progress-fill" id="prog-fill" style="width:2.44%"></div>
+    </div>
+  </div>
+
+  <div class="dots" id="dots-container"></div>
+
+  <div class="vid-info">
+    <div class="vid-id" id="info-id">cUHOnH_Fz1E</div>
+    <div class="vid-link"><a id="info-link" href="https://youtube.com/shorts/cUHOnH_Fz1E?si=jhvb7gHZkJoB0uNx" target="_blank" rel="noopener">youtube.com/shorts/cUHOnH_Fz1E ↗</a></div>
+  </div>
+
+</div>
+
+<div class="thumb-section">
+  <h2>Todos los videos del algoritmo</h2>
+  <div class="thumb-grid" id="thumb-grid"></div>
+</div>
+
+<footer>
+  SADV41 / ELITE / ALGO / RITMO · 2026-11-14 ·
+  <a href="../../embbed/">embbed/index.html</a> ·
+  <a href="https://thesteef21.github.io/SADV41/">thesteef21.github.io/SADV41</a>
+</footer>
+
+<script>
+const VIDEOS = [
+  {id:"cUHOnH_Fz1E", url:"https://youtube.com/shorts/cUHOnH_Fz1E?si=jhvb7gHZkJoB0uNx"},
+  {id:"8ODu2xWATj8", url:"https://youtube.com/shorts/8ODu2xWATj8?si=pHxU5dRhXJ1ukGC-"},
+  {id:"ATMzerlRUIU", url:"https://youtube.com/shorts/ATMzerlRUIU?si=CKdP5zg7uxlZLl3L"},
+  {id:"ATMzerlRUIU", url:"https://youtube.com/shorts/ATMzerlRUIU?si=lR6yQLdSWR7dptEO"},
+  {id:"ATMzerlRUIU", url:"https://youtube.com/shorts/ATMzerlRUIU?si=A-_2HI0Rjdb5_MaJ"},
+  {id:"29XTG54cBDQ", url:"https://youtube.com/shorts/29XTG54cBDQ?si=PFOdsZbmS099Ci7J"},
+  {id:"29XTG54cBDQ", url:"https://youtube.com/shorts/29XTG54cBDQ?si=dryvJdgWsixVZpNs"},
+  {id:"074kebvCxDk", url:"https://youtube.com/shorts/074kebvCxDk?si=O28quG8Wbw4myQ6P"},
+  {id:"XeO1aKh3xXU", url:"https://youtube.com/shorts/XeO1aKh3xXU?si=EXc8aK8CJsTD8QI7"},
+  {id:"PH_-ose4sTQ", url:"https://youtube.com/shorts/PH_-ose4sTQ?si=-jV94XLLpuo7_UFu"},
+  {id:"IPVx84gDsw0", url:"https://youtube.com/shorts/IPVx84gDsw0?si=E8I2q7tL7UmMTaEv"},
+  {id:"J4O3ECPXkC0", url:"https://youtube.com/shorts/J4O3ECPXkC0?si=1OCI-wJYD3Xt6CET"},
+  {id:"IPVx84gDsw0", url:"https://youtube.com/shorts/IPVx84gDsw0?si=yG8OIDZ37R-GDo0s"},
+  {id:"IPVx84gDsw0", url:"https://youtube.com/shorts/IPVx84gDsw0?si=7NpiSe_uKz17HZkO"},
+  {id:"G4JcCUFZvKU", url:"https://youtube.com/shorts/G4JcCUFZvKU?si=iGG4VJhGBi4Ql5ST"},
+  {id:"G4JcCUFZvKU", url:"https://youtube.com/shorts/G4JcCUFZvKU?si=bnJzCGuKxBTji5pU"},
+  {id:"Ge8cUmWHzr4", url:"https://youtube.com/shorts/Ge8cUmWHzr4?si=nW8nJUhUW6eX3syD"},
+  {id:"Ge8cUmWHzr4", url:"https://youtube.com/shorts/Ge8cUmWHzr4?si=MkMpR_PDTKqvHxkj"},
+  {id:"1pFpqXMkTnw", url:"https://youtube.com/shorts/1pFpqXMkTnw?si=EuYbL3w01lqm3Gjz"},
+  {id:"IPVx84gDsw0", url:"https://youtube.com/shorts/IPVx84gDsw0?si=7NpiSe_uKz17HZkO"},
+  {id:"G4JcCUFZvKU", url:"https://youtube.com/shorts/G4JcCUFZvKU?si=iGG4VJhGBi4Ql5ST"},
+  {id:"G4JcCUFZvKU", url:"https://youtube.com/shorts/G4JcCUFZvKU?si=bnJzCGuKxBTji5pU"},
+  {id:"Ge8cUmWHzr4", url:"https://youtube.com/shorts/Ge8cUmWHzr4?si=nW8nJUhUW6eX3syD"},
+  {id:"Ge8cUmWHzr4", url:"https://youtube.com/shorts/Ge8cUmWHzr4?si=MkMpR_PDTKqvHxkj"},
+  {id:"1pFpqXMkTnw", url:"https://youtube.com/shorts/1pFpqXMkTnw?si=EuYbL3w01lqm3Gjz"},
+  {id:"Z--eryja0KE", url:"https://youtube.com/shorts/Z--eryja0KE?si=nMIcb5zuk4FZiSnA"},
+  {id:"gt3Ug8raIyI", url:"https://youtube.com/shorts/gt3Ug8raIyI?si=umn4jbGeNg4b69mb"},
+  {id:"gt3Ug8raIyI", url:"https://youtube.com/shorts/gt3Ug8raIyI?si=Uh3TJdsbRD-7IjGS"},
+  {id:"Gn-7AoAy0o4", url:"https://youtube.com/shorts/Gn-7AoAy0o4?si=MQISUFrFePysZnjC"},
+  {id:"Gn-7AoAy0o4", url:"https://youtube.com/shorts/Gn-7AoAy0o4?si=BeIC8AeJw0affqv0"},
+  {id:"Z--eryja0KE", url:"https://youtube.com/shorts/Z--eryja0KE?si=AfuWGiaUajgWxFdt"},
+  {id:"Z--eryja0KE", url:"https://youtube.com/shorts/Z--eryja0KE?si=nMIcb5zuk4FZiSnA"},
+  {id:"Iuadd3ontuI", url:"https://youtube.com/shorts/Iuadd3ontuI?si=F_FcM2qIxRv8V3v3"},
+  {id:"BFoqZuHozYk", url:"https://youtube.com/shorts/BFoqZuHozYk?si=P5-L4gcEt39_ALGo"},
+  {id:"Nzd0s_Ppmcs", url:"https://youtube.com/shorts/Nzd0s_Ppmcs?si=x4ZDSaAnp28VqXiB"},
+  {id:"968kVZWvQcs", url:"https://youtube.com/shorts/968kVZWvQcs?si=NeYacotLpBwBTx__"},
+  {id:"968kVZWvQcs", url:"https://youtube.com/shorts/968kVZWvQcs?si=8Z7PS_SM-ZDNSpYy"},
+  {id:"968kVZWvQcs", url:"https://youtube.com/shorts/968kVZWvQcs?si=l3DkZ8SrPgCszAA3"},
+  {id:"DQnG1wjqzWg", url:"https://youtube.com/shorts/DQnG1wjqzWg?si=gmBWFNp9XzobFUjM"},
+  {id:"MWJPQSvbJdE", url:"https://youtube.com/shorts/MWJPQSvbJdE?si=uTVLx_hcmv9_hUhx"},
+  {id:"CrR101-9D0k", url:"https://youtube.com/shorts/CrR101-9D0k?si=VxRGIBSd2M_BPuBE"}
+];
+
+let current = 0;
+const total = VIDEOS.length;
+
+const frame    = document.getElementById('yt-frame');
+const cur1     = document.getElementById('cur');
+const cur2     = document.getElementById('cur2');
+const vidTop   = document.getElementById('vid-id-top');
+const infoId   = document.getElementById('info-id');
+const infoLink = document.getElementById('info-link');
+const progFill = document.getElementById('prog-fill');
+const dotsWrap = document.getElementById('dots-container');
+const thumbGrid= document.getElementById('thumb-grid');
+
+// Build dots
+VIDEOS.forEach((v, i) => {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i === 0 ? ' active' : '');
+  d.title = v.id;
+  d.addEventListener('click', () => goTo(i));
+  dotsWrap.appendChild(d);
+});
+
+// Build thumbnails
+VIDEOS.forEach((v, i) => {
+  const t = document.createElement('div');
+  t.className = 'thumb-item' + (i === 0 ? ' active' : '');
+  t.innerHTML = `
+    <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg"
+         alt="Short ${i+1}" loading="lazy"
+         onerror="this.style.display='none'">
+    <span class="tnum">#${i+1}</span>
+    <span class="tn">${v.id.slice(0,8)}</span>`;
+  t.addEventListener('click', () => goTo(i));
+  thumbGrid.appendChild(t);
+});
+
+function goTo(idx) {
+  current = ((idx % total) + total) % total;
+  const v = VIDEOS[current];
+
+  frame.src = `https://www.youtube.com/embed/${v.id}?autoplay=1&rel=0&modestbranding=1`;
+
+  const n = current + 1;
+  cur1.textContent = n;
+  cur2.textContent = n;
+  vidTop.textContent = v.id;
+  infoId.textContent = v.id;
+  infoLink.href = v.url;
+  infoLink.textContent = `youtube.com/shorts/${v.id} ↗`;
+  progFill.style.width = ((n / total) * 100).toFixed(2) + '%';
+
+  document.querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i === current));
+  document.querySelectorAll('.thumb-item').forEach((t, i) => {
+    t.classList.toggle('active', i === current);
+    if (i === current) t.scrollIntoView({block:'nearest', inline:'nearest', behavior:'smooth'});
+  });
+}
+
+document.getElementById('btn-prev').addEventListener('click', () => goTo(current - 1));
+document.getElementById('btn-next').addEventListener('click', () => goTo(current + 1));
+
+// Swipe táctil
+let touchX = null;
+document.querySelector('.shorts-frame').addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, {passive:true});
+document.querySelector('.shorts-frame').addEventListener('touchend', e => {
+  if (touchX === null) return;
+  const dx = e.changedTouches[0].clientX - touchX;
+  if (Math.abs(dx) > 40) goTo(current + (dx < 0 ? 1 : -1));
+  touchX = null;
+}, {passive:true});
+
+// Teclado
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goTo(current + 1);
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goTo(current - 1);
+});
+
+// Barra de progreso clickeable
+document.getElementById('prog-track').addEventListener('click', e => {
+  const r = e.currentTarget.getBoundingClientRect();
+  const pct = (e.clientX - r.left) / r.width;
+  goTo(Math.floor(pct * total));
+});
+</script>
+</body>
+</html>
