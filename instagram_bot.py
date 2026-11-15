@@ -148,7 +148,16 @@ def main():
 
     ev = fetch_latest(args.min_mag)
     if not ev:
-        print("ℹ️ No hay sismos recientes que cumplan los criterios.")
+        if args.min_mag > 3.5:
+            print(f"ℹ️ Sin sismos ≥{args.min_mag}. Revisando ≥3.5...")
+            menores = fetch_latest(3.5)
+            if menores:
+                p = menores["properties"]
+                print(f"🟡 Sismo menor encontrado: M{p['mag']} | {p['place']} | ID: {menores['id']} | {p['status']}")
+            else:
+                print("🟢 No hay sismos recientes en Panamá.")
+        else:
+            print("🟢 No hay sismos recientes en Panamá.")
         sys.exit(0)
 
     ev_id = ev["id"]
