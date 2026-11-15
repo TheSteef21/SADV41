@@ -1,1 +1,676 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>TLOZ Beta · SADV41</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap">
 
+<style>
+/* ── TLOZ Beta · Spaceworld 97 · SADV41 ───────────────────────────
+   Layout: single-column hero + ROM patcher + WhatsApp band
+   Color: dark N64-screen palette, gold triforce accent
+   Type: Press Start 2P (display), Share Tech Mono (body/UI)
+   Single dark theme — deliberate arcade-screen commitment
+─────────────────────────────────────────────────────────────────── */
+:root {
+  --bg:        #04080e;
+  --surface:   #0c1420;
+  --panel:     #101c2e;
+  --border:    #1e3050;
+  --gold:      #c8a832;
+  --gold-dim:  #7a6218;
+  --gold-glow: #f0d060;
+  --cyan:      #38b4d8;
+  --green:     #48c864;
+  --red:       #d84848;
+  --fg:        #d8e8f4;
+  --fg-dim:    #6888a4;
+  --ff-pixel:  'Press Start 2P', monospace;
+  --ff-mono:   'Share Tech Mono', monospace;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--ff-mono);
+  font-size: 15px;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0;
+  overflow-x: hidden;
+}
+
+/* ── scanline overlay ── */
+body::after {
+  content: "";
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 3px,
+    rgba(0,0,0,.18) 3px,
+    rgba(0,0,0,.18) 4px
+  );
+  z-index: 999;
+}
+
+/* ── HERO ── */
+.hero {
+  position: relative;
+  text-align: center;
+  padding: 56px 24px 48px;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 40%, #1a2c4a 0%, transparent 70%),
+    radial-gradient(ellipse 40% 30% at 50% 50%, rgba(200,168,50,.08) 0%, transparent 60%);
+  z-index: 0;
+}
+
+/* animated triforce */
+.triforce-wrap {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto 32px;
+  width: 120px;
+  height: 104px;
+}
+.triforce-wrap svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 0 18px var(--gold)) drop-shadow(0 0 6px var(--gold-glow));
+  animation: tri-pulse 3s ease-in-out infinite;
+}
+@keyframes tri-pulse {
+  0%, 100% { filter: drop-shadow(0 0 18px var(--gold)) drop-shadow(0 0 6px var(--gold-glow)); opacity: .9; }
+  50%       { filter: drop-shadow(0 0 32px var(--gold-glow)) drop-shadow(0 0 12px #fff); opacity: 1; }
+}
+
+.hero-eyebrow {
+  position: relative;
+  z-index: 1;
+  font-family: var(--ff-pixel);
+  font-size: 9px;
+  letter-spacing: .18em;
+  color: var(--gold-dim);
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.hero-title {
+  position: relative;
+  z-index: 1;
+  font-family: var(--ff-pixel);
+  font-size: clamp(14px, 3.5vw, 22px);
+  color: var(--gold-glow);
+  text-wrap: balance;
+  text-shadow: 0 0 24px var(--gold), 0 2px 0 #000;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.hero-sub {
+  position: relative;
+  z-index: 1;
+  font-family: var(--ff-pixel);
+  font-size: 8px;
+  color: var(--cyan);
+  letter-spacing: .12em;
+  line-height: 1.8;
+  margin-bottom: 24px;
+  text-wrap: balance;
+}
+
+.badge-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 8px;
+}
+.badge {
+  font-family: var(--ff-pixel);
+  font-size: 7px;
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  color: var(--fg-dim);
+  letter-spacing: .1em;
+  background: var(--surface);
+}
+.badge.gold { border-color: var(--gold-dim); color: var(--gold); }
+.badge.cyan { border-color: var(--cyan); color: var(--cyan); }
+
+/* ── SECTION ── */
+.section {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 0 40px;
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 0 14px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 20px;
+}
+.section-head .num {
+  font-family: var(--ff-pixel);
+  font-size: 8px;
+  color: var(--gold-dim);
+}
+.section-head h2 {
+  font-family: var(--ff-pixel);
+  font-size: 10px;
+  color: var(--gold);
+  letter-spacing: .1em;
+}
+
+/* ── LORE BLOCK ── */
+.lore {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold-dim);
+  padding: 18px 20px;
+  font-size: 13px;
+  color: var(--fg);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+.lore em { color: var(--gold); font-style: normal; }
+.lore strong { color: var(--cyan); font-weight: normal; }
+
+/* ── TIMELINE ── */
+.timeline { display: flex; flex-direction: column; gap: 12px; margin-bottom: 20px; }
+.tl-item {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+.tl-date {
+  font-family: var(--ff-pixel);
+  font-size: 7px;
+  color: var(--gold-dim);
+  padding-top: 2px;
+  text-align: right;
+  line-height: 1.6;
+}
+.tl-body {
+  border-left: 2px solid var(--border);
+  padding-left: 14px;
+}
+.tl-body h3 {
+  font-family: var(--ff-pixel);
+  font-size: 8px;
+  color: var(--fg);
+  margin-bottom: 4px;
+}
+.tl-body p { font-size: 12px; color: var(--fg-dim); line-height: 1.7; }
+.tl-body .dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--gold-dim);
+  margin-left: -18px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* ── ROM PATCHER ── */
+.patcher-box {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  padding: 24px 20px;
+  margin-bottom: 20px;
+}
+
+.drop-zone {
+  border: 2px dashed var(--gold-dim);
+  padding: 36px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+  margin-bottom: 16px;
+  position: relative;
+}
+.drop-zone:hover, .drop-zone.drag-over {
+  border-color: var(--gold);
+  background: rgba(200,168,50,.06);
+}
+.drop-zone input[type=file] {
+  position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%;
+}
+.drop-icon {
+  font-family: var(--ff-pixel);
+  font-size: 28px;
+  display: block;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 0 8px var(--gold));
+}
+.drop-label {
+  font-family: var(--ff-pixel);
+  font-size: 8px;
+  color: var(--gold);
+  display: block;
+  margin-bottom: 8px;
+  letter-spacing: .1em;
+}
+.drop-hint { font-size: 11px; color: var(--fg-dim); }
+
+.patch-select { margin-bottom: 16px; }
+.patch-select label {
+  font-family: var(--ff-pixel);
+  font-size: 7px;
+  color: var(--fg-dim);
+  letter-spacing: .08em;
+  display: block;
+  margin-bottom: 8px;
+}
+.patch-select select {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--fg);
+  font-family: var(--ff-mono);
+  font-size: 13px;
+  padding: 10px 12px;
+  appearance: none;
+  cursor: pointer;
+}
+.patch-select select:focus { outline: 1px solid var(--gold-dim); }
+
+.btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  background: var(--gold-dim);
+  color: #000;
+  font-family: var(--ff-pixel);
+  font-size: 9px;
+  letter-spacing: .12em;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: background .15s, transform .1s;
+}
+.btn:hover { background: var(--gold); }
+.btn:active { transform: scale(.98); }
+.btn:disabled { background: var(--border); color: var(--fg-dim); cursor: not-allowed; transform: none; }
+.btn.cyan { background: var(--cyan); }
+.btn.cyan:hover { background: #5ecae6; }
+
+.status-line {
+  margin-top: 12px;
+  font-family: var(--ff-pixel);
+  font-size: 7px;
+  letter-spacing: .08em;
+  min-height: 20px;
+  color: var(--fg-dim);
+  text-align: center;
+}
+.status-line.ok  { color: var(--green); }
+.status-line.err { color: var(--red); }
+.status-line.run { color: var(--cyan); }
+
+/* progress bar */
+.progress-wrap { display: none; height: 4px; background: var(--border); margin-top: 12px; }
+.progress-bar  { height: 100%; width: 0%; background: var(--gold); transition: width .3s; }
+
+/* ── ROADMAP ── */
+.roadmap { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+.rm-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--panel);
+  border: 1px solid var(--border);
+}
+.rm-icon {
+  font-family: var(--ff-pixel);
+  font-size: 11px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.rm-body h3 { font-family: var(--ff-pixel); font-size: 8px; color: var(--fg); margin-bottom: 4px; }
+.rm-body p  { font-size: 12px; color: var(--fg-dim); line-height: 1.6; }
+.rm-status {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-family: var(--ff-pixel);
+  font-size: 7px;
+  padding: 3px 8px;
+  border: 1px solid;
+}
+.rm-status.done { border-color: var(--green); color: var(--green); }
+.rm-status.wip  { border-color: var(--gold-dim); color: var(--gold); }
+.rm-status.next { border-color: var(--border); color: var(--fg-dim); }
+
+/* ── WHATSAPP BAND ── */
+.wa-band {
+  background: linear-gradient(135deg, #0d2010 0%, #071510 100%);
+  border-top: 2px solid #1a4a28;
+  border-bottom: 2px solid #1a4a28;
+  padding: 32px 24px;
+  text-align: center;
+  margin: 0 -16px;
+}
+.wa-band h2 {
+  font-family: var(--ff-pixel);
+  font-size: 10px;
+  color: #48d464;
+  letter-spacing: .1em;
+  margin-bottom: 10px;
+  text-shadow: 0 0 16px #48d464;
+}
+.wa-band p  { font-size: 13px; color: #88c898; margin-bottom: 20px; line-height: 1.7; max-width: 460px; margin-inline: auto; }
+.wa-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: #25d366;
+  color: #000;
+  font-family: var(--ff-pixel);
+  font-size: 9px;
+  letter-spacing: .1em;
+  text-decoration: none;
+  transition: background .15s;
+  margin-bottom: 14px;
+}
+.wa-btn:hover { background: #48e880; }
+.wa-link { font-size: 11px; color: #48c864; word-break: break-all; }
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  padding: 32px 16px 48px;
+  font-family: var(--ff-pixel);
+  font-size: 7px;
+  color: var(--fg-dim);
+  letter-spacing: .08em;
+  line-height: 2;
+}
+footer a { color: var(--gold-dim); text-decoration: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 480px) {
+  .tl-item { grid-template-columns: 70px 1fr; }
+  .rm-item { flex-wrap: wrap; }
+  .rm-status { margin-left: 0; }
+}
+</style>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg"></div>
+
+  <div class="triforce-wrap">
+    <svg viewBox="0 0 120 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- top triangle -->
+      <polygon points="60,4 100,74 20,74" fill="#c8a832" opacity=".95"/>
+      <!-- bottom-left -->
+      <polygon points="20,76 60,76 40,106" fill="#c8a832" opacity=".95"/>
+      <!-- bottom-right -->
+      <polygon points="60,76 100,76 80,106" fill="#c8a832" opacity=".95"/>
+      <!-- center void -->
+      <polygon points="40,74 80,74 60,44" fill="#04080e"/>
+    </svg>
+  </div>
+
+  <p class="hero-eyebrow">SADV41 · GAMING · NODO ZELDA</p>
+  <h1 class="hero-title">THE LEGEND OF ZELDA<br>OCARINA OF TIME</h1>
+  <p class="hero-sub">SPACEWORLD '97 BETA · TEMPLE OF TIME OCT '96<br>CO-OP MULTIPLAYER · ROM PATCHER</p>
+
+  <div class="badge-row">
+    <span class="badge gold">N64 · 1996–1997</span>
+    <span class="badge cyan">BETA PROTO</span>
+    <span class="badge">LEGAL · TRAE TU ROM</span>
+    <span class="badge">WORK IN PROGRESS</span>
+  </div>
+</header>
+
+<!-- LORE -->
+<main>
+<div class="section">
+  <div class="section-head">
+    <span class="num">01</span>
+    <h2>HISTORIA DEL PROTO</h2>
+  </div>
+
+  <div class="lore">
+    En <em>octubre de 1996</em>, Nintendo mostraba internamente una build donde la
+    <strong>Trifuerza completa era obtenible</strong> dentro del Temple of Time.
+    Link portaba los tres fragmentos y el juego tenía mecánicas que nunca
+    llegaron al producto final.<br><br>
+    En <em>Spaceworld 1997</em> se mostró públicamente el demo más famoso:
+    texturas distintas, un HUD diferente, y una sensación de mundo más oscuro
+    y expandido. Esta página reconstruye esa experiencia,
+    <strong>pedacito por pedacito</strong>, de forma legal —
+    tú traes tu propia ROM.
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-date">OCT 1996</div>
+      <div class="tl-body">
+        <span class="dot"></span>
+        <h3>PROTO INTERNO</h3>
+        <p>Trifuerza completa en Temple of Time. Build pre-alpha con mecánicas eliminadas.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">NOV 1997</div>
+      <div class="tl-body">
+        <span class="dot"></span>
+        <h3>SPACEWORLD '97</h3>
+        <p>Demo público. HUD beta, texturas distintas, Hyrule Field con niebla diferente.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">NOV 1998</div>
+      <div class="tl-body">
+        <span class="dot"></span>
+        <h3>LANZAMIENTO FINAL</h3>
+        <p>OoT V1.0 lanzado. Trifuerza removida. Muchas mecánicas beta quedaron en la ROM.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ROM PATCHER -->
+<div class="section">
+  <div class="section-head">
+    <span class="num">02</span>
+    <h2>ROM PATCHER · BETA MOD</h2>
+  </div>
+
+  <div class="patcher-box">
+    <div class="drop-zone" id="dropZone">
+      <input type="file" id="romFile" accept=".z64,.n64,.v64">
+      <span class="drop-icon">🗡️</span>
+      <span class="drop-label">ARRASTRA TU ROM AQUÍ</span>
+      <span class="drop-hint">OoT (U) V1.0 · .z64 / .n64 / .v64 · archivo tuyo, no se sube a ningún servidor</span>
+    </div>
+
+    <div class="patch-select">
+      <label>SELECCIONA EL PATCH</label>
+      <select id="patchSelect">
+        <option value="sw97">Spaceworld '97 Beta Restoration (en desarrollo)</option>
+        <option value="oct96">Temple Oct '96 — Triforce Obtainable (en desarrollo)</option>
+        <option value="coop">Co-Op Demo · 2 jugadores (próximamente)</option>
+      </select>
+    </div>
+
+    <button class="btn" id="patchBtn" disabled>⬦ CARGAR ROM PRIMERO ⬦</button>
+
+    <div class="progress-wrap" id="progressWrap">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="status-line" id="statusLine">— esperando ROM —</div>
+  </div>
+</div>
+
+<!-- ROADMAP -->
+<div class="section">
+  <div class="section-head">
+    <span class="num">03</span>
+    <h2>ROADMAP · PASO A PASO</h2>
+  </div>
+
+  <div class="roadmap">
+    <div class="rm-item">
+      <div class="rm-icon">🗡️</div>
+      <div class="rm-body">
+        <h3>PATCHER BASE (marcobledo JS)</h3>
+        <p>Integración de N64-tools para aplicar patches BPS/IPS en el navegador. ROM nunca sale del dispositivo.</p>
+      </div>
+      <span class="rm-status wip">WIP</span>
+    </div>
+    <div class="rm-item">
+      <div class="rm-icon">⭐</div>
+      <div class="rm-body">
+        <h3>PATCH TRIFORCE · OCT '96</h3>
+        <p>Restaurar la obtención de la Trifuerza completa en Temple of Time según el proto de 1996.</p>
+      </div>
+      <span class="rm-status next">NEXT</span>
+    </div>
+    <div class="rm-item">
+      <div class="rm-icon">🌐</div>
+      <div class="rm-body">
+        <h3>PATCH SPACEWORLD '97</h3>
+        <p>Texturas beta, HUD original del demo, niebla y paletas de color del Spaceworld.</p>
+      </div>
+      <span class="rm-status next">NEXT</span>
+    </div>
+    <div class="rm-item">
+      <div class="rm-icon">🤝</div>
+      <div class="rm-body">
+        <h3>CO-OP MULTIPLAYER</h3>
+        <p>Modo demo.multiplayer: dos jugadores en la misma sesión vía WebRTC. Meta final del nodo.</p>
+      </div>
+      <span class="rm-status next">PRÓXIMO</span>
+    </div>
+    <div class="rm-item">
+      <div class="rm-icon">📱</div>
+      <div class="rm-body">
+        <h3>EMULADOR EMBEBIDO</h3>
+        <p>EmulatorsJS corriendo la ROM ya parcheada directamente en la página, sin instalar nada.</p>
+      </div>
+      <span class="rm-status next">PRÓXIMO</span>
+    </div>
+  </div>
+</div>
+</main>
+
+<!-- WHATSAPP BAND -->
+<section class="wa-band">
+  <h2>📡 CANAL OFICIAL</h2>
+  <p>Actualizaciones del nodo TLOZ, nuevos patches, avances del Co-Op<br>y toda la SADV41 en un solo canal.</p>
+  <a class="wa-btn" href="https://whatsapp.com/channel/0029VaXhtuMBVJl4pDqdoC3g" target="_blank" rel="noopener">
+    ▶ UNIRSE AL CANAL
+  </a>
+  <br>
+  <span class="wa-link">whatsapp.com/channel/0029VaXhtuMBVJl4pDqdoC3g</span>
+</section>
+
+<footer>
+  <div>SADV41 · THESTEEF21 · GITHUB PAGES</div>
+  <div>STEVEN GÓMEZ · PANAMÁ 🇵🇦</div>
+  <div style="margin-top:8px">
+    <a href="https://thesteef21.github.io/SADV41/">← VOLVER A SADV41</a>
+  </div>
+</footer>
+
+<script>
+const romFile    = document.getElementById('romFile');
+const dropZone   = document.getElementById('dropZone');
+const patchBtn   = document.getElementById('patchBtn');
+const statusLine = document.getElementById('statusLine');
+const progressWrap = document.getElementById('progressWrap');
+const progressBar  = document.getElementById('progressBar');
+
+let romLoaded = false;
+
+function setStatus(msg, cls) {
+  statusLine.textContent = msg;
+  statusLine.className = 'status-line ' + (cls || '');
+}
+
+function animateProgress(pct, cb) {
+  progressWrap.style.display = 'block';
+  progressBar.style.width = pct + '%';
+  if (cb) setTimeout(cb, 350);
+}
+
+romFile.addEventListener('change', e => {
+  const f = e.target.files[0];
+  if (!f) return;
+  handleRom(f);
+});
+
+dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('drag-over'); });
+dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.classList.remove('drag-over');
+  const f = e.dataTransfer.files[0];
+  if (f) handleRom(f);
+});
+
+function handleRom(f) {
+  const name = f.name.toLowerCase();
+  if (!name.endsWith('.z64') && !name.endsWith('.n64') && !name.endsWith('.v64')) {
+    setStatus('⚠ Formato no reconocido. Usa .z64 / .n64 / .v64', 'err'); return;
+  }
+  setStatus('⏳ Leyendo ROM…', 'run');
+  animateProgress(30);
+
+  const reader = new FileReader();
+  reader.onload = () => {
+    const buf = reader.result;
+    animateProgress(70);
+    // Verificación básica del header N64
+    const bytes = new Uint8Array(buf);
+    const magic = (bytes[0] << 24 | bytes[1] << 16 | bytes[2] << 8 | bytes[3]) >>> 0;
+    // .z64 = 0x80371240, .n64 = 0x40123780, .v64 = 0x37804012
+    const known = [0x80371240, 0x40123780, 0x37804012];
+    if (!known.includes(magic)) {
+      setStatus('⚠ No parece una ROM N64 válida', 'err');
+      animateProgress(0); progressWrap.style.display = 'none'; return;
+    }
+    animateProgress(100, () => {
+      romLoaded = true;
+      patchBtn.disabled = false;
+      patchBtn.textContent = '⬦ APLICAR PATCH ⬦';
+      setStatus('✓ ROM cargada · ' + f.name + ' · ' + (buf.byteLength / 1024 / 1024).toFixed(1) + ' MB', 'ok');
+      progressWrap.style.display = 'none';
+    });
+  };
+  reader.readAsArrayBuffer(f);
+}
+
+patchBtn.addEventListener('click', () => {
+  if (!romLoaded) return;
+  const patch = document.getElementById('patchSelect').value;
+  setStatus('🔧 Patch "' + patch + '" en desarrollo — próxima actualización del nodo...', 'run');
+  animateProgress(60, () => {
+    animateProgress(0);
+    progressWrap.style.display = 'none';
+    setStatus('⬦ Integración marcobledo N64-tools · WIP · Canal WhatsApp para novedades', '');
+  });
+});
+</script>
+
+</body></html>
