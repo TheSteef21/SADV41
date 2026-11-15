@@ -149,7 +149,7 @@ def main():
     ev = fetch_latest(args.min_mag)
     if not ev:
         print("ℹ️ No hay sismos recientes que cumplan los criterios.")
-        sys.exit(2)
+        sys.exit(0)
 
     ev_id = ev["id"]
     last_id = None
@@ -162,7 +162,7 @@ def main():
 
     if ev_id == last_id and not args.force:
         print(f"ℹ️ El sismo {ev_id} ya fue procesado anteriormente.")
-        sys.exit(2)
+        sys.exit(0)
 
     print(f"🚨 Sismo detectado: M{ev['properties']['mag']} - {ev['properties']['place']}")
     cap_text = caption(ev)
