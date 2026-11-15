@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KOF · Another Day — SADV41</title>
+<meta name="description" content="The King of Fighters: Another Day · Espacio SADV41 dedicado al OVA y la saga KOF.">
+<style>
+:root{--bg:#07080c;--card:#0f1118;--red:#c0392b;--gold:#f5c542;--gold2:#ffdf7e;--text:#f2f2f2;--mut:#8892a4;--line:#1e2333}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:system-ui,sans-serif;min-height:100vh}
+
+.header{
+  background:linear-gradient(160deg,#1a0505 0%,#07080c 60%);
+  border-bottom:1px solid #2a1010;
+  padding:28px 16px 22px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.header::before{
+  content:"";
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(192,57,43,.18) 0%,transparent 70%);
+  pointer-events:none;
+}
+.badge{display:inline-block;border:1px solid var(--red);color:var(--red);padding:3px 12px;border-radius:999px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+h1{font-size:30px;letter-spacing:.08em;line-height:1.1;margin-bottom:6px}
+h1 span{color:var(--gold)}
+.sub{color:var(--mut);font-size:13px}
+
+.nav{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:14px}
+.btn{padding:7px 14px;border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;letter-spacing:.04em}
+.btn-red{background:var(--red);color:#fff}
+.btn-out{background:#12151f;border:1px solid var(--line);color:var(--text)}
+
+.wrap{max-width:860px;margin:0 auto;padding:24px 16px 60px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin:14px 0}
+.card h2{color:var(--gold);font-size:17px;margin-bottom:10px}
+.card p{font-size:14px;color:#cdd5e0;line-height:1.7}
+.card p+p{margin-top:8px}
+
+.chars{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px;margin-top:12px}
+.char{background:#0a0d16;border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center}
+.char .name{font-weight:700;color:var(--gold2);font-size:14px}
+.char .role{font-size:11px;color:var(--mut);margin-top:3px}
+
+.timeline{list-style:none;border-left:2px solid var(--red);padding-left:18px;margin-top:10px}
+.timeline li{position:relative;padding:8px 0;font-size:13px;color:#cdd5e0}
+.timeline li::before{content:"";position:absolute;left:-23px;top:14px;width:8px;height:8px;border-radius:50%;background:var(--red)}
+.timeline li b{color:var(--gold);display:block;font-size:12px}
+
+.sadv-box{background:linear-gradient(135deg,#1a1505,#0f1118);border:1px solid #2b2f1f;border-radius:14px;padding:16px;margin-top:14px}
+.sadv-box h3{color:var(--gold);font-size:14px;margin-bottom:8px;letter-spacing:.06em;text-transform:uppercase}
+.sadv-box p{font-size:13px;color:var(--mut)}
+
+.placeholder-art{
+  width:100%;
+  aspect-ratio:16/7;
+  background:linear-gradient(135deg,#1a0505 0%,#0a0710 50%,#070a1a 100%);
+  border-radius:12px;
+  border:1px solid #2a1010;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:8px;
+  color:var(--mut);
+  font-size:13px;
+  margin-bottom:14px;
+}
+.placeholder-art .ico{font-size:48px;line-height:1}
+
+footer{text-align:center;color:var(--mut);font-size:11px;padding:16px;border-top:1px solid var(--line);margin-top:24px}
+footer a{color:var(--gold);text-decoration:none}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="badge">SADV41 · KOF</div>
+  <h1>THE KING OF FIGHTERS<br><span>Another Day</span></h1>
+  <p class="sub">OVA animado · 2005 · 4 episodios · Nodo SADV41</p>
+  <div class="nav">
+    <a href="https://thesteef21.github.io/SADV41/NFSU2/" class="btn btn-out">🚗 NFSU2</a>
+    <a href="https://thesteef21.github.io/SADV41/ELITE/ALGO/RITMO/" class="btn btn-out">🎬 ALGO/RITMO</a>
+    <a href="https://thesteef21.github.io/SADV41/" class="btn btn-out">🏠 SADV41</a>
+    <a href="https://thesteef21.github.io/SADV41/DIOR98IAS/" class="btn btn-red">⛏️ DIOR98IAS</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="placeholder-art">
+    <div class="ico">🥊</div>
+    <span>THE KING OF FIGHTERS · ANOTHER DAY</span>
+    <small>Coloca aquí el arte o poster de KOF:AD</small>
+  </div>
+
+  <div class="card">
+    <h2>¿Qué es Another Day?</h2>
+    <p><b>The King of Fighters: Another Day</b> es un OVA animado producido por SNK Playmore y Studio 4°C, lanzado en 2005 como precuela del torneo KOF XI. Se divide en 4 episodios cortos (~10 min cada uno) y sigue a <b>Rock Howard</b> —hijo de Geese Howard, pupilo de Terry Bogard— en las calles de South Town.</p>
+    <p>La historia mezcla el estilo de la saga Fatal Fury con la escala del universo KOF, con apariciones de Ash Crimson, Shen Woo, Duo Lon y otros personajes del arco "Ash Saga".</p>
+  </div>
+
+  <div class="card">
+    <h2>Personajes principales</h2>
+    <div class="chars">
+      <div class="char"><div class="name">Rock Howard</div><div class="role">Protagonista · hijo de Geese</div></div>
+      <div class="char"><div class="name">Terry Bogard</div><div class="role">Mentor · Fatal Fury</div></div>
+      <div class="char"><div class="name">Ash Crimson</div><div class="role">Antagonista · Ash Saga</div></div>
+      <div class="char"><div class="name">Shen Woo</div><div class="role">Peleador callejero</div></div>
+      <div class="char"><div class="name">Duo Lon</div><div class="role">Clan Hizoku</div></div>
+      <div class="char"><div class="name">Geese Howard</div><div class="role">Presencia · legado</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Línea de tiempo KOF</h2>
+    <ul class="timeline">
+      <li><b>1994</b>KOF '94 — primer torneo. Nace la franquicia.</li>
+      <li><b>1995–2000</b>KOF '95 → 2000 — la saga Orochi, la saga NESTS.</li>
+      <li><b>2001–2003</b>KOF 2001–2003 — inicio del arco Ash Crimson.</li>
+      <li><b>2005</b><span style="color:var(--red);font-weight:700">→ KOF: Another Day (OVA)</span> — South Town, Rock Howard.</li>
+      <li><b>2005</b>KOF XI — el torneo que sigue al OVA.</li>
+      <li><b>2010</b>KOF XIII — clímax del arco Ash, uno de los mejores finales de la saga.</li>
+      <li><b>2016</b>KOF XIV — nueva era, nuevos equipos.</li>
+      <li><b>2022</b>KOF XV — continuación con el arco "Awakening".</li>
+    </ul>
+  </div>
+
+  <div class="sadv-box">
+    <h3>Conexión SADV41</h3>
+    <p>Steven «Dior» Gómez Serrano vio <b>KOF: Another Day</b> hoy — 2026-11-14. Este espacio documenta ese momento y conecta la saga KOF con el ecosistema SADV41. La lucha de Rock Howard entre el legado de su padre y el camino que eligió resuena con la identidad del proyecto: <em>Sinceridad A Disposición Vívida</em>.</p>
+  </div>
+
+</div>
+
+<footer>
+  SADV41 / KOF / AD · 2026-11-14 ·
+  <a href="https://thesteef21.github.io/SADV41/">thesteef21.github.io/SADV41</a> ·
+  <a href="../">KOF/</a>
+</footer>
+
+</body>
+</html>
