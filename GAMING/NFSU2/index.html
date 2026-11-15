@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Need For Speed Underground 2 — SADV41</title>
+<meta name="description" content="Need For Speed Underground 2 · Espacio SADV41 dedicado al legendario NFSU2.">
+<style>
+:root{--bg:#07080c;--card:#0f1118;--blue:#0af;--neon:#00e5ff;--gold:#f5c542;--gold2:#ffdf7e;--text:#f2f2f2;--mut:#8892a4;--line:#1e2333}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:system-ui,sans-serif;min-height:100vh}
+
+.header{
+  background:linear-gradient(160deg,#040d1a 0%,#07080c 60%);
+  border-bottom:1px solid #0a1a2a;
+  padding:28px 16px 22px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.header::before{
+  content:"";
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(0,180,255,.15) 0%,transparent 70%);
+  pointer-events:none;
+}
+.badge{display:inline-block;border:1px solid var(--neon);color:var(--neon);padding:3px 12px;border-radius:999px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+h1{font-size:28px;letter-spacing:.06em;line-height:1.1;margin-bottom:6px}
+h1 span{color:var(--neon);text-shadow:0 0 20px rgba(0,229,255,.5)}
+.sub{color:var(--mut);font-size:13px}
+
+.nav{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:14px}
+.btn{padding:7px 14px;border-radius:8px;font-size:12px;font-weight:700;text-decoration:none;letter-spacing:.04em}
+.btn-neon{background:transparent;border:1px solid var(--neon);color:var(--neon)}
+.btn-gold{background:var(--gold);color:#07080c}
+.btn-out{background:#12151f;border:1px solid var(--line);color:var(--text)}
+
+.wrap{max-width:860px;margin:0 auto;padding:24px 16px 60px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin:14px 0}
+.card h2{color:var(--neon);font-size:17px;margin-bottom:10px}
+.card p{font-size:14px;color:#cdd5e0;line-height:1.7}
+.card p+p{margin-top:8px}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:12px}
+.stat{background:#0a0d16;border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center}
+.stat b{font-size:20px;color:var(--neon);display:block}
+.stat span{font-size:11px;color:var(--mut);margin-top:3px;display:block}
+
+.mods{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+@media(max-width:500px){.mods{grid-template-columns:1fr}}
+.mod{background:#0a0d16;border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:13px}
+.mod b{color:var(--gold2);display:block;font-size:12px;margin-bottom:2px}
+
+.sadv-box{background:linear-gradient(135deg,#040d1a,#0f1118);border:1px solid #0a1a2a;border-radius:14px;padding:16px;margin-top:14px}
+.sadv-box h3{color:var(--neon);font-size:14px;margin-bottom:8px;letter-spacing:.06em;text-transform:uppercase}
+.sadv-box p{font-size:13px;color:var(--mut)}
+
+.placeholder-art{
+  width:100%;
+  aspect-ratio:16/7;
+  background:linear-gradient(135deg,#030d1a 0%,#070a14 50%,#07080c 100%);
+  border-radius:12px;
+  border:1px solid #0a1a2a;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:8px;
+  color:var(--mut);
+  font-size:13px;
+  margin-bottom:14px;
+  position:relative;
+  overflow:hidden;
+}
+.placeholder-art::after{
+  content:"";
+  position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,transparent,var(--neon),transparent);
+  animation:scan 2s linear infinite;
+}
+@keyframes scan{from{transform:translateX(-100%)}to{transform:translateX(100%)}}
+.placeholder-art .ico{font-size:48px;line-height:1}
+
+.tracklist{list-style:none;margin-top:10px}
+.tracklist li{padding:7px 0;border-bottom:1px solid #111520;font-size:13px;color:#cdd5e0;display:flex;gap:10px}
+.tracklist li:last-child{border-bottom:none}
+.tracklist li span{color:var(--neon);min-width:28px;font-weight:700;font-family:monospace}
+
+footer{text-align:center;color:var(--mut);font-size:11px;padding:16px;border-top:1px solid var(--line);margin-top:24px}
+footer a{color:var(--neon);text-decoration:none}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="badge">SADV41 · RACING</div>
+  <h1>NEED FOR SPEED<br><span>UNDERGROUND 2</span></h1>
+  <p class="sub">EA Games · 2004 · Bayview City · Nodo SADV41</p>
+  <div class="nav">
+    <a href="https://thesteef21.github.io/SADV41/KOF/AD/" class="btn btn-out">🥊 KOF: Another Day</a>
+    <a href="https://thesteef21.github.io/SADV41/ELITE/ALGO/RITMO/" class="btn btn-out">🎬 ALGO/RITMO</a>
+    <a href="https://thesteef21.github.io/SADV41/" class="btn btn-out">🏠 SADV41</a>
+    <a href="https://thesteef21.github.io/SADV41/DIOR98IAS/" class="btn btn-gold">⛏️ DIOR98IAS</a>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="placeholder-art">
+    <div class="ico">🚗</div>
+    <span>NEED FOR SPEED UNDERGROUND 2</span>
+    <small>Coloca aquí el arte o screenshot del juego</small>
+  </div>
+
+  <div class="card">
+    <h2>¿Qué es NFSU2?</h2>
+    <p><b>Need for Speed Underground 2</b> es el juego de carreras de EA Games lanzado en noviembre de 2004, considerado uno de los mejores de la saga y de los juegos de carreras de todos los tiempos. Se ambienta en <b>Bayview City</b>, una ciudad abierta que se puede explorar libremente —una de las primeras veces que NFS usó mundo abierto.</p>
+    <p>El juego introdujo el <b>free-roam</b> completo, nuevas categorías de carrera (SUV, URL) y una banda sonora icónica que definió el sonido del tuning de mediados de los 2000. El modo historia sigue al protagonista buscando venganza después de que su auto es destruido al llegar a Bayview.</p>
+    <div class="stats">
+      <div class="stat"><b>2004</b><span>Año de lanzamiento</span></div>
+      <div class="stat"><b>~30h</b><span>Historia principal</span></div>
+      <div class="stat"><b>5</b><span>Tipos de carrera</span></div>
+      <div class="stat"><b>mundo abierto</b><span>Bayview City</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Modalidades de carrera</h2>
+    <div class="mods">
+      <div class="mod"><b>Circuit Racing</b>Vueltas en circuito cerrado. El clásico.</div>
+      <div class="mod"><b>Sprint</b>Del punto A al B, sin vueltas.</div>
+      <div class="mod"><b>Drag</b>Línea recta, cambios de marcha manuales.</div>
+      <div class="mod"><b>Drift</b>Puntaje por ángulo y velocidad de derrape.</div>
+      <div class="mod"><b>URL</b>Underground Racing League — élite del juego.</div>
+      <div class="mod"><b>SUV Race</b>Carreras con 4x4 y SUVs. Novedad NFSU2.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Soundtrack icónico</h2>
+    <ul class="tracklist">
+      <li><span>01</span>Riders on the Storm — Snoop Dogg ft. The Doors</li>
+      <li><span>02</span>Get Low — Lil Jon & The East Side Boyz</li>
+      <li><span>03</span>Naughty Girl — Enrique Iglesias</li>
+      <li><span>04</span>Rock Your Body — Justin Timberlake</li>
+      <li><span>05</span>Speed — Ozzy Osbourne</li>
+      <li><span>06</span>My Band — D12</li>
+      <li><span>07</span>Feel Good Inc. — Gorillaz</li>
+      <li><span>08</span>Reelin' — Konkrete</li>
+      <li><span>+</span>y más de 30 pistas adicionales...</li>
+    </ul>
+  </div>
+
+  <div class="sadv-box">
+    <h3>Conexión SADV41</h3>
+    <p>Steven «Dior» Gómez Serrano vio una partida de <b>Need For Speed Underground 2</b> hoy — 2026-11-14. Este espacio documenta ese momento dentro del ecosistema SADV41. NFSU2 forma parte de los recuerdos de toda una generación que creció construyendo su identidad entre el tuning, la música y las pantallas. Igual que SADV41 construye identidad desde Panamá hacia el mundo.</p>
+  </div>
+
+</div>
+
+<footer>
+  SADV41 / NFSU2 · 2026-11-14 ·
+  <a href="https://thesteef21.github.io/SADV41/">thesteef21.github.io/SADV41</a> ·
+  <a href="../KOF/AD/">KOF: Another Day →</a>
+</footer>
+
+</body>
+</html>
