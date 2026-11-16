@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pinterest / Anime Core — SADV41</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #09090b;
+      color: #f4f4f5;
+      overflow-x: hidden;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .pin-card {
+      break-inside: avoid;
+      margin-bottom: 1.25rem;
+      display: flex;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-violet-600 selection:text-white">
+
+  <!-- Barra superior -->
+  <header class="border-b border-zinc-800/80 bg-zinc-950/90 backdrop-blur sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
+      <a href="../index.html" class="flex items-center gap-3 hover:opacity-90 transition">
+        <span class="w-2.5 h-2.5 rounded-full bg-violet-500"></span>
+        <span class="font-semibold tracking-wider text-sm uppercase text-zinc-100">
+          Pinterest <span class="text-zinc-500">/</span> Anime Core
+        </span>
+      </a>
+
+      <nav class="flex items-center gap-2 sm:gap-3 text-xs sm:text-sm">
+        <a href="../index.html" class="px-3 py-1.5 rounded-full text-zinc-400 hover:text-white hover:bg-zinc-900 transition">
+          Inicio
+        </a>
+        <a href="../CORE/index.html" class="px-3 py-1.5 rounded-full text-zinc-400 hover:text-white hover:bg-zinc-900 transition">
+          CORE
+        </a>
+        <a href="../CORE/embbed/index.html" class="px-3 py-1.5 rounded-full text-zinc-400 hover:text-white hover:bg-zinc-900 transition">
+          Embbed (34)
+        </a>
+        <a href="./index.html" class="px-3 py-1.5 rounded-full bg-violet-600/20 border border-violet-500/40 text-violet-200 font-medium">
+          Anime Core
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Carrusel de tendencias Anime Core -->
+  <main class="max-w-7xl w-full mx-auto px-4 md:px-8 py-8 flex-1">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-4">
+      <div>
+        <p class="text-xs uppercase tracking-widest text-violet-400/80 mb-1">SADV41 &bull; Archivo Visual</p>
+        <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-100">
+          Tendencias Anime Core
+        </h1>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <span id="slideCounter" class="text-xs font-mono text-zinc-400 mr-2">01 / 04</span>
+        <button id="prevBtn" aria-label="Anterior" class="p-2.5 rounded-full border border-zinc-800 bg-zinc-900/70 hover:bg-zinc-800 text-zinc-200 transition active:scale-95">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button id="nextBtn" aria-label="Siguiente" class="p-2.5 rounded-full border border-zinc-800 bg-zinc-900/70 hover:bg-zinc-800 text-zinc-200 transition active:scale-95">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="carouselViewport" class="relative overflow-hidden rounded-2xl border border-zinc-800/80 bg-zinc-900/40">
+      <div id="carouselTrack" class="carousel-track"></div>
+    </div>
+
+    <div id="carouselDots" class="flex items-center justify-center gap-2 mt-6"></div>
+
+    <!-- Sección de pines embebidos de Anime Core -->
+    <section id="animeGridSection" class="mt-12 pt-8 border-t border-zinc-800/80">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="text-lg font-semibold text-zinc-100">Tablero Anime Core</h2>
+          <p class="text-xs text-zinc-500">Pines incrustados mediante pinit.js</p>
+        </div>
+        <span id="pinCountBadge" class="text-xs font-mono px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400">
+          0 pines
+        </span>
+      </div>
+
+      <div id="animePinsContainer" class="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-5"></div>
+    </section>
+  </main>
+
+  <footer class="border-t border-zinc-900 py-4 text-center text-xs text-zinc-600">
+    SADV41 / Pinterest / Anime Core
+  </footer>
+
+  <script>
+    // 1. Pega aquí tus enlaces de Pinterest para Anime Core cuando los tengas:
+    const animePins = [
+      // "https://www.pinterest.com/pin/ID_AQUI/",
+    ];
+
+    // 2. Categorías del carrusel Anime Core
+    const animeTrends = [
+      {
+        tag: "01 • Dark Fantasy & Shonen",
+        title: "Sombras, Trazos & Energía",
+        description: "Estética nocturna de alto contraste, secuencias de combate, aura oscura y composición dramática.",
+        accent: "from-violet-600/20 via-zinc-900 to-zinc-950",
+        badgeColor: "text-violet-300 border-violet-500/30 bg-violet-500/10",
+        actionLabel: "Ver tablero Anime Core",
+        actionHref: "#animeGridSection"
+      },
+      {
+        tag: "02 • Retro 90s Cel & Lo-Fi",
+        title: "Nostalgia Analógica & VHS",
+        description: "Fotogramas clásicos de los años 90, iluminación urbana nocturna, grano de película y estética lo-fi.",
+        accent: "from-fuchsia-600/20 via-zinc-900 to-zinc-950",
+        badgeColor: "text-fuchsia-300 border-fuchsia-500/30 bg-fuchsia-500/10",
+        actionLabel: "Ver tablero Anime Core",
+        actionHref: "#animeGridSection"
+      },
+      {
+        tag: "03 • Worldbuilding & Aventura",
+        title: "Horizontes & Escala Épica",
+        description: "Escenarios monumentales, arquitectura fantástica, mares abiertos y diseño de personajes icónicos.",
+        accent: "from-cyan-600/20 via-zinc-900 to-zinc-950",
+        badgeColor: "text-cyan-300 border-cyan-500/30 bg-cyan-500/10",
+        actionLabel: "Ver tablero Anime Core",
+        actionHref: "#animeGridSection"
+      },
+      {
+        tag: "04 • Manga Panels & Ink",
+        title: "Blanco, Negro & Tinta Pura",
+        description: "Viñetas monocromáticas, tramas de sombreado, tipografía japonesa y arte conceptual editorial.",
+        accent: "from-rose-600/20 via-zinc-900 to-zinc-950",
+        badgeColor: "text-rose-300 border-rose-500/30 bg-rose-500/10",
+        actionLabel: "Explorar CORE (34 pines)",
+        actionHref: "../CORE/embbed/index.html"
+      }
+    ];
+
+    const track = document.getElementById("carouselTrack");
+    const dotsContainer = document.getElementById("carouselDots");
+    const counter = document.getElementById("slideCounter");
+    let currentIndex = 0;
+
+    function renderSlides() {
+      track.innerHTML = animeTrends.map((item) => `
+        <article class="w-full shrink-0 p-6 sm:p-10 md:p-14 bg-gradient-to-br ${item.accent} flex flex-col justify-between min-h-[330px] sm:min-h-[370px]">
+          <div class="max-w-2xl">
+            <span class="inline-block text-xs font-medium px-3 py-1 rounded-full border ${item.badgeColor} mb-4">
+              ${item.tag}
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-bold text-white tracking-tight mb-3">
+              ${item.title}
+            </h2>
+            <p class="text-sm sm:text-base text-zinc-400 leading-relaxed">
+              ${item.description}
+            </p>
+          </div>
+
+          <div class="mt-8">
+            <a href="${item.actionHref}" class="inline-block px-5 py-2.5 rounded-xl bg-zinc-100 hover:bg-white text-zinc-950 font-semibold text-sm transition">
+              ${item.actionLabel}
+            </a>
+          </div>
+        </article>
+      `).join("");
+
+      dotsContainer.innerHTML = animeTrends.map((_, i) => `
+        <button
+          aria-label="Ir a diapositiva ${i + 1}"
+          onclick="goToSlide(${i})"
+          class="h-1.5 rounded-full transition-all ${i === currentIndex ? "w-8 bg-violet-400" : "w-2 bg-zinc-700 hover:bg-zinc-500"}">
+        </button>
+      `).join("");
+    }
+
+    function updateCarousel() {
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      counter.textContent = `${String(currentIndex + 1).padStart(2, "0")} / ${String(animeTrends.length).padStart(2, "0")}`;
+
+      Array.from(dotsContainer.children).forEach((dot, i) => {
+        dot.className = `h-1.5 rounded-full transition-all ${
+          i === currentIndex ? "w-8 bg-violet-400" : "w-2 bg-zinc-700 hover:bg-zinc-500"
+        }`;
+      });
+    }
+
+    function goToSlide(index) {
+      currentIndex = (index + animeTrends.length) % animeTrends.length;
+      updateCarousel();
+    }
+
+    function renderPins() {
+      const container = document.getElementById("animePinsContainer");
+      const badge = document.getElementById("pinCountBadge");
+      badge.textContent = `${animePins.length} ${animePins.length === 1 ? "pin" : "pines"}`;
+
+      if (animePins.length === 0) {
+        container.className = "rounded-xl border border-dashed border-zinc-800 p-8 text-center text-sm text-zinc-500";
+        container.innerHTML = `Agrega tus enlaces en el arreglo <code class="text-violet-400">animePins</code> dentro de <code class="text-zinc-300">anime-core/index.html</code> para desplegar los pines aquí.`;
+        return;
+      }
+
+      container.innerHTML = animePins.map((url) => `
+        <div class="pin-card">
+          <a data-pin-do="embedPin" data-pin-width="medium" href="${url}"></a>
+        </div>
+      `).join("");
+    }
+
+    document.getElementById("prevBtn").addEventListener("click", () => goToSlide(currentIndex - 1));
+    document.getElementById("nextBtn").addEventListener("click", () => goToSlide(currentIndex + 1));
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") goToSlide(currentIndex - 1);
+      if (e.key === "ArrowRight") goToSlide(currentIndex + 1);
+    });
+
+    let touchStartX = 0;
+    const viewport = document.getElementById("carouselViewport");
+    viewport.addEventListener("touchstart", (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+    viewport.addEventListener("touchend", (e) => {
+      const diff = touchStartX - e.changedTouches[0].screenX;
+      if (Math.abs(diff) > 45) goToSlide(diff > 0 ? currentIndex + 1 : currentIndex - 1);
+    }, { passive: true });
+
+    renderSlides();
+    updateCarousel();
+    renderPins();
+  </script>
+  <script async defer src="https://assets.pinterest.com/js/pinit.js"></script>
+</body>
+</html>
