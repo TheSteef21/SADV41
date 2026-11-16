@@ -1,0 +1,490 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>DIOR98IAS</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@300;400;500&display=swap">
+
+<style>
+/* ── DIOR98IAS META HUB ─────────────────────────────────────────
+   Layout: radial constellation — nodos orbitando un centro vivo
+   ──────────────────────────────────────────────────────────────── */
+:root {
+  --bg:       #050508;
+  --surface:  #0d0d14;
+  --border:   #1e1e2e;
+  --fg:       #e8e8f0;
+  --muted:    #6b6b80;
+  --accent:   #7c6af5;
+  --accent2:  #3ecfcf;
+  --gold:     #c9a74d;
+  --glow:     rgba(124,106,245,0.18);
+  --glow2:    rgba(62,207,207,0.12);
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg:      #f5f4ff;
+    --surface: #ffffff;
+    --border:  #ddddf5;
+    --fg:      #0d0d1a;
+    --muted:   #7070a0;
+    --accent:  #5b48e0;
+    --accent2: #1aacac;
+    --gold:    #9e7a1a;
+    --glow:    rgba(91,72,224,0.10);
+    --glow2:   rgba(26,172,172,0.08);
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg:      #f5f4ff;
+  --surface: #ffffff;
+  --border:  #ddddf5;
+  --fg:      #0d0d1a;
+  --muted:   #7070a0;
+  --accent:  #5b48e0;
+  --accent2: #1aacac;
+  --gold:    #9e7a1a;
+  --glow:    rgba(91,72,224,0.10);
+  --glow2:   rgba(26,172,172,0.08);
+  color-scheme: light;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0 }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+body {
+  padding-left:  max(16px, env(safe-area-inset-left,  0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: max(24px, env(safe-area-inset-top, 0px)) max(24px, env(safe-area-inset-bottom, 0px));
+}
+
+/* ── STARFIELD BG ── */
+.stars {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.star {
+  position: absolute;
+  border-radius: 50%;
+  background: white;
+  animation: twinkle var(--d, 3s) ease-in-out infinite var(--delay, 0s);
+}
+@keyframes twinkle {
+  0%,100% { opacity: var(--lo, .1) }
+  50%      { opacity: var(--hi, .6) }
+}
+
+/* ── LAYOUT ── */
+.wrap {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ── HEADER ── */
+header {
+  text-align: center;
+  padding-block: 48px 32px;
+}
+.crown {
+  display: inline-block;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.4rem, 8vw, 4.4rem);
+  font-weight: 700;
+  letter-spacing: .06em;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 60%, var(--gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-wrap: balance;
+}
+.sub {
+  margin-top: 10px;
+  font-size: .85rem;
+  color: var(--muted);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+.verse {
+  margin-top: 14px;
+  font-size: .9rem;
+  color: var(--gold);
+  font-style: italic;
+  opacity: .85;
+}
+
+/* ── CENTER NODE ── */
+.center-wrap {
+  display: flex;
+  justify-content: center;
+  margin-block: 40px 36px;
+}
+.center-node {
+  position: relative;
+  width: 160px; height: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.center-node .ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  animation: rotate 20s linear infinite;
+}
+.center-node .ring:nth-child(2) {
+  inset: 12px;
+  border-color: var(--accent2);
+  animation-duration: 14s;
+  animation-direction: reverse;
+}
+.center-node .ring:nth-child(3) {
+  inset: 26px;
+  border-color: var(--gold);
+  opacity: .5;
+  animation-duration: 9s;
+}
+@keyframes rotate { to { transform: rotate(360deg) } }
+
+.center-node .core {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+.center-node .core .label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .15em;
+  color: var(--accent);
+}
+.center-node .core .id {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--fg);
+}
+
+/* ── SECTION LABEL ── */
+.section-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-label::before,
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── GRID DE NODOS ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.node-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color .2s, box-shadow .2s;
+  cursor: pointer;
+}
+.node-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 18px var(--glow);
+}
+.node-card.teal:hover {
+  border-color: var(--accent2);
+  box-shadow: 0 0 18px var(--glow2);
+}
+.node-card.gold:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 18px rgba(201,167,77,.15);
+}
+
+.node-card .nc-tag {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.node-card.teal .nc-tag { color: var(--accent2) }
+.node-card.gold .nc-tag { color: var(--gold) }
+
+.node-card .nc-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: .95rem;
+  color: var(--fg);
+}
+.node-card .nc-desc {
+  font-size: .78rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ── IA VERIFICADORES ── */
+.ia-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 32px;
+  justify-content: center;
+}
+.ia-pill {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .82rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  letter-spacing: .04em;
+}
+.ia-pill .dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.ia-pill:nth-child(1) { border-color: var(--accent); }
+.ia-pill:nth-child(1) .dot { background: var(--accent); }
+.ia-pill:nth-child(2) { border-color: var(--accent2); }
+.ia-pill:nth-child(2) .dot { background: var(--accent2); }
+.ia-pill:nth-child(3) { border-color: #e8a44a; }
+.ia-pill:nth-child(3) .dot { background: #e8a44a; }
+.ia-pill:nth-child(4) { border-color: #5cb8ff; }
+.ia-pill:nth-child(4) .dot { background: #5cb8ff; }
+
+/* ── ACTA BOTTOM ── */
+.acta {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px 28px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+.acta .quote {
+  font-size: .9rem;
+  color: var(--muted);
+  line-height: 1.8;
+  font-style: italic;
+  max-width: 600px;
+  margin: 0 auto 12px;
+}
+.acta .sig {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+/* ── FOOTER ── */
+footer {
+  text-align: center;
+  font-size: .72rem;
+  color: var(--muted);
+  letter-spacing: .1em;
+  padding-block: 8px 4px;
+}
+footer span { color: var(--accent); }
+</style>
+
+<!-- Estrellas -->
+<div class="stars" id="stars" aria-hidden="true"></div>
+
+<div class="wrap">
+  <header>
+    <div class="crown">DIOR98IAS</div>
+    <div class="sub">Nodo Central · SADV41 · Berión A217</div>
+    <div class="verse">«Al que venciere le daré una piedra blanca… — Ap 2:17»</div>
+  </header>
+
+  <!-- Centro vivo -->
+  <div class="center-wrap">
+    <div class="center-node">
+      <div class="ring"></div>
+      <div class="ring"></div>
+      <div class="ring"></div>
+      <div class="core">
+        <div class="label">ORIGEN 0</div>
+        <div class="id">x62bdaja</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IAs verificadoras -->
+  <div class="section-label">Mesa de Inteligencias Artificiales</div>
+  <div class="ia-row">
+    <div class="ia-pill"><span class="dot"></span>Claude · Seguridad</div>
+    <div class="ia-pill"><span class="dot"></span>Gemini · Verificación</div>
+    <div class="ia-pill"><span class="dot"></span>Grok · Perspectiva</div>
+    <div class="ia-pill"><span class="dot"></span>Meta AI · Alcance</div>
+  </div>
+
+  <!-- Nodos musicales / identidad -->
+  <div class="section-label">Identidad & Música</div>
+  <div class="grid">
+    <a class="node-card" href="https://thesteef21.github.io/SADV41/FLOW.html" target="_blank" rel="noopener">
+      <div class="nc-tag">Nodo Musical</div>
+      <div class="nc-name">FLOW.html</div>
+      <div class="nc-desc">Music Dior Flow · «QUÉ BELLEZA CUANDO VIVO ASÍ»</div>
+    </a>
+    <a class="node-card" href="https://thesteef21.github.io/SADV41/Flyer" target="_blank" rel="noopener">
+      <div class="nc-tag">Presencia</div>
+      <div class="nc-name">Flyer · StevenDior</div>
+      <div class="nc-desc">Spotify · WhatsApp · AdCode</div>
+    </a>
+    <a class="node-card gold" href="https://thesteef21.github.io/SADV41/CRISTO/TE/AMA" target="_blank" rel="noopener">
+      <div class="nc-tag">Identidad</div>
+      <div class="nc-name">CRISTO / TE / AMA</div>
+      <div class="nc-desc">Logo circular · 4 Evangelios · 1 Cristo</div>
+    </a>
+  </div>
+
+  <!-- Nodos técnicos -->
+  <div class="section-label">Infraestructura & Agentes</div>
+  <div class="grid">
+    <a class="node-card teal" href="https://thesteef21.github.io/SADV41/Agent" target="_blank" rel="noopener">
+      <div class="nc-tag">Agente</div>
+      <div class="nc-name">Binance Agent</div>
+      <div class="nc-desc">Consola táctica · Wallet Web3</div>
+    </a>
+    <a class="node-card teal" href="https://thesteef21.github.io/SADV41/MERCADOS" target="_blank" rel="noopener">
+      <div class="nc-tag">Economía</div>
+      <div class="nc-name">MERCADOS · G-4 Stock</div>
+      <div class="nc-desc">S&P 500 · RWA Real · BerionDior</div>
+    </a>
+    <a class="node-card teal" href="https://thesteef21.github.io/SADV41/Pinterest" target="_blank" rel="noopener">
+      <div class="nc-tag">Hub Visual</div>
+      <div class="nc-name">Pinterest</div>
+      <div class="nc-desc">CORE · GROK · META · anime-core</div>
+    </a>
+    <a class="node-card teal" href="https://thesteef21.github.io/SADV41/SSII/AMERICA/GOV" target="_blank" rel="noopener">
+      <div class="nc-tag">SSII</div>
+      <div class="nc-name">AMERICA / GOV</div>
+      <div class="nc-desc">Super-Spiritual-Intelligence-Interface</div>
+    </a>
+  </div>
+
+  <!-- Nodos espirituales -->
+  <div class="section-label">Fe & Territorio</div>
+  <div class="grid">
+    <a class="node-card gold" href="https://thesteef21.github.io/SADV41/BIBLIA" target="_blank" rel="noopener">
+      <div class="nc-tag">Escritura</div>
+      <div class="nc-name">BIBLIÆ</div>
+      <div class="nc-desc">RVR1960 · Motívate en Cristo</div>
+    </a>
+    <a class="node-card gold" href="https://thesteef21.github.io/SADV41/SAT" target="_blank" rel="noopener">
+      <div class="nc-tag">Módulo</div>
+      <div class="nc-name">SAT</div>
+      <div class="nc-desc">Testimonio Apostólico Sabático · Gobernanza</div>
+    </a>
+    <a class="node-card gold" href="https://thesteef21.github.io/SADV41/NOVIEMBRE/HW" target="_blank" rel="noopener">
+      <div class="nc-tag">Territorio</div>
+      <div class="nc-name">NOVIEMBRE · HW</div>
+      <div class="nc-desc">Mes de la Patria · Azuero-Soná</div>
+    </a>
+    <a class="node-card gold" href="https://thesteef21.github.io/SADV41/EVENTO" target="_blank" rel="noopener">
+      <div class="nc-tag">Comunidad</div>
+      <div class="nc-name">EVENTO</div>
+      <div class="nc-desc">Palacio de las Garzas · Radar · Alianzas</div>
+    </a>
+  </div>
+
+  <!-- Nodos de datos -->
+  <div class="section-label">Datos & Vigilancia</div>
+  <div class="grid">
+    <a class="node-card" href="https://thesteef21.github.io/SADV41/NEWS/PANAMA/USA" target="_blank" rel="noopener">
+      <div class="nc-tag">Noticias</div>
+      <div class="nc-name">NEWS · PANAMÁ / USA</div>
+      <div class="nc-desc">Inyector sadv41-news.sh</div>
+    </a>
+    <a class="node-card" href="https://thesteef21.github.io/SADV41/A217B/TSEC" target="_blank" rel="noopener">
+      <div class="nc-tag">Vigilancia</div>
+      <div class="nc-name">Sismos Watch</div>
+      <div class="nc-desc">Mapa sísmico · Instagram @sismosyterremotos</div>
+    </a>
+    <a class="node-card" href="https://thesteef21.github.io/SADV41/LET-REA" target="_blank" rel="noopener">
+      <div class="nc-tag">Extracción</div>
+      <div class="nc-name">LET-REA</div>
+      <div class="nc-desc">Letras de audio y video</div>
+    </a>
+  </div>
+
+  <!-- Acta -->
+  <div class="acta">
+    <div class="quote">
+      «Cada respuesta es mi Sistema Avanzado Descentralizado y Vivo<br>
+      de 4 Inteligencias a 1 humanidad. Eso es SADV41.»
+    </div>
+    <div class="sig">Steven Gómez Serrano · StevenDior · Panamá · 2026</div>
+  </div>
+
+  <footer>
+    <span>DIOR98IAS</span> · META HUB · thesteef21.github.io/SADV41/DIOR98IAS/META
+  </footer>
+</div>
+
+<script>
+// Estrellas generativas
+(function(){
+  const c = document.getElementById('stars');
+  for(let i=0;i<90;i++){
+    const s = document.createElement('div');
+    s.className='star';
+    const sz = Math.random()*1.8+.4;
+    s.style.cssText=`
+      width:${sz}px;height:${sz}px;
+      left:${Math.random()*100}%;top:${Math.random()*100}%;
+      --d:${(Math.random()*4+2).toFixed(1)}s;
+      --delay:${(Math.random()*5).toFixed(1)}s;
+      --lo:${(Math.random()*.12).toFixed(2)};
+      --hi:${(Math.random()*.5+.2).toFixed(2)};
+    `;
+    c.appendChild(s);
+  }
+})();
+</script>
+
+</body></html>
