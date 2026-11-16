@@ -1,1 +1,50 @@
-
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pinterest Hub — SADV41</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+</head>
+<body class="min-h-screen bg-zinc-950 text-zinc-100 flex flex-col justify-between">
+  <header class="border-b border-zinc-800/80 bg-zinc-950/90 backdrop-blur">
+    <div class="max-w-6xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-2.5">
+        <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+        <span class="font-semibold tracking-wider text-sm uppercase">SADV41 <span class="text-zinc-500">/</span> Pinterest</span>
+      </div>
+      <span class="text-xs font-mono text-zinc-500">thesteef21.github.io</span>
+    </div>
+  </header>
+  <main class="max-w-6xl w-full mx-auto px-4 md:px-8 py-12 flex-1 flex flex-col justify-center">
+    <div class="mb-10">
+      <p class="text-xs uppercase tracking-widest text-zinc-500 mb-2">Directorio de Colecciones</p>
+      <h1 class="text-3xl sm:text-4xl font-bold tracking-tight">Explorar Tableros</h1>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="rounded-2xl border border-zinc-800 bg-gradient-to-br from-rose-500/15 via-zinc-900 to-zinc-950 p-8 flex flex-col justify-between">
+        <div>
+          <span class="inline-block text-xs font-medium px-3 py-1 rounded-full border border-rose-500/30 bg-rose-500/10 text-rose-300 mb-4">Módulo 01 &bull; Activo</span>
+          <h2 class="text-2xl font-bold mb-2">Pinterest / CORE</h2>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-6">Carrusel interactivo de tendencias visuales conectado directamente con la cuadrícula de 34 pines embebidos.</p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href="./CORE/index.html" class="px-5 py-2.5 rounded-xl bg-zinc-100 hover:bg-white text-zinc-950 font-semibold text-sm transition">Abrir CORE</a>
+          <a href="./CORE/embbed/index.html" class="px-5 py-2.5 rounded-xl border border-zinc-700 hover:border-zinc-500 text-zinc-200 font-medium text-sm transition">Ver 34 Pines</a>
+        </div>
+      </div>
+      <div class="rounded-2xl border border-zinc-800 bg-gradient-to-br from-violet-600/20 via-zinc-900 to-zinc-950 p-8 flex flex-col justify-between">
+        <div>
+          <span class="inline-block text-xs font-medium px-3 py-1 rounded-full border border-violet-500/30 bg-violet-500/10 text-violet-300 mb-4">Módulo 02 &bull; Pre-instalado</span>
+          <h2 class="text-2xl font-bold mb-2">Pinterest / Anime Core</h2>
+          <p class="text-sm text-zinc-400 leading-relaxed mb-6">Carrusel dedicado a estética anime, retro 90s cel, dark fantasy y viñetas manga con tablero embebido integrado.</p>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <a href="./anime-core/index.html" class="px-5 py-2.5 rounded-xl bg-violet-500 hover:bg-violet-400 text-zinc-950 font-semibold text-sm transition">Abrir Anime Core</a>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="border-t border-zinc-900 py-4 text-center text-xs text-zinc-600">SADV41 &bull; GitHub Pages Deployment</footer>
+</body>
+</html>
