@@ -1,1 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pinterest / CORE — Tendencias</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #09090b;
+      color: #f4f4f5;
+      overflow-x: hidden;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-zinc-700 selection:text-white">
+
+  <!-- Barra de navegación del ecosistema Pinterest/ -->
+  <header class="border-b border-zinc-800/80 bg-zinc-950/90 backdrop-blur sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+        <span class="font-semibold tracking-wider text-sm uppercase text-zinc-100">
+          Pinterest <span class="text-zinc-500">/</span> CORE
+        </span>
+      </div>
+
+      <nav class="flex items-center gap-2 sm:gap-4 text-xs sm:text-sm">
+        <a href="./index.html" class="px-3 py-1.5 rounded-full bg-zinc-800 text-white font-medium">
+          CORE
+        </a>
+        <a href="./embbed/index.html" class="px-3 py-1.5 rounded-full text-zinc-400 hover:text-white hover:bg-zinc-900 transition">
+          Embbed (34)
+        </a>
+        <a href="../anime-core/index.html" class="px-3 py-1.5 rounded-full border border-zinc-800 text-zinc-400 hover:border-zinc-600 hover:text-zinc-200 transition flex items-center gap-1.5">
+          <span>Anime Core</span>
+          <span class="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-zinc-900 text-zinc-500">Pronto</span>
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Sección principal: Carrusel interactivo -->
+  <main class="max-w-7xl w-full mx-auto px-4 md:px-8 py-8 flex-1 flex flex-col justify-center">
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-6 gap-4">
+      <div>
+        <p class="text-xs uppercase tracking-widest text-zinc-500 mb-1">Explorar colecciones</p>
+        <h1 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-100">
+          Tendencias CORE
+        </h1>
+      </div>
+
+      <!-- Controles del carrusel -->
+      <div class="flex items-center gap-3">
+        <span id="slideCounter" class="text-xs font-mono text-zinc-400 mr-2">01 / 04</span>
+        <button id="prevBtn" aria-label="Anterior" class="p-2.5 rounded-full border border-zinc-800 bg-zinc-900/70 hover:bg-zinc-800 text-zinc-200 transition active:scale-95">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button id="nextBtn" aria-label="Siguiente" class="p-2.5 rounded-full border border-zinc-800 bg-zinc-900/70 hover:bg-zinc-800 text-zinc-200 transition active:scale-95">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Viewport del carrusel -->
+    <div id="carouselViewport" class="relative overflow-hidden rounded-2xl border border-zinc-800/80 bg-zinc-900/40">
+      <div id="carouselTrack" class="carousel-track"></div>
+    </div>
+
+    <!-- Indicadores inferiores -->
+    <div id="carouselDots" class="flex items-center justify-center gap-2 mt-6"></div>
+
+    <!-- Visor rápido desplegable para ./embbed/index.html -->
+    <section id="embedDrawer" class="hidden mt-8 rounded-2xl border border-zinc-800 bg-zinc-950 overflow-hidden">
+      <div class="px-4 py-3 border-b border-zinc-800 flex items-center justify-between bg-zinc-900/60">
+        <span class="text-xs font-mono text-zinc-400">Vista previa: ./embbed/index.html</span>
+        <div class="flex items-center gap-3">
+          <a href="./embbed/index.html" class="text-xs text-rose-400 hover:underline">Abrir pantalla completa ↗</a>
+          <button id="closeDrawerBtn" class="text-xs px-2.5 py-1 rounded bg-zinc-800 hover:bg-zinc-700 text-zinc-200">
+            Cerrar
+          </button>
+        </div>
+      </div>
+      <iframe src="./embbed/index.html" class="w-full h-[70vh] border-0" loading="lazy" title="Pinterest CORE Embbed"></iframe>
+    </section>
+  </main>
+
+  <footer class="border-t border-zinc-900 py-4 text-center text-xs text-zinc-600">
+    Pinterest / CORE &bull; Arquitectura modular lista para Anime Core
+  </footer>
+
+  <script>
+    // Edita o amplía este arreglo para agregar nuevas tendencias o duplicar la plantilla en anime-core
+    const trends = [
+      {
+        tag: "Colección Activa • 34 Pines",
+        title: "CORE Embbed Grid",
+        description: "Tablero completo con los 34 enlaces incrustados en formato masonry responsivo listos para exploración visual.",
+        accent: "from-rose-500/20 via-zinc-900 to-zinc-950",
+        badgeColor: "text-rose-400 border-rose-500/30 bg-rose-500/10",
+        primaryAction: { label: "Abrir cuadrícula completa", href: "./embbed/index.html" },
+        secondaryAction: { label: "Vista previa aquí", action: "toggleDrawer" }
+      },
+      {
+        tag: "Tendencia 02 • Estética & Arquitectura",
+        title: "Dark Minimal & Industrial",
+        description: "Composiciones de alto contraste, geometría urbana, diseño visual oscuro y referencias de interfaz.",
+        accent: "from-amber-500/15 via-zinc-900 to-zinc-950",
+        badgeColor: "text-amber-400 border-amber-500/30 bg-amber-500/10",
+        primaryAction: { label: "Explorar en Embbed", href: "./embbed/index.html" },
+        secondaryAction: null
+      },
+      {
+        tag: "Tendencia 03 • Arte & Simbolismo",
+        title: "Visual & Conceptual Core",
+        description: "Selección curada de ilustraciones, portadas, tipografía experimental y dirección de arte.",
+        accent: "from-sky-500/15 via-zinc-900 to-zinc-950",
+        badgeColor: "text-sky-400 border-sky-500/30 bg-sky-500/10",
+        primaryAction: { label: "Explorar en Embbed", href: "./embbed/index.html" },
+        secondaryAction: null
+      },
+      {
+        tag: "Siguiente Módulo • En Preparación",
+        title: "Anime Core",
+        description: "Espacio dedicado dentro de Pinterest/anime-core/ para escenas icónicas, estilo retro/moderno y arte de animación.",
+        accent: "from-purple-500/20 via-zinc-900 to-zinc-950",
+        badgeColor: "text-purple-400 border-purple-500/30 bg-purple-500/10",
+        primaryAction: { label: "Ir a ruta Anime Core", href: "../anime-core/index.html" },
+        secondaryAction: null
+      }
+    ];
+
+    const track = document.getElementById("carouselTrack");
+    const dotsContainer = document.getElementById("carouselDots");
+    const counter = document.getElementById("slideCounter");
+    const embedDrawer = document.getElementById("embedDrawer");
+    let currentIndex = 0;
+
+    function renderSlides() {
+      track.innerHTML = trends.map((item) => `
+        <article class="w-full shrink-0 p-6 sm:p-10 md:p-14 bg-gradient-to-br ${item.accent} flex flex-col justify-between min-h-[340px] sm:min-h-[380px]">
+          <div class="max-w-2xl">
+            <span class="inline-block text-xs font-medium px-3 py-1 rounded-full border ${item.badgeColor} mb-4">
+              ${item.tag}
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-bold text-white tracking-tight mb-3">
+              ${item.title}
+            </h2>
+            <p class="text-sm sm:text-base text-zinc-400 leading-relaxed">
+              ${item.description}
+            </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3 mt-8">
+            <a href="${item.primaryAction.href}" class="px-5 py-2.5 rounded-xl bg-zinc-100 hover:bg-white text-zinc-950 font-semibold text-sm transition">
+              ${item.primaryAction.label}
+            </a>
+            ${item.secondaryAction ? `
+              <button onclick="toggleEmbedDrawer()" class="px-5 py-2.5 rounded-xl border border-zinc-700 hover:border-zinc-500 bg-zinc-900/80 text-zinc-200 font-medium text-sm transition">
+                ${item.secondaryAction.label}
+              </button>
+            ` : ""}
+          </div>
+        </article>
+      `).join("");
+
+      dotsContainer.innerHTML = trends.map((_, i) => `
+        <button
+          aria-label="Ir a diapositiva ${i + 1}"
+          onclick="goToSlide(${i})"
+          class="h-1.5 rounded-full transition-all ${i === currentIndex ? "w-8 bg-zinc-100" : "w-2 bg-zinc-700 hover:bg-zinc-500"}">
+        </button>
+      `).join("");
+    }
+
+    function updateCarousel() {
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+      const currentFormatted = String(currentIndex + 1).padStart(2, "0");
+      const totalFormatted = String(trends.length).padStart(2, "0");
+      counter.textContent = `${currentFormatted} / ${totalFormatted}`;
+
+      Array.from(dotsContainer.children).forEach((dot, i) => {
+        dot.className = `h-1.5 rounded-full transition-all ${
+          i === currentIndex ? "w-8 bg-zinc-100" : "w-2 bg-zinc-700 hover:bg-zinc-500"
+        }`;
+      });
+    }
+
+    function goToSlide(index) {
+      currentIndex = (index + trends.length) % trends.length;
+      updateCarousel();
+    }
+
+    function toggleEmbedDrawer() {
+      embedDrawer.classList.toggle("hidden");
+      if (!embedDrawer.classList.contains("hidden")) {
+        embedDrawer.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    document.getElementById("prevBtn").addEventListener("click", () => goToSlide(currentIndex - 1));
+    document.getElementById("nextBtn").addEventListener("click", () => goToSlide(currentIndex + 1));
+    document.getElementById("closeDrawerBtn").addEventListener("click", () => embedDrawer.classList.add("hidden"));
+
+    // Navegación con flechas del teclado
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") goToSlide(currentIndex - 1);
+      if (e.key === "ArrowRight") goToSlide(currentIndex + 1);
+    });
+
+    // Soporte táctil (swipe en móvil)
+    let touchStartX = 0;
+    const viewport = document.getElementById("carouselViewport");
+    viewport.addEventListener("touchstart", (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    viewport.addEventListener("touchend", (e) => {
+      const diff = touchStartX - e.changedTouches[0].screenX;
+      if (Math.abs(diff) > 45) {
+        goToSlide(diff > 0 ? currentIndex + 1 : currentIndex - 1);
+      }
+    }, { passive: true });
+
+    renderSlides();
+    updateCarousel();
+  </script>
+</body>
+</html>
 
