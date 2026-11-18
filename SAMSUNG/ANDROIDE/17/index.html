@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>SAMSUNG · ANDROIDE 17</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+:root{--bg:#050a14;--bg2:#0a1628;--bg3:#0f1f3d;--surface:#111c35;--border:#1e3060;--fg:#e8f0ff;--fg2:#8ba4d8;--fg3:#4a6098;--a17-teal:#00d4ff;--a17-magenta:#ff006e;--a17-gold:#ffd700;--a17-energy:#00ffcc;--samsung:#1428a0;--samsung-light:#3356d4;--oneui:#f5a623;color-scheme:dark;--font-display:'Orbitron',monospace;--font-body:'Inter',system-ui,sans-serif;--radius:12px;--glow-teal:0 0 20px rgba(0,212,255,.4),0 0 60px rgba(0,212,255,.15);--glow-magenta:0 0 20px rgba(255,0,110,.4),0 0 60px rgba(255,0,110,.15)}
+@media(prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f0f4ff;--bg2:#e0e8ff;--bg3:#d0dcff;--surface:#fff;--border:#b8c8f0;--fg:#0a1628;--fg2:#3356a0;--fg3:#6680c0;--a17-teal:#0088cc;--a17-magenta:#cc0055;--a17-energy:#00aa88;color-scheme:light}}
+:root[data-theme="light"]{--bg:#f0f4ff;--bg2:#e0e8ff;--bg3:#d0dcff;--surface:#fff;--border:#b8c8f0;--fg:#0a1628;--fg2:#3356a0;--fg3:#6680c0;--a17-teal:#0088cc;--a17-magenta:#cc0055;--a17-energy:#00aa88;color-scheme:light}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:var(--font-body);background:var(--bg);color:var(--fg);line-height:1.6;overflow-x:hidden}
+body{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0}
+#bg-canvas{position:fixed;inset:0;z-index:0;opacity:.6}
+.hero{position:relative;z-index:1;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-block:80px 60px;gap:0}
+.badge-top{font-family:var(--font-display);font-size:.65rem;letter-spacing:.25em;color:var(--a17-teal);text-transform:uppercase;padding:6px 20px;border:1px solid var(--a17-teal);border-radius:100px;margin-bottom:32px;box-shadow:var(--glow-teal)}
+.hero-eyebrow{font-family:var(--font-display);font-size:clamp(.7rem,2vw,.85rem);letter-spacing:.3em;color:var(--fg3);text-transform:uppercase;margin-bottom:16px}
+.hero-title{font-family:var(--font-display);font-size:clamp(2.8rem,10vw,7rem);font-weight:900;line-height:.9;letter-spacing:-.02em;margin-bottom:8px}
+.hero-title .line-samsung{display:block;color:var(--fg2);font-size:.38em;letter-spacing:.15em;font-weight:400;margin-bottom:12px}
+.hero-title .line-17{display:block;background:linear-gradient(135deg,var(--a17-teal) 0%,var(--a17-magenta) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 30px rgba(0,212,255,.5))}
+.hero-subtitle{font-family:var(--font-display);font-size:clamp(1rem,3vw,1.5rem);font-weight:400;color:var(--a17-gold);letter-spacing:.08em;margin-top:16px;margin-bottom:8px}
+.hero-quote{font-family:var(--font-body);font-size:clamp(.85rem,2vw,1rem);font-style:italic;color:var(--fg2);max-width:480px;margin:0 auto 40px;line-height:1.5}
+.hero-emblem{width:clamp(120px,20vw,180px);height:clamp(120px,20vw,180px);margin:0 auto 32px;position:relative}
+.emblem-ring{position:absolute;inset:0;border-radius:50%;border:2px solid var(--a17-teal);animation:pulse-ring 3s ease-in-out infinite}
+.emblem-ring:nth-child(2){inset:12px;border-color:var(--a17-magenta);animation-delay:1s}
+.emblem-core{position:absolute;inset:24px;border-radius:50%;background:radial-gradient(circle at 40% 35%,var(--bg3),var(--bg));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:2rem;font-weight:900;color:var(--a17-teal);text-shadow:var(--glow-teal)}
+@keyframes pulse-ring{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:1;transform:scale(1.04)}}
+.scroll-hint{font-family:var(--font-display);font-size:.6rem;letter-spacing:.2em;color:var(--fg3);text-transform:uppercase;margin-top:40px}
+.section{position:relative;z-index:1;padding-block:80px;max-width:900px;margin:0 auto}
+.section-label{font-family:var(--font-display);font-size:.65rem;letter-spacing:.3em;color:var(--a17-teal);text-transform:uppercase;margin-bottom:12px}
+.section-title{font-family:var(--font-display);font-size:clamp(1.4rem,4vw,2.2rem);font-weight:700;color:var(--fg);text-wrap:balance;margin-bottom:40px;line-height:1.2}
+.specs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.spec-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px 20px;position:relative;overflow:hidden;transition:border-color .3s}
+.spec-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--a17-teal),var(--a17-magenta));opacity:0;transition:opacity .3s}
+.spec-card:hover{border-color:var(--a17-teal)}.spec-card:hover::before{opacity:1}
+.spec-icon{font-size:1.5rem;margin-bottom:10px}
+.spec-label{font-family:var(--font-display);font-size:.6rem;letter-spacing:.25em;color:var(--fg3);text-transform:uppercase;margin-bottom:6px}
+.spec-value{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:var(--a17-teal);line-height:1.2;font-variant-numeric:tabular-nums}
+.spec-sub{font-size:.8rem;color:var(--fg2);margin-top:4px;font-weight:300}
+.gt-section{position:relative;z-index:1;padding-block:80px;max-width:900px;margin:0 auto}
+.gt-banner{background:linear-gradient(135deg,var(--bg3) 0%,var(--surface) 100%);border:1px solid var(--border);border-left:4px solid var(--a17-magenta);border-radius:var(--radius);padding:36px 32px;margin-bottom:40px;position:relative;overflow:hidden}
+.gt-banner::after{content:'GT';position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-family:var(--font-display);font-size:8rem;font-weight:900;color:var(--a17-magenta);opacity:.05;line-height:1;pointer-events:none}
+.gt-title{font-family:var(--font-display);font-size:clamp(1rem,3vw,1.4rem);font-weight:700;color:var(--a17-magenta);margin-bottom:12px;letter-spacing:.05em}
+.gt-desc{font-size:.95rem;color:var(--fg2);line-height:1.7;max-width:540px}
+.power-list{display:grid;gap:12px}
+.power-row{display:flex;align-items:center;gap:16px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:16px 20px}
+.power-num{font-family:var(--font-display);font-size:1.2rem;font-weight:900;color:var(--a17-gold);min-width:36px;font-variant-numeric:tabular-nums}
+.power-bar-wrap{flex:1;min-width:0}
+.power-name{font-family:var(--font-display);font-size:.7rem;letter-spacing:.15em;color:var(--fg2);text-transform:uppercase;margin-bottom:6px}
+.power-bar{height:4px;background:var(--bg3);border-radius:2px;overflow:hidden}
+.power-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--a17-teal),var(--a17-energy));transform-origin:left;animation:fill-bar 1.5s ease-out forwards;transform:scaleX(0)}
+@keyframes fill-bar{to{transform:scaleX(1)}}
+.power-pct{font-family:var(--font-display);font-size:.75rem;font-weight:700;color:var(--a17-teal);min-width:36px;text-align:right;font-variant-numeric:tabular-nums}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.feature-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px;display:flex;flex-direction:column;gap:10px}
+.feature-icon-wrap{width:48px;height:48px;border-radius:12px;background:var(--bg3);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.4rem}
+.feature-title{font-family:var(--font-display);font-size:.85rem;font-weight:700;color:var(--fg);letter-spacing:.03em}
+.feature-desc{font-size:.85rem;color:var(--fg2);line-height:1.6}
+.feature-tag{display:inline-block;font-family:var(--font-display);font-size:.55rem;letter-spacing:.2em;padding:3px 10px;border-radius:100px;text-transform:uppercase;background:rgba(0,212,255,.1);color:var(--a17-teal);border:1px solid rgba(0,212,255,.2);width:fit-content}
+.footer{position:relative;z-index:1;text-align:center;padding:60px 0 40px;border-top:1px solid var(--border);max-width:900px;margin:0 auto}
+.footer-logo{font-family:var(--font-display);font-size:.7rem;letter-spacing:.3em;color:var(--fg3);text-transform:uppercase;margin-bottom:8px}
+.footer-title{font-family:var(--font-display);font-size:1.1rem;font-weight:700;background:linear-gradient(90deg,var(--a17-teal),var(--a17-magenta));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:16px}
+.footer-links{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+.footer-link{font-size:.65rem;color:var(--fg3);text-decoration:none;font-family:var(--font-display);letter-spacing:.1em;text-transform:uppercase;transition:color .2s}
+.footer-link:hover{color:var(--a17-teal)}
+.footer-copy{font-size:.75rem;color:var(--fg3)}
+.divider{position:relative;z-index:1;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);max-width:900px;margin:0 auto}
+@media(max-width:480px){.hero{padding-block:60px 40px}.specs-grid{grid-template-columns:1fr 1fr}.gt-banner{padding:24px 20px}.power-row{padding:12px 14px}.features-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.emblem-ring{animation:none}.power-fill{animation:none;transform:scaleX(1)}}
+</style>
+</head>
+<body>
+<canvas id="bg-canvas"></canvas>
+<section class="hero">
+  <div class="badge-top">SADV41 // NODO TECNOLÓGICO</div>
+  <p class="hero-eyebrow">Samsung Galaxy A16 · Panamá · 18 Nov 2026</p>
+  <div class="hero-emblem" aria-hidden="true">
+    <div class="emblem-ring"></div>
+    <div class="emblem-ring"></div>
+    <div class="emblem-core">17</div>
+  </div>
+  <h1 class="hero-title">
+    <span class="line-samsung">SAMSUNG</span>
+    <span class="line-17">ANDROIDE<br>17</span>
+  </h1>
+  <p class="hero-subtitle">ONE UI 9.0 · ANDROID 17</p>
+  <p class="hero-quote">"Número 17. No sirvo a nadie. Soy libre y protejo lo que amo."</p>
+  <p class="scroll-hint">↓ Especificaciones del sistema ↓</p>
+</section>
+<div class="divider"></div>
+<section class="section">
+  <p class="section-label">Sistema operativo</p>
+  <h2 class="section-title">Información de software actualizado</h2>
+  <div class="specs-grid">
+    <div class="spec-card"><div class="spec-icon">🤖</div><div class="spec-label">Android</div><div class="spec-value">17</div><div class="spec-sub">Dragon Bolseta Edition</div></div>
+    <div class="spec-card"><div class="spec-icon">🎨</div><div class="spec-label">Interfaz</div><div class="spec-value">One UI 9.0</div><div class="spec-sub">Samsung Galaxy A16</div></div>
+    <div class="spec-card"><div class="spec-icon">🛡️</div><div class="spec-label">Parche de seguridad</div><div class="spec-value">Oct 2026</div><div class="spec-sub">Nivel más reciente</div></div>
+    <div class="spec-card"><div class="spec-icon">📦</div><div class="spec-label">Build</div><div class="spec-value">A165M</div><div class="spec-sub">UBUBEZJ7 / MOWOBEZJ7</div></div>
+    <div class="spec-card"><div class="spec-icon">🔄</div><div class="spec-label">Apps actualizadas</div><div class="spec-value">69+</div><div class="spec-sub">Galaxy Store + Play Store</div></div>
+    <div class="spec-card"><div class="spec-icon">⚡</div><div class="spec-label">Estado</div><div class="spec-value">Activo</div><div class="spec-sub">Software al día ✓</div></div>
+  </div>
+</section>
+<div class="divider"></div>
+<section class="gt-section">
+  <p class="section-label">Homenaje</p>
+  <h2 class="section-title">Dragon Ball GT × Android 17</h2>
+  <div class="gt-banner">
+    <p class="gt-title">📺 Dragon Ball GT — El androide que se convirtió en héroe</p>
+    <p class="gt-desc">En GT, el Androide Número 17 —orgulloso y salvaje desde DBZ— alcanza su forma definitiva fusionándose con su contraparte del Infierno: Super 17. Un guerrero de energía infinita que absorbe cada ataque. Android 17 en la pantalla. Android 17 en el sistema. La versión 17 de Android corre en este Samsung como una nueva era del universo Dragon Ball.</p>
+  </div>
+  <div class="power-list">
+    <div class="power-row"><div class="power-num">17</div><div class="power-bar-wrap"><div class="power-name">Android 17 — Nivel de poder base</div><div class="power-bar"><div class="power-fill" style="animation-delay:.1s"></div></div></div><div class="power-pct">95%</div></div>
+    <div class="power-row"><div class="power-num">S17</div><div class="power-bar-wrap"><div class="power-name">Super Android 17 — Absorción máxima</div><div class="power-bar"><div class="power-fill" style="animation-delay:.3s;background:linear-gradient(90deg,var(--a17-magenta),var(--a17-teal))"></div></div></div><div class="power-pct">100%</div></div>
+    <div class="power-row"><div class="power-num">UI9</div><div class="power-bar-wrap"><div class="power-name">One UI 9.0 — Evolución del sistema</div><div class="power-bar"><div class="power-fill" style="animation-delay:.5s;background:linear-gradient(90deg,var(--samsung-light),var(--a17-teal))"></div></div></div><div class="power-pct">90%</div></div>
+  </div>
+</section>
+<div class="divider"></div>
+<section class="section">
+  <p class="section-label">One UI 9 · Novedades clave</p>
+  <h2 class="section-title">Lo que trae la nueva era</h2>
+  <div class="features-grid">
+    <div class="feature-card"><div class="feature-icon-wrap">🧠</div><div class="feature-title">Galaxy AI</div><div class="feature-desc">Inteligencia artificial integrada al núcleo del sistema — transcripción, resumen, traducción en tiempo real y asistencia contextual.</div><span class="feature-tag">Nuevo</span></div>
+    <div class="feature-card"><div class="feature-icon-wrap">🔒</div><div class="feature-title">Knox Vault</div><div class="feature-desc">Seguridad de nivel empresarial. Parche Oct 2026 activo. Verificación automática de integridad del sistema en cada arranque.</div><span class="feature-tag">Seguridad</span></div>
+    <div class="feature-card"><div class="feature-icon-wrap">🎨</div><div class="feature-title">UI refinada</div><div class="feature-desc">Animaciones más fluidas, íconos rediseñados, paleta adaptativa y temas dinámicos sincronizados con la galería y el fondo de pantalla.</div><span class="feature-tag">Diseño</span></div>
+    <div class="feature-card"><div class="feature-icon-wrap">⚡</div><div class="feature-title">Rendimiento</div><div class="feature-desc">Gestión optimizada de RAM y batería. 69 apps actualizadas simultáneamente el día del lanzamiento en Panamá.</div><span class="feature-tag">Performance</span></div>
+    <div class="feature-card"><div class="feature-icon-wrap">📱</div><div class="feature-title">Galaxy Store</div><div class="feature-desc">Actualización masiva de apps del ecosistema Samsung: Buds, Health (349 MB), Calendar, Smart Switch y más desde la tienda nativa.</div><span class="feature-tag">Ecosistema</span></div>
+    <div class="feature-card"><div class="feature-icon-wrap">🌐</div><div class="feature-title">SADV41 × Samsung</div><div class="feature-desc">Este nodo documenta la actualización histórica para el portal SADV41 — el momento en que Dragon Ball GT llegó al sistema.</div><span class="feature-tag">Nodo SADV41</span></div>
+  </div>
+</section>
+<footer class="footer">
+  <div class="footer-logo">SADV41 · StevenDior · Panamá 🇵🇦</div>
+  <div class="footer-title">SAMSUNG · ANDROIDE 17 · ONE UI 9</div>
+  <div class="footer-links">
+    <a class="footer-link" href="../../../">Portal SADV41</a>
+    <a class="footer-link" href="../../ZADV41/">ZADV41</a>
+    <a class="footer-link" href="../../WEATHER/">Weather</a>
+  </div>
+  <div class="footer-copy">© 2026 StevenDior · Nodo Tecnológico SADV41 · Dragon Ball GT homenaje</div>
+</footer>
+<script>
+(function(){const c=document.getElementById('bg-canvas');const x=c.getContext('2d');let p=[],W,H;function r(){W=c.width=window.innerWidth;H=c.height=window.innerHeight}function g(){const d=window.matchMedia('(prefers-color-scheme: dark)').matches;const t=document.documentElement.getAttribute('data-theme');const dk=t==='dark'||(!t&&d);return dk?['rgba(0,212,255,','rgba(255,0,110,','rgba(0,255,204,']:['rgba(0,136,204,','rgba(204,0,85,','rgba(0,170,136,']}function mk(){const cl=g();return{x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+0.3,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,a:Math.random(),da:(Math.random()-.5)*.008,color:cl[Math.floor(Math.random()*cl.length)]}}function init(){r();p=Array.from({length:120},mk)}function draw(){x.clearRect(0,0,W,H);for(const q of p){q.x+=q.vx;q.y+=q.vy;q.a+=q.da;if(q.a<0||q.a>1)q.da*=-1;if(q.x<0)q.x=W;if(q.x>W)q.x=0;if(q.y<0)q.y=H;if(q.y>H)q.y=0;x.beginPath();x.arc(q.x,q.y,q.r,0,Math.PI*2);x.fillStyle=q.color+Math.min(q.a,.7)+')';x.fill()}requestAnimationFrame(draw)}init();draw();window.addEventListener('resize',r)})();
+</script>
+</body>
+</html>
