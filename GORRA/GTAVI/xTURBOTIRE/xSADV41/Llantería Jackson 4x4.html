@@ -1,0 +1,536 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Llantería Jackson 4x4</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Barlow:wght@400;500;600&display=swap">
+
+<style>
+/* ============================================================
+   LLANTERÍA JACKSON — Kit de Respuesta Comunitaria
+   Layout: full-bleed dark industrial, orange tactical accent
+   ============================================================ */
+:root {
+  --bg:       #0d0e10;
+  --surface:  #141618;
+  --panel:    #1a1c20;
+  --border:   #2a2d33;
+  --fg:       #eceef2;
+  --muted:    #8a909c;
+  --accent:   #f05a0e;
+  --accent2:  #ffb347;
+  --warn:     #f7c948;
+  --safe:     #34c97e;
+  --stripe:   rgba(240,90,14,0.08);
+  color-scheme: dark;
+}
+/* single-theme: industrial dark by design */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Barlow', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  padding-block: env(safe-area-inset-top, 0px) env(safe-area-inset-bottom, 0px);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  font-variant-numeric: tabular-nums;
+  line-height: 1.4;
+}
+
+/* ---- UTILITY ---- */
+.condensed { font-family: 'Barlow Condensed', sans-serif; }
+.accent { color: var(--accent); }
+.warn { color: var(--warn); }
+.muted { color: var(--muted); }
+
+/* ---- WRAPPER ---- */
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding-block: 20px 36px;
+}
+
+/* ---- TOP BAR ---- */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: var(--accent);
+  border-radius: 6px 6px 0 0;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #fff;
+  flex-wrap: wrap;
+}
+.topbar .dot { opacity: .5; }
+
+/* ---- HERO ---- */
+.hero {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-top: none;
+  padding: 24px 20px 20px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: repeating-linear-gradient(
+    -55deg,
+    transparent,
+    transparent 28px,
+    var(--stripe) 28px,
+    var(--stripe) 30px
+  );
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(240,90,14,0.15);
+  border: 1px solid rgba(240,90,14,0.4);
+  color: var(--accent);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-bottom: 14px;
+}
+.hero-badge .dot {
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 1.8s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50%      { opacity: .4; transform: scale(.7); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-badge .dot { animation: none; }
+}
+.hero h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: clamp(2.4rem, 8vw, 3.4rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  color: var(--fg);
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--accent);
+}
+.hero-sub {
+  margin-top: 10px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.hero-tagline {
+  margin-top: 14px;
+  font-size: 0.9rem;
+  color: #c5c8d0;
+  max-width: 480px;
+  line-height: 1.55;
+}
+
+/* ---- SISMO ALERT ---- */
+.alert-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(247,201,72,0.1);
+  border: 1px solid rgba(247,201,72,0.35);
+  border-radius: 6px;
+  padding: 12px 14px;
+  margin-top: 18px;
+}
+.alert-icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+.alert-text {
+  font-size: 0.85rem;
+  color: var(--warn);
+  font-weight: 600;
+  line-height: 1.4;
+}
+.alert-text span {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+/* ---- SECTION LABEL ---- */
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 24px 0 12px;
+}
+.section-label::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ---- SERVICE GRID ---- */
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 10px;
+}
+.service-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.service-card:hover {
+  border-color: rgba(240,90,14,0.4);
+}
+.svc-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.svc-body {}
+.svc-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--fg);
+  margin-bottom: 4px;
+}
+.svc-where {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(240,90,14,0.1);
+  border: 1px solid rgba(240,90,14,0.25);
+  border-radius: 3px;
+  padding: 1px 6px;
+  margin-bottom: 6px;
+}
+.svc-desc {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.svc-tags {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.svc-tag {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #9ea4b0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 2px 6px;
+}
+
+/* ---- PROTOCOL BOX ---- */
+.protocol {
+  background: rgba(52,201,126,0.07);
+  border: 1px solid rgba(52,201,126,0.3);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-top: 10px;
+}
+.protocol-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--safe);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.protocol-steps {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.protocol-steps li {
+  font-size: 0.84rem;
+  color: #cdd1d9;
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.45;
+}
+.protocol-steps li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--safe);
+  font-weight: 700;
+}
+
+/* ---- LOCATION ---- */
+.location-block {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.loc-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+.loc-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--fg);
+  margin-bottom: 4px;
+}
+.loc-addr {
+  font-size: 0.84rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+.loc-network {
+  font-size: 0.8rem;
+  color: #7a8090;
+  font-style: italic;
+}
+
+/* ---- CONTACT ---- */
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.contact-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: var(--accent);
+  color: #fff;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+.contact-secondary {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+/* ---- FOOTER ---- */
+.footer {
+  margin-top: 24px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.footer-brand {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.footer-brand strong { color: var(--accent); }
+.footer-status {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--safe);
+  border: 1px solid rgba(52,201,126,0.3);
+  border-radius: 4px;
+  padding: 3px 8px;
+}
+</style>
+
+<div class="page">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <span>Llantería Jackson</span>
+    <span class="dot">·</span>
+    <span>SADV41</span>
+    <span class="dot">·</span>
+    <span>Proyecto Patrick</span>
+    <span class="dot">·</span>
+    <span>Movilidad 4×4 · Coclé</span>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge"><span class="dot"></span> Alerta Sísmica Activa · Azuero 2026</div>
+    <h1 class="condensed">Kit de <em>Respuesta</em><br>Comunitaria</h1>
+    <p class="hero-sub">Gestión de Crisis &rsaquo; Facilitación de Movilidad Regional</p>
+    <p class="hero-tagline">
+      Prepara tu vehículo 4×4, SUV o flota de trabajo con soporte técnico especializado
+      y stock real para todo terreno en Los Santos y Veraguas.
+    </p>
+
+    <div class="alert-bar">
+      <span class="alert-icon">⚠️</span>
+      <div class="alert-text">
+        <span>Terremoto M4.9</span> registrado en Azuero (Ineter) ·
+        Réplicas activas M3.2–M3.7 · Protocolo SINAPROC vigente
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <div class="section-label">Equipamiento y Servicio Automotriz Integral</div>
+
+  <div class="services">
+
+    <div class="service-card">
+      <span class="svc-icon">🛞</span>
+      <div class="svc-body">
+        <div class="svc-title">Rines y Llantas</div>
+        <span class="svc-where">Llantería TurboTire</span>
+        <p class="svc-desc">Medidas Rin 13 a Rin 22. Perfiles All-Terrain, Mud-Terrain y Highway.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Windforce</span>
+          <span class="svc-tag">Tourador</span>
+          <span class="svc-tag">MT · AT · HT</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="svc-icon">🔧</span>
+      <div class="svc-body">
+        <div class="svc-title">Lubricación y Cambio de Aceite</div>
+        <span class="svc-where">Llantería Jackson · Taller Burunga</span>
+        <p class="svc-desc">Mantenimiento preventivo con aceites y lubricantes Repsol de grado industrial.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Repsol</span>
+          <span class="svc-tag">Grado Industrial</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="svc-icon">🩹</span>
+      <div class="svc-body">
+        <div class="svc-title">Vulcanización y Reparación</div>
+        <span class="svc-where">Llantería R&amp;D</span>
+        <p class="svc-desc">Parches en frío y caliente, sellado estructural de neumáticos. Servicio derivado y atendido en R&amp;D.</p>
+      </div>
+    </div>
+
+    <div class="service-card">
+      <span class="svc-icon">⚡</span>
+      <div class="svc-body">
+        <div class="svc-title">Operaciones Rápidas en Pista</div>
+        <span class="svc-where">Llantería Jackson</span>
+        <p class="svc-desc">Montaje, desmonte rápido y balanceo computarizado para máxima estabilidad en carretera.</p>
+        <div class="svc-tags">
+          <span class="svc-tag">Desmonte Rápido</span>
+          <span class="svc-tag">Balanceo</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PROTOCOL -->
+  <div class="section-label">Protocolo de Crisis SINAPROC</div>
+  <div class="protocol">
+    <div class="protocol-title">⚠ Si sientes réplicas — Protocolo Oficial</div>
+    <ul class="protocol-steps">
+      <li>Agáchate, cúbrete y sujétate. Protege tu cabeza y nuca.</li>
+      <li>Aléjate de fachadas, ventanas y tendido eléctrico.</li>
+      <li>No uses el ascensor. Sal con calma una vez que cese el movimiento.</li>
+      <li>Reporta daños estructurales al SINAPROC (+507 232-5959).</li>
+    </ul>
+  </div>
+
+  <!-- LOCATION -->
+  <div class="section-label">Ubicación y Contacto Directo</div>
+
+  <div class="location-block">
+    <span class="loc-icon">📍</span>
+    <div>
+      <div class="loc-name">Sede Central — Llantería Jackson</div>
+      <div class="loc-addr">
+        Carretera Panamericana, frente a Autorepuestos Penonomé, Coclé.<br>
+        Red de apoyo operativo: Burunga · Arraiján.
+      </div>
+      <div class="loc-network">Atención a flotas y particulares · Cotiza medidas exactas vía WhatsApp</div>
+      <div class="contact-row">
+        <a class="contact-pill" href="https://maps.google.com/?q=Llantería+Jackson+Penonomé+Coclé+Panamá" target="_blank">🗺 Ver en Google Maps</a>
+        <a class="contact-pill" style="background:var(--panel);border:1px solid var(--border);color:var(--muted);" href="https://maps.app.goo.gl/VB7zHnHi7doGrKN59" target="_blank">🗺 Llantería R&amp;D</a>
+      </div>
+      <div class="contact-row" style="margin-top:6px">
+        <a class="contact-pill" style="background:var(--panel);border:1px solid var(--border);color:var(--muted);" href="https://maps.app.goo.gl/RBMVR4fVh7wL6F5P7" target="_blank">🗺 Taller Burunga · Arraiján</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-brand">
+      SADV41 by <strong>StevenDior</strong> · Vanguardia · Llantil 💪🇵🇦⭐
+    </div>
+    <div class="footer-status">Operational Ready</div>
+  </div>
+
+</div>
+
+</body></html>
