@@ -3,143 +3,87 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SADV41 - GORRA / GTAVI / xTURBOTIRE / xSADV41</title>
-<!-- ARCHIVO: GORRA/GTAVI/xTURBOTIRE/xSADV41/index.html -->
-<!-- ESTE HTML ESTA VACIO EN GITHUB - ESTE ES SU CODIGO -->
-<!-- CARPETA MISMA: NQE44.mp4 / NQE44-1.mp4 / Llantería Jackson 4x4.html -->
-<!-- GRAFITTI EN: Grafitti/Meta_AI_914477268_1448986313397788_5389888804567283550_n_20261119_001042.webp -->
-<!-- GRAFITTI FOOT: Grafitti/Meta_AI_911340875_1087113204375374_7218780048687933429_n_20261119_001049.webp -->
-<!-- LOGO SADV41: 1795062132345.png (nombre completo visible en GitHub) -->
-<!-- IMAGEN 1 SADV41: Meta_AI_913190831_992743273395394_8651540229080396409_n_2026... - pega nombre completo desde icono copiar en GitHub -->
-<!-- IMAGEN 2 SADV41: Meta_AI_913070097_2351334332268055_9219904229288844622_n_2026... - pega nombre completo desde icono copiar en GitHub -->
+<title>xTURBOTIRE · Rines y Llantas TRD 4X4 · GORRA / GTAVI</title>
+<!-- ARCHIVO: GORRA/GTAVI/xTURBOTIRE/index.html -->
+<!-- DESDE AQUI: ../../ = GORRA | ../ = GTAVI | ./xSADV41/ = XSADV41 -->
+<!-- SUNSET: ../../sunset/20261118_180414.jpg -->
+<!-- FLYERS EN ESTA MISMA CARPETA -->
+<!-- VIDEOS: ./xSADV41/NQE44.mp4 / NQE44-1.mp4 -->
+<!-- LLANTERIA: ./xSADV41/Llantería Jackson 4x4.html -->
+<!-- GRAFITTI: ./xSADV41/Grafitti/index.html -->
 <style>
-:root{--bg:#050505;--surface:#11161f;--border:#242e42;--accent:#ff9900;--pink:#ff2bd6;--cyan:#00e5ff;--blue:#2b6cff;--text:#eef2f8;--green:#00ff00}
+:root{--bg:#050505;--surface:#11161f;--border:#242e42;--accent:#ff9900;--pink:#ff2bd6;--cyan:#00e5ff;--blue:#2b6cff;--gold:#ffb347;--text:#eef2f8}
 *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif}
 a{color:var(--cyan)} img{max-width:100%}
 .head-banner,.foot-banner{width:100%;display:block}
 .wrap{max-width:980px;margin:0 auto;padding:18px 14px 40px}
 .nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:14px 0}
 .nav a{padding:10px 14px;border-radius:999px;border:1px solid var(--border);text-decoration:none;font-weight:800;font-size:13px;background:#0a0d14;color:var(--text)}
-.nav a.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.nav a.active{background:var(--accent);border-color:var(--accent);color:#000}
+.hero{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--accent);margin:14px 0}
+.hero img{width:100%;height:320px;object-fit:cover;display:block}
+.hero .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.85));display:flex;flex-direction:column;justify-content:flex-end;padding:16px}
+.hero h1{margin:0;font-size:clamp(26px,5vw,42px);text-transform:uppercase;line-height:1.05}
+.hero p{margin:6px 0 0;color:#e2e8f0}
 .logo-center{text-align:center}.logo-center img{width:min(520px,92%)}
-.hero{text-align:center}.hero h1{font-size:clamp(24px,5vw,40px);margin:8px 0;text-transform:uppercase;line-height:1.05}
-.hero h1 span:nth-child(1){color:var(--pink)} .hero h1 span:nth-child(2){color:var(--cyan)} .hero h1 span:nth-child(3){color:var(--blue)}
 .btn{display:inline-block;padding:12px 18px;border-radius:999px;font-weight:900;text-decoration:none}
-.btn-wsp{background:#25D366;color:#000}.btn-ghost{border:1px solid var(--cyan);color:var(--cyan)}.btn-blue{background:var(--blue);color:#fff}.btn-orange{background:var(--accent);color:#000}
-.toggle{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0}
-.toggle button{padding:16px 12px;border-radius:14px;border:2px solid var(--border);background:#0a0d14;color:var(--text);font-weight:900;cursor:pointer;text-transform:uppercase}
-.toggle button.active-turbo{border-color:var(--accent);background:#2a1400}
-.toggle button.active-sadv{border-color:var(--cyan);background:#001a2a}
+.btn-wsp{background:#25D366;color:#000}.btn-ghost{border:1px solid var(--cyan);color:var(--cyan)}.btn-blue{background:var(--blue);color:#fff}.btn-gold{background:var(--gold);color:#000}.btn-pink{background:var(--pink);color:#fff}.btn-orange{background:var(--accent);color:#000}
 .grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
-@media(min-width:720px){.grid{grid-template-columns:1fr 1fr}}
+@media(min-width:720px){.grid{grid-template-columns:1fr 1fr} .grid3{grid-template-columns:1fr 1fr 1fr}}
 .card{background:#0a0d14;border:1px solid var(--border);border-radius:14px;overflow:hidden}
-.card img{width:100%;height:260px;object-fit:cover;display:block}
+.card img{width:100%;height:280px;object-fit:cover;display:block}
 .card div{padding:12px}.card h3{margin:0 0 6px}.card p{margin:0;color:#cbd5e1;font-size:14px;line-height:1.5}
-.video-grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
-@media(min-width:720px){.video-grid{grid-template-columns:1fr 1fr}}
-video{width:100%;border-radius:12px;background:#000}
 .section-title{text-align:center;margin:28px 0 6px;text-transform:uppercase;letter-spacing:2px}
 .box{background:#0a0d14;border:1px solid var(--border);border-radius:14px;padding:16px}
-.box-blue{border-color:var(--blue)} .box-orange{border-color:var(--accent)}
-.hidden{display:none!important}
+.box-blue{border-color:var(--blue)} .box-orange{border-color:var(--accent)} .box-gold{border-color:var(--gold)} .box-cyan{border-color:var(--cyan)} .box-pink{border-color:var(--pink)}
+video{width:100%;border-radius:12px;background:#000}
 </style>
 </head>
 <body>
-<img class="head-banner" src="Grafitti/Meta_AI_914477268_1448986313397788_5389888804567283550_n_20261119_001042.webp" alt="Head graffiti">
-
+<img class="head-banner" src="./xSADV41/Grafitti/Meta_AI_914477268_1448986313397788_5389888804567283550_n_20261119_001042.webp" alt="Head graffiti">
 <div class="wrap">
-  <!-- CADA ESPACIO TIENE SU PROPIO BOTON -->
-  <nav class="nav">
-    <a href="../../../index.html">← GORRA</a>
-    <a href="../../index.html">GTAVI</a>
-    <a href="../index.html">xTURBOTIRE</a>
-    <a href="./index.html" class="active">xSADV41 · ESTAS AQUI</a>
-    <a href="./Llantería Jackson 4x4.html">Llantería Jackson 4x4</a>
-  </nav>
-
-  <div class="logo-center"><img src="1795062132345.png" alt="Logo SADV41"></div>
-
-  <div class="hero">
-    <h1><span>GORRA</span> / <span>GTAVI</span> / <span>SADV41</span></h1>
-    <p>Dentro del mismo GORRA se intercala hacia GTAVI y cambia según la preferencia del cliente.</p>
-    <p><b>Si eliges TURBOTIRE:</b> se enfoca en rines y llantas, todo TRD 4X4.<br><b>Si eliges SADV41:</b> se informa, comunidad, sismo, Llantería Jackson.</p>
-  </div>
-
-  <!-- INTERCALADOR GORRA -> GTAVI -> PREFERENCIA -->
-  <div class="toggle">
-    <button id="btn-turbo" onclick="setMode('turbo')">🛞 TURBOTIRE<br><small>Rines y Llantas · TRD 4X4</small></button>
-    <button id="btn-sadv" onclick="setMode('sadv')" class="active-sadv">💙 SADV41<br><small>Informa · Comunidad · Sismo</small></button>
-  </div>
-
-  <!-- VISTA TURBOTIRE -->
-  <section id="vista-turbo" class="hidden">
-    <h2 class="section-title">TURBOTIRE · Rines y Llantas · TRD 4X4</h2>
-    <div class="box box-orange">
-      <h3 style="margin:0 0 8px">Saca tus Rines y Llantas a Crédito</h3>
-      <p style="margin:0;color:#cbd5e1;line-height:1.6">Todo TRD 4X4. Rin 13 a Rin 22. Perfiles AT / MT / HT. Windforce · Tourador. Montaje, desmonte rápido y balanceo.</p>
-      <p style="margin:12px 0 0"><a class="btn btn-wsp" href="https://wa.me/50763263403" target="_blank" rel="noopener">WhatsApp 6326-3403 · Cotizar</a> <a class="btn btn-ghost" href="../index.html">Ir a xTURBOTIRE →</a></p>
-    </div>
-    <div class="grid">
-      <article class="card"><img src="../Screenshot_20261118_230954_Instagram Lite.jpg" alt="Flyer TurboTire"><div><h3>Flyer TurboTire</h3><p>Modelo, pila y Prado blanca. Ver flyers completos en xTURBOTIRE.</p></div></article>
-      <article class="card"><img src="../Meta_AI_913225738_1760817821689459_8406234385767289554_n_20261118.jpg" alt="Gorra sobre pila"><div><h3>Gorra · Capítulo 3</h3><p>Gorra negra sobre pila de llantas. Misma ciudad costera, mismo atardecer.</p></div></article>
-    </div>
-  </section>
-
-  <!-- VISTA SADV41 - POR DEFECTO EN ESTA CARPETA -->
-  <section id="vista-sadv">
-    <h2 class="section-title">SADV41 · Informa</h2>
-    <div class="box box-blue">
-      <h3 style="margin:0 0 8px">SADV41 · Sociedad · Misión · Comunidad</h3>
-      <p style="margin:0;color:#cbd5e1;line-height:1.6">SADV41 informa. Aquí va lo que corresponde a SADV41: sismo anterior, Llantería Jackson, comunidad, videos NQE44 y los artes de SADV41.</p>
-      <p style="margin:12px 0 0"><a class="btn btn-blue" href="./Llantería Jackson 4x4.html">Abrir Llantería Jackson 4x4 →</a> <a class="btn btn-wsp" href="https://wa.me/50763263403" target="_blank" rel="noopener">WhatsApp 6326-3403</a></p>
-    </div>
-
-    <h3 class="section-title">Artes SADV41 · Gorra S</h3>
-    <div class="grid">
-      <article class="card"><img src="Meta_AI_913190831_992743273395394_8651540229080396409_n_20261119.jpg" alt="Personaje gorra S"><div><h3>1 · Personaje Gorra S</h3><p>Gorra negra con logo S en hexágono cyan, ojos cyan, lluvia, noche. Pega el nombre completo desde GitHub si sale cortado.</p></div></article>
-      <article class="card"><img src="Meta_AI_913070097_2351334332268055_9219904229288844622_n_20261119.jpg" alt="Personaje SADV41 ciudad"><div><h3>2 · SADV41 en Ciudad</h3><p>Mismo personaje en ciudad de noche, llantería de fondo, lluvia. Pega el nombre completo desde GitHub si sale cortado.</p></div></article>
-    </div>
-
-    <h3 class="section-title">Videos SADV41 · NQE44</h3>
-    <div class="video-grid">
-      <div class="box"><h4 style="margin:0 0 8px">NQE44.mp4</h4><video controls preload="metadata" src="NQE44.mp4"></video><p style="color:#cbd5e1;font-size:13px">Video SADV41 en esta misma carpeta: GORRA/GTAVI/xTURBOTIRE/xSADV41/NQE44.mp4</p></div>
-      <div class="box"><h4 style="margin:0 0 8px">NQE44-1.mp4</h4><video controls preload="metadata" src="NQE44-1.mp4"></video><p style="color:#cbd5e1;font-size:13px">Video SADV41 en esta misma carpeta: GORRA/GTAVI/xTURBOTIRE/xSADV41/NQE44-1.mp4</p></div>
-    </div>
-
-    <h3 class="section-title">Llantería Jackson 4x4 · Por lo del Sismo Anterior</h3>
-    <div class="box">
-      <p style="margin:0;color:#cbd5e1;line-height:1.6"><b>⚠️ Terremoto M4.9 en Azuero · Réplicas M3.2–M3.7 · Protocolo SINAPROC vigente.</b><br>Kit de Respuesta Comunitaria. Prepara tu 4x4, SUV o flota con rines, llantas, lubricación 【entity-Repsol¦canonical_name=Repsol】, vulcanización y balanceo. Sede Central: Carretera Panamericana, frente a Autorepuestos Penonomé, Coclé. Red de apoyo: Burunga · Arraiján.</p>
-      <p style="margin:12px 0 0"><a class="btn btn-orange" href="./Llantería Jackson 4x4.html">Abrir Página Completa: Llantería Jackson 4x4 →</a></p>
-      <p style="margin:10px 0 0;font-size:13px;color:#cbd5e1">Archivo en: GORRA/GTAVI/xTURBOTIRE/xSADV41/Llantería Jackson 4x4.html</p>
-    </div>
-  </section>
-
-  <p style="text-align:center;margin:24px 0 0"><a class="btn btn-ghost" href="../index.html">← Volver a xTURBOTIRE</a> <a class="btn btn-ghost" href="../../index.html">GTAVI</a> <a class="btn btn-ghost" href="../../../index.html">GORRA</a></p>
+<nav class="nav">
+<a href="../../index.html">← GORRA</a>
+<a href="../index.html">GTAVI</a>
+<a href="./index.html" class="active">xTURBOTIRE</a>
+<a href="./xSADV41/index.html">xSADV41</a>
+<a href="./xSADV41/Grafitti/index.html">Grafitti</a>
+<a href="../../Lazzie.html">Lazzie</a>
+<a href="../../pompoduinis.html">Pompoduinis · TODO</a>
+<a href="../../sunset/index.html">🌅 Sunset</a>
+</nav>
+<section class="hero">
+<img src="./Screenshot_20261118_230954_Instagram Lite.jpg" alt="TurboTire flyer original">
+<div class="overlay">
+<h1>xTURBOTIRE · Rines y Llantas</h1>
+<p>🛞 Saca tus Rines y Llantas a Crédito · TRD 4X4 · Rin 13 a Rin 22 · AT / MT / HT</p>
+<p style="margin-top:10px"><a class="btn btn-wsp" href="https://wa.me/50763263403" target="_blank" rel="noopener">WhatsApp 6326-3403</a> <a class="btn btn-orange" href="./xSADV41/Llantería Jackson 4x4.html">Llantería Jackson 4x4 →</a></p>
 </div>
-
-<img class="foot-banner" src="Grafitti/Meta_AI_911340875_1087113204375374_7218780048687933429_n_20261119_001049.webp" alt="Foot graffiti">
-
-<script>
-function setMode(mode){
-  var turbo=document.getElementById('vista-turbo');
-  var sadv=document.getElementById('vista-sadv');
-  var bT=document.getElementById('btn-turbo');
-  var bS=document.getElementById('btn-sadv');
-  if(mode==='turbo'){
-    turbo.classList.remove('hidden'); sadv.classList.add('hidden');
-    bT.classList.add('active-turbo'); bS.classList.remove('active-sadv');
-  }else{
-    sadv.classList.remove('hidden'); turbo.classList.add('hidden');
-    bS.classList.add('active-sadv'); bT.classList.remove('active-turbo');
-  }
-  try{localStorage.setItem('sadv41-modo',mode);}catch(e){}
-}
-(function(){
-  try{
-    var m=localStorage.getItem('sadv41-modo');
-    if(m==='turbo') setMode('turbo'); else setMode('sadv');
-  }catch(e){ setMode('sadv'); }
-})();
-</script>
+</section>
+<div class="logo-center"><img src="./xSADV41/Grafitti/Meta_AI_turbotire_gtavi_sadv41_cutout_20261118_235803.png" alt="Logo"></div>
+<div class="box box-orange">
+<h3 style="margin:0 0 8px">TURBOTIRE se enfoca en rines y llantas</h3>
+<p style="margin:0;color:#cbd5e1;line-height:1.6">Todo TRD 4X4. Windforce · Tourador. Montaje, desmonte rápido y balanceo. Dentro de GORRA, TURBOTIRE intercala hacia GTAVI y SADV41 informa.</p>
+<p style="margin:12px 0 0"><a class="btn btn-orange" href="./xSADV41/index.html">xSADV41 · Informa →</a> <a class="btn btn-ghost" href="../index.html">GTAVI →</a></p>
+</div>
+<h2 class="section-title">Flyers TurboTire · Arte Original</h2>
+<div class="grid">
+<article class="card"><img src="./Screenshot_20261118_230954_Instagram Lite.jpg" alt="Flyer original"><div><h3>1 · Flyer Original</h3><p>Modelo, pila y Prado blanca, atardecer costero.</p></div></article>
+<article class="card"><img src="./Meta_AI_914529988_1154692873719563_10035675771857815_n_20261118.jpg" alt="Gorra retrovisor"><div><h3>2 · Gorra Naranja Retrovisor</h3><p>Vista interior, gorra colgando del retrovisor. Pega nombre completo desde GitHub si sale cortado.</p></div></article>
+<article class="card"><img src="./Meta_AI_913225738_1760817821689459_8406234385767289554_n_20261118.jpg" alt="Gorra pila"><div><h3>3 · Gorra Negra Pila</h3><p>Gorra negra sobre llanta grande, modelo y Prado.</p></div></article>
+<article class="card"><img src="./Meta_AI_907662504_1599984755502401_6337763242307203491_n_20261118.jpg" alt="Gorra costura azul"><div><h3>4 · Gorra Costura Azul</h3><p>Gorra negra costura azul neón en retrovisor.</p></div></article>
+</div>
+<h2 class="section-title">Capítulo 3 · La Gorra</h2>
+<div class="grid grid3">
+<article class="card"><img src="./xSADV41/Grafitti/gorra-retrovisor.webp" alt="Gorra retrovisor"><div><h3>1 · Retrovisor</h3><p>Gorra negra costura azul neón.</p></div></article>
+<article class="card"><img src="./xSADV41/Grafitti/gorra-pila.webp" alt="Gorra pila"><div><h3>2 · Pila</h3><p>Gorra sobre pila, más glow rosado.</p></div></article>
+<article class="card"><img src="./xSADV41/Grafitti/gorra-personaje.webp" alt="Personaje"><div><h3>3 · Personaje</h3><p>Close-up personaje con gorra.</p></div></article>
+</div>
+<h2 class="section-title">SADV41 Dentro de TURBOTIRE</h2>
+<div class="box box-blue"><p style="margin:0;color:#cbd5e1;line-height:1.6"><b>⚠️ Terremoto M4.9 en Azuero · Réplicas M3.2–M3.7 · Protocolo SINAPROC vigente.</b> Kit de Respuesta Comunitaria. Sede: Carretera Panamericana, frente a Autorepuestos Penonomé, Coclé.</p><p style="margin:12px 0 0"><a class="btn btn-blue" href="./xSADV41/Llantería Jackson 4x4.html">Abrir Llantería Jackson 4x4 →</a> <a class="btn btn-ghost" href="./xSADV41/index.html">Ir a xSADV41 →</a></p></div>
+<div class="box" style="margin-top:14px"><h4 style="margin:0 0 8px">Videos SADV41 · NQE44</h4><video controls preload="metadata" src="./xSADV41/NQE44.mp4"></video><video controls preload="metadata" src="./xSADV41/NQE44-1.mp4" style="margin-top:10px"></video></div>
+<div class="box" style="margin-top:14px;text-align:center"><img src="../../sunset/20261118_180414.jpg" alt="Sunset" style="width:100%;border-radius:10px"><p style="color:#cbd5e1;font-size:13px">GORRA/sunset/20261118_180414.jpg</p></div>
+</div>
+<img class="foot-banner" src="./xSADV41/Grafitti/Meta_AI_911340875_1087113204375374_7218780048687933429_n_20261119_001049.webp" alt="Foot graffiti">
 </body>
-  </html>
+</html>
