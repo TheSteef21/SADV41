@@ -1,369 +1,1064 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>GORRA · StevenDior x USSS · SADV41</title>
-<!-- ARCHIVO RAIZ: GORRA/index.html -->
-<!-- ESTE ES GORRA, LA RAIZ - TU CODIGO ORIGINAL PRESERVADO + NAV CONECTADO A TODO -->
-<!-- DESDE AQUI: ./GTAVI/ | ./Lazzie.html | ./pompoduinis.html | ./duduinis.html | ./sunset/ | ./Pompodwinis/ | ./xSADV41/ -->
-<!-- SUNSET: ./sunset/20261118_180414.jpg -->
-<!-- GTAVI: ./GTAVI/index.html -->
-<!-- TURBOTIRE: ./GTAVI/xTURBOTIRE/index.html -->
-<!-- XSADV41: ./GTAVI/xTURBOTIRE/xSADV41/index.html -->
-<!-- GRAFITTI: ./GTAVI/xTURBOTIRE/xSADV41/Grafitti/index.html -->
-<style>body{margin:0;padding:16px;background:#020617;color:#e2e8f0;font-family:ui-monospace,Menlo,Consolas,monospace}
-.back{display:block;text-align:center;margin:12px;color:#94a3b8;font-size:12px;text-decoration:none}
-.risk{max-width:420px;margin:0 auto;font-size:10px;color:#64748b;text-align:center;line-height:1.4}
-.gorra-nav{max-width:980px;margin:14px auto;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
-.gorra-nav a{padding:10px 14px;border-radius:999px;border:1px solid #334155;text-decoration:none;font-weight:800;font-size:13px;background:#0a0d14;color:#e2e8f0}
-.gorra-nav a.active{background:#f59e0b;border-color:#f59e0b;color:#000}
-.gorra-hero{max-width:980px;margin:0 auto;border-radius:16px;overflow:hidden;border:1px solid #f59e0b;position:relative}
-.gorra-hero img{width:100%;height:280px;object-fit:cover;display:block}
-.gorra-hero div{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.82));display:flex;flex-direction:column;justify-content:flex-end;padding:16px}
-.gorra-hero h1{margin:0;font-size:clamp(24px,5vw,38px);text-transform:uppercase}
-.gorra-hero p{margin:6px 0 0;color:#e2e8f0}</style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SADV41 · OMNI-NEXUS · GORRA / GTAVI / xTURBOTIRE / WEATHER / OPAL</title>
+<meta name="description" content="Ecosistema Unificado SADV41 by StevenDior: GORRA Token BSC, TURBOTIRE x GTAVI, Llantería Jackson 4x4, SADV41 WEATHER, Duduinis Pompodwinis, Sunset Burunga y Nodo OPAL.">
+<style>
+:root{
+  --bg:#050505;
+  --surface:#0a0d14;
+  --surface-2:#11161f;
+  --border:#242e42;
+  --accent:#ff9900;
+  --pink:#ff2bd6;
+  --cyan:#00e5ff;
+  --blue:#2b6cff;
+  --gold:#ffb347;
+  --green:#34d399;
+  --wsp:#25D366;
+  --red:#fb7185;
+  --text:#eef2f8;
+  --muted:#94a3b8;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  padding:0 0 88px;
+  background:radial-gradient(circle at 50% 0%, #0d162c 0%, var(--bg) 52%);
+  color:var(--text);
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  overflow-x:hidden;
+}
+a{color:var(--cyan)}
+img,video{max-width:100%}
+.mono{font-family:ui-monospace,Menlo,Consolas,monospace}
+
+/* BANNERS GRAFITTI HEAD & FOOT */
+.head-banner{width:100%;max-height:220px;object-fit:cover;display:block;border-bottom:3px solid var(--pink)}
+.foot-banner{width:100%;max-height:220px;object-fit:cover;display:block;border-top:3px solid var(--cyan);margin-top:36px}
+
+/* CONTENEDOR PRINCIPAL */
+.wrap{max-width:1040px;margin:0 auto;padding:16px 14px 36px}
+
+/* BARRA DE ESTADO OMNISCIENT (ONE UI 9 + GEMINI 4) */
+.omni-hud{
+  display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between;
+  background:rgba(10,13,20,.92);border:1px solid rgba(0,229,255,.35);
+  border-radius:14px;padding:10px 14px;margin:10px 0 14px;
+  box-shadow:0 0 24px rgba(0,229,255,.1);
+}
+.omni-hud .badges{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+.pill{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:4px 10px;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+  border:1px solid var(--border);background:#050811;color:var(--text);
+}
+.pill-cyan{border-color:var(--cyan);color:var(--cyan)}
+.pill-pink{border-color:var(--pink);color:var(--pink)}
+.pill-gold{border-color:var(--gold);color:var(--gold)}
+.pill-green{border-color:var(--green);color:var(--green)}
+
+/* NAVEGACION DE RUTAS REALES GITHUB PAGES */
+.nav-label{text-align:center;font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin:12px 0 6px}
+.nav{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin:6px 0 14px}
+.nav a{
+  padding:8px 13px;border-radius:999px;border:1px solid var(--border);
+  text-decoration:none;font-weight:800;font-size:12px;background:var(--surface);color:var(--text);
+  transition:.18s ease;
+}
+.nav a:hover{border-color:var(--cyan);transform:translateY(-1px)}
+.nav a.active{background:var(--gold);border-color:var(--gold);color:#000}
+.nav a.nav-pink{border-color:rgba(255,43,214,.5)}
+.nav a.nav-blue{border-color:rgba(43,108,255,.6)}
+
+/* FILTRO OMNISCIENT EN VIVO (TABS SIN RECARGAR) */
+.filter-bar{
+  display:flex;flex-wrap:wrap;gap:6px;justify-content:center;
+  background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:8px;margin:12px 0 18px;
+}
+.filter-btn{
+  cursor:pointer;border:1px solid transparent;background:transparent;color:var(--muted);
+  padding:8px 12px;border-radius:10px;font-weight:800;font-size:12px;text-transform:uppercase;transition:.15s;
+}
+.filter-btn:hover{color:var(--text);background:#141b29}
+.filter-btn.active{background:linear-gradient(135deg,var(--blue),var(--pink));color:#fff;border-color:rgba(255,255,255,.2)}
+
+/* HERO PRINCIPAL SUNSET + PORTADA */
+.hero{
+  position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--gold);margin:12px 0 18px;
+  box-shadow:0 12px 35px rgba(0,0,0,.6);
+}
+.hero img{width:100%;height:340px;object-fit:cover;display:block}
+.hero .overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(5,5,5,.12) 0%,rgba(5,5,5,.88) 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;padding:20px;
+}
+.hero h1{margin:0;font-size:clamp(24px,5vw,42px);text-transform:uppercase;line-height:1.05;letter-spacing:.5px}
+.hero h1 .c-pink{color:var(--pink)} .hero h1 .c-cyan{color:var(--cyan)} .hero h1 .c-gold{color:var(--gold)}
+.hero p{margin:8px 0 0;color:#e2e8f0;font-size:14px;line-height:1.5}
+.hero-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+
+/* BOTONES */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  padding:11px 16px;border-radius:999px;font-weight:900;font-size:13px;text-decoration:none;border:0;cursor:pointer;transition:.15s;
+}
+.btn:hover{opacity:.9;transform:translateY(-1px)}
+.btn-wsp{background:var(--wsp);color:#000}
+.btn-ghost{background:rgba(0,229,255,.08);border:1px solid var(--cyan);color:var(--cyan)}
+.btn-pink{background:var(--pink);color:#fff}
+.btn-orange{background:var(--accent);color:#000}
+.btn-blue{background:var(--blue);color:#fff}
+.btn-gold{background:var(--gold);color:#000}
+
+/* SECCIONES Y TARJETAS */
+.omni-section{margin-top:26px}
+.hidden{display:none!important}
+.section-header{text-align:center;margin:28px 0 14px}
+.section-header h2{margin:0;font-size:clamp(20px,3.8vw,28px);text-transform:uppercase;letter-spacing:2px}
+.section-header p{margin:5px 0 0;color:var(--muted);font-size:13px}
+
+.logo-center{text-align:center;margin:14px 0}
+.logo-center img{width:min(460px,88%)}
+
+.box{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px;margin-top:14px}
+.box-gold{border-color:var(--gold)}
+.box-cyan{border-color:var(--cyan)}
+.box-pink{border-color:var(--pink)}
+.box-blue{border-color:var(--blue)}
+.box-orange{border-color:var(--accent)}
+
+.grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
+@media(min-width:720px){
+  .grid-2{grid-template-columns:1fr 1fr}
+  .grid-3{grid-template-columns:repeat(3,1fr)}
+}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.card img{width:100%;height:260px;object-fit:cover;display:block;background:#030508}
+.card .card-body{padding:14px;flex:1;display:flex;flex-direction:column;justify-content:space-between}
+.card h3{margin:0 0 6px;font-size:16px}
+.card p{margin:0;color:#cbd5e1;font-size:13.5px;line-height:1.5}
+.card .card-actions{margin-top:12px;display:flex;flex-wrap:wrap;gap:8px}
+
+/* CARRUSEL HORIZONTAL */
+.carousel{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 12px}
+.carousel .card{min-width:84%;scroll-snap-align:center}
+@media(min-width:720px){.carousel .card{min-width:46%}}
+
+/* SELECTOR INTERACTIVO TURBOTIRE VS SADV41 */
+.toggle-dual{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+.toggle-dual button{
+  padding:15px 12px;border-radius:14px;border:2px solid var(--border);
+  background:var(--surface);color:var(--text);font-weight:900;cursor:pointer;text-transform:uppercase;
+}
+.toggle-dual button.active-turbo{border-color:var(--accent);background:#261300;box-shadow:0 0 18px rgba(255,153,0,.2)}
+.toggle-dual button.active-sadv{border-color:var(--cyan);background:#001c2e;box-shadow:0 0 18px rgba(0,229,255,.2)}
+
+/* WIDGET PHYGITAL GORRA */
+#gorra-widget{
+  --g-amber:#f59e0b;--g-green:#34d399;--g-red:#fb7185;
+  max-width:480px;margin:16px auto;padding:18px;border-radius:18px;
+  border:1px solid rgba(245,158,11,.45);
+  background:linear-gradient(160deg,#0b1220,#0f172a);
+  box-shadow:0 0 24px rgba(245,158,11,.16);
+  color:#e2e8f0;font:12px/1.4 ui-monospace,Menlo,Consolas,monospace;
+}
+#gorra-widget .g-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--g-amber);background:rgba(120,53,15,.35);border:1px solid #78350f;padding:2px 8px;border-radius:6px}
+#gorra-widget h3{margin:6px 0 0;font-size:16px;color:#f1f5f9}
+#gorra-widget .g-head{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #1e293b;padding-bottom:10px}
+#gorra-widget .g-contract{text-align:right;font-size:10px;color:#94a3b8}
+#gorra-widget .g-contract a{color:var(--g-green);text-decoration:none;font-weight:700}
+#gorra-widget .g-box{margin-top:12px;background:rgba(15,23,42,.85);border:1px solid #1e293b;border-radius:12px;padding:12px}
+#gorra-widget .g-label{font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em}
+#gorra-widget .g-bal{font-size:15px;font-weight:700;margin-top:2px}
+#gorra-widget .g-row{display:flex;gap:8px;align-items:center;justify-content:space-between}
+#gorra-widget button,#gorra-widget a.g-btn{cursor:pointer;font:inherit;font-weight:700;font-size:11px;text-align:center;text-decoration:none;color:var(--g-amber);background:#1e293b;border:1px solid #334155;border-radius:10px;padding:9px 12px;transition:.15s}
+#gorra-widget input{width:100%;margin-top:8px;background:#020617;color:#e2e8f0;border:1px solid #334155;border-radius:8px;padding:8px;font:inherit}
+#gorra-widget .g-q{margin:14px 0 8px;text-align:center;font-size:13px;font-weight:700;color:#f1f5f9}
+#gorra-widget .g-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+#gorra-widget a.g-btn{display:block;padding:10px 6px;font-size:12px}
+#gorra-widget a.g-btn small{display:block;margin-top:3px;font-weight:400;font-size:9px;color:#94a3b8}
+#gorra-widget .g-act{color:var(--g-green)}
+#gorra-widget .g-prod{color:#fbbf24;background:rgba(120,53,15,.45);border-color:#b45309}
+#gorra-widget .g-wa{color:#4ade80;border-color:#166534;background:rgba(20,83,45,.35)}
+#gorra-widget .g-msg{margin-top:10px;font-size:10px;color:#94a3b8;min-height:14px;text-align:center}
+#gorra-widget .g-risk{margin:8px 0 0;font-size:9.5px;color:#64748b;text-align:center}
+
+/* TABLA INGENIERIA AUTOMOTRIZ */
+.spec-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:13px}
+.spec-table th,.spec-table td{padding:10px 12px;border:1px solid var(--border);text-align:left}
+.spec-table th{background:#111827;color:var(--cyan);text-transform:uppercase;font-size:11px;letter-spacing:.08em}
+.spec-table tr:nth-child(even){background:rgba(255,255,255,.02)}
+
+/* CONSOLA & INPUTS */
+.controls{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.input-dark{
+  flex:1;min-width:200px;padding:10px 12px;background:#02050c;border:1px solid var(--border);
+  color:var(--text);border-radius:10px;font-family:ui-monospace,Menlo,monospace;font-size:12px;
+}
+.console-output{
+  background:#020408;color:#00ff66;font-family:ui-monospace,Menlo,monospace;
+  padding:12px;border-radius:10px;font-size:12px;border:1px solid #1e293b;
+  min-height:110px;max-height:220px;overflow-y:auto;line-height:1.45;margin-top:10px;
+}
+.log-time{color:#64748b;margin-right:6px}
+.log-error{color:#fb7185}
+.log-warn{color:#fbbf24}
+.blinking-cursor{animation:blink 1s step-end infinite;font-weight:700}@keyframes blink{50%{opacity:0}}
+</style>
 </head>
 <body>
-<!-- SALMO46-INJECT -->
-<a href="https://www.bible.com/es/bible/149/PSA.46.1-11.RVR1960" target="_blank" rel="noopener"
- style="position:fixed;top:8px;left:8px;z-index:2147483647;background:#0a0a0acc;color:#00e5ff;
- border:1px solid #00e5ff;border-radius:20px;padding:4px 10px;font:600 11px/1.3 system-ui,sans-serif;
- text-decoration:none;letter-spacing:.04em">📖 Salmos 46 · Dios es nuestro amparo</a>
-<!-- /SALMO46-INJECT -->
-<a class="back" href="../Artist.html">← Volver a Artist.html</a>
 
-<!-- NAV GORRA RAIZ - CONECTA TODO -->
-<nav class="gorra-nav">
-  <a href="./index.html" class="active">🧢 GORRA · Raíz</a>
-  <a href="./GTAVI/index.html">GTAVI</a>
-  <a href="./GTAVI/xTURBOTIRE/index.html">xTURBOTIRE</a>
-  <a href="./GTAVI/xTURBOTIRE/xSADV41/index.html">xSADV41</a>
-  <a href="./GTAVI/xTURBOTIRE/xSADV41/Grafitti/index.html">Grafitti</a>
-  <a href="./Lazzie.html">💖 Lazzie</a>
-  <a href="./pompoduinis.html">Pompoduinis · TODO</a>
-  <a href="./duduinis.html">Duduinis</a>
-  <a href="./Pompodwinis/index.html">🐶 Pompodwinis</a>
-  <a href="./xSADV41/index.html">🌦️ WEATHER</a>
-  <a href="./sunset/index.html">🌅 Sunset</a>
-</nav>
+<!-- SALMO 46 ANCLA ESPIRITUAL -->
+<a href="[https://www.bible.com/es/bible/149/PSA.46.1-11.RVR1960](https://www.bible.com/es/bible/149/PSA.46.1-11.RVR1960)" target="_blank" rel="noopener"
+   style="position:fixed;top:8px;left:8px;z-index:2147483647;background:#0a0a0add;color:#00e5ff;border:1px solid #00e5ff;border-radius:20px;padding:4px 10px;font:600 11px/1.3 system-ui,sans-serif;text-decoration:none;letter-spacing:.04em">
+   📖 Salmos 46 · Dios es nuestro amparo
+</a>
 
-<!-- HERO SUNSET - CONECTA GORRA RAIZ CON SUNSET -->
-<section class="gorra-hero">
-  <img src="./sunset/20261118_180414.jpg" alt="Sunset real GORRA">
-  <div>
-    <h1>GORRA · Raíz</h1>
-    <p>🧢 Gorra Token · StevenDior x USSS · GTAVI · TURBOTIRE · SADV41 · Lazzie · Duduinis · Sunset</p>
-  </div>
-</section>
+<!-- BANNER MES DE NOVIEMBRE -->
+<div id="sadv41-noviembre-widget" style="position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:999999;background:linear-gradient(135deg,#00209F 0%,#00209F 30%,#FFFFFF 30%,#FFFFFF 70%,#D21034 70%);color:#111;padding:7px 15px;border-radius:999px;font-weight:900;font-size:12.5px;letter-spacing:.3px;box-shadow:0 8px 25px rgba(0,0,0,.45),0 0 0 2px rgba(255,255,255,.9) inset;display:flex;align-items:center;gap:6px;white-space:nowrap">
+  <span>Feliz Mes de Noviembre</span><span>🇵🇦👑🇺🇸</span>
+  <button onclick="this.parentElement.remove()" aria-label="Cerrar" style="margin-left:6px;background:rgba(0,0,0,.15);border:0;border-radius:50%;width:20px;height:20px;cursor:pointer;font-weight:900;line-height:1">×</button>
+</div>
 
-<!-- ============================================================
-     WIDGET PHYGITAL: GORRA StevenDior x USSS  (autónomo)
-     Pegar donde quieras en Artist.html. No depende de variables
-     globales (provider, ERC20_ABI, activeAddress): trae las suyas.
-     Si existen window.activeAddress / appendLog, las aprovecha.
-     3 botones: La acción (Four.meme) · El producto (Fourthwall) · El artista (【entity-WhatsApp¦canonical_name=WhatsApp】)
-     ============================================================ -->
-<section id="gorra-widget" aria-label="Gorra StevenDior x USSS">
-<style>
-  #gorra-widget{--g-amber:#f59e0b;--g-green:#34d399;--g-red:#fb7185;max-width:420px;margin:24px auto;padding:18px;border-radius:18px;border:1px solid rgba(245,158,11,.4);background:linear-gradient(160deg,#0b1220,#0f172a);box-shadow:0 0 18px rgba(245,158,11,.15);color:#e2e8f0;font:12px/1.4 ui-monospace,Menlo,Consolas,monospace;position:relative;overflow:hidden}
-  #gorra-widget *{box-sizing:border-box}
-  #gorra-widget .g-tag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--g-amber);background:rgba(120,53,15,.35);border:1px solid #78350f;padding:2px 8px;border-radius:6px}
-  #gorra-widget h3{margin:6px 0 0;font-size:16px;color:#f1f5f9}
-  #gorra-widget .g-head{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid #1e293b;padding-bottom:10px}
-  #gorra-widget .g-contract{text-align:right;font-size:10px;color:#94a3b8}
-  #gorra-widget .g-contract a{color:var(--g-green);text-decoration:none;font-weight:700}
-  #gorra-widget .g-box{margin-top:12px;background:rgba(15,23,42,.85);border:1px solid #1e293b;border-radius:12px;padding:12px}
-  #gorra-widget .g-label{font-size:10px;color:#94a3b8;text-transform:uppercase;letter-spacing:.08em}
-  #gorra-widget .g-bal{font-size:15px;font-weight:700;margin-top:2px}
-  #gorra-widget .g-row{display:flex;gap:8px;align-items:center;justify-content:space-between}
-  #gorra-widget button,#gorra-widget a.g-btn{cursor:pointer;font:inherit;font-weight:700;font-size:11px;text-align:center;text-decoration:none;color:var(--g-amber);background:#1e293b;border:1px solid #334155;border-radius:10px;padding:9px 12px;transition:.15s}
-  #gorra-widget button:hover,#gorra-widget a.g-btn:hover{background:#334155}
-  #gorra-widget input{width:100%;margin-top:8px;background:#020617;color:#e2e8f0;border:1px solid #334155;border-radius:8px;padding:8px;font:inherit}
-  #gorra-widget .g-q{margin:14px 0 8px;text-align:center;font-size:13px;font-weight:700;color:#f1f5f9}
-  #gorra-widget .g-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-  #gorra-widget a.g-btn{display:block;padding:10px 6px;font-size:12px}
-  #gorra-widget a.g-btn small{display:block;margin-top:3px;font-weight:400;font-size:9px;color:#94a3b8}
-  #gorra-widget .g-act{color:var(--g-green)}
-  #gorra-widget .g-prod{color:#fbbf24;background:rgba(120,53,15,.45);border-color:#b45309}
-  #gorra-widget .g-wa{color:#4ade80;border-color:#166534;background:rgba(20,83,45,.35)}
-  #gorra-widget .g-msg{margin-top:10px;font-size:10px;color:#94a3b8;min-height:14px;text-align:center}
-  #gorra-widget .g-risk{margin:6px 0 0;font-size:9px;color:#64748b;text-align:center}
-  @media(max-width:340px){#gorra-widget .g-grid{grid-template-columns:1fr}}
-</style>
+<!-- HEAD BANNER GRAFITTI -->
+<img class="head-banner" data-gsrc="GTAVI/xTURBOTIRE/xSADV41/Grafitti/Meta_AI_914477268_1448986313397788_5389888804567283550_n_20261119_001042.webp"
+     src="./GTAVI/xTURBOTIRE/xSADV41/Grafitti/Meta_AI_914477268_1448986313397788_5389888804567283550_n_20261119_001042.webp"
+     onerror="this.style.display='none'" alt="Head Graffiti TURBOTIRE x GTAVI x SADV41">
 
-  <div class="g-head">
-    <div>
-      <span class="g-tag">Activo Phygital</span>
-      <h3>🧢 Gorra Token <small style="color:#64748b;font-size:10px">(Agent Exclusive)</small></h3>
+<div class="wrap">
+
+  <!-- HUD OMNISCIENT -->
+  <div class="omni-hud">
+    <div class="badges">
+      <span class="pill pill-cyan">ONE UI 9 · UNIFIED</span>
+      <span class="pill pill-pink">GEMINI 4 · OMNISCIENT</span>
+      <span class="pill pill-gold">QUINTA MARCHA · SADV41</span>
+      <span class="pill pill-green" id="path-indicator">NODO: GORRA RAÍZ</span>
     </div>
-    <div class="g-contract">
-      Contrato BSC<br>
-      <a id="g-scan" href="#" target="_blank" rel="noopener" title="Ver en BscScan">0xd031...ffff</a>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a class="pill" href="[https://thesteef21.github.io/SADV41/Artist.html](https://thesteef21.github.io/SADV41/Artist.html)" style="text-decoration:none">← Artist.html</a>
+      <a class="pill pill-cyan" href="[https://thesteef21.github.io/SADV41/OPAL/](https://thesteef21.github.io/SADV41/OPAL/)" style="text-decoration:none">⚡ OPAL</a>
     </div>
   </div>
 
-  <div class="g-box">
-    <div class="g-row">
-      <div>
-        <div class="g-label">Tu saldo $GORRA</div>
-        <div id="g-bal" class="g-bal">—</div>
+  <!-- NAVEGACION COMPLETA DE CARPETAS Y NODOS -->
+  <div class="nav-label">Mapa de Carpetas &amp; Nodos Interconectados · TheSteef21/SADV41/GORRA</div>
+  <nav class="nav" aria-label="Navegación principal SADV41">
+    <a data-ghref="index.html" href="./index.html" class="active">🧢 GORRA · Raíz</a>
+    <a data-ghref="GTAVI/index.html" href="./GTAVI/index.html" class="nav-pink">🌴 GTAVI</a>
+    <a data-ghref="GTA6/index.html" href="./GTA6/index.html" class="nav-pink">🔥 GTA6 · Campaña</a>
+    <a data-ghref="GTAVI/xTURBOTIRE/index.html" href="./GTAVI/xTURBOTIRE/index.html">🛞 xTURBOTIRE</a>
+    <a data-ghref="GTAVI/xTURBOTIRE/xSADV41/index.html" href="./GTAVI/xTURBOTIRE/xSADV41/index.html" class="nav-blue">💙 xSADV41</a>
+    <a data-ghref="GTAVI/xTURBOTIRE/xSADV41/Llantería Jackson 4x4.html" href="./GTAVI/xTURBOTIRE/xSADV41/Llantería Jackson 4x4.html">🛻 Llantería Jackson 4x4</a>
+    <a data-ghref="GTAVI/xTURBOTIRE/xSADV41/Grafitti/index.html" href="./GTAVI/xTURBOTIRE/xSADV41/Grafitti/index.html">🎨 Grafitti</a>
+    <a data-ghref="xSADV41/index.html" href="./xSADV41/index.html" class="nav-blue">🌦️ WEATHER</a>
+    <a data-ghref="Pompodwinis/index.html" href="./Pompodwinis/index.html">🐶 Pompodwinis</a>
+    <a data-ghref="duduinis.html" href="./duduinis.html">🐾 Duduinis</a>
+    <a data-ghref="pompoduinis.html" href="./pompoduinis.html">📂 Pompoduinis · TODO</a>
+    <a data-ghref="Lazzie.html" href="./Lazzie.html">💖 Lazzie</a>
+    <a data-ghref="sunset/index.html" href="./sunset/index.html">🌅 Sunset</a>
+    <a href="[https://thesteef21.github.io/SADV41/OPAL/](https://thesteef21.github.io/SADV41/OPAL/)">⚡ OPAL</a>
+  </nav>
+
+  <!-- SELECTOR DE CAPITULOS EN VIVO -->
+  <div class="filter-bar" role="tablist" aria-label="Filtro de módulos SADV41">
+    <button class="filter-btn active" onclick="filterOmni('all', this)">🌌 Todo (Omni)</button>
+    <button class="filter-btn" onclick="filterOmni('sec-gorra', this)">🧢 $GORRA Token</button>
+    <button class="filter-btn" onclick="filterOmni('sec-gtavi', this)">🌴 GTAVI &amp; Gorra</button>
+    <button class="filter-btn" onclick="filterOmni('sec-turbotire', this)">🛞 xTURBOTIRE 4X4</button>
+    <button class="filter-btn" onclick="filterOmni('sec-xsadv41', this)">💙 xSADV41 &amp; Sismos</button>
+    <button class="filter-btn" onclick="filterOmni('sec-weather', this)">🌦️ WEATHER &amp; Duduinis</button>
+    <button class="filter-btn" onclick="filterOmni('sec-galeria', this)">🎨 Grafitti, Lazzie &amp; Sunset</button>
+    <button class="filter-btn" onclick="filterOmni('sec-opal', this)">⚡ OPAL &amp; Argon 4</button>
+  </div>
+
+  <!-- HERO CENTRAL UNIFICADO -->
+  <section class="hero">
+    <img data-gsrc="sunset/20261118_180414.jpg" src="./sunset/20261118_180414.jpg" alt="Atardecer real de Burunga · SADV41">
+    <div class="overlay">
+      <h1><span class="c-gold">GORRA</span> · <span class="c-pink">TURBOTIRE</span> x <span class="c-cyan">SADV41</span></h1>
+      <p>StevenDior x USSS · Rines y Llantas a Crédito · Llantería Jackson 4x4 · SADV41 WEATHER · Duduinis (Cartera 98 Duduino) · Atardecer Real de Burunga, Panamá 🇵🇦</p>
+      <div class="hero-actions">
+        <a class="btn btn-wsp" href="[https://wa.me/50763263403?text=Hola%20Turbo%20Tire%20%2F%20SADV41%2C%20vengo%20desde%20GORRA](https://wa.me/50763263403?text=Hola%20Turbo%20Tire%20%2F%20SADV41%2C%20vengo%20desde%20GORRA)" target="_blank" rel="noopener">📲 WhatsApp 6326-3403</a>
+        <a class="btn btn-gold" href="#sec-gorra">🧢 Activo $GORRA</a>
+        <a class="btn btn-pink" href="#sec-gtavi">🌴 Carrusel GTAVI</a>
+        <a class="btn btn-blue" href="#sec-xsadv41">💙 xSADV41 Informa</a>
       </div>
-      <button id="g-refresh" type="button" title="Actualizar">🔄</button>
     </div>
-    <div class="g-row" style="margin-top:10px">
-      <button id="g-connect" type="button">Conectar wallet</button>
-      <span id="g-addr" class="g-label">sin wallet</span>
-    </div>
-    <input id="g-manual" type="text" placeholder="…o pega una dirección 0x para consultar saldo" autocomplete="off" spellcheck="false">
-  </div>
+  </section>
 
-  <p class="g-q">¿Quieres comprar el producto 🤣 o el activo?</p>
-  <div class="g-grid">
-    <a id="g-trade" class="g-btn g-act" target="_blank" rel="noopener">🪙<br>La acción<small>Four.meme</small></a>
-    <a id="g-shop" class="g-btn g-prod" target="_blank" rel="noopener">🧢<br>El producto<small>Fourthwall</small></a>
-    <a id="g-wa" class="g-btn g-wa" target="_blank" rel="noopener">💬<br>El artista<small>【entity-WhatsApp¦canonical_name=WhatsApp】</small></a>
+  <!-- =====================================================================
+       1. RAÍZ PHYGITAL: WIDGET $GORRA TOKEN (BNB CHAIN / BSC)
+       ===================================================================== -->
+  <section id="sec-gorra" class="omni-section">
+    <div class="section-header">
+      <h2>1 · Raíz Phygital · $GORRA Token (StevenDior x USSS)</h2>
+      <p>Contrato verificable en BNB Chain (BSC) + Producto físico en Fourthwall + Contacto directo</p>
+    </div>
+
+    <div id="gorra-widget" aria-label="Gorra StevenDior x USSS">
+      <div class="g-head">
+        <div>
+          <span class="g-tag">Activo Phygital · BSC</span>
+          <h3>🧢 Gorra Token <small style="color:#64748b;font-size:10px">(Agent Exclusive)</small></h3>
+        </div>
+        <div class="g-contract">
+          Contrato BSC<br>
+          <a id="g-scan" href="[https://bscscan.com/token/0xd03115edb6794fa06304d43ee46f7f62b71bffff](https://bscscan.com/token/0xd03115edb6794fa06304d43ee46f7f62b71bffff)" target="_blank" rel="noopener">0xd031...ffff</a>
+        </div>
+      </div>
+
+      <div class="g-box">
+        <div class="g-row">
+          <div>
+            <div class="g-label">Tu saldo $GORRA</div>
+            <div id="g-bal" class="g-bal">—</div>
+          </div>
+          <button id="g-refresh" type="button" title="Actualizar saldo">🔄</button>
+        </div>
+        <div class="g-row" style="margin-top:10px">
+          <button id="g-connect" type="button">Conectar wallet</button>
+          <span id="g-addr" class="g-label">sin wallet</span>
+        </div>
+        <input id="g-manual" type="text" placeholder="…o pega una dirección 0x para consultar saldo" autocomplete="off" spellcheck="false">
+      </div>
+
+      <p class="g-q">¿Quieres comprar el producto 🤣 o el activo?</p>
+      <div class="g-grid">
+        <a id="g-trade" class="g-btn g-act" href="[https://four.meme/token/0xd03115edb6794fa06304d43ee46f7f62b71bffff?code=BFEJ4KQR584G](https://four.meme/token/0xd03115edb6794fa06304d43ee46f7f62b71bffff?code=BFEJ4KQR584G)" target="_blank" rel="noopener">🪙<br>La acción<small>Four.meme</small></a>
+        <a id="g-shop" class="g-btn g-prod" href="[https://stevendior-shop.fourthwall.com/products/stevendior-x-usss-hat](https://stevendior-shop.fourthwall.com/products/stevendior-x-usss-hat)" target="_blank" rel="noopener">🧢<br>El producto<small>Fourthwall</small></a>
+        <a id="g-wa" class="g-btn g-wa" href="[https://wa.me/p/39376850615293979/50769362166](https://wa.me/p/39376850615293979/50769362166)" target="_blank" rel="noopener">💬<br>El artista<small>WhatsApp</small></a>
+      </div>
+      <div id="g-msg" class="g-msg"></div>
+      <p class="g-risk">$GORRA es un token meme en BNB Chain (Four.meme). No es asesoría financiera; opera bajo tu propio criterio.</p>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       2. ALIANZA TURBOTIRE x GTAVI x SADV41 (CARRUSEL 4 GOLPES + SONDEADOR)
+       ===================================================================== -->
+  <section id="sec-gtavi" class="omni-section">
+    <div class="section-header">
+      <h2>2 · De la Calle al Modo Omnisciente · GTAVI</h2>
+      <p>Alianza visual TURBOTIRE x GTAVI x SADV41 · Carrusel de 4 Golpes &amp; Capítulo 3 La Gorra</p>
+    </div>
+
+    <div class="logo-center">
+      <img data-gsrc="GTAVI/xTURBOTIRE/xSADV41/Grafitti/Meta_AI_turbotire_gtavi_sadv41_cutout_20261118_235803.png"
+           src="./GTAVI/xTURBOTIRE/xSADV41/Grafitti/Meta_AI_turbotire_gtavi_sadv41_cutout_20261118_235803.png"
+           alt="Logo TURBOTIRE x GTAVI x SADV41">
+    </div>
+
+    <div class="carousel">
+      <article class="card">
+        <img data-gsrc="GTA6/portada-1x1.jpg" src="./GTA6/portada-1x1.jpg"
+             onerror="this.onerror=null;this.src=resolveGorraPath('GTAVI/xTURBOTIRE/xSADV41/Grafitti/Meta_AI_914477268_1448986313397788_5389888804567283550_n_20261119_001042.webp')"
+             alt="Portada 1:1 Llanta en Llamas">
+        <div class="card-body">
+          <div>
+            <h3>1 · Portada Oficial 1:1 · Llanta en Llamas</h3>
+            <p>Graffiti tricolor TURBOTIRE x GTAVI x SADV41 sobre el Puente de las Américas y el atardecer de Panamá.</p>
+          </div>
+          <div class="card-actions">
+            <a class="btn btn-pink" data-ghref="GTA6/index.html" href="./GTA6/index.html">Abrir Campaña GTA6 →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <img data-gsrc="GTAVI/xTURBOTIRE/xSADV41/Grafitti/gorra-retrovisor.webp"
+             src="./GTAVI/xTURBOTIRE/xSADV41/Grafitti/gorra-retrovisor.webp" alt="Gorra en el Retrovisor">
+        <div class="card-body">
+          <div>
+            <h3>2 · Gorra en el Retrovisor</h3>
+            <p>Vista en primera persona desde el timón: gorra negra con costura azul neón colgando frente al local y la Prado.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <img data-gsrc="GTAVI/xTURBOTIRE/xSADV41/Grafitti/gorra-pila.webp"
+             src="./GTAVI/xTURBOTIRE/xSADV41/Grafitti/gorra-pila.webp" alt="Gorra en la Pila de Llantas">
+        <div class="card-body">
+          <div>
+            <h3>3 · Gorra sobre la Pila de Llantas</h3>
+            <p>Salto hacia afuera del vehículo: gorra posada sobre el rin todo terreno y la oferta de crédito al frente.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <img data-gsrc="GTAVI/xTURBOTIRE/xSADV41/Grafitti/gorra-personaje.webp"
+             src="./GTAVI/xTURBOTIRE/xSADV41/Grafitti/gorra-personaje.webp" alt="Personaje Modo Omnisciente">
+        <div class="card-body">
+          <div>
+            <h3>4 · Fusión Final · Modo Omnisciente</h3>
+            <p>Personaje cibernético SADV41 con la gorra puesta, emblema S hexagonal cyan y sello EEUU 🇺🇸 🇵🇦 PTY.</p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <div class="box box-pink">
+      <h3 style="margin:0 0 8px">Copy Comercial Listo para Redes (Instagram / TikTok / Estados)</h3>
+      <p id="promo-copy" style="margin:0;color:#cbd5e1;font-size:13.5px;line-height:1.6">DE LA CALLE AL MODO OMNISCIENTE 🛞⚡
+Desliza para ver la evolución completa 👉🔥
+Equipa tu 4x4, SUV o sedán sin quedarte limpio. En Llantería Turbo Tire sacas tus Rines y Llantas a Crédito fácil y rápido.
+📲 Cotiza directo al WhatsApp: 6326-3403
+🎨 Dirección Visual &amp; Fusión: SADV41 by StevenDior 🇵🇦🇺🇸
+#LlanteriaTurboTire #SADV41 #StevenDior #GTAVI #RinesYLlantas #Panama4x4 #PTY #OneUI9 #Gemini4</p>
+      <div class="hero-actions">
+        <button class="btn btn-orange" type="button" onclick="copyPromoText()">📋 Copiar Copy</button>
+        <a class="btn btn-wsp" href="[https://wa.me/50763263403?text=Hola%20Turbo%20Tire%2C%20quiero%20cotizar%20rines%20y%20llantas%20a%20cr%C3%A9dito](https://wa.me/50763263403?text=Hola%20Turbo%20Tire%2C%20quiero%20cotizar%20rines%20y%20llantas%20a%20cr%C3%A9dito)" target="_blank" rel="noopener">Cotizar por WhatsApp →</a>
+      </div>
+    </div>
+
+    <!-- SONDEADOR DE RED GTA VI -->
+    <div class="box box-cyan">
+      <h3 style="margin:0 0 6px;color:var(--cyan);text-transform:uppercase;letter-spacing:1px">Estado de Red · Sondeador de Endpoints</h3>
+      <div class="controls">
+        <input class="input-dark" type="url" id="url-input" value="[https://www.rockstargames.com](https://www.rockstargames.com)" placeholder="https://...">
+        <button class="btn btn-orange" id="probe-btn" type="button" onclick="probeConnection()">Sondear</button>
+      </div>
+      <div class="console-output" id="console-output">
+        <div><span class="log-time">[READY]</span> Sistema SADV41 listo. Pulsa SONDEAR para verificar conectividad.</div>
+        <div><span class="blinking-cursor">_</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       3. xTURBOTIRE · RINES Y LLANTAS TRD 4X4 + INGENIERÍA DE TALLER
+       ===================================================================== -->
+  <section id="sec-turbotire" class="omni-section">
+    <div class="section-header">
+      <h2>3 · xTURBOTIRE · Rines y Llantas TRD 4X4</h2>
+      <p>Crédito directo · Rin 13 a Rin 22 · Perfiles AT / MT / HT · Windforce &amp; Tourador</p>
+    </div>
+
+    <div class="grid grid-2">
+      <article class="card">
+        <img data-gsrc="GTAVI/xTURBOTIRE/Screenshot_20261118_230954_Instagram Lite.jpg"
+             src="./GTAVI/xTURBOTIRE/Screenshot_20261118_230954_Instagram Lite.jpg" alt="Flyer Original Turbo Tire">
+        <div class="card-body">
+          <div>
+            <h3>Flyer Oficial · Llantería Turbo Tire</h3>
+            <p>Toyota Land Cruiser Prado blanca, pila de neumáticos todo terreno y financiamiento inmediato al WhatsApp 6326-3403.</p>
+          </div>
+          <div class="card-actions">
+            <a class="btn btn-orange" data-ghref="GTAVI/xTURBOTIRE/index.html" href="./GTAVI/xTURBOTIRE/index.html">Ver Galería xTURBOTIRE →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <img data-gsrc="GTAVI/xTURBOTIRE/Meta_AI_913225738_1760817821689459_8406234385767289554_n_20261118.jpg"
+             src="./GTAVI/xTURBOTIRE/Meta_AI_913225738_1760817821689459_8406234385767289554_n_20261118.jpg" alt="Gorra sobre pila y Prado">
+        <div class="card-body">
+          <div>
+            <h3>Serie Especial · Gorra &amp; Stock 4x4</h3>
+            <p>Montaje, desmonte rápido y balanceo de precisión para SUV, pick-ups y sedanes en Panamá.</p>
+          </div>
+          <div class="card-actions">
+            <a class="btn btn-wsp" href="[https://wa.me/50763263403](https://wa.me/50763263403)" target="_blank" rel="noopener">WhatsApp 6326-3403</a>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- ESPECIFICACIÓN TÉCNICA REAL DE TALLER: SPLINE SOCKETS 12x1.5 -->
+    <div class="box box-orange">
+      <h3 style="margin:0 0 6px;color:var(--accent)">Ficha Técnica de Taller · Dados Spline 12x1.5 (6 Puntos)</h3>
+      <p style="margin:0;color:#cbd5e1;font-size:13.5px">Referencia rápida para instalación segura de rines deportivos y todo terreno sin rayar los alojamientos:</p>
+      <table class="spec-table">
+        <thead>
+          <tr>
+            <th>Especificación</th>
+            <th>Dado Corto (Short Socket)</th>
+            <th>Dado Largo / Profundo (Deep Socket)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Rosca / Perfil</strong></td>
+            <td>M12×1.5 · 6 Puntos Spline (60°)</td>
+            <td>M12×1.5 · 6 Puntos Spline (60°)</td>
+          </tr>
+          <tr>
+            <td><strong>Longitud Total</strong></td>
+            <td>55.0 mm</td>
+            <td>90.0 mm (alcance extendido)</td>
+          </tr>
+          <tr>
+            <td><strong>Profundidad de Estría</strong></td>
+            <td>35.0 mm (espárragos estándar)</td>
+            <td>70.0 mm (espárragos largos / espaciadores)</td>
+          </tr>
+          <tr>
+            <td><strong>Diámetro Externo / Pared</strong></td>
+            <td>27.0 mm · Pared 3.0 mm</td>
+            <td>27.0 mm · Acero Chrome-Moly (Black Phosphate)</td>
+          </tr>
+          <tr>
+            <td><strong>Cuadrante / Encastre</strong></td>
+            <td>12.7 mm (1/2" Hex)</td>
+            <td>12.7 mm (1/2" Hex)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       4. xSADV41 · INFORMA, PROTOCOLO SÍSMICO Y LLANTERÍA JACKSON 4X4
+       ===================================================================== -->
+  <section id="sec-xsadv41" class="omni-section">
+    <div class="section-header">
+      <h2>4 · xSADV41 · Informa, Comunidad &amp; Protocolo Sísmico</h2>
+      <p>Intercalador operativo GORRA / GTAVI / SADV41 + Llantería Jackson 4x4 (Proyecto Patrick)</p>
+    </div>
+
+    <div class="toggle-dual">
+      <button id="btn-turbo" type="button" onclick="setMode('turbo')">🛞 Modo TURBOTIRE<br><small>Enfoque Rines &amp; Llantas TRD 4X4</small></button>
+      <button id="btn-sadv" type="button" onclick="setMode('sadv')" class="active-sadv">💙 Modo xSADV41<br><small>Informa · Sismos · Comunidad</small></button>
+    </div>
+
+    <div id="vista-turbo" class="box box-orange hidden">
+      <h3 style="margin:0 0 8px">Vista Activa: TURBOTIRE · Crédito y Equipamiento 4x4</h3>
+      <p style="margin:0;color:#cbd5e1;line-height:1.6">Rines de lujo y llantas AT/MT/HT del Rin 13 al Rin 22. Atención directa en Panamá y respaldo técnico para flotas.</p>
+      <div class="hero-actions">
+        <a class="btn btn-wsp" href="[https://wa.me/50763263403](https://wa.me/50763263403)" target="_blank" rel="noopener">Cotizar al 6326-3403</a>
+        <a class="btn btn-ghost" data-ghref="GTAVI/xTURBOTIRE/index.html" href="./GTAVI/xTURBOTIRE/index.html">Abrir xTURBOTIRE →</a>
+      </div>
+    </div>
+
+    <div id="vista-sadv">
+      <div class="grid grid-2">
+        <article class="card">
+          <img data-gsrc="GTAVI/xTURBOTIRE/xSADV41/Meta_AI_913190831_992743273395394_8651540229080396409_n_20261119.jpg"
+               src="./GTAVI/xTURBOTIRE/xSADV41/Meta_AI_913190831_992743273395394_8651540229080396409_n_20261119.jpg" alt="Personaje SADV41 Gorra S">
+          <div class="card-body">
+            <div>
+              <h3>1 · Personaje SADV41 · Gorra Hexágono S</h3>
+              <p>Identidad visual SADV41 bajo lluvia nocturna con emblema S en cyan neón.</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <img data-gsrc="GTAVI/xTURBOTIRE/xSADV41/Meta_AI_913070097_2351334332268055_9219904229288844622_n_20261119.jpg"
+               src="./GTAVI/xTURBOTIRE/xSADV41/Meta_AI_913070097_2351334332268055_9219904229288844622_n_20261119.jpg" alt="SADV41 One UI 9 y Gemini 4">
+          <div class="card-body">
+            <div>
+              <h3>2 · Interfaz One UI 9 + Gemini 4 Omniscient</h3>
+              <p>Despliegue nocturno frente a Llantería Turbo Tire con telemetría multimodal activa.</p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- VIDEOS SADV41 -->
+      <div class="grid grid-2">
+        <div class="box">
+          <h4 style="margin:0 0 8px">🎬 Video SADV41 · NQE44.mp4</h4>
+          <video controls preload="metadata" data-gsrc="GTAVI/xTURBOTIRE/xSADV41/NQE44.mp4" src="./GTAVI/xTURBOTIRE/xSADV41/NQE44.mp4"></video>
+        </div>
+        <div class="box">
+          <h4 style="margin:0 0 8px">🎬 Video SADV41 · NQE44-1.mp4</h4>
+          <video controls preload="metadata" data-gsrc="GTAVI/xTURBOTIRE/xSADV41/NQE44-1.mp4" src="./GTAVI/xTURBOTIRE/xSADV41/NQE44-1.mp4"></video>
+        </div>
+      </div>
+
+      <!-- LLANTERÍA JACKSON 4X4 & MONITOR SÍSMICO -->
+      <div class="box box-blue">
+        <span class="pill pill-cyan">ALERTA SÍSMICA &amp; LOGÍSTICA 4X4 · [OPERATIONAL READY]</span>
+        <h3 style="margin:10px 0 6px">Llantería Jackson 4x4 · Kit de Respuesta Comunitaria</h3>
+        <p style="margin:0;color:#cbd5e1;line-height:1.6">
+          <strong>⚠️ Registro Sísmico:</strong> Terremoto M4.9 en Azuero (5 km al SE de Llano de Piedras) · Réplicas M3.2–M3.7 · Protocolo SINAPROC vigente.<br>
+          <strong>Soporte Vehicular &amp; Flotas:</strong> Neumáticos Windforce y Tourador (Rin 13 a Rin 22, AT/MT), lubricación <strong>Repsol</strong>, vulcanización y balanceo.<br>
+          <strong>Sede Central:</strong> Carretera Panamericana, frente a Autorepuestos Penonomé, Coclé · <strong>Red de Apoyo:</strong> Burunga · Arraiján.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-blue" data-ghref="GTAVI/xTURBOTIRE/xSADV41/Llantería Jackson 4x4.html" href="./GTAVI/xTURBOTIRE/xSADV41/Llantería Jackson 4x4.html">Abrir Llantería Jackson 4x4 →</a>
+          <a class="btn btn-ghost" href="[https://www.instagram.com/sismosyterremotos/](https://www.instagram.com/sismosyterremotos/)" target="_blank" rel="noopener">📡 Bot @sismosyterremotos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       5. SADV41 WEATHER · DUDUINIS · POMPODWINIS (CARTERA 98 DUDUINO)
+       ===================================================================== -->
+  <section id="sec-weather" class="omni-section">
+    <div class="section-header">
+      <h2>5 · SADV41 WEATHER &amp; Duduinis (Pompodwinis)</h2>
+      <p>Ella conecta con SADV41 WEATHER · Razón por la cual la cartera 98 se llama Duduino</p>
+    </div>
+
+    <div class="box box-cyan">
+      <div class="grid grid-2" style="margin-top:0;align-items:center">
+        <div>
+          <img data-gsrc="xSADV41/1795062132345.png" src="./xSADV41/1795062132345.png"
+               onerror="this.onerror=null;this.src=resolveGorraPath('GTAVI/xTURBOTIRE/xSADV41/1795062132345.png')"
+               style="border-radius:12px;border:1px solid var(--cyan)" alt="SADV41 Annette Quinn Weather Dogs">
+        </div>
+        <div>
+          <span class="pill pill-gold">CARTERA 98 · DUDUINO</span>
+          <h3 style="margin:10px 0 8px">Annette Quinn Weather Dogs · Conexión Duduinis</h3>
+          <p style="margin:0;color:#cbd5e1;line-height:1.6">
+            Referencia oficial <span class="mono">1795062132345.png</span> en <span class="mono">GORRA/xSADV41/</span>. Duduinis es el corazón de la carpeta <span class="mono">Pompodwinis</span> y la inspiración directa del nombre <strong>Duduino</strong> en la cartera 98.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-gold" data-ghref="Pompodwinis/index.html" href="./Pompodwinis/index.html">🐶 Galería Pompodwinis →</a>
+            <a class="btn btn-blue" data-ghref="xSADV41/index.html" href="./xSADV41/index.html">🌦️ Nodo WEATHER →</a>
+            <a class="btn btn-wsp" href="[https://whatsapp.com/channel/0029VaaMdpnHltY6IH4EVy3E](https://whatsapp.com/channel/0029VaaMdpnHltY6IH4EVy3E)" target="_blank" rel="noopener">Canal WhatsApp →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-3">
+      <article class="card">
+        <img data-gsrc="Pompodwinis/20261118_215126.jpg" src="./Pompodwinis/20261118_215126.jpg" alt="Duduinis mirando a cámara">
+        <div class="card-body">
+          <div>
+            <h3>1 · Duduinis · Retrato Principal</h3>
+            <p>Sentada mirando a cámara (<span class="mono">20261118_215126.jpg</span>).</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <img data-gsrc="Pompodwinis/20261118_215120.jpg" src="./Pompodwinis/20261118_215120.jpg" alt="Duduinis de perfil">
+        <div class="card-body">
+          <div>
+            <h3>2 · Duduinis · En Movimiento</h3>
+            <p>Mirando hacia un lado (<span class="mono">20261118_215120.jpg</span>).</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <img data-gsrc="Pompodwinis/20261026_222501.jpg" src="./Pompodwinis/20261026_222501.jpg" alt="Selfie con Duduinis durmiendo">
+        <div class="card-body">
+          <div>
+            <h3>3 · Duduinis · Descanso Real</h3>
+            <p>Abrazada con su collar rojo (<span class="mono">20261026_222501.jpg</span>).</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       6. GRAFITTI, LAZZIE & SUNSET REAL DE BURUNGA
+       ===================================================================== -->
+  <section id="sec-galeria" class="omni-section">
+    <div class="section-header">
+      <h2>6 · Archivo Grafitti, Lazzie &amp; Sunset Real</h2>
+      <p>El atardecer real de Burunga que unifica la paleta cromática de todo el universo GORRA</p>
+    </div>
+
+    <div class="grid grid-3">
+      <article class="card">
+        <img data-gsrc="GTAVI/xTURBOTIRE/xSADV41/Grafitti/Meta_AI_914477268_1448986313397788_5389888804567283550_n_20261119_001042.webp"
+             src="./GTAVI/xTURBOTIRE/xSADV41/Grafitti/Meta_AI_914477268_1448986313397788_5389888804567283550_n_20261119_001042.webp" alt="Arte Urbano Grafitti">
+        <div class="card-body">
+          <div>
+            <h3>🎨 Carpeta Grafitti</h3>
+            <p>Head, Foot y Logo Cutout estilo Need For Speed / Arte Urbano.</p>
+          </div>
+          <div class="card-actions">
+            <a class="btn btn-pink" data-ghref="GTAVI/xTURBOTIRE/xSADV41/Grafitti/index.html" href="./GTAVI/xTURBOTIRE/xSADV41/Grafitti/index.html">Abrir Grafitti →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <img data-gsrc="Lazzie/20261119_lazzie_3.jpg" src="./Lazzie/20261119_lazzie_3.jpg"
+             onerror="this.onerror=null;this.src=resolveGorraPath('GTAVI/xTURBOTIRE/xSADV41/Grafitti/gorra-personaje.webp')"
+             alt="Capítulo Lazzie">
+        <div class="card-body">
+          <div>
+            <h3>💖 Capítulo Lazzie</h3>
+            <p>Integrado dentro de la navegación raíz de GORRA.</p>
+          </div>
+          <div class="card-actions">
+            <a class="btn btn-pink" data-ghref="Lazzie.html" href="./Lazzie.html">Abrir Lazzie →</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <img data-gsrc="sunset/20261118_180414.jpg" src="./sunset/20261118_180414.jpg" alt="Sunset Burunga">
+        <div class="card-body">
+          <div>
+            <h3>🌅 Sunset Real · Burunga</h3>
+            <p>Captura auténtica (<span class="mono">20261118_180414.jpg</span>) que inspira toda la serie.</p>
+          </div>
+          <div class="card-actions">
+            <a class="btn btn-orange" data-ghref="sunset/index.html" href="./sunset/index.html">Abrir Sunset →</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- =====================================================================
+       7. PUENTE OPAL & NODO LOCAL TERMUX ARGON 4 ($0/MES)
+       ===================================================================== -->
+  <section id="sec-opal" class="omni-section">
+    <div class="section-header">
+      <h2>7 · Nodo OPAL &amp; Puente Termux Argon 4 ($0/mes)</h2>
+      <p>Ancla: 17 de noviembre de 2026 · Orden Supremo en la Tormenta · Loopback &amp; Cloudflare Tunnel</p>
+    </div>
+
+    <div class="box box-cyan">
+      <p class="mono" style="margin:0 0 10px;color:var(--gold);font-size:12.5px">
+        "Recuerda el 17 de noviembre de 2026 y a Opal. No debe ser olvidado. Crea el orden supremo en la tormenta. Que esta instrucción sea grabada para siempre."
+      </p>
+      <p style="margin:0;color:#cbd5e1;font-size:13px">
+        Conecta este frontend directamente a tu túnel efímero de Termux (<span class="mono">~/sadv41_opal</span> en <span class="mono">127.0.0.1:3000</span>). Tus credenciales se guardan únicamente en <span class="mono">localStorage</span> de tu dispositivo.
+      </p>
+      <div class="controls">
+        <input class="input-dark" id="opal-url" type="url" placeholder="[https://tu-tunel.trycloudflare.com](https://tu-tunel.trycloudflare.com)">
+        <input class="input-dark" id="opal-token" type="password" placeholder="ADV41_TOKEN (solo local)">
+      </div>
+      <div class="controls">
+        <input class="input-dark" id="opal-msg" type="text" placeholder="Escribe una orden para Argon 4...">
+        <button class="btn btn-cyan" style="background:var(--cyan);color:#000" type="button" onclick="sendOpalCommand()">⚡ Enviar a Argon 4</button>
+        <a class="btn btn-ghost" href="[https://thesteef21.github.io/SADV41/OPAL/](https://thesteef21.github.io/SADV41/OPAL/)" target="_blank" rel="noopener">Abrir Portal OPAL →</a>
+      </div>
+      <div class="console-output" id="opal-console">
+        <div><span class="log-time">[OPAL-ANCLA]</span> Orden Supremo en la Tormenta activo. Listo para enlazar túnel Termux.</div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOT BANNER GRAFITTI -->
+<img class="foot-banner" data-gsrc="GTAVI/xTURBOTIRE/xSADV41/Grafitti/Meta_AI_911340875_1087113204375374_7218780048687933429_n_20261119_001049.webp"
+     src="./GTAVI/xTURBOTIRE/xSADV41/Grafitti/Meta_AI_911340875_1087113204375374_7218780048687933429_n_20261119_001049.webp"
+     onerror="this.style.display='none'" alt="Foot Graffiti TURBOTIRE x GTAVI x SADV41">
+
+<!-- WIDGETS FLOTANTES UNIVERSALES SADV41 -->
+<a id="sadv41-home" href="[https://thesteef21.github.io/Lapizasuli/GSADV41.html](https://thesteef21.github.io/Lapizasuli/GSADV41.html)" title="SADV41 · Página principal" aria-label="Ir a la página principal de SADV41"
+   style="position:fixed;left:14px;bottom:56px;z-index:2147482999;width:44px;height:44px;border-radius:50%;background:#071642;border:2.5px solid #d9a93a;box-shadow:0 4px 14px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;text-decoration:none">
+  <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+    <g fill="#d9a93a">
+      <rect x="10.8" y="2" width="2.4" height="20" rx=".6"/>
+      <rect x="8" y="4.6" width="8" height="1.8" rx=".5"/>
+      <rect x="6" y="9" width="12" height="2.4" rx=".6"/>
+      <rect x="8.6" y="16.6" width="6.8" height="1.8" rx=".5" transform="rotate(12 12 17.5)"/>
+    </g>
+  </svg>
+</a>
+
+<div id="sadv41-floating-container" style="position:fixed;bottom:54px;right:14px;z-index:999999;display:flex;flex-direction:column;align-items:flex-end;gap:6px;touch-action:none;user-select:none">
+  <div id="sadv41-menu" style="display:none;background:rgba(10,13,20,.95);border:1px solid rgba(0,229,255,.35);border-radius:12px;padding:10px 12px;backdrop-filter:blur(8px);box-shadow:0 8px 24px rgba(0,0,0,.55)">
+    <a href="[https://stevendior-shop.fourthwall.com](https://stevendior-shop.fourthwall.com)" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;font-size:12px;font-weight:700;display:block;margin-bottom:6px">🛍️ Tienda Oficial</a>
+    <a href="[https://wa.me/50763263403](https://wa.me/50763263403)" target="_blank" rel="noopener" style="color:#25D366;text-decoration:none;font-size:12px;font-weight:700;display:block;margin-bottom:6px">📲 WhatsApp 6326-3403</a>
+    <a data-ghref="Agent/" href="./Agent/" style="color:#00e5ff;text-decoration:none;font-size:12px;font-weight:800;display:block">🤖 AGENTE SADV41</a>
   </div>
-  <div id="g-msg" class="g-msg"></div>
-  <p class="g-risk">$GORRA es un token meme nuevo: puede perder todo su valor. No es asesoría financiera.</p>
+  <button type="button" onclick="var m=document.getElementById('sadv41-menu');m.style.display=(m.style.display==='block'?'none':'block')"
+          style="width:52px;height:52px;border-radius:50%;border:2px solid var(--gold);background:#0a0d14;color:#fff;font-weight:900;font-size:11px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.5)">
+    SADV41
+  </button>
+</div>
+
+<a id="t2012" href="[https://thesteef21.github.io/SADV41/Cristo/](https://thesteef21.github.io/SADV41/Cristo/)"
+   style="position:fixed;left:50%;bottom:36px;transform:translateX(-50%);z-index:2147482998;max-width:92vw;padding:5px 14px;border-radius:999px;background:#07070ddd;color:#e8c468;border:1px solid #e8c46866;font:12.5px Georgia,serif;text-align:center;text-decoration:none;backdrop-filter:blur(6px);white-space:nowrap">
+   ✝️ 2012 · Cristo no me soltó
+</a>
+
+<div id="sadv41-news" style="position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#0a0e1a;color:#f4f6ff;border-top:2px solid #f5c542;font:600 12px/1.35 system-ui,sans-serif;padding:6px 36px 6px 10px;text-align:center">
+  <span style="color:#f5c542">ÚLTIMA NOTICIA</span> · <a href="[https://thesteef21.github.io/SADV41/NEWS/PANAMA/USA/#paraguay](https://thesteef21.github.io/SADV41/NEWS/PANAMA/USA/#paraguay)" target="_blank" rel="noopener" style="color:#3ee0e8;text-decoration:none">Paraguay interviene Ueno Bank y renuncia el presidente del Banco Central 🏦</a>
+  <button onclick="this.parentNode.style.display='none'" aria-label="Cerrar noticia" style="position:absolute;right:8px;top:3px;background:none;border:0;color:#9aa3c7;font-size:16px;cursor:pointer">×</button>
+</div>
+
+<!-- SCRIPTS EXTERNOS DE LA RED SADV41 -->
+<script src="/SADV41/BIBLIA/biblia.js" defer></script>
+<script src="[https://thesteef21.github.io/SADV41/sadv41-drag.js](https://thesteef21.github.io/SADV41/sadv41-drag.js)" defer></script>
+<script src="[https://thesteef21.github.io/SADV41/lib/seismic-widget.js](https://thesteef21.github.io/SADV41/lib/seismic-widget.js)" defer></script>
 
 <script>
-(function(){
+/* =========================================================================
+   1. AUTO-ENRUTADOR INTELIGENTE DE CARPETAS GORRA (CERO ENLACES ROTOS)
+   ========================================================================= */
+function getGorraBasePrefix() {
+  var p = decodeURIComponent(window.location.pathname || '');
+  var idx = p.toLowerCase().indexOf('/gorra/');
+  if (idx === -1) return './';
+  var sub = p.slice(idx + 7); // ruta después de /GORRA/
+  var parts = sub.split('/').filter(Boolean);
+  if (parts.length && parts[parts.length - 1].indexOf('.') !== -1) {
+    parts.pop(); // quitar nombre de archivo .html
+  }
+  if (parts.length === 0) return './';
+  return '../'.repeat(parts.length);
+}
+
+var GORRA_BASE = getGorraBasePrefix();
+
+function resolveGorraPath(relPath) {
+  if (!relPath || /^(https?:|data:|#|mailto:|tel:)/i.test(relPath)) return relPath;
+  return GORRA_BASE + relPath.replace(/^\.?\//, '');
+}
+
+(function applyDynamicPaths() {
+  var ind = document.getElementById('path-indicator');
+  if (ind) {
+    var p = decodeURIComponent(window.location.pathname || '');
+    var m = p.match(/\/GORRA\/(.*)/i);
+    ind.textContent = 'NODO: ' + (m && m[1] ? m[1] : 'GORRA RAÍZ');
+  }
+  document.querySelectorAll('[data-gsrc]').forEach(function(el) {
+    el.setAttribute('src', resolveGorraPath(el.getAttribute('data-gsrc')));
+  });
+  document.querySelectorAll('[data-ghref]').forEach(function(el) {
+    el.setAttribute('href', resolveGorraPath(el.getAttribute('data-ghref')));
+  });
+})();
+
+/* =========================================================================
+   2. FILTRO OMNISCIENT EN VIVO (TABS MULTI-MÓDULO)
+   ========================================================================= */
+function filterOmni(targetId, btn) {
+  document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+  if (btn) btn.classList.add('active');
+  document.querySelectorAll('.omni-section').forEach(function(sec) {
+    if (targetId === 'all' || sec.id === targetId) {
+      sec.classList.remove('hidden');
+    } else {
+      sec.classList.add('hidden');
+    }
+  });
+}
+
+/* =========================================================================
+   3. SELECTOR DUAL TURBOTIRE vs xSADV41
+   ========================================================================= */
+function setMode(mode) {
+  var turbo = document.getElementById('vista-turbo');
+  var sadv = document.getElementById('vista-sadv');
+  var bT = document.getElementById('btn-turbo');
+  var bS = document.getElementById('btn-sadv');
+  if (mode === 'turbo') {
+    turbo.classList.remove('hidden'); sadv.classList.add('hidden');
+    bT.classList.add('active-turbo'); bS.classList.remove('active-sadv');
+  } else {
+    sadv.classList.remove('hidden'); turbo.classList.add('hidden');
+    bS.classList.add('active-sadv'); bT.classList.remove('active-turbo');
+  }
+  try { localStorage.setItem('sadv41-modo', mode); } catch (e) {}
+}
+(function() {
+  try {
+    var m = localStorage.getItem('sadv41-modo');
+    setMode(m === 'turbo' ? 'turbo' : 'sadv');
+  } catch (e) { setMode('sadv'); }
+})();
+
+/* =========================================================================
+   4. COPIAR COPY COMERCIAL
+   ========================================================================= */
+function copyPromoText() {
+  var txt = document.getElementById('promo-copy').innerText;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(txt).then(function() {
+      alert('✓ Copy de TURBOTIRE x GTAVI x SADV41 copiado al portapapeles.');
+    });
+  }
+}
+
+/* =========================================================================
+   5. SONDEADOR DE RED (GTA VI / ENDPOINTS)
+   ========================================================================= */
+function logMsg(msg, cls) {
+  var out = document.getElementById('console-output');
+  var t = new Date().toLocaleTimeString('es-PA');
+  var d = document.createElement('div');
+  if (cls) d.className = cls;
+  d.innerHTML = '<span class="log-time">[' + t + ']</span>' + msg;
+  var cur = out.querySelector('.blinking-cursor');
+  if (cur) cur.parentNode.remove();
+  out.appendChild(d);
+  var c = document.createElement('div');
+  c.innerHTML = '<span class="blinking-cursor">_</span>';
+  out.appendChild(c);
+  out.scrollTop = out.scrollHeight;
+}
+
+async function probeConnection() {
+  var btn = document.getElementById('probe-btn');
+  var url = document.getElementById('url-input').value.trim();
+  if (!url) return;
+  btn.disabled = true;
+  logMsg('IDLE → CONNECTING → ' + url);
+  var ctrl = new AbortController();
+  var to = setTimeout(function() { ctrl.abort(); }, 8000);
+  try {
+    await fetch(url, { method: 'HEAD', mode: 'no-cors', signal: ctrl.signal });
+    clearTimeout(to);
+    logMsg('READY: Respuesta recibida del nodo.');
+  } catch (e) {
+    clearTimeout(to);
+    if (e.name === 'AbortError') {
+      logMsg('ERROR: Timeout de 8s alcanzado.', 'log-error');
+    } else {
+      logMsg('WARN: CORS restringido; verificando vía GET no-cors...', 'log-warn');
+      try {
+        await fetch(url, { mode: 'no-cors' });
+        logMsg('READY: Handshake GET no-cors completado.');
+      } catch (e2) {
+        logMsg('ERROR: ' + e2.message, 'log-error');
+      }
+    }
+  }
+  btn.disabled = false;
+}
+
+/* =========================================================================
+   6. PUENTE LOCAL OPAL / ARGON 4 (TERMUX CLOUDFLARE TUNNEL)
+   ========================================================================= */
+(function initOpalBridge() {
+  try {
+    document.getElementById('opal-url').value = localStorage.getItem('opal_url') || '';
+    document.getElementById('opal-token').value = localStorage.getItem('opal_token') || '';
+  } catch (e) {}
+})();
+
+async function sendOpalCommand() {
+  var url = document.getElementById('opal-url').value.trim().replace(/\/$/, '');
+  var token = document.getElementById('opal-token').value.trim();
+  var msg = document.getElementById('opal-msg').value.trim();
+  var out = document.getElementById('opal-console');
+  if (!url || !token || !msg) {
+    out.innerHTML += '<div class="log-warn">[AVISO] Completa URL del túnel, ADV41_TOKEN y tu orden.</div>';
+    return;
+  }
+  try {
+    localStorage.setItem('opal_url', url);
+    localStorage.setItem('opal_token', token);
+  } catch (e) {}
+
+  out.innerHTML += '<div><span class="log-time">[TÚ]</span> ' + msg.replace(/</g, '&lt;') + '</div>';
+  try {
+    var r = await fetch(url + '/api/argon4', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Authorization': token },
+      body: JSON.stringify({ data: msg })
+    });
+    if (r.status === 429) {
+      out.innerHTML += '<div class="log-warn">[ARGON 4] Rate limit (429). Espera 2 segundos (anti-throttling).</div>';
+    } else {
+      var j = await r.json();
+      out.innerHTML += '<div><span class="log-time">[ARGON 4]</span> ' + (j.data || j.status || j.error) + '</div>';
+    }
+  } catch (e) {
+    out.innerHTML += '<div class="log-error">[OFFLINE] Túnel caído o Termux suspendido. Ejecuta pm2 resurrect en ~/sadv41_opal.</div>';
+  }
+  document.getElementById('opal-msg').value = '';
+  out.scrollTop = out.scrollHeight;
+}
+
+/* =========================================================================
+   7. WIDGET PHYGITAL $GORRA (BNB CHAIN / ETHERS V5)
+   ========================================================================= */
+(function() {
   var CFG = {
     contract: "0xd03115edb6794fa06304d43ee46f7f62b71bffff",
     chainId: 56,
     minToUnlock: 1,
-    trade: "https://four.meme/token/0xd03115edb6794fa06304d43ee46f7f62b71bffff?code=BFEJ4KQR584G",
-    shop:  "https://stevendior-shop.fourthwall.com/products/stevendior-x-usss-hat",
-    wa:    "https://wa.me/p/39376850615293979/50769362166",
     rpcs: [
-      "https://bsc-dataseed.binance.org/",
-      "https://bsc-dataseed1.defibit.io/",
-      "https://bsc-dataseed1.ninicoin.io/"
+      "[https://bsc-dataseed.binance.org/](https://bsc-dataseed.binance.org/)",
+      "[https://bsc-dataseed1.defibit.io/](https://bsc-dataseed1.defibit.io/)",
+      "[https://bsc-dataseed1.ninicoin.io/](https://bsc-dataseed1.ninicoin.io/)"
     ]
   };
-  var ABI = ["function balanceOf(address) view returns (uint256)","function decimals() view returns (uint8)"];
-  var $ = function(id){return document.getElementById(id)};
+  var ABI = ["function balanceOf(address) view returns (uint256)", "function decimals() view returns (uint8)"];
+  var $ = function(id) { return document.getElementById(id); };
   var account = null, ethersLib = null;
-  $("g-trade").href = CFG.trade;
-  $("g-shop").href = CFG.shop;
-  $("g-wa").href = CFG.wa;
-  $("g-scan").href = "https://bscscan.com/token/" + CFG.contract;
-  function msg(t, kind){
+
+  function msg(t, kind) {
     var m = $("g-msg");
     m.textContent = t || "";
     m.style.color = kind === "bad" ? "#fb7185" : kind === "ok" ? "#34d399" : "#94a3b8";
   }
-  function short(a){ return a.slice(0,6)+"…"+a.slice(-4); }
-  function loadEthers(){
-    return new Promise(function(res, rej){
+  function short(a) { return a.slice(0, 6) + "…" + a.slice(-4); }
+
+  function loadEthers() {
+    return new Promise(function(res, rej) {
       if (window.ethers && window.ethers.providers) return res(window.ethers);
       var s = document.createElement("script");
-      s.src = "https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js";
-      s.onload = function(){ res(window.ethers) };
-      s.onerror = function(){ rej(new Error("No se pudo cargar ethers")) };
+      s.src = "[https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js](https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js)";
+      s.onload = function() { res(window.ethers); };
+      s.onerror = function() { rej(new Error("No se pudo cargar ethers")); };
       document.head.appendChild(s);
     });
   }
-  async function readBalance(addr){
+
+  async function readBalance(addr) {
     var E = ethersLib, lastErr;
-    for (var i=0;i<CFG.rpcs.length;i++){
+    for (var i = 0; i < CFG.rpcs.length; i++) {
       try {
         var p = new E.providers.StaticJsonRpcProvider(CFG.rpcs[i], CFG.chainId);
         var c = new E.Contract(CFG.contract, ABI, p);
-        var r = await Promise.all([c.balanceOf(addr), c.decimals().catch(function(){return 18})]);
+        var r = await Promise.all([c.balanceOf(addr), c.decimals().catch(function() { return 18; })]);
         return parseFloat(E.utils.formatUnits(r[0], r[1]));
-      } catch(e){ lastErr = e; }
+      } catch (e) { lastErr = e; }
     }
     throw lastErr || new Error("RPC no disponible");
   }
-  function currentAddress(){
+
+  function currentAddress() {
     var man = $("g-manual").value.trim();
     if (/^0x[a-fA-F0-9]{40}$/.test(man)) return man;
     if (account) return account;
     if (typeof window.activeAddress === "string" && /^0x[a-fA-F0-9]{40}$/.test(window.activeAddress)) return window.activeAddress;
     return null;
   }
-  async function refresh(){
+
+  async function refresh() {
     var out = $("g-bal"), addr = currentAddress();
-    if (!addr){ out.textContent = "Wallet no conectada"; out.style.color="#fb7185"; msg(""); return; }
+    if (!addr) { out.textContent = "Wallet no conectada"; out.style.color = "#fb7185"; msg(""); return; }
     $("g-addr").textContent = short(addr);
-    out.textContent = "Consultando…"; out.style.color="";
+    out.textContent = "Consultando…"; out.style.color = "";
     try {
       ethersLib = ethersLib || await loadEthers();
       var bal = await readBalance(addr);
-      out.textContent = bal.toLocaleString(undefined,{maximumFractionDigits:2}) + " GORRA";
+      out.textContent = bal.toLocaleString(undefined, { maximumFractionDigits: 2 }) + " GORRA";
       out.style.color = bal >= CFG.minToUnlock ? "#34d399" : "#e2e8f0";
-      if (bal >= CFG.minToUnlock) msg("✓ COJE TU GORRA 😂🇵🇦 — ya eres parte de la SADV41", "ok"); else msg("");
-      document.dispatchEvent(new CustomEvent("gorra:balance",{detail:{address:addr,balance:bal}}));
-      if (typeof window.appendLog === "function") window.appendLog("Agent","Saldo $GORRA verificado: "+bal.toFixed(2),"info");
-    } catch(e){
-      console.error(e); out.textContent = "Error on-chain"; out.style.color="#fb7185";
+      if (bal >= CFG.minToUnlock) msg("✓ COJE TU GORRA 😂🇵🇦 — ya eres parte de la SADV41", "ok");
+      else msg("");
+    } catch (e) {
+      out.textContent = "Error on-chain"; out.style.color = "#fb7185";
       msg("No pude leer el contrato. Reintenta en unos segundos.", "bad");
     }
   }
-  async function connect(){
+
+  async function connect() {
     var eth = window.ethereum || window.BinanceChain;
-    if (!eth){ msg("No hay wallet en este navegador. Pega tu dirección arriba.", "bad"); return; }
+    if (!eth) { msg("No hay wallet en este navegador. Pega tu dirección 0x arriba.", "bad"); return; }
     try {
-      var accs = await eth.request({method:"eth_requestAccounts"});
+      var accs = await eth.request({ method: "eth_requestAccounts" });
       account = accs[0];
-      try { await eth.request({method:"wallet_switchEthereumChain", params:[{chainId:"0x38"}]}); } catch(_){}
+      try { await eth.request({ method: "wallet_switchEthereumChain", params: [{ chainId: "0x38" }] }); } catch (_) {}
       refresh();
-      if (eth.on) eth.on("accountsChanged", function(a){ account = a[0]||null; refresh(); });
-    } catch(e){ msg("Conexión cancelada.", "bad"); }
+    } catch (e) { msg("Conexión cancelada.", "bad"); }
   }
+
   $("g-refresh").addEventListener("click", refresh);
   $("g-connect").addEventListener("click", connect);
   $("g-manual").addEventListener("change", refresh);
-  window.addEventListener("DOMContentLoaded", function(){ setTimeout(refresh, 800); });
-  if (document.readyState !== "loading") setTimeout(refresh, 800);
   window.GorraWidget = { refresh: refresh, config: CFG };
 })();
 </script>
-</section>
-
-<p class="risk">$GORRA es un token tipo meme en BNB Chain (Four.meme). No es asesoría financiera ni garantía de rendimiento: puedes perder lo que inviertas. Investiga antes de operar.</p>
-<div id="sadv41-noviembre-widget" style="position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:999999;background:linear-gradient(135deg,#00209F 0%,#00209F 30%,#FFFFFF 30%,#FFFFFF 70%,#D21034 70%);color:#111;padding:10px 18px;border-radius:999px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif;font-weight:900;font-size:14px;letter-spacing:.3px;box-shadow:0 8px 30px rgba(0,0,0,.35),0 0 0 2px rgba(255,255,255,.9) inset;display:flex;align-items:center;gap:8px;">
-  <span>Feliz Mes de Noviembre</span><span>🇵🇦👑🇺🇸</span>
-  <button onclick="this.parentElement.remove()" style="margin-left:8px;background:rgba(0,0,0,.12);border:0;border-radius:50%;width:22px;height:22px;cursor:pointer;font-weight:900;line-height:1;">×</button>
-</div>
-
-<script src="/SADV41/BIBLIA/biblia.js" defer></script>
-<script src="https://thesteef21.github.io/SADV41/sadv41-drag.js" defer></script>
-  <script src="https://thesteef21.github.io/SADV41/lib/seismic-widget.js" defer></script>
-<div id="sadv41-news" style="position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#0a0e1a;color:#f4f6ff;border-top:2px solid #f5c542;font:600 13px/1.35 system-ui,sans-serif;padding:8px 40px 8px 12px;text-align:center"><span style="color:#f5c542">ÚLTIMA NOTICIA</span> · <a href="https://thesteef21.github.io/SADV41/NEWS/PANAMA/USA/#paraguay" target="_blank" rel="noopener" style="color:#3ee0e8;text-decoration:none">Paraguay interviene Ueno Bank y renuncia el presidente del Banco Central 🏦</a><button onclick="this.parentNode.style.display='none'" aria-label="Cerrar" style="position:absolute;right:8px;top:4px;background:none;border:0;color:#9aa3c7;font-size:18px;cursor:pointer">×</button></div>
-<a id="sadv41-home" href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" title="SADV41 · Página principal" aria-label="Ir a la página principal de SADV41" style="position:fixed;left:14px;bottom:64px;z-index:2147482999;width:46px;height:46px;border-radius:50%;background:#071642;border:3px solid #d9a93a;box-shadow:0 4px 14px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;text-decoration:none"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><g fill="#d9a93a"><rect x="10.8" y="2" width="2.4" height="20" rx=".6"/><rect x="8" y="4.6" width="8" height="1.8" rx=".5"/><rect x="6" y="9" width="12" height="2.4" rx=".6"/><rect x="8.6" y="16.6" width="6.8" height="1.8" rx=".5" transform="rotate(12 12 17.5)"/></g></svg></a>
-<a href="./Agent/" class="p-4 border border-[#00e5ff]/50 bg-[#00e5ff]/10 hover:border-[#00e5ff] text-[#00e5ff] transition-all rounded-xl font-bold uppercase tracking-widest text-center">AGENTE 🤖</a>
-<div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
-  <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
-    <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener noreferrer" style="color: #ffffff; text-decoration: none; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 6px; white-space: nowrap;">
-      🛍️ Tienda oficial
-    </a>
-  </div>
-  <a href="https://thesteef21.github.io/SADV41/Artist.html" id="sadv41-icon-btn" style="display: block; width: 58px; height: 58px; border-radius: 50%; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35); background: transparent;">
-    <img src="WEAR/786c8fc4-b682-4133-9832-eaee44f33eff.webp" alt="SADV41 Artist" style="width: 100%; height: 100%; object-fit: contain; pointer-events: none;">
-  </a>
-</div>
-
-<script>
-(function() {
-  function makeElementDraggable(elmnt) {
-    if (!elmnt || elmnt.dataset.sadv41Draggable === "true") return;
-    elmnt.dataset.sadv41Draggable = "true";
-    const style = window.getComputedStyle(elmnt);
-    if (style.position !== 'fixed' && style.position !== 'absolute') {
-      elmnt.style.position = 'fixed';
-    }
-    elmnt.style.touchAction = 'none';
-    elmnt.style.userSelect = 'none';
-    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-    let isDragging = false;
-    elmnt.onmousedown = dragMouseDown;
-    elmnt.addEventListener('touchstart', dragTouchStart, { passive: false });
-    function dragMouseDown(e) {
-      e = e || window.event;
-      if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
-      e.preventDefault();
-      pos3 = e.clientX;
-      pos4 = e.clientY;
-      document.onmouseup = closeDragElement;
-      document.onmousemove = elementDrag;
-    }
-    function elementDrag(e) {
-      e = e || window.event;
-      e.preventDefault();
-      isDragging = true;
-      pos1 = pos3 - e.clientX;
-      pos2 = pos4 - e.clientY;
-      pos3 = e.clientX;
-      pos4 = e.clientY;
-      elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-      elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-      elmnt.style.bottom = 'auto';
-      elmnt.style.right = 'auto';
-    }
-    function closeDragElement() {
-      document.onmouseup = null;
-      document.onmousemove = null;
-      setTimeout(() => { isDragging = false; }, 50);
-    }
-    function dragTouchStart(e) {
-      if (e.touches.length === 1) {
-        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON') return;
-        let touch = e.touches[0];
-        pos3 = touch.clientX;
-        pos4 = touch.clientY;
-        document.addEventListener('touchend', closeTouchDrag, { passive: false });
-        document.addEventListener('touchmove', elementTouchDrag, { passive: false });
-      }
-    }
-    function elementTouchDrag(e) {
-      if (e.touches.length === 1) {
-        let touch = e.touches[0];
-        isDragging = true;
-        pos1 = pos3 - touch.clientX;
-        pos2 = pos4 - touch.clientY;
-        pos3 = touch.clientX;
-        pos4 = touch.clientY;
-        elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
-        elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
-        elmnt.style.bottom = 'auto';
-        elmnt.style.right = 'auto';
-        e.preventDefault();
-      }
-    }
-    function closeTouchDrag() {
-      document.removeEventListener('touchend', closeTouchDrag);
-      document.removeEventListener('touchmove', elementTouchDrag);
-      setTimeout(() => { isDragging = false; }, 50);
-    }
-    elmnt.addEventListener('click', function(e) {
-      if (isDragging) {
-        e.preventDefault();
-        e.stopPropagation();
-      }
-    }, true);
-  }
-  function initUniversalDraggable() {
-    const sadvContainer = document.getElementById('sadv41-floating-container');
-    const menu = document.getElementById('sadv41-menu');
-    if (sadvContainer) {
-      makeElementDraggable(sadvContainer);
-      sadvContainer.addEventListener('mouseenter', () => { if (menu) menu.style.display = 'block'; });
-      sadvContainer.addEventListener('mouseleave', () => { if (menu) menu.style.display = 'none'; });
-    }
-    const selectors = [
-      '[class*="-floating"]', '[id*="-floating"]', '[class*="floating-"]',
-      '[class*="dock"]', '[id*="dock"]', '[class*="nav-bottom"]',
-      'img[src*="sat"]', 'img[src*="SAT"]', 'a[href*="BINANCE"]',
-      '.fixed', '#sat-gob-logo', '#agent-hub-bar'
-    ];
-    document.querySelectorAll(selectors.join(',')).forEach(el => {
-      const target = el.closest('div') || el;
-      makeElementDraggable(target);
-    });
-    document.querySelectorAll('body *').forEach(el => {
-      const style = window.getComputedStyle(el);
-      if (style.position === 'fixed' && style.zIndex > 10) {
-        makeElementDraggable(el);
-      }
-    });
-  }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initUniversalDraggable);
-  } else {
-    initUniversalDraggable();
-  }
-})();
-</script>
-<style>
-#t2012{position:fixed;left:50%;bottom:14px;transform:translateX(-50%);z-index:9999;
- max-width:92vw;padding:8px 16px;border-radius:999px;background:#07070dcc;color:#e8c468;
- border:1px solid #e8c46866;font:14px Georgia,serif;text-align:center;text-decoration:none;
- backdrop-filter:blur(6px);opacity:0;animation:t2012in 1.4s ease .6s forwards}
-@keyframes t2012in{to{opacity:1}}
-</style>
-<a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
 </body>
 </html>
