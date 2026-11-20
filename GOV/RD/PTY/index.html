@@ -11,6 +11,7 @@
       --border: #26262e;
       --gold: #e5b80b;
       --accent: #00d4ff;
+      --proton: #6d4aff;
       --text: #f2f2f5;
       --muted: #b0b0bc;
     }
@@ -61,7 +62,9 @@
       text-transform: uppercase;
     }
     .badge-news { background: var(--accent); color: #000; }
+    .badge-judicial { background: #2b5b84; color: #fff; }
     .badge-biz { background: var(--gold); color: #000; }
+    .badge-tech { background: var(--proton); color: #fff; }
     .article-card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -114,6 +117,51 @@
       padding: 10px 16px;
       border-radius: 6px;
     }
+    .btn-secondary {
+      display: inline-block;
+      margin-top: 0.65rem;
+      background: #1f2430;
+      border: 1px solid #384152;
+      color: #e2e8f0;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      padding: 9px 15px;
+      border-radius: 6px;
+    }
+    .btn-proton {
+      display: inline-block;
+      margin-top: 0.65rem;
+      background: var(--proton);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 9px 15px;
+      border-radius: 6px;
+    }
+    .dual-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+    .sub-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.4rem;
+    }
+    .sub-card h2 {
+      margin: 0.65rem 0 0.5rem;
+      font-size: 1.15rem;
+      line-height: 1.35;
+    }
+    .sub-card p {
+      margin: 0 0 0.75rem;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
     .market-box {
       background: #12131a;
       border-left: 4px solid #6c757d;
@@ -122,7 +170,7 @@
       border-bottom: 1px solid var(--border);
       border-radius: 8px;
       padding: 1.25rem 1.5rem;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
     }
     .market-box h2 {
       margin: 0 0 0.5rem;
@@ -171,6 +219,7 @@
     <div class="brand">SADV41 · NODO GOV / RD / PTY</div>
     <div class="nav-links">
       <a href="#cobertura-cap-cana">Cobertura</a>
+      <a href="#actualidad-pty">Institucional</a>
       <a href="#contexto-mercado">Mercado</a>
       <a href="#stevendior-lp-collection">Tienda</a>
       <a href="https://thesteef21.github.io/Lapizasuli/GSADV41.html">Inicio</a>
@@ -182,18 +231,18 @@
     <!-- BLOQUE 1: COBERTURA OFICIAL -->
     <article id="cobertura-cap-cana" class="article-card">
       <span class="badge badge-news">SADV41 Cobertura Internacional · 20 Nov 2026</span>
-      <h1>Panamá en Cap Cana: Mulino y Abinader abren diálogo sobre comercio, inversión y tecnología</h1>
+      <h1>Presidente Mulino destaca el potencial de Panamá en turismo, tecnología e IA durante foro regional</h1>
       <div class="meta">
         <strong>Evento:</strong> World Governments Summit Dialogue – América Latina y el Caribe &nbsp;|&nbsp;
-        <strong>Sede:</strong> Cap Cana, La Altagracia, República Dominicana &nbsp;|&nbsp;
-        <strong>Fuentes:</strong> Presidencia RD &amp; Transmisión Presidencia de Panamá
+        <strong>Sede:</strong> Cap Cana / Punta Cana, República Dominicana &nbsp;|&nbsp;
+        <strong>Fuente:</strong> Presidencia de la República de Panamá
       </div>
 
       <p>
-        Este 20 y 21 de noviembre de 2026, Panamá participa en el <strong>World Governments Summit Dialogue para América Latina y el Caribe</strong> en Cap Cana, un encuentro de alto nivel que reúne a jefes de Estado, organismos internacionales y líderes empresariales para debatir sobre integración, conectividad, turismo, innovación y el futuro de la gestión pública.
+        Este 20 y 21 de noviembre de 2026, Panamá participa en el <strong>World Governments Summit Dialogue para América Latina y el Caribe</strong> en República Dominicana, un encuentro de alto nivel que reúne a jefes de Estado, organismos internacionales y líderes empresariales para debatir sobre integración, conectividad, turismo, innovación y el futuro de la gestión pública.
       </p>
       <p>
-        Durante la jornada inaugural, el presidente de Panamá, <strong>José Raúl Mulino</strong>, y el presidente de la República Dominicana, <strong>Luis Abinader</strong>, protagonizaron el diálogo central titulado <em>“Los gobiernos y la nueva geografía de las oportunidades”</em>, enfocado en impulsar corredores económicos, atracción de inversiones y cooperación tecnológica regional.
+        Durante el diálogo conjunto con el mandatario dominicano <strong>Luis Abinader</strong> en el panel <em>“Los gobiernos y la nueva geografía de las oportunidades”</em>, el presidente de Panamá, <strong>José Raúl Mulino</strong>, resaltó las ventajas estratégicas del país en <strong>turismo, desarrollo tecnológico e inteligencia artificial (IA)</strong> para impulsar corredores económicos y atraer inversión regional.
       </p>
 
       <div class="stats-strip">
@@ -203,20 +252,45 @@
         <div class="stat-box"><strong>15</strong><span>Reuniones de alto nivel</span></div>
       </div>
 
-      <a class="btn-live" href="https://www.youtube.com/watch?v=wQXEBSZKO0U" target="_blank" rel="noopener">
-        Ver transmisión oficial (Presidencia de Panamá)
+      <a class="btn-live" href="https://youtu.be/-vwLUfR1Cuo" target="_blank" rel="noopener">
+        Presidente Mulino destaca el potencial de Panamá — Presidencia de la República de Panamá
       </a>
     </article>
 
-    <!-- BLOQUE 2: CONTEXTO DE MERCADO SEPARADO -->
+    <!-- BLOQUE 2: ACTUALIDAD INSTITUCIONAL PANAMÁ -->
+    <section id="actualidad-pty" class="dual-grid">
+      <article class="sub-card">
+        <span class="badge badge-judicial">Órgano Judicial · Panamá</span>
+        <h2>Magistrado de la CSJ Vásquez Reyes participa en acto conmemorativo de la Sociedad Bolivariana de Panamá</h2>
+        <p>
+          Representación institucional del Órgano Judicial en la ceremonia oficial de la Sociedad Bolivariana de Panamá, reafirmando los lazos históricos, cívicos y de integración regional.
+        </p>
+        <a class="btn-secondary" href="https://www.organojudicial.gob.pa/noticias/magistrado-de-la-csj-vasquez-reyes-participa-en-acto-conmemorativo-de-la-sociedad-bolivariana-de-panama" target="_blank" rel="noopener">
+          Leer nota en Órgano Judicial
+        </a>
+      </article>
+
+      <article class="sub-card" style="border-color: #3c2e7a;">
+        <span class="badge badge-tech">Herramientas &amp; Privacidad · BF 2026</span>
+        <h2>60% de descuento en Proton Mail (Cifrado de extremo a extremo)</h2>
+        <p>
+          Promoción de temporada para comunicaciones privadas y correo cifrado orientado a operaciones, negocios y resguardo de identidad digital.
+        </p>
+        <a class="btn-proton" href="https://proton.me/es-419/l/mail-bf2026-pfm-fapp?url_id=1721&utm_campaign=ww-en-2c-mail-gro_dis-g_acq-mofu_brave_takeover20112026&utm_source=brave.com&utm_medium=takeover&utm_content=33#pricing" target="_blank" rel="noopener">
+          Ver oferta Proton Mail (-60%)
+        </a>
+      </article>
+    </section>
+
+    <!-- BLOQUE 3: CONTEXTO DE MERCADO SEPARADO -->
     <section id="contexto-mercado" class="market-box">
       <h2>Contexto Económico Global (Nota aparte · Fuente: Clarín)</h2>
       <p>
-        Mientras en Cap Cana se discuten agendas de inversión y corredores comerciales, los mercados internacionales registran una jornada de corrección marcada por el retroceso de acciones vinculadas a inteligencia artificial y siete ruedas consecutivas a la baja en el índice MSCI All Country World (-0,7%). En el plano regional, el riesgo país argentino superó nuevamente los 1.000 puntos con caídas en bonos soberanos superiores al 3% y presiones cambiarias en el segmento mayorista y minorista.
+        Mientras en República Dominicana se discuten agendas de inversión y corredores comerciales, los mercados internacionales registran una jornada de corrección marcada por el retroceso de acciones vinculadas a inteligencia artificial y siete ruedas consecutivas a la baja en el índice MSCI All Country World (-0,7%). En el plano regional, el riesgo país argentino superó nuevamente los 1.000 puntos con caídas en bonos soberanos superiores al 3% y presiones cambiarias en el segmento mayorista y minorista.
       </p>
     </section>
 
-    <!-- BLOQUE 3: STEVENDIOR BUSINESS - COLECCIÓN LINKIN PARK -->
+    <!-- BLOQUE 4: STEVENDIOR BUSINESS - COLECCIÓN LINKIN PARK -->
     <section id="stevendior-lp-collection" style="background:#0d0d0d; color:#f4f4f4; padding:2rem; border-radius:12px; border: 1px solid #2a2a2a; border-top: 3px solid #e5b80b;">
       <header style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; border-bottom:1px solid #2a2a2a; padding-bottom:1rem; gap:1rem;">
         <div>
@@ -246,7 +320,7 @@
       </div>
     </section>
 
-    <!-- BLOQUE 4 (RESERVADO): SECCIÓN ARTISTA OFICIAL / ABIMAEL -->
+    <!-- BLOQUE 5 (RESERVADO): SECCIÓN ARTISTA OFICIAL / ABIMAEL -->
     <!-- Pega aquí la imagen, biografía o enlace de Spotify/portafolio cuando lo tengas listo -->
 
   </main>
