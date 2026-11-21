@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SADV41 // FORENSE · APPLE ID (ERROR 503)</title>
+  <style>
+    :root {
+      --bg-obsidian: #06080d;
+      --bg-panel: rgba(14, 19, 31, 0.85);
+      --border-gold: rgba(212, 175, 55, 0.35);
+      --border-cyan: rgba(0, 240, 255, 0.25);
+      --gold: #f5c542;
+      --cyan: #00f0ff;
+      --emerald: #10b981;
+      --crimson: #ef4444;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-obsidian);
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(0, 240, 255, 0.08), transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(245, 197, 66, 0.08), transparent 40%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+      padding: 1.5rem 1rem 3rem;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    /* Header & Breadcrumb */
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+      backdrop-filter: blur(12px);
+      margin-bottom: 1.5rem;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.82rem;
+    }
+
+    .topbar .path {
+      color: var(--gold);
+      word-break: break-all;
+    }
+
+    .badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(239, 68, 68, 0.15);
+      border: 1px solid rgba(239, 68, 68, 0.45);
+      color: #fca5a5;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--crimson);
+      box-shadow: 0 0 8px var(--crimson);
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
+    }
+
+    /* Hero Card */
+    .hero {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-gold);
+      border-radius: 16px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+      backdrop-filter: blur(14px);
+    }
+
+    .tag-forense {
+      display: inline-block;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--cyan);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero p {
+      color: var(--text-main);
+      font-size: 0.98rem;
+      margin-bottom: 1rem;
+    }
+
+    .hero a {
+      color: var(--cyan);
+      text-decoration: none;
+      border-bottom: 1px dashed var(--cyan);
+    }
+
+    .hero a:hover {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
+
+    .telemetry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .telemetry-item {
+      background: rgba(6, 8, 13, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 10px;
+      padding: 0.75rem;
+    }
+
+    .telemetry-label {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .telemetry-val {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-top: 0.2rem;
+      word-break: break-all;
+    }
+
+    .telemetry-val.err {
+      color: #f87171;
+    }
+
+    .telemetry-val.ok {
+      color: var(--emerald);
+    }
+
+    /* Protocol Section */
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 1.75rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 1.1rem;
+    }
+
+    .step-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-cyan);
+      border-radius: 14px;
+      padding: 1.35rem;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+      position: relative;
+    }
+
+    .step-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .step-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .step-num-title {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .step-num {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, rgba(245, 197, 66, 0.2), rgba(0, 240, 255, 0.15));
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-family: "Courier New", Courier, monospace;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .step-meta {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 6px;
+      background: rgba(0, 240, 255, 0.1);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      color: var(--cyan);
+    }
+
+    .step-body {
+      color: var(--text-main);
+      font-size: 0.95rem;
+      margin-bottom: 0.9rem;
+    }
+
+    code {
+      font-family: "Courier New", Courier, monospace;
+      background: rgba(0, 0, 0, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--cyan);
+      padding: 0.12rem 0.4rem;
+      border-radius: 5px;
+      font-size: 0.88em;
+    }
+
+    .verification-box {
+      background: rgba(16, 185, 129, 0.08);
+      border-left: 3px solid var(--emerald);
+      border-radius: 0 8px 8px 0;
+      padding: 0.65rem 0.9rem;
+      font-size: 0.88rem;
+      color: #a7f3d0;
+    }
+
+    .verification-box strong {
+      color: var(--emerald);
+      text-transform: uppercase;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* Quick Actions */
+    .actions-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.75rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.2rem;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #f5c542, #d97706);
+      color: #06080d;
+      box-shadow: 0 4px 18px rgba(245, 197, 66, 0.25);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.1);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: rgba(0, 240, 255, 0.1);
+      border-color: rgba(0, 240, 255, 0.35);
+      color: var(--cyan);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(0, 240, 255, 0.18);
+    }
+
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: rgba(255, 255, 255, 0.15);
+      color: var(--text-main);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    footer {
+      margin-top: 2.5rem;
+      text-align: center;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 1.25rem;
+    }
+
+    footer span {
+      color: var(--gold);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="topbar">
+      <div class="path">SADV41 // FORENSE / APPLE / INDEX.HTML</div>
+      <div class="badge-live"><span class="dot"></span> HTTP 503 DETECTADO</div>
+    </header>
+
+    <section class="hero">
+      <div class="tag-forense">DICTAMEN TÉCNICO Y PROTOCOLO DE RECUPERACIÓN</div>
+      <h1>Redirección Apple ID &amp; Diagnóstico Error 503</h1>
+      <p>
+        Que <a href="https://apple.com/recuperar" target="_blank" rel="noopener noreferrer">apple.com/recuperar</a> te redirija a <code>iforgot.apple.com</code> es el comportamiento oficial y legítimo de Apple (la llamada automatizada simplemente da la ruta corta en español). Sin embargo, como muestra la captura, el servidor de recuperación de Apple está devolviendo actualmente un error <strong>503 Service Temporarily Unavailable</strong>, lo que indica una saturación o caída temporal en su plataforma web.
+      </p>
+
+      <div class="telemetry-grid">
+        <div class="telemetry-item">
+          <div class="telemetry-label">Origen Llamada</div>
+          <div class="telemetry-val ok">apple.com/recuperar (Legítimo)</div>
+        </div>
+        <div class="telemetry-item">
+          <div class="telemetry-label">Endpoint Destino</div>
+          <div class="telemetry-val">iforgot.apple.com</div>
+        </div>
+        <div class="telemetry-item">
+          <div class="telemetry-label">Estado del Nodo</div>
+          <div class="telemetry-val err">503 Service Unavailable</div>
+        </div>
+      </div>
+    </section>
+
+    <h2 class="section-title">⚡ Alternativas de Restablecimiento (En Orden)</h2>
+
+    <div class="steps">
+      <!-- Paso 1 -->
+      <article class="step-card">
+        <div class="step-header">
+          <div class="step-num-title">
+            <div class="step-num">1</div>
+            <h3 class="step-title">Usa la ruta raíz de recuperación</h3>
+          </div>
+          <span class="step-meta">En Brave o Chrome</span>
+        </div>
+        <p class="step-body">
+          Borra la ruta larga de la barra de direcciones e ingresa directamente a <code>iforgot.apple.com</code> (sin <code>/password/verify/appleid</code>). En ocasiones el subdirectorio específico de verificación falla mientras que el portal principal carga correctamente.
+        </p>
+        <div class="verification-box">
+          <strong>Verification:</strong> Carga el formulario azul y blanco de Apple pidiendo tu correo o número de teléfono.
+        </div>
+      </article>
+
+      <!-- Paso 2 -->
+      <article class="step-card">
+        <div class="step-header">
+          <div class="step-num-title">
+            <div class="step-num">2</div>
+            <h3 class="step-title">Desactiva los escudos de Brave o cambia de red</h3>
+          </div>
+          <span class="step-meta">2 min</span>
+        </div>
+        <p class="step-body">
+          Toca el icono naranja del león (<strong>Brave Shields</strong>) en la barra superior derecha y desactiva la protección temporalmente para ese sitio, o abre una pestaña de incógnito. Si persiste el error 503, cambia de datos móviles (LTE) a Wi-Fi (o viceversa) para forzar otra ruta hacia los servidores de Apple.
+        </p>
+        <div class="verification-box">
+          <strong>Verification:</strong> La página recarga mostrando el cuadro de inicio de sesión en lugar del texto blanco sobre fondo negro.
+        </div>
+      </article>
+
+      <!-- Paso 3 -->
+      <article class="step-card">
+        <div class="step-header">
+          <div class="step-num-title">
+            <div class="step-num">3</div>
+            <h3 class="step-title">Restablece desde un dispositivo Apple o espera 30 minutos</h3>
+          </div>
+          <span class="step-meta">Dispositivo / Espera</span>
+        </div>
+        <p class="step-body">
+          Si tienes acceso a un iPhone, iPad o Mac de confianza (o de un familiar), abre <strong>Configuración &gt; [Tu nombre] &gt; Inicio de sesión y seguridad &gt; Cambiar contraseña</strong>, o usa la app <strong>Soporte de Apple</strong> para iniciar sesión como invitado. Si solo tienes tu Android, espera entre 30 y 60 minutos a que Apple restablezca el nodo del servicio.
+        </p>
+        <div class="verification-box">
+          <strong>Verification:</strong> El sistema te permite ingresar el código enviado a tu número de confianza o correo de respaldo.
+        </div>
+      </article>
+    </div>
+
+    <div class="actions-bar">
+      <a href="https://iforgot.apple.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        Abrir raíz iforgot.apple.com ↗
+      </a>
+      <button type="button" class="btn btn-secondary" onclick="copyRootUrl()">
+        Copiar URL limpia
+      </button>
+      <a href="https://www.apple.com/support/systemstatus/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+        Estado de servidores Apple
+      </a>
+    </div>
+
+    <footer>
+      NODO <span>SADV41</span> · ARCHIVO FORENSE DIGITAL · STEVEN DIOR FLOW
+    </footer>
+  </div>
+
+  <script>
+    function copyRootUrl() {
+      navigator.clipboard.writeText("https://iforgot.apple.com").then(() => {
+        const btn = document.querySelector(".btn-secondary");
+        const original = btn.textContent;
+        btn.textContent = "✓ Copiado: https://iforgot.apple.com";
+        setTimeout(() => { btn.textContent = original; }, 2200);
+      });
+    }
+  </script>
+</body>
+</html>
