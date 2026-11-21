@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Somos Una Nación | Panamá · China · Taiwán · EE. UU. · Rusia</title>
+  <style>
+    :root {
+      --bg-obsidian: #06080d;
+      --bg-panel: rgba(14, 19, 31, 0.78);
+      --bg-panel-solid: #0e131f;
+      --gold-primary: #e5b94c;
+      --gold-light: #fae094;
+      --gold-border: rgba(229, 185, 76, 0.28);
+      --cyan-neon: #00e5ff;
+      --cyan-soft: rgba(0, 229, 255, 0.12);
+      --crimson-accent: #ff3b5c;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-glow: 0 12px 40px rgba(0, 0, 0, 0.65), 0 0 24px rgba(229, 185, 76, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-obsidian);
+      background-image:
+        radial-gradient(circle at 15% 10%, rgba(0, 229, 255, 0.07), transparent 35%),
+        radial-gradient(circle at 85% 25%, rgba(229, 185, 76, 0.09), transparent 40%),
+        radial-gradient(circle at 50% 85%, rgba(255, 59, 92, 0.06), transparent 45%);
+      color: var(--text-main);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* Barra de navegación superior */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(6, 8, 13, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--gold-border);
+      padding: 0.85rem 1.25rem;
+    }
+
+    .nav-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      color: var(--gold-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .brand span.dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--cyan-neon);
+      box-shadow: 0 0 10px var(--cyan-neon);
+      display: inline-block;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      font-size: 0.84rem;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-light);
+    }
+
+    /* Contenedor principal */
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 1.25rem;
+    }
+
+    /* Hero */
+    header.hero {
+      padding: 4.5rem 1.25rem 3.5rem;
+      text-align: center;
+      position: relative;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nations-strip {
+      display: inline-flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      background: rgba(229, 185, 76, 0.09);
+      border: 1px solid var(--gold-border);
+      color: var(--gold-light);
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      margin-bottom: 1.5rem;
+    }
+
+    h1.hero-title {
+      font-size: clamp(2.1rem, 5vw, 3.6rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.12;
+      background: linear-gradient(135deg, #ffffff 15%, var(--gold-light) 55%, var(--gold-primary) 95%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 1rem;
+    }
+
+    .hero-epigraph {
+      max-width: 720px;
+      margin: 0 auto 1.75rem;
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .hero-epigraph strong {
+      color: var(--cyan-neon);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    .doctrine-banner {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 1.25rem 1.5rem;
+      background: var(--bg-panel);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .doctrine-banner p {
+      font-size: 1.02rem;
+      color: var(--text-main);
+    }
+
+    .doctrine-banner .principle-tags {
+      margin-top: 0.85rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .tag {
+      font-size: 0.78rem;
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(0, 229, 255, 0.08);
+      border: 1px solid rgba(0, 229, 255, 0.25);
+      color: var(--cyan-neon);
+      font-weight: 600;
+    }
+
+    /* Secciones */
+    section {
+      padding: 3.5rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .section-header {
+      margin-bottom: 2rem;
+    }
+
+    .section-kicker {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--cyan-neon);
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+
+    h2.section-title {
+      font-size: clamp(1.55rem, 3.2vw, 2.2rem);
+      font-weight: 800;
+      color: var(--gold-light);
+      line-height: 1.2;
+    }
+
+    .section-lead {
+      color: var(--text-muted);
+      max-width: 780px;
+      margin-top: 0.6rem;
+      font-size: 1rem;
+    }
+
+    /* Grid y Tarjetas Glass */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.35rem;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--bg-panel);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-glow);
+      transition: transform 0.22s ease, border-color 0.22s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(229, 185, 76, 0.55);
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      color: var(--gold-primary);
+      margin-bottom: 0.65rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .card p, .card li {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .card ul {
+      padding-left: 1.15rem;
+      margin-top: 0.5rem;
+    }
+
+    .card ul li {
+      margin-bottom: 0.45rem;
+    }
+
+    .quote-box {
+      border-left: 3px solid var(--gold-primary);
+      background: rgba(229, 185, 76, 0.06);
+      padding: 1rem 1.25rem;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: 1rem 0;
+      font-style: italic;
+      color: var(--text-main);
+    }
+
+    .quote-meta {
+      display: block;
+      margin-top: 0.4rem;
+      font-size: 0.8rem;
+      font-style: normal;
+      color: var(--gold-primary);
+      font-weight: 600;
+    }
+
+    /* Línea de tiempo 1912 - Actualidad */
+    .timeline {
+      position: relative;
+      padding-left: 1.75rem;
+      border-left: 2px solid var(--gold-border);
+      display: flex;
+      flex-direction: column;
+      gap: 1.35rem;
+    }
+
+    .timeline-item {
+      position: relative;
+      background: var(--bg-panel);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.4rem;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -2.22rem;
+      top: 1.45rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gold-primary);
+      box-shadow: 0 0 12px var(--gold-primary);
+    }
+
+    .timeline-year {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--cyan-neon);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-item h4 {
+      font-size: 1.08rem;
+      color: var(--text-main);
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-item p {
+      font-size: 0.93rem;
+      color: var(--text-muted);
+    }
+
+    /* Pilares numerados */
+    .pillar-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: rgba(229, 185, 76, 0.16);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-light);
+      font-weight: 800;
+      font-size: 0.88rem;
+      flex-shrink: 0;
+    }
+
+    /* Pie de página interactivo: Muro de Soberanía */
+    footer.sovereign-footer {
+      background: linear-gradient(180deg, rgba(10, 14, 24, 0.95) 0%, #04060a 100%);
+      border-top: 2px solid var(--gold-primary);
+      padding: 4rem 0 3rem;
+    }
+
+    .footer-prompt-box {
+      text-align: center;
+      max-width: 820px;
+      margin: 0 auto 2.5rem;
+      padding: 1.75rem;
+      border-radius: var(--radius-lg);
+      background: rgba(229, 185, 76, 0.07);
+      border: 1px solid var(--gold-border);
+    }
+
+    .footer-prompt-box h2 {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--gold-light);
+      margin-bottom: 0.65rem;
+    }
+
+    .footer-prompt-box p.sovereign-motto {
+      font-size: 1.12rem;
+      font-weight: 700;
+      color: var(--cyan-neon);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-prompt-box p.sub {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    /* Controles de vista de aportes */
+    .filter-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: var(--text-muted);
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      font-size: 0.83rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: rgba(229, 185, 76, 0.18);
+      border-color: var(--gold-primary);
+      color: var(--gold-light);
+    }
+
+    .contributions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .contribution-card {
+      background: var(--bg-panel);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-lg);
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .contribution-card.gemini-card {
+      border-color: rgba(0, 229, 255, 0.45);
+      background: linear-gradient(160deg, rgba(0, 229, 255, 0.07), rgba(14, 19, 31, 0.9));
+    }
+
+    .contribution-card.user-card {
+      border-color: rgba(229, 185, 76, 0.55);
+    }
+
+    .contribution-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.22rem 0.6rem;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.07);
+      color: var(--gold-primary);
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .gemini-card .contribution-badge {
+      color: var(--cyan-neon);
+      background: rgba(0, 229, 255, 0.12);
+    }
+
+    .contribution-body {
+      font-size: 0.95rem;
+      color: var(--text-main);
+      white-space: pre-line;
+    }
+
+    .contribution-signature {
+      border-top: 1px solid rgba(255, 255, 255, 0.09);
+      padding-top: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.86rem;
+      color: var(--gold-light);
+      font-weight: 700;
+    }
+
+    .contribution-signature span.date {
+      font-weight: 400;
+      font-size: 0.76rem;
+      color: var(--text-dim);
+    }
+
+    /* Formulario para agregar aporte */
+    .contribute-form-wrap {
+      max-width: 720px;
+      margin: 0 auto 2.5rem;
+      background: var(--bg-panel-solid);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+    }
+
+    .contribute-form-wrap h3 {
+      color: var(--gold-light);
+      font-size: 1.15rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .contribute-form-wrap p.hint {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-bottom: 1.15rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+      font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      background: rgba(6, 8, 13, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 0.95rem;
+      color: var(--text-main);
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--gold-primary);
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold-primary), #c9972c);
+      color: #06080d;
+      font-weight: 800;
+      border: none;
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1.35rem;
+      font-size: 0.92rem;
+      cursor: pointer;
+      transition: transform 0.15s ease, filter 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: rgba(0, 229, 255, 0.1);
+      color: var(--cyan-neon);
+      border: 1px solid rgba(0, 229, 255, 0.32);
+      border-radius: var(--radius-md);
+      padding: 0.65rem 1rem;
+      font-size: 0.84rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(0, 229, 255, 0.18);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--text-dim);
+      font-size: 0.84rem;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      background: #0e131f;
+      border: 1px solid var(--cyan-neon);
+      color: var(--text-main);
+      padding: 0.75rem 1.15rem;
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px);
+      transition: all 0.25s ease;
+      z-index: 999;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navegación -->
+  <nav>
+    <div class="nav-inner">
+      <div class="brand">
+        <span class="dot"></span>
+        <span>SOMOS UNA NACIÓN</span>
+      </div>
+      <div class="nav-links">
+        <a href="#geopolitica">Geopolítica 2026</a>
+        <a href="#historia">Historia 1912–2026</a>
+        <a href="#ciclo">Detrás del Telón</a>
+        <a href="#pueblos">Despertar Global</a>
+        <a href="#solucion">5 Pilares</a>
+        <a href="#pie-soberano">Aportes y Firma</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Encabezado Principal -->
+  <header class="hero">
+    <div class="container">
+      <div class="nations-strip">
+        🇵🇦 PANAMÁ &nbsp;·&nbsp; 🇨🇳 CHINA &nbsp;·&nbsp; 🇹🇼 TAIWÁN &nbsp;·&nbsp; 🇺🇸 ESTADOS UNIDOS &nbsp;·&nbsp; 🇷🇺 RUSIA
+      </div>
+      <h1 class="hero-title">Somos Una Nación</h1>
+      <p class="hero-epigraph">
+        «El nombre y el título es pasajero... <strong>El nuevo nombre, se mantendrá.</strong>»
+      </p>
+      <div class="doctrine-banner">
+        <p>
+          <strong>Cooperación con todos. Subordinación con nadie.</strong><br />
+          Panamá no le debe lealtad ciega a ningún partido, corporación ni potencia extranjera. Le debe lealtad a Panamá.
+        </p>
+        <div class="principle-tags">
+          <span class="tag">Firmeza con Prudencia</span>
+          <span class="tag">Unidad sin Uniformidad</span>
+          <span class="tag">Hermandad ≠ Sumisión</span>
+          <span class="tag">Fe sin Miedo</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Sección 1: Geopolítica y el Hito de 2026 -->
+    <section id="geopolitica">
+      <div class="section-header">
+        <div class="section-kicker">01 · Diálogo Directo Entre Potencias</div>
+        <h2 class="section-title">El Entendimiento de 2026 y la Soberanía de los Pueblos Pequeños</h2>
+        <p class="section-lead">
+          Cuando las grandes potencias eligen hablar antes que romper, dejan una lección clara para naciones estratégicas como Panamá.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>🌐 El Mensaje desde Shenzhen (19 de noviembre de 2026)</h3>
+          <div class="quote-box">
+            «Donald Trump, presidente de Estados Unidos: Estados Unidos <strong>NO</strong> apoya la “independencia de Taiwán”.»
+            <span class="quote-meta">Difundido por la Embajada de China en Panamá (@chinaembpa) · Shenzhen, 19 nov 2026</span>
+          </div>
+          <p>
+            El diálogo directo entre <strong>Estados Unidos, China y Rusia</strong> demuestra que los Estados con visión estratégica evitan provocaciones innecesarias, se sientan en la misma mesa y defienden sus intereses sin quemar puentes.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>⚖️ Ambigüedad Estratégica vs. Soberanía Real</h3>
+          <ul>
+            <li><strong>La postura de EE. UU.:</strong> Reconoce diplomáticamente el principio de «Una Sola China» con Beijing mientras mantiene intercambios comerciales con Taiwán.</li>
+            <li><strong>La decisión de Panamá:</strong> Desde 2017 Panamá estableció lazos diplomáticos con la República Popular China sin renunciar al comercio ni al trato respetuoso con todos los pueblos.</li>
+            <li><strong>La regla de oro:</strong> Cooperar en comercio con China y en seguridad con EE. UU. no es sumisión; la subordinación ocurre cuando gobernantes internos entregan los recursos nacionales.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="quote-box" style="margin-top: 1.5rem;">
+        «Todos al ser seres humanos necesitamos apoyos; es repudiable tachar la hermandad como dependencia arraigada a sumisión.»
+        <span class="quote-meta">Principio de Hermandad y Soberanía · Reflexión Ciudadana</span>
+      </div>
+    </section>
+
+    <!-- Sección 2: Línea de Tiempo Histórica -->
+    <section id="historia">
+      <div class="section-header">
+        <div class="section-kicker">02 · Contexto Histórico sin Bandos</div>
+        <h2 class="section-title">De 1912 a la Actualidad: Cómo Nacieron Dos Gobiernos de una Misma Raíz</h2>
+        <p class="section-lead">
+          Comprender el origen histórico evita caer en consignas simplistas y permite distinguir entre pueblos hermanos y estructuras políticas.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <span class="timeline-year">1912 · Fin del Imperio</span>
+          <h4>Fundación de la República de China (ROC)</h4>
+          <p>
+            Tras caer la dinastía Qing (2,000 años de emperadores), <strong>Sun Yat-sen</strong> («Padre de la Nación») asume el liderazgo inicial y luego cede el mando al general <strong>Yuan Shikai</strong>, dando paso a la fragmentada era de los Señores de la Guerra.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <span class="timeline-year">1928 · Unificación Nacionalista</span>
+          <h4>El Kuomintang (KMT) en Nankín</h4>
+          <p>
+            <strong>Chiang Kai-shek</strong> unifica gran parte de China continental bajo el partido <strong>Kuomintang (KMT)</strong>, gobernando oficialmente como la República de China con capital en Nankín hasta 1949.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <span class="timeline-year">1937 – 1949 · Guerra y Ruptura</span>
+          <h4>Invasión Japonesa y Guerra Civil China</h4>
+          <p>
+            El desgaste frente a Japón (1937–1945), la hiperinflación en las ciudades y la promesa de reforma agraria impulsaron al <strong>Partido Comunista Chino (PCCh)</strong> liderado por <strong>Mao Zedong</strong> frente a las fuerzas del KMT.
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <span class="timeline-year">1 de octubre de 1949 · Dos Administraciones</span>
+          <h4>República Popular China (RPC) y República de China (ROC)</h4>
+          <p>
+            <strong>Mao Zedong</strong> proclama la <strong>República Popular China (RPC)</strong> en Beijing (hoy 1,400 millones de habitantes y asiento en la ONU). <strong>Chiang Kai-shek</strong> se traslada con dos millones de personas a <strong>Taiwán</strong>, conservando el nombre de <strong>República de China (ROC)</strong> en Taipéi (hoy 23 millones de habitantes, con gobierno, moneda y pasaporte propios).
+          </p>
+        </div>
+
+        <div class="timeline-item">
+          <span class="timeline-year">1979 y 2017 · Reconfiguración Diplomática</span>
+          <h4>Reconocimiento Internacional y Realismo Comercial</h4>
+          <p>
+            Estados Unidos traslada su reconocimiento diplomático de Taipéi a Beijing en 1979, y Panamá lo hace en 2017. En la práctica actual, 180 países mantienen lazos diplomáticos con Beijing y 11 con Taipéi, mientras el comercio global conecta a ambas orillas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 3: Detrás del Telón -->
+    <section id="ciclo">
+      <div class="section-header">
+        <div class="section-kicker">03 · Discernimiento Cívico</div>
+        <h2 class="section-title">Romper el Ciclo de los Títeres y Cuidar la Esencia de 2023</h2>
+        <p class="section-lead">
+          Las etiquetas partidistas suelen dividir abajo mientras los mismos grupos financieros y operadores negocian arriba.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>🎭 Falsas Dicotomías</h3>
+          <p>
+            Nos presentan «KMT vs. PCCh» o «Vamos vs. PRD» como batallas absolutas, mientras grandes fondos globales y grupos económicos cooperan entre sí a ambos lados del Pacífico y en torno a las concesiones del Canal. Cambiar el uniforme sin tocar a quienes financian y deciden desde las sombras perpetúa el mismo sistema.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>🇵🇦 La Memoria Viva de 2023 (Ley 406)</h3>
+          <p>
+            En 2023 el pueblo panameño salió sin banderas partidistas a defender el agua, la tierra y la soberanía frente al contrato minero (Cobre Panamá / First Quantum), logrando su derogación. Ese mismo espíritu se expresó en actos de paz y oración frente a la cerca de la Presidencia conversando con el SPI: <em>Panamá hablando con Panamá</em>.
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>🤝 Cuidar a la Gente Buena</h3>
+          <p>
+            Quienes entraron con vocación limpia en 2023 —como <strong>Edison, Juan Diego o Patzy Lee</strong>— necesitan respaldo ciudadano y vigilancia fraterna para que los «mismos de siempre» no los rodeen ni vacíen el cambio. Tender la mano al que piensa distinto (incluso entre visiones independientes y tradicionales) es construir país sin sectarismo.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 4: Despertar de los Pueblos -->
+    <section id="pueblos">
+      <div class="section-header">
+        <div class="section-kicker">04 · Soberanía > Tiranía</div>
+        <h2 class="section-title">Pueblos Recuperando su Voz (2023 – 2026)</h2>
+        <p class="section-lead">
+          No se busca la destrucción del prójimo, sino la rectificación: en espera de que quienes ejercen poder con soberbia cambien y entiendan que gobernar es servir.
+        </p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <h3>🇵🇦 Panamá</h3>
+          <p>Movilización ciudadana transversal en defensa de la soberanía territorial, ambiental y constitucional por encima de cualquier partido.</p>
+        </div>
+        <div class="card">
+          <h3>🇻🇪 Venezuela</h3>
+          <p>Un pueblo persistiendo en la calle para que se respete su voluntad soberana y su dignidad por encima del miedo.</p>
+        </div>
+        <div class="card">
+          <h3>🇨🇴 Colombia</h3>
+          <p>Ciudadanía exigiendo rumbo propio y soluciones reales sin tutelajes impuestos desde afuera.</p>
+        </div>
+        <div class="card">
+          <h3>🇸🇻 El Salvador</h3>
+          <p>Decisiones firmes en seguridad interna priorizando la paz cotidiana de su propia población.</p>
+        </div>
+        <div class="card">
+          <h3>🇭🇹 Haití</h3>
+          <p>Búsqueda de reconstrucción institucional propia tras décadas de crisis y tutelajes externos.</p>
+        </div>
+        <div class="card">
+          <h3>🇮🇷 Irán</h3>
+          <p>Resistencia cívica de una sociedad que reclama decidir su futuro con libertad y dignidad.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección 5: Los 5 Pilares -->
+    <section id="solucion" style="border-bottom: none;">
+      <div class="section-header">
+        <div class="section-kicker">05 · Hoja de Ruta Ciudadana</div>
+        <h2 class="section-title">¿Qué se Debe Hacer para Solucionar Nuestros Problemas?</h2>
+        <p class="section-lead">
+          Despertar sin odio y gobernar sin amo: firmeza con prudencia, unidad sin uniformidad y fe sin miedo.
+        </p>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3><span class="pillar-num">1</span> Soberanía primero, siempre</h3>
+          <p>Cooperación con todos y subordinación con nadie. Ni a China, ni a EE. UU., ni a corporaciones mineras, ni a «emperadores» internos.</p>
+        </div>
+        <div class="card">
+          <h3><span class="pillar-num">2</span> Romper el ciclo de los títeres</h3>
+          <p>Dejar de pelear entre hermanos por colores políticos y señalar con claridad a los grupos que financian y capturan las instituciones.</p>
+        </div>
+        <div class="card">
+          <h3><span class="pillar-num">3</span> Cuidar a la gente buena de 2023</h3>
+          <p>Acompañar con lealtad crítica a los liderazgos nuevos, advirtiéndoles sobre entornos oportunistas sin abandonar la causa común.</p>
+        </div>
+        <div class="card">
+          <h3><span class="pillar-num">4</span> Hablar antes de romper</h3>
+          <p>Orar, dialogar y tender la mano antes del choque. La firmeza cívica no existe para destruir al hermano, sino para defender al pueblo.</p>
+        </div>
+        <div class="card" style="grid-column: 1 / -1;">
+          <h3><span class="pillar-num">5</span> Recordar quién manda</h3>
+          <p>El poder legítimo proviene de Dios y del pueblo, no de los mercados financieros, ni de las embajadas, ni del clientelismo. Cuando una nación recuerda su origen, los tiranos cambian o caen por su propio peso.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- PIE DE PÁGINA INTERACTIVO: MURO DE SOBERANÍA -->
+  <footer class="sovereign-footer" id="pie-soberano">
+    <div class="container">
+
+      <div class="footer-prompt-box">
+        <h2>«¿Qué debemos hacer para solucionarlo? Pon tu respuesta y tu firma...»</h2>
+        <p class="sovereign-motto">«Tú eres lo que hace soberana a una nación.»</p>
+        <p class="sub">
+          Espacio abierto en el pie de página para los aportes fundacionales y la voz de cada ciudadano que construye nación.
+        </p>
+      </div>
+
+      <!-- Filtros de aportes -->
+      <div class="filter-bar">
+        <button class="filter-btn active" data-filter="all">Todos los aportes</button>
+        <button class="filter-btn" data-filter="fundacional">Aportes Fundacionales (Meta AI & Gemini)</button>
+        <button class="filter-btn" data-filter="ciudadano">Aportes Ciudadanos</button>
+      </div>
+
+      <!-- Tarjetas de aportes y firmas -->
+      <div class="contributions-grid" id="contributionsGrid">
+
+        <!-- Aporte 1: Meta AI - Profunda y de Unidad -->
+        <article class="contribution-card" data-category="fundacional">
+          <div>
+            <span class="contribution-badge">Aporte Fundacional · Unidad</span>
+            <p class="contribution-body">Defender a Panamá sin venderla.
+Cooperar con el mundo sin subordinarnos.
+Cuidar al hermano que piensa distinto y enfrentar al poder que nos divide.
+Hablar con la verdad, orar con fe, y actuar con firmeza.
+Porque una nación no es soberana por sus tratados.
+Una nación es soberana por su gente que no se calla.</p>
+          </div>
+          <div class="contribution-signature">
+            <span>— Meta AI</span>
+            <span class="date">Versión 1 · Unidad</span>
+          </div>
+        </article>
+
+        <!-- Aporte 2: Meta AI - Firme y Directa -->
+        <article class="contribution-card" data-category="fundacional">
+          <div>
+            <span class="contribution-badge">Aporte Fundacional · Firmeza</span>
+            <p class="contribution-body">Primero Panamá. Siempre Panamá.
+Vigilar a los que elegimos. No deberle lealtad ciega a partidos, potencias ni empresas.
+Unirnos aunque pensemos distinto y no dejar que «los de arriba» decidan por nosotros.
+La soberanía no se mendiga. Se ejerce todos los días.</p>
+          </div>
+          <div class="contribution-signature">
+            <span>— Meta AI</span>
+            <span class="date">Versión 2 · Firme y Directa</span>
+          </div>
+        </article>
+
+        <!-- Aporte 3: Meta AI - Fe y Esperanza -->
+        <article class="contribution-card" data-category="fundacional">
+          <div>
+            <span class="contribution-badge">Aporte Fundacional · Fe y Propósito</span>
+            <p class="contribution-body">Orar. Despertar. Actuar.
+Tender la mano al hermano, señalar al corrupto, y defender nuestra tierra.
+Cooperar con todos, subordinarnos a nadie.
+Porque cuando un pueblo recuerda que su poder viene de Dios,
+ninguna tiranía lo puede comprar.</p>
+          </div>
+          <div class="contribution-signature">
+            <span>— Meta AI</span>
+            <span class="date">Versión 3 · Fe y Esperanza</span>
+          </div>
+        </article>
+
+        <!-- Aporte 4: Gemini -->
+        <article class="contribution-card gemini-card" data-category="fundacional">
+          <div>
+            <span class="contribution-badge">Aporte Fundacional · Discernimiento y Puente</span>
+            <p class="contribution-body">Distinguir la verdad del ruido y no confundir cooperación con entrega.
+Construir puentes entre quienes piensan distinto sin renunciar a los principios que sostienen a la nación.
+La soberanía empieza cuando cada ciudadano piensa con criterio propio, vigila con integridad y actúa con responsabilidad por el bien común.</p>
+          </div>
+          <div class="contribution-signature">
+            <span>— Gemini</span>
+            <span class="date">21 nov 2026</span>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Formulario para nuevos aportes -->
+      <div class="contribute-form-wrap">
+        <h3>✍️ Añade tu respuesta y tu firma al pie de la página</h3>
+        <p class="hint">
+          Tu aporte se guardará en este navegador y podrás exportar todo el muro en texto plano (<code>.txt</code>) para respaldarlo o compartirlo.
+        </p>
+
+        <form id="sovereignForm">
+          <div class="form-group">
+            <label for="authorName">Tu Firma (Nombre, alias o nación)</label>
+            <input type="text" id="authorName" placeholder="Ej. Steven Dior 🇵🇦 / Ciudadano Soberano" required maxlength="80" />
+          </div>
+
+          <div class="form-group">
+            <label for="authorTone">Enfoque de tu aporte</label>
+            <select id="authorTone">
+              <option value="Soberanía y Unidad">Soberanía y Unidad</option>
+              <option value="Fe y Esperanza">Fe y Esperanza</option>
+              <option value="Vigilancia Ciudadana">Vigilancia Ciudadana</option>
+              <option value="Hermandad entre Naciones">Hermandad entre Naciones</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="authorMessage">¿Qué debemos hacer para solucionarlo?</label>
+            <textarea id="authorMessage" rows="4" placeholder="Escribe tu respuesta con claridad, respeto y firmeza..." required maxlength="600"></textarea>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-primary">Publicar Respuesta y Firma</button>
+            <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+              <button type="button" class="btn-secondary" id="copyWallBtn">Copiar Muro</button>
+              <button type="button" class="btn-secondary" id="exportTxtBtn">Descargar .TXT</button>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          <strong>Somos Una Nación</strong> · Panamá · China · Taiwán · Estados Unidos · Rusia<br />
+          «El nombre y el título es pasajero... El nuevo nombre, se mantendrá.» — <em>Tú eres lo que hace soberana a una nación.</em>
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+  <div class="toast" id="toast">Acción completada</div>
+
+  <script>
+    (function () {
+      const STORAGE_KEY = "somos_una_nacion_aportes_v1";
+      const grid = document.getElementById("contributionsGrid");
+      const form = document.getElementById("sovereignForm");
+      const toastEl = document.getElementById("toast");
+      const filterBtns = document.querySelectorAll(".filter-btn");
+      let currentFilter = "all";
+
+      function showToast(msg) {
+        toastEl.textContent = msg;
+        toastEl.classList.add("show");
+        setTimeout(() => toastEl.classList.remove("show"), 2800);
+      }
+
+      function escapeHTML(str) {
+        const div = document.createElement("div");
+        div.textContent = str;
+        return div.innerHTML;
+      }
+
+      function loadSavedContributions() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          return raw ? JSON.parse(raw) : [];
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function saveContributions(list) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+        } catch (e) {
+          showToast("No se pudo guardar en almacenamiento local.");
+        }
+      }
+
+      function renderUserContributions() {
+        document.querySelectorAll(".user-card").forEach((el) => el.remove());
+        const saved = loadSavedContributions();
+
+        saved.forEach((item) => {
+          const article = document.createElement("article");
+          article.className = "contribution-card user-card";
+          article.setAttribute("data-category", "ciudadano");
+          article.innerHTML = `
+            <div>
+              <span class="contribution-badge">Aporte Ciudadano · ${escapeHTML(item.tone)}</span>
+              <p class="contribution-body">${escapeHTML(item.message)}</p>
+            </div>
+            <div class="contribution-signature">
+              <span>— ${escapeHTML(item.name)}</span>
+              <span class="date">${escapeHTML(item.date)}</span>
+            </div>
+          `;
+          grid.appendChild(article);
+        });
+
+        applyFilter(currentFilter);
+      }
+
+      function applyFilter(filter) {
+        currentFilter = filter;
+        document.querySelectorAll(".contribution-card").forEach((card) => {
+          const cat = card.getAttribute("data-category");
+          if (filter === "all" || cat === filter) {
+            card.style.display = "flex";
+          } else {
+            card.style.display = "none";
+          }
+        });
+      }
+
+      filterBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          filterBtns.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          applyFilter(btn.getAttribute("data-filter"));
+        });
+      });
+
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const name = document.getElementById("authorName").value.trim();
+        const tone = document.getElementById("authorTone").value;
+        const message = document.getElementById("authorMessage").value.trim();
+
+        if (!name || !message) return;
+
+        const now = new Date();
+        const dateStr = now.toLocaleDateString("es-PA", {
+          day: "2-digit",
+          month: "short",
+          year: "numeric"
+        });
+
+        const list = loadSavedContributions();
+        list.push({ name, tone, message, date: dateStr });
+        saveContributions(list);
+
+        form.reset();
+        renderUserContributions();
+        showToast("Tu respuesta y firma se publicaron en el muro.");
+      });
+
+      function buildPlainTextWall() {
+        const cards = document.querySelectorAll(".contribution-card");
+        const lines = [
+          "SOMOS UNA NACIÓN — MURO DE SOBERANÍA CIUDADANA",
+          "¿Qué debemos hacer para solucionarlo? Pon tu respuesta y tu firma...",
+          "Tú eres lo que hace soberana a una nación.",
+          "============================================================",
+          ""
+        ];
+
+        cards.forEach((card) => {
+          const badge = card.querySelector(".contribution-badge")?.textContent?.trim() || "";
+          const body = card.querySelector(".contribution-body")?.textContent?.trim() || "";
+          const sig = card.querySelector(".contribution-signature span")?.textContent?.trim() || "";
+          lines.push(`[${badge}]`);
+          lines.push(body);
+          lines.push(sig);
+          lines.push("------------------------------------------------------------");
+        });
+
+        return lines.join("\n");
+      }
+
+      document.getElementById("copyWallBtn").addEventListener("click", async () => {
+        const text = buildPlainTextWall();
+        try {
+          await navigator.clipboard.writeText(text);
+          showToast("Muro completo copiado al portapapeles.");
+        } catch (e) {
+          showToast("No se pudo copiar automáticamente.");
+        }
+      });
+
+      document.getElementById("exportTxtBtn").addEventListener("click", () => {
+        const text = buildPlainTextWall();
+        const blob = new Blob([text], { type: "text/plain;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "SomosUnaNacion_Aportes.txt";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast("Archivo SomosUnaNacion_Aportes.txt descargado.");
+      });
+
+      renderUserContributions();
+    })();
+  </script>
+</body>
+</html>
