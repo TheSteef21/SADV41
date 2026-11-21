@@ -143,5 +143,62 @@ body{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px
 (function(){const c=document.getElementById('bg-canvas');const x=c.getContext('2d');let p=[],W,H;function r(){W=c.width=window.innerWidth;H=c.height=window.innerHeight}function g(){const d=window.matchMedia('(prefers-color-scheme: dark)').matches;const t=document.documentElement.getAttribute('data-theme');const dk=t==='dark'||(!t&&d);return dk?['rgba(0,212,255,','rgba(255,0,110,','rgba(0,255,204,']:['rgba(0,136,204,','rgba(204,0,85,','rgba(0,170,136,']}function mk(){const cl=g();return{x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+0.3,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,a:Math.random(),da:(Math.random()-.5)*.008,color:cl[Math.floor(Math.random()*cl.length)]}}function init(){r();p=Array.from({length:120},mk)}function draw(){x.clearRect(0,0,W,H);for(const q of p){q.x+=q.vx;q.y+=q.vy;q.a+=q.da;if(q.a<0||q.a>1)q.da*=-1;if(q.x<0)q.x=W;if(q.x>W)q.x=0;if(q.y<0)q.y=H;if(q.y>H)q.y=0;x.beginPath();x.arc(q.x,q.y,q.r,0,Math.PI*2);x.fillStyle=q.color+Math.min(q.a,.7)+')';x.fill()}requestAnimationFrame(draw)}init();draw();window.addEventListener('resize',r)})();
 </script>
 <!-- ZELDA97 OK -->
+<!-- SADV41-LIVE-BG -->
+<style>
+  #sadv41-yt-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: -9999;
+    overflow: hidden;
+    pointer-events: none;
+    background: #000;
+  }
+  #sadv41-yt-bg iframe {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 177.78vh;
+    height: 100vh;
+    min-width: 100vw;
+    min-height: 56.25vw;
+    transform: translate(-50%, -50%);
+    opacity: 0.28;
+    filter: contrast(1.1) brightness(0.8);
+    border: none;
+  }
+  #sadv41-audio-btn {
+    position: fixed;
+    bottom: 14px; right: 14px;
+    z-index: 9999;
+    background: rgba(10, 10, 12, 0.85);
+    color: #d4af37;
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    padding: 6px 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+  }
+</style>
+<div id="sadv41-yt-bg">
+  <iframe id="sadv41-yt-frame" src="https://www.youtube.com/embed/wQXEBSZKO0U?autoplay=1&mute=1&controls=0&loop=1&playlist=wQXEBSZKO0U&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+<button id="sadv41-audio-btn" onclick="toggleSadv41Audio()">🔇 LIVE BG</button>
+<script>
+  var sadv41Muted = true;
+  function toggleSadv41Audio() {
+    var f = document.getElementById('sadv41-yt-frame');
+    var b = document.getElementById('sadv41-audio-btn');
+    sadv41Muted = !sadv41Muted;
+    f.contentWindow.postMessage(JSON.stringify({
+      event: 'command',
+      func: sadv41Muted ? 'mute' : 'unMute',
+      args: []
+    }), '*');
+    b.textContent = sadv41Muted ? '🔇 LIVE BG' : '🔊 LIVE BG';
+  }
+</script>
 </body>
 </html>

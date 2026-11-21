@@ -266,5 +266,62 @@
 </script>
 <!-- End SADV41 Universal Draggable Floating Engine -->
 <!-- ZELDA97 OK -->
+<!-- SADV41-LIVE-BG -->
+<style>
+  #sadv41-yt-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: -9999;
+    overflow: hidden;
+    pointer-events: none;
+    background: #000;
+  }
+  #sadv41-yt-bg iframe {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 177.78vh;
+    height: 100vh;
+    min-width: 100vw;
+    min-height: 56.25vw;
+    transform: translate(-50%, -50%);
+    opacity: 0.28;
+    filter: contrast(1.1) brightness(0.8);
+    border: none;
+  }
+  #sadv41-audio-btn {
+    position: fixed;
+    bottom: 14px; right: 14px;
+    z-index: 9999;
+    background: rgba(10, 10, 12, 0.85);
+    color: #d4af37;
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    padding: 6px 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+  }
+</style>
+<div id="sadv41-yt-bg">
+  <iframe id="sadv41-yt-frame" src="https://www.youtube.com/embed/wQXEBSZKO0U?autoplay=1&mute=1&controls=0&loop=1&playlist=wQXEBSZKO0U&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+<button id="sadv41-audio-btn" onclick="toggleSadv41Audio()">🔇 LIVE BG</button>
+<script>
+  var sadv41Muted = true;
+  function toggleSadv41Audio() {
+    var f = document.getElementById('sadv41-yt-frame');
+    var b = document.getElementById('sadv41-audio-btn');
+    sadv41Muted = !sadv41Muted;
+    f.contentWindow.postMessage(JSON.stringify({
+      event: 'command',
+      func: sadv41Muted ? 'mute' : 'unMute',
+      args: []
+    }), '*');
+    b.textContent = sadv41Muted ? '🔇 LIVE BG' : '🔊 LIVE BG';
+  }
+</script>
 </body>
 </html>
