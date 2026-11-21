@@ -142,5 +142,6 @@ body{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px
 <script>
 (function(){const c=document.getElementById('bg-canvas');const x=c.getContext('2d');let p=[],W,H;function r(){W=c.width=window.innerWidth;H=c.height=window.innerHeight}function g(){const d=window.matchMedia('(prefers-color-scheme: dark)').matches;const t=document.documentElement.getAttribute('data-theme');const dk=t==='dark'||(!t&&d);return dk?['rgba(0,212,255,','rgba(255,0,110,','rgba(0,255,204,']:['rgba(0,136,204,','rgba(204,0,85,','rgba(0,170,136,']}function mk(){const cl=g();return{x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.5+0.3,vx:(Math.random()-.5)*.4,vy:(Math.random()-.5)*.4,a:Math.random(),da:(Math.random()-.5)*.008,color:cl[Math.floor(Math.random()*cl.length)]}}function init(){r();p=Array.from({length:120},mk)}function draw(){x.clearRect(0,0,W,H);for(const q of p){q.x+=q.vx;q.y+=q.vy;q.a+=q.da;if(q.a<0||q.a>1)q.da*=-1;if(q.x<0)q.x=W;if(q.x>W)q.x=0;if(q.y<0)q.y=H;if(q.y>H)q.y=0;x.beginPath();x.arc(q.x,q.y,q.r,0,Math.PI*2);x.fillStyle=q.color+Math.min(q.a,.7)+')';x.fill()}requestAnimationFrame(draw)}init();draw();window.addEventListener('resize',r)})();
 </script>
+<!-- ZELDA97 OK -->
 </body>
 </html>
