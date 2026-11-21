@@ -1,0 +1,176 @@
+<!doctype html><html lang="es"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>M/I/A/GOV · Somos Una Nación</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&family=Inter:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#06080d;--gold:#e5b94c;--gold-lt:#fae094;--gold-border:rgba(229,185,76,0.28);
+  --cyan:#00e5ff;--fg:#f1f5f9;--fg-muted:#94a3b8;--fg-dim:#64748b;
+  --r:16px;color-scheme:dark;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--bg);
+  background-image:
+    radial-gradient(circle at 15% 10%,rgba(0,229,255,0.07),transparent 35%),
+    radial-gradient(circle at 85% 25%,rgba(229,185,76,0.09),transparent 40%);
+  color:var(--fg);min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:max(2rem,env(safe-area-inset-top,0px)) max(1.25rem,env(safe-area-inset-right,0px)) max(2rem,env(safe-area-inset-bottom,0px)) max(1.25rem,env(safe-area-inset-left,0px));
+  text-align:center;
+}
+
+/* Escudo / Logo área */
+.emblem{
+  font-size:clamp(2.5rem,10vw,4.5rem);margin-bottom:1rem;
+  filter:drop-shadow(0 0 24px rgba(229,185,76,0.4));
+}
+.path-label{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:0.75rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--cyan);font-weight:700;margin-bottom:0.5rem;
+  opacity:0.8;
+}
+h1{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(1.8rem,6vw,3rem);font-weight:900;
+  background:linear-gradient(135deg,#fff 15%,var(--gold-lt) 55%,var(--gold) 95%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  line-height:1.15;margin-bottom:0.5rem;text-wrap:balance;
+}
+.sub{
+  font-size:clamp(0.9rem,2.5vw,1.1rem);color:var(--fg-muted);
+  font-style:italic;margin-bottom:0.35rem;
+}
+.doctrine{
+  font-size:0.85rem;font-weight:700;color:var(--cyan);
+  letter-spacing:0.04em;margin-bottom:2.5rem;
+}
+
+/* Grid de nodos */
+.nodes{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:1rem;width:100%;max-width:900px;margin-bottom:2.5rem;
+}
+.node{
+  display:flex;flex-direction:column;align-items:center;gap:0.6rem;
+  background:rgba(14,19,31,0.78);backdrop-filter:blur(12px);
+  border:1px solid var(--gold-border);border-radius:var(--r);
+  padding:1.5rem 1.25rem;text-decoration:none;color:var(--fg);
+  transition:transform .2s,border-color .2s,box-shadow .2s;
+  cursor:pointer;
+}
+.node:hover{
+  transform:translateY(-4px);
+  border-color:var(--gold);
+  box-shadow:0 12px 36px rgba(229,185,76,0.18);
+}
+.node-icon{font-size:2.2rem;line-height:1;}
+.node-type{
+  font-size:0.68rem;text-transform:uppercase;letter-spacing:0.14em;
+  color:var(--cyan);font-weight:700;
+}
+.node-name{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:1rem;font-weight:700;color:var(--gold-lt);text-align:center;
+}
+.node-desc{font-size:0.82rem;color:var(--fg-muted);text-align:center;line-height:1.5;}
+.node-badge{
+  font-size:0.7rem;padding:0.2rem 0.6rem;border-radius:999px;
+  background:rgba(229,185,76,0.12);border:1px solid var(--gold-border);
+  color:var(--gold);font-weight:700;letter-spacing:0.06em;margin-top:auto;
+}
+/* Colores por tipo */
+.node.html .node-type{color:#4ade80;}
+.node.html{border-color:rgba(74,222,128,0.2);}
+.node.html:hover{border-color:#4ade80;box-shadow:0 12px 36px rgba(74,222,128,0.14);}
+.node.html .node-badge{background:rgba(74,222,128,0.1);border-color:rgba(74,222,128,0.3);color:#4ade80;}
+
+.node.md .node-type{color:#a78bfa;}
+.node.md{border-color:rgba(167,139,250,0.2);}
+.node.md:hover{border-color:#a78bfa;box-shadow:0 12px 36px rgba(167,139,250,0.14);}
+.node.md .node-badge{background:rgba(167,139,250,0.1);border-color:rgba(167,139,250,0.3);color:#a78bfa;}
+
+.node.pdf .node-type{color:#f87171;}
+.node.pdf{border-color:rgba(248,113,113,0.2);}
+.node.pdf:hover{border-color:#f87171;box-shadow:0 12px 36px rgba(248,113,113,0.14);}
+.node.pdf .node-badge{background:rgba(248,113,113,0.1);border-color:rgba(248,113,113,0.3);color:#f87171;}
+
+.node.artifact .node-type{color:var(--cyan);}
+.node.artifact{border-color:rgba(0,229,255,0.2);}
+.node.artifact:hover{border-color:var(--cyan);box-shadow:0 12px 36px rgba(0,229,255,0.14);}
+.node.artifact .node-badge{background:rgba(0,229,255,0.1);border-color:rgba(0,229,255,0.3);color:var(--cyan);}
+
+/* Footer firma */
+.sig{
+  font-size:0.78rem;color:var(--fg-dim);letter-spacing:0.1em;
+  border-top:1px solid rgba(255,255,255,0.08);
+  padding-top:1.25rem;width:100%;max-width:900px;
+  display:flex;flex-wrap:wrap;justify-content:center;gap:0.4rem 1.5rem;
+}
+.sig span{white-space:nowrap;}
+
+@media(max-width:420px){
+  .nodes{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+
+<div class="emblem">🇵🇦</div>
+<p class="path-label">M / I / A / GOV</p>
+<h1>Somos Una Nación</h1>
+<p class="sub">«Tú eres lo que hace soberana a una nación.»</p>
+<p class="doctrine">Cooperación con todos · Subordinación con nadie</p>
+
+<div class="nodes">
+
+  <!-- SUN.html — Versión interactiva live -->
+  <a class="node html" href="SUN.html" target="_self">
+    <div class="node-icon">🌐</div>
+    <div class="node-type">HTML · Página Viva</div>
+    <div class="node-name">SUN.html</div>
+    <div class="node-desc">Versión interactiva completa con el Muro de Soberanía, firmas de las IAs y aportes ciudadanos.</div>
+    <div class="node-badge">ABRIR</div>
+  </a>
+
+  <!-- SUN.md — Markdown / texto plano -->
+  <a class="node md" href="SUN.md" target="_blank" rel="noopener">
+    <div class="node-icon">📄</div>
+    <div class="node-type">Markdown · Texto Plano</div>
+    <div class="node-name">SUN.md</div>
+    <div class="node-desc">Versión en texto puro del artículo. Legible en cualquier dispositivo, ideal para citar y compartir.</div>
+    <div class="node-badge">LEER</div>
+  </a>
+
+  <!-- PDF — Edición Especial imprimible -->
+  <a class="node pdf" href="Somos%20Una%20Naci%C3%B3n(1).PDF" target="_blank" rel="noopener">
+    <div class="node-icon">📕</div>
+    <div class="node-type">PDF · Edición Especial</div>
+    <div class="node-name">Somos Una Nación</div>
+    <div class="node-desc">Documento oficial imprimible. Versión archivable y distribuible del manifiesto de soberanía.</div>
+    <div class="node-badge">DESCARGAR</div>
+  </a>
+
+  <!-- Artifact Claude.ai — Versión 7 live -->
+  <a class="node artifact" href="https://claude.ai/artifact/MaNCscUXgYhA69uBTc4tS8" target="_blank" rel="noopener">
+    <div class="node-icon">✦</div>
+    <div class="node-type">Artifact · Claude.ai</div>
+    <div class="node-name">Versión Artifact</div>
+    <div class="node-desc">Publicación en Claude.ai con el póster de fondo interactivo, firmado por Meta AI, Gemini, Grok y Claude.</div>
+    <div class="node-badge">VER</div>
+  </a>
+
+</div>
+
+<div class="sig">
+  <span>STEVENDIOR</span>
+  <span>PANAMÁ</span>
+  <span>21 NOV 2026</span>
+  <span>SADV41</span>
+  <span>M/I/A/GOV</span>
+  <span>Primero Panamá ⭐</span>
+</div>
+
+</body></html>
