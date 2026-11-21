@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vice Panamá — Las mejores amigas para tus aventuras</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Montserrat:ital,wght@0,500;0,700;0,900;1,800&family=Pacifico&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-obsidian: #0a0612;
+      --neon-pink: #ff2a85;
+      --neon-cyan: #00f0ff;
+      --sunset-orange: #ff7b00;
+      --gold-accent: #ffd166;
+      --glass-bg: rgba(16, 10, 28, 0.78);
+      --border-glow: rgba(255, 42, 133, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-obsidian);
+      background-image:
+        radial-gradient(circle at 15% 20%, rgba(255, 42, 133, 0.22), transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(0, 240, 255, 0.18), transparent 45%),
+        linear-gradient(180deg, #130824 0%, #090510 100%);
+      color: #ffffff;
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .flyer-wrapper {
+      width: 100%;
+      max-width: 1080px;
+      background: var(--glass-bg);
+      border: 2px solid var(--border-glow);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow:
+        0 0 35px rgba(255, 42, 133, 0.25),
+        0 0 70px rgba(0, 240, 255, 0.12);
+      backdrop-filter: blur(12px);
+    }
+
+    /* Banner Hero */
+    .hero-banner {
+      position: relative;
+      width: 100%;
+      background: #000;
+      border-bottom: 3px solid var(--neon-pink);
+    }
+
+    .hero-banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+    }
+
+    /* Overlay Slogan & Flags */
+    .tagline-bar {
+      background: linear-gradient(90deg, #1a092b 0%, #3d0f3a 50%, #1a092b 100%);
+      padding: 18px 24px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .tagline-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 900;
+      font-style: italic;
+      font-size: clamp(1.1rem, 3vw, 1.85rem);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+      text-shadow:
+        0 0 10px var(--neon-pink),
+        2px 2px 0px #000000;
+    }
+
+    .flags {
+      display: inline-block;
+      margin-left: 8px;
+      font-style: normal;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8));
+    }
+
+    /* Content Grid */
+    .content-section {
+      padding: 32px 28px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(0, 240, 255, 0.25);
+      border-radius: 14px;
+      padding: 22px;
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--neon-pink);
+    }
+
+    .card-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: #090510;
+      background: var(--neon-cyan);
+      padding: 4px 10px;
+      border-radius: 50px;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      font-family: 'Anton', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      color: var(--gold-accent);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .card p {
+      font-size: 0.92rem;
+      line-height: 1.55;
+      color: #d6cee8;
+    }
+
+    /* CTA Footer */
+    .cta-section {
+      padding: 24px 28px 34px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+    }
+
+    .btn-vice {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--neon-pink) 0%, var(--sunset-orange) 100%);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 0.98rem;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      padding: 15px 28px;
+      border-radius: 50px;
+      box-shadow: 0 6px 25px rgba(255, 42, 133, 0.45);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-vice:hover {
+      transform: scale(1.04);
+      box-shadow: 0 8px 32px rgba(255, 123, 0, 0.65);
+    }
+
+    .btn-secondary {
+      background: rgba(0, 240, 255, 0.12);
+      border: 2px solid var(--neon-cyan);
+      box-shadow: 0 6px 25px rgba(0, 240, 255, 0.2);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(0, 240, 255, 0.22);
+      box-shadow: 0 8px 32px rgba(0, 240, 255, 0.45);
+    }
+
+    .dev-credits {
+      margin-top: 8px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-note {
+      font-size: 0.78rem;
+      color: #8f84a8;
+      letter-spacing: 0.5px;
+    }
+
+    .dev-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: #d6cee8;
+    }
+
+    .dev-links a {
+      color: var(--neon-cyan);
+      text-decoration: none;
+      font-weight: 700;
+      transition: color 0.2s ease;
+    }
+
+    .dev-links a:hover {
+      color: var(--gold-accent);
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="flyer-wrapper">
+    <!-- Reemplaza el src con el nombre de tu archivo guardado -->
+    <div class="hero-banner">
+      <img src="vice-panama-flyer.jpg" alt="Grand Theft Auto VI - Vice Panamá" />
+    </div>
+
+    <div class="tagline-bar">
+      <h1 class="tagline-text">
+        Las mejores amigas para tus aventuras <span class="flags">🇵🇦 🇺🇸 🇮🇱</span>
+      </h1>
+    </div>
+
+    <section class="content-section">
+      <article class="card">
+        <span class="card-badge">Guía &amp; Lifestyle</span>
+        <h3>Casco Viejo &amp; Cinta Costera</h3>
+        <p>Recorridos privados, fotografía urbana, gastronomía local y los mejores spots panorámicos frente a la bahía de Panamá.</p>
+      </article>
+
+      <article class="card">
+        <span class="card-badge">Experiencia VIP</span>
+        <h3>Yates &amp; Sunset Tours</h3>
+        <p>Paseos en bote por la bahía, atardeceres cerca del Puente de las Américas y logística personalizada para visitantes internacionales.</p>
+      </article>
+
+      <article class="card">
+        <span class="card-badge">Atención Bilingüe</span>
+        <h3>Español • English • עברית</h3>
+        <p>Comunicación fluida, recomendaciones exclusivas de entretenimiento, compras y experiencias culturales en todo Panamá.</p>
+      </article>
+    </section>
+
+    <div class="cta-section">
+      <div class="cta-buttons">
+        <a href="https://wa.me/50769362166?text=Hola%2C%20quiero%20informaci%C3%B3n%20sobre%20los%20tours%20en%20Vice%20Panam%C3%A1" class="btn-vice" target="_blank" rel="noopener">
+          WhatsApp Directo 🌴
+        </a>
+        <a href="https://wa.me/stevendioroficial" class="btn-vice btn-secondary" target="_blank" rel="noopener">
+          StevenDiorOficial ⚡
+        </a>
+      </div>
+
+      <footer class="dev-credits">
+        <span class="footer-note">Vice Panamá Edition • Turismo &amp; Experiencias Exclusivas</span>
+        <div class="dev-links">
+          <span>Desarrollo:</span>
+          <a href="https://wa.me/50769362166" target="_blank" rel="noopener">+507 6936-2166</a>
+          <span>|</span>
+          <a href="https://wa.me/stevendioroficial" target="_blank" rel="noopener">wa.me/stevendioroficial</a>
+          <span>|</span>
+          <a href="https://share.gemini.google/FEgaEKAvVB3V" target="_blank" rel="noopener">Recurso Gemini</a>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+</body>
+</html>
+
