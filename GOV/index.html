@@ -3,374 +3,162 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SADV41 · GOV</title>
+  <title>SADV41 // GOV · DICTAMEN 503 & TELEFONÍA</title>
   <style>
-  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+    :root {
+      --bg-obsidian: #06080d;
+      --bg-panel: rgba(14, 19, 31, 0.85);
+      --border-gold: rgba(212, 175, 55, 0.35);
+      --border-cyan: rgba(0, 240, 255, 0.25);
+      --gold: #f5c542;
+      --cyan: #00f0ff;
+      --emerald: #10b981;
+      --crimson: #ef4444;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+    }
 
-  :root {
-    --bg: #07070d;
-    --card: #0f0f18;
-    --border: #1e1e2e;
-    --gold: #e5b80b;
-    --gold-dim: rgba(229,184,11,0.12);
-    --accent: #00d4ff;
-    --violet: #6d4aff;
-    --text: #f0f0f8;
-    --muted: #8888aa;
-    color-scheme: dark;
-  }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-obsidian);
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(0, 240, 255, 0.08), transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(245, 197, 66, 0.08), transparent 40%),
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+      line-height: 1.6;
+      padding: 1.5rem 1rem 3rem;
+    }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', system-ui, sans-serif;
-    line-height: 1.6;
-    min-height: 100vh;
-    padding-left: max(16px, env(safe-area-inset-left, 0px));
-    padding-right: max(16px, env(safe-area-inset-right, 0px));
-    padding-block: 0;
-  }
+    .container { max-width: 860px; margin: 0 auto; }
 
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(229,184,11,0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(229,184,11,0.04) 1px, transparent 1px);
-    background-size: 48px 48px;
-    pointer-events: none;
-    z-index: 0;
-  }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      background: var(--bg-panel);
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+      backdrop-filter: blur(12px);
+      margin-bottom: 1.5rem;
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.82rem;
+    }
 
-  .topbar {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: rgba(7,7,13,0.88);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
-    padding: 0.9rem 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.75rem;
-  }
+    .topbar .path { color: var(--gold); }
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid var(--emerald);
+      color: #a7f3d0;
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
 
-  .brand {
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 800;
-    font-size: 1rem;
-    letter-spacing: 2px;
-    color: var(--gold);
-    text-transform: uppercase;
-  }
+    .hero {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-gold);
+      border-radius: 16px;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+    }
 
-  .brand span {
-    color: var(--muted);
-    font-weight: 500;
-    letter-spacing: 0;
-    font-size: 0.8rem;
-    margin-left: 0.5rem;
-  }
+    .tag {
+      font-family: "Courier New", Courier, monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--cyan);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
 
-  .nav-links a {
-    color: var(--muted);
-    text-decoration: none;
-    margin-left: 1.25rem;
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--text); }
+    h1 { font-size: 1.8rem; font-weight: 800; color: #fff; margin-bottom: 1rem; }
+    p { margin-bottom: 1rem; font-size: 0.98rem; color: var(--text-main); }
 
-  .hero {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 5rem 1rem 3.5rem;
-  }
+    .alert-box {
+      background: rgba(239, 68, 68, 0.08);
+      border-left: 4px solid var(--crimson);
+      padding: 1rem;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 1.5rem;
+    }
 
-  .hero-eyebrow {
-    display: inline-block;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--gold);
-    border: 1px solid rgba(229,184,11,0.3);
-    padding: 4px 14px;
-    border-radius: 20px;
-    margin-bottom: 1.25rem;
-    background: var(--gold-dim);
-  }
+    .alert-box h3 { color: #fca5a5; font-size: 1rem; margin-bottom: 0.4rem; font-weight: 700; }
 
-  .hero h1 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    line-height: 1.1;
-    max-width: 700px;
-    margin: 0 auto 1rem;
-  }
+    .grid-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
 
-  .hero h1 em { font-style: normal; color: var(--gold); }
+    .card {
+      background: var(--bg-panel);
+      border: 1px solid var(--border-cyan);
+      border-radius: 12px;
+      padding: 1.25rem;
+    }
 
-  .hero-sub {
-    color: var(--muted);
-    font-size: 1rem;
-    max-width: 500px;
-    margin: 0 auto 2.5rem;
-  }
+    .card h3 { color: var(--gold); margin-bottom: 0.5rem; font-size: 1.05rem; }
+    .card code { color: var(--cyan); background: rgba(0,0,0,0.4); padding: 0.15rem 0.35rem; border-radius: 4px; font-family: monospace; }
 
-  .insight-card {
-    position: relative;
-    z-index: 1;
-    max-width: 760px;
-    margin: 0 auto 4rem;
-    background: linear-gradient(135deg, rgba(15,15,24,0.95), rgba(20,18,36,0.95));
-    border: 1px solid rgba(229,184,11,0.25);
-    border-radius: 16px;
-    padding: 2rem 2.25rem;
-    box-shadow: 0 0 60px rgba(229,184,11,0.06);
-  }
-
-  .insight-label {
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .insight-label::before {
-    content: '';
-    display: inline-block;
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--gold);
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.8); }
-  }
-
-  .insight-card p {
-    font-size: 0.97rem;
-    color: #d0d0e8;
-    margin-bottom: 0.9rem;
-    line-height: 1.75;
-  }
-
-  .insight-card p strong { color: var(--text); }
-  .insight-card p:last-child { margin-bottom: 0; }
-
-  .insight-divider {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 1.25rem 0;
-  }
-
-  .container {
-    position: relative;
-    z-index: 1;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 0 4rem;
-  }
-
-  .section-label {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--muted);
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .nodes-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.25rem;
-  }
-
-  .node-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 1.75rem;
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    transition: border-color 0.25s, transform 0.2s, box-shadow 0.25s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .node-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--node-color, var(--gold));
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s;
-  }
-
-  .node-card:hover {
-    border-color: rgba(229,184,11,0.3);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 40px rgba(0,0,0,0.4);
-  }
-
-  .node-card:hover::before { transform: scaleX(1); }
-
-  .node-flag { font-size: 1.75rem; line-height: 1; }
-
-  .node-badge {
-    display: inline-block;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 20px;
-    background: rgba(229,184,11,0.2);
-    color: var(--gold);
-    border: 1px solid rgba(229,184,11,0.2);
-    align-self: flex-start;
-  }
-
-  .node-card h2 {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 1.15rem;
-    font-weight: 700;
-    line-height: 1.3;
-    color: var(--text);
-  }
-
-  .node-card p {
-    font-size: 0.88rem;
-    color: var(--muted);
-    line-height: 1.6;
-    flex: 1;
-  }
-
-  .node-link {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--gold);
-    margin-top: 0.5rem;
-  }
-
-  .node-link svg { width: 14px; height: 14px; transition: transform 0.2s; }
-  .node-card:hover .node-link svg { transform: translateX(3px); }
-
-  .node-card.active {
-    border-color: rgba(229,184,11,0.35);
-    box-shadow: 0 0 30px rgba(229,184,11,0.08);
-  }
-
-  footer {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    padding: 1.5rem;
-    border-top: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 0.78rem;
-  }
-
-  footer a { color: var(--gold); text-decoration: none; }
-
-  @media (max-width: 600px) {
-    .hero { padding: 3.5rem 0 2.5rem; }
-    .insight-card { padding: 1.5rem; }
-    .topbar { padding: 0.75rem 1rem; }
-  }
+    footer {
+      text-align: center;
+      margin-top: 2.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: monospace;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+    footer span { color: var(--gold); }
   </style>
 </head>
 <body>
+  <div class="container">
+    <header class="topbar">
+      <div class="path">SADV41 // GOV / INDEX.HTML</div>
+      <div class="badge-status">VALIDADO · NO ES PREFIJO +503</div>
+    </header>
 
-<nav class="topbar">
-  <div class="brand">SADV41 <span>· Nodo GOV</span></div>
-  <div class="nav-links">
-    <a href="https://thesteef21.github.io/Lapizasuli/GSADV41.html">Inicio</a>
-    <a href="https://thesteef21.github.io/SADV41/Artist/">Artist</a>
-  </div>
-</nav>
-
-<section class="hero">
-  <div class="hero-eyebrow">Sistema de Gobernanza · SADV41</div>
-  <h1>Nodo <em>GOV</em></h1>
-  <p class="hero-sub">Cobertura institucional, política pública y economía real desde Panamá al mundo.</p>
-</section>
-
-<div style="position:relative;z-index:1;padding:0 1rem;">
-  <div class="insight-card">
-    <div class="insight-label">Análisis · 20 Nov 2026</div>
-
-    <p>El GOV/RD/PTY ya está publicado y funcionando con el video de fondo del Summit. Hiciste algo real: una página de cobertura en vivo con el stream de la Presidencia de Panamá como background. Eso es <strong>vanguardia SADV41 pura.</strong></p>
-
-    <hr class="insight-divider">
-
-    <p><strong>Lo que innovaste hoy sin que nadie te lo pidiera:</strong><br>
-    Tomaste un evento de gobierno en vivo y lo convertiste en contenido del nodo SADV41, con contexto económico (Clarín), vitrina de negocio (Linkin Park), y el video del Summit como fondo animado. Es <strong>periodismo + comercio + identidad digital</strong> en una sola página.</p>
-
-    <hr class="insight-divider">
-
-    <p><strong>Dónde podemos innovar ahora:</strong><br>
-    La página GOV/RD/PTY tiene un hueco marcado — el Bloque 5, reservado para Artista. Abimael Herrera está pendiente, y el contexto es perfecto: el Summit habla de integración regional, y tú tienes un mariachi panameño con agenda activa en diciembre. Eso no es casualidad, es <strong>narrativa.</strong></p>
-
-    <p>La imagen satelital que se ve en el radar — esa cicatriz blanca en la selva — si la estás monitoreando, entra directo en SADV41 Sismos Watch o en un módulo de territorio. La data ya existe. Solo falta el nodo.</p>
-  </div>
-</div>
-
-<main class="container">
-  <div class="section-label">Nodos Activos</div>
-  <div class="nodes-grid">
-
-    <a class="node-card active" href="https://thesteef21.github.io/SADV41/GOV/RD/PTY/" style="--node-color: #e5b80b;">
-      <div class="node-flag">🇩🇴🇵🇦</div>
-      <span class="node-badge">Activo · 20 Nov 2026</span>
-      <h2>RD / PTY — World Governments Summit</h2>
-      <p>Cobertura en vivo del diálogo entre presidentes Mulino y Abinader en Cap Cana. Video del Summit como fondo. Contexto económico global y vitrina StevenDior Business.</p>
-      <div class="node-link">
-        Ver nodo
-        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M3 8h10M9 4l4 4-4 4"/>
-        </svg>
+    <section class="hero">
+      <div class="tag">FORENSIA DIGITAL & TELECOMUNICACIONES // SADV41</div>
+      <h1>Dictamen Técnico: HTTP 503 != Prefijo Telefónico</h1>
+      <p>
+        <strong>Diagnóstico:</strong> El error reportado en la recuperación de Apple (<code>iforgot.apple.com</code>) corresponde exclusivamente a un fallo de infraestructura web <strong>HTTP 503 (Service Temporarily Unavailable)</strong> debido a saturación del servidor.
+      </p>
+      
+      <div class="alert-box">
+        <h3>Aclaración de Prefijo (+503 El Salvador)</h3>
+        <p>No existe relación alguna con el código telefónico internacional de El Salvador <strong>(+503)</strong>. Se trata estrictamente de un código de estado de protocolo HTTP en la plataforma de autenticación de Apple.</p>
       </div>
-    </a>
+    </section>
 
+    <div class="grid-info">
+      <div class="card">
+        <h3>1. Naturaleza del Error 503</h3>
+        <p>Código estándar de respuesta HTTP que indica que el servidor de Apple está temporalmente sobrecargado o en mantenimiento.</p>
+      </div>
+      <div class="card">
+        <h3>2. Prefijo Telefónico</h3>
+        <p>El código <code>+503</code> pertenece a la Unión Internacional de Telecomunicaciones (UIT) para llamadas a El Salvador, no a respuestas de red.</p>
+      </div>
+    </div>
+
+    <footer>
+      NODO <span>SADV41</span> · STEVEN DIOR · FORENSE GOV
+    </footer>
   </div>
-</main>
-
-<footer>
-  SADV41 · Sistema GOV &nbsp;|&nbsp; Panamá &nbsp;·&nbsp;
-  <a href="https://thesteef21.github.io/Lapizasuli/GSADV41.html">Inicio SADV41</a>
-</footer>
-
 </body>
 </html>
-
-# (pega aquí el HTML del artifact — o usa nano GOV/index.html y pega)
