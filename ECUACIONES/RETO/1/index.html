@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reto 01 | Fusión Poética JS + Python — StevenDior</title>
+  <style>
+    :root {
+      --bg: #07090e;
+      --card: #0e131f;
+      --border: #1e293b;
+      --cyan: #00f0ff;
+      --gold: #ffd700;
+      --purple: #a855f7;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --ok: #10b981;
+      --err: #ef4444;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #0f172a 0%, var(--bg) 70%);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem 1rem 4rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Marca de agua StevenDior */
+    .watermark {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 0;
+      opacity: 0.045;
+      transform: rotate(-22deg);
+      font-size: clamp(3rem, 11vw, 7.5rem);
+      font-weight: 900;
+      letter-spacing: 0.18em;
+      color: var(--cyan);
+      text-shadow: 0 0 25px var(--gold);
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 680px;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1rem;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(255, 215, 0, 0.35);
+      background: rgba(255, 215, 0, 0.08);
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      margin-bottom: 0.6rem;
+    }
+
+    h1 {
+      font-size: clamp(1.35rem, 4.5vw, 1.9rem);
+      background: linear-gradient(90deg, var(--cyan), #ffffff, var(--gold));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 0.35rem;
+    }
+
+    .card {
+      background: rgba(14, 19, 31, 0.92);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(8px);
+    }
+
+    .section-title {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--cyan);
+      margin-bottom: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .slots, .pool {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .slot {
+      min-height: 54px;
+      border: 1px dashed #334155;
+      border-radius: 10px;
+      padding: 0.65rem 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      background: rgba(7, 9, 14, 0.6);
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .slot.filled {
+      border-style: solid;
+      border-color: var(--cyan);
+      background: rgba(0, 240, 255, 0.06);
+    }
+
+    .slot-num {
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: var(--gold);
+      font-weight: bold;
+      min-width: 24px;
+    }
+
+    .piece {
+      background: linear-gradient(135deg, #131c2e, #0c1220);
+      border: 1px solid #2b3a55;
+      border-left: 3px solid var(--gold);
+      border-radius: 10px;
+      padding: 0.75rem 0.9rem;
+      cursor: pointer;
+      transition: transform 0.15s ease, border-color 0.2s ease;
+    }
+
+    .piece:active {
+      transform: scale(0.98);
+    }
+
+    .piece:hover {
+      border-color: var(--cyan);
+    }
+
+    .code-line {
+      font-family: 'Fira Code', 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: var(--cyan);
+      display: block;
+      margin-bottom: 0.25rem;
+      word-break: break-word;
+    }
+
+    .verse-line {
+      font-style: italic;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1rem;
+    }
+
+    button {
+      flex: 1;
+      min-width: 130px;
+      padding: 0.75rem 1rem;
+      border-radius: 10px;
+      border: none;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-check {
+      background: linear-gradient(90deg, var(--cyan), #38bdf8);
+      color: #05080f;
+    }
+
+    .btn-reset {
+      background: #1e293b;
+      color: var(--text);
+      border: 1px solid #334155;
+    }
+
+    .btn-recite {
+      background: linear-gradient(90deg, var(--gold), #f59e0b);
+      color: #05080f;
+      display: none;
+    }
+
+    .status {
+      margin-top: 0.9rem;
+      font-size: 0.9rem;
+      text-align: center;
+      font-weight: 600;
+      min-height: 1.4em;
+    }
+
+    .status.ok { color: var(--ok); }
+    .status.err { color: var(--err); }
+
+    .poem-box {
+      display: none;
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 12px;
+      background: rgba(255, 215, 0, 0.05);
+      border: 1px solid rgba(255, 215, 0, 0.3);
+      line-height: 1.65;
+      font-size: 0.92rem;
+    }
+
+    .poem-box strong {
+      color: var(--gold);
+    }
+
+    footer {
+      margin-top: 1.5rem;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    footer span {
+      color: var(--gold);
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="watermark">StevenDior • SADV41</div>
+
+  <div class="container">
+    <header>
+      <div class="badge">SADV41 • ECUACIONES • RETO 01</div>
+      <h1>Fusión Poética: JS + Python (LCM)</h1>
+      <p class="subtitle">Ordena los 6 versos híbridos para recitar el algoritmo perfecto</p>
+    </header>
+
+    <div class="card">
+      <div class="section-title">
+        <span>📜 Tablero del Poema Algorítmico</span>
+        <span id="counter">0 / 6</span>
+      </div>
+      <div class="slots" id="slots"></div>
+
+      <div class="controls">
+        <button class="btn-check" onclick="verificar()">Verificar Fusión</button>
+        <button class="btn-reset" onclick="reiniciar()">Mezclar Piezas</button>
+        <button class="btn-recite" id="btnRecite" onclick="recitar()">🔊 Recitar Poema</button>
+      </div>
+
+      <div class="status" id="status"></div>
+      <div class="poem-box" id="poemBox"></div>
+    </div>
+
+    <div class="card">
+      <div class="section-title">
+        <span>🧩 Piezas Desordenadas (Toca para colocar)</span>
+      </div>
+      <div class="pool" id="pool"></div>
+    </div>
+
+    <footer>
+      Firma & Marca de Agua Digital: <span>StevenDior</span> | Nodo SADV41
+    </footer>
+  </div>
+
+  <script>
+    const versos = [
+      {
+        id: 1,
+        code: "import math // invocando la raíz en doble sintaxis",
+        verse: "«Del mundo Python traigo el módulo sagrado, mientras JavaScript prepara el escenario.»"
+      },
+      {
+        id: 2,
+        code: "def lcm(a, b): ⟹ function lcm(a, b) {",
+        verse: "«Dos lenguajes se funden en una sola firma, buscando el múltiplo donde ambos coincidan.»"
+      },
+      {
+        id: 3,
+        code: "  const gcd = (x, y) => (!y ? x : gcd(y, x % y));",
+        verse: "«Euclides susurra en flecha recursiva: si el residuo es cero, la verdad ya es viva.»"
+      },
+      {
+        id: 4,
+        code: "  if not (a and b) or (a === 0 || b === 0): return 0",
+        verse: "«Mas si alguno habita en el vacío del cero, el retorno es nulo, limpio y sincero.»"
+      },
+      {
+        id: 5,
+        code: "  return Math.abs(a * b) // math.gcd(a, b)",
+        verse: "«Se multiplican fuerzas en valor absoluto, y el divisor común entrega el fruto.»"
+      },
+      {
+        id: 6,
+        code: "} # Fin de la fusión — Firma: StevenDior",
+        verse: "«Así cierran las llaves de un mismo latido: código y poesía en un solo sentido.»"
+      }
+    ];
+
+    let colocados = Array(6).fill(null);
+    let disponibles = [];
+
+    function mezclar(arr) {
+      const copia = [...arr];
+      for (let i = copia.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copia[i], copia[j]] = [copia[j], copia[i]];
+      }
+      return copia;
+    }
+
+    function render() {
+      const slotsEl = document.getElementById("slots");
+      const poolEl = document.getElementById("pool");
+      const counterEl = document.getElementById("counter");
+
+      slotsEl.innerHTML = "";
+      poolEl.innerHTML = "";
+
+      let llenos = 0;
+      colocados.forEach((item, idx) => {
+        const div = document.createElement("div");
+        div.className = "slot" + (item ? " filled" : "");
+        if (item) {
+          llenos++;
+          div.innerHTML = `
+            <span class="slot-num">0${idx + 1}</span>
+            <div>
+              <span class="code-line">${item.code}</span>
+              <span class="verse-line">${item.verse}</span>
+            </div>
+          `;
+          div.onclick = () => quitarDeSlot(idx);
+        } else {
+          div.innerHTML = `<span class="slot-num">0${idx + 1}</span><span style="color:#475569;font-size:0.85rem;">Toca una pieza abajo para llenar este verso...</span>`;
+        }
+        slotsEl.appendChild(div);
+      });
+
+      disponibles.forEach((item) => {
+        const div = document.createElement("div");
+        div.className = "piece";
+        div.innerHTML = `
+          <span class="code-line">${item.code}</span>
+          <span class="verse-line">${item.verse}</span>
+        `;
+        div.onclick = () => colocarEnSlot(item.id);
+        poolEl.appendChild(div);
+      });
+
+      counterEl.textContent = `${llenos} / 6`;
+    }
+
+    function colocarEnSlot(id) {
+      const libre = colocados.findIndex((s) => s === null);
+      if (libre === -1) return;
+      const idx = disponibles.findIndex((p) => p.id === id);
+      if (idx === -1) return;
+      colocados[libre] = disponibles[idx];
+      disponibles.splice(idx, 1);
+      limpiarEstado();
+      render();
+    }
+
+    function quitarDeSlot(slotIdx) {
+      const item = colocados[slotIdx];
+      if (!item) return;
+      disponibles.push(item);
+      colocados[slotIdx] = null;
+      limpiarEstado();
+      render();
+    }
+
+    function limpiarEstado() {
+      document.getElementById("status").textContent = "";
+      document.getElementById("status").className = "status";
+      document.getElementById("poemBox").style.display = "none";
+      document.getElementById("btnRecite").style.display = "none";
+    }
+
+    function verificar() {
+      const statusEl = document.getElementById("status");
+      if (colocados.includes(null)) {
+        statusEl.textContent = "⚠️ Completa las 6 líneas antes de verificar la fusión.";
+        statusEl.className = "status err";
+        return;
+      }
+
+      const correcto = colocados.every((item, idx) => item.id === idx + 1);
+      if (correcto) {
+        statusEl.textContent = "✅ ¡Fusión perfecta! JS y Python laten al unísono bajo StevenDior.";
+        statusEl.className = "status ok";
+        const poemBox = document.getElementById("poemBox");
+        poemBox.innerHTML = `<strong>Poema Completo (StevenDior):</strong><br><br>` +
+          colocados.map(v => v.verse.replace(/[«»]/g, "")).join("<br>");
+        poemBox.style.display = "block";
+        document.getElementById("btnRecite").style.display = "inline-block";
+      } else {
+        statusEl.textContent = "❌ El ritmo sintáctico no cuadra aún. Toca un verso arriba para devolverlo y reordena.";
+        statusEl.className = "status err";
+      }
+    }
+
+    function recitar() {
+      if (!("speechSynthesis" in window)) return;
+      window.speechSynthesis.cancel();
+      const texto = "Poema de fusión JavaScript y Python, por Steven Dior. " +
+        colocados.map(v => v.verse.replace(/[«»]/g, "")).join(" ");
+      const voz = new SpeechSynthesisUtterance(texto);
+      voz.lang = "es-PA";
+      voz.rate = 0.96;
+      window.speechSynthesis.speak(voz);
+    }
+
+    function reiniciar() {
+      colocados = Array(6).fill(null);
+      disponibles = mezclar(versos);
+      limpiarEstado();
+      render();
+    }
+
+    reiniciar();
+  </script>
+</body>
+</html>
