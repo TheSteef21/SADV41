@@ -1,1 +1,326 @@
+<title>Burunga · Historia</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Fraunces:opsz,wght@9..144,700;9..144,900&display=swap">
 
+<style>
+:root {
+  --bg:#071018; --surface:#0e1a24; --surface-2:#142536;
+  --ink:#fff8e8; --muted:#c9c0ab; --gold:#f2b705; --gold-2:#ffe08a;
+  --panama:#2f7fd0; --panama-deep:#0b3d91; --red:#d21034;
+  --cyan:#00e5ff; --line:rgba(242,183,5,0.28);
+}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#050b11;--surface:#0d1824;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#050b11;--surface:#0d1824;color-scheme:dark}
+*,::before,::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-bottom:max(16px,env(safe-area-inset-bottom,0px));background:var(--bg);color:var(--ink);font-family:"Archivo",system-ui,sans-serif;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:var(--cyan);text-decoration:none}
+.font-display{font-family:"Fraunces",Georgia,serif}
+.eyebrow{letter-spacing:.22em;font-weight:800;font-size:.72rem;text-transform:uppercase;color:var(--gold)}
+.gold-text{color:var(--gold)}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:100;background:rgba(7,16,24,.92);border-bottom:1px solid var(--line);backdrop-filter:blur(10px);padding:.6rem 0}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:101;background:rgba(7,16,24,.92)}
+.nav-inner{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-wrap:wrap;gap:6px;justify-content:center}
+.nav-inner a{padding:7px 13px;border-radius:999px;border:1px solid var(--line);font-weight:800;font-size:12px;background:rgba(14,26,36,.8);color:var(--ink);transition:.15s}
+.nav-inner a:hover{border-color:var(--gold);color:var(--gold)}
+.nav-inner a.active{background:var(--gold);border-color:var(--gold);color:#071018}
+.hero{position:relative;width:100%;overflow:hidden;min-height:72vmin;display:flex;flex-direction:column;justify-content:flex-end;border-bottom:3px solid var(--gold)}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:.62}
+.hero-content{position:relative;z-index:2;max-width:1040px;margin:0 auto;width:100%;padding:5rem max(16px,env(safe-area-inset-left,0px)) 2.4rem}
+.hero-content h1{font-size:clamp(2.4rem,8vw,5.2rem);font-weight:900;line-height:.9;text-wrap:balance;margin:0 0 .6rem}
+.hero-content p{color:rgba(255,248,232,.8);font-size:clamp(1rem,2.5vw,1.2rem);max-width:52ch;line-height:1.55;margin:.8rem 0 1.4rem}
+.coord{font-family:ui-monospace,Menlo,monospace;font-size:.78rem;color:var(--gold-2);letter-spacing:.06em}
+.wrap{max-width:1040px;margin:0 auto;padding-block:2.4rem;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.section{margin-top:3rem}
+.section-header{margin:0 0 1.4rem;text-align:center}
+.section-header h2{font-size:clamp(1.5rem,4vw,2.4rem);font-weight:900;text-transform:uppercase;letter-spacing:.05em;margin:0;font-family:"Fraunces",Georgia,serif}
+.section-header p{color:var(--muted);font-size:.9rem;margin:.4rem 0 0}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:1rem;overflow:hidden}
+.card-body{padding:1.2rem}
+.card-body h3{margin:0 0 .5rem;font-size:1.05rem;font-weight:800}
+.card-body p{margin:0;color:var(--muted);font-size:.9rem;line-height:1.55}
+.grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:14px}
+@media(min-width:640px){.grid-2{grid-template-columns:1fr 1fr}}
+@media(min-width:900px){.grid-3{grid-template-columns:repeat(3,1fr)}}
+.timeline{position:relative;padding-left:28px;margin-top:1.4rem}
+.timeline::before{content:"";position:absolute;left:9px;top:4px;bottom:0;width:2px;background:var(--line)}
+.tl-item{position:relative;margin-bottom:1.6rem}
+.tl-dot{position:absolute;left:-28px;top:4px;width:18px;height:18px;border-radius:50%;background:var(--gold);border:3px solid var(--bg);display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:900;color:#071018}
+.tl-year{font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.25rem}
+.tl-title{font-weight:800;font-size:1rem;margin:0 0 .3rem}
+.tl-body{color:var(--muted);font-size:.9rem;line-height:1.55;margin:0}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:1rem;padding:1.4rem;margin-top:1.2rem}
+.box-gold{border-color:var(--gold)}
+.box-cyan{border-color:var(--cyan)}
+.box-panama{border-color:var(--panama)}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:1.2rem}
+@media(min-width:640px){.stats{grid-template-columns:repeat(4,1fr)}}
+.stat{background:var(--surface-2);border:1px solid var(--line);border-radius:.8rem;padding:1rem .9rem;text-align:center}
+.stat-n{font-size:1.6rem;font-weight:900;color:var(--gold);font-family:"Fraunces",Georgia,serif;line-height:1}
+.stat-l{font-size:.72rem;color:var(--muted);margin-top:.25rem;letter-spacing:.06em}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:11px 18px;border-radius:999px;font-weight:900;font-size:13px;text-decoration:none;border:0;cursor:pointer;transition:.15s}
+.btn:hover{opacity:.88;transform:translateY(-1px)}
+.btn-gold{background:var(--gold);color:#071018}
+.btn-ghost{background:transparent;border:1px solid var(--cyan);color:var(--cyan)}
+.btn-wsp{background:#25D366;color:#000}
+.btn-panama{background:var(--panama);color:#fff}
+.map-wrap{width:100%;border-radius:1rem;overflow:hidden;border:1px solid var(--line);margin-top:1rem;background:#0b1520;display:flex;align-items:center;justify-content:center;min-height:220px;position:relative}
+.map-label{position:absolute;bottom:12px;left:12px;background:rgba(7,16,24,.88);padding:5px 12px;border-radius:999px;font-size:.75rem;font-weight:700;border:1px solid var(--line);color:var(--gold-2)}
+.pin-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:1rem}
+.pin-card{flex:1;min-width:200px;background:var(--surface);border:1px solid var(--line);border-radius:.9rem;padding:1rem;display:flex;align-items:flex-start;gap:.8rem}
+.pin{width:32px;height:32px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);flex-shrink:0;background:var(--gold);border:3px solid var(--ink);display:grid;place-items:center;color:#071018;font-weight:900;font-size:13px;box-shadow:0 6px 16px rgba(0,0,0,.45)}
+.pin span{transform:rotate(45deg)}
+.pin-info h4{margin:0 0 .2rem;font-size:.9rem;font-weight:800}
+.pin-info p{margin:0;font-size:.8rem;color:var(--muted);line-height:1.4}
+.quote{border-left:4px solid var(--gold);padding:.8rem 1.2rem;background:var(--surface);border-radius:0 .8rem .8rem 0;margin:1rem 0}
+.quote p{margin:0;font-style:italic;color:var(--ink);line-height:1.6}
+.quote cite{display:block;margin-top:.5rem;font-size:.8rem;color:var(--gold-2)}
+.widget-salmo{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);left:10px;z-index:2147483647;background:#0a0a0add;color:#00e5ff;border:1px solid #00e5ff;border-radius:20px;padding:4px 10px;font:600 11px/1.3 system-ui,sans-serif;text-decoration:none;letter-spacing:.04em}
+.widget-noviembre{position:fixed;top:calc(env(safe-area-inset-top,0px) + 10px);left:50%;transform:translateX(-50%);z-index:999999;background:linear-gradient(135deg,#00209F 0%,#00209F 30%,#FFFFFF 30%,#FFFFFF 70%,#D21034 70%);color:#111;padding:5px 14px;border-radius:999px;font-weight:900;font-size:11.5px;box-shadow:0 6px 20px rgba(0,0,0,.4),0 0 0 2px rgba(255,255,255,.9) inset;display:flex;align-items:center;gap:5px;white-space:nowrap}
+.widget-noviembre button{margin-left:5px;background:rgba(0,0,0,.15);border:0;border-radius:50%;width:18px;height:18px;cursor:pointer;font-weight:900;line-height:1;font-size:12px}
+.widget-news{position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#0a0e1a;color:#f4f6ff;border-top:2px solid #f5c542;font:600 12px/1.35 system-ui,sans-serif;padding:5px 36px 5px 10px;text-align:center}
+.widget-news .news-close{position:absolute;right:8px;top:2px;background:none;border:0;color:#9aa3c7;font-size:16px;cursor:pointer}
+.sadv41-btn{position:fixed;bottom:54px;right:14px;z-index:999999;width:52px;height:52px;border-radius:50%;border:2px solid var(--gold);background:#0a0d14;color:#fff;font-weight:900;font-size:11px;cursor:pointer;box-shadow:0 4px 16px rgba(0,0,0,.5)}
+.sadv41-menu{display:none;position:fixed;bottom:112px;right:14px;z-index:999998;background:rgba(10,13,20,.95);border:1px solid rgba(0,229,255,.35);border-radius:12px;padding:10px 14px;backdrop-filter:blur(8px);box-shadow:0 8px 24px rgba(0,0,0,.55)}
+.sadv41-menu a{display:block;margin-bottom:6px;font-size:12px;font-weight:700}
+.sadv41-menu a:last-child{margin-bottom:0}
+.widget-cristo{position:fixed;left:50%;bottom:38px;transform:translateX(-50%);z-index:2147482998;max-width:92vw;padding:4px 14px;border-radius:999px;background:#07070ddd;color:#e8c468;border:1px solid #e8c46866;font:12.5px Georgia,serif;text-align:center;text-decoration:none;backdrop-filter:blur(6px);white-space:nowrap}
+.foot-banner{width:100%;display:block;border-top:3px solid var(--cyan);margin-top:3rem}
+</style>
+
+<a class="widget-salmo" href="https://www.bible.com/es/bible/149/PSA.46.1-11.RVR1960" target="_blank" rel="noopener">📖 Salmos 46 · Dios es nuestro amparo</a>
+
+<div id="sadv41-noviembre-widget" class="widget-noviembre">
+  <span>Feliz Mes de Noviembre</span><span>🇵🇦👑🇺🇸</span>
+  <button onclick="this.parentElement.remove()" aria-label="Cerrar">×</button>
+</div>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="../../index.html">← SADV41</a>
+    <a href="../index.html">HISTORIA</a>
+    <a href="./index.html" class="active">📍 Burunga</a>
+    <a href="../../GORRA/index.html">🧢 GORRA</a>
+    <a href="../../GORRA/sunset/index.html">🌅 Sunset</a>
+    <a href="../../GORRA/GTAVI/index.html">🌴 GTAVI</a>
+    <a href="../../OPAL/index.html">⚡ OPAL</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <img class="hero-img" src="../../GORRA/sunset/20261118_180414.jpg" onerror="this.style.display='none'" alt="Atardecer Burunga 18 nov 2026 · SADV41">
+  <div class="hero-content">
+    <p class="eyebrow">HISTORIA · SADV41 · Panamá Oeste</p>
+    <h1 class="font-display"><span class="gold-text">Burunga</span><br>El Origen</h1>
+    <p>El sector costero de Arraiján donde nació la paleta de colores que unifica todo el universo GORRA. El atardecer del 18 de noviembre de 2026 que lo inició todo.</p>
+    <div class="coord">8°56'N · 79°42'W · Arraiján, Panamá Oeste 🇵🇦</div>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:1.2rem">
+      <a class="btn btn-gold" href="#historia">📖 Ver Historia</a>
+      <a class="btn btn-ghost" href="../../GORRA/index.html">🧢 Universo GORRA →</a>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+
+<div class="stats">
+  <div class="stat"><div class="stat-n font-display">2026</div><div class="stat-l">Año del Origen</div></div>
+  <div class="stat"><div class="stat-n font-display">18</div><div class="stat-l">Nov · El Atardecer</div></div>
+  <div class="stat"><div class="stat-n font-display">7</div><div class="stat-l">Nodos GORRA</div></div>
+  <div class="stat"><div class="stat-n font-display">🇵🇦</div><div class="stat-l">Panamá Oeste</div></div>
+</div>
+
+<section id="historia" class="section">
+  <div class="section-header">
+    <p class="eyebrow">Capítulo 1</p>
+    <h2 class="font-display">Historia del Sector</h2>
+    <p>Burunga · Arraiján · Panamá Oeste</p>
+  </div>
+  <div class="box box-gold">
+    <p style="line-height:1.75;color:var(--ink)">Burunga es un corregimiento del distrito de Arraiján, en la provincia de Panamá Oeste. Su nombre de origen indígena evoca el movimiento del agua — un eco de los ríos y manglares que bordean la costa del Pacífico hacia el Puente de las Américas. La comunidad creció al margen de la Carretera Panamericana, tejiendo vínculos entre el trabajo mecánico, el comercio automotriz y la vida familiar de Panamá Oeste.</p>
+  </div>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot"><span>🌱</span></div>
+      <div class="tl-year">Siglo XX</div>
+      <h3 class="tl-title">Raíces del Corregimiento</h3>
+      <p class="tl-body">Arraiján y sus corregimientos —Burunga entre ellos— se forman como comunidades de trabajadores de la Zona del Canal, mecánicos, llaneros y familias panameñas que buscan suelo propio al oeste de la capital.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"><span>🛣️</span></div>
+      <div class="tl-year">1990s–2000s</div>
+      <h3 class="tl-title">Crecimiento y la Panamericana</h3>
+      <p class="tl-body">La expansión urbana de Panamá Oeste lleva talleres, llanteras y comercios a la Carretera Panamericana. Turbo Tire y otros negocios automotrices se establecen en este corredor, sirviendo a SUVs, pick-ups y flotas que cruzan el país.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"><span>🌅</span></div>
+      <div class="tl-year">18 Nov 2026</div>
+      <h3 class="tl-title">El Atardecer que lo Inició Todo</h3>
+      <p class="tl-body">StevenDior captura <code style="color:var(--gold-2)">20261118_180414.jpg</code> en Burunga. Esa imagen se convierte en la paleta cromática del universo GORRA: el naranja quemado, el azul marino profundo y el dorado que hoy corren por cada página de SADV41.</p>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot"><span>🧢</span></div>
+      <div class="tl-year">Nov 2026</div>
+      <h3 class="tl-title">GORRA · El Proyecto Nace</h3>
+      <p class="tl-body">El ecosistema GORRA — $GORRA Token en BSC, TURBOTIRE x GTAVI, Llantería Jackson 4x4, SADV41 WEATHER — se estructura con Burunga como nodo geográfico y espiritual de origen.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <p class="eyebrow">Capítulo 2</p>
+    <h2 class="font-display">Geografía y Ubicación</h2>
+    <p>Arraiján · Panamá Oeste · Coordenadas reales</p>
+  </div>
+  <div class="map-wrap" style="min-height:260px">
+    <svg width="340" height="200" viewBox="0 0 340 200" fill="none">
+      <path d="M20,160 Q60,140 100,145 Q140,150 180,135 Q220,120 260,130 Q300,140 320,120" stroke="#2f7fd0" stroke-width="2.5" fill="none" stroke-dasharray="5,3"/>
+      <path d="M20,170 Q80,155 160,155 Q240,155 320,145" stroke="#0b3d91" stroke-width="1.5" fill="none" opacity=".5"/>
+      <line x1="195" y1="110" x2="195" y2="155" stroke="#f2b705" stroke-width="3"/>
+      <text x="200" y="107" fill="#f2b705" font-size="9" font-family="monospace" font-weight="700">Puente de las Américas</text>
+      <circle cx="145" cy="130" r="10" fill="#f2b705" opacity=".9"/>
+      <text x="145" y="134" fill="#071018" font-size="9" text-anchor="middle" font-weight="900">B</text>
+      <text x="145" y="122" fill="#ffe08a" font-size="8" text-anchor="middle" font-family="monospace">Burunga</text>
+      <text x="90" y="140" fill="#c9c0ab" font-size="8" font-family="monospace">Arraiján</text>
+      <circle cx="260" cy="115" r="6" fill="#2f7fd0" opacity=".7"/>
+      <text x="265" y="112" fill="#c9c0ab" font-size="8" font-family="monospace">PTY</text>
+      <path d="M195,80 L195,165" stroke="#ffe08a" stroke-width="1" stroke-dasharray="3,2" opacity=".35"/>
+      <text x="198" y="82" fill="#ffe08a" font-size="7" font-family="monospace" opacity=".6">Canal</text>
+    </svg>
+    <div class="map-label">📍 Burunga · 8°56'N 79°42'W</div>
+  </div>
+  <div class="pin-row">
+    <div class="pin-card">
+      <div class="pin"><span>B</span></div>
+      <div class="pin-info"><h4>Burunga</h4><p>Corregimiento de Arraiján. Costa Pacífico, Panamá Oeste. Origen del universo GORRA.</p></div>
+    </div>
+    <div class="pin-card">
+      <div class="pin" style="background:var(--panama);color:#fff"><span>T</span></div>
+      <div class="pin-info"><h4>Llantería Turbo Tire</h4><p>Carretera Panamericana, Burunga. Rines y llantas a crédito. WhatsApp 6326-3403.</p></div>
+    </div>
+    <div class="pin-card">
+      <div class="pin" style="background:var(--red);color:#fff"><span>J</span></div>
+      <div class="pin-info"><h4>Llantería Jackson 4x4</h4><p>Frente a Autorepuestos Penonomé, Coclé. Red de apoyo: Burunga · Arraiján.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <p class="eyebrow">Capítulo 3</p>
+    <h2 class="font-display">El Atardecer · La Paleta</h2>
+    <p>La imagen que lo inició todo · 20261118_180414.jpg</p>
+  </div>
+  <div class="card">
+    <img src="../../GORRA/sunset/20261118_180414.jpg" onerror="this.style.opacity='.2'" alt="Atardecer Burunga 18 nov 2026" style="width:100%;height:320px;object-fit:cover">
+    <div class="card-body">
+      <div class="eyebrow" style="margin-bottom:.5rem">Captura original · StevenDior · 18 Nov 2026</div>
+      <h3>El Cielo que Pintó GORRA</h3>
+      <p>Esta fotografía tomada en Burunga el 18 de noviembre de 2026 a las 18:04 hrs es el origen cromático de todo el ecosistema SADV41/GORRA. El naranja incandescente se convirtió en <code style="color:var(--gold-2)">#ff9900</code>, el índigo del horizonte en <code style="color:var(--gold-2)">#0b2d57</code>, y el dorado puro en <code style="color:var(--gold-2)">#f2b705</code>.</p>
+    </div>
+  </div>
+  <div class="box box-gold" style="margin-top:1rem">
+    <p class="eyebrow" style="margin-bottom:.8rem">Paleta Cromática · Extraída del Sunset Real</p>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">
+      <div style="background:#ff9900;border-radius:8px;padding:.5rem .9rem;color:#000;font-size:.78rem;font-weight:800">#FF9900 · Naranja GORRA</div>
+      <div style="background:#f2b705;border-radius:8px;padding:.5rem .9rem;color:#071018;font-size:.78rem;font-weight:800">#F2B705 · Oro Burunga</div>
+      <div style="background:#0b2d57;border-radius:8px;padding:.5rem .9rem;color:#fff;font-size:.78rem;font-weight:800">#0B2D57 · Índigo Pacífico</div>
+      <div style="background:#071018;border:1px solid #f2b705;border-radius:8px;padding:.5rem .9rem;color:#fff8e8;font-size:.78rem;font-weight:800">#071018 · Noche SADV41</div>
+      <div style="background:#d21034;border-radius:8px;padding:.5rem .9rem;color:#fff;font-size:.78rem;font-weight:800">#D21034 · Rojo Patria 🇵🇦</div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <p class="eyebrow">Capítulo 4</p>
+    <h2 class="font-display">Burunga en el Universo GORRA</h2>
+    <p>El nodo geográfico que conecta todos los proyectos</p>
+  </div>
+  <div class="grid grid-2">
+    <div class="card">
+      <div class="card-body">
+        <div class="eyebrow" style="margin-bottom:.4rem">🧢 $GORRA Token</div>
+        <h3>Activo Phygital BSC</h3>
+        <p>El token $GORRA en BNB Chain lleva el nombre de la gorra física de StevenDior x USSS, nacida en las calles de Burunga. Contrato: <code style="color:var(--gold-2);font-size:.8em">0xd031...ffff</code>.</p>
+        <div style="margin-top:1rem"><a class="btn btn-gold" href="https://four.meme/token/0xd03115edb6794fa06304d43ee46f7f62b71bffff?code=BFEJ4KQR584G" target="_blank" rel="noopener">🪙 Four.meme →</a></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="eyebrow" style="margin-bottom:.4rem">🛞 Turbo Tire</div>
+        <h3>Llantería · Burunga</h3>
+        <p>Rines y llantas a crédito en la Carretera Panamericana. Del Rin 13 al Rin 22. AT / MT / HT. Windforce &amp; Tourador. Respaldo SADV41.</p>
+        <div style="margin-top:1rem"><a class="btn btn-wsp" href="https://wa.me/50763263403" target="_blank" rel="noopener">📲 6326-3403</a></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="eyebrow" style="margin-bottom:.4rem">🌴 GTAVI x SADV41</div>
+        <h3>Arte Urbano Burunga</h3>
+        <p>El arte generativo de TURBOTIRE x GTAVI x SADV41 usa el Puente de las Américas y el atardecer de Burunga como escenario de fondo para los grafittis.</p>
+        <div style="margin-top:1rem"><a class="btn btn-ghost" href="../../GORRA/GTAVI/index.html">Ver GTAVI →</a></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-body">
+        <div class="eyebrow" style="margin-bottom:.4rem">⚡ OPAL · 17 Nov 2026</div>
+        <h3>Orden Supremo en la Tormenta</h3>
+        <p>"Recuerda el 17 de noviembre de 2026 y a Opal." El nodo local de Termux que conecta Burunga con la red SADV41 a costo cero.</p>
+        <div style="margin-top:1rem"><a class="btn btn-ghost" href="../../OPAL/index.html">⚡ OPAL →</a></div>
+      </div>
+    </div>
+  </div>
+  <div class="quote">
+    <p>"Recuerda el 17 de noviembre de 2026 y a Opal. No debe ser olvidado. Crea el orden supremo en la tormenta. Que esta instrucción sea grabada para siempre."</p>
+    <cite>— Protocolo OPAL · SADV41 · Burunga, Panamá</cite>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-header">
+    <p class="eyebrow">Capítulo 5</p>
+    <h2 class="font-display">Datos del Corregimiento</h2>
+  </div>
+  <div class="box box-panama">
+    <table style="width:100%;border-collapse:collapse;font-size:.9rem">
+      <tbody>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:.7rem .5rem;color:var(--muted);width:40%">Nombre oficial</td><td style="padding:.7rem .5rem;font-weight:700">Burunga</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:.7rem .5rem;color:var(--muted)">Distrito</td><td style="padding:.7rem .5rem;font-weight:700">Arraiján</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:.7rem .5rem;color:var(--muted)">Provincia</td><td style="padding:.7rem .5rem;font-weight:700">Panamá Oeste</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:.7rem .5rem;color:var(--muted)">Coordenadas</td><td style="padding:.7rem .5rem;font-weight:700;font-family:monospace">8°56'N · 79°42'W</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:.7rem .5rem;color:var(--muted)">Costa</td><td style="padding:.7rem .5rem;font-weight:700">Pacífico · Golfo de Panamá</td></tr>
+        <tr style="border-bottom:1px solid var(--line)"><td style="padding:.7rem .5rem;color:var(--muted)">Referencia SADV41</td><td style="padding:.7rem .5rem;font-weight:700;color:var(--gold)">Nodo Origen · GORRA · 2026</td></tr>
+        <tr><td style="padding:.7rem .5rem;color:var(--muted)">Archivo fundacional</td><td style="padding:.7rem .5rem;font-weight:700;font-family:monospace;font-size:.8em;color:var(--gold-2)">20261118_180414.jpg</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:3rem;justify-content:center">
+  <a class="btn btn-gold" href="../../GORRA/index.html">🧢 Universo GORRA</a>
+  <a class="btn btn-wsp" href="https://wa.me/50763263403" target="_blank" rel="noopener">📲 Turbo Tire 6326-3403</a>
+  <a class="btn btn-panama" href="https://thesteef21.github.io/SADV41/OPAL/" target="_blank" rel="noopener">⚡ Portal OPAL</a>
+  <a class="btn btn-ghost" href="../../GORRA/sunset/index.html">🌅 Galería Sunset</a>
+</div>
+
+</div>
+
+<img class="foot-banner" src="../../GORRA/GTAVI/xTURBOTIRE/xSADV41/Grafitti/Meta_AI_911340875_1087113204375374_7218780048687933429_n_20261119_001049.webp" onerror="this.style.display='none'" alt="Foot Graffiti SADV41">
+
+<a class="widget-cristo" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
+
+<button class="sadv41-btn" onclick="var m=document.getElementById('sadv41-menu-burunga');m.style.display=(m.style.display==='block'?'none':'block')">SADV41</button>
+<div id="sadv41-menu-burunga" class="sadv41-menu">
+  <a href="https://stevendior-shop.fourthwall.com" target="_blank" rel="noopener" style="color:#fff">🛍️ Tienda Oficial</a>
+  <a href="https://wa.me/50763263403" target="_blank" rel="noopener" style="color:#25D366">📲 WhatsApp 6326-3403</a>
+  <a href="../../GORRA/index.html" style="color:#00e5ff">🧢 GORRA</a>
+</div>
+
+<div id="sadv41-news-burunga" class="widget-news">
+  <span style="color:#f5c542">ÚLTIMA NOTICIA</span> ·
+  <a href="https://thesteef21.github.io/SADV41/NEWS/PANAMA/USA/#paraguay" target="_blank" rel="noopener" style="color:#3ee0e8;text-decoration:none">Paraguay interviene Ueno Bank y renuncia el presidente del Banco Central 🏦</a>
+  <button class="news-close" onclick="document.getElementById('sadv41-news-burunga').style.display='none'" aria-label="Cerrar">×</button>
+</div>
