@@ -1,0 +1,57 @@
+<!-- SADV41-WIDGETS-START | Messenger + Spotify | Reutilizable -->
+<style>
+#sadv41-fab-stack{position:fixed;left:16px;bottom:16px;z-index:10000;display:flex;flex-direction:column;gap:10px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+.sadv41-fab-btn{width:56px;height:56px;border-radius:999px;border:1px solid #00e5ff;color:#fff;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 28px rgba(0,0,0,.55);transition:transform .18s ease}
+.sadv41-fab-btn:active{transform:scale(.94)}
+.sadv41-fab-btn.msg{background:linear-gradient(135deg,#0084ff,#00e5ff)}
+.sadv41-fab-btn.spot{background:linear-gradient(135deg,#1DB954,#1ed760);border-color:#1DB954;color:#000}
+.sadv41-card{width:300px;max-width:calc(100vw - 32px);background:#07131f;border:1px solid #00e5ff;border-radius:16px;padding:16px;box-shadow:0 18px 50px rgba(0,0,0,.75);display:none;color:#e6edf3;backdrop-filter:blur(10px)}
+.sadv41-card.open{display:block}
+.sadv41-card h4{color:#ffd700;margin:0 0 6px;font-size:15px}
+.sadv41-card p{color:#9fb0c3;font-size:13px;margin:0 0 12px;line-height:1.5}
+.sadv41-card a.cta{display:block;text-align:center;text-decoration:none;font-weight:800;padding:11px;border-radius:999px;font-size:14px}
+.sadv41-card a.cta.msg{background:#0084ff;color:#fff}
+.sadv41-card a.cta.spot{background:#1DB954;color:#000}
+.sadv41-card .small{text-align:center;font-size:11px;color:#9fb0c3;margin-top:8px}
+.sadv41-close{float:right;background:transparent;border:0;color:#9fb0c3;cursor:pointer;font-size:16px;padding:0 4px}
+</style>
+<div id="sadv41-fab-stack">
+  <div id="sadv41-card-msg" class="sadv41-card">
+    <button class="sadv41-close" data-close="sadv41-card-msg" aria-label="Cerrar">✕</button>
+    <h4>Messenger · Canal SADV41</h4>
+    <p>Únete al canal oficial. Actualizaciones TMS, ecuaciones, despliegues y memoria recursiva. Solapamiento discreto.</p>
+    <a class="cta msg" href="https://www.messenger.com/channel/61554018924556" target="_blank" rel="noopener">Abrir canal →</a>
+    <div class="small">SADV41 · Time Make Space · Panamá</div>
+  </div>
+  <div id="sadv41-card-spot" class="sadv41-card">
+    <button class="sadv41-close" data-close="sadv41-card-spot" aria-label="Cerrar">✕</button>
+    <h4>Spotify · 3 meses gratis</h4>
+    <p>Referral oficial SADV41. Prueba 3 meses gratis con este enlace. Música, enfoque y SADV41 Music.</p>
+    <a class="cta spot" href="https://open.spotify.com/referral/003988e58c5d863711ce35278c66785f53a04d248c0fd8b116a577?si=fGM0R1MCT0me_qn5CtqVmg&utm_source=copy-link&locale=es&sci=spotify%3Acard-config%3A5IucLbrjbi1ulYi3cpFglY" target="_blank" rel="noopener">Reclamar 3 meses gratis →</a>
+    <div class="small">Enlace de referral SADV41 · Abre en Spotify</div>
+  </div>
+  <button id="sadv41-btn-msg" class="sadv41-fab-btn msg" aria-label="Canal Messenger">💬</button>
+  <button id="sadv41-btn-spot" class="sadv41-fab-btn spot" aria-label="Spotify 3 meses gratis">🎵</button>
+</div>
+<script>
+(function(){
+  function toggle(id){
+    var el=document.getElementById(id);
+    if(!el) return;
+    var wasOpen=el.classList.contains('open');
+    document.querySelectorAll('.sadv41-card').forEach(function(c){c.classList.remove('open')});
+    if(!wasOpen) el.classList.add('open');
+  }
+  var b1=document.getElementById('sadv41-btn-msg');
+  var b2=document.getElementById('sadv41-btn-spot');
+  if(b1) b1.addEventListener('click',function(){toggle('sadv41-card-msg')});
+  if(b2) b2.addEventListener('click',function(){toggle('sadv41-card-spot')});
+  document.querySelectorAll('.sadv41-close').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var target=document.getElementById(btn.getAttribute('data-close'));
+      if(target) target.classList.remove('open');
+    });
+  });
+})();
+</script>
+<!-- SADV41-WIDGETS-END -->
