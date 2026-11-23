@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SADV41 // DIARIO</title>
+  <style>
+    body { background: #07090e; color: #e2e8f0; font-family: system-ui, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; user-select: none; }
+    h1 { color: #00f0ff; letter-spacing: 3px; font-size: 1.4rem; cursor: pointer; }
+    p { color: #64748b; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <h1 id="nodo-diario">SADV41 // DIARIO</h1>
+  <p>Bitácora General del Ecosistema</p>
+  <script>
+    (function() {
+      let toques = 0, timer;
+      document.getElementById('nodo-diario').addEventListener('click', () => {
+        toques++;
+        clearTimeout(timer);
+        timer = setTimeout(() => { toques = 0; }, 1200);
+        if (toques === 5) {
+          window.location.href = ['Ha', 'Bibi', 'Na'].join('-') + '.html';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

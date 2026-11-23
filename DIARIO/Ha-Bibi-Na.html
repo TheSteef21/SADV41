@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>SADV41 // ENV</title>
+  <style>
+    :root { --bg: #07090e; --card: #0f141f; --cyan: #00f0ff; --gold: #ffd700; --text: #e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+    .box { background: var(--card); border: 1px solid rgba(0, 240, 255, 0.25); border-radius: 14px; padding: 28px; max-width: 680px; width: 100%; box-shadow: 0 0 30px rgba(0, 240, 255, 0.08); }
+    .lock-title { color: var(--cyan); font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px; text-align: center; }
+    input { width: 100%; padding: 14px; background: #05070a; border: 1px solid #1e293b; border-radius: 8px; color: var(--gold); font-size: 1rem; text-align: center; margin-bottom: 14px; outline: none; }
+    input:focus { border-color: var(--cyan); }
+    button { width: 100%; padding: 14px; background: linear-gradient(90deg, #00c6ff, #0072ff); border: none; border-radius: 8px; color: #fff; font-weight: 700; letter-spacing: 1px; cursor: pointer; }
+    .error { color: #ff4d4d; font-size: 0.85rem; text-align: center; margin-top: 10px; display: none; }
+    #vault { display: none; line-height: 1.65; }
+    .badge { display: inline-block; background: rgba(255, 215, 0, 0.12); color: var(--gold); border: 1px solid rgba(255, 215, 0, 0.3); padding: 4px 10px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; margin-bottom: 10px; }
+    h1 { color: var(--cyan); font-size: 1.5rem; margin-bottom: 4px; }
+    h2 { color: var(--gold); font-size: 1.15rem; margin: 18px 0 10px; }
+    .meta { color: #94a3b8; font-size: 0.85rem; margin-bottom: 16px; }
+    hr { border: 0; border-top: 1px solid #1e293b; margin: 16px 0; }
+    p { margin-bottom: 12px; font-size: 0.95rem; }
+    ul { padding-left: 20px; margin-bottom: 16px; }
+    li { margin-bottom: 10px; font-size: 0.93rem; }
+    strong { color: var(--cyan); }
+    .footer-note { text-align: right; font-size: 0.8rem; color: var(--gold); margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <div class="box" id="gate">
+    <div class="lock-title">SADV41 // ACCESO RESTRINGIDO</div>
+    <input type="password" id="pass" placeholder="Clave de entorno (.env)" onkeydown="if(event.key==='Enter') unlock()">
+    <button onclick="unlock()">DESCIFRAR ARCHIVO</button>
+    <div class="error" id="err">Clave incorrecta. Acceso denegado.</div>
+  </div>
+
+  <div class="box" id="vault"></div>
+
+  <script>
+    const PAYLOAD = {
+      salt: "048Hy4htIuVJdHTbsJLtdA==",
+      iv: "qr1+VTVR1JHTOVsu",
+      data: "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"
+    };
+
+    const b64ToBuf = b64 => Uint8Array.from(atob(b64), c => c.charCodeAt(0));
+
+    async function unlock() {
+      const pass = document.getElementById('pass').value;
+      const err = document.getElementById('err');
+      err.style.display = 'none';
+      try {
+        const enc = new TextEncoder();
+        const keyMaterial = await crypto.subtle.importKey('raw', enc.encode(pass), 'PBKDF2', false, ['deriveKey']);
+        const key = await crypto.subtle.deriveKey(
+          { name: 'PBKDF2', salt: b64ToBuf(PAYLOAD.salt), iterations: 100000, hash: 'SHA-256' },
+          keyMaterial,
+          { name: 'AES-GCM', length: 256 },
+          false,
+          ['decrypt']
+        );
+        const decrypted = await crypto.subtle.decrypt(
+          { name: 'AES-GCM', iv: b64ToBuf(PAYLOAD.iv) },
+          key,
+          b64ToBuf(PAYLOAD.data)
+        );
+        document.getElementById('gate').style.display = 'none';
+        const vault = document.getElementById('vault');
+        vault.innerHTML = new TextDecoder().decode(decrypted);
+        vault.style.display = 'block';
+      } catch (e) {
+        err.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>
