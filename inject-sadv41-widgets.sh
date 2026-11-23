@@ -19,6 +19,7 @@ inject_one() {
     echo "💉 Inyectado Messenger + Spotify en: $file"
   else
     echo "❌ Falta snippet: $SNIPPET_FILE"
+    exit 1
   fi
 }
 
@@ -26,10 +27,10 @@ if [ "$1" = "--install" ]; then
   mkdir -p "$HOME/bin" "$HOME/SADV41"
   cp "$0" "$HOME/bin/sadv41-inject"
   chmod +x "$HOME/bin/sadv41-inject"
-  cp sadv41-widgets-snippet.html "$HOME/bin/" 2>/dev/null || true
-  cp sadv41-widgets-snippet.html "$HOME/SADV41/" 2>/dev/null || true
+  cp "$SNIPPET_FILE" "$HOME/bin/sadv41-widgets-snippet.html" 2>/dev/null || true
+  cp "$SNIPPET_FILE" "$HOME/SADV41/sadv41-widgets-snippet.html" 2>/dev/null || true
   grep -q 'HOME/bin' "$HOME/.bashrc" 2>/dev/null || echo 'export PATH="$HOME/bin:$PATH"' >> "$HOME/.bashrc"
-  echo "✅ Shortcut instalado: sadv41-inject"
+  echo "✅ Shortcut global instalado: sadv41-inject"
   exit 0
 fi
 
