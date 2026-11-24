@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SADV41 // GTA VI ARCHIVE &amp; PLAYLIST</title>
+  <style>
+    :root {
+      --bg: #030305;
+      --panel: rgba(11, 15, 25, 0.82);
+      --border: rgba(0, 229, 255, 0.25);
+      --cyan: #00e5ff;
+      --gold: #FFD700;
+      --text: #eaf4ff;
+      --muted: #8fa3bf;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top right, #0a1628 0%, var(--bg) 58%);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      padding: 20px 16px 60px;
+    }
+
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+      border-radius: 18px;
+      padding: 24px 20px;
+      margin-bottom: 26px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand h1 {
+      font-size: 1.55rem;
+      letter-spacing: 1.5px;
+      color: var(--cyan);
+      text-shadow: 0 0 14px rgba(0, 229, 255, 0.45);
+    }
+
+    .brand p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid var(--border);
+      background: rgba(0, 229, 255, 0.08);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .section-title {
+      font-size: 1.12rem;
+      letter-spacing: 1px;
+      color: var(--gold);
+      margin: 26px 0 14px;
+      text-transform: uppercase;
+    }
+
+    .playlist-card {
+      background: var(--panel);
+      border: 1px solid rgba(255, 215, 0, 0.35);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.55);
+    }
+
+    .playlist-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #030305;
+      background: var(--gold);
+      padding: 4px 10px;
+      border-radius: 999px;
+      width: fit-content;
+    }
+
+    .playlist-card h2 {
+      font-size: 1.25rem;
+      color: #fff;
+      margin-top: 8px;
+    }
+
+    .playlist-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.45;
+      margin-top: 6px;
+    }
+
+    .playlist-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #000;
+    }
+
+    .playlist-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-collab {
+      flex: 1;
+      min-width: 220px;
+      text-align: center;
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--gold), #ffb300);
+      color: #030305;
+      font-weight: 800;
+      font-size: 0.9rem;
+      padding: 11px 16px;
+      border-radius: 10px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-collab:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(255, 215, 0, 0.35);
+    }
+
+    .btn-view {
+      text-align: center;
+      text-decoration: none;
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 11px 16px;
+      border-radius: 10px;
+      transition: 0.2s ease;
+    }
+
+    .btn-view:hover {
+      background: rgba(0, 229, 255, 0.14);
+    }
+
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 18px;
+    }
+
+    .video-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--cyan);
+    }
+
+    .thumb-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #070a12;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .thumb-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .video-card:hover .thumb-wrap img {
+      transform: scale(1.04);
+    }
+
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(3, 3, 5, 0.38);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .play-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(0, 229, 255, 0.92);
+      color: #030305;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.15rem;
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.65);
+    }
+
+    .tag-chip {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(3, 3, 5, 0.85);
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 6px;
+    }
+
+    .video-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .video-body h3 {
+      font-size: 1.02rem;
+      line-height: 1.35;
+      color: #fff;
+    }
+
+    .channel-name {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .btn-sm {
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 9px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: rgba(0, 229, 255, 0.1);
+      color: var(--cyan);
+      transition: 0.2s ease;
+    }
+
+    .btn-sm:hover {
+      background: var(--cyan);
+      color: #030305;
+    }
+
+    .btn-sm.yt {
+      border-color: rgba(255, 215, 0, 0.35);
+      background: rgba(255, 215, 0, 0.1);
+      color: var(--gold);
+    }
+
+    .btn-sm.yt:hover {
+      background: var(--gold);
+      color: #030305;
+    }
+
+    footer {
+      margin-top: 42px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <h1>SADV41 // GTA VI ARCHIVE</h1>
+        <p>Nodo dedicado a Grand Theft Auto VI: playlist colaborativa, secretos y clips</p>
+      </div>
+      <nav class="nav-links">
+        <a class="nav-btn" href="../index.html">Gaming Hub</a>
+        <a class="nav-btn" href="https://thesteef21.github.io/SADV41/">Inicio SADV41</a>
+        <a class="nav-btn" href="https://thesteef21.github.io/Lapizasuli/GSADV41.html">GSADV41</a>
+      </nav>
+    </header>
+
+    <h2 class="section-title">Playlist Colaborativa GTA 6</h2>
+    <section class="playlist-card">
+      <div>
+        <span class="playlist-badge">COLABORATIVA // ROCKSTAR GAMES</span>
+        <h2>GTA 6 — Lista Abierta de la Comunidad</h2>
+        <p>Únete a la playlist colaborativa de SADV41 para agregar trailers, filtraciones verificadas, teorías y secretos de Grand Theft Auto VI.</p>
+      </div>
+      <iframe class="playlist-frame" src="https://www.youtube-nocookie.com/embed/videoseries?list=PLSpu6mJZzeqw" title="GTA 6 Playlist Colaborativa" loading="lazy" allowfullscreen></iframe>
+      <div class="playlist-actions">
+        <a class="btn-collab" href="https://www.youtube.com/playlist?list=PLSpu6mJZzeqw&jct=X-UZ1Nr0aL3z4gsaG93EHQ" target="_blank" rel="noopener noreferrer">+ Unirse y Agregar Videos a GTA 6</a>
+        <a class="btn-view" href="https://www.youtube.com/playlist?list=PLSpu6mJZzeqw" target="_blank" rel="noopener noreferrer">Abrir en YouTube</a>
+      </div>
+    </section>
+
+    <h2 class="section-title">Clips &amp; Easter Eggs de GTA VI</h2>
+    <section class="videos-grid">
+      <article class="video-card">
+        <div class="thumb-wrap" id="player-IqNH5qRBH54" onclick="loadEmbed('IqNH5qRBH54')">
+          <span class="tag-chip">GTA 6 // EASTER EGG</span>
+          <img src="https://i.ytimg.com/vi/IqNH5qRBH54/hqdefault.jpg" alt="existe um ALIEN no GTA 6" loading="lazy" />
+          <div class="play-overlay"><div class="play-circle">&#9654;</div></div>
+        </div>
+        <div class="video-body">
+          <div>
+            <h3>existe um ALIEN no GTA 6</h3>
+            <div class="channel-name">Canal: RyckReys</div>
+          </div>
+          <div class="card-actions">
+            <button class="btn-sm" onclick="loadEmbed('IqNH5qRBH54')">Reproducir Aquí</button>
+            <a class="btn-sm yt" href="http://www.youtube.com/watch?v=IqNH5qRBH54" target="_blank" rel="noopener noreferrer">YouTube</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      SADV41 GAMING // GTA VI NODE &bull; Steven Dior &bull; GitHub Pages
+    </footer>
+  </div>
+
+  <script>
+    function loadEmbed(videoId) {
+      const container = document.getElementById('player-' + videoId);
+      if (!container) return;
+      container.innerHTML = '<iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/' + videoId + '?autoplay=1" title="YouTube player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    }
+  </script>
+</body>
+</html>
