@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SADV41 // GAMING HUB & PLAYLISTS</title>
+  <style>
+    :root {
+      --bg: #030305;
+      --panel: rgba(11, 15, 25, 0.78);
+      --border: rgba(0, 229, 255, 0.24);
+      --cyan: #00e5ff;
+      --gold: #FFD700;
+      --text: #eaf4ff;
+      --muted: #8fa3bf;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: radial-gradient(circle at top right, #0a1628 0%, var(--bg) 55%);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      padding: 20px 16px 60px;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+      border-radius: 18px;
+      padding: 24px 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand h1 {
+      font-size: 1.55rem;
+      letter-spacing: 1.5px;
+      color: var(--cyan);
+      text-shadow: 0 0 14px rgba(0, 229, 255, 0.45);
+    }
+
+    .brand p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid var(--border);
+      background: rgba(0, 229, 255, 0.08);
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
+
+    .nav-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .section-title {
+      font-size: 1.15rem;
+      letter-spacing: 1px;
+      color: var(--gold);
+      margin: 26px 0 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-transform: uppercase;
+    }
+
+    .playlists-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 18px;
+    }
+
+    .playlist-card {
+      background: var(--panel);
+      border: 1px solid rgba(255, 215, 0, 0.32);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+    }
+
+    .playlist-badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #030305;
+      background: var(--gold);
+      padding: 4px 10px;
+      border-radius: 999px;
+      width: fit-content;
+    }
+
+    .playlist-card h3 {
+      font-size: 1.15rem;
+      color: #fff;
+    }
+
+    .playlist-card p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .playlist-frame {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #000;
+    }
+
+    .playlist-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-collab {
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--gold), #ffb300);
+      color: #030305;
+      font-weight: 800;
+      font-size: 0.86rem;
+      padding: 10px 14px;
+      border-radius: 10px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-collab:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 18px rgba(255, 215, 0, 0.35);
+    }
+
+    .btn-view {
+      text-align: center;
+      text-decoration: none;
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      font-weight: 700;
+      font-size: 0.86rem;
+      padding: 10px 14px;
+      border-radius: 10px;
+      transition: 0.2s ease;
+    }
+
+    .btn-view:hover {
+      background: rgba(0, 229, 255, 0.14);
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .filter-btn {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      border-color: var(--cyan);
+      color: #030305;
+      background: var(--cyan);
+    }
+
+    .videos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 18px;
+    }
+
+    .video-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--cyan);
+    }
+
+    .thumb-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #070a12;
+      cursor: pointer;
+      overflow: hidden;
+    }
+
+    .thumb-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .video-card:hover .thumb-wrap img {
+      transform: scale(1.04);
+    }
+
+    .play-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(3, 3, 5, 0.38);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .play-circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(0, 229, 255, 0.9);
+      color: #030305;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 1.1rem;
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.65);
+    }
+
+    .tag-chip {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(3, 3, 5, 0.82);
+      border: 1px solid var(--cyan);
+      color: var(--cyan);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .video-body {
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .video-body h4 {
+      font-size: 0.98rem;
+      line-height: 1.35;
+      color: #fff;
+    }
+
+    .channel-name {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .btn-sm {
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 8px 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: rgba(0, 229, 255, 0.1);
+      color: var(--cyan);
+      transition: 0.2s ease;
+    }
+
+    .btn-sm:hover {
+      background: var(--cyan);
+      color: #030305;
+    }
+
+    .btn-sm.yt {
+      border-color: rgba(255, 215, 0, 0.35);
+      background: rgba(255, 215, 0, 0.1);
+      color: var(--gold);
+    }
+
+    .btn-sm.yt:hover {
+      background: var(--gold);
+      color: #030305;
+    }
+
+    footer {
+      margin-top: 40px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 18px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <h1>SADV41 // GAMING &amp; ARCHIVE</h1>
+        <p>Playlists colaborativas, betas históricas y clips seleccionados por Steven Dior</p>
+      </div>
+      <nav class="nav-links">
+        <a class="nav-btn" href="https://thesteef21.github.io/SADV41/">Inicio SADV41</a>
+        <a class="nav-btn" href="https://thesteef21.github.io/Lapizasuli/GSADV41.html">GSADV41</a>
+      </nav>
+    </header>
+
+    <h2 class="section-title">Playlists Colaborativas (Únete y Agrega Videos)</h2>
+    <section class="playlists-grid">
+      <article class="playlist-card">
+        <div>
+          <span class="playlist-badge">COLABORATIVA // N64DD &amp; BETA</span>
+          <h3 style="margin-top: 10px;">ZELDA 64 BETA SPACEWORLD 1996-1997</h3>
+          <p style="margin-top: 6px;">Archivo comunitario sobre las versiones beta de The Legend of Zelda: Ocarina of Time presentadas en Spaceworld 1996 y 1997. Únete para aportar videos.</p>
+        </div>
+        <iframe class="playlist-frame" src="https://www.youtube-nocookie.com/embed/videoseries?list=PLDhzHVtEYhe4" title="ZELDA 64 BETA SPACEWORLD 1996-1997" loading="lazy" allowfullscreen></iframe>
+        <div class="playlist-actions">
+          <a class="btn-collab" href="https://www.youtube.com/playlist?list=PLDhzHVtEYhe4&jct=jqi57ndL2YJask4ZK29ngg" target="_blank" rel="noopener noreferrer">+ Unirse y Agregar Videos</a>
+          <a class="btn-view" href="https://www.youtube.com/playlist?list=PLDhzHVtEYhe4" target="_blank" rel="noopener noreferrer">Ver Lista</a>
+        </div>
+      </article>
+
+      <article class="playlist-card">
+        <div>
+          <span class="playlist-badge">COLABORATIVA // ROCKSTAR</span>
+          <h3 style="margin-top: 10px;">GTA 6</h3>
+          <p style="margin-top: 6px;">Recopilación abierta de avances, secretos, teorías y novedades de Grand Theft Auto VI. Únete y suma tus hallazgos a la lista.</p>
+        </div>
+        <iframe class="playlist-frame" src="https://www.youtube-nocookie.com/embed/videoseries?list=PLSpu6mJZzeqw" title="GTA 6 Playlist" loading="lazy" allowfullscreen></iframe>
+        <div class="playlist-actions">
+          <a class="btn-collab" href="https://www.youtube.com/playlist?list=PLSpu6mJZzeqw&jct=X-UZ1Nr0aL3z4gsaG93EHQ" target="_blank" rel="noopener noreferrer">+ Unirse y Agregar Videos</a>
+          <a class="btn-view" href="https://www.youtube.com/playlist?list=PLSpu6mJZzeqw" target="_blank" rel="noopener noreferrer">Ver Lista</a>
+        </div>
+      </article>
+    </section>
+
+    <h2 class="section-title">Shorts &amp; Clips Destacados</h2>
+    <div class="filters">
+      <button class="filter-btn active" onclick="filterCards('all', this)">Todos (5)</button>
+      <button class="filter-btn" onclick="filterCards('gta', this)">GTA &amp; Gaming</button>
+      <button class="filter-btn" onclick="filterCards('viral', this)">Clips &amp; Naturaleza</button>
+    </div>
+
+    <section class="videos-grid" id="videosGrid">
+      <article class="video-card" data-cat="gta">
+        <div class="thumb-wrap" id="player-rG8JW3mcmZQ" onclick="loadEmbed('rG8JW3mcmZQ')">
+          <span class="tag-chip">GTA V // MODS</span>
+          <img src="https://i.ytimg.com/vi/rG8JW3mcmZQ/hqdefault.jpg" alt="Just a chill evening in Los Santos" loading="lazy" />
+          <div class="play-overlay"><div class="play-circle">&#9654;</div></div>
+        </div>
+        <div class="video-body">
+          <div>
+            <h4>Just a chill evening in Los Santos #gta5 #shorts</h4>
+            <div class="channel-name">Canal: Grimble</div>
+          </div>
+          <div class="card-actions">
+            <button class="btn-sm" onclick="loadEmbed('rG8JW3mcmZQ')">Reproducir Aquí</button>
+            <a class="btn-sm yt" href="http://www.youtube.com/watch?v=rG8JW3mcmZQ" target="_blank" rel="noopener noreferrer">YouTube</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-cat="gta">
+        <div class="thumb-wrap" id="player-IqNH5qRBH54" onclick="loadEmbed('IqNH5qRBH54')">
+          <span class="tag-chip">GTA 6 // EASTER EGG</span>
+          <img src="https://i.ytimg.com/vi/IqNH5qRBH54/hqdefault.jpg" alt="existe um ALIEN no GTA 6" loading="lazy" />
+          <div class="play-overlay"><div class="play-circle">&#9654;</div></div>
+        </div>
+        <div class="video-body">
+          <div>
+            <h4>existe um ALIEN no GTA 6</h4>
+            <div class="channel-name">Canal: RyckReys</div>
+          </div>
+          <div class="card-actions">
+            <button class="btn-sm" onclick="loadEmbed('IqNH5qRBH54')">Reproducir Aquí</button>
+            <a class="btn-sm yt" href="http://www.youtube.com/watch?v=IqNH5qRBH54" target="_blank" rel="noopener noreferrer">YouTube</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-cat="viral">
+        <div class="thumb-wrap" id="player-Aff13J89sm0" onclick="loadEmbed('Aff13J89sm0')">
+          <span class="tag-chip">VIRAL // SHORTS</span>
+          <img src="https://i.ytimg.com/vi/Aff13J89sm0/hqdefault.jpg" alt="funnycats prank" loading="lazy" />
+          <div class="play-overlay"><div class="play-circle">&#9654;</div></div>
+        </div>
+        <div class="video-body">
+          <div>
+            <h4>#funnycats prank 🤣 #viralvideo #trendingshorts</h4>
+            <div class="channel-name">Canal: Baljinder Kour</div>
+          </div>
+          <div class="card-actions">
+            <button class="btn-sm" onclick="loadEmbed('Aff13J89sm0')">Reproducir Aquí</button>
+            <a class="btn-sm yt" href="http://www.youtube.com/watch?v=Aff13J89sm0" target="_blank" rel="noopener noreferrer">YouTube</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-cat="viral">
+        <div class="thumb-wrap" id="player-IoxOJj-ZU5g" onclick="loadEmbed('IoxOJj-ZU5g')">
+          <span class="tag-chip">NATURALEZA</span>
+          <img src="https://i.ytimg.com/vi/IoxOJj-ZU5g/hqdefault.jpg" alt="Búho Cobra Venganza De Halcón" loading="lazy" />
+          <div class="play-overlay"><div class="play-circle">&#9654;</div></div>
+        </div>
+        <div class="video-body">
+          <div>
+            <h4>Búho Cobra Venganza De Halcón</h4>
+            <div class="channel-name">Canal: InquietaMentes</div>
+          </div>
+          <div class="card-actions">
+            <button class="btn-sm" onclick="loadEmbed('IoxOJj-ZU5g')">Reproducir Aquí</button>
+            <a class="btn-sm yt" href="http://www.youtube.com/watch?v=IoxOJj-ZU5g" target="_blank" rel="noopener noreferrer">YouTube</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="video-card" data-cat="viral">
+        <div class="thumb-wrap" id="player-Rt4t9Kvhy6I" onclick="loadEmbed('Rt4t9Kvhy6I')">
+          <span class="tag-chip">SAFARI // SALVAJE</span>
+          <img src="https://i.ytimg.com/vi/Rt4t9Kvhy6I/hqdefault.jpg" alt="Un Hombre Se Enfrenta Cara a Cara con una Leona" loading="lazy" />
+          <div class="play-overlay"><div class="play-circle">&#9654;</div></div>
+        </div>
+        <div class="video-body">
+          <div>
+            <h4>Un Hombre Se Enfrenta Cara a Cara con una Leona en Plena Noche 🦁</h4>
+            <div class="channel-name">Canal: HECHOS PASADOS</div>
+          </div>
+          <div class="card-actions">
+            <button class="btn-sm" onclick="loadEmbed('Rt4t9Kvhy6I')">Reproducir Aquí</button>
+            <a class="btn-sm yt" href="http://www.youtube.com/watch?v=Rt4t9Kvhy6I" target="_blank" rel="noopener noreferrer">YouTube</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      SADV41 GAMING NODE &bull; Steven Dior &bull; GitHub Pages
+    </footer>
+  </div>
+
+  <script>
+    function loadEmbed(videoId) {
+      const container = document.getElementById('player-' + videoId);
+      if (!container) return;
+      container.innerHTML = '<iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/' + videoId + '?autoplay=1" title="YouTube player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+    }
+
+    function filterCards(category, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.video-card').forEach(card => {
+        if (category === 'all' || card.dataset.cat === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
