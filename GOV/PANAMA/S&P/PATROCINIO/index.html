@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SADV41 | GOV · PANAMÁ · S&P · PATROCINIO</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --a17-teal: #00d4ff;
+      --a17-magenta: #ff006e;
+      --a17-gold: #ffd700;
+      --bg-primary: #060913;
+      --bg-card: rgba(14, 21, 38, 0.82);
+      --text-primary: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border-glow: rgba(0, 212, 255, 0.28);
+    }
+
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg-primary: #f4f7fb;
+        --bg-card: rgba(255, 255, 255, 0.92);
+        --text-primary: #0f172a;
+        --text-muted: #475569;
+        --border-glow: rgba(0, 140, 180, 0.28);
+      }
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.55;
+    }
+
+    #bg-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem 2.5rem;
+      border-bottom: 1px solid var(--border-glow);
+      margin-bottom: 2rem;
+    }
+
+    .badge {
+      display: inline-block;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px solid var(--a17-teal);
+      color: var(--a17-teal);
+      margin-bottom: 0.9rem;
+    }
+
+    h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.55rem, 4vw, 2.4rem);
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--a17-teal), var(--a17-gold), var(--a17-magenta));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      color: var(--a17-gold);
+      margin: 2rem 0 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.15rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glow);
+      border-radius: 14px;
+      padding: 1.3rem;
+      backdrop-filter: blur(10px);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--a17-teal);
+    }
+
+    .tag-discount {
+      display: inline-block;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(255, 0, 110, 0.16);
+      color: var(--a17-magenta);
+      border: 1px solid rgba(255, 0, 110, 0.45);
+      padding: 0.22rem 0.65rem;
+      border-radius: 6px;
+      margin-bottom: 0.7rem;
+    }
+
+    .card h3 {
+      font-size: 1.12rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .price {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.15rem;
+      color: var(--a17-teal);
+      margin-bottom: 0.6rem;
+    }
+
+    .meta {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+    }
+
+    .mission-box {
+      background: var(--bg-card);
+      border-left: 4px solid var(--a17-gold);
+      border-top: 1px solid var(--border-glow);
+      border-right: 1px solid var(--border-glow);
+      border-bottom: 1px solid var(--border-glow);
+      border-radius: 12px;
+      padding: 1.4rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .mission-box p {
+      font-size: 0.95rem;
+      color: var(--text-primary);
+    }
+
+    .validity {
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--a17-teal);
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-glow);
+      padding-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="bg-canvas"></canvas>
+
+  <main class="container">
+    <header>
+      <span class="badge">SADV41 · GOV / PANAMÁ / S&amp;P</span>
+      <h1>NODO DE PATROCINIO &amp; EQUIPAMIENTO</h1>
+      <p class="subtitle">Respaldo operativo en territorio panameño y catálogo de dispositivos desbloqueados para fortalecimiento tecnológico de la misión.</p>
+    </header>
+
+    <section class="mission-box">
+      <h2 class="section-title" style="margin-top: 0;">01 // CRÓNICA EN CAMPO · PANAMÁ</h2>
+      <p>Registro presencial en comunidad: compartir cotidiano alrededor de bebidas frescas y bocadillos locales en jornada de servicio y cercanía directa. La base operativa de <strong>SADV41</strong> nace en el encuentro humano y se proyecta hacia herramientas digitales de alto alcance.</p>
+      <div class="validity">ESTADO: ACTIVO · REFERENCIA SONORA: AMOR BAJO PERF</div>
+    </section>
+
+    <h2 class="section-title">02 // EQUIPAMIENTO TECNOLÓGICO (OFERTAS GOOGLE PLAY / STORE)</h2>
+    <section class="grid">
+      <article class="card">
+        <span class="tag-discount">AHORRO $600 OFF</span>
+        <h3>Samsung Galaxy S26 Ultra (Unlocked)</h3>
+        <div class="price">Desde $1,599.99</div>
+        <p class="meta">Acumulable con ofertas de intercambio (trade-in) en dispositivos elegibles. Vigencia de oferta Play: hasta el 30/12/2026.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag-discount">AHORRO $75 OFF</span>
+        <h3>Google Pixel 11 Pro / XL (Unlocked)</h3>
+        <div class="price">Desde $1,099.00</div>
+        <p class="meta">Acumulable con promociones en Google Store cuando aplique. Vigencia de oferta Play: hasta el 30/12/2026.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag-discount">AHORRO $50 OFF</span>
+        <h3>Google Pixel 11 (Unlocked)</h3>
+        <div class="price">Desde $899.00</div>
+        <p class="meta">Acumulable con promociones en Google Store cuando aplique. Vigencia de oferta Play: hasta el 30/12/2026.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag-discount">AHORRO $25 OFF</span>
+        <h3>Google Pixel 10a (Unlocked)</h3>
+        <div class="price">Desde $599.00</div>
+        <p class="meta">Acumulable con promociones en Google Store cuando aplique. Vigencia de oferta Play: hasta el 30/12/2026.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag-discount">AHORRO $25 OFF</span>
+        <h3>Google Pixel Watch 5 (Unlocked)</h3>
+        <div class="price">Desde $399.99</div>
+        <p class="meta">Acumulable con promociones en Google Store cuando aplique. Vigencia de oferta Play: hasta el 30/12/2026.</p>
+      </article>
+
+      <article class="card">
+        <span class="tag-discount">GOOGLE STORE</span>
+        <h3>Samsung Galaxy Watch9</h3>
+        <div class="price">Desde $429.99</div>
+        <p class="meta">Compañero diario de bienestar y monitoreo continuo para despliegue móvil.</p>
+      </article>
+    </section>
+
+    <footer>
+      SADV41 · GOV / PANAMÁ / S&amp;P / PATROCINIO · AMOR Y ADORACIÓN
+    </footer>
+  </main>
+
+  <script>
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    for (let i = 0; i < 42; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.8 + 0.6,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35
+      });
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'rgba(0, 212, 255, 0.45)';
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+  </script>
+</body>
+</html>
