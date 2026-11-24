@@ -1,0 +1,42 @@
+[
+  {
+    "id": "us6000u3rr",
+    "mag": 5,
+    "place": "south of Panama",
+    "time": 1792545602961,
+    "lat": 4.5985,
+    "lon": -82.7031,
+    "depth": 10,
+    "source": "USGS"
+  },
+  {
+    "id": "us6000u3qu",
+    "mag": 4.3,
+    "place": "6 km SE of Pitaloza Arriba, Panama",
+    "time": 1792536704847,
+    "lat": 7.597,
+    "lon": -80.6274,
+    "depth": 10,
+    "source": "USGS"
+  },
+  {
+    "id": "us6000u3nn",
+    "mag": 4.5,
+    "place": "215 km S of Burica, Panama",
+    "time": 1792516716707,
+    "lat": 6.0926,
+    "lon": -82.6622,
+    "depth": 10,
+    "source": "USGS"
+  },
+  {
+    "id": "us6000u3nl",
+    "mag": 5.4,
+    "place": "192 km S of Burica, Panama",
+    "time": 1792515948338,
+    "lat": 6.3226,
+    "lon": -82.5693,
+    "depth": 10,
+    "source": "USGS"
+  }
+]

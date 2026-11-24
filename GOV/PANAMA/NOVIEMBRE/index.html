@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SADV41 // GOV · PANAMÁ · NOVIEMBRE · S&P 500 + Patrocinio + Sismos + Brave</title>
+<link rel="canonical" href="https://thesteef21.github.io/SADV41/GOV/PANAMA/NOVIEMBRE/" />
+<style>
+:root{--bg:#030305;--panel:rgba(10,14,24,.88);--cyan:#00e5ff;--gold:#ffd700;--purple:#9b6dff;--green:#00e676;--red:#ff5252;--muted:#94a3b8}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif;background:radial-gradient(circle at 10% 8%,rgba(0,229,255,.10),transparent 34%),radial-gradient(circle at 90% 12%,rgba(255,215,0,.09),transparent 36%),var(--bg);color:#f8fafc;min-height:100vh;line-height:1.5;padding:18px 14px 90px}
+.container{max-width:1220px;margin:0 auto}
+header{background:var(--panel);border:1px solid rgba(0,229,255,.24);border-radius:18px;padding:20px 22px;margin-bottom:20px;position:relative;overflow:hidden}
+header:before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--gold),var(--purple),var(--cyan))}
+h1{font-size:1.42rem;letter-spacing:.7px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.pill{font-family:ui-monospace,monospace;font-size:.72rem;padding:3px 10px;border-radius:999px;border:1px solid rgba(0,229,255,.38);background:rgba(0,229,255,.12);color:var(--cyan)}
+.pill.gold{border-color:rgba(255,215,0,.42);background:rgba(255,215,0,.12);color:var(--gold)}
+.pill.purple{border-color:rgba(155,109,255,.42);background:rgba(155,109,255,.14);color:#cbb4ff}
+.brand p{font-size:.85rem;color:var(--muted);margin-top:6px;max-width:780px}
+.nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.nav a{text-decoration:none;font-size:.79rem;font-weight:600;padding:8px 13px;border-radius:10px;border:1px solid rgba(255,215,0,.30);background:rgba(255,215,0,.08);color:var(--gold)}
+.nav a.cyan{border-color:rgba(0,229,255,.30);background:rgba(0,229,255,.09);color:var(--cyan)}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:22px}
+.kpi-card{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:15px;padding:16px 18px}
+.kpi-card small{font-size:.74rem;text-transform:uppercase;letter-spacing:.8px;color:var(--muted)}
+.kpi-val{font-size:1.65rem;font-weight:800;margin:6px 0 4px}
+.kpi-sub{font-size:.8rem;color:var(--muted)}
+.pos{color:var(--green);font-weight:600}.neg{color:var(--red);font-weight:600}.gold-txt{color:var(--gold);font-weight:600}.cyan-txt{color:var(--cyan);font-weight:600}
+.box{background:var(--panel);border:1px solid rgba(255,215,0,.30);border-radius:18px;padding:20px;margin-bottom:24px}
+.box h2{font-size:1.12rem;color:var(--gold);margin-bottom:16px}
+.section-title{font-size:1.04rem;font-weight:700;margin:22px 0 12px;color:var(--cyan);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.sim-grid{display:grid;grid-template-columns:1.05fr 1.25fr;gap:20px}
+@media(max-width:900px){.sim-grid{grid-template-columns:1fr}}
+.controls{background:rgba(5,8,16,.72);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:14px}
+.controls label{display:flex;justify-content:space-between;font-size:.82rem;margin-bottom:5px}
+.controls label span{font-family:ui-monospace,monospace;color:var(--gold);font-weight:700}
+input[type=range]{width:100%;accent-color:var(--cyan);cursor:pointer}
+.toggle{display:flex;justify-content:space-between;gap:10px;padding:10px 12px;border-radius:10px;background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.20);font-size:.81rem}
+.viz{background:rgba(5,8,16,.72);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:14px}
+.res-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:560px){.res-strip{grid-template-columns:1fr}}
+.res-mini{background:rgba(14,20,35,.9);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:10px 12px}
+.res-mini small{display:block;font-size:.71rem;color:var(--muted);text-transform:uppercase}
+.res-mini strong{font-size:1.15rem}
+.alloc-bar{height:12px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;display:flex}
+.alloc-core{background:linear-gradient(90deg,var(--cyan),#0091ea);transition:width .25s}
+.alloc-sat{background:linear-gradient(90deg,var(--gold),var(--purple));transition:width .25s}
+canvas#growthChart{width:100%;height:230px;display:block;border-radius:10px;background:rgba(3,5,10,.85);border:1px solid rgba(0,229,255,.14)}
+.advisor{font-size:.81rem;padding:11px 13px;border-radius:10px;background:rgba(255,215,0,.07);border:1px solid rgba(255,215,0,.28)}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:14px;margin-bottom:24px}
+.card{background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:15px}
+.card h3{font-size:.95rem;color:var(--cyan);margin-bottom:6px}
+.card p{font-size:.82rem;color:var(--muted)}
+.tag{display:inline-block;font-family:ui-monospace,monospace;font-size:.75rem;font-weight:700;background:rgba(255,0,110,.16);color:#ff006e;border:1px solid rgba(255,0,110,.45);padding:.22rem .65rem;border-radius:6px;margin-bottom:.7rem}
+.price{font-family:ui-monospace,monospace;font-size:1.15rem;color:var(--cyan);margin-bottom:.6rem}
+.table-wrap{overflow-x:auto;background:var(--panel);border:1px solid rgba(255,255,255,.08);border-radius:14px;margin-bottom:22px}
+table{width:100%;border-collapse:collapse;min-width:640px;font-size:.83rem}
+th,td{padding:11px 14px;text-align:left;border-bottom:1px solid rgba(255,255,255,.06)}
+th{font-size:.72rem;text-transform:uppercase;letter-spacing:.7px;color:var(--muted);background:rgba(0,0,0,.35)}
+.status{padding:2px 8px;border-radius:999px;font-size:.71rem;font-weight:700}
+.status-ok{background:rgba(0,230,118,.12);color:var(--green);border:1px solid rgba(0,230,118,.30)}
+.status-off{background:rgba(255,82,82,.12);color:var(--red);border:1px solid rgba(255,82,82,.30)}
+.wallet-addr{font-family:ui-monospace,monospace;font-size:.76rem;color:#cbd5e1;word-break:break-all;background:rgba(0,0,0,.45);padding:7px 9px;border-radius:8px}
+.copy{cursor:pointer;font-size:.74rem;font-weight:600;padding:5px 10px;border-radius:7px;border:1px solid rgba(0,229,255,.35);background:rgba(0,229,255,.10);color:var(--cyan)}
+.hub{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.hub a{display:block;text-decoration:none;background:var(--panel);border:1px solid rgba(0,229,255,.18);border-radius:12px;padding:14px;color:#f8fafc}
+.hub a b{color:var(--gold);display:block}
+.hub a span{font-size:.80rem;color:var(--muted)}
+.mission{border-left:4px solid var(--gold);background:var(--panel);border-radius:12px;padding:1.4rem;margin-bottom:1.8rem}
+footer{margin-top:26px;text-align:center;font-size:.78rem;color:var(--muted)}
+#sadv41-brave-fab{position:fixed;bottom:18px;right:18px;z-index:99998;display:flex;gap:8px;padding:10px 15px;border-radius:999px;border:1px solid rgba(0,229,255,.45);background:rgba(5,8,16,.92);color:#00e5ff;font-family:ui-monospace,monospace;font-size:12px;font-weight:700;cursor:pointer;box-shadow:0 8px 28px rgba(0,0,0,.65)}
+#sadv41-brave-backdrop{display:none;position:fixed;inset:0;z-index:99999;background:rgba(2,4,10,.82);backdrop-filter:blur(8px);padding:16px;overflow-y:auto}
+#sadv41-brave-backdrop.open{display:flex;justify-content:center;align-items:flex-start}
+#sadv41-brave-modal{width:100%;max-width:780px;margin-top:24px;background:#070a12;border:1px solid rgba(0,229,255,.32);border-radius:16px;padding:18px}
+.sb-form{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.sb-input{flex:1;min-width:210px;padding:10px 13px;border-radius:10px;border:1px solid rgba(0,229,255,.35);background:#030305;color:#fff}
+.sb-btn{cursor:pointer;padding:10px 15px;border-radius:10px;border:1px solid rgba(255,215,0,.45);background:rgba(255,215,0,.14);color:#ffd700;font-weight:700}
+.sb-card{background:rgba(13,19,34,.92);border:1px solid rgba(255,255,255,.09);border-radius:12px;padding:13px;margin-top:11px}
+.sb-card a{color:#00e5ff;font-weight:700;text-decoration:none}
+.sb-snippet{font-size:12.5px;color:#e2e8f0;background:rgba(0,0,0,.35);border-left:2px solid #00e5ff;padding:7px 10px;margin-top:6px;border-radius:0 6px 6px 0}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<div class="brand"><h1>SADV41 // GOV · PANAMÁ · NOVIEMBRE <span class="pill">NÚCLEO-SATÉLITE</span><span class="pill gold">432 HZ SOVEREIGN</span><span class="pill purple">S&amp;P 500 · UNIFICADO</span></h1>
+<p>Acumulación S&amp;P 500 + telemetría RWA / PancakeSwap + Patrocinio + Sismos EMSC / USGS / INETER + Brave LLM Context. Un solo nodo en NOVIEMBRE, sin duplicar páginas.</p></div>
+<nav class="nav">
+<a class="cyan" href="#simulador">Simulador</a><a href="#rwa">RWA</a><a href="#lp">PancakeSwap LP</a><a href="#patrocinio">Patrocinio</a><a href="#sismos">Sismos + Landsat</a><a class="cyan" href="#noviembre">Hub Noviembre</a><a href="https://thesteef21.github.io/SADV41/Artist" target="_blank" rel="noopener noreferrer">Artist</a><a href="https://thesteef21.github.io/SADV41/PANCAKE/" target="_blank" rel="noopener noreferrer">PANCAKE</a>
+</nav>
+</header>
+
+<section class="kpi">
+<div class="kpi-card"><small>Base Satélite On-Chain Real</small><div class="kpi-val">$71.15</div><div class="kpi-sub"><span class="cyan-txt">$69.33</span> PancakeSwap + <span class="gold-txt">~$1.82</span> RWA Spot</div></div>
+<div class="kpi-card"><small>Flujo Diario Estimado LP</small><div class="kpi-val">~$2.12/d</div><div class="kpi-sub">9 Pools · Líder: <span class="pos">NVDAB-USDT ($1.99/d)</span></div></div>
+<div class="kpi-card"><small>Meta Núcleo S&amp;P 500</small><div class="kpi-val" id="kpiTargetCore">75%</div><div class="kpi-sub">ETFs: <span class="gold-txt">VOO · SPY · IVV</span></div></div>
+<div class="kpi-card"><small>Proyección Total (<span id="kpiYearsLabel">3</span> Años)</small><div class="kpi-val pos" id="kpiProjectedTotal">$0.00</div><div class="kpi-sub">Aportado: <span id="kpiTotalContributed">$0.00</span></div></div>
+</section>
+
+<section class="box" id="simulador">
+<h2>Simulador Interactivo S&amp;P 500 + Satélites SADV41</h2>
+<div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px">
+<button class="copy" onclick="applyPreset(3,100,10,this)">Hito 【entity-Spotify¦canonical_name=Spotify】 2029 (3 Años)</button>
+<button class="copy" onclick="applyPreset(10,150,10,this)">Horizonte 10 Años</button>
+<button class="copy" onclick="applyPreset(20,250,10,this)">Soberanía 20 Años</button>
+</div>
+<div class="sim-grid">
+<div class="controls">
+<div><label>Capital Inicial S&amp;P 500 <span id="lblSpInit">$100</span></label><input type="range" id="spInit" min="0" max="10000" step="25" value="100" /></div>
+<div><label>Compra Mensual S&amp;P 500 <span id="lblSpMonthly">$100/mes</span></label><input type="range" id="spMonthly" min="10" max="2000" step="10" value="100" /></div>
+<div><label>Base Satélite SADV41 <span id="lblSatInit">$71.15</span></label><input type="range" id="satInit" min="0" max="5000" step="5" value="71.15" /></div>
+<div><label>Aporte Mensual Satélites <span id="lblSatMonthly">$25/mes</span></label><input type="range" id="satMonthly" min="0" max="1000" step="5" value="25" /></div>
+<div><label>Horizonte <span id="lblYears">3 años (2029)</span></label><input type="range" id="years" min="1" max="30" step="1" value="3" /></div>
+<div><label>Rendimiento Anual Esperado S&amp;P 500 <span id="lblRate">10.0%</span></label><input type="range" id="rate" min="5" max="14" step="0.5" value="10" /></div>
+<div><label>Fondo Emergencia Separado <span id="lblEmergency">$500</span></label><input type="range" id="emergency" min="0" max="10000" step="50" value="500" /></div>
+<label class="toggle"><span>Reinvertir yield LP (~$2.12/día ≈ $63.60/mes) hacia S&amp;P 500</span><input type="checkbox" id="reinvestLp" checked /></label>
+</div>
+<div class="viz">
+<div class="res-strip"><div class="res-mini"><small>Núcleo S&amp;P 500 Final</small><strong class="cyan-txt" id="resSpFinal">$0.00</strong></div><div class="res-mini"><small>Satélites Final</small><strong class="gold-txt" id="resSatFinal">$0.00</strong></div><div class="res-mini"><small>Plusvalía Compuesta</small><strong class="pos" id="resGainFinal">+$0.00</strong></div></div>
+<div><div style="display:flex;justify-content:space-between;font-size:.77rem"><span>Núcleo: <strong class="cyan-txt" id="lblCorePct">0%</strong></span><span>Satélites: <strong class="gold-txt" id="lblSatPct">0%</strong></span></div><div class="alloc-bar"><div class="alloc-core" id="barCore" style="width:75%"></div><div class="alloc-sat" id="barSat" style="width:25%"></div></div></div>
+<canvas id="growthChart" width="640" height="230"></canvas>
+<div class="advisor" id="advisorNote"></div>
+</div>
+</div>
+</section>
+
+<section class="grid3">
+<article class="card"><h3>1. Núcleo-Satélite 60–80% / 20–40%</h3><p>S&amp;P 500 (VOO, SPY, IVV) ancla patrimonio. Posiciones tokenizadas BSC (BLK, SHOP, GLD, EWJ, SQQQ) y pools LP son satélites tácticos acotados.</p></article>
+<article class="card"><h3>2. Control Solapamiento Tecnológico</h3><p>S&amp;P 500 ya concentra mega-caps tech. Pools NVDAB y SQQQ (3x Short QQQ) equilibran o amplifican esa exposición. Monitorear peso total.</p></article>
+<article class="card"><h3>3. Blindaje Artístico &amp; Soberanía</h3><p>Estándar SADV41 / 432 Hz. Ingresos distribución internacional (ISRC/UPC) y fondo emergencia separados de liquidez de riesgo. Solo excedentes al S&amp;P 500.</p></article>
+</section>
+
+<div class="section-title" id="rwa"><span>RWA &amp; ETFs Tokenizados (BSC · Ondo / bStocks / XStocks)</span><span style="font-size:.76rem;color:var(--muted)">Datos verificados de portafolio</span></div>
+<section class="grid3" id="rwaContainer"></section>
+
+<div class="section-title" id="lp"><span>Liquidez PancakeSwap Activa (9 Pools)</span><span style="font-size:.76rem;color:var(--gold)">Alerta: Reasignar $1.84 de #7830497 ($0/día)</span></div>
+<div class="table-wrap"><table><thead><tr><th>Par</th><th>Protocolo</th><th>ID</th><th>Valor</th><th>/ Día</th><th>Estado</th></tr></thead><tbody id="lpTableBody"></tbody></table></div>
+
+<div class="section-title"><span>Bóveda Multi-Wallet &amp; Custodia</span></div>
+<section class="grid3" id="walletsContainer"></section>
+
+<section class="mission" id="patrocinio">
+<h2 style="color:var(--gold);font-family:ui-monospace,monospace;font-size:1.05rem;margin-bottom:1rem">02 // PATROCINIO &amp; EQUIPAMIENTO · PANAMÁ</h2>
+<p style="font-size:.95rem">Registro en comunidad: compartir cotidiano alrededor de bebidas frescas y bocadillos locales en jornada de servicio y cercanía directa. La base operativa nace en el encuentro humano y se proyecta a herramientas digitales de alto alcance.</p>
+<div style="margin-top:.75rem;font-size:.8rem;color:var(--cyan);font-family:ui-monospace,monospace">ESTADO: ACTIVO · REFERENCIA SONORA: AMOR BAJO PERF</div>
+</section>
+<section class="grid3">
+<article class="card"><span class="tag">AHORRO $600 OFF</span><h3>【entity-Samsung¦canonical_name=Samsung】 Galaxy S26 Ultra (Unlocked)</h3><div class="price">Desde $1,599.99</div><p>Acumulable con trade-in elegible. Vigencia Play: hasta 30/12/2026.</p></article>
+<article class="card"><span class="tag">AHORRO $75 OFF</span><h3>Google Pixel 11 Pro / XL (Unlocked)</h3><div class="price">Desde $1,099.00</div><p>Acumulable con promos Google Store. Vigencia: 30/12/2026.</p></article>
+<article class="card"><span class="tag">AHORRO $50 OFF</span><h3>Google Pixel 11 (Unlocked)</h3><div class="price">Desde $899.00</div><p>Acumulable con promos Google Store. Vigencia: 30/12/2026.</p></article>
+<article class="card"><span class="tag">AHORRO $25 OFF</span><h3>Google Pixel 10a (Unlocked)</h3><div class="price">Desde $599.00</div><p>Acumulable con promos Google Store. Vigencia: 30/12/2026.</p></article>
+<article class="card"><span class="tag">AHORRO $25 OFF</span><h3>Google Pixel Watch 5 (Unlocked)</h3><div class="price">Desde $399.99</div><p>Acumulable con promos Google Store. Vigencia: 30/12/2026.</p></article>
+<article class="card"><span class="tag">GOOGLE STORE</span><h3>【entity-Samsung¦canonical_name=Samsung】 Galaxy Watch9</h3><div class="price">Desde $429.99</div><p>Compañero diario de bienestar y monitoreo continuo.</p></article>
+</section>
+
+<section class="box" id="sismos">
+<h2>Sismos Panamá · Fusión EMSC + 【entity-USGS¦canonical_name=USGS】 + INETER + Landsat</h2>
+<p style="font-size:.85rem;color:var(--muted)">BBOX Panamá (-83.1, 7.0, -77.1, 9.8) · MinMag 2.5 · Deduplicación 50 km / 120 seg · Prioridad 【entity-USGS¦canonical_name=USGS】 &gt; EMSC &gt; INETER · Salida: <code>sismos_unificados.json</code> + <code>sismos_panama.json</code> + <code>landsat_sismos_unificado.png</code></p>
+<div id="sismosStatus" style="margin-top:12px;font-size:.82rem;padding:11px;border-radius:10px;background:rgba(0,229,255,.07);border:1px solid rgba(0,229,255,.28)">Buscando <code>sismos_unificados.json</code> junto a esta página… Si no existe, ejecuta en Termux: <code>python ~/usgs/unificar_emsc_landsat.py</code> y copia el JSON a esta carpeta.</div>
+<div class="grid3" style="margin-top:14px">
+<article class="card"><h3>Control estructural</h3><p>Las fallas trituran roca y crean zona de debilidad. El agua erosiona más rápido esa roca fracturada. Por eso ríos y cuencas siguen el trazado de la falla. Ej: Valle Río Tonosí / sistema Azuero-Soná.</p></article>
+<article class="card"><h3>Hidrosismicidad / Presión de poros</h3><p>Agua filtrada en microfracturas baja fricción en la falla y facilita deslizamiento. Carga de embalses / lluvias intensas puede detonar microsismos. Ej: Presa Barrigón / Quebrada Barrigón.</p></article>
+<article class="card"><h3>Triangulación EMSC vs INETER</h3><p>Un mismo M4.8 puede aparecer en ubicaciones distantes según agencia por estaciones lejanas y modelos globales. Elipse de incertidumbre de varios km. Priorizar IGC-UPA / USGS / EMSC para Panamá, INETER como contraste regional.</p></article>
+</div>
+<p style="font-size:.78rem;color:var(--muted)">INETER usa estándar abierto FDSN sin API key, formato text. Desde navegador directo hay bloqueo CORS, por eso se usa script intermediario Python en Termux. EMSC y USGS tienen CORS y GeoJSON nativo.</p>
+</section>
+
+<div class="section-title" id="noviembre"><span>Hub Noviembre · Todos los nodos</span></div>
+<section class="hub">
+<a href="https://open.spotify.[STRIPPED 67 bytes]?si=fGM0R1MCT0me_qn5CtqVmg&utm_source=copy-link&locale=es&sci=spotify%3Acard-config%3A5IucLbrjbi1ulYi3cpFglY" target="_blank" rel="noopener noreferrer"><b>【entity-Spotify¦canonical_name=Spotify】 · Referral</b><span>Card oficial · 10 años en Spotify → hito 2029</span></a>
+<a href="https://thesteef21.github.io/SADV41/GOV/" target="_blank" rel="noopener noreferrer"><b>GOV</b><span>Índice GOV SADV41</span></a>
+<a href="https://thesteef21.github.io/SADV41/GOV/PANAMA/NOVIEMBRE/#patrocinio" target="_blank" rel="noopener noreferrer"><b>PATROCINIO</b><span>Sección dentro de NOVIEMBRE</span></a>
+<a href="https://thesteef21.github.io/SADV41/GORRA/GTAVI" target="_blank" rel="noopener noreferrer"><b>GORRA / GTAVI</b><span>Universo GORRA + GTA VI</span></a>
+<a href="https://thesteef21.github.io/SADV41/FIFA/" target="_blank" rel="noopener noreferrer"><b>【entity-FIFA¦canonical_name=FIFA】</b><span>Nodo 【entity-FIFA¦canonical_name=FIFA】</span></a>
+<a href="https://thesteef21.github.io/SADV41/KOF/AD/" target="_blank" rel="noopener noreferrer"><b>KOF / AD</b><span>Nodo KOF</span></a>
+<a href="https://thesteef21.github.io/SADV41/DIOR98IAS/index.html" target="_blank" rel="noopener noreferrer"><b>DIOR98IAS</b><span>Nodo DIOR98IAS</span></a>
+<a href="https://thesteef21.github.io/SADV41/AMERICA/GEOLOGICA" target="_blank" rel="noopener noreferrer"><b>AMÉRICA / GEOLÓGICA</b><span>Geología + fallas + ríos</span></a>
+</section>
+
+<footer>SADV41 // GOV · PANAMÁ · NOVIEMBRE · S&amp;P 500 SOVEREIGN TERMINAL · Steven Dior (@StevenDiorOficial) · 432 Hz</footer>
+</div>
+
+<script>
+const rwaAssets=[
+{ticker:"BLK",name:"BlackRock, Inc.",issuer:"Ondo Finance · BSC",price:"$1,138.26",delta:"-1.50%",pos:false,bal:"$<0.01",pnl:"-40.03%",ma7:"$1,144.64",mcap:"$175.54B"},
+{ticker:"SHOP",name:"Shopify Inc.",issuer:"Ondo · BSC",price:"$134.06",delta:"-0.48%",pos:false,bal:"$0.36",pnl:"-27.04%",ma7:"$133.52",mcap:"$171.87B"},
+{ticker:"GLD",name:"SPDR Gold Shares",issuer:"Ondo · XStocks · BSC",price:"$326.62",delta:"-2.86%",pos:false,bal:"$0.47",pnl:"-4.77%",ma7:"$330.32",mcap:"$118.96B"},
+{ticker:"EWJ",name:"iShares MSCI Japan ETF",issuer:"bStocks · Ondo · BSC",price:"$86.39",delta:"-0.79%",pos:false,bal:"$0.49",pnl:"-0.15%",ma7:"$86.22",mcap:"ETF"},
+{ticker:"SQQQ",name:"ProShares UltraPro Short QQQ",issuer:"bStocks · Ondo · BSC",price:"$49.69",delta:"+8.90%",pos:true,bal:"$0.49",pnl:"-1.78%",ma7:"$50.55",mcap:"3x Short"}];
+const lpPositions=[
+{pair:"NVDAB-USDT",proto:"V3 · 0.05%",id:"#7830424",val:"$12.13",day:"$1.99/Day",active:true},
+{pair:"GSTOCK-4Stock",proto:"V3 · 1.00%",id:"#7830459",val:"$2.12",day:"$0.10/Day",active:true},
+{pair:"NVDAB-BLKon",proto:"V3 · 0.05%",id:"#7830497",val:"$1.84",day:"$0/Day",active:false},
+{pair:"GC-BNB",proto:"V2 · 0.25%",id:"Pool V2",val:"$0.94",day:"$0.02/Day",active:true},
+{pair:"AAPLB-MCDon",proto:"V3 · 1.00%",id:"#7813458",val:"$0.64",day:"<$0.01/Day",active:true},
+{pair:"GSTOCK-4Stock",proto:"V3 · 1.00%",id:"#7830429",val:"$0.37",day:"$0.01/Day",active:true},
+{pair:"NVDAB-MCDon",proto:"V3 · 1.00%",id:"#7807235",val:"$0.10",day:"<$0.01/Day",active:true},
+{pair:"NVDAB-USDT",proto:"V3 · 1.00%",id:"#7775002",val:"$0.09",day:"<$0.01/Day",active:true},
+{pair:"NVDAB-ANTB",proto:"V3 · 1.00%",id:"#7829773",val:"$0.09",day:"<$0.01/Day",active:true}];
+const wallets=[
+{label:"Wallet Principal LP (PancakeSwap)",addr:"0x4cBf2DB3838341BeCB185892C3af576Dc04e2498"},
+{label:"Wallet EVM Secundaria #2",addr:"0xb45cca30d9c2256224c761439e195432d9dade58"},
+{label:"Wallet EVM Secundaria #3",addr:"0x3d2A6197337944e380C17e98b42E0F1101AA238e"}];
+function fmtUSD(n){return "$"+n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2})}
+function renderStatic(){
+document.getElementById("rwaContainer").innerHTML=rwaAssets.map(a=>`<article class="card"><div style="display:flex;justify-content:space-between"><div><div style="font-size:1.12rem;font-weight:800;color:var(--gold)">${a.ticker}</div><div style="font-size:.78rem;color:var(--muted)">${a.name}</div><div style="font-size:.7rem;color:var(--cyan)">${a.issuer}</div></div><div style="text-align:right"><strong>${a.price}</strong><br><span class="${a.pos?'pos':'neg'}">${a.delta}</span></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:5px;font-size:.76rem;margin-top:8px;border-top:1px solid rgba(255,255,255,.07);padding-top:8px"><div>Saldo: <strong>${a.bal}</strong></div><div>PnL: <strong class="neg">${a.pnl}</strong></div><div>MA(7): <strong>${a.ma7}</strong></div><div>Cap: <strong>${a.mcap}</strong></div></div></article>`).join("");
+document.getElementById("lpTableBody").innerHTML=lpPositions.map(p=>`<tr><td><strong>${p.pair}</strong></td><td>${p.proto}</td><td style="font-family:monospace;color:var(--purple)">${p.id}</td><td>${p.val}</td><td class="${p.active?'pos':'neg'}">${p.day}</td><td><span class="status ${p.active?'status-ok':'status-off'}">${p.active?'ACTIVA':'SIN RANGO'}</span></td></tr>`).join("");
+document.getElementById("walletsContainer").innerHTML=wallets.map(w=>`<div class="card"><div style="font-size:.78rem;color:var(--gold);font-weight:700">${w.label} · BSC / EVM</div><div class="wallet-addr" style="margin:8px 0">${w.addr}</div><button class="copy" onclick="copyText('${w.addr}',this)">Copiar Dirección</button></div>`).join("");
+}
+function copyText(t,b){navigator.clipboard.writeText(t).then(()=>{const o=b.textContent;b.textContent="Copiada ✓";setTimeout(()=>b.textContent=o,1500)})}
+function applyPreset(yrs,monthly,rateVal,btn){document.getElementById("years").value=yrs;document.getElementById("spMonthly").value=monthly;document.getElementById("rate").value=rateVal;runSimulation()}
+function drawChart(labels,spSeries,totalSeries,contribSeries){
+const canvas=document.getElementById("growthChart");const ctx=canvas.getContext("2d");const w=canvas.width,h=canvas.height;ctx.clearRect(0,0,w,h);
+const pad={top:22,right:20,bottom:28,left:62};const plotW=w-pad.left-pad.right;const plotH=h-pad.top-pad.bottom;const maxVal=Math.max(...totalSeries,100)*1.08;
+ctx.strokeStyle="rgba(255,255,255,.07)";ctx.font="11px monospace";ctx.fillStyle="#94a3b8";
+for(let i=0;i<=4;i++){const y=pad.top+(plotH*i)/4;const val=maxVal*(1-i/4);ctx.beginPath();ctx.moveTo(pad.left,y);ctx.lineTo(w-pad.right,y);ctx.stroke();ctx.fillText("$"+Math.round(val).toLocaleString("en-US"),6,y+4)}
+const stepX=labels.length>1?plotW/(labels.length-1):plotW;
+function plot(data,color,fill){ctx.beginPath();data.forEach((v,idx)=>{const x=pad.left+idx*stepX;const y=pad.top+plotH-(v/maxVal)*plotH;if(idx===0)ctx.moveTo(x,y);else ctx.lineTo(x,y)});ctx.strokeStyle=color;ctx.lineWidth=2.5;ctx.stroke();if(fill){ctx.lineTo(pad.left+(data.length-1)*stepX,pad.top+plotH);ctx.lineTo(pad.left,pad.top+plotH);ctx.closePath();ctx.fillStyle=fill;ctx.fill()}}
+const g=ctx.createLinearGradient(0,pad.top,0,h-pad.bottom);g.addColorStop(0,"rgba(0,229,255,.24)");g.addColorStop(1,"rgba(0,229,255,.01)");
+plot(totalSeries,"#00e5ff",g);plot(spSeries,"#ffd700",null);plot(contribSeries,"#9b6dff",null);
+}
+function runSimulation(){
+const spInit=parseFloat(document.getElementById("spInit").value);const spMonthly=parseFloat(document.getElementById("spMonthly").value);const satInit=parseFloat(document.getElementById("satInit").value);const satMonthly=parseFloat(document.getElementById("satMonthly").value);const years=parseInt(document.getElementById("years").value,10);const annualRate=parseFloat(document.getElementById("rate").value)/100;const emergency=parseFloat(document.getElementById("emergency").value);const reinvest=document.getElementById("reinvestLp").checked;
+document.getElementById("lblSpInit").textContent=fmtUSD(spInit);document.getElementById("lblSpMonthly").textContent=fmtUSD(spMonthly)+"/mes";document.getElementById("lblSatInit").textContent=fmtUSD(satInit);document.getElementById("lblSatMonthly").textContent=fmtUSD(satMonthly)+"/mes";document.getElementById("lblYears").textContent=`${years} años (${2026+years})`;document.getElementById("lblRate").textContent=(annualRate*100).toFixed(1)+"%";document.getElementById("lblEmergency").textContent=fmtUSD(emergency);document.getElementById("kpiYearsLabel").textContent=years;
+const mSp=Math.pow(1+annualRate,1/12)-1;const mSat=Math.pow(1+(annualRate+0.02),1/12)-1;const lpFlow=reinvest?63.60:0;
+let spBal=spInit,satBal=satInit,totalContrib=spInit+satInit;const labels=["2026"],spSeries=[spBal],totalSeries=[spBal+satBal],contribSeries=[totalContrib];
+for(let y=1;y<=years;y++){for(let m=0;m<12;m++){spBal=spBal*(1+mSp)+spMonthly+lpFlow;satBal=satBal*(1+mSat)+satMonthly;totalContrib+=spMonthly+satMonthly}labels.push(String(2026+y));spSeries.push(spBal);totalSeries.push(spBal+satBal);contribSeries.push(totalContrib)}
+const finalTotal=spBal+satBal;const gain=finalTotal-totalContrib;const corePct=finalTotal>0?Math.round((spBal/finalTotal)*100):0;const satPct=100-corePct;
+document.getElementById("kpiTargetCore").textContent=corePct+"%";document.getElementById("kpiProjectedTotal").textContent=fmtUSD(finalTotal);document.getElementById("kpiTotalContributed").textContent=fmtUSD(totalContrib);
+document.getElementById("resSpFinal").textContent=fmtUSD(spBal);document.getElementById("resSatFinal").textContent=fmtUSD(satBal);document.getElementById("resGainFinal").textContent="+"+fmtUSD(gain);
+document.getElementById("lblCorePct").textContent=corePct+"%";document.getElementById("lblSatPct").textContent=satPct+"%";document.getElementById("barCore").style.width=corePct+"%";document.getElementById("barSat").style.width=satPct+"%";
+let diag="";if(corePct>=60&&corePct<=85)diag=`Equilibrio óptimo Núcleo-Satélite (${corePct}% S&P 500 / ${satPct}% Satélites). Reserva líquida ${fmtUSD(emergency)} protege aportes ante caídas.`;else if(corePct<60)diag=`Alta exposición satélite (${satPct}% RWA/DeFi). Incrementa compra mensual VOO/SPY o activa reinversión LP ($2.12/día) hacia núcleo.`;else diag=`Cartera conservadora (${corePct}% S&P 500). Máxima estabilidad frente a volatilidad cripto.`;
+document.getElementById("advisorNote").textContent=diag;drawChart(labels,spSeries,totalSeries,contribSeries);
+}
+["spInit","spMonthly","satInit","satMonthly","years","rate","emergency","reinvestLp"].forEach(id=>{document.getElementById(id).addEventListener("input",runSimulation);document.getElementById(id).addEventListener("change",runSimulation)});
+renderStatic();runSimulation();
+fetch("sismos_unificados.json").then(r=>{if(!r.ok)throw new Error("no json");return r.json()}).then(j=>{const n=(j.features||[]).length;const top=(j.features||[]).slice(0,3).map(f=>`M${(f.properties.mag||0).toFixed(1)} · ${f.properties.flynn_region||""}`).join(" | ");document.getElementById("sismosStatus").innerHTML=`<b style="color:var(--green)">✓ Sismos unificados cargados: ${n} eventos</b><br>${top}`}).catch(()=>{});
+</script>
+
+<script>
+(() => {
+if(window.__SADV41_BRAVE_LOADED__)return;window.__SADV41_BRAVE_LOADED__=true;
+const fab=document.createElement("button");fab.id="sadv41-brave-fab";fab.innerHTML="<span>⚡</span><span>BRAVE LLM</span>";document.body.appendChild(fab);
+const backdrop=document.createElement("div");backdrop.id="sadv41-brave-backdrop";
+backdrop.innerHTML=`<div id="sadv41-brave-modal"><div style="display:flex;justify-content:space-between;gap:10px"><div style="font-weight:800;color:#ffd700">SADV41 // BRAVE LLM CONTEXT <span style="font-size:10px;padding:2px 8px;border-radius:999px;background:rgba(0,229,255,.14);color:#00e5ff;border:1px solid rgba(0,229,255,.35)">GROUNDING + SOURCES</span></div><button id="sbClose" style="cursor:pointer;background:rgba(255,82,82,.14);color:#ff5252;border:1px solid rgba(255,82,82,.35);border-radius:8px;padding:5px 10px;font-weight:700">✕</button></div>
+<div id="sbCfg" style="display:none;margin-top:12px;padding:12px;border-radius:10px;background:rgba(3,3,5,.85);border:1px solid rgba(155,109,255,.30);font-size:12px;gap:8px"><input id="sbBridge" style="width:100%;padding:7px;border-radius:7px;background:#0b0f1c;color:#fff" placeholder="http://127.0.0.1:3000/api/brave-context"><input id="sbToken" type="password" style="width:100%;padding:7px;border-radius:7px;background:#0b0f1c;color:#fff" placeholder="ADV41_TOKEN local"><input id="sbKey" type="password" style="width:100%;padding:7px;border-radius:7px;background:#0b0f1c;color:#fff" placeholder="Brave X-Subscription-Token BSA..."><button id="sbSave" class="sb-btn" style="padding:7px 11px;font-size:12px">Guardar en este dispositivo</button></div>
+<form class="sb-form" id="sbForm"><input class="sb-input" id="sbQuery" placeholder="Consulta de contexto web en tiempo real..." required><button class="sb-btn" type="submit">Buscar Contexto</button></form>
+<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px"><button class="sb-btn" style="font-size:11px;padding:4px 9px" data-q="S&P 500 VOO rendimiento hoy">S&P 500 VOO hoy</button><button class="sb-btn" style="font-size:11px;padding:4px 9px" data-q="Ondo Finance RWA BSC BlackRock">Ondo RWA BSC</button><button class="sb-btn" style="font-size:11px;padding:4px 9px" data-q="Panamá economía e inversión">Panamá economía</button><button class="sb-btn" id="sbToggleCfg" style="font-size:11px;padding:4px 9px">⚙ API / Nodo</button></div>
+<div id="sbStatus" style="margin-top:12px;font-size:12px;color:#94a3b8">Listo · Endpoint: /res/v1/llm/context</div><div id="sbResults"></div></div>`;
+document.body.appendChild(backdrop);
+const esc=s=>String(s??"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+const bridgeEl=document.getElementById("sbBridge"),tokenEl=document.getElementById("sbToken"),keyEl=document.getElementById("sbKey");
+bridgeEl.value=localStorage.getItem("SADV41_BRAVE_BRIDGE")||"http://127.0.0.1:3000/api/brave-context";tokenEl.value=localStorage.getItem("SADV41_NODE_TOKEN")||"";keyEl.value=localStorage.getItem("SADV41_BRAVE_KEY")||"";
+fab.addEventListener("click",()=>{backdrop.classList.add("open");document.getElementById("sbQuery").focus()});
+document.getElementById("sbClose").addEventListener("click",()=>backdrop.classList.remove("open"));
+backdrop.addEventListener("click",e=>{if(e.target===backdrop)backdrop.classList.remove("open")});
+document.getElementById("sbToggleCfg").addEventListener("click",()=>{const c=document.getElementById("sbCfg");c.style.display=c.style.display==="grid"?"none":"grid"});
+document.getElementById("sbSave").addEventListener("click",()=>{localStorage.setItem("SADV41_BRAVE_BRIDGE",bridgeEl.value.trim());localStorage.setItem("SADV41_NODE_TOKEN",tokenEl.value.trim());localStorage.setItem("SADV41_BRAVE_KEY",keyEl.value.trim());document.getElementById("sbStatus").textContent="Configuración guardada localmente ✓";document.getElementById("sbCfg").style.display="none"});
+async function runBrave(q){
+const status=document.getElementById("sbStatus"),results=document.getElementById("sbResults");
+const bridge=(localStorage.getItem("SADV41_BRAVE_BRIDGE")||"http://127.0.0.1:3000/api/brave-context").trim();const token=(localStorage.getItem("SADV41_NODE_TOKEN")||"").trim();const key=(localStorage.getItem("SADV41_BRAVE_KEY")||"").trim();
+status.textContent=`Consultando Brave para "${q}"...`;results.innerHTML="";let data=null;
+if(token||!key){try{const r=await fetch(`${bridge}?q=${encodeURIComponent(q)}`,{headers:token?{"X-ADV41-Token":token}:{}});if(r.ok){data=await r.json();status.textContent="Conectado vía Nodo Local Termux (127.0.0.1:3000) ✓"}}catch(_){}}
+if(!data&&key){try{const r=await fetch(`https://api.search.brave.com/res/v1/llm/context?q=${encodeURIComponent(q)}`,{headers:{"Accept":"application/json","X-Subscription-Token":key}});if(!r.ok)throw new Error(`HTTP ${r.status}`);data=await r.json();status.textContent="Conectado directo a api.search.brave.com ✓"}catch(e){status.innerHTML=`CORS/Red bloqueó llamada directa. Activa <code>brave_bridge.js</code> en Termux o abre <a href="https://search.brave.com/search?q=${encodeURIComponent(q)}" target="_blank" style="color:#ffd700">Brave Search ↗</a>`;return}}
+if(!data){document.getElementById("sbCfg").style.display="grid";status.textContent="Configura ADV41_TOKEN local o X-Subscription-Token de Brave.";return}
+const generic=(data.grounding&&Array.isArray(data.grounding.generic))?data.grounding.generic:[];const sources=data.sources||{};
+if(!generic.length){status.textContent="Sin fragmentos de grounding para esta consulta.";return}
+results.innerHTML=generic.map(item=>{const src=sources[item.url]||{};const host=src.hostname||"";const snippets=Array.isArray(item.snippets)?item.snippets:[];return `<div class="sb-card"><a href="${esc(item.url)}" target="_blank" rel="noopener noreferrer">${esc(item.title||item.url)}</a><div style="font-size:11px;color:#ffd700">${esc(host)}</div>${snippets.map(s=>`<div class="sb-snippet">${esc(s)}</div>`).join("")}</div>`}).join("");
+}
+document.getElementById("sbForm").addEventListener("submit",e=>{e.preventDefault();const q=document.getElementById("sbQuery").value.trim();if(q)runBrave(q)});
+backdrop.querySelectorAll("[data-q]").forEach(b=>b.addEventListener("click",()=>{document.getElementById("sbQuery").value=b.dataset.q;runBrave(b.dataset.q)}));
+})();
+</script>
+</body>
+</html>
