@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>SADV41 | Centro Operativo de Rescates &amp; Mecánica — StevenDiorOficial</title>
+  <style>
+    :root {
+      --bg-main: #030305;
+      --bg-card: #0a0f1c;
+      --bg-panel: #111827;
+      --cyan: #00e5ff;
+      --gold: #d4af37;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --danger: #ef4444;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border: rgba(0, 229, 255, 0.22);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    header {
+      background: linear-gradient(145deg, #070b14, #0f172a);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cyan), var(--gold));
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      background: rgba(0, 229, 255, 0.1);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+    }
+
+    .subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .nav-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .nav-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+      padding: 10px 6px;
+      border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+
+    .nav-btn:hover, .nav-btn.active {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(212, 175, 55, 0.08);
+    }
+
+    .tabs {
+      display: flex;
+      gap: 6px;
+      background: var(--bg-card);
+      padding: 5px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .tab-btn {
+      flex: 1;
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 700;
+      padding: 8px 4px;
+      border-radius: 7px;
+      cursor: pointer;
+    }
+
+    .tab-btn.active {
+      background: var(--cyan);
+      color: #030305;
+    }
+
+    .section {
+      display: none;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .section.active {
+      display: flex;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 15px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .status-pill {
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .status-ok {
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--emerald);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+    }
+
+    .status-pending {
+      background: rgba(245, 158, 11, 0.15);
+      color: var(--amber);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+    }
+
+    .data-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12.5px;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .data-row:last-child {
+      border-bottom: none;
+    }
+
+    .data-label {
+      color: var(--text-muted);
+    }
+
+    .data-value {
+      font-weight: 600;
+      color: #ffffff;
+      text-align: right;
+    }
+
+    .tool-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .tool-item {
+      background: var(--bg-panel);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 12px;
+    }
+
+    .tool-item strong {
+      display: block;
+      color: var(--amber);
+      font-size: 13px;
+    }
+
+    .cta-rescue {
+      display: block;
+      width: 100%;
+      text-align: center;
+      background: linear-gradient(90deg, #059669, #10b981);
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 13px;
+      text-decoration: none;
+      padding: 14px;
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.25);
+      letter-spacing: 0.02em;
+    }
+
+    .audit-note {
+      font-size: 12px;
+      color: var(--text-muted);
+      background: rgba(255, 255, 255, 0.03);
+      border-left: 3px solid var(--cyan);
+      padding: 10px 12px;
+      border-radius: 0 8px 8px 0;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-muted);
+      padding: 10px 0 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">SADV41 // OPERACIÓN AUTÓNOMA</span>
+      <h1>StevenDiorOficial — Respuesta Vial y Comunitaria</h1>
+      <p class="subtitle">Ejecución en solitario, auditoría visual de insumos y asistencia directa en Panamá Oeste.</p>
+    </header>
+
+    <!-- Enlaces Oficiales del Ecosistema SADV41 -->
+    <nav class="nav-grid" aria-label="Portales SADV41">
+      <a class="nav-btn" href="https://thesteef21.github.io/SADV41/PATRIA" target="_blank" rel="noopener">PATRIA</a>
+      <a class="nav-btn" href="https://thesteef21.github.io/SADV41/MECHANICS/" target="_blank" rel="noopener">MECHANICS</a>
+      <a class="nav-btn active" href="https://thesteef21.github.io/SADV41/GOV/PANAMA/BURUNGA/RESCATES" target="_blank" rel="noopener">RESCATES</a>
+    </nav>
+
+    <!-- Selector de Módulos -->
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" onclick="switchTab('rescates', this)">Rescates</button>
+      <button class="tab-btn" onclick="switchTab('mechanics', this)">Mecánica &amp; Stock</button>
+      <button class="tab-btn" onclick="switchTab('patria', this)">Patria &amp; Bitácora</button>
+    </div>
+
+    <!-- MÓDULO 1: RESCATES BURUNGA -->
+    <section id="rescates" class="section active">
+      <div class="card">
+        <div class="card-title">
+          <span>Protocolo de Asistencia Inmediata</span>
+          <span class="status-pill status-ok">Activo 24/7</span>
+        </div>
+        <p class="audit-note">
+          Despliegue técnico independiente en Burunga, Arraiján y sectores aledaños. Cada intervención cuenta con respaldo fotográfico y trazabilidad financiera sin intermediarios.
+        </p>
+        <div style="margin-top: 10px;">
+          <div class="data-row">
+            <span class="data-label">Modalidad Operativa</span>
+            <span class="data-value">Unidad Autónoma (Solitario)</span>
+          </div>
+          <div class="data-row">
+            <span class="data-label">Verificación Comunitaria</span>
+            <span class="data-value">Junta Comunal / MINSA CAPSI</span>
+          </div>
+          <div class="data-row">
+            <span class="data-label">Soporte Aliado de Rescate</span>
+            <span class="data-value">Canal Directo Verificado</span>
+          </div>
+        </div>
+      </div>
+
+      <a class="cta-rescue" href="https://wa.me/p/26771656059198561/50767746398" target="_blank" rel="noopener">
+        SOLICITAR RESCATE VIAL DIRECTO (WHATSAPP)
+      </a>
+
+      <div class="card">
+        <div class="card-title">
+          <span>Dotación de Herramientas en Espera</span>
+          <span class="status-pill status-pending">Pendiente</span>
+        </div>
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 6px;">
+          Requerimiento técnico pendiente de entrega para optimizar desmontaje rápido en carretera:
+        </p>
+        <div class="tool-grid">
+          <div class="tool-item">
+            <strong>1x Ratchet (Racha)</strong>
+            <span>Trinquete de fuerza</span>
+          </div>
+          <div class="tool-item">
+            <strong>Socket 17 mm</strong>
+            <span>Copa de impacto/tuerca</span>
+          </div>
+          <div class="tool-item">
+            <strong>Socket 19 mm</strong>
+            <span>Copa estándar sedán</span>
+          </div>
+          <div class="tool-item">
+            <strong>Socket 21 mm</strong>
+            <span>Copa refuerzo SUV/4x4</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MÓDULO 2: MECHANICS & STOCK -->
+    <section id="mechanics" class="section">
+      <div class="card">
+        <div class="card-title">
+          <span>Inventario Verificado Rin 14 (185/60R14)</span>
+          <span class="status-pill status-ok">En Stock</span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">Hilo Genesys XP1 (82H)</span>
+          <span class="data-value">$35.00 (8 disp.)</span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">Duraturn 185/60R14</span>
+          <span class="data-value">$35.00 (8 disp.)</span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">Royal / Royal Black 185/60R14</span>
+          <span class="data-value">$33.00 (9 disp.)</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span>Equipamiento de Campo &amp; Trazabilidad</span>
+          <span class="status-pill status-ok">Auditado</span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">Elevación Hidráulica</span>
+          <span class="data-value">Gato Trolley Powerbuilt 2 Ton</span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">Desmonte en Taller</span>
+          <span class="data-value">Desmontadora Neumática Diamond</span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">Registro de Operación (25/11/2026)</span>
+          <span class="data-value">$35.00 Neumático + $3.00 Logística</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- MÓDULO 3: PATRIA & BITÁCORA -->
+    <section id="patria" class="section">
+      <div class="card">
+        <div class="card-title">
+          <span>Cobertura Cívica &amp; Rutas Nacionales</span>
+          <span class="status-pill status-ok">Noviembre 2026</span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">Evento Cívico Pautado</span>
+          <span class="data-value">Desfile 28 de Noviembre</span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">Ruta Logística</span>
+          <span class="data-value">Volcán — #TierrasAltas</span>
+        </div>
+        <div class="data-row">
+          <span class="data-label">Delegación</span>
+          <span class="data-value">La Décima Provincia / La Banda del West</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span>Integridad Documental (Mesa de IAs)</span>
+          <span class="status-pill status-ok">Respaldado</span>
+        </div>
+        <p class="audit-note">
+          Toda discrepancia operativa externa queda registrada mediante evidencia visual cronológica, comprobantes de transferencia y bitácora técnica bajo estándares de privacidad y protección de identidad.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      SADV41 &bull; StevenDiorOficial &bull; Burunga, Panamá Oeste &bull; 2026
+    </footer>
+  </div>
+
+  <script>
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      btn.classList.add('active');
+    }
+  </script>
+</body>
+</html>
+
