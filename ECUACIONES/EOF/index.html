@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>SADV41 | Ecuación EOF</title>
+  <style>
+    :root{
+      --bg:#030305; --card:#0a0f1c; --panel:#111827;
+      --cyan:#00e5ff; --magenta:#ff2ea6; --gold:#d4af37;
+      --emerald:#10b981; --amber:#f59e0b; --spotify:#1db954; --ig:#e1306c;
+      --text:#f3f4f6; --muted:#9ca3af; --border:rgba(0,229,255,.22);
+    }
+    *{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,sans-serif}
+    body{
+      background-color:var(--bg); color:var(--text); line-height:1.5; padding:16px 16px 90px;
+      display:flex; justify-content:center;
+      background-image:
+        repeating-linear-gradient(45deg, rgba(255,255,255,.025) 0 2px, transparent 2px 8px),
+        repeating-linear-gradient(-45deg, rgba(255,255,255,.02) 0 2px, transparent 2px 8px);
+    }
+    .container{width:100%;max-width:480px;display:flex;flex-direction:column;gap:14px}
+    header{background:linear-gradient(145deg,#070b14,#0f172a);border:1px solid var(--border);border-radius:14px;padding:18px;position:relative;overflow:hidden}
+    header::after{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--gold),var(--cyan),var(--magenta))}
+    .badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);background:rgba(212,175,55,.12);border:1px solid rgba(212,175,55,.35);padding:4px 10px;border-radius:999px;margin-bottom:10px}
+    h1{font-size:22px;font-weight:900;letter-spacing:-.02em;line-height:1.1;text-shadow:0 0 18px rgba(0,229,255,.35), 0 0 32px rgba(255,46,166,.22)}
+    h1 em{font-style:italic;color:var(--cyan)}
+    .subtitle{font-size:13px;color:var(--muted);margin-top:6px}
+    .nav-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+    .nav-btn{background:var(--card);border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:11px;font-weight:700;text-align:center;padding:10px 4px;border-radius:10px}
+    .nav-btn.active{border-color:var(--gold);color:var(--gold);background:rgba(212,175,55,.12)}
+    .tabs{display:flex;gap:6px;background:var(--card);padding:5px;border-radius:10px;border:1px solid rgba(255,255,255,.08)}
+    .tab-btn{flex:1;background:transparent;border:none;color:var(--muted);font-size:12px;font-weight:700;padding:9px 4px;border-radius:7px;cursor:pointer}
+    .tab-btn.active{background:var(--cyan);color:#030305}
+    .section{display:none;flex-direction:column;gap:12px}
+    .section.active{display:flex}
+    .card{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:15px}
+    .card-title{font-size:14px;font-weight:800;color:var(--gold);margin-bottom:8px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .pill{font-size:10px;padding:2px 8px;border-radius:999px;font-weight:700;text-transform:uppercase;white-space:nowrap}
+    .pill-ok{background:rgba(16,185,129,.15);color:var(--emerald);border:1px solid rgba(16,185,129,.35)}
+    .pill-gold{background:rgba(212,175,55,.15);color:var(--gold);border:1px solid rgba(212,175,55,.4)}
+    .pill-cyan{background:rgba(0,229,255,.12);color:var(--cyan);border:1px solid rgba(0,229,255,.35)}
+    .eq-box{background:#050811;border:1px solid rgba(212,175,55,.4);border-radius:10px;padding:14px 10px;font-family:"Courier New",Courier,monospace;font-size:15px;color:var(--cyan);text-align:center;line-height:1.4}
+    .eq-box b{color:#fff}
+    .eq-box .dot{color:var(--gold);font-weight:900;font-size:19px}
+    .eq-sub{display:block;font-size:11.5px;color:var(--muted);margin-top:8px;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+    .eq-big{font-size:20px;font-weight:900;color:#fff;text-align:center;margin:6px 0 2px;text-shadow:0 0 16px rgba(0,229,255,.4)}
+    .eq-big span{color:var(--gold)}
+    .data-row{display:flex;justify-content:space-between;gap:10px;font-size:12.5px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+    .data-row:last-child{border-bottom:none}
+    .data-label{color:var(--muted)}
+    .data-value{font-weight:700;color:#fff;text-align:right}
+    .note{font-size:12px;color:var(--muted);background:rgba(255,255,255,.03);border-left:3px solid var(--cyan);padding:10px 12px;border-radius:0 8px 8px 0}
+    .note-gold{border-left-color:var(--gold);background:rgba(212,175,55,.06)}
+    .btn{width:100%;border:none;cursor:pointer;text-align:center;font-weight:800;font-size:12.5px;padding:12px;border-radius:11px;letter-spacing:.02em}
+    .btn-cyan{background:linear-gradient(90deg,#0284c7,#00e5ff);color:#030305}
+    .btn-ghost{background:rgba(255,255,255,.06);color:var(--text);border:1px solid rgba(255,255,255,.12)}
+    .steps{display:none;margin-top:10px;background:#050811;border:1px solid rgba(0,229,255,.25);border-radius:10px;padding:12px;font-family:"Courier New",monospace;font-size:12.5px;color:var(--cyan);line-height:1.7}
+    .steps.open{display:block}
+    .cta-spotify{display:block;width:100%;text-align:center;background:linear-gradient(90deg,#15803d,var(--spotify));color:#fff;font-weight:800;font-size:12.5px;text-decoration:none;padding:13px;border-radius:11px}
+    .cta-ig{display:block;width:100%;text-align:center;background:linear-gradient(90deg,#833ab4,var(--ig),#fd1d1d);color:#fff;font-weight:800;font-size:12.5px;text-decoration:none;padding:13px;border-radius:11px}
+    details.baúl{background:var(--card);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:14px}
+    details.baúl summary{cursor:pointer;font-weight:800;font-size:13px;color:var(--gold);list-style:none}
+    details.baúl summary::-webkit-details-marker{display:none}
+    details.baúl p{font-size:12.5px;color:var(--muted);margin-top:10px}
+    .msg-float{position:fixed;right:14px;bottom:14px;z-index:50;background:linear-gradient(90deg,#0064e0,#00e5ff);color:#fff;text-decoration:none;font-size:12px;font-weight:800;padding:12px 14px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.25)}
+    footer{text-align:center;font-size:11px;color:var(--muted);padding:10px 0 6px}
+    .flow-letters{display:flex;justify-content:center;gap:4px;margin:10px 0 4px}
+    .flow-letters span{width:32px;height:38px;display:grid;place-items:center;border-radius:8px;font-weight:900;font-size:16px;background:#050811;border:1px solid rgba(0,229,255,.3);color:var(--cyan)}
+    .flow-letters span.o{color:var(--magenta);border-color:rgba(255,46,166,.35)}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">ECUACIONES // EOF</span>
+      <h1>Ecuación <em>EOF</em><br />EEEEEOOOOO FLOW</h1>
+      <p class="subtitle">La fórmula madre de SADV41, explicada paso a paso. Origen = 0. Sin intermediarios.</p>
+    </header>
+
+    <nav class="nav-grid" aria-label="Portales SADV41">
+      <a class="nav-btn" href="https://thesteef21.github.io/SADV41/GOV/PANAMA/EOF">EOF MADRE</a>
+      <a class="nav-btn active" href="https://thesteef21.github.io/SADV41/ECUACIONES/EOF">ECUACIÓN</a>
+      <a class="nav-btn" href="https://thesteef21.github.io/SADV41/PATRIA">PATRIA</a>
+      <a class="nav-btn" href="https://thesteef21.github.io/SADV41/MECHANICS/">MECHANICS</a>
+      <a class="nav-btn" href="https://thesteef21.github.io/SADV41/GOV/PANAMA/BURUNGA/RESCATES">RESCATES</a>
+      <a class="nav-btn" href="https://thesteef21.github.io/SADV41/GORRA/">GORRA</a>
+    </nav>
+
+    <!-- FUENTES OFICIALES PRIMERO -->
+    <div class="card">
+      <div class="card-title"><span>Marco oficial verificado — Panamá</span><span class="pill pill-ok">Hechos</span></div>
+      <div class="data-row"><span class="data-label">Independencia de España</span><span class="data-value">10 y 28 de Noviembre de 1821</span></div>
+      <div class="data-row"><span class="data-label">Separación y consolidación</span><span class="data-value">3 y 5 de Noviembre de 1903</span></div>
+      <div class="data-row"><span class="data-label">Símbolos Patrios</span><span class="data-value">Bandera, Escudo e Himno (4 de Nov.)</span></div>
+      <div class="data-row"><span class="data-label">Jurisdicción territorial</span><span class="data-value">Burunga, Arraiján — Panamá Oeste (Ley 119)</span></div>
+      <p class="note" style="margin-top:10px">La ecuación no sustituye la historia. Primero el hecho verificable, después la lectura simbólica.</p>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" onclick="switchTab('ecuacion', this)">Ecuación</button>
+      <button class="tab-btn" onclick="switchTab('escala', this)">Escala 41</button>
+      <button class="tab-btn" onclick="switchTab('flow', this)">Flow EOF</button>
+    </div>
+
+    <section id="ecuacion" class="section active">
+      <div class="card">
+        <div class="card-title"><span>Ecuación maestra json.php</span><span class="pill pill-gold">Origen = 0</span></div>
+        <div class="eq-box">
+          <b>JSON</b><span class="dot"> . </span><b>PHP</b> &equiv; [4] &bull; (0,0) &bull; [3] = 7
+          <span class="eq-sub">4 letras + punto de origen + 3 letras = 7 elementos</span>
+        </div>
+        <div class="data-row"><span class="data-label">JSON — 4</span><span class="data-value">J · S · O · N</span></div>
+        <div class="data-row"><span class="data-label">Punto — Origen</span><span class="data-value">(0,0) — 0</span></div>
+        <div class="data-row"><span class="data-label">PHP — 3</span><span class="data-value">P · H · P</span></div>
+        <div class="data-row"><span class="data-label">Total</span><span class="data-value">4 + 0 + 3 = 7</span></div>
+        <p class="note note-gold" style="margin-top:10px">Lectura interna SADV41: JSON como estructura, punto como origen, PHP como ejecución. El 0 no es vacío, es punto de partida.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>Equilibrio operativo</span><span class="pill pill-cyan">Ψ = 1</span></div>
+        <div class="eq-big">Ψ<span>(Visual + Financiero + Nodo)</span> = 1</div>
+        <div class="data-row"><span class="data-label">Visual</span><span class="data-value">Lo que se ve y se verifica</span></div>
+        <div class="data-row"><span class="data-label">Financiero</span><span class="data-value">Lo que se sostiene</span></div>
+        <div class="data-row"><span class="data-label">Nodo</span><span class="data-value">Lo que se publica y se mantiene</span></div>
+        <div class="data-row"><span class="data-label">Terceros</span><span class="data-value">P<sub>terceros</sub> → 0</span></div>
+      </div>
+    </section>
+
+    <section id="escala" class="section">
+      <div class="card">
+        <div class="card-title"><span>Escalabilidad SADV41</span><span class="pill pill-gold">Σ = 41</span></div>
+        <div class="eq-big">Σ = ((13 + 2) / 1) + 26 = <span>41</span></div>
+        <button class="btn btn-cyan" style="margin-top:10px" onclick="document.getElementById('pasos41').classList.toggle('open')">Ver paso a paso</button>
+        <div id="pasos41" class="steps">
+          Paso 1: 13 + 2 = 15<br />
+          Paso 2: 15 / 1 = 15<br />
+          Paso 3: 15 + 26 = 41<br />
+          Resultado: Σ = 41
+        </div>
+        <div style="margin-top:12px">
+          <div class="data-row"><span class="data-label">Base</span><span class="data-value">13 + 2</span></div>
+          <div class="data-row"><span class="data-label">Divisor</span><span class="data-value">/ 1 — unidad</span></div>
+          <div class="data-row"><span class="data-label">Cierre</span><span class="data-value">+ 26</span></div>
+          <div class="data-row"><span class="data-label">Escala final</span><span class="data-value">41</span></div>
+        </div>
+        <p class="note" style="margin-top:10px">41 es la escala, no un conteo de personas. Es la forma en que SADV41 ordena sus nodos: un centro, una ruta, una publicación.</p>
+      </div>
+    </section>
+
+    <section id="flow" class="section">
+      <div class="card">
+        <div class="card-title"><span>EEEEEOOOOO FLOW</span><span class="pill pill-cyan">10 letras</span></div>
+        <div class="flow-letters" aria-hidden="true"><span>E</span><span>E</span><span>E</span><span>E</span><span>E</span><span class="o">O</span><span class="o">O</span><span class="o">O</span><span class="o">O</span><span class="o">O</span></div>
+        <div class="data-row"><span class="data-label">E — 5 veces</span><span class="data-value">Entrada · Ejecución · Enlace</span></div>
+        <div class="data-row"><span class="data-label">O — 5 veces</span><span class="data-value">Origen · Orden · Onda</span></div>
+        <div class="data-row"><span class="data-label">Flujo</span><span class="data-value">E → O → E → O — ciclo</span></div>
+        <p class="note" style="margin-top:10px">EOF no es solo un final de archivo. Aquí es una rama madre: todo entra por E, se ordena en O y vuelve a salir como publicación verificable.</p>
+        <button class="btn btn-ghost" style="margin-top:10px" onclick="switchTab('ecuacion', document.querySelectorAll('.tab-btn')[0])">Volver a la ecuación</button>
+      </div>
+
+      <div class="card">
+        <div class="card-title"><span>Canales oficiales</span><span class="pill pill-ok">Directo</span></div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <a class="cta-spotify" href="https://open.spotify.com/artist/5imHnTjivt5qDGTeV2gDMT?si=nyqqH89OSUaFcDx9jc9_lQ&amp;utm_source=copy-link&amp;sci=spotify%3Acard-config%3A0I9NRk2U3fVy4cbKuZm6Xi" target="_blank" rel="noopener">SPOTIFY OFICIAL — STEVENDIOR</a>
+          <a class="cta-ig" href="https://instagram.com/StevenDiorOficial" target="_blank" rel="noopener">INSTAGRAM OFICIAL — @STEVENDIOROFICIAL</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- BAÚL SIMBÓLICO AL FINAL, CERRADO POR DEFECTO -->
+    <details class="baúl">
+      <summary>Baúl de recuerdos — lectura simbólica (opcional, abre quien quiera)</summary>
+      <p><strong>JSON:</strong> Jesús Salva Oriundo Nazareth · <strong>PHP:</strong> Puro Hijo Padre · <strong>0:</strong> Origen. Esta lectura es simbólica y personal, no es una fuente oficial. Lo oficial va arriba, esto va al final y cerrado.</p>
+      <p>Guarda aquí solo lo que quieras recordar, no lo que deba verificarse. El nodo GOV/PANAMA/EOF queda como rama madre, este nodo ECUACIONES/EOF queda como explicación.</p>
+    </details>
+
+    <footer>SADV41 • ECUACIONES/EOF • json.php (0) • Σ = 41 • 2026</footer>
+  </div>
+
+  <a class="msg-float" href="https://www.messenger.com/channel/61554018924556" target="_blank" rel="noopener">Messenger SADV41 ↗</a>
+
+  <script>
+    function switchTab(tabId, btn){
+      document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      if(btn) btn.classList.add('active');
+      window.scrollTo({top:0, behavior:'smooth'});
+    }
+  </script>
+</body>
+</html>
