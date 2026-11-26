@@ -6,7 +6,7 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-  <title>SADV41 | Centro Operativo &amp; Patrocinio Inteligente — StevenDior</title>
+  <title>RSSSADV41 | json.php &amp; Patrocinio Inteligente — StevenDior</title>
   <style>
     :root {
       --bg-main: #030305;
@@ -42,6 +42,10 @@
     .status-pill { font-size: 10px; padding: 2px 8px; border-radius: 999px; font-weight: 700; text-transform: uppercase; }
     .status-ok { background: rgba(16, 185, 129, 0.15); color: var(--emerald); border: 1px solid rgba(16, 185, 129, 0.35); }
     .status-pending { background: rgba(245, 158, 11, 0.15); color: var(--amber); border: 1px solid rgba(245, 158, 11, 0.35); }
+    .status-gold { background: rgba(212, 175, 55, 0.15); color: var(--gold); border: 1px solid rgba(212, 175, 55, 0.4); }
+    .eq-box { background: #050811; border: 1px solid rgba(212, 175, 55, 0.35); border-radius: 10px; padding: 12px; font-family: "Courier New", Courier, monospace; font-size: 12.5px; color: var(--cyan); text-align: center; margin-bottom: 10px; }
+    .eq-box span.dot { color: var(--gold); font-weight: 900; font-size: 16px; }
+    .eq-sub { display: block; font-size: 11px; color: var(--text-muted); margin-top: 4px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
     .data-row { display: flex; justify-content: space-between; font-size: 12.5px; padding: 7px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
     .data-row:last-child { border-bottom: none; }
     .data-label { color: var(--text-muted); }
@@ -60,17 +64,42 @@
 <body>
   <div class="container">
     <header>
-      <span class="badge">RSSSADV41 // UNIDAD AUTÓNOMA</span>
-      <h1>StevenDior — Rescate Vial, Mecánica &amp; Patrocinio Inteligente</h1>
+      <span class="badge">RSSSADV41 // EEEEEOOOOO FLOW</span>
+      <h1>StevenDior — Unidad Autónoma &amp; Patrocinio Inteligente</h1>
       <p class="subtitle">Ejecución independiente en Burunga, Arraiján y Panamá Oeste. Cero intermediarios.</p>
     </header>
 
     <nav class="nav-grid" aria-label="Portales SADV41">
-      <a class="nav-btn" href="https://thesteef21.github.io/SADV41/PATRIA" target="_blank" rel="noopener">PATRIA</a>
-      <a class="nav-btn" href="https://thesteef21.github.io/SADV41/MECHANICS/" target="_blank" rel="noopener">MECHANICS</a>
-      <a class="nav-btn active" href="https://thesteef21.github.io/SADV41/GOV/PANAMA/BURUNGA/RESCATES" target="_blank" rel="noopener">RESCATES</a>
+      <a id="nav-patria" class="nav-btn" href="https://thesteef21.github.io/SADV41/PATRIA">PATRIA</a>
+      <a id="nav-mechanics" class="nav-btn" href="https://thesteef21.github.io/SADV41/MECHANICS/">MECHANICS</a>
+      <a id="nav-rescates" class="nav-btn active" href="https://thesteef21.github.io/SADV41/GOV/PANAMA/BURUNGA/RESCATES">RESCATES</a>
     </nav>
 
+    <!-- ECUACIÓN MAESTRA json.php & CÁLCULO SINCRÓNICO RSSSADV41 (VISIBLE EN TODAS LAS PÁGINAS) -->
+    <div class="card">
+      <div class="card-title">
+        <span>Ecuación json.php // Reserva Sincrónica Secreta</span>
+        <span class="status-pill status-gold">Origen = 0</span>
+      </div>
+      <div class="eq-box">
+        JSON<span class="dot"> . </span>PHP &equiv; [4] &bull; (0,0) &bull; [3] = 7
+        <span class="eq-sub"><strong>J</strong>esús <strong>S</strong>alva <strong>O</strong>riundo <strong>N</strong>azareth &bull; <strong>0 (Origen)</strong> &bull; <strong>P</strong>uro <strong>H</strong>ijo <strong>P</strong>adre</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Cálculo Sincrónico SADV41</span>
+        <span class="data-value">((13 + 2) / 1) + 26 = 41</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Equilibrio 3 Ejes (P<sub>terceros</sub> &rarr; 0)</span>
+        <span class="data-value">&Psi;(Visual + Financiero + Equipo) = 1</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Protocolo de Despliegue</span>
+        <span class="data-value">EEEEEOOOOO FLOW (EOF)</span>
+      </div>
+    </div>
+
+    <!-- PATROCINIO INTELIGENTE OFICIAL -->
     <div class="card">
       <div class="card-title">
         <span>Patrocinio Inteligente — StevenDior</span>
@@ -90,9 +119,9 @@
     </div>
 
     <div class="tabs" role="tablist">
-      <button class="tab-btn active" onclick="switchTab('rescates', this)">Rescates</button>
-      <button class="tab-btn" onclick="switchTab('mechanics', this)">Mecánica &amp; Equipo</button>
-      <button class="tab-btn" onclick="switchTab('patria', this)">Patria &amp; Bitácora</button>
+      <button id="tab-rescates" class="tab-btn active" onclick="switchTab('rescates', this)">Rescates</button>
+      <button id="tab-mechanics" class="tab-btn" onclick="switchTab('mechanics', this)">Mecánica &amp; Equipo</button>
+      <button id="tab-patria" class="tab-btn" onclick="switchTab('patria', this)">Patria &amp; Bitácora</button>
     </div>
 
     <section id="rescates" class="section active">
@@ -186,7 +215,7 @@
     </section>
 
     <footer>
-      SADV41 &bull; StevenDior &bull; Burunga, Panamá Oeste &bull; República de Panamá &bull; 2026
+      RSSSADV41 &bull; StevenDior &bull; json.php (0) &bull; República de Panamá &bull; 2026
     </footer>
   </div>
 
@@ -195,8 +224,22 @@
       document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
       document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
-      btn.classList.add('active');
+      if (btn) btn.classList.add('active');
     }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const path = window.location.pathname.toUpperCase();
+      document.querySelectorAll('.nav-btn').forEach(n => n.classList.remove('active'));
+      if (path.includes('/MECHANICS')) {
+        document.getElementById('nav-mechanics').classList.add('active');
+        switchTab('mechanics', document.getElementById('tab-mechanics'));
+      } else if (path.includes('/PATRIA')) {
+        document.getElementById('nav-patria').classList.add('active');
+        switchTab('patria', document.getElementById('tab-patria'));
+      } else {
+        document.getElementById('nav-rescates').classList.add('active');
+      }
+    });
   </script>
 </body>
 </html>
