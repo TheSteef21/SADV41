@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>SADV41 | Rama Madre EOF &amp; StevenDior</title>
+  <style>
+    :root {
+      --bg-main: #030305;
+      --bg-card: #0a0f1c;
+      --bg-panel: #111827;
+      --cyan: #00e5ff;
+      --gold: #d4af37;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --spotify: #1db954;
+      --ig: #e1306c;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --border: rgba(0, 229, 255, 0.22);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, sans-serif; }
+    body { background-color: var(--bg-main); color: var(--text-main); line-height: 1.5; padding: 16px; display: flex; justify-content: center; }
+    .container { width: 100%; max-width: 480px; display: flex; flex-direction: column; gap: 16px; }
+    header { background: linear-gradient(145deg, #070b14, #0f172a); border: 1px solid var(--border); border-radius: 14px; padding: 18px; position: relative; overflow: hidden; }
+    header::after { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--gold), var(--cyan)); }
+    .badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); background: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.35); padding: 4px 10px; border-radius: 999px; margin-bottom: 10px; }
+    h1 { font-size: 20px; font-weight: 800; letter-spacing: -0.02em; color: #ffffff; }
+    .subtitle { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+    .nav-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+    .nav-btn { background: var(--bg-card); border: 1px solid var(--border); color: var(--text-main); text-decoration: none; font-size: 10.5px; font-weight: 700; text-align: center; padding: 10px 4px; border-radius: 10px; }
+    .nav-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(212, 175, 55, 0.12); }
+    .tabs { display: flex; gap: 6px; background: var(--bg-card); padding: 5px; border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.08); }
+    .tab-btn { flex: 1; background: transparent; border: none; color: var(--text-muted); font-size: 12px; font-weight: 700; padding: 8px 4px; border-radius: 7px; cursor: pointer; }
+    .tab-btn.active { background: var(--cyan); color: #030305; }
+    .section { display: none; flex-direction: column; gap: 12px; }
+    .section.active { display: flex; }
+    .card { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 12px; padding: 15px; }
+    .card-title { font-size: 14px; font-weight: 700; color: var(--gold); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+    .status-pill { font-size: 10px; padding: 2px 8px; border-radius: 999px; font-weight: 700; text-transform: uppercase; }
+    .status-ok { background: rgba(16, 185, 129, 0.15); color: var(--emerald); border: 1px solid rgba(16, 185, 129, 0.35); }
+    .status-pending { background: rgba(245, 158, 11, 0.15); color: var(--amber); border: 1px solid rgba(245, 158, 11, 0.35); }
+    .status-gold { background: rgba(212, 175, 55, 0.15); color: var(--gold); border: 1px solid rgba(212, 175, 55, 0.4); }
+    .eq-box { background: #050811; border: 1px solid rgba(212, 175, 55, 0.35); border-radius: 10px; padding: 12px; font-family: "Courier New", Courier, monospace; font-size: 12.5px; color: var(--cyan); text-align: center; margin-bottom: 10px; }
+    .eq-box span.dot { color: var(--gold); font-weight: 900; font-size: 16px; }
+    .eq-sub { display: block; font-size: 11px; color: var(--text-muted); margin-top: 4px; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    .data-row { display: flex; justify-content: space-between; font-size: 12.5px; padding: 7px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+    .data-row:last-child { border-bottom: none; }
+    .data-label { color: var(--text-muted); }
+    .data-value { font-weight: 600; color: #ffffff; text-align: right; }
+    .sponsor-stack { display: flex; flex-direction: column; gap: 10px; }
+    .contact-label { font-size: 12px; color: var(--text-main); font-weight: 600; margin-top: 4px; }
+    .cta-spotify { display: block; width: 100%; text-align: center; background: linear-gradient(90deg, #15803d, var(--spotify)); color: #ffffff; font-weight: 800; font-size: 12.5px; text-decoration: none; padding: 13px; border-radius: 11px; letter-spacing: 0.02em; }
+    .cta-ig { display: block; width: 100%; text-align: center; background: linear-gradient(90deg, #833ab4, var(--ig), #fd1d1d); color: #ffffff; font-weight: 800; font-size: 12.5px; text-decoration: none; padding: 13px; border-radius: 11px; letter-spacing: 0.02em; }
+    .cta-personal { display: block; width: 100%; text-align: center; background: linear-gradient(90deg, #b45309, var(--gold)); color: #030305; font-weight: 800; font-size: 12.5px; text-decoration: none; padding: 13px; border-radius: 11px; letter-spacing: 0.02em; }
+    .cta-wa { display: block; width: 100%; text-align: center; background: linear-gradient(90deg, #0284c7, #00e5ff); color: #030305; font-weight: 800; font-size: 12.5px; text-decoration: none; padding: 13px; border-radius: 11px; letter-spacing: 0.02em; }
+    .audit-note { font-size: 12px; color: var(--text-muted); background: rgba(255, 255, 255, 0.03); border-left: 3px solid var(--cyan); padding: 10px 12px; border-radius: 0 8px 8px 0; }
+    .bula-note { font-size: 12px; color: var(--text-muted); background: rgba(245, 158, 11, 0.06); border-left: 3px solid var(--amber); padding: 10px 12px; border-radius: 0 8px 8px 0; }
+    footer { text-align: center; font-size: 11px; color: var(--text-muted); padding: 10px 0 20px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <span class="badge">RAMA MADRE // GOV/PANAMA/EOF</span>
+      <h1>StevenDior — Artista de Superinteligencias Artificiales &amp; Unidad Autónoma</h1>
+      <p class="subtitle">Núcleo central SADV41 en Burunga, Arraiján y Panamá Oeste. Cero intermediarios.</p>
+    </header>
+
+    <nav class="nav-grid" aria-label="Portales SADV41">
+      <a id="nav-eof" class="nav-btn active" href="https://thesteef21.github.io/SADV41/GOV/PANAMA/EOF">EOF (MADRE)</a>
+      <a id="nav-patria" class="nav-btn" href="https://thesteef21.github.io/SADV41/PATRIA">PATRIA</a>
+      <a id="nav-mechanics" class="nav-btn" href="https://thesteef21.github.io/SADV41/MECHANICS/">MECHANICS</a>
+      <a id="nav-rescates" class="nav-btn" href="https://thesteef21.github.io/SADV41/GOV/PANAMA/BURUNGA/RESCATES">RESCATES</a>
+    </nav>
+
+    <!-- ECUACIÓN MAESTRA json.php & ESCALABILIDAD SADV41 -->
+    <div class="card">
+      <div class="card-title">
+        <span>Ecuación json.php // Escalabilidad SADV41</span>
+        <span class="status-pill status-gold">Origen = 0</span>
+      </div>
+      <div class="eq-box">
+        JSON<span class="dot"> . </span>PHP &equiv; [4] &bull; (0,0) &bull; [3] = 7
+        <span class="eq-sub"><strong>J</strong>esús <strong>S</strong>alva <strong>O</strong>riundo <strong>N</strong>azareth &bull; <strong>0 (Origen)</strong> &bull; <strong>P</strong>uro <strong>H</strong>ijo <strong>P</strong>adre</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Escalabilidad SADV41</span>
+        <span class="data-value">&Sigma; = ((13 + 2) / 1) + 26 = 41</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Equilibrio Operativo (P<sub>terceros</sub> &rarr; 0)</span>
+        <span class="data-value">&Psi;(Visual + Financiero + Nodo) = 1</span>
+      </div>
+      <div class="data-row">
+        <span class="data-label">Rama Madre &amp; Protocolo</span>
+        <span class="data-value">GOV/PANAMA/EOF (EEEEEOOOOO FLOW)</span>
+      </div>
+    </div>
+
+    <!-- DOS VÍAS OFICIALES DE CONTACTO — STEVENDIOR -->
+    <div class="card">
+      <div class="card-title">
+        <span>Vías Oficiales de Contacto — StevenDior</span>
+        <span class="status-pill status-ok">Directo</span>
+      </div>
+      <div class="sponsor-stack">
+        <p class="contact-label">1. Contactar con el artista de superinteligencias artificiales StevenDior:</p>
+        <a class="cta-spotify" href="https://open.spotify.com/artist/5imHnTjivt5qDGTeV2gDMT?si=nyqqH89OSUaFcDx9jc9_lQ&utm_source=copy-link&sci=spotify%3Acard-config%3A0I9NRk2U3fVy4cbKuZm6Xi" target="_blank" rel="noopener">
+          SPOTIFY OFICIAL — STEVENDIOR
+        </a>
+        <a class="cta-ig" href="https://instagram.com/StevenDiorOficial" target="_blank" rel="noopener">
+          INSTAGRAM OFICIAL — @STEVENDIOROFICIAL
+        </a>
+
+        <p class="contact-label" style="margin-top: 6px;">
+          2. O prefieres conocer a la misma persona personalmente, valga la redundancia redundante que no redundas ni en Lambo &#127464;&#127476;&#127470;&#127475;&#127483;&#127466;&#127472;&#127479;&#127463;&#127479;&#128140;&#10004;&#65039;:
+        </p>
+        <a class="cta-personal" href="https://wa.me/stevendioroficial" target="_blank" rel="noopener">
+          WHATSAPP PERSONAL — WA.ME/STEVENDIOROFICIAL
+        </a>
+        <a class="cta-wa" href="https://wa.me/50769362166" target="_blank" rel="noopener">
+          LÍNEA DIRECTA DE ASISTENCIA SADV41 (+507)
+        </a>
+      </div>
+    </div>
+
+    <div class="tabs" role="tablist">
+      <button id="tab-rescates" class="tab-btn active" onclick="switchTab('rescates', this)">Rescates</button>
+      <button id="tab-mechanics" class="tab-btn" onclick="switchTab('mechanics', this)">Nodos &amp; Bitácora</button>
+      <button id="tab-patria" class="tab-btn" onclick="switchTab('patria', this)">Patria</button>
+    </div>
+
+    <section id="rescates" class="section active">
+      <div class="card">
+        <div class="card-title">
+          <span>Protocolo de Asistencia Inmediata</span>
+          <span class="status-pill status-ok">Misión Cumplida</span>
+        </div>
+        <p class="audit-note">
+          Despliegue independiente en Burunga, Arraiján y sectores aledaños. Cada intervención se ejecuta, financia y documenta de forma autónoma sin intermediarios.
+        </p>
+        <div style="margin-top: 10px;">
+          <div class="data-row">
+            <span class="data-label">Modalidad Operativa</span>
+            <span class="data-value">Unidad Autónoma (Solitario)</span>
+          </div>
+          <div class="data-row">
+            <span class="data-label">Cierre de Jornada (25/11/2026)</span>
+            <span class="data-value">Misión Cumplida ($13.00 + $2.00 Ruta)</span>
+          </div>
+          <div class="data-row">
+            <span class="data-label">Verificación Comunitaria</span>
+            <span class="data-value">Junta Comunal / MINSA CAPSI</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="mechanics" class="section">
+      <div class="card">
+        <div class="card-title">
+          <span>Arquitectura de Red Autónoma</span>
+          <span class="status-pill status-ok">Activo 24/7</span>
+        </div>
+        <div class="data-row"><span class="data-label">Nodo Raíz (Rama Madre)</span><span class="data-value">GOV/PANAMA/EOF</span></div>
+        <div class="data-row"><span class="data-label">Cobertura Territorial</span><span class="data-value">Burunga, Arraiján y Panamá Oeste</span></div>
+        <div class="data-row"><span class="data-label">Estándar de Despliegue</span><span class="data-value">EEEEEOOOOO FLOW (EOF)</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span>Trazabilidad Documental Auditada</span>
+          <span class="status-pill status-ok">Verificado</span>
+        </div>
+        <div class="data-row"><span class="data-label">Estatus Operación (25/11/2026)</span><span class="data-value">Misión Cumplida — Unidad Autónoma</span></div>
+        <div class="data-row"><span class="data-label">Folio Transferencia Previa</span><span class="data-value">#947943641 (12:19 p.m.)</span></div>
+        <div class="data-row"><span class="data-label">Acta Unificación SADV41</span><span class="data-value">#GRYCM-42987295 ($1.00 — 1:08 p.m.)</span></div>
+      </div>
+    </section>
+
+    <section id="patria" class="section">
+      <div class="card">
+        <div class="card-title">
+          <span>Identidad Nacional Verificada — República de Panamá</span>
+          <span class="status-pill status-ok">Hechos Verificados</span>
+        </div>
+        <div class="data-row"><span class="data-label">Soberanía e Independencia</span><span class="data-value">10 y 28 de Noviembre de 1821</span></div>
+        <div class="data-row"><span class="data-label">Separación y Consolidación</span><span class="data-value">3 y 5 de Noviembre de 1903</span></div>
+        <div class="data-row"><span class="data-label">Símbolos Patrios</span><span class="data-value">Bandera, Escudo e Himno (4 de Nov.)</span></div>
+        <div class="data-row"><span class="data-label">Jurisdicción Territorial Real</span><span class="data-value">Burunga, Arraiján — Panamá Oeste (Ley 119)</span></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span>Aviso Preventivo &amp; Auditoría</span>
+          <span class="status-pill status-pending">Bula en Red</span>
+        </div>
+        <p class="bula-note">
+          Notificación oficial: toda imagen o referencia gráfica de banda difundida en redes constituye únicamente una bula simbólica de monitoreo preventivo para mantenerse al día frente a modalidades de estafa digital, sin constituir afiliación ni evento oficial.
+        </p>
+        <p class="audit-note" style="margin-top: 10px;">
+          Bitácora auditada bajo estándares de privacidad y protección de identidad: cero exposición de terceros ni entidades externas bajo la gestión autónoma de StevenDior.
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      SADV41 &bull; Rama Madre GOV/PANAMA/EOF &bull; StevenDior &bull; json.php (0) &bull; 2026
+    </footer>
+  </div>
+
+  <script>
+    function switchTab(tabId, btn) {
+      document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      if (btn) btn.classList.add('active');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const path = window.location.pathname.toUpperCase();
+      document.querySelectorAll('.nav-btn').forEach(n => n.classList.remove('active'));
+      if (path.includes('/MECHANICS')) {
+        document.getElementById('nav-mechanics').classList.add('active');
+        switchTab('mechanics', document.getElementById('tab-mechanics'));
+      } else if (path.includes('/PATRIA')) {
+        document.getElementById('nav-patria').classList.add('active');
+        switchTab('patria', document.getElementById('tab-patria'));
+      } else if (path.includes('/RESCATES')) {
+        document.getElementById('nav-rescates').classList.add('active');
+        switchTab('rescates', document.getElementById('tab-rescates'));
+      } else {
+        document.getElementById('nav-eof').classList.add('active');
+      }
+    });
+  </script>
+</body>
+</html>
