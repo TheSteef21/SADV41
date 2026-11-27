@@ -53,7 +53,11 @@ Agent/data/
 Agent/node_modules/
 Agent/panel.html
 SADV41/SADV41/SADV41/Agent.html.bak
+<<<<<<< Updated upstream
 ig_session.json
 node_modules/
 tsec_monitor.log
 GAMING/TLOZ/patches/
+=======
+Agent/kernel.html
+>>>>>>> Stashed changes

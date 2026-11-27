@@ -66,6 +66,7 @@ document.getElementById('inp').addEventListener('keypress',function(e){if(e.key=
   }
 </script>
 
+<<<<<<< Updated upstream
 <!-- SADV41 Messenger Widget -->
 <div id="sadv41-messenger-widget" style="position:fixed;bottom:20px;right:20px;z-index:99999;display:flex;flex-direction:column;align-items:center;gap:4px;">
   <a href="https://www.messenger.com/channel/61554018924556" target="_blank" rel="noopener" title="Canal SADV41 en Facebook Messenger" style="display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#0084ff,#00c6ff);box-shadow:0 4px 16px rgba(0,132,255,0.5);transition:transform .2s,box-shadow .2s;text-decoration:none;" onmouseover="this.style.transform='scale(1.12)';this.style.boxShadow='0 6px 24px rgba(0,132,255,0.7)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 16px rgba(0,132,255,0.5)'"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 36 36" fill="white"><path d="M18 2C9.163 2 2 8.615 2 17c0 4.552 1.978 8.633 5.148 11.503L7 32l3.566-1.896C12.287 30.962 15.079 31.5 18 31.5 26.837 31.5 34 24.885 34 16.5S26.837 2 18 2zm1.78 20.078l-4.55-4.86-8.882 4.86 9.774-10.371 4.669 4.859 8.762-4.859-9.773 10.371z"/></svg></a>
@@ -73,3 +74,43 @@ document.getElementById('inp').addEventListener('keypress',function(e){if(e.key=
 </div>
   <script src="../assets/brave-search-widget.js" defer></script>
 </body></html>
+=======
+<script src="/SADV41/BIBLIA/biblia.js" defer></script>
+  <script src="https://thesteef21.github.io/SADV41/lib/seismic-widget.js" defer></script>
+<!-- sadv41-news -->
+<div id="sadv41-news" style="position:fixed;left:0;right:0;bottom:0;z-index:2147483000;background:#0a0e1a;color:#f4f6ff;border-top:2px solid #f5c542;font:600 13px/1.35 system-ui,sans-serif;padding:8px 40px 8px 12px;text-align:center"><span style="color:#f5c542">ÚLTIMA NOTICIA</span> · <a href="https://thesteef21.github.io/SADV41/NEWS/PANAMA/USA/#paraguay" target="_blank" rel="noopener" style="color:#3ee0e8;text-decoration:none">Paraguay interviene Ueno Bank y renuncia el presidente del Banco Central 🏦</a><button onclick="this.parentNode.style.display='none'" aria-label="Cerrar" style="position:absolute;right:8px;top:4px;background:none;border:0;color:#9aa3c7;font-size:18px;cursor:pointer">×</button></div>
+<!-- /sadv41-news -->
+<!-- sadv41-home -->
+<a id="sadv41-home" href="https://thesteef21.github.io/Lapizasuli/GSADV41.html" title="SADV41 · Página principal" aria-label="Ir a la página principal de SADV41" style="position:fixed;left:14px;bottom:64px;z-index:2147482999;width:46px;height:46px;border-radius:50%;background:#071642;border:3px solid #d9a93a;box-shadow:0 4px 14px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;text-decoration:none"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><g fill="#d9a93a"><rect x="10.8" y="2" width="2.4" height="20" rx=".6"/><rect x="8" y="4.6" width="8" height="1.8" rx=".5"/><rect x="6" y="9" width="12" height="2.4" rx=".6"/><rect x="8.6" y="16.6" width="6.8" height="1.8" rx=".5" transform="rotate(12 12 17.5)"/></g></svg></a>
+<!-- /sadv41-home -->
+<section id="cs-sadv" style="margin:20px 16px;padding:14px;border:1px solid #d9a93a;border-radius:14px;background:#050a1c;color:#cfe;font:13px ui-monospace,monospace">
+<div style="color:#f4d77a;margin-bottom:8px">CONSOLA · escribe /ayuda</div>
+<div id="cs-out" style="max-height:220px;overflow:auto;white-space:pre-wrap"></div>
+<form id="cs-f" style="display:flex;gap:6px;margin-top:8px"><input id="cs-i" autocomplete="off" placeholder="/saldo  /gas  /wallet  /orden ..." style="flex:1;min-width:0;padding:10px;border-radius:8px;border:1px solid #d9a93a;background:#000;color:#fff;font:inherit"><button style="padding:10px 14px;border-radius:8px;border:1px solid #d9a93a;background:rgba(217,169,58,.2);color:#fff;font:inherit">Enviar</button></form>
+</section>
+<script>(function(){
+var W="0x8CE929Fc25D9aE5ce73fb5913a4211998555a6CB",RPC="https://bsc-dataseed.binance.org";
+var o=document.getElementById('cs-out'),f=document.getElementById('cs-f'),i=document.getElementById('cs-i');
+function p(t){o.textContent+=t+"\n";o.scrollTop=o.scrollHeight}
+async function rpc(m,a){var r=await fetch(RPC,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({jsonrpc:'2.0',id:1,method:m,params:a})});var j=await r.json();if(j.error)throw new Error(j.error.message);return j.result}
+async function cp(t){try{await navigator.clipboard.writeText(t);p("Copiado.")}catch(e){p("No se pudo copiar.")}}
+async function run(l){
+var s=l.trim().split(/\s+/),c=s[0],r=s.slice(1),a=r.join(' ');
+try{
+if(c==='/ayuda'){p("/saldo [0x...]  BNB de una dirección (por defecto tu wallet)\n/gas            precio de gas en BSC\n/wallet         copia tu dirección\n/orden texto    prepara la orden para pegar en Binance AI Pro\n/limpiar        borra la consola")}
+else if(c==='/saldo'){var ad=r[0]||W;if(!/^0x[0-9a-fA-F]{40}$/.test(ad)){p("Dirección inválida.");return}
+var b=BigInt(await rpc('eth_getBalance',[ad.toLowerCase(),'latest']));p("BNB: "+(Number(b)/1e18).toFixed(6))}
+else if(c==='/gas'){var g=BigInt(await rpc('eth_gasPrice',[]));p("Gas: "+(Number(g)/1e9).toFixed(3)+" Gwei")}
+else if(c==='/wallet'){p(W);cp(W)}
+else if(c==='/orden'){if(!a){p("Escribe la orden después de /orden.");return}
+var t="Con mi Agentic Wallet: "+a+"\nAntes de ejecutar, muéstrame el detalle (red, comisión, destino) y espera mi confirmación.";p(t);cp(t)}
+else if(c==='/limpiar'){o.textContent=""}
+else p("Comando no reconocido. Escribe /ayuda")
+}catch(e){p("Error: "+e.message)}}
+f.addEventListener('submit',function(e){e.preventDefault();var v=i.value;if(!v)return;p("> "+v);i.value="";run(v)});
+p("Consola lista.");
+})();</script>
+
+</body>
+</html>
+>>>>>>> Stashed changes
