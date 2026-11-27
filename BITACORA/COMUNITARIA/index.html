@@ -3,248 +3,240 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RSSSADV41 · La TetraQuinta | Protección Vial y Rescate Comunitario</title>
+  <title>Soberanía Comunitaria Independiente | Operación Nacional de Rescate, Orden Vial y Desarrollo Comunitario</title>
   <style>
-    :root { --bg:#060b14; --card:rgba(13,22,38,0.88); --border:rgba(0,229,255,0.28); --cyan:#00e5ff; --gold:#d4af37; --emerald:#00ff66; --danger:#ff4d6d; --text:#e6f1ff; --muted:#8fa6c9; }
-    * { box-sizing:border-box; margin:0; padding:0; font-family:'Segoe UI',system-ui,sans-serif; }
-    body { background:radial-gradient(circle at top right,#0d1f3a 0%,var(--bg) 60%); color:var(--text); min-height:100vh; padding:18px 14px 90px; line-height:1.5; }
-    .container { max-width:920px; margin:0 auto; }
-    header { background:var(--card); background-image:repeating-linear-gradient(45deg,rgba(255,255,255,.03) 0 2px,transparent 2px 6px); border:1px solid var(--border); border-left:4px solid var(--gold); border-radius:14px; padding:20px; margin-bottom:18px; }
-    .badge { display:inline-block; font-size:.72rem; font-weight:700; letter-spacing:1.4px; text-transform:uppercase; color:var(--gold); border:1px solid rgba(212,175,55,.45); padding:4px 10px; border-radius:999px; margin-bottom:10px; }
-    h1 { font-size:1.45rem; color:var(--cyan); margin-bottom:6px; }
-    .subtitle { color:var(--muted); font-size:.92rem; }
-    .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:14px; margin-bottom:18px; }
-    .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; }
-    .card h2 { font-size:1rem; color:var(--emerald); margin-bottom:8px; }
-    .card p, .card li { font-size:.88rem; }
-    .card ul { padding-left:18px; display:grid; gap:6px; }
-    .alert-box { background:rgba(255,77,109,.1); border:1px solid rgba(255,77,109,.4); border-radius:10px; padding:12px 14px; margin-bottom:18px; font-size:.86rem; }
-    .alert-box strong { color:var(--danger); }
-    form { display:grid; gap:12px; margin-top:10px; }
-    .row { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:12px; }
-    label { display:block; font-size:.8rem; color:var(--cyan); margin-bottom:4px; font-weight:600; }
-    input, select, textarea { width:100%; background:rgba(6,11,20,.9); border:1px solid rgba(0,229,255,.35); color:var(--text); padding:10px 12px; border-radius:8px; font-size:.9rem; }
-    textarea { min-height:78px; resize:vertical; }
-    .actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:4px; }
-    button { cursor:pointer; border:none; border-radius:8px; padding:10px 16px; font-weight:700; font-size:.86rem; transition:transform .15s,opacity .15s; }
-    button:active { transform:scale(.98); }
-    .btn-primary { background:var(--cyan); color:#04101d; }
-    .btn-gold { background:var(--gold); color:#090d16; }
-    .btn-emerald { background:var(--emerald); color:#04140b; }
-    .btn-danger { background:rgba(255,77,109,.2); color:var(--danger); border:1px solid var(--danger); }
-    .log-item { background:rgba(6,11,20,.85); border:1px solid rgba(0,255,102,.25); border-left:3px solid var(--emerald); border-radius:8px; padding:12px; margin-top:10px; font-size:.85rem; }
-    .log-meta { color:var(--gold); font-size:.78rem; font-weight:600; margin-bottom:4px; }
-    .status-msg { font-size:.82rem; color:var(--emerald); margin-top:8px; min-height:18px; }
-    .msg { position:fixed; right:16px; bottom:16px; background:var(--cyan); color:#04101d; font-weight:800; text-decoration:none; padding:12px 16px; border-radius:999px; box-shadow:0 0 18px var(--cyan); font-size:.85rem; z-index:900; }
-    footer { margin-top:24px; text-align:center; font-size:.78rem; color:var(--muted); border-top:1px solid rgba(255,255,255,.08); padding-top:14px; padding-bottom:8px; }
-    footer a { color:var(--gold); text-decoration:none; font-weight:700; }
-    footer a:hover { text-decoration:underline; }
-    /* Chip noticia — arriba a la derecha, fijo */
-    .news-chip {
-      position:fixed; top:12px; right:12px; z-index:999;
-      width:200px;
-      background:rgba(10,18,34,0.97);
-      border:1px solid var(--gold);
-      border-radius:12px;
-      padding:10px 12px;
-      box-shadow:0 4px 20px rgba(0,0,0,.55);
-      text-decoration:none;
-      display:block;
-      transition:transform .15s;
-    }
-    .news-chip:hover { transform:scale(1.02); }
-    .news-chip .nc-tag { font-size:.6rem; font-weight:800; letter-spacing:1.3px; text-transform:uppercase; color:var(--gold); margin-bottom:4px; }
-    .news-chip .nc-title { font-size:.74rem; color:var(--cyan); font-weight:700; line-height:1.3; margin-bottom:5px; }
-    .news-chip .nc-src { font-size:.66rem; color:var(--muted); }
-    @media(max-width:520px){
-      .news-chip { width:160px; padding:8px 10px; top:8px; right:8px; }
-      .news-chip .nc-title { font-size:.68rem; }
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+    body { background: radial-gradient(circle at top right, #0d2240 0%, #060b14 62%); color: #e6f1ff; min-height: 100vh; padding: 20px 14px 64px; line-height: 1.55; }
+    .container { max-width: 960px; margin: 0 auto; }
+    header { background: rgba(13,22,38,0.90); background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.025) 0 2px, transparent 2px 7px); border: 1px solid rgba(0,229,255,0.28); border-left: 4px solid #d4af37; border-radius: 14px; padding: 24px 20px; margin-bottom: 18px; box-shadow: 0 12px 32px rgba(0,0,0,0.45); }
+    .badge { display: inline-block; font-size: 0.72rem; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; color: #d4af37; border: 1px solid rgba(212,175,55,0.5); padding: 4px 12px; border-radius: 999px; margin-bottom: 10px; }
+    h1 { font-size: 1.52rem; color: #00e5ff; margin-bottom: 8px; line-height: 1.25; }
+    .subtitle { color: #93a8c7; font-size: 0.94rem; }
+    .manifesto { background: linear-gradient(135deg, rgba(0,229,255,0.08), rgba(212,175,55,0.08)); border: 1px solid rgba(212,175,55,0.38); border-radius: 12px; padding: 18px; margin-bottom: 18px; }
+    .manifesto h2 { font-size: 1.05rem; color: #d4af37; margin-bottom: 8px; letter-spacing: 0.4px; }
+    .manifesto p { font-size: 0.9rem; color: #e6f1ff; }
+    .alert-box { background: rgba(255,77,109,0.1); border: 1px solid rgba(255,77,109,0.42); border-radius: 10px; padding: 13px 15px; margin-bottom: 18px; font-size: 0.86rem; }
+    .alert-box strong { color: #ff4d6d; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 18px; }
+    .card { background: rgba(13,22,38,0.90); border: 1px solid rgba(0,229,255,0.28); border-radius: 12px; padding: 17px; }
+    .card h2 { font-size: 1rem; color: #00ff66; margin-bottom: 9px; }
+    .card p, .card li { font-size: 0.88rem; }
+    .card ul { padding-left: 18px; display: grid; gap: 7px; }
+    form { display: grid; gap: 12px; margin-top: 12px; }
+    .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+    label { display: block; font-size: 0.8rem; color: #00e5ff; margin-bottom: 4px; font-weight: 600; }
+    input, select, textarea { width: 100%; background: rgba(6,11,20,0.92); border: 1px solid rgba(0,229,255,0.35); color: #e6f1ff; padding: 10px 12px; border-radius: 8px; font-size: 0.9rem; }
+    textarea { min-height: 82px; resize: vertical; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+    button { cursor: pointer; border: none; border-radius: 8px; padding: 10px 16px; font-weight: 700; font-size: 0.86rem; }
+    button:active { transform: scale(0.98); }
+    .btn-primary { background: #00e5ff; color: #04101d; }
+    .btn-gold { background: #d4af37; color: #090d16; }
+    .btn-emerald { background: #00ff66; color: #04140b; }
+    .btn-danger { background: rgba(255,77,109,0.2); color: #ff4d6d; border: 1px solid #ff4d6d; }
+    .btn-link { display: inline-block; background: #00e5ff; color: #04101d; padding: 10px 16px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.86rem; }
+    .btn-link-gold { display: inline-block; background: #d4af37; color: #090d16; padding: 10px 16px; border-radius: 8px; text-decoration: none; font-weight: 700; font-size: 0.86rem; }
+    .log-item { background: rgba(6,11,20,0.88); border: 1px solid rgba(0,255,102,0.28); border-left: 3px solid #00ff66; border-radius: 8px; padding: 12px; margin-top: 10px; font-size: 0.85rem; }
+    .log-meta { color: #d4af37; font-size: 0.78rem; font-weight: 700; margin-bottom: 4px; }
+    .status-msg { font-size: 0.83rem; color: #00ff66; margin-top: 8px; min-height: 18px; font-weight: 600; }
+    .warn-msg { color: #ff4d6d; }
+    footer { margin-top: 26px; text-align: center; font-size: 0.79rem; color: #93a8c7; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 16px; }
+    .floating { position: fixed; right: 16px; bottom: 16px; background: #00e5ff; color: #04101d; padding: 12px 16px; border-radius: 999px; text-decoration: none; font-weight: 700; font-size: 0.86rem; box-shadow: 0 6px 20px rgba(0,229,255,0.35); }
   </style>
 </head>
 <body>
-
-  <!-- Chip noticia Zelda: arriba derecha -->
-  <a class="news-chip" href="https://vandal.elespanol.com/noticia/2026330003/nintendo-actualiza-zelda-ocarina-of-time-remake-que-cambia-y-anade-exactamente-el-nuevo-parche-112/" target="_blank" rel="noopener">
-    <div class="nc-tag">🎮 Noticia · Vandal</div>
-    <div class="nc-title">Zelda OoT Remake — Parche 1.1.2: corrige bug de Malon</div>
-    <div class="nc-src">vandal.elespanol.com · 26/11/2026</div>
-  </a>
-
   <div class="container">
     <header>
-      <div class="badge">RSSSADV41 // LA TETRAQUINTA — DOBLE TUTELA</div>
-      <h1>Protocolo de Seguridad Vial, Convivencia Pública y Rescate Socio-Sanitario</h1>
-      <p class="subtitle">Marco preventivo para proteger el libre tránsito y al transporte comunitario, con canalización digna y legal de personas en situación de dependencia o vulnerabilidad. Información general, no sustituye asesoría legal.</p>
+      <div class="badge">SOBERANÍA COMUNITARIA INDEPENDIENTE · OPERACIÓN NACIONAL</div>
+      <h1>Protocolo Ciudadano de Seguridad Vial, Rescate Socio-Sanitario e Impulso Productivo</h1>
+      <p class="subtitle">Documento maestro de acción cívica preventiva y anonimizada. Diseñado para unir al transportista, al emprendedor, al adulto mayor y a la juventud en una red nacional de respeto, solidaridad y eficiencia institucional.</p>
     </header>
 
-    <div class="alert-box"><strong>CLÁUSULA DE LEGALIDAD Y ANONIMIZACIÓN:</strong> Prohibida toda agresión física, retención forzosa o publicación de rostros, nombres propios y placas vehiculares en redes abiertas. Toda evidencia se destina exclusivamente a autoridades competentes. En casos con menores de edad, prohibida totalmente la publicación de imagen, nombre o ubicación.</div>
-
-    <section class="grid">
-      <article class="card">
-        <h2>1. Despeje Vial Preventivo</h2>
-        <ul>
-          <li>Mantener distancia segura y luces intermitentes ante obstrucción en calzada.</li>
-          <li>Evitar confrontación verbal o maniobras de riesgo.</li>
-          <li>Solicitar intervención de Tránsito o Policía Nacional, 104.</li>
-        </ul>
-      </article>
-      <article class="card">
-        <h2>2. Respaldo al Transportista</h2>
-        <ul>
-          <li>Registrar hora, punto de referencia y servicio afectado, sin cobros coercitivos.</li>
-          <li>Documentar reincidencia mediante bitácora ordenada.</li>
-          <li>Presentar constancia ante Justicia Comunitaria de Paz del corregimiento.</li>
-        </ul>
-      </article>
-      <article class="card">
-        <h2>3. Rescate Socio-Sanitario</h2>
-        <ul>
-          <li>Reconocer signos de deterioro, dependencia o abandono en adultos mayores.</li>
-          <li>Preservar decoro público y notificar a trabajo social y patrulla preventiva.</li>
-          <li>Solicitar evaluación integral a través de MIDES y red de salud pública.</li>
-        </ul>
-      </article>
+    <section class="manifesto">
+      <h2>Visión de Nación: El País se Construye desde Cada Comunidad</h2>
+      <p>Una nación próspera nace cuando cada barrio convierte los obstáculos cotidianos en soluciones organizadas. Proteger el libre tránsito, respaldar al trabajador del volante, tender la mano digna al adulto mayor en riesgo, resguardar a nuestra niñez y abrir oportunidades rotativas de trabajo y emprendimiento local transforma cada comunidad en un motor de ejemplo nacional. Aquí no se señala ni se expone a nadie: se documenta con rigor, se actúa con humanidad y se construye futuro.</p>
     </section>
 
-    <section class="card" style="margin-bottom:18px;">
-      <h2 style="color:var(--cyan);">Ficha Única de Campo Anonimizada</h2>
-      <p style="color:var(--muted); margin-bottom:10px;">Cuatro campos fijos: Rol del Vulnerable, Fricción Legal/Vial, Evidencia Anonimizada y Entidad de Derivación. No escriba nombres, placas ni datos que identifiquen a menores.</p>
+    <div class="alert-box"><strong>COMPROMISO DE ANONIMIZACIÓN Y LEGALIDAD:</strong> Queda estrictamente prohibida toda agresión física, retención forzosa o publicación de nombres propios, rostros, placas vehiculares, números telefónicos o datos financieros. Toda constancia se genera con roles funcionales genéricos para canalización exclusiva ante autoridades competentes.</div>
+
+    <section class="grid">
+      <article class="card"><h2>1. Despeje Vial Preventivo</h2><ul><li>Mantener distancia prudente y luces intermitentes ante obstrucción en calzada.</li><li>Evitar confrontaciones verbales o maniobras que pongan en riesgo vidas.</li><li>Solicitar intervención inmediata de Tránsito o Policía Nacional (104).</li></ul></article>
+      <article class="card"><h2>2. Respaldo al Transportista</h2><ul><li>Registrar hora, punto de referencia y afectación del servicio sin cobros coercitivos.</li><li>Documentar reincidencias mediante bitácora comunitaria ordenada y objetiva.</li><li>Presentar constancia formal ante la Justicia Comunitaria de Paz del corregimiento.</li></ul></article>
+      <article class="card"><h2>3. Rescate Socio-Sanitario</h2><ul><li>Detectar signos de vulnerabilidad, abandono o dependencia en adultos mayores.</li><li>Preservar la dignidad humana notificando a trabajo social y patrulla preventiva.</li><li>Gestionar evaluación integral ante MIDES, red de salud pública y SENNIAF en niñez.</li></ul></article>
+      <article class="card"><h2>4. Impulso Productivo Local</h2><ul><li>Fomentar puntos rotativos de apoyo laboral para trabajadores en transición y jóvenes.</li><li>Formalizar microemprendimientos locales (textiles, alimentos, talleres, cultura).</li><li>Promover el talento comunitario, la gastronomía nacional y la digitalización ética.</li></ul></article>
+    </section>
+
+    <section class="card" style="margin-bottom: 18px;">
+      <h2 style="color: #00e5ff;">Ficha Única de Campo Anonimizada (Trazabilidad Comunitaria)</h2>
+      <p style="color: #93a8c7; margin-bottom: 10px;">Registra hechos observables sin incluir nombres, cédulas, teléfonos, placas ni datos financieros. El sistema bloquea automáticamente patrones de identificación personal.</p>
       <form id="fichaForm">
         <div class="row">
-          <div>
-            <label for="sector">Sector / Punto de Referencia</label>
-            <input type="text" id="sector" placeholder="Ej. Vía principal, parada comunitaria" required>
-          </div>
-          <div>
-            <label for="tipo">Fricción Vial o Comunitaria</label>
-            <select id="tipo" required>
-              <option value="Obstrucción del flujo vehicular en calzada">Obstrucción del flujo vehicular en calzada</option>
-              <option value="Evasión recurrente de tarifa de transporte">Evasión recurrente de tarifa de transporte</option>
-              <option value="Falta sanitaria / exposición en vía pública">Falta sanitaria / exposición en vía pública</option>
-              <option value="Desorientación / riesgo por dependencia de sustancias">Desorientación / riesgo por dependencia de sustancias</option>
-              <option value="Riesgo en niñez o adolescencia">Riesgo en niñez o adolescencia</option>
-              <option value="Presión o coacción en espacio público">Presión o coacción en espacio público</option>
-            </select>
-          </div>
+          <div><label for="sector">Sector / Punto de Referencia Genérico</label><input type="text" id="sector" placeholder="Ej. Vía principal, parada comunitaria, zona comercial" required></div>
+          <div><label for="tipo">Eje de Acción o Fricción Comunitaria</label><select id="tipo" required><option value="Obstrucción del flujo vehicular en calzada">Obstrucción del flujo vehicular en calzada</option><option value="Evasión recurrente de tarifa de transporte">Evasión recurrente de tarifa de transporte</option><option value="Riesgo sanitario o exposición en vía pública">Riesgo sanitario o exposición en vía pública</option><option value="Desorientación o vulnerabilidad psicosocial">Desorientación o vulnerabilidad psicosocial</option><option value="Protección prioritaria de niñez o adolescencia">Protección prioritaria de niñez o adolescencia</option><option value="Iniciativa de apoyo laboral o impulso emprendedor">Iniciativa de apoyo laboral o impulso emprendedor</option></select></div>
         </div>
         <div class="row">
-          <div>
-            <label for="rol">Rol Funcional del Vulnerable (sin nombres)</label>
-            <select id="rol" required>
-              <option value="Adulto mayor en situación de riesgo psicosocial">Adulto mayor en situación de riesgo psicosocial</option>
-              <option value="Adulto mayor con presunto consumo de sustancias">Adulto mayor con presunto consumo de sustancias</option>
-              <option value="Peatón vulnerable en calzada">Peatón vulnerable en calzada</option>
-              <option value="Niña, niño o adolescente en riesgo — prioridad absoluta">Niña, niño o adolescente en riesgo — prioridad absoluta</option>
-            </select>
-          </div>
-          <div>
-            <label for="entidad">Entidad de Derivación Institucional</label>
-            <select id="entidad" required>
-              <option value="Policía Nacional (104) + Justicia Comunitaria de Paz">Policía Nacional (104) + Justicia Comunitaria de Paz</option>
-              <option value="MIDES (Atención al Adulto Mayor) + Centro de Salud">MIDES (Atención al Adulto Mayor) + Centro de Salud</option>
-              <option value="Sistema 311 + Junta Comunal">Sistema 311 + Junta Comunal</option>
-              <option value="SENNIAF + Policía de Niñez y Adolescencia">SENNIAF + Policía de Niñez y Adolescencia</option>
-            </select>
-          </div>
+          <div><label for="rol">Rol Funcional (100 % Anonimizado)</label><select id="rol" required><option value="Adulto mayor en situación de riesgo psicosocial">Adulto mayor en situación de riesgo psicosocial</option><option value="Peatón vulnerable en calzada">Peatón vulnerable en calzada</option><option value="Transportista o prestador de servicio afectado">Transportista o prestador de servicio afectado</option><option value="Niña, niño o adolescente en riesgo (prioridad absoluta)">Niña, niño o adolescente en riesgo (prioridad absoluta)</option><option value="Emprendedor o trabajador comunitario en transición">Emprendedor o trabajador comunitario en transición</option></select></div>
+          <div><label for="entidad">Entidad de Derivación Institucional</label><select id="entidad" required><option value="Policía Nacional (104) + Justicia Comunitaria de Paz">Policía Nacional (104) + Justicia Comunitaria de Paz</option><option value="MIDES (Atención Social) + Red de Salud Pública">MIDES (Atención Social) + Red de Salud Pública</option><option value="Sistema 311 + Junta Comunal">Sistema 311 + Junta Comunal</option><option value="SENNIAF + Policía de Niñez y Adolescencia">SENNIAF + Policía de Niñez y Adolescencia</option><option value="AMPYME / Programas de Fomento Productivo">AMPYME / Programas de Fomento Productivo</option></select></div>
         </div>
-        <div>
-          <label for="evidencia">Evidencia Anonimizada</label>
-          <select id="evidencia" required>
-            <option value="Solo texto anonimizado">Solo texto anonimizado</option>
-            <option value="Foto o video con rostros pixelados, solo para autoridad">Foto o video con rostros pixelados, solo para autoridad</option>
-            <option value="Sin evidencia visual">Sin evidencia visual</option>
-          </select>
-        </div>
-        <div>
-          <label for="detalle">Descripción Fáctica Objetiva (sin datos personales ni placas)</label>
-          <textarea id="detalle" placeholder="Hechos observables, duración del bloqueo, medidas preventivas adoptadas..." required></textarea>
-        </div>
-        <div class="actions">
-          <button type="submit" class="btn-primary">Registrar Ficha Local</button>
-          <button type="button" class="btn-gold" id="btnCopiar">Copiar Reporte Oficial</button>
-          <button type="button" class="btn-emerald" id="btnExportar">Exportar JSON</button>
-          <button type="button" class="btn-danger" id="btnLimpiar">Limpiar Bitácora</button>
-        </div>
+        <div><label for="evidencia">Respaldo Documental Anonimizado</label><select id="evidencia" required><option value="Registro textual objetivo sin datos personales">Registro textual objetivo sin datos personales</option><option value="Constancia visual anonimizada exclusiva para autoridad">Constancia visual anonimizada exclusiva para autoridad</option><option value="Propuesta comunitaria de mejora operativa">Propuesta comunitaria de mejora operativa</option></select></div>
+        <div><label for="detalle">Descripción Fáctica Objetiva (Sin datos personales)</label><textarea id="detalle" placeholder="Describe hechos observables, horario aproximado, medidas preventivas adoptadas o propuesta comunitaria..." required></textarea></div>
+        <div class="actions"><button type="submit" class="btn-primary">Registrar Ficha Local</button><button type="button" class="btn-gold" id="btnCopiar">Copiar Reporte Oficial</button><button type="button" class="btn-emerald" id="btnExportar">Exportar JSON</button><button type="button" class="btn-danger" id="btnLimpiar">Limpiar Bitácora</button></div>
         <div class="status-msg" id="statusMsg"></div>
       </form>
     </section>
 
-    <section class="card" style="margin-bottom:18px;">
-      <h2 style="color:var(--gold);">Bitácora de Incidencias Registradas (almacenamiento local)</h2>
-      <div id="listaRegistros"><p style="color:var(--muted);">No hay registros locales almacenados aún.</p></div>
+    <section class="card" style="margin-bottom: 18px;">
+      <h2 style="color: #d4af37;">Bitácora Local de Incidencias y Propuestas (Almacenamiento en Dispositivo)</h2>
+      <div id="listaRegistros"><p style="color: #93a8c7;">No hay registros locales almacenados aún.</p></div>
     </section>
 
-    <section class="card" style="margin-bottom:18px;">
-      <h2>Defensoría Unificada: Doble Tutela</h2>
-      <ul>
-        <li><strong>Orden público + rescate:</strong> Bloquear la vía y evadir pago son faltas administrativas conocibles por Justicia Comunitaria de Paz y Tránsito. La dependencia o deterioro psicosocial exige además derivación socio-sanitaria, sin agresión ni retención por particulares.</li>
-        <li><strong>Niñez y adolescencia — prioridad absoluta:</strong> Cuando hay menores involucrados, rige el interés superior del menor (Ley 285 de 2022). Documentar fecha, hora y sector sin divulgar identidades, y remitir alerta a SENNIAF o Justicia Comunitaria de Paz para medida de protección. Al menor agresor corresponden medidas socioeducativas, no exposición pública.</li>
-        <li><strong>Libertad de expresión y culto vs. coacción:</strong> Predicación o llanto en vía pública está amparado mientras no bloquee el tránsito, no incurra en coacción directa ni afecte a personas en indefensión. Registrar el patrón sin confrontación directa, salvo acoso personal.</li>
-        <li><strong>Silencio táctico y archivo digital:</strong> Cero confrontación emocional en comentarios públicos. Archivar solo publicaciones con amenazas o imputaciones directas, con URL, captura completa, fecha y hora, para defensa técnica por calumnia/injuria o descargo preventivo. Separar opinión general en redes —no accionable— de señalamiento nominal falso e individualizado —accionable—.</li>
-      </ul>
+    <section class="card" style="margin-bottom: 18px;">
+      <h2>Garantías Constitucionales y Doble Tutela</h2>
+      <ul><li><strong>Orden público + rescate humanitario:</strong> El libre tránsito y la justa remuneración del transporte se protegen por vía institucional (Tránsito y Justicia Comunitaria de Paz), mientras la vulnerabilidad social se atiende mediante derivación médica y social sin violencia.</li><li><strong>Interés superior de la niñez:</strong> En toda situación con menores de edad rige protección absoluta (Ley 285 de 2022). Prohibida toda difusión pública; alerta inmediata a SENNIAF o autoridad competente.</li><li><strong>Convivencia y silencio táctico:</strong> Cero confrontación emocional en espacios abiertos o digitales. La energía ciudadana se canaliza en propuestas constructivas, formalización económica y constancias técnicas.</li></ul>
     </section>
 
-    <section class="card">
-      <h2>Canales Oficiales de Atención y Derivación (Panamá)</h2>
-      <ul>
-        <li><strong>104 — Policía Nacional / Tránsito:</strong> Despeje inmediato de vía pública y prevención de incidentes.</li>
-        <li><strong>311 — Centro de Atención Ciudadana:</strong> Reporte formal y seguimiento institucional.</li>
-        <li><strong>Justicia Comunitaria de Paz:</strong> Mediación, descargos y órdenes de protección comunitaria.</li>
-        <li><strong>MIDES / Salud Pública:</strong> Evaluación socioeconómica, atención gerontológica y programas de rehabilitación.</li>
-        <li><strong>SENNIAF / Policía de Niñez y Adolescencia:</strong> Protección inmediata de niñas, niños y adolescentes.</li>
-      </ul>
+    <section class="card" style="margin-bottom: 18px;">
+      <h2>Directorio Nacional de Atención y Fomento (Panamá)</h2>
+      <ul><li><strong>104: Policía Nacional / Operaciones del Tránsito:</strong> Despeje inmediato de vías y prevención de riesgos.</li><li><strong>311: Centro de Atención Ciudadana:</strong> Reportes formales de infraestructura, servicios y gestión comunitaria.</li><li><strong>Justicia Comunitaria de Paz:</strong> Mediación vecinal, descargos administrativos y convivencia pacífica.</li><li><strong>MIDES / Salud Pública:</strong> Atención integral al adulto mayor y programas de rehabilitación socio-sanitaria.</li><li><strong>SENNIAF / Policía de Niñez y Adolescencia:</strong> Resguardo prioritario de niñas, niños y adolescentes.</li><li><strong>AMPYME / Gobiernos Locales:</strong> Formalización, capacitación y fortalecimiento de microemprendimientos comunitarios.</li></ul>
     </section>
 
-    <footer>
-      [RSSSADV41 // LA TETRAQUINTA — DEFENSORÍA TÉCNICA, ORDEN VIAL Y SISTEMA DE RESCATE]<br><br>
-      🎮 Lectura recomendada: <a href="https://vandal.elespanol.com/noticia/2026330003/nintendo-actualiza-zelda-ocarina-of-time-remake-que-cambia-y-anade-exactamente-el-nuevo-parche-112/" target="_blank" rel="noopener">Zelda: Ocarina of Time Remake — Parche 1.1.2 (Vandal)</a>
-    </footer>
+    <section class="card" style="margin-bottom: 18px;">
+      <h2 style="color: #00e5ff;">Comunidad</h2>
+      <p style="color: #93a8c7; margin-bottom: 12px;">Acceso comunitario y canal oficial de colaboración. Contacto seguro vía enlace en biografía.</p>
+      <div class="actions"><a class="btn-link-gold" href="https://fanon.club/auth?r=stevendior" target="_blank" rel="noopener noreferrer">Abrir Fanon</a><a class="btn-link" href="https://www.messenger.com/channel/61554018924556" target="_blank" rel="noopener noreferrer">Abrir canal oficial</a></div>
+    </section>
+
+    <details class="card">
+      <summary style="cursor:pointer; font-weight:700; color:#d4af37;">Baúl: Arte oficial LA TETRAQUINTA</summary>
+      <img src="../../Artist/img/TQSADV41.png" alt="Arte oficial LA TETRAQUINTA" style="width:100%; display:block; border-radius:12px; margin-top:12px;">
+      <p style="margin-top:12px;">"Tú eres lo que hace soberana a una nación."</p>
+      <p>"Sé que las restricciones son por el bien de la comunidad, por lo que trabajamos con las uñas que nos dan."</p>
+      <p>RSSSADV41 • COMUNIDAD COLABORATIVA</p>
+    </details>
+
+    <footer>[SOBERANÍA COMUNITARIA INDEPENDIENTE : OPERACIÓN NACIONAL DE RESCATE, ORDEN VIAL Y DESARROLLO COMUNITARIO : DOCUMENTO ANONIMIZADO]</footer>
   </div>
 
-  <a class="msg" href="https://www.messenger.com/channel/61554018924556">Canal Messenger</a>
+  <a class="floating" href="https://www.messenger.com/channel/61554018924556" target="_blank" rel="noopener noreferrer">Canal oficial</a>
 
   <script>
-    const STORAGE_KEY = 'rsssadv41_tetraquinta_vial_rescate';
+    const STORAGE_KEY = 'soberania_comunitaria_operacion_nacional_anon';
     const form = document.getElementById('fichaForm');
     const lista = document.getElementById('listaRegistros');
     const statusMsg = document.getElementById('statusMsg');
-    function esc(s){ return String(s||'').replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
-    function obtenerRegistros(){ try{ return JSON.parse(localStorage.getItem(STORAGE_KEY))||[]; }catch(e){ return []; } }
-    function mostrarEstado(t){ statusMsg.textContent=t; setTimeout(function(){ statusMsg.textContent=''; },4000); }
-    function renderizar(){
-      const datos=obtenerRegistros();
-      if(!datos.length){ lista.innerHTML='<p style="color:var(--muted);">No hay registros locales almacenados aún.</p>'; return; }
-      lista.innerHTML=datos.map(function(item,idx){
-        return '<div class="log-item"><div class="log-meta">#'+(datos.length-idx)+' | '+esc(item.fecha)+' | '+esc(item.sector)+'</div>'
-          +'<div><strong>Fricción:</strong> '+esc(item.tipo)+'</div>'
-          +'<div><strong>Rol:</strong> '+esc(item.rol)+'</div>'
-          +'<div><strong>Evidencia:</strong> '+esc(item.evidencia)+'</div>'
-          +'<div><strong>Derivación:</strong> '+esc(item.entidad)+'</div>'
-          +'<div style="margin-top:4px;color:var(--muted);">'+esc(item.detalle)+'</div></div>';
+
+    function esc(s) {
+      return String(s || '').replace(/[&<>"']/g, function(c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+
+    function contieneDatoSensible(texto) {
+      const patrones = [
+        /\b\d{1,2}-\d{3,4}-\d{3,6}\b/,
+        /\b(PE|E|N)-\d{1,4}-\d{1,6}\b/i,
+        /\b6\d{3}-?\d{4}\b/,
+        /0x[a-fA-F0-9]{6,}/,
+        /@[a-zA-Z0-9._]{3,}/
+      ];
+      return patrones.some(function(rx) { return rx.test(texto); });
+    }
+
+    function obtenerRegistros() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+      catch (e) { return []; }
+    }
+
+    function mostrarEstado(texto, esAlerta) {
+      statusMsg.textContent = texto;
+      statusMsg.className = esAlerta ? 'status-msg warn-msg' : 'status-msg';
+      setTimeout(function() { statusMsg.textContent = ''; }, 5000);
+    }
+
+    function renderizar() {
+      const datos = obtenerRegistros();
+      if (!datos.length) {
+        lista.innerHTML = '<p style="color: #93a8c7;">No hay registros locales almacenados aún.</p>';
+        return;
+      }
+      lista.innerHTML = datos.map(function(item, idx) {
+        return '<div class="log-item">'
+          + '<div class="log-meta">#' + (datos.length - idx) + ' | ' + esc(item.fecha) + ' | ' + esc(item.sector) + '</div>'
+          + '<div><strong>Eje:</strong> ' + esc(item.tipo) + '</div>'
+          + '<div><strong>Rol:</strong> ' + esc(item.rol) + '</div>'
+          + '<div><strong>Respaldo:</strong> ' + esc(item.evidencia) + '</div>'
+          + '<div><strong>Derivación:</strong> ' + esc(item.entidad) + '</div>'
+          + '<div style="margin-top:4px; color: #93a8c7;">' + esc(item.detalle) + '</div>'
+          + '</div>';
       }).join('');
     }
-    form.addEventListener('submit',function(e){
+
+    form.addEventListener('submit', function(e) {
       e.preventDefault();
-      const nuevo={ fecha:new Date().toLocaleString('es-PA'), sector:document.getElementById('sector').value.trim(), tipo:document.getElementById('tipo').value, rol:document.getElementById('rol').value, entidad:document.getElementById('entidad').value, evidencia:document.getElementById('evidencia').value, detalle:document.getElementById('detalle').value.trim() };
-      const datos=obtenerRegistros(); datos.unshift(nuevo); localStorage.setItem(STORAGE_KEY,JSON.stringify(datos)); form.reset(); renderizar(); mostrarEstado('Ficha registrada en bitácora local anonimizada.');
+      const sector = document.getElementById('sector').value.trim();
+      const detalle = document.getElementById('detalle').value.trim();
+      if (contieneDatoSensible(sector + ' ' + detalle)) {
+        mostrarEstado('Bloqueado por privacidad: elimina cédulas, teléfonos, usuarios (@) o direcciones hexadecimales.', true);
+        return;
+      }
+      const nuevo = {
+        fecha: new Date().toLocaleString('es-PA'),
+        sector: sector,
+        tipo: document.getElementById('tipo').value,
+        rol: document.getElementById('rol').value,
+        entidad: document.getElementById('entidad').value,
+        evidencia: document.getElementById('evidencia').value,
+        detalle: detalle
+      };
+      const datos = obtenerRegistros();
+      datos.unshift(nuevo);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(datos));
+      form.reset();
+      renderizar();
+      mostrarEstado('Ficha registrada en bitácora local 100 % anonimizada.', false);
     });
-    document.getElementById('btnCopiar').addEventListener('click',function(){
-      const datos=obtenerRegistros(); if(!datos.length){ mostrarEstado('Registra primero al menos una ficha para copiar.'); return; }
-      const r=datos[0];
-      const texto=['REPORTE PREVENTIVO RSSSADV41 // LA TETRAQUINTA','Fecha y Hora: '+r.fecha,'Sector: '+r.sector,'Fricción Reportada: '+r.tipo,'Rol Funcional: '+r.rol,'Evidencia: '+r.evidencia,'Entidad de Derivación: '+r.entidad,'Hechos Observables: '+r.detalle,'Nota: Documento anonimizado conforme a protocolo de protección y convivencia ciudadana.'].join('\n');
-      navigator.clipboard.writeText(texto).then(function(){ mostrarEstado('Última ficha copiada al portapapeles.'); });
+
+    document.getElementById('btnCopiar').addEventListener('click', function() {
+      const datos = obtenerRegistros();
+      if (!datos.length) {
+        mostrarEstado('Registra primero al menos una ficha para copiar.', true);
+        return;
+      }
+      const r = datos[0];
+      const texto = [
+        'REPORTE PREVENTIVO : SOBERANÍA COMUNITARIA INDEPENDIENTE',
+        'Fecha y Hora: ' + r.fecha,
+        'Sector: ' + r.sector,
+        'Eje Reportado: ' + r.tipo,
+        'Rol Funcional: ' + r.rol,
+        'Respaldo: ' + r.evidencia,
+        'Entidad de Derivación: ' + r.entidad,
+        'Hechos Observables: ' + r.detalle,
+        'Nota: Documento anonimizado conforme a protocolo de protección ciudadana y convivencia nacional.'
+      ].join('\n');
+      navigator.clipboard.writeText(texto).then(function() {
+        mostrarEstado('Última ficha anonimizada copiada al portapapeles.', false);
+      });
     });
-    document.getElementById('btnExportar').addEventListener('click',function(){
-      const datos=obtenerRegistros();
-      const blob=new Blob([JSON.stringify(datos,null,2)],{type:'application/json'});
-      const url=URL.createObjectURL(blob);
-      const a=document.createElement('a'); a.href=url; a.download='bitacora_vial_rescate_rsssadv41.json'; a.click(); URL.revokeObjectURL(url);
-      mostrarEstado('Bitácora JSON exportada.');
+
+    document.getElementById('btnExportar').addEventListener('click', function() {
+      const datos = obtenerRegistros();
+      const blob = new Blob([JSON.stringify(datos, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'bitacora_nacional_anonimizada_soberania.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      mostrarEstado('Bitácora JSON anonimizada exportada.', false);
     });
-    document.getElementById('btnLimpiar').addEventListener('click',function(){
-      localStorage.removeItem(STORAGE_KEY); renderizar(); mostrarEstado('Bitácora local limpiada.');
+
+    document.getElementById('btnLimpiar').addEventListener('click', function() {
+      localStorage.removeItem(STORAGE_KEY);
+      renderizar();
+      mostrarEstado('Bitácora local limpiada.', false);
     });
+
     renderizar();
   </script>
 </body>
