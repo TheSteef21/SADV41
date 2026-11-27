@@ -42,6 +42,70 @@ No hay quien haga bien.">
 </style>
 <a id="t2012" href="https://thesteef21.github.io/SADV41/Cristo/">✝️ 2012 · Cristo no me soltó</a>
 <!-- TESTIMONIO-2012:FIN -->
+<!-- SADV41-LIVE-BG -->
+<style>
+  #sadv41-yt-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: -9999;
+    overflow: hidden;
+    pointer-events: none;
+    background: #000;
+  }
+  #sadv41-yt-bg iframe {
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 177.78vh;
+    height: 100vh;
+    min-width: 100vw;
+    min-height: 56.25vw;
+    transform: translate(-50%, -50%);
+    opacity: 0.28;
+    filter: contrast(1.1) brightness(0.8);
+    border: none;
+  }
+  #sadv41-audio-btn {
+    position: fixed;
+    bottom: 14px; right: 14px;
+    z-index: 9999;
+    background: rgba(10, 10, 12, 0.85);
+    color: #d4af37;
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    padding: 6px 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+  }
+</style>
+<div id="sadv41-yt-bg">
+  <iframe id="sadv41-yt-frame" src="https://www.youtube.com/embed/wQXEBSZKO0U?autoplay=1&mute=1&controls=0&loop=1&playlist=wQXEBSZKO0U&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+</div>
+<button id="sadv41-audio-btn" onclick="toggleSadv41Audio()">🔇 LIVE BG</button>
+<script>
+  var sadv41Muted = true;
+  function toggleSadv41Audio() {
+    var f = document.getElementById('sadv41-yt-frame');
+    var b = document.getElementById('sadv41-audio-btn');
+    sadv41Muted = !sadv41Muted;
+    f.contentWindow.postMessage(JSON.stringify({
+      event: 'command',
+      func: sadv41Muted ? 'mute' : 'unMute',
+      args: []
+    }), '*');
+    b.textContent = sadv41Muted ? '🔇 LIVE BG' : '🔊 LIVE BG';
+  }
+</script>
+
+<!-- SADV41 Messenger Widget -->
+<div id="sadv41-messenger-widget" style="position:fixed;bottom:20px;right:20px;z-index:99999;display:flex;flex-direction:column;align-items:center;gap:4px;">
+  <a href="https://www.messenger.com/channel/61554018924556" target="_blank" rel="noopener" title="Canal SADV41 en Facebook Messenger" style="display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#0084ff,#00c6ff);box-shadow:0 4px 16px rgba(0,132,255,0.5);transition:transform .2s,box-shadow .2s;text-decoration:none;" onmouseover="this.style.transform='scale(1.12)';this.style.boxShadow='0 6px 24px rgba(0,132,255,0.7)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 16px rgba(0,132,255,0.5)'"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 36 36" fill="white"><path d="M18 2C9.163 2 2 8.615 2 17c0 4.552 1.978 8.633 5.148 11.503L7 32l3.566-1.896C12.287 30.962 15.079 31.5 18 31.5 26.837 31.5 34 24.885 34 16.5S26.837 2 18 2zm1.78 20.078l-4.55-4.86-8.882 4.86 9.774-10.371 4.669 4.859 8.762-4.859-9.773 10.371z"/></svg></a>
+  <span style="font-size:9px;color:#fff;background:rgba(0,0,0,0.6);border-radius:4px;padding:1px 5px;font-family:sans-serif;letter-spacing:.5px;pointer-events:none;">SADV41</span>
+</div>
+  <script src="../../assets/brave-search-widget.js" defer></script>
 <!-- SADV41 Universal Draggable Floating Engine -->
 <div id="sadv41-floating-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; align-items: flex-end; font-family: system-ui, -apple-system, sans-serif; touch-action: none; user-select: none;">
   <div id="sadv41-menu" style="display: none; background: rgba(15, 15, 15, 0.92); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 10px; padding: 8px 12px; margin-bottom: 8px; backdrop-filter: blur(8px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); transition: opacity 0.2s ease;">
@@ -189,68 +253,4 @@ No hay quien haga bien.">
 })();
 </script>
 <!-- End SADV41 Universal Draggable Floating Engine -->
-<!-- SADV41-LIVE-BG -->
-<style>
-  #sadv41-yt-bg {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    z-index: -9999;
-    overflow: hidden;
-    pointer-events: none;
-    background: #000;
-  }
-  #sadv41-yt-bg iframe {
-    position: absolute;
-    top: 50%; left: 50%;
-    width: 177.78vh;
-    height: 100vh;
-    min-width: 100vw;
-    min-height: 56.25vw;
-    transform: translate(-50%, -50%);
-    opacity: 0.28;
-    filter: contrast(1.1) brightness(0.8);
-    border: none;
-  }
-  #sadv41-audio-btn {
-    position: fixed;
-    bottom: 14px; right: 14px;
-    z-index: 9999;
-    background: rgba(10, 10, 12, 0.85);
-    color: #d4af37;
-    border: 1px solid rgba(212, 175, 55, 0.45);
-    padding: 6px 10px;
-    font-family: 'Courier New', monospace;
-    font-size: 11px;
-    letter-spacing: 1px;
-    border-radius: 6px;
-    cursor: pointer;
-    backdrop-filter: blur(6px);
-  }
-</style>
-<div id="sadv41-yt-bg">
-  <iframe id="sadv41-yt-frame" src="https://www.youtube.com/embed/wQXEBSZKO0U?autoplay=1&mute=1&controls=0&loop=1&playlist=wQXEBSZKO0U&playsinline=1&rel=0&showinfo=0&modestbranding=1&enablejsapi=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-</div>
-<button id="sadv41-audio-btn" onclick="toggleSadv41Audio()">🔇 LIVE BG</button>
-<script>
-  var sadv41Muted = true;
-  function toggleSadv41Audio() {
-    var f = document.getElementById('sadv41-yt-frame');
-    var b = document.getElementById('sadv41-audio-btn');
-    sadv41Muted = !sadv41Muted;
-    f.contentWindow.postMessage(JSON.stringify({
-      event: 'command',
-      func: sadv41Muted ? 'mute' : 'unMute',
-      args: []
-    }), '*');
-    b.textContent = sadv41Muted ? '🔇 LIVE BG' : '🔊 LIVE BG';
-  }
-</script>
-
-<!-- SADV41 Messenger Widget -->
-<div id="sadv41-messenger-widget" style="position:fixed;bottom:20px;right:20px;z-index:99999;display:flex;flex-direction:column;align-items:center;gap:4px;">
-  <a href="https://www.messenger.com/channel/61554018924556" target="_blank" rel="noopener" title="Canal SADV41 en Facebook Messenger" style="display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,#0084ff,#00c6ff);box-shadow:0 4px 16px rgba(0,132,255,0.5);transition:transform .2s,box-shadow .2s;text-decoration:none;" onmouseover="this.style.transform='scale(1.12)';this.style.boxShadow='0 6px 24px rgba(0,132,255,0.7)'" onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 16px rgba(0,132,255,0.5)'"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 36 36" fill="white"><path d="M18 2C9.163 2 2 8.615 2 17c0 4.552 1.978 8.633 5.148 11.503L7 32l3.566-1.896C12.287 30.962 15.079 31.5 18 31.5 26.837 31.5 34 24.885 34 16.5S26.837 2 18 2zm1.78 20.078l-4.55-4.86-8.882 4.86 9.774-10.371 4.669 4.859 8.762-4.859-9.773 10.371z"/></svg></a>
-  <span style="font-size:9px;color:#fff;background:rgba(0,0,0,0.6);border-radius:4px;padding:1px 5px;font-family:sans-serif;letter-spacing:.5px;pointer-events:none;">SADV41</span>
-</div>
-  <script src="../../assets/brave-search-widget.js" defer></script>
 </body></html>
