@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RSSSADV41 Calibre .45 | Protección Vial y Rescate Comunitario</title>
+  <style>
+    :root {
+      --bg: #060b14;
+      --card: rgba(13, 22, 38, 0.88);
+      --border: rgba(0, 229, 255, 0.28);
+      --cyan: #00e5ff;
+      --gold: #d4af37;
+      --emerald: #00ff66;
+      --danger: #ff4d6d;
+      --text: #e6f1ff;
+      --muted: #8fa6c9;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, sans-serif; }
+    body {
+      background: radial-gradient(circle at top right, #0d1f3a 0%, var(--bg) 60%);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 18px 14px 48px;
+      line-height: 1.5;
+    }
+    .container { max-width: 920px; margin: 0 auto; }
+    header {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    }
+    .badge {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+    h1 { font-size: 1.45rem; color: var(--cyan); margin-bottom: 6px; }
+    .subtitle { color: var(--muted); font-size: 0.92rem; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    .card h2 {
+      font-size: 1rem;
+      color: var(--emerald);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .card p, .card li { font-size: 0.88rem; color: var(--text); }
+    .card ul { padding-left: 18px; display: grid; gap: 6px; }
+    .alert-box {
+      background: rgba(255, 77, 109, 0.1);
+      border: 1px solid rgba(255, 77, 109, 0.4);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 18px;
+      font-size: 0.86rem;
+    }
+    .alert-box strong { color: var(--danger); }
+    form { display: grid; gap: 12px; margin-top: 10px; }
+    .row { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+    label { display: block; font-size: 0.8rem; color: var(--cyan); margin-bottom: 4px; font-weight: 600; }
+    input, select, textarea {
+      width: 100%;
+      background: rgba(6, 11, 20, 0.9);
+      border: 1px solid rgba(0, 229, 255, 0.35);
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+    textarea { min-height: 78px; resize: vertical; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 4px; }
+    button {
+      cursor: pointer;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-weight: 700;
+      font-size: 0.86rem;
+      transition: transform 0.15s ease, opacity 0.15s ease;
+    }
+    button:active { transform: scale(0.98); }
+    .btn-primary { background: var(--cyan); color: #04101d; }
+    .btn-gold { background: var(--gold); color: #090d16; }
+    .btn-emerald { background: var(--emerald); color: #04140b; }
+    .btn-danger { background: rgba(255, 77, 109, 0.2); color: var(--danger); border: 1px solid var(--danger); }
+    .log-item {
+      background: rgba(6, 11, 20, 0.85);
+      border: 1px solid rgba(0, 255, 102, 0.25);
+      border-left: 3px solid var(--emerald);
+      border-radius: 8px;
+      padding: 12px;
+      margin-top: 10px;
+      font-size: 0.85rem;
+    }
+    .log-meta { color: var(--gold); font-size: 0.78rem; font-weight: 600; margin-bottom: 4px; }
+    .status-msg { font-size: 0.82rem; color: var(--emerald); margin-top: 8px; min-height: 18px; }
+    footer {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 0.78rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">RSSSADV41 // CALIBRE .45 - DOBLE TUTELA</div>
+      <h1>Protocolo de Seguridad Vial, Convivencia Pública y Rescate Socio-Sanitario</h1>
+      <p class="subtitle">
+        Marco preventivo para proteger el libre tránsito, al transporte comunitario y la integridad pública, garantizando al mismo tiempo la canalización digna y legal de adultos mayores en situación de dependencia o vulnerabilidad.
+      </p>
+    </header>
+
+    <div class="alert-box">
+      <strong>CLÁUSULA DE LEGALIDAD Y ANONIMIZACIÓN:</strong> Queda estrictamente prohibida toda agresión física, retención forzosa o publicación de rostros, nombres propios y placas vehiculares en redes abiertas. Toda evidencia se destina exclusivamente a autoridades competentes.
+    </div>
+
+    <section class="grid">
+      <article class="card">
+        <h2>1. Despeje Vial Preventivo</h2>
+        <ul>
+          <li>Mantener distancia segura y luces intermitentes activas ante obstrucción en calzada.</li>
+          <li>Evitar confrontación verbal o maniobras de riesgo que comprometan a peatones o conductores.</li>
+          <li>Solicitar intervención inmediata de unidades de Tránsito o Policía Nacional (104).</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>2. Respaldo al Transportista</h2>
+        <ul>
+          <li>Registrar hora, punto exacto y servicio afectado sin recurrir a cobros coercitivos.</li>
+          <li>Documentar la reincidencia de evasión de tarifa mediante bitácora comunitaria ordenada.</li>
+          <li>Presentar constancia formal ante la Justicia Comunitaria de Paz del corregimiento.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>3. Rescate Socio-Sanitario</h2>
+        <ul>
+          <li>Reconocer signos de deterioro cognitivo, adicciones o abandono en adultos mayores.</li>
+          <li>Preservar el decoro público notificando de inmediato a trabajo social y patrulla preventiva.</li>
+          <li>Solicitar evaluación integral y resguardo a través del MIDES y la red de salud pública.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="card" style="margin-bottom: 18px;">
+      <h2 style="color: var(--cyan);">Ficha Única de Campo Anonimizada (Trazabilidad en Tres Ejes)</h2>
+      <p style="color: var(--muted); margin-bottom: 10px;">
+        Genera constancias técnicas sin datos personales sensibles para presentar ante Juez de Paz, 311 o MIDES.
+      </p>
+      <form id="fichaForm">
+        <div class="row">
+          <div>
+            <label for="sector">Sector / Punto de Referencia</label>
+            <input type="text" id="sector" placeholder="Ej. Vía Principal, parada comunitaria" required>
+          </div>
+          <div>
+            <label for="tipo">Fricción Vial o Comunitaria</label>
+            <select id="tipo" required>
+              <option value="Obstrucción del flujo vehicular en calzada">Obstrucción del flujo vehicular en calzada</option>
+              <option value="Evasión recurrente de tarifa de transporte">Evasión recurrente de tarifa de transporte</option>
+              <option value="Falta sanitaria / exposición en vía pública">Falta sanitaria / exposición en vía pública</option>
+              <option value="Desorientación / riesgo por dependencia de sustancias">Desorientación / riesgo por dependencia de sustancias</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div>
+            <label for="rol">Rol Funcional del Vulnerable (Sin Nombres)</label>
+            <select id="rol" required>
+              <option value="Adulto mayor en situación de riesgo psicosocial">Adulto mayor en situación de riesgo psicosocial</option>
+              <option value="Adulto mayor con presunto consumo de sustancias">Adulto mayor con presunto consumo de sustancias</option>
+              <option value="Peatón vulnerable en calzada">Peatón vulnerable en calzada</option>
+            </select>
+          </div>
+          <div>
+            <label for="entidad">Entidad de Derivación Institucional</label>
+            <select id="entidad" required>
+              <option value="Policía Nacional (104) + Justicia Comunitaria de Paz">Policía Nacional (104) + Justicia Comunitaria de Paz</option>
+              <option value="MIDES (Atención al Adulto Mayor) + Centro de Salud">MIDES (Atención al Adulto Mayor) + Centro de Salud</option>
+              <option value="Sistema 311 + Junta Comunal">Sistema 311 + Junta Comunal</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label for="detalle">Descripción Fáctica Objetiva (Sin datos personales ni placas)</label>
+          <textarea id="detalle" placeholder="Describe únicamente hechos observables, duración del bloqueo vial y medidas preventivas adoptadas..." required></textarea>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn-primary">Registrar Ficha Local</button>
+          <button type="button" class="btn-gold" id="btnCopiar">Copiar Reporte Oficial</button>
+          <button type="button" class="btn-emerald" id="btnExportar">Exportar JSON</button>
+          <button type="button" class="btn-danger" id="btnLimpiar">Limpiar Bitácora</button>
+        </div>
+        <div class="status-msg" id="statusMsg"></div>
+      </form>
+    </section>
+
+    <section class="card" style="margin-bottom: 18px;">
+      <h2 style="color: var(--gold);">Bitácora de Incidencias Registradas (Almacenamiento Local)</h2>
+      <div id="listaRegistros">
+        <p style="color: var(--muted);">No hay registros locales almacenados aún.</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Canales Oficiales de Atención y Derivación (Panamá)</h2>
+      <ul>
+        <li><strong>104 — Policía Nacional / Operaciones del Tránsito:</strong> Despeje inmediato de vía pública y prevención de incidentes.</li>
+        <li><strong>311 — Centro de Atención Ciudadana:</strong> Reporte formal de incidencias comunitarias y seguimiento institucional.</li>
+        <li><strong>Justicia Comunitaria de Paz:</strong> Mediación, descargos de transportistas y órdenes de protección comunitaria.</li>
+        <li><strong>MIDES / Salud Pública:</strong> Evaluación socioeconómica, atención gerontológica y programas de rehabilitación.</li>
+      </ul>
+    </section>
+
+    <footer>
+      [RSSSADV41 // CALIBRE .45 - DEFENSORÍA TÉCNICA, ORDEN VIAL Y SISTEMA DE RESCATE]
+    </footer>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'rsssadv41_calibre45_vial_rescate';
+    const form = document.getElementById('fichaForm');
+    const lista = document.getElementById('listaRegistros');
+    const statusMsg = document.getElementById('statusMsg');
+
+    function obtenerRegistros() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function mostrarEstado(texto) {
+      statusMsg.textContent = texto;
+      setTimeout(() => { statusMsg.textContent = ''; }, 4000);
+    }
+
+    function renderizar() {
+      const datos = obtenerRegistros();
+      if (!datos.length) {
+        lista.innerHTML = '<p style="color: var(--muted);">No hay registros locales almacenados aún.</p>';
+        return;
+      }
+      lista.innerHTML = datos.map((item, idx) => `
+        <div class="log-item">
+          <div class="log-meta">#${datos.length - idx} | ${item.fecha} | ${item.sector}</div>
+          <div><strong>Fricción:</strong> ${item.tipo}</div>
+          <div><strong>Rol:</strong> ${item.rol}</div>
+          <div><strong>Derivación:</strong> ${item.entidad}</div>
+          <div style="margin-top:4px; color: var(--muted);">${item.detalle}</div>
+        </div>
+      `).join('');
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const nuevo = {
+        fecha: new Date().toLocaleString('es-PA'),
+        sector: document.getElementById('sector').value.trim(),
+        tipo: document.getElementById('tipo').value,
+        rol: document.getElementById('rol').value,
+        entidad: document.getElementById('entidad').value,
+        detalle: document.getElementById('detalle').value.trim()
+      };
+      const datos = obtenerRegistros();
+      datos.unshift(nuevo);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(datos));
+      form.reset();
+      renderizar();
+      mostrarEstado('Ficha registrada en bitácora local anonimizada.');
+    });
+
+    document.getElementById('btnCopiar').addEventListener('click', () => {
+      const datos = obtenerRegistros();
+      if (!datos.length) {
+        mostrarEstado('Registra primero al menos una ficha para copiar.');
+        return;
+      }
+      const r = datos[0];
+      const texto = [
+        'REPORTE PREVENTIVO RSSSADV41 // CALIBRE .45',
+        `Fecha y Hora: ${r.fecha}`,
+        `Sector: ${r.sector}`,
+        `Fricción Reportada: ${r.tipo}`,
+        `Rol Funcional: ${r.rol}`,
+        `Entidad de Derivación: ${r.entidad}`,
+        `Hechos Observables: ${r.detalle}`,
+        'Nota: Documento anonimizado conforme a protocolo de protección y convivencia ciudadana.'
+      ].join('\n');
+      navigator.clipboard.writeText(texto).then(() => {
+        mostrarEstado('Última ficha copiada al portapapeles.');
+      });
+    });
+
+    document.getElementById('btnExportar').addEventListener('click', () => {
+      const datos = obtenerRegistros();
+      const blob = new Blob([JSON.stringify(datos, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'bitacora_vial_rescate_rsssadv41.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      mostrarEstado('Bitácora JSON exportada.');
+    });
+
+    document.getElementById('btnLimpiar').addEventListener('click', () => {
+      localStorage.removeItem(STORAGE_KEY);
+      renderizar();
+      mostrarEstado('Bitácora local limpiada.');
+    });
+
+    renderizar();
+  </script>
+</body>
+</html>
