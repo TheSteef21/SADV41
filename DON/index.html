@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EL DON · Codex 149 · Orden Salomónica | SADV41</title>
+<meta name="description" content="Unificación total SADV41/DON: Pentáculo Metatrónico, 5 Familias (360 Sellos), Matriz Dual 3+1 (72 Ángeles y 72 Goéticos), Árbol Sefirot/Qlifot, Theurgia, Arte Paulina 24h y 360°, 7 Kaméas y Decodificador Filológico.">
+<style>
+  :root {
+    --bg: #05080f;
+    --bg-card: #0b111e;
+    --bg-elev: #111a2e;
+    --paper: #eae5d8;
+    --muted: #98a2b3;
+    --gold: #d4af37;
+    --gold-bright: #f7dc88;
+    --gold-soft: rgba(212, 175, 55, 0.26);
+    --gold-glow: rgba(212, 175, 55, 0.55);
+    --cyan: #00e5ff;
+    --cyan-soft: rgba(0, 229, 255, 0.16);
+    --lapis: #163254;
+    --crimson: #9e2a2b;
+    --radius: 12px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--paper);
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    padding-bottom: 95px;
+    background-image:
+      radial-gradient(circle at 15% 15%, rgba(22, 50, 84, 0.34) 0%, transparent 45%),
+      radial-gradient(circle at 85% 30%, rgba(212, 175, 55, 0.09) 0%, transparent 45%),
+      radial-gradient(circle at 50% 85%, rgba(0, 229, 255, 0.07) 0%, transparent 50%);
+  }
+
+  #starfield {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: rgba(5, 8, 15, 0.9);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--gold-soft);
+    padding: 0.7rem 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .brand { display: flex; align-items: center; gap: 0.65rem; }
+
+  .back-pill {
+    text-decoration: none;
+    color: var(--cyan);
+    border: 1px solid rgba(0, 229, 255, 0.35);
+    background: rgba(0, 229, 255, 0.08);
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    font-family: system-ui, -apple-system, sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    transition: 0.25s;
+  }
+  .back-pill:hover { background: var(--cyan); color: #05080f; font-weight: 700; }
+
+  .logo {
+    letter-spacing: 0.16em;
+    color: var(--gold);
+    font-size: 0.96rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  nav { display: flex; flex-wrap: wrap; gap: 0.38rem; }
+  nav a {
+    color: var(--paper);
+    text-decoration: none;
+    font-size: 0.8rem;
+    padding: 0.28rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    transition: all 0.25s;
+    letter-spacing: 0.04em;
+  }
+  nav a:hover, nav a.active {
+    color: var(--gold);
+    border-color: var(--gold-soft);
+    background: rgba(212, 175, 55, 0.09);
+  }
+
+  /* HERO MONUMENTAL */
+  .hero {
+    min-height: 82vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2.8rem 1.2rem 2.2rem;
+    position: relative;
+  }
+
+  .hero-badge {
+    font-family: system-ui, sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    border: 1px solid rgba(0, 229, 255, 0.35);
+    padding: 0.35rem 1rem;
+    border-radius: 999px;
+    margin-bottom: 1.1rem;
+    background: rgba(0, 229, 255, 0.05);
+  }
+
+  .hero-seal-wrap {
+    width: min(310px, 76vw);
+    height: min(310px, 76vw);
+    margin: 0.4rem auto 1.3rem;
+    position: relative;
+    filter: drop-shadow(0 0 24px rgba(212, 175, 55, 0.35));
+  }
+
+  .spin-slow { transform-origin: 200px 200px; animation: rotCW 70s linear infinite; }
+  .spin-rev { transform-origin: 200px 200px; animation: rotCCW 50s linear infinite; }
+  .paused .spin-slow, .paused .spin-rev { animation-play-state: paused; }
+
+  @keyframes rotCW { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+  @keyframes rotCCW { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5.5vw, 3.6rem);
+    color: var(--gold);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-shadow: 0 0 28px rgba(212, 175, 55, 0.38);
+    margin-bottom: 0.6rem;
+  }
+
+  .hero-sub {
+    max-width: 760px;
+    color: #d0cabd;
+    font-size: clamp(0.98rem, 2.2vw, 1.14rem);
+    margin-bottom: 1.4rem;
+  }
+
+  .hero-controls { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.7rem; }
+
+  .btn {
+    background: linear-gradient(145deg, #131d33, #0b111e);
+    color: var(--gold);
+    border: 1px solid var(--gold-soft);
+    padding: 0.52rem 1.05rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.88rem;
+    letter-spacing: 0.05em;
+    transition: all 0.25s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn:hover, .btn.active {
+    background: var(--gold);
+    color: #05080f;
+    font-weight: 700;
+    box-shadow: 0 0 18px var(--gold-glow);
+  }
+  .btn-cyan { color: var(--cyan); border-color: rgba(0, 229, 255, 0.35); }
+  .btn-cyan:hover, .btn-cyan.active {
+    background: var(--cyan);
+    color: #05080f;
+    box-shadow: 0 0 18px rgba(0, 229, 255, 0.45);
+  }
+
+  .container { max-width: 1180px; margin: 0 auto; padding: 1.5rem 1.2rem 4rem; }
+  section { margin-bottom: 4.5rem; scroll-margin-top: 76px; }
+
+  .sec-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 0.8rem;
+    border-bottom: 1px solid var(--gold-soft);
+    padding-bottom: 0.65rem;
+    margin-bottom: 1.5rem;
+  }
+  .sec-head h2 {
+    color: var(--gold);
+    font-size: clamp(1.38rem, 3.2vw, 1.98rem);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .sec-tag {
+    font-family: system-ui, sans-serif;
+    font-size: 0.74rem;
+    letter-spacing: 0.14em;
+    color: var(--cyan);
+    text-transform: uppercase;
+  }
+
+  .panel {
+    background: linear-gradient(160deg, rgba(17, 26, 46, 0.9), rgba(8, 13, 24, 0.95));
+    border: 1px solid var(--gold-soft);
+    border-radius: var(--radius);
+    padding: 1.45rem;
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
+  }
+
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1.4rem; align-items: start; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.15rem; }
+
+  .card {
+    background: linear-gradient(150deg, #0f1729, #090e1a);
+    border: 1px solid rgba(212, 175, 55, 0.22);
+    border-radius: 10px;
+    padding: 1.15rem;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    border-color: var(--gold);
+    box-shadow: 0 8px 24px rgba(212, 175, 55, 0.14);
+  }
+  .card h3, .card h4 { color: var(--gold); letter-spacing: 0.05em; margin-bottom: 0.45rem; }
+
+  .node-svg, .tree-svg { width: 100%; max-width: 440px; margin: 0 auto; display: block; }
+  .svg-node, .sephira-node, .path-line { cursor: pointer; transition: 0.25s; }
+  .svg-node:hover { filter: drop-shadow(0 0 10px var(--gold)); }
+  .sephira-node:hover circle { stroke: var(--cyan); stroke-width: 3; }
+  .path-line:hover { stroke: var(--cyan); stroke-width: 3.5; opacity: 1; }
+
+  .inspector-box {
+    background: rgba(5, 8, 15, 0.76);
+    border-left: 3px solid var(--gold);
+    padding: 1.15rem;
+    border-radius: 0 10px 10px 0;
+  }
+  .inspector-title { color: var(--gold); font-size: 1.25rem; margin-bottom: 0.35rem; }
+  .inspector-meta {
+    font-family: system-ui, sans-serif;
+    font-size: 0.76rem;
+    color: var(--cyan);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.7rem;
+  }
+
+  /* CONTROLES Y FILTROS */
+  .filter-bar { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-bottom: 1.2rem; align-items: center; }
+  .search-input, .select-input {
+    background: #080d18;
+    border: 1px solid var(--gold-soft);
+    color: var(--paper);
+    padding: 0.62rem 0.92rem;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.93rem;
+  }
+  .search-input { flex: 1 1 240px; }
+  .search-input:focus, .select-input:focus { outline: none; border-color: var(--cyan); }
+
+  /* MATRIZ DUAL 72 (ÁNGEL 3+1 VS GOETIA) */
+  .spirit-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(225px, 1fr)); gap: 0.9rem; }
+  .spirit-card {
+    background: linear-gradient(160deg, #0d1526, #080c16);
+    border: 1px solid rgba(212, 175, 55, 0.24);
+    border-radius: 10px;
+    padding: 0.95rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .spirit-card:hover {
+    border-color: var(--cyan);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 229, 255, 0.15);
+  }
+  .spirit-num { font-family: system-ui, sans-serif; font-size: 0.72rem; color: var(--cyan); letter-spacing: 0.12em; }
+  .spirit-angel { color: var(--gold-bright); font-size: 1.12rem; font-weight: 700; margin-top: 0.2rem; }
+  .spirit-hebrew { font-size: 0.82rem; color: var(--cyan); margin-bottom: 0.35rem; font-family: monospace; }
+  .spirit-demon { color: #e2a3a3; font-size: 0.88rem; margin-top: 0.3rem; border-top: 1px solid rgba(212,175,55,0.15); padding-top: 0.3rem; }
+
+  /* CUADRADO MÁGICO */
+  .magic-square { display: grid; gap: 4px; max-width: 300px; margin: 0.8rem auto; }
+  .ms-cell {
+    background: #070b14;
+    border: 1px solid var(--gold-soft);
+    color: var(--gold);
+    text-align: center;
+    padding: 0.35rem 0.15rem;
+    font-family: system-ui, sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border-radius: 4px;
+  }
+
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  th, td { padding: 0.65rem 0.8rem; border-bottom: 1px solid rgba(212, 175, 55, 0.18); text-align: left; }
+  th { color: var(--gold); background: rgba(212, 175, 55, 0.08); letter-spacing: 0.05em; }
+
+  .tag-pill {
+    display: inline-block;
+    padding: 0.22rem 0.65rem;
+    border-radius: 4px;
+    font-family: monospace;
+    font-size: 0.8rem;
+    background: rgba(0, 229, 255, 0.12);
+    color: var(--cyan);
+    border: 1px solid rgba(0, 229, 255, 0.35);
+  }
+
+  details {
+    background: #0a101d;
+    border: 1px solid var(--gold-soft);
+    border-radius: 10px;
+    padding: 0.9rem 1.1rem;
+    margin-bottom: 0.85rem;
+  }
+  summary {
+    cursor: pointer;
+    color: var(--gold);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  summary::after { content: "＋"; color: var(--cyan); font-size: 1.1rem; }
+  details[open] summary::after { content: "－"; }
+  details[open] summary { margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
+
+  /* MODALES */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(3, 5, 10, 0.88);
+    backdrop-filter: blur(8px);
+    z-index: 500;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal-card {
+    background: linear-gradient(160deg, #10192e, #070b14);
+    border: 1px solid var(--gold);
+    border-radius: 14px;
+    max-width: 490px;
+    width: 100%;
+    padding: 1.6rem;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 0 42px rgba(212, 175, 55, 0.32);
+  }
+  .modal-close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  /* WIDGET FLOTANTE ORDEN INDEPENDIENTE */
+  #oi-widget-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 400;
+    background: linear-gradient(135deg, #d4af37 0%, #9b7718 100%);
+    color: #05080f;
+    border: 2px solid #fff3c4;
+    border-radius: 999px;
+    padding: 0.78rem 1.35rem;
+    font-weight: bold;
+    font-family: inherit;
+    font-size: 0.92rem;
+    cursor: pointer;
+    box-shadow: 0 6px 26px rgba(212, 175, 55, 0.55);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform 0.2s ease;
+  }
+  #oi-widget-btn:hover { transform: scale(1.05); }
+
+  .price-tag {
+    font-size: 2.3rem;
+    color: var(--gold-bright);
+    font-weight: bold;
+    margin: 0.6rem 0;
+  }
+
+  footer {
+    text-align: center;
+    padding: 2.2rem 1rem;
+    border-top: 1px solid var(--gold-soft);
+    color: var(--muted);
+    font-size: 0.86rem;
+  }
+
+  @media (max-width: 680px) {
+    header { padding: 0.65rem 0.9rem; }
+    nav a { font-size: 0.75rem; padding: 0.22rem 0.45rem; }
+    .panel { padding: 1.05rem; }
+  }
+</style>
+</head>
+<body>
+
+<canvas id="starfield"></canvas>
+
+<header>
+  <div class="brand">
+    <a href="../index.html" class="back-pill">← SADV41</a>
+    <div class="logo">EL DON · CODEX 149</div>
+  </div>
+  <nav>
+    <a href="#familias">5 Familias (360)</a>
+    <a href="#arquitectura">3+1 SADV41</a>
+    <a href="#matriz72">72 Ángeles / Caídos</a>
+    <a href="#sefirot">Sefirot / Qlifot</a>
+    <a href="#theurgia">Theurgia</a>
+    <a href="#paulina">Paulina 24h &amp; 360°</a>
+    <a href="#planetas">7 Kaméas</a>
+    <a href="#filologia">Filología &amp; Templo</a>
+  </nav>
+</header>
+
+<!-- HERO MONUMENTAL -->
+<section class="hero" id="top">
+  <div class="hero-badge">SADV41 / DON · ARTE NOTORIA INTEGRADA · SÍNTESIS 149</div>
+
+  <div class="hero-seal-wrap" id="heroSealWrap">
+    <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+      <defs>
+        <radialGradient id="goldGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stop-color="#00e5ff" stop-opacity="0.24"/>
+          <stop offset="65%" stop-color="#d4af37" stop-opacity="0.09"/>
+          <stop offset="100%" stop-color="#05080f" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+      <circle cx="200" cy="200" r="192" fill="url(#goldGrad)" stroke="#d4af37" stroke-width="1.5"/>
+      <circle cx="200" cy="200" r="176" fill="none" stroke="#00e5ff" stroke-width="0.8" stroke-dasharray="4 4"/>
+
+      <g class="spin-slow">
+        <circle cx="200" cy="200" r="160" fill="none" stroke="#d4af37" stroke-width="1.4"/>
+        <text x="200" y="34" text-anchor="middle" fill="#d4af37" font-size="11" letter-spacing="4">IHVH · ADONAI · AGLA · ON · TETRAGRAMMATON · SHADDAI · ELOHIM</text>
+        <text x="200" y="374" text-anchor="middle" fill="#00e5ff" font-size="10" letter-spacing="3">ANAIRTUN · PRIMEUMATON · MITATRUN · ARARITHA</text>
+        <polygon points="200,42 337,121 337,279 200,358 63,279 63,121" fill="none" stroke="#d4af37" stroke-width="1.1" opacity="0.7"/>
+        <polygon points="200,358 337,121 63,121" fill="none" stroke="#d4af37" stroke-width="1.5"/>
+        <polygon points="200,42 337,279 63,279" fill="none" stroke="#d4af37" stroke-width="1.5"/>
+      </g>
+
+      <g class="spin-rev">
+        <circle cx="200" cy="200" r="108" fill="none" stroke="#00e5ff" stroke-width="1.1" opacity="0.75"/>
+        <rect x="124" y="124" width="152" height="152" fill="none" stroke="#d4af37" stroke-width="1"/>
+        <rect x="124" y="124" width="152" height="152" fill="none" stroke="#d4af37" stroke-width="1" transform="rotate(45 200 200)"/>
+      </g>
+
+      <circle cx="200" cy="200" r="54" fill="#080e1a" stroke="#d4af37" stroke-width="2"/>
+      <polygon points="200,152 213,187 250,187 220,208 231,244 200,222 169,244 180,208 150,187 187,187" fill="none" stroke="#00e5ff" stroke-width="1.5"/>
+      <circle cx="200" cy="200" r="10" fill="#d4af37"/>
+    </svg>
+  </div>
+
+  <h1>EL DON · CODEX 149</h1>
+  <p class="hero-sub">
+    Más allá de las <em>skills</em> aisladas: la facultad unificada del Quinto Sacerdote.
+    Reúne las <strong>5 familias de 72 sellos (360)</strong>, la <strong>arquitectura oculta 3 + 1 de SADV41</strong>,
+    la matriz dual de los <strong>72 Ángeles y 72 Goéticos</strong>, el <strong>Árbol Otz Chiim / Qlifot</strong>,
+    la <strong>Theurgia Goetia</strong>, el <strong>Arte Paulina (24h &amp; 360°)</strong> y los <strong>7 Kaméas Planetarios</strong>.
+  </p>
+
+  <div class="hero-controls">
+    <button class="btn" onclick="toggleSpin()">⏯ Pausar / Rotar Pentáculo</button>
+    <a href="#matriz72" class="btn btn-cyan">Explorar Matriz Dual 72 ↓</a>
+  </div>
+</section>
+
+<div class="container">
+
+  <!-- SECCIÓN 1: LAS 5 FAMILIAS (GRAFO NODAL SVG) -->
+  <section id="familias">
+    <div class="sec-head">
+      <h2>1 · El Cofre de Hierro y las 5 Familias (5 × 72 = 360)</h2>
+      <span class="sec-tag">Grafo Nodal Interactivo · El Quinto Sacerdote</span>
+    </div>
+
+    <div class="panel grid-2">
+      <div>
+        <svg class="node-svg" viewBox="0 0 420 400" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="210" cy="200" r="150" fill="none" stroke="#d4af37" stroke-width="1" stroke-dasharray="5 5" opacity="0.45"/>
+          <g stroke="#d4af37" stroke-width="1.3" opacity="0.45">
+            <line x1="210" y1="200" x2="210" y2="50"/>
+            <line x1="210" y1="200" x2="352" y2="154"/>
+            <line x1="210" y1="200" x2="298" y2="321"/>
+            <line x1="210" y1="200" x2="122" y2="321"/>
+            <line x1="210" y1="200" x2="68" y2="154"/>
+            <polygon points="210,50 352,154 298,321 122,321 68,154" fill="none" stroke="#00e5ff" stroke-width="1"/>
+          </g>
+
+          <g class="svg-node" onclick="selectFamily(0)">
+            <circle cx="210" cy="200" r="42" fill="#163254" stroke="#d4af37" stroke-width="2.5"/>
+            <text x="210" y="196" text-anchor="middle" fill="#d4af37" font-size="11" font-weight="bold">360 SELLOS</text>
+            <text x="210" y="212" text-anchor="middle" fill="#eae5d8" font-size="9">El Don Integral</text>
+          </g>
+
+          <g class="svg-node" onclick="selectFamily(1)">
+            <circle cx="210" cy="50" r="34" fill="#0d1526" stroke="#d4af37" stroke-width="2"/>
+            <text x="210" y="47" text-anchor="middle" fill="#d4af37" font-size="10" font-weight="bold">I · 72</text>
+            <text x="210" y="60" text-anchor="middle" fill="#eae5d8" font-size="8.5">Demonios Nat.</text>
+          </g>
+
+          <g class="svg-node" onclick="selectFamily(2)">
+            <circle cx="352" cy="154" r="34" fill="#0d1526" stroke="#d4af37" stroke-width="2"/>
+            <text x="352" y="151" text-anchor="middle" fill="#d4af37" font-size="10" font-weight="bold">II · 72</text>
+            <text x="352" y="164" text-anchor="middle" fill="#eae5d8" font-size="8.5">Espíritus Nat.</text>
+          </g>
+
+          <g class="svg-node" onclick="selectFamily(3)">
+            <circle cx="298" cy="321" r="34" fill="#0d1526" stroke="#d4af37" stroke-width="2"/>
+            <text x="298" y="318" text-anchor="middle" fill="#d4af37" font-size="10" font-weight="bold">III · 72</text>
+            <text x="298" y="331" text-anchor="middle" fill="#eae5d8" font-size="8.5">Ángeles Nat.</text>
+          </g>
+
+          <g class="svg-node" onclick="selectFamily(4)">
+            <circle cx="122" cy="321" r="34" fill="#0d1526" stroke="#d4af37" stroke-width="2"/>
+            <text x="122" y="318" text-anchor="middle" fill="#d4af37" font-size="10" font-weight="bold">IV · 72</text>
+            <text x="122" y="331" text-anchor="middle" fill="#eae5d8" font-size="8.5">Arcángeles</text>
+          </g>
+
+          <g class="svg-node" onclick="selectFamily(5)">
+            <circle cx="68" cy="154" r="34" fill="#0d1526" stroke="#00e5ff" stroke-width="2"/>
+            <text x="68" y="151" text-anchor="middle" fill="#00e5ff" font-size="10" font-weight="bold">V · 72</text>
+            <text x="68" y="164" text-anchor="middle" fill="#eae5d8" font-size="8.5">Shemhamphorash</text>
+          </g>
+        </svg>
+        <p style="text-align:center; font-size:0.84rem; color:var(--muted); margin-top:0.5rem;">
+          Pulsa cualquier nodo del pentágono para inspeccionar su división y las 4 series del Tetragrámaton.
+        </p>
+      </div>
+
+      <div class="inspector-box" id="familyInspector">
+        <div class="inspector-meta">Leyenda de Tzadok y los 5 Sacerdotes de Babilonia</div>
+        <div class="inspector-title">El Ciclo Completo de 360 Sellos</div>
+        <p>
+          Al concluir el grimorio dedicado a su hijo <strong>Roboam</strong>, Salomón ordenó al sumo sacerdote <strong>Tzadok</strong> ocultar el libro en un cofrecito de hierro dentro de su tumba y sellar su bracero mágico en el Mar Muerto.
+        </p>
+        <p style="margin-top:0.7rem;">
+          Cinco sacerdotes de Babilonia hallaron el cofre y dividieron el manuscrito en <strong>5 partes de 72 sellos cada una</strong>. El más joven copió en secreto los cuatro capítulos restantes y se retiró al desierto, restaurando así la totalidad de los <strong>360 sellos</strong> (24 Tronos × 3 Rayos = 72 Nombres sobre 36 talismanes de doble cara, divididos en 4 series de 9: <em>Yod</em> / Vara de Aarón, <em>He</em> / Copa de José, <em>Vau</em> / Espada de David y <em>He final</em> / Moneda de Oro).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 2: ARQUITECTURA OCULTA 3 + 1 (SÍNTESIS 149) -->
+  <section id="arquitectura">
+    <div class="sec-head">
+      <h2>2 · Arquitectura Oculta 3 + 1 · Síntesis 149 (SADV41)</h2>
+      <span class="sec-tag">Fórmula Estructural del Don</span>
+    </div>
+
+    <div class="panel">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Eje Estructural</th>
+              <th>Fórmula</th>
+              <th>Desglose en el Códice (3 + 1 = 4)</th>
+              <th>Complemento en SADV41</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1 · Nombre Angélico</strong></td>
+              <td><span class="tag-pill">3 + 1 = 4</span></td>
+              <td><strong>3</strong> consonantes raíz del Shemhamphorash + <strong>1</strong> sufijo teofórico (Yah יה o El אל).</td>
+              <td>Refleja el <strong>1</strong> como unión de las <strong>3</strong> raíces en el <strong>4</strong> completo de SADV41.</td>
+            </tr>
+            <tr>
+              <td><strong>2 · Tetragrámaton (IHVH)</strong></td>
+              <td><span class="tag-pill">4 × 18 = 72</span></td>
+              <td><strong>Serie 1 (Yod י, #1–18):</strong> Vara de Aarón · <strong>Serie 2 (He ה, #19–36):</strong> Copa de José · <strong>Serie 3 (Vau ו, #37–54):</strong> Espada de David · <strong>Serie 4 (He final ה, #55–72):</strong> Moneda de Oro.</td>
+              <td>Las <strong>3</strong> primeras letras (Yod-He-Vau = 21 / Ehyeh) + <strong>1</strong> (He final de manifestación) completan las 4 series.</td>
+            </tr>
+            <tr>
+              <td><strong>3 · Polaridad &amp; Tensión</strong></td>
+              <td><span class="tag-pill">72 + 72 + 5 = 149</span></td>
+              <td><strong>3 ejes de orden</strong> (Raíz Angélica + Nombre Divino + Virtud) frente a <strong>1 eje de inversión</strong> (Sombra Qlifótica / Tensión Goética).</td>
+              <td>1 + 4 + 9 = 14 → 1 + 4 = 5 (Pentagrama / 5 Familias = 360) y 4 - 1 = 3 (+1 oculto = <strong>4</strong>).</td>
+            </tr>
+            <tr>
+              <td><strong>4 · Las 5 Familias (360)</strong></td>
+              <td><span class="tag-pill">5 × 72 = 360</span></td>
+              <td><strong>I.</strong> 72 Demonios · <strong>II.</strong> 72 Espíritus · <strong>III.</strong> 72 Ángeles · <strong>IV.</strong> 72 Arcángeles · <strong>V.</strong> 72 Nombres Divinos (24 Tronos × 3 Rayos).</td>
+              <td>Unifica todo el ecosistema SADV41 en un solo nodo operativo de 360 grados.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 3: MATRIZ DUAL 72 (ÁNGELES SHEMHAMPHORASH + GOETIA) -->
+  <section id="matriz72">
+    <div class="sec-head">
+      <h2>3 · Matriz Dual 72 · Ángeles (3+1) vs. Goéticos</h2>
+      <span class="sec-tag" id="dualCount">Mostrando 72 de 72 Pares</span>
+    </div>
+
+    <div class="panel">
+      <div class="filter-bar">
+        <input type="text" class="search-input" id="dualSearch" placeholder="Buscar por #, Ángel (Vehuiah, Mikael...), Caído (Bael, Paimon...), raíz o rango..." oninput="renderDualMatrix()">
+        <select class="select-input" id="dualSuffixFilter" onchange="renderDualMatrix()">
+          <option value="ALL">Todos los Sufijos y Rangos (72)</option>
+          <option value="YAH">Sufijo Divino · Yah (יה)</option>
+          <option value="EL">Sufijo Divino · El (אל)</option>
+          <option value="Rey">Goetia · Reyes</option>
+          <option value="Duque">Goetia · Duques</option>
+          <option value="Príncipe">Goetia · Príncipes</option>
+          <option value="Marqués">Goetia · Marqueses</option>
+          <option value="Conde">Goetia · Condes</option>
+          <option value="Presidente">Goetia · Presidentes</option>
+        </select>
+      </div>
+      <div class="spirit-grid" id="dualGrid"></div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 4: ÁRBOL DE LA VIDA SEFIROT & ESPEJO QLIFÓTICO -->
+  <section id="sefirot">
+    <div class="sec-head">
+      <h2>4 · Árbol Otz Chiim · 10 Sefirot &amp; 22 Senderos</h2>
+      <div style="display:flex; gap:0.5rem; flex-wrap:wrap;">
+        <button class="btn active" id="btnLightTree" onclick="setTreeMode('light')">☀ Sefirot (Luz)</button>
+        <button class="btn btn-cyan" id="btnShadowTree" onclick="setTreeMode('shadow')">☾ Qlifot (Adversarios)</button>
+      </div>
+    </div>
+
+    <div class="panel grid-2">
+      <div>
+        <svg class="tree-svg" id="treeSvg" viewBox="0 0 420 560" xmlns="http://www.w3.org/2000/svg"></svg>
+        <p style="text-align:center; font-size:0.84rem; color:var(--muted); margin-top:0.4rem;">
+          Pulsa cualquier <strong>Sefirá</strong> o cualquiera de los <strong>22 Senderos (Alef–Tav)</strong> del Sefer Yetzirah.
+        </p>
+      </div>
+
+      <div class="inspector-box" id="treeInspector">
+        <div class="inspector-meta">Sefer Yetzirah &amp; Alta Clave</div>
+        <div class="inspector-title">1 · KETHER — La Corona</div>
+        <p><strong>Inteligencia:</strong> Admirable u Oculta. Es la luz que da el poder de comprensión del Primer Principio que no tiene comienzo, la Gloria Prístina.</p>
+        <p style="margin-top:0.6rem;"><strong>Coro Angélico:</strong> <em>Chaioth Ha Qadosh</em> (Inteligencias del Tetragrámaton, símbolos de Ezequiel). Imperio de Unidad y Síntesis.</p>
+        <p style="margin-top:0.6rem; color:#e09f9f;"><strong>Adversario Qlifótico:</strong> <em>Thaumiel</em> (los de Doble Cabeza, demonios de la anarquía cuyos jefes en guerra mutua son Satán y Molok).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 5: THEURGIA GOETIA -->
+  <section id="theurgia">
+    <div class="sec-head">
+      <h2>5 · Theurgia Goetia · Compás de los Vientos</h2>
+      <span class="sec-tag">4 Emperadores · 16 Fijos · 11 Errantes</span>
+    </div>
+
+    <div class="panel grid-2">
+      <div>
+        <svg class="node-svg" viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="210" cy="210" r="185" fill="none" stroke="#d4af37" stroke-width="1.2" opacity="0.5"/>
+          <circle cx="210" cy="210" r="125" fill="none" stroke="#00e5ff" stroke-width="1" stroke-dasharray="4 4" opacity="0.55"/>
+          <polygon points="210,30 232,188 390,210 232,232 210,390 188,232 30,210 188,188" fill="rgba(212,175,55,0.12)" stroke="#d4af37" stroke-width="1.4"/>
+          <polygon points="85,85 210,192 335,85 228,210 335,335 210,228 85,335 192,210" fill="none" stroke="#00e5ff" stroke-width="1" opacity="0.6"/>
+
+          <g class="svg-node" onclick="selectCompass('ESTE')">
+            <circle cx="362" cy="210" r="34" fill="#163254" stroke="#d4af37" stroke-width="2.2"/>
+            <text x="362" y="206" text-anchor="middle" fill="#d4af37" font-size="10" font-weight="bold">ESTE</text>
+            <text x="362" y="220" text-anchor="middle" fill="#eae5d8" font-size="8.5">Carnesiel</text>
+          </g>
+          <g class="svg-node" onclick="selectCompass('SUR')">
+            <circle cx="210" cy="362" r="34" fill="#163254" stroke="#d4af37" stroke-width="2.2"/>
+            <text x="210" y="358" text-anchor="middle" fill="#d4af37" font-size="10" font-weight="bold">SUR</text>
+            <text x="210" y="372" text-anchor="middle" fill="#eae5d8" font-size="8.5">Caspiel</text>
+          </g>
+          <g class="svg-node" onclick="selectCompass('OESTE')">
+            <circle cx="58" cy="210" r="34" fill="#163254" stroke="#d4af37" stroke-width="2.2"/>
+            <text x="58" y="206" text-anchor="middle" fill="#d4af37" font-size="10" font-weight="bold">OESTE</text>
+            <text x="58" y="220" text-anchor="middle" fill="#eae5d8" font-size="8.5">Amenadiel</text>
+          </g>
+          <g class="svg-node" onclick="selectCompass('NORTE')">
+            <circle cx="210" cy="58" r="34" fill="#163254" stroke="#d4af37" stroke-width="2.2"/>
+            <text x="210" y="54" text-anchor="middle" fill="#d4af37" font-size="10" font-weight="bold">NORTE</text>
+            <text x="210" y="68" text-anchor="middle" fill="#eae5d8" font-size="8.5">Demoriel</text>
+          </g>
+          <g class="svg-node" onclick="selectCompass('ERRANTES')">
+            <circle cx="210" cy="210" r="44" fill="#090e1a" stroke="#00e5ff" stroke-width="2"/>
+            <text x="210" y="206" text-anchor="middle" fill="#00e5ff" font-size="10" font-weight="bold">11 ERRANTES</text>
+            <text x="210" y="220" text-anchor="middle" fill="#eae5d8" font-size="8">Itinerantes</text>
+          </g>
+        </svg>
+      </div>
+      <div class="inspector-box" id="compassInspector"></div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 6: ARTE PAULINA (24 HORAS + 360 GRADOS ZODIACALES) -->
+  <section id="paulina">
+    <div class="sec-head">
+      <h2>6 · Arte Paulina · 24 Horas &amp; 360 Grados Zodiacales</h2>
+      <span class="sec-tag">Libro III del Lemegeton</span>
+    </div>
+
+    <div class="grid-2">
+      <div class="panel">
+        <h3 style="color:var(--gold); margin-bottom:0.8rem;">Parte I · Ángeles de las 24 Horas</h3>
+        <div class="filter-bar">
+          <select class="select-input" id="paulinaPeriod" onchange="renderPaulinaHour()">
+            <option value="DIA">12 Horas del Día (Amanecer → Ocaso)</option>
+            <option value="NOCHE">12 Horas de la Noche (Ocaso → Alba)</option>
+          </select>
+          <select class="select-input" id="paulinaHourNum" onchange="renderPaulinaHour()"></select>
+        </div>
+        <div class="inspector-box" id="paulinaHourBox"></div>
+      </div>
+
+      <div class="panel">
+        <h3 style="color:var(--gold); margin-bottom:0.8rem;">Parte II · Ángel del Signo y Grado Natal (1°–30°)</h3>
+        <div class="filter-bar">
+          <select class="select-input" id="zodiacSign" onchange="renderZodiacDegree()"></select>
+          <select class="select-input" id="zodiacDeg" onchange="renderZodiacDegree()"></select>
+        </div>
+        <div class="inspector-box" id="zodiacBox"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 7: LOS 7 SELLOS PLANETARIOS & CUADRADOS MÁGICOS -->
+  <section id="planetas">
+    <div class="sec-head">
+      <h2>7 · Clave Mayor · Sellos Planetarios y 7 Kaméas</h2>
+      <span class="sec-tag">Cuadrados Mágicos 3×3 a 9×9</span>
+    </div>
+
+    <div class="panel">
+      <div class="filter-bar" id="planetTabs"></div>
+      <div class="grid-2" id="planetContent" style="margin-top:1rem;"></div>
+    </div>
+  </section>
+
+  <!-- SECCIÓN 8: DECODIFICADOR FILOLÓGICO + TABLAS Y ARMAS DEL TEMPLO -->
+  <section id="filologia">
+    <div class="sec-head">
+      <h2>8 · Decodificador Filológico &amp; Instrumentos del Templo</h2>
+      <span class="sec-tag">Terminaciones -AL / -IH / -IM / -ON &amp; Almadel</span>
+    </div>
+
+    <div class="panel" style="margin-bottom:1.5rem;">
+      <h3 style="color:var(--gold); margin-bottom:0.5rem;">Anatomía Filológica de los Nombres (Clavícula Mayor)</h3>
+      <p style="color:var(--muted); font-size:0.9rem; margin-bottom:0.8rem;">
+        Introduce cualquier nombre sagrado o antiguo para clasificar su plano vibratorio (-AL/-EL, -IH/-IAH, -IM, -ON):
+      </p>
+      <input type="text" class="search-input" style="width:100%; margin-bottom:0.8rem;" id="philoInput" placeholder="Ej: MIKAEL, VEHUIAH, SERAPHIM, METATRON, AMON, SALOMON..." oninput="analyzeName()">
+      <div class="inspector-box" id="philoResult">
+        <strong>Resultado:</strong> Escribe un nombre arriba para decodificar su sufijo y estructura.
+      </div>
+    </div>
+
+    <div class="grid-3" style="margin-bottom:1.5rem;">
+      <div class="card">
+        <svg viewBox="0 0 200 200" width="140" height="140" style="display:block; margin:0 auto 0.7rem;">
+          <rect x="12" y="12" width="176" height="176" rx="10" fill="#070c16" stroke="#d4af37" stroke-width="1.8"/>
+          <polygon points="100,32 158,134 42,134" fill="none" stroke="#d4af37" stroke-width="1.4"/>
+          <polygon points="100,168 158,66 42,66" fill="none" stroke="#d4af37" stroke-width="1.4"/>
+          <circle cx="100" cy="100" r="16" fill="#163254" stroke="#00e5ff" stroke-width="1.5"/>
+        </svg>
+        <h4>Tabla Práctica (Paulina)</h4>
+        <p style="font-size:0.88rem;">Madera blanca fina con hexagrama central, 6 círculos planetarios en sus puntas y el 7º (Sol) en el centro.</p>
+      </div>
+
+      <div class="card">
+        <svg viewBox="0 0 200 200" width="140" height="140" style="display:block; margin:0 auto 0.7rem;">
+          <rect x="18" y="34" width="164" height="132" rx="6" fill="#070c16" stroke="#d4af37" stroke-width="2"/>
+          <circle cx="34" cy="50" r="6" fill="#00e5ff"/><circle cx="166" cy="50" r="6" fill="#00e5ff"/>
+          <circle cx="34" cy="150" r="6" fill="#00e5ff"/><circle cx="166" cy="150" r="6" fill="#00e5ff"/>
+          <polygon points="100,52 142,126 58,126" fill="none" stroke="#d4af37" stroke-width="1.4"/>
+          <polygon points="100,148 142,74 58,74" fill="none" stroke="#d4af37" stroke-width="1.4"/>
+          <polygon points="100,82 118,114 82,114" fill="none" stroke="#00e5ff" stroke-width="1.2"/>
+        </svg>
+        <h4>Tabla de Cera · Arte Almadel</h4>
+        <p style="font-size:0.88rem;">Cera virgen (6"×4"×1"), 4 orificios en esquinas, hexagrama <em>A-D-U-N-A-Y</em> y triángulo interior <em>AL · ALIUN · ADNY</em>.</p>
+      </div>
+
+      <div class="card">
+        <svg viewBox="0 0 200 200" width="140" height="140" style="display:block; margin:0 auto 0.7rem;">
+          <rect x="24" y="24" width="152" height="152" fill="none" stroke="#d4af37" stroke-width="1.2"/>
+          <rect x="34" y="34" width="132" height="132" fill="none" stroke="#d4af37" stroke-width="1"/>
+          <circle cx="100" cy="100" r="66" fill="none" stroke="#00e5ff" stroke-width="1.3"/>
+          <circle cx="100" cy="100" r="56" fill="none" stroke="#d4af37" stroke-width="1.6"/>
+          <circle cx="100" cy="100" r="46" fill="none" stroke="#d4af37" stroke-width="1"/>
+        </svg>
+        <h4>Círculo Gótico de Defensa</h4>
+        <p style="font-size:0.88rem;">Triple anillo concéntrico (9, 10 y 11 pies), doble cuadrado exterior con cuatro hornillos y nombres divinos.</p>
+      </div>
+    </div>
+
+    <details>
+      <summary>Las Cuatro Altitudes del Arte Almadel &amp; Armas Sagradas</summary>
+      <div class="table-wrap" style="margin-bottom:1rem;">
+        <table>
+          <thead>
+            <tr><th>Altitud</th><th>Cardinal · Elemento</th><th>Color</th><th>Planeta</th><th>Ángeles Principales</th><th>Oficios</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>I · Chora Orientis</strong></td><td>Este · Aire</td><td>Blanco Luminoso</td><td>Sol</td><td>Alimiel, Gabriel, Barachiel, Lebes, Helison</td><td>Fructificación y generación</td></tr>
+            <tr><td><strong>II · Occidente</strong></td><td>Oeste · Tierra</td><td>Rojo Rosado</td><td>Mercurio</td><td>Aphiriza, Genon, Geron, Armon, Gereimon</td><td>Amistad, nobles y poderosos</td></tr>
+            <tr><td><strong>III · Septentrión</strong></td><td>Norte · Agua</td><td>Negro al Verde</td><td>Saturno</td><td>Barcahiel, Gediel, Deliel, Capitiel</td><td>Ciencias naturales y sabiduría</td></tr>
+            <tr><td><strong>IV · Mediodía</strong></td><td>Sur · Fuego</td><td>Verde Esmeralda</td><td>Marte</td><td>Elifhaniasai, Gelomiros, Gedobonai, Taranava, Elomina</td><td>Protección, fortaleza y fuego</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="grid-3" style="font-size:0.88rem;">
+        <div class="card"><h4>Espada y Dagas</h4><p>Cuchillo de mango blanco (Mercurio/Marte), cuchillo negro (Saturno), cimitarra, hoz, lanza y buril consagrados en seda.</p></div>
+        <div class="card"><h4>Bracero y Cadena 365</h4><p>Horno esférico sobre tres medias lunas (Shin) con tapa sellada; cadena de 365 eslabones bajo el rigor de Saturno.</p></div>
+        <div class="card"><h4>Fórmulas LUX</h4><p>Ritual Menor del Pentagrama (Ateh, Malkuth, Ve-Geburah, Ve-Gedulah, Le-Olahm Amen) y Hexagrama (ARARITHA).</p></div>
+      </div>
+    </details>
+  </section>
+
+</div>
+
+<!-- MODAL DE PAR DUAL (ÁNGEL + SELLO GOÉTICO) -->
+<div class="modal-backdrop" id="sealModal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-card" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="document.getElementById('sealModal').classList.remove('open')">×</button>
+    <div id="modalContent"></div>
+    <button class="btn" style="margin-top:1rem;" onclick="document.getElementById('sealModal').classList.remove('open')">Cerrar Sello</button>
+  </div>
+</div>
+
+<!-- WIDGET FLOTANTE ORDEN INDEPENDIENTE ($499) -->
+<button id="oi-widget-btn" onclick="document.getElementById('oi-modal').classList.add('open')">
+  <span>✡</span> Orden Independiente
+</button>
+
+<div class="modal-backdrop" id="oi-modal" onclick="if(event.target===this)this.classList.remove('open')">
+  <div class="modal-card" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="document.getElementById('oi-modal').classList.remove('open')">×</button>
+    <div class="hero-badge" style="margin-bottom:0.5rem;">Logia y Rito · SADV41 / DON</div>
+    <h2 style="color:var(--gold); font-size:1.55rem;">Orden Independiente</h2>
+    <p style="color:#d0cabd; font-size:0.9rem; margin-top:0.4rem;">
+      Acceso íntegro al Codex 149 (360 Sellos Salomónicos, Matriz Dual 3+1, cámaras de estudio cabalístico y nodo soberano).
+    </p>
+    <div class="price-tag">$499 <span style="font-size:0.9rem; color:var(--muted); font-weight:normal;">USD · Membresía</span></div>
+    <p style="font-size:0.82rem; color:var(--cyan);">Incluye llave de acceso a los 5 Libros Restaurados y actualización continua.</p>
+    <button class="btn" style="margin-top:1rem; background:var(--gold); color:#05080f; font-weight:bold;" onclick="alert('Solicitud registrada para Orden Independiente ($499 USD). Bienvenido al Templo SADV41.')">Formar Parte · $499</button>
+  </div>
+</div>
+
+<footer>
+  SADV41 / DON — Codex 149 Unificado · Más allá de las skills · Códice de los 360 Sellos
+</footer>
+
+<script>
+// 1. FONDO ESTELAR
+(function initStars() {
+  const c = document.getElementById('starfield');
+  const ctx = c.getContext('2d');
+  let w, h, stars = [];
+  function resize() {
+    w = c.width = window.innerWidth;
+    h = c.height = window.innerHeight;
+    stars = Array.from({ length: 85 }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.4 + 0.3,
+      a: Math.random() * 0.7 + 0.15,
+      s: Math.random() * 0.015 + 0.004
+    }));
+  }
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    for (const st of stars) {
+      st.a += st.s;
+      const alpha = 0.25 + Math.abs(Math.sin(st.a)) * 0.55;
+      ctx.fillStyle = `rgba(212, 175, 55, ${alpha.toFixed(2)})`;
+      ctx.beginPath();
+      ctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
+
+function toggleSpin() {
+  document.getElementById('heroSealWrap').classList.toggle('paused');
+}
+
+// 2. LAS 5 FAMILIAS
+const familiesData = [
+  { meta: "Síntesis Total · 5 Familias × 72 Sellos", title: "El Ciclo Completo de 360 Sellos", body: "Cinco sacerdotes de Babilonia dividieron el grimorio hallado en el cofre de hierro de Salomón. El más joven copió las cuatro partes restantes y se retiró al desierto hasta restaurar el Templo de la Magia, reuniendo las 5 familias de 72 sellos." },
+  { meta: "Primera Familia · 72 Sellos en 36 Talismanes", title: "I · Los 72 Demonios de la Naturaleza", body: "Fuerzas ctónicas y elementales catalogadas en el Goetia (Lemegeton Libro I), gobernadas bajo los cuatro Reyes Cardinales: Amaymon (Este), Corson (Oeste), Ziminiar (Norte) y Goap (Sur)." },
+  { meta: "Segunda Familia · 72 Sellos en 36 Talismanes", title: "II · Los 72 Espíritus de la Naturaleza", body: "Entidades aéreas, terrestres y acuáticas de doble naturaleza (diurna benévola y nocturna rigurosa) desarrolladas en la Theurgia Goetia bajo los 4 Emperadores y 11 Príncipes Errantes." },
+  { meta: "Tercera Familia · 72 Sellos", title: "III · Los 72 Ángeles de la Naturaleza", body: "Inteligencias celestes que rigen las 24 horas del día y de la noche (Arte Paulina Parte I) y los 360 grados del Zodíaco (Parte II)." },
+  { meta: "Cuarta Familia · 72 Sellos", title: "IV · Los 72 Arcángeles Celestes", body: "Dignidades superiores de la escala sagrada (Chaioth Ha Qadosh, Aufanim, Aralim, Chasmalim, Serafim, Malachim) y príncipes de las Cuatro Altitudes del Arte Almadel." },
+  { meta: "Quinta Familia · 72 Nombres Divinos", title: "V · El Shemhamphorash Puro (24 Tronos × 3 Rayos)", body: "Sobre los 24 Tronos reposan 24 coronas con 3 rayos cada una (72 Nombres) divididos en 4 series de 9: Yod (Vara de Aarón), He (Copa de José), Vau (Espada de David) y He final (Moneda de Oro)." }
+];
+
+function selectFamily(idx) {
+  const f = familiesData[idx];
+  document.getElementById('familyInspector').innerHTML = `
+    <div class="inspector-meta">${f.meta}</div>
+    <div class="inspector-title">${f.title}</div>
+    <p>${f.body}</p>
+  `;
+}
+
+// 3. MATRIZ DUAL 72 COMPLETA (ÁNGEL 3+1 + GOETIA)
+const dual72 = [
+  [1,"Vehuiah","ו ה ו + יה (Yah)","Deus Exaltatus","Yah (יה) exalta el principio creador y la voluntad primordial.","Bael","Rey","Ba'al: usurpación del señorío supremo sobre la materia."],
+  [2,"Jeliel","י ל י + אל (El)","Deus Auxiliator","El (אל) socorre, pacifica y armoniza las fuerzas opuestas.","Agares","Duque","Agar: inercia o ruptura del movimiento armónico."],
+  [3,"Sitael","ס י ט + אל (El)","Deus Spes","El (אל) establece esperanza, nobleza y cimiento firme.","Vassago","Príncipe","Vasa: búsqueda de lo oculto fuera de la providencia."],
+  [4,"Elemiah","ע ל מ + יה (Yah)","Deus Absconditus","Yah (יה) manifiesta el poder oculto que gobierna el destino.","Samigina","Marqués","Samig: confusión entre lo vivo y lo muerto."],
+  [5,"Mahasiah","מ ה ש + יה (Yah)","Deus Salvator","Yah (יה) opera salvación, rectificación y paz superior.","Marbas","Presidente","Barbas: alteración del cuerpo y la forma."],
+  [6,"Lelahel","ל ל ה + אל (El)","Deus Laudabilis","El (אל) irradia luz loable que sana y esclarece la ciencia.","Valefor","Duque","Malephar: despojo en lugar de dádiva luminosa."],
+  [7,"Achaiah","א כ א + יה (Yah)","Deus Patiens","Yah (יה) infunde paciencia y comprensión de los secretos naturales.","Amon","Marqués","Amun: ira y ruptura de vínculos."],
+  [8,"Cahetel","כ ה ת + אל (El)","Deus Adorandus","El (אל) derrama bendición, cosecha y abundancia sagrada.","Barbatos","Duque","Barbatus: saber silvestre desconectado del altar."],
+  [9,"Haziel","ה ז י + אל (El)","Deus Misericors","El (אל) otorga misericordia divina y reconciliación.","Paimon","Rey","Pa'amon: ostentación y orgullo de corte."],
+  [10,"Aladiah","א ל ד + יה (Yah)","Deus Propitius","Yah (יה) concede gracia propicia que cura la culpa.","Buer","Presidente","Bo'er: filosofía natural sin gracia redentora."],
+  [11,"Lauviah","ל א ו + יה (Yah)","Deus Laudandus","Yah (יה) expresa gloria victoriosa y grandeza de espíritu.","Gusion","Duque","Gush: honor mundano y prestigio egoico."],
+  [12,"Hahaiah","ה ה ע + יה (Yah)","Deus Refugium","Yah (יה) es asilo del alma y revelación en sueños.","Sitri","Príncipe","Seter: exposición impúdica de lo íntimo."],
+  [13,"Iezalel","י ז ל + אל (El)","Deus Glorificatus","El (אל) sella la fidelidad, la memoria y la unión conyugal.","Beleth","Rey","Beleth: pasión desbordada que exige sometimiento."],
+  [14,"Mebahel","מ ב ה + אל (El)","Deus Conservator","El (אל) custodia la verdad, la libertad y la justicia.","Leraje","Marqués","Lera: herida que envenena la concordia."],
+  [15,"Hariel","ה ר י + אל (El)","Deus Creator","El (אל) purifica el espíritu y armoniza fe y razón.","Eligos","Duque","Elig: cálculo bélico frente a la paz."],
+  [16,"Hakamiah","ה ק מ + יה (Yah)","Deus Erector","Yah (יה) sostiene la lealtad, la dignidad y la soberanía recta.","Zepar","Duque","Tzephar: deseo estéril que frustra la descendencia."],
+  [17,"Lauviah II","ל א ו + יה (Yah)","Deus Admirabilis","Yah (יה) despierta la revelación interior y las altas ciencias.","Botis","Conde / Presidente","Botz: astucia dual que media por interés."],
+  [18,"Caliel","כ ל י + אל (El)","Deus Exauditor","El (אל) responde con justicia pronta en la adversidad.","Bathin","Duque","Bathen: desplazamiento fuera de la ley natural."],
+  [19,"Leuviah","ל ו ו + יה (Yah)","Deus Exaudiens","Yah (יה) expande la inteligencia y la memoria ancestral.","Sallos","Duque","Shalosh: seducción pasiva."],
+  [20,"Pahaliah","פ ה ל + יה (Yah)","Deus Redemptor","Yah (יה) redime el ser y eleva la vocación espiritual.","Purson","Rey","Pur: adivinación materialista."],
+  [21,"Nelchael","נ ל כ + אל (El)","Deus Solus","El (אל) prevalece como único frente al error y la calumnia.","Marax","Conde / Presidente","Morax: ciencia estelar desligada de la Fuente."],
+  [22,"Yeiayel","י י י + אל (El)","Deus Dextra","El (אל) actúa como diestra protectora en viajes y empresas.","Ipos","Conde / Príncipe","Ipos: audacia temeraria y vanagloria."],
+  [23,"Melahel","מ ל ה + אל (El)","Deus Liberans","El (אל) libera y sana mediante las aguas y las virtudes vegetales.","Aim","Duque","Ayim: incendio destructivo opuesto al agua viva."],
+  [24,"Haheuiah","ח ה ו + יה (Yah)","Deus Bonus","Yah (יה) ampara con bondad al exiliado y al perseguido.","Naberius","Marqués","Naber: elocuencia usada para encubrir."],
+  [25,"Nith-Haiah","נ ת ה + יה (Yah)","Deus Largitor","Yah (יה) imparte sabiduría mística y discernimiento espiritual.","Glasya-Labolas","Conde / Presidente","Labolas: instigación al crimen y ceguera."],
+  [26,"Haaiah","ה א א + יה (Yah)","Deus Occultus","Yah (יה) rige el orden secreto, la diplomacia y la justicia.","Bune","Duque","Bamah: culto necromántico a los sepulcros."],
+  [27,"Yeratel","י ר ת + אל (El)","Deus Propulsor","El (אל) impulsa la difusión de la luz y confunde al opresor.","Ronove","Marqués / Conde","Ron: retórica persuasiva sin verdad."],
+  [28,"Seheiah","ש א ה + יה (Yah)","Deus Sanator","Yah (יה) preserva la vida, la longevidad y la prudencia.","Berith","Duque","Berit: promesa engañosa y alquimia ilusoria."],
+  [29,"Reiyel","ר י י + אל (El)","Deus Expectatio","El (אל) libera del asedio visible e invisible.","Astaroth","Duque","Ashtoret: seducción intelectual y olvido."],
+  [30,"Omael","א ו מ + אל (El)","Deus Patiens","El (אל) multiplica la generación de vida y la paciencia.","Forneus","Marqués","Fornax: fama adquirida por artificio."],
+  [31,"Lecabel","ל כ ב + אל (El)","Deus Inspirans","El (אל) inspira claridad de cálculo, orden y resolución.","Foras","Presidente","Foras: lógica fría separada de la sabiduría."],
+  [32,"Vasariah","ו ש ר + יה (Yah)","Deus Justus","Yah (יה) templa el juicio con clemencia y palabra justa.","Asmodeus","Rey","Ashmedai: lujuria, ira y disolución del hogar."],
+  [33,"Yehuiah","י ח ו + יה (Yah)","Deus Cognitor","Yah (יה) discierne toda traición y restaura el deber.","Gaap","Príncipe / Presidente","Ga'aph: insensibilidad y traslado forzoso."],
+  [34,"Lehahiah","ל ה ח + יה (Yah)","Deus Clemens","Yah (יה) calma la cólera y establece obediencia serena.","Furfur","Conde","Furfur: tormenta, mentira y discordia."],
+  [35,"Chavakiah","כ ו ק + יה (Yah)","Deus Laetificans","Yah (יה) trae gozo, perdón familiar y concordia.","Marchosias","Marqués","Marchos: ferocidad bélica."],
+  [36,"Menadel","מ נ ד + אל (El)","Deus Adorabilis","El (אל) libera al cautivo y sostiene el trabajo digno.","Stolas","Príncipe","Stolas: contemplación nocturna meramente teórica."],
+  [37,"Aniel","א נ י + אל (El)","Deus Virtutum","El (אל) rompe las cadenas y renueva los ciclos.","Phenex","Marqués","Phoenix: melancolía poética atrapada en ciclos."],
+  [38,"Haamiah","ח ע מ + יה (Yah)","Deus Spes Omnium","Yah (יה) custodia la verdad del culto y la búsqueda de Dios.","Halphas","Conde","Halaph: acumulación de armas para guerra."],
+  [39,"Rehael","ר ה ע + אל (El)","Deus Velox","El (אל) perdona con prontitud y regenera la salud.","Malphas","Presidente","Malaph: edificación que traiciona al artífice."],
+  [40,"Ieiazel","י י ז + אל (El)","Deus Laetitia","El (אל) consuela al afligido e inspira las artes y letras.","Raum","Conde","Ra'am: ruina de ciudades y despojo."],
+  [41,"Hahahel","ה ה ה + אל (El)","Deus Trinus","El (אל) manifiesta la unidad trina y la misión sacerdotal.","Focalor","Duque","Focalor: inmersión en el abismo emocional."],
+  [42,"Mikael","מ י כ + אל (El)","Quis sicut Deus","El (אל) afirma el orden jerárquico divino (¿Quién como Dios?).","Vepar","Duque","Vepar: corrupción de las aguas y heridas."],
+  [43,"Veuliah","ו ו ל + יה (Yah)","Deus Dominator","Yah (יה) otorga libertad frente a toda tiranía.","Sabnock","Marqués","Sabnock: defensa corrompida por gusanos."],
+  [44,"Yelahiah","י ל ה + יה (Yah)","Deus Aeternus","Yah (יה) es escudo eterno del justo en las pruebas.","Shax","Marqués","Shach: privación sensorial y hurto."],
+  [45,"Sehaliah","ס א ל + יה (Yah)","Deus Motor","Yah (יה) despierta el impulso vital del humilde.","Vine","Rey / Conde","Vinea: derribo de muros y revelación hostil."],
+  [46,"Ariel","ע ר י + אל (El)","Deus Revelator","El (אל) revela los tesoros ocultos de la creación.","Bifrons","Conde","Bifrons: profanación y traslado de muertos."],
+  [47,"Asaliah","ע ש ל + יה (Yah)","Deus Judex","Yah (יה) eleva hacia la contemplación de la verdad.","Uvall","Duque","Uvall: deseo errante por el desierto."],
+  [48,"Mihael","מ י ה + אל (El)","Deus Pater","El (אל) fecunda la generación, la intuición y la paz.","Haagenti","Presidente","Haagenti: alteración artificial de sustancias."],
+  [49,"Vehuel","ו ה ו + אל (El)","Deus Magnus","El (אל) exalta la grandeza espiritual y la alabanza.","Crocell","Duque","Crocell: ilusión térmica y dispersión."],
+  [50,"Daniel","ד נ י + אל (El)","Deus Judex Misericors","El (אל) concede palabra justa y discernimiento misericordioso.","Furcas","Caballero","Furca: retórica implacable y rigor sin piedad."],
+  [51,"Hahasiah","ה ח ש + יה (Yah)","Deus Absconditus","Yah (יה) revela la medicina universal y la sabiduría oculta.","Balam","Rey","Bala'am: profecía mercenaria."],
+  [52,"Imamiah","ע מ מ + יה (Yah)","Deus Elatus","Yah (יה) vence la sombra mediante la humildad y el esfuerzo.","Alloces","Duque","Alloces: soberbia académica y ceguera."],
+  [53,"Nanael","נ נ א + אל (El)","Deus Humilians","El (אל) enseña la sabiduría silenciosa y la meditación.","Caim","Presidente","Qayin: sofisma y disputa interminable."],
+  [54,"Nithael","נ י ת + אל (El)","Deus Rex Coelestis","El (אל) estabiliza la legitimidad y la permanencia eterna.","Murmur","Duque / Conde","Murmur: evocación sombría de difuntos."],
+  [55,"Mebahiah","מ ב ה + יה (Yah)","Deus Aeternus","Yah (יה) ilumina la claridad moral y la recta conducta.","Orobas","Príncipe","Orob: ambición de cargos."],
+  [56,"Poyel","פ ו י + אל (El)","Deus Sustentans","El (אל) sostiene el cosmos con modestia y gracia.","Gremory","Duque","Gemor: codicia de tesoros y seducción."],
+  [57,"Nemamiah","נ מ מ + יה (Yah)","Deus Laudabilis","Yah (יה) dirige la estrategia luminosa y el discernimiento.","Ose","Presidente","Oseh: delirio de identidad."],
+  [58,"Yeialel","י י ל + אל (El)","Deus Exaudiens","El (אל) otorga temple, visión clara y fortaleza mental.","Amy","Presidente","Ami: intercambio del alma por conocimiento vano."],
+  [59,"Harahel","ה ר ח + אל (El)","Deus Omnisciens","El (אל) fecunda la sabiduría, la memoria y la administración.","Orias","Marqués","Ori: astrología fatalista sin libre albedrío."],
+  [60,"Mitzrael","מ צ ר + אל (El)","Deus Sublevans","El (אל) rectifica el alma y libera de la opresión interna.","Vapula","Duque","Vapul: técnica mecánica desprovista de espíritu."],
+  [61,"Umabel","ו מ ב + אל (El)","Deus Supra Omnia","El (אל) teje la afinidad, la fraternidad y la física celeste.","Zagan","Rey / Presidente","Zagan: burla y adulteración de lo puro."],
+  [62,"Iah-Hel","י ה ה + אל (El)","Deus Ens Supremum","El (אל) revela al Ser Supremo en la quietud contemplativa.","Volac","Presidente","Valac: búsqueda dispersa de tesoros ocultos."],
+  [63,"Anauel","ע נ ו + אל (El)","Deus Infinitae Bonitatis","El (אל) unifica las voluntades en bondad y cooperación.","Andras","Marqués","Andras: discordia letal y división interna."],
+  [64,"Mehiel","מ ח י + אל (El)","Deus Vivificans","El (אל) infunde el aliento vivificador y la inspiración.","Haures","Duque","Haures: destrucción ígnea de enemigos."],
+  [65,"Damabiah","ד מ ב + יה (Yah)","Deus Fons Sapientiae","Yah (יה) brota como manantial puro de sabiduría.","Andrealphus","Marqués","Andrealphus: astucia geométrica y engaño."],
+  [66,"Manakel","מ נ ק + אל (El)","Deus Pascens","El (אל) apacigua las pasiones y otorga discernimiento.","Cimejes","Marqués","Cimejes: orgullo guerrero y rigor."],
+  [67,"Eyael","א י ע + אל (El)","Deus Deliciae","El (אל) transmuta la prueba en consuelo y sabiduría sublime.","Amdusias","Duque","Amdusias: estruendo disonante sin armonía."],
+  [68,"Habuhiah","ח ב ו + יה (Yah)","Deus Largitor","Yah (יה) restaura la curación integral y la fertilidad.","Belial","Rey","Belial: rebeldía estéril y falta de fundamento."],
+  [69,"Rochel","ר א ה + אל (El)","Deus Videns Omnia","El (אל) todo lo ve y restituye lo que fue extraviado.","Decarabia","Marqués","Decarabia: ilusión óptica y extravío."],
+  [70,"Jabamiah","י ב מ + יה (Yah)","Deus Verbum","Yah (יה) regenera toda naturaleza por el Verbo creador.","Seere","Príncipe","Seere: velocidad precipitada sin maduración."],
+  [71,"Haiaiel","ה י י + אל (El)","Deus Dominus Universi","El (אל) ejerce soberanía divina, protección y discernimiento.","Dantalion","Duque","Dantalion: sugestión mental y manipulación."],
+  [72,"Mumiah","מ ו מ + יה (Yah)","Deus Finis Omnium","Yah (יה) consuma la obra en plenitud y renacer (Omega).","Andromalius","Conde","Andromalius: juicio implacable y castigo."]
+];
+
+function buildSealSVG(num, name, size = 72) {
+  let hash = num * 2654435761;
+  for (let i = 0; i < name.length; i++) hash = (hash ^ name.charCodeAt(i)) * 16777619;
+  const pts = [];
+  const count = 6 + (num % 4);
+  for (let i = 0; i < count; i++) {
+    const ang = ((hash >> (i * 3)) & 31) * (Math.PI * 2 / 32) + (i * 0.9);
+    const rad = 14 + (((hash >> (i * 2)) & 15) * 1.4);
+    pts.push([50 + Math.cos(ang) * rad, 50 + Math.sin(ang) * rad]);
+  }
+  let poly = pts.map(p => `${p[0].toFixed(1)},${p[1].toFixed(1)}`).join(' ');
+  let nodes = pts.map((p, idx) =>
+    idx % 2 === 0
+      ? `<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="2.2" fill="#00e5ff"/>`
+      : `<line x1="${(p[0]-3).toFixed(1)}" y1="${p[1].toFixed(1)}" x2="${(p[0]+3).toFixed(1)}" y2="${p[1].toFixed(1)}" stroke="#d4af37" stroke-width="1.3"/>`
+  ).join('');
+
+  return `
+    <svg viewBox="0 0 100 100" width="${size}" height="${size}" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="45" fill="#060a14" stroke="#d4af37" stroke-width="1.6"/>
+      <circle cx="50" cy="50" r="39" fill="none" stroke="#00e5ff" stroke-width="0.6" stroke-dasharray="2 2"/>
+      <polyline points="${poly}" fill="none" stroke="#d4af37" stroke-width="1.4" stroke-linejoin="round"/>
+      ${nodes}
+    </svg>
+  `;
+}
+
+function renderDualMatrix() {
+  const q = document.getElementById('dualSearch').value.toLowerCase().trim();
+  const f = document.getElementById('dualSuffixFilter').value;
+  const filtered = dual72.filter(([num, angel, heb, lat, desc, demon, rank, dDesc]) => {
+    const matchText = !q ||
+      String(num) === q ||
+      angel.toLowerCase().includes(q) ||
+      demon.toLowerCase().includes(q) ||
+      rank.toLowerCase().includes(q) ||
+      desc.toLowerCase().includes(q);
+    let matchFilter = true;
+    if (f === 'YAH') matchFilter = heb.includes('(Yah)');
+    else if (f === 'EL') matchFilter = heb.includes('(El)');
+    else if (f !== 'ALL') matchFilter = rank.includes(f);
+    return matchText && matchFilter;
+  });
+
+  document.getElementById('dualCount').textContent = `Mostrando ${filtered.length} de 72 Pares`;
+  document.getElementById('dualGrid').innerHTML = filtered.map(([num, angel, heb, lat, desc, demon, rank]) => `
+    <div class="spirit-card" onclick="openDualModal(${num})">
+      <div class="spirit-num">NODO #${String(num).padStart(2, '0')} · SERIE ${Math.ceil(num/18)}/4</div>
+      ${buildSealSVG(num, angel + demon, 68)}
+      <div class="spirit-angel">${angel}</div>
+      <div class="spirit-hebrew">${heb}</div>
+      <div class="spirit-demon">⇄ <strong>${demon}</strong> (${rank})</div>
+    </div>
+  `).join('');
+}
+
+function openDualModal(num) {
+  const [n, angel, heb, lat, desc, demon, rank, dDesc] = dual72.find(x => x[0] === num);
+  document.getElementById('modalContent').innerHTML = `
+    <div class="inspector-meta">Nodo #${String(n).padStart(2, '0')} · Arquitectura 3 + 1 · Serie ${Math.ceil(n/18)}</div>
+    <h3 style="color:var(--gold-bright); font-size:1.5rem; margin:0.2rem 0;">${angel}</h3>
+    <div style="color:var(--cyan); font-family:monospace; font-size:0.95rem;">${heb} · <em>${lat}</em></div>
+    <div style="margin:0.75rem auto;">${buildSealSVG(n, angel + demon, 155)}</div>
+    <p style="font-size:0.92rem; color:var(--paper); margin-bottom:0.75rem;">${desc}</p>
+    <div style="background:rgba(158,42,43,0.18); border:1px solid rgba(255,92,92,0.35); border-radius:8px; padding:0.7rem; font-size:0.86rem;">
+      <strong style="color:#ff9e9e;">Contraparte Goética #${n}: ${demon} (${rank})</strong><br>
+      <span style="color:#d0cabd;">${dDesc}</span>
+    </div>
+  `;
+  document.getElementById('sealModal').classList.add('open');
+}
+
+// 4. ÁRBOL DE LA VIDA (10 SEFIROT & 22 SENDEROS)
+const sephiroth = [
+  { id: 1, name: "Kether", es: "La Corona", x: 210, y: 46, intel: "Inteligencia Admirable u Oculta: luz que da comprensión del Primer Principio sin comienzo; Gloria Prístina.", choir: "Chaioth Ha Qadosh (Unidad y Síntesis)", qliphoth: "Thaumiel (Doble Cabeza · Satán y Molok)" },
+  { id: 2, name: "Chokmah", es: "Sabiduría", x: 325, y: 120, intel: "Inteligencia Iluminadora: corona de la creación, esplendor de la unidad; la Segunda Gloria.", choir: "Aufanim (Las Ruedas · Armonía y Razón)", qliphoth: "Chaigidiel (Apariencias Falsas · Belcebú)" },
+  { id: 3, name: "Binah", es: "Entendimiento", x: 95, y: 120, intel: "Inteligencia Santificadora: base de la sabiduría primordial, creador de la fe con raíces en A.M.E.N.", choir: "Aralim (Los Fuertes · Energía del Pensamiento)", qliphoth: "Satariel (Ocultadores · Lucífugo)" },
+  { id: 4, name: "Chesed", es: "Misericordia", x: 325, y: 235, intel: "Inteligencia Cohesiva o Receptiva: contiene todos los sagrados poderes y virtudes espirituales.", choir: "Chasmalim (Los Lúcidos · Beneficencia)", qliphoth: "Gamchicoth (Perturbadores · Astaroth)" },
+  { id: 5, name: "Geburah", es: "Justicia / Rigor", x: 95, y: 235, intel: "Inteligencia Radical: semeja la unidad que se une con Binah emanando de Chokmah.", choir: "Serafim (Justicia y Selección)", qliphoth: "Golab (Incendiarios · Asmodeo / Samael)" },
+  { id: 6, name: "Tiferet", es: "Belleza Suprema", x: 210, y: 295, intel: "Inteligencia Mediadora: multiplica los influjos de las emanaciones y los une en los depósitos de bendición.", choir: "Malachim (Los Reyes · Armonía Universal)", qliphoth: "Tagaririm (Disputadores · Belfegor)" },
+  { id: 7, name: "Netzach", es: "Victoria", x: 325, y: 375, intel: "Inteligencia Oculta: esplendor refulgente de las virtudes intelectuales percibidas por los ojos del intelecto.", choir: "Elohim (Progreso, Generación y Vida)", qliphoth: "Harab Serapel (Cuervos de la Muerte · Baal)" },
+  { id: 8, name: "Hod", es: "Esplendor / Orden", x: 95, y: 375, intel: "Inteligencia Absoluta o Perfecta: medio de lo primordial que emana de Gedulah.", choir: "Beni Elohim (Hijos de Dios · Orden Eterno)", qliphoth: "Samael (Los Juglares · Adramelech)" },
+  { id: 9, name: "Yesod", es: "Fundamento", x: 210, y: 445, intel: "Inteligencia Pura: purifica las emanaciones, comprueba y corrige el diseño de sus representaciones.", choir: "Querubines (Fecundidad e Ideas Verdaderas)", qliphoth: "Gamaliel (Obscenos · Lilith)" },
+  { id: 10, name: "Malkuth", es: "El Reino", x: 210, y: 522, intel: "Inteligencia Resplandeciente: ilumina los esplendores de todas las luces y hace emanar influencia desde Kether.", choir: "Ishim (Almas de los Santos · Moisés)", qliphoth: "Nehemah (Impurezas · 5 Naciones)" }
+];
+
+const paths22 = [
+  [1,2,"11° Sendero · Alef","Energía Centelleante: esencia de la cortina próxima al orden de la disposición ante el rostro de las causas."],
+  [1,3,"12° Sendero · Beth","Inteligencia de Transparencia: magnificencia llamada Chazchazit, de donde surge la visión."],
+  [1,6,"13° Sendero · Guimel","Inteligencia Unificadora: esencia de la gloria y consumación de la verdad espiritual."],
+  [2,3,"14° Sendero · Daleth","Inteligencia Iluminadora: Chasmal fundador de las ideas de santidad ocultas y fundamentales."],
+  [2,6,"15° Sendero · He","Inteligencia Constituyente: constituye la sustancia de la creación en puras tinieblas (Job 37:9)."],
+  [2,4,"16° Sendero · Vau","Inteligencia Triunfal o Eterna: placer de la gloria, paraíso preparado para los rectos."],
+  [3,6,"17° Sendero · Zain","Inteligencia Disponente: proporciona la fe a los justos revestidos del Espíritu Santo."],
+  [3,5,"18° Sendero · Cheth","Inteligencia de la Influencia: hace salir de su centro los arcanos y significados ocultos."],
+  [4,5,"19° Sendero · Teth","Inteligencia del Secreto: secreto de todas las actividades de los seres espirituales."],
+  [4,6,"20° Sendero · Iod","Inteligencia de la Voluntad: medio de preparación de todo ser creado y sabiduría primordial."],
+  [4,7,"21° Sendero · Kaf","Inteligencia de Conciliación y Recompensa: recibe la influencia divina sobre toda existencia."],
+  [5,6,"22° Sendero · Lamed","Inteligencia Fiel: incrementa las virtudes espirituales bajo cuya sombra moran los de la tierra."],
+  [5,8,"23° Sendero · Mem","Inteligencia Estable: virtud de la consistencia entre todas las numeraciones."],
+  [6,7,"24° Sendero · Nun","Inteligencia Imaginativa: da parecido a todas las similitudes en armoniosa elegancia."],
+  [6,9,"25° Sendero · Samek","Inteligencia de Prueba o Tentación: prueba primaria con la que el Creador prueba a los justos."],
+  [6,8,"26° Sendero · Ayin","Inteligencia Renovadora: renueva todas las cosas cambiantes en la creación del mundo."],
+  [7,8,"27° Sendero · Peh","Inteligencia Activa o Existente: a través de ella todo ser recibe su espíritu y moción."],
+  [7,9,"28° Sendero · Tzaddi","Inteligencia Natural: completa y perfecciona la naturaleza de todo bajo el Sol."],
+  [7,10,"29° Sendero · Qof","Inteligencia Corpórea: forma todo cuerpo en todos los mundos y su reproducción."],
+  [8,9,"30° Sendero · Resh","Inteligencia Colectiva: los astrólogos deducen de él el juicio de las estrellas."],
+  [8,10,"31° Sendero · Shin","Inteligencia Perpetua: regula los movimientos del Sol y de la Luna en sus órbitas."],
+  [9,10,"32° Sendero · Thau","Inteligencia Administrativa: dirige y asocia los movimientos de los siete planetas."]
+];
+
+let treeMode = 'light';
+function renderTree() {
+  const svg = document.getElementById('treeSvg');
+  let html = '';
+  const lineCol = treeMode === 'light' ? '#d4af37' : '#9e2a2b';
+  paths22.forEach((p, idx) => {
+    const s1 = sephiroth.find(s => s.id === p[0]);
+    const s2 = sephiroth.find(s => s.id === p[1]);
+    html += `<line class="path-line" x1="${s1.x}" y1="${s1.y}" x2="${s2.x}" y2="${s2.y}" stroke="${lineCol}" stroke-width="2" opacity="0.55" onclick="selectPath(${idx})"/>`;
+  });
+  sephiroth.forEach(s => {
+    const fill = treeMode === 'light' ? '#163254' : '#2a0d14';
+    const stroke = treeMode === 'light' ? '#d4af37' : '#ff5c5c';
+    html += `
+      <g class="sephira-node" onclick="selectSephira(${s.id})">
+        <circle cx="${s.x}" cy="${s.y}" r="25" fill="${fill}" stroke="${stroke}" stroke-width="2"/>
+        <text x="${s.x}" y="${s.y - 2}" text-anchor="middle" fill="#eae5d8" font-size="9.5" font-weight="bold">${s.name}</text>
+        <text x="${s.x}" y="${s.y + 10}" text-anchor="middle" fill="${stroke}" font-size="7.5">${s.id}</text>
+      </g>
+    `;
+  });
+  svg.innerHTML = html;
+}
+
+function setTreeMode(m) {
+  treeMode = m;
+  document.getElementById('btnLightTree').classList.toggle('active', m === 'light');
+  document.getElementById('btnShadowTree').classList.toggle('active', m === 'shadow');
+  renderTree();
+}
+
+function selectSephira(id) {
+  const s = sephiroth.find(x => x.id === id);
+  document.getElementById('treeInspector').innerHTML = `
+    <div class="inspector-meta">Sefirá ${s.id} · Otz Chiim</div>
+    <div class="inspector-title">${s.id} · ${s.name} (${s.es})</div>
+    <p><strong>Sefer Yetzirah:</strong> ${s.intel}</p>
+    <p style="margin-top:0.6rem;"><strong>Coro Angélico:</strong> ${s.choir}</p>
+    <p style="margin-top:0.6rem; color:#e09f9f;"><strong>Adversario Qlifótico:</strong> ${s.qliphoth}</p>
+  `;
+}
+
+function selectPath(idx) {
+  const p = paths22[idx];
+  document.getElementById('treeInspector').innerHTML = `
+    <div class="inspector-meta">2° Fragmento del Sefer Yetzirah</div>
+    <div class="inspector-title">${p[2]}</div>
+    <p>${p[3]}</p>
+  `;
+}
+
+// 5. THEURGIA GOETIA
+const compassData = {
+  ESTE: { meta: "Emperador Cardinal del Oriente · Theurgia Goetia", title: "CARNESIEL — Emperador del Este", body: "Gobierna sobre las torres del Oriente con 1,000 Grandes Duques, cientos de Duques menores y 500,000,000,000 de ministros.", princes: "Príncipes Fijos del Este: <strong>Pamersiel</strong>, <strong>Padiel</strong> (ESE), <strong>Camuel</strong> (SE) y <strong>Asteliel</strong> (SSE)." },
+  SUR: { meta: "Emperador Cardinal del Mediodía · Theurgia Goetia", title: "CASPIEL — Emperador del Sur", body: "Jefe Emperador que gobierna el Sur con 200 Grandes Duques, 400 Duques Menores y 12 Duques Mayores con 2,660 ministros.", princes: "Príncipes Fijos del Sur: <strong>Barmiel</strong>, <strong>Gediel</strong> (SSO), <strong>Asyriel</strong> (SO) y <strong>Maseriel</strong> (OSO)." },
+  OESTE: { meta: "Emperador Cardinal del Occidente · Theurgia Goetia", title: "AMENADIEL — Emperador del Oeste", body: "Gran Emperador del Occidente con 300 Grandes Duques y 500 Duques Menores en turnos de 2 horas desde Vadras hasta Nabroc.", princes: "Príncipes Fijos del Oeste: <strong>Malgaras</strong>, <strong>Darochiel</strong> (ONO), <strong>Usiel</strong> (NO) y <strong>Cabariel</strong>." },
+  NORTE: { meta: "Emperador Cardinal del Septentrión · Theurgia Goetia", title: "DEMORIEL — Emperador del Norte", body: "Poderoso Emperador del Norte con 400 Grandes Duques y 600 Duques Menores; 12 Duques Mayores con 1,140 sirvientes cada uno.", princes: "Príncipes Fijos del Norte: <strong>Raysiel</strong>, <strong>Symiel</strong> (NNE), <strong>Armadiel</strong> (NE) y <strong>Baruchas</strong> (ENE)." },
+  ERRANTES: { meta: "Espíritus Itinerantes de la Atmósfera · Libro II", title: "Los 11 Príncipes Errantes", body: "Suben y bajan, van y vienen sin morada fija, convocados en la esfera de cristal según las horas planetarias:", princes: "1. <strong>Geradiel</strong> · 2. <strong>Buriel</strong> · 3. <strong>Hidriel</strong> · 4. <strong>Pirichiel</strong> · 5. <strong>Emoniel</strong> · 6. <strong>Icosiel</strong> · 7. <strong>Soteriel</strong> · 8. <strong>Menadiel</strong> · 9. <strong>Macariel</strong> · 10. <strong>Vriel</strong> · 11. <strong>Bydiel</strong>." }
+};
+
+function selectCompass(dir) {
+  const c = compassData[dir];
+  document.getElementById('compassInspector').innerHTML = `
+    <div class="inspector-meta">${c.meta}</div>
+    <div class="inspector-title">${c.title}</div>
+    <p>${c.body}</p>
+    <p style="margin-top:0.75rem; color:#d4c4a0;">${c.princes}</p>
+  `;
+}
+
+// 6. ARTE PAULINA (24 HORAS + 360 GRADOS)
+const paulinaHours = {
+  DIA: [
+    [1,"Samael","—","444 sirvientes · Amenial, Charpon, Darosiel, Monasiel, Brumiel, Nestoriel, Cremas, Meresyn"],
+    [2,"Anael","Savormi","10 Duques Mayores (330 sirvientes) · Menerches, Sarchiel, Cardial, Orfila, Erosiel, Granijel"],
+    [3,"Vequaniel","Danlor","20 Duques Reyes y 200 Súbditos (1,700 sirvientes) · Ansmial, Persiel, Musriel, Zoetiel"],
+    [4,"Vachmiel","Elchin","10 Jefes Duques (155 sirvientes) · Ammiel, Larmiel, Martfiel, Ormijel, Zantiel"],
+    [5,"Sasquiel","Taelech","10 Reyes y 100 Duques Menores (5,550 sirvientes) · Damiel, Aramiel, Maroch, Serapiel"],
+    [6,"Sasmiel","Genofrim","10 Duques Jefes y 100 Menores (5,550 sirvientes) · Arnebiel, Charuch, Medusiel, Nathmiel"],
+    [7,"Banyniel","Hemarim","10 Jefes Duques (600 sirvientes) · Abrasiel, Nestori, Namiel, Sagiel, Harmiel"],
+    [8,"Osmadiel","Jenamim","10 Duques Jefes (3,100 sirvientes) · Serefiel, Amatim, Chroel, Mesiel, Lantrhes"],
+    [9,"Uvadriel","Carron","10 Duques Mayores y 100 Menores (650 jefes) · Astromiel, Charnis, Pamoreih, Damiel"],
+    [10,"Oriel","Lamathon","10 Órdenes (5,600 espíritus; 1,100 sirvientes) · Armasi, Darbiel, Penaly, Mefriel"],
+    [11,"Bariel","Manelohim","10 Órdenes (5,600 espíritus; 1,100 sirvientes) · Chadros, Turmiel, Lamiel, Menafiel"],
+    [12,"Baratiel","Nalon","12 Órdenes (3,700 espíritus; 1,100 sirvientes) · Camaron, Attrafrel, Penatiel, Demarec"]
+  ],
+  NOCHE: [
+    [1,"Sabrachon","Omalhavien","1,540 Duques en 10 órdenes (200 sirvientes) · Domaros, Ameranih, Penoles, Mordiol"],
+    [2,"Taktis","Ponazur","101,550 Espíritus en 12 grados (1,320 sirvientes) · Almodar, Famoriel, Nedros, Ormozin"],
+    [3,"Sarquamech","Guabrion","101,550 Duques en 12 grados (1,320 sirvientes) · Monarim, Chrusial, Penergoz, Amriel"],
+    [4,"Jadfischih","Ramersi","101,550 Duques en 12 grados (7,260 sirvientes) · Armesiel, Iudoruan, Manoij, Lozir"],
+    [5,"Abasdashon","Sanayfor","101,550 Duques en 12 grados (2,400 sirvientes) · Monieln, Charaby, Appinel, Demotron"],
+    [6,"Zaazenech","Thaasoron","101,550 Duques en 12 grados (2,400 sirvientes) · Amonzih, Menoyik, Pronestix, Ivamendor"],
+    [7,"Mendrion","Venador","101,550 Duques en 12 grados (1,860 sirvientes) · Numiel, Choriel, Genaritzos, Poudroz"],
+    [8,"Narcriel","Ximalim","101,550 Duques en 12 grados (30,200 sirvientes) · Cambiel, Nedarim, Astrecon, Marifiel"],
+    [9,"Pamiel","Zeschar","101,550 Duques en 12 órdenes (1,320 sirvientes) · Demnnameals, Adyapon, Chermel, Fenebross"],
+    [10,"Iasgnarim","Malcho","100 Jefes Ducales y 10 Marqueses (1,628 sirvientes) · Laphorie, Emerzielm, Nameroizod"],
+    [11,"Dardachiel","Alacho","14 Duques y 7 Marqueses (4,520 sirvientes) · Cardxiel, Ppermon, Armiel, Nastoriel"],
+    [12,"Sarandiel","Xphan","14 Duques y 7 Marqueses (420 servidores) · Adomel, Damasiel, Ambriel, Meriel"]
+  ]
+};
+
+const zodiacDegrees = [
+  { sign: "Aries", planet: "Marte", elem: "Fuego (Sur · Miguel)", angel: "Aiel", alloy: "1 oz acero marciano + 2 dracmas oro solar + 2 escrúpulos cobre venusto.", degs: ["Bial","Gosiel","Hacl","Ganiot","Zaciot","Cognel","Taphael","Hael","Calial","Lariot","Nathael","Sagnael","Gabiel","Pegiel","Gadiel","Khoel","Loviel","Hazael","Gociel","Botiel","Giel","Dachael","Habiel","Vagel","Zadiel","Chael","Tavael","Jozel","Chiel","Heriel"] },
+  { sign: "Tauro", planet: "Venus", elem: "Tierra (Oeste · Uriel)", angel: "Tual", alloy: "1 oz cobre venusto + 1 dracma estaño de Júpiter + 1 escrúpulo acero + 2 dracmas oro.", degs: ["Letiel","Niyael","Sachiel","Gueliel","Ponoel","Toxisiel","Kingael","Raphoel","Tozael","Gonhiel","Boriel","Gothiel","Dagnael","Vabiel","Zegiel","Chadiel","Thoiel","Javiel","Chaziel","Bachiel","Gotiel","Dajel","Hachael","Vabiel","Zagiel","Chadiel","Tohael","Javael","Chaziel","Sachiel"] },
+  { sign: "Géminis", planet: "Mercurio", elem: "Aire (Este · Rafael)", angel: "Giel", alloy: "1 dracma oro solar + 1 dracma plata lunar fundidos al entrar el Sol en Géminis.", degs: ["Latiel","Najael","Sachael","Gualiel","Pamel","Tzisiel","Kingael","Raphiel","Gnetiel","Bahiel","Goriel","Dathiel","Hogael","Vabiel","Zagiil","Chadiel","Tahoel","Javiel","Chazel","Bachael","Gotiel","Dajoel","Hachael","Vabiel","Zagiel","Chadiel","Tahiel","Daiel","Hoziel","Vachael"] },
+  { sign: "Cáncer", planet: "Luna", elem: "Agua (Norte · Gabriel)", angel: "Cael", alloy: "Sello lunar fabricado en día y hora de la Luna en ascendente y buen aspecto.", degs: ["Sachial","Motiel","Stiel","Sachiel","Moliel","Aniel","Sasael","Magnael","Athiel","Sobael","Makel","Ariel","Sothiel","Magnael","Abiel","Sagael","Madiel","Ahiel","Lavael","Maziel","Achiel","Sotiel","Majel","Achael","Sabiel","Magiel","Adiel","Sahiel","Moviel","Aziel"] },
+  { sign: "Leo", planet: "Sol", elem: "Fuego (Sur · Miguel)", angel: "Oln", alloy: "Oro solar puro grabado cuando Júpiter y la Luna transitan Piscis (sin volver al fuego).", degs: ["Moghiel","Satiel","Aiel","Mochiel","Satiel","Aniel","Masiel","Songael","Aphiel","Motziel","Sokel","Ariel","Mothiel","Sagel","Abiel","Magiel","Sadiel","Ahoiel","Mukel","Saziel","Achiel","Matiel","Goel","Achael","Mabiel","Sagiel","Adiel","Mahiel","Savael","Aziol"] },
+  { sign: "Virgo", planet: "Mercurio", elem: "Tierra (Oeste · Uriel)", angel: "Violl", alloy: "1 dracma cobre + 1 oz oro + 2 dracmas plata + 1 escrúpulo estaño.", degs: ["Coliel","Lonael","Nosael","Sangiel","Knaphel","Pachih","Tzakiel","Kriel","Rathiel","Tangiel","Gnabiel","Bagiel","Godiel","Dahiel","Hovael","Vaziel","Zachiel","Chotiel","Tijel","Jochiel","Cabiel","Bagiel","Gadiel","Dahiel","Hovael","Vasiel","Zachiel","Glotiel","Tazael","Jachiel"] },
+  { sign: "Libra", planet: "Venus", elem: "Aire (Este · Rafael)", angel: "Jael", alloy: "Cobre fundido y purificado en día del Sol bien aspectado en Libra.", degs: ["Ibaiach","Eagiel","Lahael","Uaviel","Saziel","Gnachiel","Gatiel","Tzajael","Rohiel","Raliel","Taval","Gnamel","Bangiel","Gophel","Datiel","Hokel","Varziel","Zethel","Chongel","Tobiel","Jagiel","Codiel","Bohel","Sael","Daziel","Hochiel","Vatiel","Zael","Chocial","Tohiel"] },
+  { sign: "Escorpio", planet: "Marte", elem: "Agua (Norte · Gabriel)", angel: "Sosol", alloy: "Acero forjado en día y hora de Marte al entrar el Sol en Escorpio.", degs: ["Toliel","Joniel","Cosiel","Laugael","Naphael","Satziel","Gnakiel","Poriel","Tzthel","Kingiel","Robiel","Tagiel","Gnadiel","Bovael","Goziel","Dachiel","Hophiel","Vajael","Zachiel","Chabiel","Tagiel","Jadiel","Chael","Baviel","Gozael","Dachael","Hatiel","Vagnael","Zachiel","Casiel"] },
+  { sign: "Sagitario", planet: "Júpiter", elem: "Fuego (Sur · Miguel)", angel: "Swaiasih", alloy: "Estaño puro grabado en hora de Júpiter y engarzado en un anillo de plata.", degs: ["Taliel","Jamael","Casiel","Laugael","Naphadel","Satziel","Gnakiel","Poriel","Tzaugel","Kabiel","Rogael","Tadiel","Gnahoel","Bovael","Goziel","Dachiel","Hophiel","Vajael","Zachiel","Chabiel","Tagiel","Jediel","Cachael","Baviel","Gozael","Dachael","Hatiel","Vadael","Zahael","Chanel"] },
+  { sign: "Capricornio", planet: "Saturno", elem: "Tierra (Oeste · Uriel)", angel: "Casuaiasih", alloy: "Oro con anillo de cobre grabado cuando Saturno está bien aspectado en su día y hora.", degs: ["Cahgel","Tomael","Jaajah","Casmel","Lamaih","Naaih","Sasaial","Gnamiel","Paaih","Taciel","Kiniel","Riaih","Tashiel","Gonamiel","Baaih","Cashiel","Damiel","Haaih","Vashiel","Zannel","Chael","Tashiel","Jmoih","Ciaih","Boshael","Gamiel","Daael","Hoshael","Vannel","Zaaih"] },
+  { sign: "Acuario", planet: "Saturno", elem: "Aire (Este · Rafael)", angel: "Ausim", alloy: "1 oz oro + 2 dracmas plomo + 1 dracma acero grabado con Saturno en Casa IX.", degs: ["Chamel","Tosael","Jaajah","Camiel","Lasshiel","Naaih","Samel","Gnashiel","Paaih","Tzaniel","Kahiel","Raaih","Tamiel","Gonastiel","Baaih","Gacniel","Ddashiel","Haaih","Amiel","Zashiel","Chael","Tamiel","Jashiel","Ciaih","Bomiel","Gashiel","Daael","Homiel","Vashiel","Zaaih"] },
+  { sign: "Piscis", planet: "Júpiter", elem: "Agua (Norte · Gabriel)", angel: "Psel", alloy: "2 dracmas de oro, acero, cobre y plata + 1 escrúpulo de estaño.", degs: ["Lachiel","Nohiel","Sanale","Gnasiel","Pangael","Tzophal","Kphial","Ratziel","Taraziel","Mathiel","Bongael","Gobiel","Dagiel","Hadiel","Vahaih","Zavael","Chaziel","Tachael","Jabael","Caoal","Bachiel","Gabael","Dagiel","Hodiel","Vahoih","Zavael","Chazael","Tachio","Jalael","Cajael"] }
+];
+
+function initPaulinaControls() {
+  const hSel = document.getElementById('paulinaHourNum');
+  for (let i = 1; i <= 12; i++) hSel.innerHTML += `<option value="${i}">Hora ${i}ª</option>`;
+  const sSel = document.getElementById('zodiacSign');
+  zodiacDegrees.forEach((z, idx) => sSel.innerHTML += `<option value="${idx}">${z.sign} (${z.planet})</option>`);
+  const dSel = document.getElementById('zodiacDeg');
+  for (let d = 1; d <= 30; d++) dSel.innerHTML += `<option value="${d - 1}">Grado ${d}°</option>`;
+  renderPaulinaHour();
+  renderZodiacDegree();
+}
+
+function renderPaulinaHour() {
+  const period = document.getElementById('paulinaPeriod').value;
+  const h = parseInt(document.getElementById('paulinaHourNum').value, 10);
+  const item = paulinaHours[period][h - 1];
+  document.getElementById('paulinaHourBox').innerHTML = `
+    <div class="inspector-meta">${period === 'DIA' ? 'Hora Diurna' : 'Hora Nocturna'} · Nombre Sagrado: ${item[2]}</div>
+    <div class="inspector-title">${item[0]}ª Hora · Ángel Regente: ${item[1]}</div>
+    <p>${item[3]}</p>
+  `;
+}
+
+function renderZodiacDegree() {
+  const sIdx = parseInt(document.getElementById('zodiacSign').value, 10);
+  const dIdx = parseInt(document.getElementById('zodiacDeg').value, 10);
+  const z = zodiacDegrees[sIdx];
+  const degAngel = z.degs[dIdx];
+  const absDeg = sIdx * 30 + dIdx + 1;
+  document.getElementById('zodiacBox').innerHTML = `
+    <div class="inspector-meta">${z.sign} · Regente ${z.planet} · Grado Solar ${absDeg}°/360°</div>
+    <div class="inspector-title">Grado ${dIdx + 1}° · Ángel Natal: ${degAngel}</div>
+    <p><strong>Ángel General del Signo:</strong> ${z.angel} · ${z.elem}</p>
+    <p style="margin-top:0.5rem;"><strong>Aleación del Medallón:</strong> ${z.alloy}</p>
+  `;
+}
+
+// 7. LOS 7 KAMÉAS PLANETARIOS
+const planetsData = [
+  { name: "Saturno", sphere: "Binah · Shabbatai", order: 3, sum: 15, square: [4,9,2, 3,5,7, 8,1,6], perfume: "Estoraque negro y adormidera · Terciopelo Negro", desc: "Nueve sellos de silencio y rigor absoluto. Incluye el cuadro 3×3 (suma 15, total 45), los cuatro Tetragramatones con Salmo 72:9, el cuadrado Sator Arepo, Satán primogénito de Saturno (Salmo 109:6) y el buey alado (Taual)." },
+  { name: "Júpiter", sphere: "Chesed · Tzedek", order: 4, sum: 34, square: [4,14,15,1, 9,7,6,12, 5,11,10,8, 16,2,3,13], perfume: "Estoraque y cámaras de mármol · Luz Azulada", desc: "Nueve sellos luminosos de nobleza y expansión. Incluye el cuadro 4×4 (suma 34), Parasial, el anciano IAHVBH (Salmo 112:3), Bariel, el sello de Jacob (Ezequiel 1:1) y los sellos contra la pobreza (Salmo 113:7)." },
+  { name: "Marte", sphere: "Geburah · Madim", order: 5, sum: 65, square: [11,24,7,20,3, 4,12,25,8,16, 17,5,13,21,9, 10,18,1,14,22, 23,6,19,2,15], perfume: "Fuego marcial · Claridad y Fortaleza", desc: "Nueve sellos de fuerza y victoria. Incluye la doble cruz marcial, el cuadro 5×5 (suma 65), el sello de Hul el Escorpión de rubíes (Salmo 91:13) como aliado de protección y Zamael." },
+  { name: "Sol", sphere: "Tiferet · Shemesh", order: 6, sum: 111, square: [6,32,3,34,35,1, 7,11,27,28,8,30, 19,14,16,15,23,24, 18,20,22,21,17,13, 25,29,10,9,26,12, 36,5,33,4,2,31], perfume: "Aroma cítrico de limón · Luz Blanca y Dorada", desc: "Nueve sellos solares del centro de Tiferet. Incluye el sello 666 con los 6 nombres de Tiferet, el rostro luminoso, los grandes ángeles solares (Daniel 4:34; Salmo 13:3) y el espíritu Och." },
+  { name: "Venus", sphere: "Netzach · Nogah", order: 7, sum: 175, square: [22,47,16,41,10,35,4, 5,23,48,17,42,11,29, 30,6,24,49,18,36,12, 13,31,7,25,43,19,37, 38,14,32,1,26,44,20, 21,39,8,33,2,27,45, 46,15,40,9,34,3,28], perfume: "Rosas, jazmines y almizcle · Verde y Oro", desc: "Nueve sellos de armonía y afecto. Incluye el cuadro 7×7 (suma 175), las cuatro doncellas venustas, el prototipo de Cantares 8:6, el hexagrama femenino de la Reina de Saba y Hagith." },
+  { name: "Mercurio", sphere: "Hod · Kokab", order: 8, sum: 260, square: [8,58,59,5,4,62,63,1, 49,15,14,52,53,11,10,56, 41,23,22,44,45,19,18,48, 32,34,35,29,28,38,39,25, 40,26,27,37,36,30,31,33, 17,47,46,20,21,43,42,24, 9,55,54,12,13,51,50,16, 64,2,3,61,60,6,7,57], perfume: "Ciencia, comunicación y espejo mágico", desc: "Nueve sellos de intelecto y apertura de límites. Incluye el cuadro 8×8 de Papus (suma 260), Miguel Arcángel y Ofiel, el Doble Don de Lenguas y los cuatro niños de las cuatro razas." },
+  { name: "Luna & Tierra", sphere: "Yesod / Malkuth · Levanah", order: 9, sum: 369, square: [37,78,29,70,21,62,13,54,5, 6,38,79,30,71,22,63,14,46, 47,7,39,80,31,72,23,55,15, 16,48,8,40,81,32,64,24,56, 57,17,49,9,41,73,33,65,25, 26,58,18,50,1,42,74,34,66, 67,27,59,10,51,2,43,75,35, 36,68,19,60,11,52,3,44,76, 77,28,69,20,61,12,53,4,45], perfume: "Plata violácea y cierre del Templo", desc: "Nueve sellos lunares (cuadro 9×9 suma 369, Pórtico Salmo 107:16, Ful, Azrael/Ichadiel) más los 9 Sellos de Cierre de la Tierra: Árbol de Salomón, Karsh Kdsh, Pequeña Llave (360) y Triángulo Abracadabra." }
+];
+
+function initPlanets() {
+  const tabs = document.getElementById('planetTabs');
+  tabs.innerHTML = planetsData.map((p, idx) =>
+    `<button class="btn ${idx === 0 ? 'active' : ''}" onclick="selectPlanet(${idx}, this)">${p.name} (${p.order}×${p.order})</button>`
+  ).join('');
+  selectPlanet(0, tabs.children[0]);
+}
+
+function selectPlanet(idx, btnEl) {
+  document.querySelectorAll('#planetTabs .btn').forEach(b => b.classList.remove('active'));
+  if (btnEl) btnEl.classList.add('active');
+  const p = planetsData[idx];
+  const cells = p.square.map(n => `<div class="ms-cell">${n}</div>`).join('');
+  document.getElementById('planetContent').innerHTML = `
+    <div>
+      <div style="text-align:center; font-size:0.82rem; color:var(--cyan); letter-spacing:0.1em; text-transform:uppercase;">
+        Cuadrado Mágico ${p.order}×${p.order} · Constante = ${p.sum}
+      </div>
+      <div class="magic-square" style="grid-template-columns: repeat(${p.order}, 1fr);">
+        ${cells}
+      </div>
+    </div>
+    <div class="inspector-box">
+      <div class="inspector-meta">${p.sphere} · ${p.perfume}</div>
+      <div class="inspector-title">Sellos de ${p.name}</div>
+      <p>${p.desc}</p>
+    </div>
+  `;
+}
+
+// 8. DECODIFICADOR FILOLÓGICO
+function analyzeName() {
+  const val = document.getElementById('philoInput').value.trim().toUpperCase();
+  const out = document.getElementById('philoResult');
+  if (!val) {
+    out.innerHTML = '<strong>Resultado:</strong> Escribe un nombre arriba para decodificar su sufijo (-AL/-EL, -IH/-IAH, -IM, -ON).';
+    return;
+  }
+  let plano = 'Raíz General / Invocación Compuesta';
+  let desc = 'Nombre operativo que requiere análisis de consonantes madres (Aleph, Mem, Shin).';
+  if (val.endsWith('AL') || val.endsWith('EL')) {
+    plano = 'Terminación -AL / -EL · Orden Angélica o Arcangélica Masculina';
+    desc = 'Esencia masculina e individual. Entidad emisora de sabiduría y estructura celeste (Ej. Mikael, Jeliel).';
+  } else if (val.endsWith('IH') || val.endsWith('IAH')) {
+    plano = 'Terminación -IH / -IAH · Orden Angélica Receptiva';
+    desc = 'Misma jerarquía celeste, pero de esencia femenina y receptiva vinculada a Yah (יה) (Ej. Vehuiah, Elemiah).';
+  } else if (val.endsWith('IM')) {
+    plano = 'Terminación -IM · Legión Colectiva';
+    desc = 'Pluralidad o hueste completa (tipo Seraphim, Cherubim, Elohim), numerosa como las arenas del mar.';
+  } else if (val.endsWith('ON')) {
+    plano = 'Terminación -ON · Entidad Titánica de Libre Albedrío';
+    desc = 'Entidad de enorme potencia y libre albedrío (Ej. Metatrón, Sandalfón, Kadmon, Amón, Salomón).';
+  }
+  out.innerHTML = `<div class="tag-pill">${plano}</div><p style="margin-top:0.6rem;"><strong>${val}:</strong> ${desc}</p>`;
+}
+
+// INICIALIZAR TODO
+renderDualMatrix();
+renderTree();
+selectCompass('ESTE');
+initPaulinaControls();
+initPlanets();
+</script>
+</body>
+</html>
