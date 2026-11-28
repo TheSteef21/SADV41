@@ -3,10 +3,12 @@
   window.__SADV41_SNAKE_LOADED__ = true;
 
   const ZK_URL = "https://newsletters.zero-knowledge.com/subscribe?ref=5CT4xeMzTD";
+  const WA_STEVEN = "https://wa.me/50769362166";
+  const IG_STEVEN = "https://instagram.com/stevendioroficial";
+  const ARTIST_URL = "https://thesteef21.github.io/SADV41/Artist";
   const SNAP_DIST = 48;
   const MIN_GAP = 8;
 
-  // Inyectar estilos del banner Zero-Knowledge y Widgets Magnéticos Nokia
   const style = document.createElement("style");
   style.textContent = `
     .sadv41-zk-bar {
@@ -99,7 +101,6 @@
   `;
   document.head.appendChild(style);
 
-  // 1. Insertar Banners Zero-Knowledge al principio y al final del body
   function createZKBar(pos) {
     const bar = document.createElement("div");
     bar.className = "sadv41-zk-bar sadv41-zk-" + pos;
@@ -113,19 +114,20 @@
   document.body.insertBefore(createZKBar("top"), document.body.firstChild);
   document.body.appendChild(createZKBar("bottom"));
 
-  // 2. Definir nodos flotantes magnéticos (recicla .msg-float existente si lo hay)
   const existingMsg = document.querySelector(".msg-float");
   if (existingMsg) existingMsg.remove();
 
+  // Nodos globales enfocados a StevenDiorOficial / SADV41
   const nodesData = [
+    { id: "w-st", label: "🎵 StevenDior", href: ARTIST_URL, bg: "#0284c7" },
+    { id: "w-ig", label: "📸 @stevendioroficial", href: IG_STEVEN, bg: "#db2777" },
+    { id: "w-wa", label: "📲 WhatsApp SADV41", href: WA_STEVEN, bg: "#16a34a" },
     { id: "w-zk", label: "🌌 ZK News", href: ZK_URL, bg: "#4f46e5" },
-    { id: "w-wa", label: "📲 WhatsApp", href: "https://wa.me/50766008407", bg: "#16a34a" },
-    { id: "w-ms", label: "💬 Messenger", href: "https://www.messenger.com/channel/61554018924556", bg: "#0084ff" },
     { id: "w-sn", label: "🐍 Nokia Snake", href: "#snake", bg: "#306230" }
   ];
 
   const widgets = [];
-  const startY = Math.max(80, window.innerHeight - 260);
+  const startY = Math.max(80, window.innerHeight - 310);
 
   nodesData.forEach((data, idx) => {
     const el = document.createElement("a");
@@ -143,9 +145,9 @@
     const state = {
       el,
       x: 14,
-      y: startY + idx * 54,
-      w: el.offsetWidth || 130,
-      h: el.offsetHeight || 42,
+      y: startY + idx * 52,
+      w: el.offsetWidth || 145,
+      h: el.offsetHeight || 40,
       moved: false
     };
     el.style.left = state.x + "px";
@@ -153,15 +155,13 @@
     widgets.push(state);
   });
 
-  // 3. Motor de física magnética en cadena + Repulsión anticolisión (nunca uno debajo de otro)
   function resolveCollisionsAndMagnetism(activeWidget) {
     const maxW = window.innerWidth;
     const maxH = window.innerHeight;
 
-    // Actualizar dimensiones reales
     widgets.forEach(w => {
-      w.w = w.el.offsetWidth || 130;
-      w.h = w.el.offsetHeight || 42;
+      w.w = w.el.offsetWidth || 145;
+      w.h = w.el.offsetHeight || 40;
       w.x = Math.max(6, Math.min(maxW - w.w - 6, w.x));
       w.y = Math.max(6, Math.min(maxH - w.h - 6, w.y));
     });
@@ -174,22 +174,15 @@
           const a = widgets[i];
           const b = widgets[j];
 
-          const axCenter = a.x + a.w / 2;
-          const ayCenter = a.y + a.h / 2;
-          const bxCenter = b.x + b.w / 2;
-          const byCenter = b.y + b.h / 2;
-
-          const dx = bxCenter - axCenter;
-          const dy = byCenter - ayCenter;
+          const dx = (b.x + b.w / 2) - (a.x + a.w / 2);
+          const dy = (b.y + b.h / 2) - (a.y + a.h / 2);
           const dist = Math.hypot(dx, dy);
 
-          // Atracción magnética estilo eslabones de Snake cuando se acercan
           const idealDist = (a.w + b.w) / 2 + MIN_GAP;
           if (dist < idealDist + SNAP_DIST && dist > 0) {
             if (pass === 0) linkedCount++;
             const target = (activeWidget === a) ? b : a;
             const anchor = (activeWidget === a) ? a : b;
-            // Encadenar horizontalmente o verticalmente sin encimar
             if (Math.abs(dx) >= Math.abs(dy)) {
               const dir = dx >= 0 ? 1 : -1;
               target.x = anchor.x + dir * (anchor.w + MIN_GAP);
@@ -201,7 +194,6 @@
             }
           }
 
-          // Anticolisión estricta (prohibido quedar uno debajo de otro)
           const overlapX = (a.w / 2 + b.w / 2 + MIN_GAP) - Math.abs((a.x + a.w / 2) - (b.x + b.w / 2));
           const overlapY = (a.h / 2 + b.h / 2 + MIN_GAP) - Math.abs((a.y + a.h / 2) - (b.y + b.h / 2));
 
@@ -215,7 +207,6 @@
             }
           }
 
-          // Mantener dentro de la pantalla
           [a, b].forEach(item => {
             item.x = Math.max(6, Math.min(maxW - item.w - 6, item.x));
             item.y = Math.max(6, Math.min(maxH - item.h - 6, item.y));
@@ -232,7 +223,6 @@
     });
   }
 
-  // Arrastrar con dedo o ratón
   widgets.forEach(w => {
     let dragging = false, offX = 0, offY = 0;
 
@@ -278,7 +268,6 @@
   window.addEventListener("resize", () => resolveCollisionsAndMagnetism(null));
   setTimeout(() => resolveCollisionsAndMagnetism(null), 150);
 
-  // 4. Mini-juego Nokia Snake integrado
   function openNokiaSnake() {
     let modal = document.getElementById("sadv41-snake-modal");
     if (!modal) {
