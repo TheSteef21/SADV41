@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DON DE SALOMÓN · Libro ReactX JS · SADV41</title>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<style>
+  :root {
+    --bg: #05070c;
+    --panel: #0d121d;
+    --panel-2: #131a29;
+    --gold: #d4af37;
+    --gold-bright: #f7e199;
+    --gold-soft: rgba(212, 175, 55, 0.28);
+    --cyan: #00e5ff;
+    --crimson: #b83b3b;
+    --text: #ece6d6;
+    --muted: #98a2b3;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: radial-gradient(circle at 50% 0%, #161d30 0%, var(--bg) 65%);
+    color: var(--text);
+    font-family: "Palatino Linotype", "Book Antiqua", Georgia, serif;
+    line-height: 1.65;
+    min-height: 100vh;
+    padding-bottom: 90px;
+  }
+  .book-header {
+    text-align: center;
+    padding: 2.6rem 1.2rem 1.8rem;
+    border-bottom: 1px solid var(--gold-soft);
+    background: linear-gradient(180deg, rgba(212,175,55,0.1) 0%, transparent 100%);
+  }
+  .kicker {
+    display: inline-block;
+    font-family: monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    color: var(--cyan);
+    border: 1px solid rgba(0,229,255,0.35);
+    padding: 0.28rem 0.9rem;
+    border-radius: 999px;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-size: clamp(1.9rem, 5vw, 3.2rem);
+    color: var(--gold-bright);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-shadow: 0 0 24px rgba(212,175,55,0.35);
+  }
+  .subtitle {
+    max-width: 780px;
+    margin: 0.65rem auto 1.2rem;
+    color: var(--muted);
+    font-size: 1rem;
+  }
+  .route-bar {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.6rem;
+  }
+  .route-pill {
+    text-decoration: none;
+    color: var(--gold);
+    border: 1px solid var(--gold-soft);
+    background: rgba(13,18,29,0.85);
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    font-family: monospace;
+    font-size: 0.76rem;
+    transition: 0.2s;
+  }
+  .route-pill:hover {
+    background: var(--gold);
+    color: var(--bg);
+    font-weight: bold;
+  }
+  .chapter-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.45rem;
+    padding: 0.75rem 1rem;
+    background: rgba(5,7,12,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--gold-soft);
+  }
+  .tab-btn {
+    background: var(--panel);
+    color: var(--text);
+    border: 1px solid var(--gold-soft);
+    padding: 0.45rem 0.9rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.85rem;
+    transition: 0.2s;
+  }
+  .tab-btn:hover, .tab-btn.active {
+    background: var(--gold);
+    color: var(--bg);
+    font-weight: bold;
+  }
+  .container {
+    max-width: 1140px;
+    margin: 1.8rem auto;
+    padding: 0 1rem;
+  }
+  .card {
+    background: linear-gradient(165deg, rgba(19,26,41,0.94), rgba(10,14,23,0.98));
+    border: 1px solid var(--gold-soft);
+    border-radius: 14px;
+    padding: 1.4rem;
+    margin-bottom: 1.4rem;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.45);
+  }
+  .card h2 {
+    color: var(--gold);
+    font-size: 1.35rem;
+    margin-bottom: 0.8rem;
+    border-bottom: 1px solid var(--gold-soft);
+    padding-bottom: 0.4rem;
+  }
+  .grid-2 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+    gap: 1.4rem;
+    align-items: start;
+  }
+  .grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+  .subcard {
+    background: var(--panel);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 10px;
+    padding: 1rem;
+  }
+  .subcard h3 { color: var(--gold-bright); margin-bottom: 0.35rem; font-size: 1.05rem; }
+  .inspector {
+    background: rgba(5,7,12,0.8);
+    border-left: 3px solid var(--gold);
+    padding: 1rem;
+    border-radius: 0 10px 10px 0;
+  }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-bottom: 1rem;
+  }
+  input, select, button.action {
+    padding: 0.65rem 0.9rem;
+    border-radius: 8px;
+    border: 1px solid var(--gold-soft);
+    background: #080b12;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 0.92rem;
+  }
+  input { flex: 1 1 220px; }
+  button.action {
+    background: var(--gold);
+    color: var(--bg);
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+  }
+  button.action:hover { background: var(--gold-bright); }
+  .table-wrap {
+    overflow-x: auto;
+    max-height: 460px;
+    border: 1px solid var(--gold-soft);
+    border-radius: 10px;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  th, td { padding: 0.6rem 0.75rem; border-bottom: 1px solid rgba(212,175,55,0.16); text-align: left; }
+  th { position: sticky; top: 0; background: #19150b; color: var(--gold-bright); }
+  .node-g { cursor: pointer; }
+  .node-g:hover circle { stroke: var(--cyan); stroke-width: 3; }
+  .path-l { cursor: pointer; }
+  .path-l:hover { stroke: var(--cyan); stroke-width: 3.5; opacity: 1; }
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.84rem;
+    padding: 2rem 1rem;
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script type="text/babel">
+const { useState } = React;
+
+const SEFIROTH = [
+  { id: 1, name: "Kether", es: "Corona", x: 210, y: 45, pilar: "Central", desc: "Origen sin forma · Ehyeh · Metatrón", qlifot: "Thaumiel (Satán y Molok)" },
+  { id: 2, name: "Chokmah", es: "Sabiduría", x: 325, y: 118, pilar: "Derecho", desc: "Impulso activo · Yah · Raziel", qlifot: "Chaigidiel (Belcebú)" },
+  { id: 3, name: "Binah", es: "Entendimiento", x: 95, y: 118, pilar: "Izquierdo", desc: "Matriz y límite · Elohim · Tzaphkiel", qlifot: "Satariel (Lucífugo)" },
+  { id: 4, name: "Chesed", es: "Misericordia", x: 325, y: 230, pilar: "Derecho", desc: "Expansión y gracia · El · Tzadkiel", qlifot: "Gamchicoth (Astaroth)" },
+  { id: 5, name: "Geburah", es: "Rigor", x: 95, y: 230, pilar: "Izquierdo", desc: "Corte y juicio · Elohim Gibor · Khamael", qlifot: "Golab (Asmodeo)" },
+  { id: 6, name: "Tiphareth", es: "Belleza", x: 210, y: 290, pilar: "Central", desc: "Centro solar y mediación · Eloah Va-Daath · Rafael/Miguel", qlifot: "Tagaririm (Belfegor)" },
+  { id: 7, name: "Netzach", es: "Victoria", x: 325, y: 370, pilar: "Derecho", desc: "Fuerza vital · YHVH Tzabaoth · Haniel", qlifot: "Harab Serapel (Baal)" },
+  { id: 8, name: "Hod", es: "Esplendor", x: 95, y: 370, pilar: "Izquierdo", desc: "Forma mental y orden · Elohim Tzabaoth · Mikael", qlifot: "Samael (Adramelech)" },
+  { id: 9, name: "Yesod", es: "Fundamento", x: 210, y: 440, pilar: "Central", desc: "Puente astral · Shaddai El Chai · Gabriel", qlifot: "Gamaliel (Lilith)" },
+  { id: 10, name: "Malkuth", es: "Reino", x: 210, y: 515, pilar: "Central", desc: "Manifestación material · Adonai Ha-Aretz · Sandalfón", qlifot: "Nehemah" }
+];
+
+const SENDEROS = [
+  [1,2,"11 Aleph"],[1,3,"12 Beth"],[1,6,"13 Gimel"],[2,3,"14 Daleth"],[2,6,"15 He"],[2,4,"16 Vav"],
+  [3,6,"17 Zayin"],[3,5,"18 Cheth"],[4,5,"19 Teth"],[4,6,"20 Yod"],[4,7,"21 Kaph"],[5,6,"22 Lamed"],
+  [5,8,"23 Mem"],[6,7,"24 Nun"],[6,9,"25 Samekh"],[6,8,"26 Ayin"],[7,8,"27 Pe"],[7,9,"28 Tzadi"],
+  [7,10,"29 Qoph"],[8,9,"30 Resh"],[8,10,"31 Shin"],[9,10,"32 Tav"]
+];
+
+const CODEX_72 = [
+  ["Vehuiah","Yah","Voluntad primordial","Bael","Rey"],
+  ["Jeliel","El","Armonía y socorro","Agares","Duque"],
+  ["Sitael","El","Cimiento y esperanza","Vassago","Príncipe"],
+  ["Elemiah","Yah","Poder oculto","Samigina","Marqués"],
+  ["Mahasiah","Yah","Rectificación y paz","Marbas","Presidente"],
+  ["Lelahel","El","Luz y ciencia","Valefor","Duque"],
+  ["Achaiah","Yah","Paciencia y naturaleza","Amon","Marqués"],
+  ["Cahetel","El","Bendición y abundancia","Barbatos","Duque"],
+  ["Haziel","El","Misericordia","Paimon","Rey"],
+  ["Aladiah","Yah","Gracia propicia","Buer","Presidente"],
+  ["Lauviah","Yah","Victoria espiritual","Gusion","Duque"],
+  ["Hahaiah","Yah","Refugio y revelación","Sitri","Príncipe"],
+  ["Iezalel","El","Fidelidad y unión","Beleth","Rey"],
+  ["Mebahel","El","Verdad y justicia","Leraje","Marqués"],
+  ["Hariel","El","Purificación","Eligos","Duque"],
+  ["Hakamiah","Yah","Lealtad y soberanía","Zepar","Duque"],
+  ["Lauviah II","Yah","Alta revelación","Botis","Conde"],
+  ["Caliel","El","Justicia pronta","Bathin","Duque"],
+  ["Leuviah","Yah","Memoria y mente","Sallos","Duque"],
+  ["Pahaliah","Yah","Redención","Purson","Rey"],
+  ["Nelchael","El","Prevalencia","Marax","Conde"],
+  ["Yeiayel","El","Diestra protectora","Ipos","Conde"],
+  ["Melahel","El","Sanación por aguas","Aim","Duque"],
+  ["Haheuiah","Yah","Amparo","Naberius","Marqués"],
+  ["Nith-Haiah","Yah","Sabiduría mística","Glasya-Labolas","Conde"],
+  ["Haaiah","Yah","Orden y diplomacia","Bune","Duque"],
+  ["Yeratel","El","Difusión de luz","Ronove","Marqués"],
+  ["Seheiah","Yah","Preservación y prudencia","Berith","Duque"],
+  ["Reiyel","El","Liberación de asedio","Astaroth","Duque"],
+  ["Omael","El","Generación de vida","Forneus","Marqués"],
+  ["Lecabel","El","Claridad de cálculo","Foras","Presidente"],
+  ["Vasariah","Yah","Clemencia en juicio","Asmodeus","Rey"],
+  ["Yehuiah","Yah","Discernimiento","Gaap","Príncipe"],
+  ["Lehahiah","Yah","Serenidad","Furfur","Conde"],
+  ["Chavakiah","Yah","Concordia familiar","Marchosias","Marqués"],
+  ["Menadel","El","Trabajo digno","Stolas","Príncipe"],
+  ["Aniel","El","Ruptura de cadenas","Phenex","Marqués"],
+  ["Haamiah","Yah","Verdad del culto","Halphas","Conde"],
+  ["Rehael","El","Regeneración","Malphas","Presidente"],
+  ["Ieiazel","El","Consuelo y letras","Raum","Conde"],
+  ["Hahahel","El","Unidad trina","Focalor","Duque"],
+  ["Mikael","El","Orden jerárquico","Vepar","Duque"],
+  ["Veuliah","Yah","Libertad","Sabnock","Marqués"],
+  ["Yelahiah","Yah","Escudo eterno","Shax","Marqués"],
+  ["Sehaliah","Yah","Impulso vital","Vine","Rey"],
+  ["Ariel","El","Tesoros ocultos","Bifrons","Conde"],
+  ["Asaliah","Yah","Contemplación","Uvall","Duque"],
+  ["Mihael","El","Fecundidad y paz","Haagenti","Presidente"],
+  ["Vehuel","El","Grandeza espiritual","Crocell","Duque"],
+  ["Daniel","El","Palabra justa","Furcas","Caballero"],
+  ["Hahasiah","Yah","Medicina universal","Balam","Rey"],
+  ["Imamiah","Yah","Humildad","Alloces","Duque"],
+  ["Nanael","El","Sabiduría silenciosa","Caim","Presidente"],
+  ["Nithael","El","Legitimidad eterna","Murmur","Duque"],
+  ["Mebahiah","Yah","Claridad moral","Orobas","Príncipe"],
+  ["Poyel","El","Sostén del cosmos","Gremory","Duque"],
+  ["Nemamiah","Yah","Estrategia luminosa","Ose","Presidente"],
+  ["Yeialel","El","Temple mental","Amy","Presidente"],
+  ["Harahel","El","Administración y memoria","Orias","Marqués"],
+  ["Mitzrael","El","Rectificación del alma","Vapula","Duque"],
+  ["Umabel","El","Afinidad y fraternidad","Zagan","Rey"],
+  ["Iah-Hel","El","Quietud contemplativa","Volac","Presidente"],
+  ["Anauel","El","Unidad de voluntades","Andras","Marqués"],
+  ["Mehiel","El","Aliento vivificador","Haures","Duque"],
+  ["Damabiah","Yah","Manantial de sabiduría","Andrealphus","Marqués"],
+  ["Manakel","El","Calma de pasiones","Cimejes","Marqués"],
+  ["Eyael","El","Transmutación","Amdusias","Duque"],
+  ["Habuhiah","Yah","Curación integral","Belial","Rey"],
+  ["Rochel","El","Restitución","Decarabia","Marqués"],
+  ["Jabamiah","Yah","Regeneración por Verbo","Seere","Príncipe"],
+  ["Haiaiel","El","Soberanía y defensa","Dantalion","Duque"],
+  ["Mumiah","Yah","Consumación y renacer","Andromalius","Conde"]
+];
+
+function diagnosticarSufijo(raw) {
+  const v = raw.trim().toUpperCase();
+  if (!v) return "Escribe un nombre para diagnosticar su sufijo (-AL/-EL, -IH/-AH, -IM, -ON).";
+  if (v.endsWith("AL") || v.endsWith("EL")) return `${v} → -AL / -EL: Orden angélica masculina individual (oficio único y línea de mando).`;
+  if (v.endsWith("IH") || v.endsWith("IAH") || v.endsWith("AH")) return `${v} → -IH / -AH: Esencia angélica receptiva / matriz que sostiene espacio.`;
+  if (v.endsWith("IM")) return `${v} → -IM: Legión colectiva (plural hebreo; coro con función, nunca individuo).`;
+  if (v.endsWith("ON")) return `${v} → -ON: Entidad titánica de libre albedrío (eje singular soberano, nunca coro).`;
+  return `${v} → Sin sufijo clasificado (-AL/-EL, -IH/-AH, -IM, -ON): revisa la terminación antes de ubicar en el Árbol.`;
+}
+
+function App() {
+  const [cap, setCap] = useState("todo");
+  const [modoArbol, setModoArbol] = useState("luz");
+  const [seleccion, setSeleccion] = useState(SEFIROTH[5]);
+  const [senderoSel, setSenderoSel] = useState(null);
+  const [nombreInput, setNombreInput] = useState("Mikael");
+  const [filtro72, setFiltro72] = useState("");
+  const [sufijo72, setSufijo72] = useState("ALL");
+
+  const mostrar = (id) => cap === "todo" || cap === id;
+
+  const filasFiltradas = CODEX_72.filter((row, idx) => {
+    const num = idx + 1;
+    const serie = `Serie ${Math.floor(idx / 18) + 1}`;
+    if (sufijo72 !== "ALL" && row[1] !== sufijo72) return false;
+    if (filtro72.trim()) {
+      const q = filtro72.toLowerCase();
+      return `${num} ${row.join(" ")} ${serie}`.toLowerCase().includes(q);
+    }
+    return true;
+  });
+
+  return (
+    <>
+      <header className="book-header">
+        <div className="kicker">ReactX JS · Codex 149 (3+1) · 5×72 = 360 · SADV41</div>
+        <h1>Don de Salomón</h1>
+        <p className="subtitle">
+          Libro unificado de arquitectura, geometría sagrada y filología salomónica. Primero clasifica el sufijo, luego ubica en el Árbol, luego lee la función.
+        </p>
+        <div className="route-bar">
+          <a className="route-pill" href="../../AMERICA/MAZ%C3%93NICA/#matriz72">/AMERICA/MAZÓNICA/#matriz72</a>
+          <a className="route-pill" href="../../DON_SALOMONICO/">/DON_SALOMONICO/</a>
+          <a className="route-pill" href="../../DON/">/DON/</a>
+        </div>
+      </header>
+
+      <nav className="chapter-nav">
+        {[
+          ["todo", "Libro Completo"],
+          ["cap1", "I. Arquitectura 3+1"],
+          ["cap2", "II. Árbol & Senderos"],
+          ["cap3", "III. Filología"],
+          ["cap4", "IV. Matriz 72"]
+        ].map(([id, label]) => (
+          <button key={id} className={`tab-btn ${cap === id ? "active" : ""}`} onClick={() => setCap(id)}>
+            {label}
+          </button>
+        ))}
+      </nav>
+
+      <main className="container">
+        {mostrar("cap1") && (
+          <section className="card">
+            <h2>I. Arquitectura Unificada · Síntesis 149 (3 + 1)</h2>
+            <p style={{ marginBottom: "1rem" }}>
+              <strong>149</strong> (1+4+9=14 → 5 · 4−1=3 · 3+1=4): tres consonantes raíz + un sufijo divino (<em>Yah</em> o <em>El</em>), cinco familias de 72 sellos (<strong>5 × 72 = 360</strong>) y cuatro series tetragrámicas de 18 nodos.
+            </p>
+            <div className="grid-3">
+              <div className="subcard">
+                <h3>Pilar Derecho · Misericordia</h3>
+                <p>Chokmah, Chesed, Netzach. Fuerza activa, expansión, gracia y persistencia vital.</p>
+              </div>
+              <div className="subcard">
+                <h3>Pilar Izquierdo · Rigor</h3>
+                <p>Binah, Geburah, Hod. Matriz receptiva, límite, corte, justicia y forma analítica.</p>
+              </div>
+              <div className="subcard">
+                <h3>Pilar Central · Equilibrio</h3>
+                <p>Kether, Tiphareth, Yesod, Malkuth. Eje de síntesis entre origen y manifestación.</p>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {mostrar("cap2") && (
+          <section className="card">
+            <h2>II. Geometría del Árbol (10 Sefirot &amp; 22 Senderos)</h2>
+            <div className="controls">
+              <button className="action" onClick={() => setModoArbol("luz")}>☀ Sefirot (Luz)</button>
+              <button className="tab-btn" onClick={() => setModoArbol("qlifot")}>☾ Qlifot (Espejo)</button>
+            </div>
+            <div className="grid-2">
+              <svg viewBox="0 0 420 555" style={{ width: "100%", maxWidth: 420, margin: "0 auto", display: "block" }}>
+                {SENDEROS.map(([aId, bId, label], i) => {
+                  const a = SEFIROTH.find(s => s.id === aId);
+                  const b = SEFIROTH.find(s => s.id === bId);
+                  return (
+                    <line
+                      key={i}
+                      className="path-l"
+                      x1={a.x} y1={a.y} x2={b.x} y2={b.y}
+                      stroke={modoArbol === "luz" ? "#d4af37" : "#b83b3b"}
+                      strokeWidth="1.8"
+                      opacity="0.6"
+                      onClick={() => setSenderoSel(`${label}: ${a.name} ↔ ${b.name}`)}
+                    />
+                  );
+                })}
+                {SEFIROTH.map(s => (
+                  <g key={s.id} className="node-g" onClick={() => { setSeleccion(s); setSenderoSel(null); }}>
+                    <circle
+                      cx={s.x} cy={s.y} r="25"
+                      fill={modoArbol === "luz" ? "#10192e" : "#260c12"}
+                      stroke={modoArbol === "luz" ? "#d4af37" : "#ff6b6b"}
+                      strokeWidth="2.2"
+                    />
+                    <text x={s.x} y={s.y - 2} textAnchor="middle" fill="#f7e199" fontSize="9.5" fontWeight="bold">{s.name}</text>
+                    <text x={s.x} y={s.y + 10} textAnchor="middle" fill="#98a2b3" fontSize="7.5">{s.id}</text>
+                  </g>
+                ))}
+              </svg>
+
+              <div className="inspector">
+                {senderoSel ? (
+                  <>
+                    <div style={{ color: "var(--cyan)", fontSize: "0.78rem", textTransform: "uppercase" }}>Sendero Activo</div>
+                    <h3 style={{ color: "var(--gold-bright)", margin: "0.3rem 0" }}>{senderoSel}</h3>
+                    <p>Conexión estructural entre Sefirot dentro del plano de 22 senderos.</p>
+                  </>
+                ) : (
+                  <>
+                    <div style={{ color: "var(--cyan)", fontSize: "0.78rem", textTransform: "uppercase" }}>
+                      Pilar {seleccion.pilar} · Modo {modoArbol.toUpperCase()}
+                    </div>
+                    <h3 style={{ color: "var(--gold-bright)", margin: "0.3rem 0" }}>
+                      {seleccion.id}. {seleccion.name} ({seleccion.es})
+                    </h3>
+                    <p><strong>Función Sefirótica:</strong> {seleccion.desc}</p>
+                    <p style={{ marginTop: "0.5rem", color: "#f0a8a8" }}>
+                      <strong>Correspondencia Qlifótica:</strong> {seleccion.qlifot}
+                    </p>
+                  </>
+                )}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {mostrar("cap3") && (
+          <section className="card">
+            <h2>III. Filología de Raíces &amp; Clasificador Ejecutable</h2>
+            <div className="controls">
+              <input
+                value={nombreInput}
+                onChange={e => setNombreInput(e.target.value)}
+                placeholder="Escribe Mikael, Seraphim, Metatron, Shekinah, Vehuiah..."
+              />
+            </div>
+            <div className="inspector" style={{ marginBottom: "1rem" }}>
+              <strong>Diagnóstico:</strong> {diagnosticarSufijo(nombreInput)}
+            </div>
+            <div className="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>Raíz</th><th>Polaridad</th><th>Ejemplos</th><th>Síntesis</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><strong>-AL / -EL</strong></td><td>Activa, oficio único</td><td>Mika-AL, Gavri-AL, Rafa-AL</td><td>Un portador, un oficio, línea de mando.</td></tr>
+                  <tr><td><strong>-IH / -AH</strong></td><td>Receptiva, matriz</td><td>Shekin-AH, Bin-AH, Vehu-IAH</td><td>Presencia que habita y sostiene espacio.</td></tr>
+                  <tr><td><strong>-IM</strong></td><td>Legión colectiva</td><td>Seraph-IM, Cherub-IM, EloH-IM</td><td>Plural hebreo; coro con función, no individuo.</td></tr>
+                  <tr><td><strong>-ON</strong></td><td>Singular soberana</td><td>Metatr-ON, Sandalph-ON, Ai-ON</td><td>Entidad titánica de libre albedrío; no es coro.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        )}
+
+        {mostrar("cap4") && (
+          <section className="card">
+            <h2>IV. Matriz 72 (3 + 1) · Ángeles y Tensión Goética</h2>
+            <div className="controls">
+              <input
+                value={filtro72}
+                onChange={e => setFiltro72(e.target.value)}
+                placeholder="Buscar por #, Ángel, atributo o contraparte..."
+              />
+              <select value={sufijo72} onChange={e => setSufijo72(e.target.value)}>
+                <option value="ALL">Todos (72)</option>
+                <option value="Yah">Sufijo -Yah</option>
+                <option value="El">Sufijo -El</option>
+              </select>
+            </div>
+            <div className="table-wrap">
+              <table>
+                <thead>
+                  <tr><th>#</th><th>Ángel (3+1)</th><th>Sufijo</th><th>Atributo</th><th>Contraparte</th></tr>
+                </thead>
+                <tbody>
+                  {filasFiltradas.map((r, idx) => (
+                    <tr key={idx}>
+                      <td><strong>{idx + 1}</strong></td>
+                      <td><strong>{r[0]}</strong></td>
+                      <td>-{r[1]}</td>
+                      <td>{r[2]}</td>
+                      <td>{r[3]} ({r[4]})</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        )}
+      </main>
+
+      <footer>
+        DON DE SALOMÓN · Libro ReactX JS · SADV41 · Enlaces: /AMERICA/MAZÓNICA/#matriz72 · /DON_SALOMONICO/ · /DON/
+      </footer>
+    </>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+</body>
+</html>
