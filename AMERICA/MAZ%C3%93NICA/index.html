@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AMERICA · MAZÓNICA · SADV41</title>
+<style>
+  :root { --bg:#05070c; --gold:#d4af37; --gold-bright:#f7e199; --gold-soft:rgba(212,175,55,0.28); --cyan:#00e5ff; --text:#ece6d6; --muted:#98a2b3; }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:radial-gradient(circle at 50% 0%,#161d30 0%,var(--bg) 65%);color:var(--text);font-family:"Palatino Linotype",Georgia,serif;min-height:100vh;padding-bottom:60px;}
+  .hero{text-align:center;padding:3rem 1.2rem 2rem;border-bottom:1px solid var(--gold-soft);}
+  .hero img{width:min(320px,80vw);border-radius:50%;border:3px solid var(--gold);box-shadow:0 0 40px rgba(212,175,55,0.35);margin-bottom:1.5rem;}
+  .kicker{display:inline-block;font-family:monospace;font-size:0.75rem;letter-spacing:0.2em;color:var(--cyan);border:1px solid rgba(0,229,255,0.35);padding:0.28rem 0.9rem;border-radius:999px;margin-bottom:0.8rem;text-transform:uppercase;}
+  h1{font-size:clamp(2rem,5vw,3.4rem);color:var(--gold-bright);letter-spacing:0.1em;text-transform:uppercase;text-shadow:0 0 24px rgba(212,175,55,0.35);}
+  .sub{max-width:720px;margin:.8rem auto 0;color:var(--muted);font-size:1rem;}
+  .container{max-width:1100px;margin:2rem auto;padding:0 1rem;}
+  .card{background:linear-gradient(165deg,rgba(19,26,41,0.94),rgba(10,14,23,0.98));border:1px solid var(--gold-soft);border-radius:14px;padding:1.6rem;margin-bottom:1.4rem;box-shadow:0 12px 30px rgba(0,0,0,0.45);}
+  .card h2{color:var(--gold);font-size:1.3rem;margin-bottom:1rem;border-bottom:1px solid var(--gold-soft);padding-bottom:0.4rem;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;}
+  .cell{background:#0d121d;border:1px solid rgba(212,175,55,0.2);border-radius:10px;padding:1rem;text-align:center;}
+  .cell .num{font-size:2rem;color:var(--gold-bright);font-weight:bold;}
+  .cell .label{color:var(--muted);font-size:0.85rem;margin-top:.25rem;}
+  .route-pill{display:inline-block;text-decoration:none;color:var(--gold);border:1px solid var(--gold-soft);background:rgba(13,18,29,0.85);padding:.35rem .85rem;border-radius:999px;font-family:monospace;font-size:0.76rem;margin:.25rem;transition:.2s;}
+  .route-pill:hover{background:var(--gold);color:var(--bg);font-weight:bold;}
+  table{width:100%;border-collapse:collapse;font-size:.87rem;}
+  th,td{padding:.55rem .7rem;border-bottom:1px solid rgba(212,175,55,0.16);text-align:left;}
+  th{background:#19150b;color:var(--gold-bright);}
+  footer{text-align:center;color:var(--muted);font-size:.82rem;padding:2rem 1rem;}
+</style>
+</head>
+<body>
+<section class="hero">
+  <img src="../LIBROS/DON/REY/SALOMÓN/img/IMG-20261128-WA5594.jpg" alt="SADV41 · AMERICA MASÓNICA">
+  <div class="kicker">SADV41 · Portal Occidental · 5 × 72 = 360</div>
+  <h1>AMERICA · MAZÓNICA</h1>
+  <p class="sub">Nodo geopolítico de la geometría salomónica. Aquí confluyen los 360 sellos del Codex 149 con la visión continental de Berión A217.</p>
+  <div style="margin-top:1.2rem;">
+    <a class="route-pill" href="../LIBRO/dondesalomon/">📖 Libro Don de Salomón</a>
+    <a class="route-pill" href="../DON_SALOMONICO/">🔱 DON_SALOMONICO</a>
+    <a class="route-pill" href="../DON/">⚡ DON</a>
+    <a class="route-pill" href="../SUPRAPLUSCUAMPERFECTA/">∞ SUPRAPLUSCUAMPERFECTA</a>
+  </div>
+</section>
+
+<main class="container">
+  <div class="card">
+    <div class="grid">
+      <div class="cell"><div class="num">72</div><div class="label">Ángeles del Codex</div></div>
+      <div class="cell"><div class="num">72</div><div class="label">Contrapartes Goéticas</div></div>
+      <div class="cell"><div class="num">22</div><div class="label">Senderos del Árbol</div></div>
+      <div class="cell"><div class="num">10</div><div class="label">Sefirot</div></div>
+      <div class="cell"><div class="num">360</div><div class="label">Sellos Totales (5×72)</div></div>
+      <div class="cell"><div class="num">149</div><div class="label">Codex (3+1)</div></div>
+    </div>
+  </div>
+
+  <div class="card" id="matriz72">
+    <h2>Matriz 72 · Vista Compacta (anchor: #matriz72)</h2>
+    <table>
+      <thead><tr><th>#</th><th>Ángel</th><th>Atributo</th><th>Contraparte Goética</th></tr></thead>
+      <tbody id="tbl72"></tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Pilares del Nodo Occidental</h2>
+    <div class="grid">
+      <div class="cell" style="text-align:left">
+        <strong style="color:var(--gold-bright)">Arquitectura</strong>
+        <p style="color:var(--muted);font-size:.88rem;margin-top:.4rem">Codex 149 (3+1) · Tres pilares del Árbol de la Vida · Síntesis salomónica SADV41</p>
+      </div>
+      <div class="cell" style="text-align:left">
+        <strong style="color:var(--gold-bright)">Geometría</strong>
+        <p style="color:var(--muted);font-size:.88rem;margin-top:.4rem">Metatrón · Estrella de David · 22 senderos · Tetragrámaton sobre el continente</p>
+      </div>
+      <div class="cell" style="text-align:left">
+        <strong style="color:var(--gold-bright)">Filología</strong>
+        <p style="color:var(--muted);font-size:.88rem;margin-top:.4rem">Raíces -EL/-YAH/-IM/-ON · Clasificación por oficio · Tensión luz/sombra verificada</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>AMERICA · MAZÓNICA · SADV41 · thesteef21.github.io/SADV41/AMERICA/MAZÓNICA/</footer>
+
+<script>
+const C72=[["Vehuiah","Voluntad primordial","Bael"],["Jeliel","Armonía y socorro","Agares"],["Sitael","Cimiento y esperanza","Vassago"],["Elemiah","Poder oculto","Samigina"],["Mahasiah","Rectificación y paz","Marbas"],["Lelahel","Luz y ciencia","Valefor"],["Achaiah","Paciencia y naturaleza","Amon"],["Cahetel","Bendición y abundancia","Barbatos"],["Haziel","Misericordia","Paimon"],["Aladiah","Gracia propicia","Buer"],["Lauviah","Victoria espiritual","Gusion"],["Hahaiah","Refugio y revelación","Sitri"],["Iezalel","Fidelidad y unión","Beleth"],["Mebahel","Verdad y justicia","Leraje"],["Hariel","Purificación","Eligos"],["Hakamiah","Lealtad y soberanía","Zepar"],["Lauviah II","Alta revelación","Botis"],["Caliel","Justicia pronta","Bathin"],["Leuviah","Memoria y mente","Sallos"],["Pahaliah","Redención","Purson"],["Nelchael","Prevalencia","Marax"],["Yeiayel","Diestra protectora","Ipos"],["Melahel","Sanación por aguas","Aim"],["Haheuiah","Amparo","Naberius"],["Nith-Haiah","Sabiduría mística","Glasya-Labolas"],["Haaiah","Orden y diplomacia","Bune"],["Yeratel","Difusión de luz","Ronove"],["Seheiah","Preservación y prudencia","Berith"],["Reiyel","Liberación de asedio","Astaroth"],["Omael","Generación de vida","Forneus"],["Lecabel","Claridad de cálculo","Foras"],["Vasariah","Clemencia en juicio","Asmodeus"],["Yehuiah","Discernimiento","Gaap"],["Lehahiah","Serenidad","Furfur"],["Chavakiah","Concordia familiar","Marchosias"],["Menadel","Trabajo digno","Stolas"],["Aniel","Ruptura de cadenas","Phenex"],["Haamiah","Verdad del culto","Halphas"],["Rehael","Regeneración","Malphas"],["Ieiazel","Consuelo y letras","Raum"],["Hahahel","Unidad trina","Focalor"],["Mikael","Orden jerárquico","Vepar"],["Veuliah","Libertad","Sabnock"],["Yelahiah","Escudo eterno","Shax"],["Sehaliah","Impulso vital","Vine"],["Ariel","Tesoros ocultos","Bifrons"],["Asaliah","Contemplación","Uvall"],["Mihael","Fecundidad y paz","Haagenti"],["Vehuel","Grandeza espiritual","Crocell"],["Daniel","Palabra justa","Furcas"],["Hahasiah","Medicina universal","Balam"],["Imamiah","Humildad","Alloces"],["Nanael","Sabiduría silenciosa","Caim"],["Nithael","Legitimidad eterna","Murmur"],["Mebahiah","Claridad moral","Orobas"],["Poyel","Sostén del cosmos","Gremory"],["Nemamiah","Estrategia luminosa","Ose"],["Yeialel","Temple mental","Amy"],["Harahel","Administración y memoria","Orias"],["Mitzrael","Rectificación del alma","Vapula"],["Umabel","Afinidad y fraternidad","Zagan"],["Iah-Hel","Quietud contemplativa","Volac"],["Anauel","Unidad de voluntades","Andras"],["Mehiel","Aliento vivificador","Haures"],["Damabiah","Manantial de sabiduría","Andrealphus"],["Manakel","Calma de pasiones","Cimejes"],["Eyael","Transmutación","Amdusias"],["Habuhiah","Curación integral","Belial"],["Rochel","Restitución","Decarabia"],["Jabamiah","Regeneración por Verbo","Seere"],["Haiaiel","Soberanía y defensa","Dantalion"],["Mumiah","Consumación y renacer","Andromalius"]];
+const tb=document.getElementById('tbl72');
+C72.forEach((r,i)=>{tb.innerHTML+=`<tr><td><strong>${i+1}</strong></td><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td></tr>`;});
+</script>
+</body>
+</html>
