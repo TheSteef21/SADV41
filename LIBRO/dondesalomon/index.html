@@ -30,9 +30,52 @@
     min-height: 100vh;
     padding-bottom: 90px;
   }
+
+  /* ── GALERÍA PORTADA ── */
+  .gallery-strip {
+    display: flex;
+    overflow-x: auto;
+    gap: 0.75rem;
+    padding: 1.2rem 1rem;
+    background: rgba(0,0,0,0.6);
+    border-bottom: 1px solid var(--gold-soft);
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold) transparent;
+  }
+  .gallery-strip img {
+    height: 160px;
+    width: auto;
+    border-radius: 10px;
+    border: 1px solid var(--gold-soft);
+    object-fit: cover;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .gallery-strip img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(212,175,55,0.5);
+  }
+  .lightbox {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .lightbox.open { display: flex; }
+  .lightbox img { max-width: 92vw; max-height: 80vh; border-radius: 12px; border: 2px solid var(--gold); }
+  .lightbox-close {
+    color: var(--gold); font-size: 2rem; cursor: pointer;
+    background: none; border: none; font-family: inherit;
+  }
+
   .book-header {
     text-align: center;
-    padding: 2.6rem 1.2rem 1.8rem;
+    padding: 2.4rem 1.2rem 1.6rem;
     border-bottom: 1px solid var(--gold-soft);
     background: linear-gradient(180deg, rgba(212,175,55,0.1) 0%, transparent 100%);
   }
@@ -79,114 +122,43 @@
     font-size: 0.76rem;
     transition: 0.2s;
   }
-  .route-pill:hover {
-    background: var(--gold);
-    color: var(--bg);
-    font-weight: bold;
-  }
+  .route-pill:hover { background: var(--gold); color: var(--bg); font-weight: bold; }
   .chapter-nav {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.45rem;
+    position: sticky; top: 0; z-index: 50;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 0.45rem;
     padding: 0.75rem 1rem;
     background: rgba(5,7,12,0.92);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--gold-soft);
   }
   .tab-btn {
-    background: var(--panel);
-    color: var(--text);
-    border: 1px solid var(--gold-soft);
-    padding: 0.45rem 0.9rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: 0.85rem;
-    transition: 0.2s;
+    background: var(--panel); color: var(--text);
+    border: 1px solid var(--gold-soft); padding: 0.45rem 0.9rem;
+    border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 0.85rem; transition: 0.2s;
   }
-  .tab-btn:hover, .tab-btn.active {
-    background: var(--gold);
-    color: var(--bg);
-    font-weight: bold;
-  }
-  .container {
-    max-width: 1140px;
-    margin: 1.8rem auto;
-    padding: 0 1rem;
-  }
+  .tab-btn:hover, .tab-btn.active { background: var(--gold); color: var(--bg); font-weight: bold; }
+  .container { max-width: 1140px; margin: 1.8rem auto; padding: 0 1rem; }
   .card {
     background: linear-gradient(165deg, rgba(19,26,41,0.94), rgba(10,14,23,0.98));
-    border: 1px solid var(--gold-soft);
-    border-radius: 14px;
-    padding: 1.4rem;
-    margin-bottom: 1.4rem;
+    border: 1px solid var(--gold-soft); border-radius: 14px;
+    padding: 1.4rem; margin-bottom: 1.4rem;
     box-shadow: 0 12px 30px rgba(0,0,0,0.45);
   }
-  .card h2 {
-    color: var(--gold);
-    font-size: 1.35rem;
-    margin-bottom: 0.8rem;
-    border-bottom: 1px solid var(--gold-soft);
-    padding-bottom: 0.4rem;
-  }
-  .grid-2 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
-    gap: 1.4rem;
-    align-items: start;
-  }
-  .grid-3 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 1rem;
-  }
-  .subcard {
-    background: var(--panel);
-    border: 1px solid rgba(212,175,55,0.2);
-    border-radius: 10px;
-    padding: 1rem;
-  }
+  .card h2 { color: var(--gold); font-size: 1.35rem; margin-bottom: 0.8rem; border-bottom: 1px solid var(--gold-soft); padding-bottom: 0.4rem; }
+  .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); gap: 1.4rem; align-items: start; }
+  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+  .subcard { background: var(--panel); border: 1px solid rgba(212,175,55,0.2); border-radius: 10px; padding: 1rem; }
   .subcard h3 { color: var(--gold-bright); margin-bottom: 0.35rem; font-size: 1.05rem; }
-  .inspector {
-    background: rgba(5,7,12,0.8);
-    border-left: 3px solid var(--gold);
-    padding: 1rem;
-    border-radius: 0 10px 10px 0;
-  }
-  .controls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.65rem;
-    margin-bottom: 1rem;
-  }
+  .inspector { background: rgba(5,7,12,0.8); border-left: 3px solid var(--gold); padding: 1rem; border-radius: 0 10px 10px 0; }
+  .controls { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-bottom: 1rem; }
   input, select, button.action {
-    padding: 0.65rem 0.9rem;
-    border-radius: 8px;
-    border: 1px solid var(--gold-soft);
-    background: #080b12;
-    color: var(--text);
-    font-family: inherit;
-    font-size: 0.92rem;
+    padding: 0.65rem 0.9rem; border-radius: 8px; border: 1px solid var(--gold-soft);
+    background: #080b12; color: var(--text); font-family: inherit; font-size: 0.92rem;
   }
   input { flex: 1 1 220px; }
-  button.action {
-    background: var(--gold);
-    color: var(--bg);
-    font-weight: bold;
-    cursor: pointer;
-    border: none;
-  }
+  button.action { background: var(--gold); color: var(--bg); font-weight: bold; cursor: pointer; border: none; }
   button.action:hover { background: var(--gold-bright); }
-  .table-wrap {
-    overflow-x: auto;
-    max-height: 460px;
-    border: 1px solid var(--gold-soft);
-    border-radius: 10px;
-  }
+  .table-wrap { overflow-x: auto; max-height: 460px; border: 1px solid var(--gold-soft); border-radius: 10px; }
   table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
   th, td { padding: 0.6rem 0.75rem; border-bottom: 1px solid rgba(212,175,55,0.16); text-align: left; }
   th { position: sticky; top: 0; background: #19150b; color: var(--gold-bright); }
@@ -194,31 +166,58 @@
   .node-g:hover circle { stroke: var(--cyan); stroke-width: 3; }
   .path-l { cursor: pointer; }
   .path-l:hover { stroke: var(--cyan); stroke-width: 3.5; opacity: 1; }
-  footer {
-    text-align: center;
-    color: var(--muted);
-    font-size: 0.84rem;
-    padding: 2rem 1rem;
-  }
+  footer { text-align: center; color: var(--muted); font-size: 0.84rem; padding: 2rem 1rem; }
 </style>
 </head>
 <body>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lb" onclick="closeLB()">
+  <button class="lightbox-close" onclick="closeLB()">✕ Cerrar</button>
+  <img id="lb-img" src="" alt="Vista ampliada">
+</div>
+
+<!-- GALERÍA STRIP -->
+<div class="gallery-strip">
+  <img src="../../LIBROS/DON/REY/SALOMÓN/img/IMG-20261128-WA5594.jpg"
+       alt="SADV41 · AMERICA MASÓNICA"
+       title="SADV41 · AMERICA MASÓNICA"
+       onclick="openLB(this.src)">
+  <img src="../../LIBROS/DON/REY/SALOMÓN/img/IMG-20261128-WA4194.jpg"
+       alt="EL DON CODEX 149"
+       title="EL DON CODEX 149"
+       onclick="openLB(this.src)">
+  <img src="../../LIBROS/DON/REY/SALOMÓN/img/IMG-20261128-WA3284.jpg"
+       alt="Árbol · DON SALOMONICO"
+       title="Árbol · DON SALOMONICO"
+       onclick="openLB(this.src)">
+  <img src="../../LIBROS/DON/REY/SALOMÓN/img/1795842590101.png"
+       alt="Geometría Sagrada · Metatrón"
+       title="Geometría Sagrada · Metatrón"
+       onclick="openLB(this.src)">
+</div>
+
 <div id="root"></div>
+
+<script>
+  function openLB(src){ document.getElementById('lb-img').src=src; document.getElementById('lb').classList.add('open'); }
+  function closeLB(){ document.getElementById('lb').classList.remove('open'); }
+</script>
 
 <script type="text/babel">
 const { useState } = React;
 
 const SEFIROTH = [
-  { id: 1, name: "Kether", es: "Corona", x: 210, y: 45, pilar: "Central", desc: "Origen sin forma · Ehyeh · Metatrón", qlifot: "Thaumiel (Satán y Molok)" },
-  { id: 2, name: "Chokmah", es: "Sabiduría", x: 325, y: 118, pilar: "Derecho", desc: "Impulso activo · Yah · Raziel", qlifot: "Chaigidiel (Belcebú)" },
-  { id: 3, name: "Binah", es: "Entendimiento", x: 95, y: 118, pilar: "Izquierdo", desc: "Matriz y límite · Elohim · Tzaphkiel", qlifot: "Satariel (Lucífugo)" },
-  { id: 4, name: "Chesed", es: "Misericordia", x: 325, y: 230, pilar: "Derecho", desc: "Expansión y gracia · El · Tzadkiel", qlifot: "Gamchicoth (Astaroth)" },
-  { id: 5, name: "Geburah", es: "Rigor", x: 95, y: 230, pilar: "Izquierdo", desc: "Corte y juicio · Elohim Gibor · Khamael", qlifot: "Golab (Asmodeo)" },
-  { id: 6, name: "Tiphareth", es: "Belleza", x: 210, y: 290, pilar: "Central", desc: "Centro solar y mediación · Eloah Va-Daath · Rafael/Miguel", qlifot: "Tagaririm (Belfegor)" },
-  { id: 7, name: "Netzach", es: "Victoria", x: 325, y: 370, pilar: "Derecho", desc: "Fuerza vital · YHVH Tzabaoth · Haniel", qlifot: "Harab Serapel (Baal)" },
-  { id: 8, name: "Hod", es: "Esplendor", x: 95, y: 370, pilar: "Izquierdo", desc: "Forma mental y orden · Elohim Tzabaoth · Mikael", qlifot: "Samael (Adramelech)" },
-  { id: 9, name: "Yesod", es: "Fundamento", x: 210, y: 440, pilar: "Central", desc: "Puente astral · Shaddai El Chai · Gabriel", qlifot: "Gamaliel (Lilith)" },
-  { id: 10, name: "Malkuth", es: "Reino", x: 210, y: 515, pilar: "Central", desc: "Manifestación material · Adonai Ha-Aretz · Sandalfón", qlifot: "Nehemah" }
+  { id: 1, name: "Kether",    es: "Corona",         x: 210, y: 45,  pilar: "Central",   desc: "Origen sin forma · Ehyeh · Metatrón",                      qlifot: "Thaumiel (Satán y Molok)" },
+  { id: 2, name: "Chokmah",   es: "Sabiduría",      x: 325, y: 118, pilar: "Derecho",   desc: "Impulso activo · Yah · Raziel",                            qlifot: "Chaigidiel (Belcebú)" },
+  { id: 3, name: "Binah",     es: "Entendimiento",  x: 95,  y: 118, pilar: "Izquierdo", desc: "Matriz y límite · Elohim · Tzaphkiel",                     qlifot: "Satariel (Lucífugo)" },
+  { id: 4, name: "Chesed",    es: "Misericordia",   x: 325, y: 230, pilar: "Derecho",   desc: "Expansión y gracia · El · Tzadkiel",                       qlifot: "Gamchicoth (Astaroth)" },
+  { id: 5, name: "Geburah",   es: "Rigor",          x: 95,  y: 230, pilar: "Izquierdo", desc: "Corte y juicio · Elohim Gibor · Khamael",                  qlifot: "Golab (Asmodeo)" },
+  { id: 6, name: "Tiphareth", es: "Belleza",        x: 210, y: 290, pilar: "Central",   desc: "Centro solar y mediación · Eloah Va-Daath · Rafael/Miguel", qlifot: "Tagaririm (Belfegor)" },
+  { id: 7, name: "Netzach",   es: "Victoria",       x: 325, y: 370, pilar: "Derecho",   desc: "Fuerza vital · YHVH Tzabaoth · Haniel",                    qlifot: "Harab Serapel (Baal)" },
+  { id: 8, name: "Hod",       es: "Esplendor",      x: 95,  y: 370, pilar: "Izquierdo", desc: "Forma mental y orden · Elohim Tzabaoth · Mikael",           qlifot: "Samael (Adramelech)" },
+  { id: 9, name: "Yesod",     es: "Fundamento",     x: 210, y: 440, pilar: "Central",   desc: "Puente astral · Shaddai El Chai · Gabriel",                qlifot: "Gamaliel (Lilith)" },
+  { id:10, name: "Malkuth",   es: "Reino",          x: 210, y: 515, pilar: "Central",   desc: "Manifestación material · Adonai Ha-Aretz · Sandalfón",     qlifot: "Nehemah" }
 ];
 
 const SENDEROS = [
@@ -325,12 +324,10 @@ function App() {
   const mostrar = (id) => cap === "todo" || cap === id;
 
   const filasFiltradas = CODEX_72.filter((row, idx) => {
-    const num = idx + 1;
-    const serie = `Serie ${Math.floor(idx / 18) + 1}`;
     if (sufijo72 !== "ALL" && row[1] !== sufijo72) return false;
     if (filtro72.trim()) {
       const q = filtro72.toLowerCase();
-      return `${num} ${row.join(" ")} ${serie}`.toLowerCase().includes(q);
+      return `${idx+1} ${row.join(" ")}`.toLowerCase().includes(q);
     }
     return true;
   });
@@ -344,23 +341,22 @@ function App() {
           Libro unificado de arquitectura, geometría sagrada y filología salomónica. Primero clasifica el sufijo, luego ubica en el Árbol, luego lee la función.
         </p>
         <div className="route-bar">
-          <a className="route-pill" href="../../AMERICA/MAZ%C3%93NICA/#matriz72">/AMERICA/MAZÓNICA/#matriz72</a>
-          <a className="route-pill" href="../../DON_SALOMONICO/">/DON_SALOMONICO/</a>
-          <a className="route-pill" href="../../DON/">/DON/</a>
+          <a className="route-pill" href="../../AMERICA/MAZÓNICA/#matriz72">/AMERICA/MAZÓNICA</a>
+          <a className="route-pill" href="../../DON_SALOMONICO/">/DON_SALOMONICO</a>
+          <a className="route-pill" href="../../DON/">/DON</a>
+          <a className="route-pill" href="../../SUPRAPLUSCUAMPERFECTA/">/SUPRAPLUSCUAMPERFECTA</a>
         </div>
       </header>
 
       <nav className="chapter-nav">
         {[
-          ["todo", "Libro Completo"],
-          ["cap1", "I. Arquitectura 3+1"],
-          ["cap2", "II. Árbol & Senderos"],
-          ["cap3", "III. Filología"],
-          ["cap4", "IV. Matriz 72"]
-        ].map(([id, label]) => (
-          <button key={id} className={`tab-btn ${cap === id ? "active" : ""}`} onClick={() => setCap(id)}>
-            {label}
-          </button>
+          ["todo","Libro Completo"],
+          ["cap1","I. Arquitectura 3+1"],
+          ["cap2","II. Árbol & Senderos"],
+          ["cap3","III. Filología"],
+          ["cap4","IV. Matriz 72"]
+        ].map(([id,label]) => (
+          <button key={id} className={`tab-btn ${cap===id?"active":""}`} onClick={() => setCap(id)}>{label}</button>
         ))}
       </nav>
 
@@ -368,22 +364,13 @@ function App() {
         {mostrar("cap1") && (
           <section className="card">
             <h2>I. Arquitectura Unificada · Síntesis 149 (3 + 1)</h2>
-            <p style={{ marginBottom: "1rem" }}>
+            <p style={{marginBottom:"1rem"}}>
               <strong>149</strong> (1+4+9=14 → 5 · 4−1=3 · 3+1=4): tres consonantes raíz + un sufijo divino (<em>Yah</em> o <em>El</em>), cinco familias de 72 sellos (<strong>5 × 72 = 360</strong>) y cuatro series tetragrámicas de 18 nodos.
             </p>
             <div className="grid-3">
-              <div className="subcard">
-                <h3>Pilar Derecho · Misericordia</h3>
-                <p>Chokmah, Chesed, Netzach. Fuerza activa, expansión, gracia y persistencia vital.</p>
-              </div>
-              <div className="subcard">
-                <h3>Pilar Izquierdo · Rigor</h3>
-                <p>Binah, Geburah, Hod. Matriz receptiva, límite, corte, justicia y forma analítica.</p>
-              </div>
-              <div className="subcard">
-                <h3>Pilar Central · Equilibrio</h3>
-                <p>Kether, Tiphareth, Yesod, Malkuth. Eje de síntesis entre origen y manifestación.</p>
-              </div>
+              <div className="subcard"><h3>Pilar Derecho · Misericordia</h3><p>Chokmah, Chesed, Netzach. Fuerza activa, expansión, gracia y persistencia vital.</p></div>
+              <div className="subcard"><h3>Pilar Izquierdo · Rigor</h3><p>Binah, Geburah, Hod. Matriz receptiva, límite, corte, justicia y forma analítica.</p></div>
+              <div className="subcard"><h3>Pilar Central · Equilibrio</h3><p>Kether, Tiphareth, Yesod, Malkuth. Eje de síntesis entre origen y manifestación.</p></div>
             </div>
           </section>
         )}
@@ -396,55 +383,37 @@ function App() {
               <button className="tab-btn" onClick={() => setModoArbol("qlifot")}>☾ Qlifot (Espejo)</button>
             </div>
             <div className="grid-2">
-              <svg viewBox="0 0 420 555" style={{ width: "100%", maxWidth: 420, margin: "0 auto", display: "block" }}>
-                {SENDEROS.map(([aId, bId, label], i) => {
-                  const a = SEFIROTH.find(s => s.id === aId);
-                  const b = SEFIROTH.find(s => s.id === bId);
-                  return (
-                    <line
-                      key={i}
-                      className="path-l"
-                      x1={a.x} y1={a.y} x2={b.x} y2={b.y}
-                      stroke={modoArbol === "luz" ? "#d4af37" : "#b83b3b"}
-                      strokeWidth="1.8"
-                      opacity="0.6"
-                      onClick={() => setSenderoSel(`${label}: ${a.name} ↔ ${b.name}`)}
-                    />
-                  );
+              <svg viewBox="0 0 420 555" style={{width:"100%",maxWidth:420,margin:"0 auto",display:"block"}}>
+                {SENDEROS.map(([aId,bId,label],i) => {
+                  const a = SEFIROTH.find(s=>s.id===aId);
+                  const b = SEFIROTH.find(s=>s.id===bId);
+                  return <line key={i} className="path-l" x1={a.x} y1={a.y} x2={b.x} y2={b.y}
+                    stroke={modoArbol==="luz"?"#d4af37":"#b83b3b"} strokeWidth="1.8" opacity="0.6"
+                    onClick={() => setSenderoSel(`${label}: ${a.name} ↔ ${b.name}`)} />;
                 })}
                 {SEFIROTH.map(s => (
                   <g key={s.id} className="node-g" onClick={() => { setSeleccion(s); setSenderoSel(null); }}>
-                    <circle
-                      cx={s.x} cy={s.y} r="25"
-                      fill={modoArbol === "luz" ? "#10192e" : "#260c12"}
-                      stroke={modoArbol === "luz" ? "#d4af37" : "#ff6b6b"}
-                      strokeWidth="2.2"
-                    />
-                    <text x={s.x} y={s.y - 2} textAnchor="middle" fill="#f7e199" fontSize="9.5" fontWeight="bold">{s.name}</text>
-                    <text x={s.x} y={s.y + 10} textAnchor="middle" fill="#98a2b3" fontSize="7.5">{s.id}</text>
+                    <circle cx={s.x} cy={s.y} r="25"
+                      fill={modoArbol==="luz"?"#10192e":"#260c12"}
+                      stroke={modoArbol==="luz"?"#d4af37":"#ff6b6b"} strokeWidth="2.2"/>
+                    <text x={s.x} y={s.y-2} textAnchor="middle" fill="#f7e199" fontSize="9.5" fontWeight="bold">{s.name}</text>
+                    <text x={s.x} y={s.y+10} textAnchor="middle" fill="#98a2b3" fontSize="7.5">{s.id}</text>
                   </g>
                 ))}
               </svg>
-
               <div className="inspector">
                 {senderoSel ? (
                   <>
-                    <div style={{ color: "var(--cyan)", fontSize: "0.78rem", textTransform: "uppercase" }}>Sendero Activo</div>
-                    <h3 style={{ color: "var(--gold-bright)", margin: "0.3rem 0" }}>{senderoSel}</h3>
+                    <div style={{color:"var(--cyan)",fontSize:"0.78rem",textTransform:"uppercase"}}>Sendero Activo</div>
+                    <h3 style={{color:"var(--gold-bright)",margin:"0.3rem 0"}}>{senderoSel}</h3>
                     <p>Conexión estructural entre Sefirot dentro del plano de 22 senderos.</p>
                   </>
                 ) : (
                   <>
-                    <div style={{ color: "var(--cyan)", fontSize: "0.78rem", textTransform: "uppercase" }}>
-                      Pilar {seleccion.pilar} · Modo {modoArbol.toUpperCase()}
-                    </div>
-                    <h3 style={{ color: "var(--gold-bright)", margin: "0.3rem 0" }}>
-                      {seleccion.id}. {seleccion.name} ({seleccion.es})
-                    </h3>
+                    <div style={{color:"var(--cyan)",fontSize:"0.78rem",textTransform:"uppercase"}}>Pilar {seleccion.pilar} · Modo {modoArbol.toUpperCase()}</div>
+                    <h3 style={{color:"var(--gold-bright)",margin:"0.3rem 0"}}>{seleccion.id}. {seleccion.name} ({seleccion.es})</h3>
                     <p><strong>Función Sefirótica:</strong> {seleccion.desc}</p>
-                    <p style={{ marginTop: "0.5rem", color: "#f0a8a8" }}>
-                      <strong>Correspondencia Qlifótica:</strong> {seleccion.qlifot}
-                    </p>
+                    <p style={{marginTop:"0.5rem",color:"#f0a8a8"}}><strong>Correspondencia Qlifótica:</strong> {seleccion.qlifot}</p>
                   </>
                 )}
               </div>
@@ -456,20 +425,15 @@ function App() {
           <section className="card">
             <h2>III. Filología de Raíces &amp; Clasificador Ejecutable</h2>
             <div className="controls">
-              <input
-                value={nombreInput}
-                onChange={e => setNombreInput(e.target.value)}
-                placeholder="Escribe Mikael, Seraphim, Metatron, Shekinah, Vehuiah..."
-              />
+              <input value={nombreInput} onChange={e => setNombreInput(e.target.value)}
+                placeholder="Escribe Mikael, Seraphim, Metatron, Shekinah, Vehuiah..." />
             </div>
-            <div className="inspector" style={{ marginBottom: "1rem" }}>
+            <div className="inspector" style={{marginBottom:"1rem"}}>
               <strong>Diagnóstico:</strong> {diagnosticarSufijo(nombreInput)}
             </div>
             <div className="table-wrap">
               <table>
-                <thead>
-                  <tr><th>Raíz</th><th>Polaridad</th><th>Ejemplos</th><th>Síntesis</th></tr>
-                </thead>
+                <thead><tr><th>Raíz</th><th>Polaridad</th><th>Ejemplos</th><th>Síntesis</th></tr></thead>
                 <tbody>
                   <tr><td><strong>-AL / -EL</strong></td><td>Activa, oficio único</td><td>Mika-AL, Gavri-AL, Rafa-AL</td><td>Un portador, un oficio, línea de mando.</td></tr>
                   <tr><td><strong>-IH / -AH</strong></td><td>Receptiva, matriz</td><td>Shekin-AH, Bin-AH, Vehu-IAH</td><td>Presencia que habita y sostiene espacio.</td></tr>
@@ -482,14 +446,11 @@ function App() {
         )}
 
         {mostrar("cap4") && (
-          <section className="card">
+          <section className="card" id="matriz72">
             <h2>IV. Matriz 72 (3 + 1) · Ángeles y Tensión Goética</h2>
             <div className="controls">
-              <input
-                value={filtro72}
-                onChange={e => setFiltro72(e.target.value)}
-                placeholder="Buscar por #, Ángel, atributo o contraparte..."
-              />
+              <input value={filtro72} onChange={e => setFiltro72(e.target.value)}
+                placeholder="Buscar por #, Ángel, atributo o contraparte..." />
               <select value={sufijo72} onChange={e => setSufijo72(e.target.value)}>
                 <option value="ALL">Todos (72)</option>
                 <option value="Yah">Sufijo -Yah</option>
@@ -498,13 +459,11 @@ function App() {
             </div>
             <div className="table-wrap">
               <table>
-                <thead>
-                  <tr><th>#</th><th>Ángel (3+1)</th><th>Sufijo</th><th>Atributo</th><th>Contraparte</th></tr>
-                </thead>
+                <thead><tr><th>#</th><th>Ángel (3+1)</th><th>Sufijo</th><th>Atributo</th><th>Contraparte</th></tr></thead>
                 <tbody>
-                  {filasFiltradas.map((r, idx) => (
+                  {filasFiltradas.map((r,idx) => (
                     <tr key={idx}>
-                      <td><strong>{idx + 1}</strong></td>
+                      <td><strong>{idx+1}</strong></td>
                       <td><strong>{r[0]}</strong></td>
                       <td>-{r[1]}</td>
                       <td>{r[2]}</td>
@@ -518,9 +477,7 @@ function App() {
         )}
       </main>
 
-      <footer>
-        DON DE SALOMÓN · Libro ReactX JS · SADV41 · Enlaces: /AMERICA/MAZÓNICA/#matriz72 · /DON_SALOMONICO/ · /DON/
-      </footer>
+      <footer>DON DE SALOMÓN · Libro ReactX JS · SADV41 · thesteef21.github.io/SADV41/LIBRO/dondesalomon/</footer>
     </>
   );
 }

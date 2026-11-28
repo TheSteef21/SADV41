@@ -3,562 +3,83 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DON SALOMÓNICO SADV41 · Libro Unificado</title>
+<title>DON SALOMONICO · SADV41</title>
 <style>
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: #0a0a0c;
-    color: #e8e0c8;
-    font-family: Georgia, "Palatino Linotype", serif;
-    line-height: 1.65;
-  }
-  header {
-    padding: 44px 20px 26px;
-    text-align: center;
-    background: radial-gradient(circle at 50% 0%, #2b2208 0%, #0a0a0c 64%);
-    border-bottom: 2px solid #c9a227;
-  }
-  .kicker {
-    letter-spacing: 4px;
-    color: #c9a227;
-    font-size: 12px;
-    text-transform: uppercase;
-  }
-  h1 {
-    font-size: clamp(28px, 5vw, 40px);
-    margin: 10px 0 8px;
-    color: #f5e6a8;
-    letter-spacing: 1.5px;
-  }
-  .sub {
-    color: #b8ad8a;
-    max-width: 780px;
-    margin: 0 auto;
-  }
-  nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-    padding: 12px 16px;
-    background: rgba(10, 10, 12, 0.94);
-    border-bottom: 1px solid #2e2a1a;
-    position: sticky;
-    top: 0;
-    z-index: 50;
-  }
-  nav a {
-    color: #e8e0c8;
-    text-decoration: none;
-    font-size: 13px;
-    padding: 5px 12px;
-    border: 1px solid #2e2a1a;
-    border-radius: 999px;
-    transition: 0.2s;
-  }
-  nav a:hover {
-    border-color: #c9a227;
-    color: #f5e6a8;
-    background: #1a170d;
-  }
-  main {
-    max-width: 980px;
-    margin: 0 auto;
-    padding: 24px 16px 96px;
-  }
-  section {
-    background: #121216;
-    border: 1px solid #2e2a1a;
-    border-radius: 14px;
-    padding: 24px;
-    margin: 20px 0;
-    scroll-margin-top: 64px;
-  }
-  h2 {
-    color: #d4af37;
-    margin-top: 0;
-    border-bottom: 1px solid #2e2a1a;
-    padding-bottom: 8px;
-  }
-  h3 { color: #f5e6a8; margin-bottom: 6px; }
-  p, li { color: #ddd6bd; }
-  .grid-3 {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 14px;
-    margin-top: 12px;
-  }
-  .card {
-    background: #0f0f12;
-    border: 1px solid #2e2a1a;
-    border-radius: 10px;
-    padding: 14px;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 12px;
-  }
-  th, td {
-    border: 1px solid #33301f;
-    padding: 10px;
-    text-align: left;
-    font-size: 14px;
-    vertical-align: top;
-  }
-  th {
-    background: #1e1a0e;
-    color: #f5e6a8;
-  }
-  .tree-wrap {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 18px;
-    align-items: start;
-    margin-top: 14px;
-  }
-  .tree {
-    width: 100%;
-    max-width: 520px;
-    display: block;
-    margin: 0 auto;
-    background: #0f0f12;
-    border: 1px solid #2e2a1a;
-    border-radius: 14px;
-  }
-  .node { cursor: pointer; }
-  .node circle {
-    fill: #121216;
-    stroke: #c9a227;
-    stroke-width: 2.2;
-    transition: 0.2s;
-  }
-  .node text {
-    fill: #f5e6a8;
-    font-size: 13px;
-    text-anchor: middle;
-    font-weight: bold;
-    pointer-events: none;
-  }
-  .node.active circle, .node:hover circle { fill: #c9a227; }
-  .node.active text, .node:hover text { fill: #0a0a0c; }
-  .pathline {
-    stroke: #6b5a1f;
-    stroke-width: 1.8;
-    cursor: pointer;
-    transition: 0.2s;
-  }
-  .pathline:hover {
-    stroke: #f5e6a8;
-    stroke-width: 3;
-  }
-  #detalle {
-    background: #0f0f12;
-    border: 1px solid #c9a227;
-    border-radius: 12px;
-    padding: 18px;
-    min-height: 150px;
-  }
-  #detalle b { color: #f5e6a8; }
-  .form-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 10px;
-  }
-  input, select {
-    padding: 12px;
-    border-radius: 10px;
-    border: 1px solid #33301f;
-    font-size: 15px;
-    background: #0f0f12;
-    color: #fff;
-    flex: 1 1 240px;
-  }
-  button {
-    padding: 12px 18px;
-    border-radius: 10px;
-    background: #c9a227;
-    color: #0a0a0c;
-    font-weight: bold;
-    font-size: 15px;
-    cursor: pointer;
-    border: none;
-  }
-  button:hover { background: #f5e6a8; }
-  #resultado {
-    margin-top: 12px;
-    padding: 14px;
-    background: #1a1a1e;
-    border-radius: 10px;
-    border: 1px solid #2e2a1a;
-  }
-  .table-scroll {
-    max-height: 440px;
-    overflow-y: auto;
-    border: 1px solid #33301f;
-    border-radius: 10px;
-    margin-top: 12px;
-  }
-  .table-scroll th {
-    position: sticky;
-    top: 0;
-  }
-  details {
-    background: #0f0f12;
-    border: 1px solid #6b5a1f;
-    border-radius: 14px;
-    padding: 18px;
-    margin-top: 18px;
-  }
-  summary {
-    cursor: pointer;
-    color: #f5e6a8;
-    font-weight: bold;
-    font-size: 17px;
-  }
-  .msg {
-    position: fixed;
-    right: 16px;
-    bottom: 16px;
-    background: #c9a227;
-    color: #000;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 12px 16px;
-    border-radius: 999px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
-  }
-  footer {
-    text-align: center;
-    color: #77715c;
-    font-size: 12px;
-    padding: 24px 16px;
-  }
+  :root{--bg:#05070c;--gold:#d4af37;--gold-bright:#f7e199;--gold-soft:rgba(212,175,55,0.28);--cyan:#00e5ff;--text:#ece6d6;--muted:#98a2b3;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:radial-gradient(circle at 50% 0%,#161d30 0%,var(--bg) 65%);color:var(--text);font-family:"Palatino Linotype",Georgia,serif;min-height:100vh;padding-bottom:60px;}
+  .hero{text-align:center;padding:3rem 1.2rem 2rem;border-bottom:1px solid var(--gold-soft);}
+  .hero img{width:min(300px,80vw);border-radius:14px;border:2px solid var(--gold);box-shadow:0 0 30px rgba(212,175,55,0.3);margin-bottom:1.5rem;}
+  .kicker{display:inline-block;font-family:monospace;font-size:.75rem;letter-spacing:.2em;color:var(--cyan);border:1px solid rgba(0,229,255,.35);padding:.28rem .9rem;border-radius:999px;margin-bottom:.8rem;text-transform:uppercase;}
+  h1{font-size:clamp(2rem,5vw,3.4rem);color:var(--gold-bright);letter-spacing:.1em;text-transform:uppercase;text-shadow:0 0 24px rgba(212,175,55,.35);}
+  .sub{max-width:720px;margin:.8rem auto 0;color:var(--muted);font-size:1rem;}
+  .container{max-width:1000px;margin:2rem auto;padding:0 1rem;}
+  .card{background:linear-gradient(165deg,rgba(19,26,41,.94),rgba(10,14,23,.98));border:1px solid var(--gold-soft);border-radius:14px;padding:1.6rem;margin-bottom:1.4rem;box-shadow:0 12px 30px rgba(0,0,0,.45);}
+  .card h2{color:var(--gold);font-size:1.3rem;margin-bottom:1rem;border-bottom:1px solid var(--gold-soft);padding-bottom:.4rem;}
+  .pilares{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;}
+  .pilar{background:#0d121d;border:1px solid rgba(212,175,55,.2);border-radius:10px;padding:1.2rem;text-align:center;}
+  .pilar .icon{font-size:2.4rem;margin-bottom:.4rem;}
+  .pilar h3{color:var(--gold-bright);margin-bottom:.4rem;}
+  .pilar p{color:var(--muted);font-size:.87rem;}
+  .route-pill{display:inline-block;text-decoration:none;color:var(--gold);border:1px solid var(--gold-soft);background:rgba(13,18,29,.85);padding:.35rem .85rem;border-radius:999px;font-family:monospace;font-size:.76rem;margin:.25rem;transition:.2s;}
+  .route-pill:hover{background:var(--gold);color:var(--bg);font-weight:bold;}
+  footer{text-align:center;color:var(--muted);font-size:.82rem;padding:2rem 1rem;}
 </style>
 </head>
 <body>
+<section class="hero">
+  <img src="../LIBROS/DON/REY/SALOMÓN/img/IMG-20261128-WA3284.jpg" alt="DON SALOMONICO · Árbol">
+  <div class="kicker">DON SALOMONICO · Arquitectura · Geometría · Filología</div>
+  <h1>DON SALOMONICO</h1>
+  <p class="sub">Arquitectura, Geometría y Filología salomónica en una sola lectura. El Árbol dorado que sostiene los 72 ángeles del Codex 149 de la SADV41.</p>
+  <div style="margin-top:1.2rem;">
+    <a class="route-pill" href="../LIBRO/dondesalomon/">📖 Libro Completo</a>
+    <a class="route-pill" href="../LIBRO/dondesalomon/#cap2">🌳 Árbol Interactivo</a>
+    <a class="route-pill" href="../AMERICA/MAZÓNICA/#matriz72">🌎 AMERICA/MAZÓNICA</a>
+    <a class="route-pill" href="../DON/">⚡ DON</a>
+  </div>
+</section>
 
-<header>
-  <div class="kicker">Arte Notoria Integrada · Codex 149 (3 + 1)</div>
-  <h1>DON SALOMÓNICO SADV41</h1>
-  <p class="sub">Arquitectura, geometría y filología en una sola lectura. Primero clasifica el sufijo, luego ubica en el Árbol, luego lee la función.</p>
-</header>
-
-<nav>
-  <a href="#arquitectura">I. Arquitectura</a>
-  <a href="#geometria">II. Árbol (1000×1050)</a>
-  <a href="#filologia">III. Filología de Raíces</a>
-  <a href="#clasificador">IV. Clasificador</a>
-  <a href="#matriz72">V. Matriz 72 (3+1)</a>
-  <a href="#baul">VI. Baúl Cerrado</a>
-</nav>
-
-<main>
-  <section id="arquitectura">
-    <h2>I. Arquitectura Unificada</h2>
-    <p><b>Árbol como plano:</b> 10 nodos funcionales en 3 pilares y 22 senderos con dirección. <b>Nombre como etiqueta:</b> el sufijo indica orden jerárquico. <b>Síntesis como ejecución:</b> toda lectura concluye en una clasificación verificable.</p>
-    <div class="grid-3">
-      <div class="card">
-        <h3>Pilar Derecho · Misericordia</h3>
-        <p><b>Chokmah, Chesed, Netzach.</b> Fuerza activa, expansión, gracia y persistencia vital.</p>
+<main class="container">
+  <div class="card">
+    <h2>Los Tres Pilares del Árbol</h2>
+    <div class="pilares">
+      <div class="pilar">
+        <div class="icon">⚡</div>
+        <h3>Pilar Derecho</h3>
+        <p><strong>Misericordia</strong><br>Chokmah · Chesed · Netzach<br>Fuerza activa, expansión, gracia vital.</p>
       </div>
-      <div class="card">
-        <h3>Pilar Izquierdo · Rigor</h3>
-        <p><b>Binah, Geburah, Hod.</b> Matriz receptiva, límite, corte, justicia y forma analítica.</p>
+      <div class="pilar">
+        <div class="icon">⚖️</div>
+        <h3>Pilar Central</h3>
+        <p><strong>Equilibrio</strong><br>Kether · Tiphareth · Yesod · Malkuth<br>Eje de síntesis: origen a manifestación.</p>
       </div>
-      <div class="card">
-        <h3>Pilar Central · Equilibrio</h3>
-        <p><b>Kether, Tiphareth, Yesod, Malkuth.</b> Eje de síntesis entre el origen sin forma y la manifestación material.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="geometria">
-    <h2>II. Cábala Sagrada · Geometría Interactiva (1000 × 1050)</h2>
-    <p>Selecciona cualquier nodo o sendero para inspeccionar su función, pilar y coordenadas exactas.</p>
-    <div class="tree-wrap">
-      <svg class="tree" viewBox="0 0 1000 1050" id="arbol"></svg>
-      <div id="detalle">
-        <b>Selecciona una Sefirah o un Sendero.</b><br><br>
-        La geometría es la función. La posición en el lienzo indica pilar, nivel de emanación y polaridad operativa.
+      <div class="pilar">
+        <div class="icon">🗡️</div>
+        <h3>Pilar Izquierdo</h3>
+        <p><strong>Rigor</strong><br>Binah · Geburah · Hod<br>Límite, corte, justicia y forma analítica.</p>
       </div>
     </div>
-  </section>
+  </div>
 
-  <section id="filologia">
-    <h2>III. Filología de Raíces</h2>
-    <p><b>Regla ejecutable:</b> primero clasifica el sufijo, luego ubica la entidad en el Árbol, luego lee su función. Un nombre en <b>-IM</b> nunca se trata como individuo; un nombre en <b>-ON</b> nunca se trata como coro.</p>
-    <table>
-      <thead>
-        <tr>
-          <th>Raíz</th>
-          <th>Función en el sistema</th>
-          <th>Polaridad</th>
-          <th>Ejemplos de lectura</th>
-          <th>Síntesis</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><b>-AL / -EL</b></td>
-          <td>Orden angélica masculina individual</td>
-          <td>Activa, oficio único</td>
-          <td>Mika-AL, Gavri-AL, Rafa-AL, Uri-AL</td>
-          <td>Nombre propio más función. Un portador, un oficio, una línea de mando.</td>
-        </tr>
-        <tr>
-          <td><b>-IH / -AH</b></td>
-          <td>Esencia angélica femenina</td>
-          <td>Receptiva, matriz</td>
-          <td>Shekin-AH, Bin-AH, Chokm-AH, Ru-AH</td>
-          <td>Presencia que habita. No comanda legión, sostiene espacio.</td>
-        </tr>
-        <tr>
-          <td><b>-IM</b></td>
-          <td>Legión colectiva</td>
-          <td>Plural, cuerpo ordenado</td>
-          <td>Seraph-IM, Cherub-IM, Ophan-IM, EloH-IM, Malakh-IM</td>
-          <td>En hebreo, -IM es plural masculino. No es un individuo, es un coro con función.</td>
-        </tr>
-        <tr>
-          <td><b>-ON</b></td>
-          <td>Entidad titánica de libre albedrío</td>
-          <td>Singular soberana</td>
-          <td>Metatr-ON, Sandalph-ON, Ai-ON</td>
-          <td>Eje que no se disuelve en coro. Sostiene un ciclo completo y decide su mediación.</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+  <div class="card">
+    <h2>Síntesis Numérica: 149 (3+1)</h2>
+    <p style="line-height:1.8;color:var(--muted)">
+      <strong style="color:var(--gold-bright)">149</strong> → 1+4+9 = 14 → 1+4 = 5 pilares × 72 sellos = <strong style="color:var(--gold-bright)">360°</strong> (el círculo completo del Codex).<br>
+      Tres consonantes raíz + un sufijo divino (<em>-Yah</em> o <em>-El</em>) = arquitectura del nombre angélico.<br>
+      22 senderos + 10 Sefirot = <strong style="color:var(--gold-bright)">32 vías de la sabiduría</strong>.
+    </p>
+  </div>
 
-  <section id="clasificador">
-    <h2>IV. Clasificador Filológico Ejecutable</h2>
-    <p>Introduce cualquier nombre para diagnosticar su terminación antes de interpretarlo en el Árbol:</p>
-    <div class="form-row">
-      <input id="nombre" placeholder="Ejemplo: Mikael, Seraphim, Metatron, Shekinah, Vehuiah" onkeyup="if(event.key==='Enter')clasificar()">
-      <button onclick="clasificar()">Clasificar Sufijo</button>
+  <div class="card">
+    <h2>Imagen del Sistema</h2>
+    <div style="text-align:center;">
+      <img src="../LIBROS/DON/REY/SALOMÓN/img/1795842590101.png" alt="Geometría Metatrón" style="width:min(360px,90%);border-radius:12px;border:1px solid var(--gold-soft);">
+      <p style="color:var(--muted);margin-top:.6rem;font-size:.87rem;">Cubo de Metatrón · Base geométrica del Codex 149</p>
     </div>
-    <div id="resultado">Sin clasificación todavía.</div>
-  </section>
-
-  <section id="matriz72">
-    <h2>V. Matriz 72 · Arquitectura 3 + 1 y las 4 Series Tetragrámicas</h2>
-    <p>Los 72 Nombres del Shemhamphorash (3 letras raíz + 1 sufijo divino <b>Yah</b> o <b>El</b> = 4) distribuidos en las 4 series de 18: <i>Yod</i> (1–18), <i>He</i> (19–36), <i>Vav</i> (37–54) y <i>He final</i> (55–72).</p>
-    <div class="form-row">
-      <input id="filtro72" placeholder="Buscar en los 72 por número, nombre o atributo..." oninput="filtrar72()">
-      <select id="sufijo72" onchange="filtrar72()">
-        <option value="ALL">Todos los sufijos (72)</option>
-        <option value="Yah">Sufijo -Yah (יה)</option>
-        <option value="El">Sufijo -El (אל)</option>
-      </select>
-    </div>
-    <div class="table-scroll">
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Nombre (3+1)</th>
-            <th>Sufijo</th>
-            <th>Serie Tetragrámica</th>
-            <th>Atributo Textual</th>
-          </tr>
-        </thead>
-        <tbody id="cuerpo72"></tbody>
-      </table>
-    </div>
-  </section>
-
-  <details id="baul">
-    <summary>VI. Baúl Cerrado: Los 22 Senderos y el Ciclo de 360 Sellos</summary>
-    <p><b>Síntesis 5 × 72 = 360:</b> Cinco sacerdotes de Babilonia dividieron el manuscrito del cofre de hierro en 5 familias de 72 sellos; el quinto copió las partes restantes y restauró la unidad (72 + 72 + 5 = 149).</p>
-    <p><b>Atribución completa de los 22 senderos:</b> 11 Aleph: Kether a Chokmah. 12 Beth: Kether a Binah. 13 Gimel: Kether a Tiphareth. 14 Daleth: Chokmah a Binah. 15 He: Chokmah a Tiphareth. 16 Vav: Chokmah a Chesed. 17 Zayin: Binah a Tiphareth. 18 Cheth: Binah a Geburah. 19 Teth: Chesed a Geburah. 20 Yod: Chesed a Tiphareth. 21 Kaph: Chesed a Netzach. 22 Lamed: Geburah a Tiphareth. 23 Mem: Geburah a Hod. 24 Nun: Tiphareth a Netzach. 25 Samekh: Tiphareth a Hod. 26 Ayin: Tiphareth a Yesod. 27 Pe: Netzach a Hod. 28 Tzadi: Netzach a Yesod. 29 Qoph: Netzach a Malkuth. 30 Resh: Hod a Yesod. 31 Shin: Hod a Malkuth. 32 Tav: Yesod a Malkuth.</p>
-  </details>
+  </div>
 </main>
 
-<footer>DON SALOMÓNICO SADV41 · Libro Unificado · Estudio textual, geométrico y filológico</footer>
-<a class="msg" href="https://www.messenger.com/channel/61554018924556" target="_blank" rel="noopener">Messenger</a>
-
-<script>
-const SEFIROTH = {
-  Kether:   { x: 500, y: 85,  pilar: "Central (Equilibrio)", desc: "Corona. Principio sin forma. Origen del plano." },
-  Chokmah:  { x: 750, y: 215, pilar: "Derecho (Misericordia)", desc: "Sabiduría. Impulso activo, semilla primordial." },
-  Binah:    { x: 250, y: 215, pilar: "Izquierdo (Rigor)", desc: "Entendimiento. Matriz, forma y límite estructural." },
-  Chesed:   { x: 750, y: 415, pilar: "Derecho (Misericordia)", desc: "Misericordia. Expansión, gracia y cohesión." },
-  Geburah:  { x: 250, y: 415, pilar: "Izquierdo (Rigor)", desc: "Rigor. Corte, disciplina y juicio depurador." },
-  Tiphareth:{ x: 500, y: 505, pilar: "Central (Equilibrio)", desc: "Belleza. Centro solar, equilibrio y mediación." },
-  Netzach:  { x: 750, y: 665, pilar: "Derecho (Misericordia)", desc: "Victoria. Fuerza vital, impulso y persistencia." },
-  Hod:      { x: 250, y: 665, pilar: "Izquierdo (Rigor)", desc: "Esplendor. Forma mental, análisis y orden." },
-  Yesod:    { x: 500, y: 815, pilar: "Central (Equilibrio)", desc: "Fundamento. Imagen, espejo astral y puente." },
-  Malkuth:  { x: 500, y: 965, pilar: "Central (Equilibrio)", desc: "Reino. Manifestación tangible en la materia." }
-};
-
-const SENDEROS = [
-  ["Kether","Chokmah","11 Aleph","Inteligencia Centelleante"],
-  ["Kether","Binah","12 Beth","Inteligencia de Transparencia"],
-  ["Kether","Tiphareth","13 Gimel","Inteligencia Unificadora"],
-  ["Chokmah","Binah","14 Daleth","Inteligencia Iluminadora"],
-  ["Chokmah","Tiphareth","15 He","Inteligencia Constituyente"],
-  ["Chokmah","Chesed","16 Vav","Inteligencia Triunfal o Eterna"],
-  ["Binah","Tiphareth","17 Zayin","Inteligencia Disponente"],
-  ["Binah","Geburah","18 Cheth","Inteligencia de la Influencia"],
-  ["Chesed","Geburah","19 Teth","Inteligencia del Secreto"],
-  ["Chesed","Tiphareth","20 Yod","Inteligencia de la Voluntad"],
-  ["Chesed","Netzach","21 Kaph","Inteligencia de Conciliación"],
-  ["Geburah","Tiphareth","22 Lamed","Inteligencia Fiel"],
-  ["Geburah","Hod","23 Mem","Inteligencia Estable"],
-  ["Tiphareth","Netzach","24 Nun","Inteligencia Imaginativa"],
-  ["Tiphareth","Hod","25 Samekh","Inteligencia de Prueba"],
-  ["Tiphareth","Yesod","26 Ayin","Inteligencia Renovadora"],
-  ["Netzach","Hod","27 Pe","Inteligencia Activa"],
-  ["Netzach","Yesod","28 Tzadi","Inteligencia Natural"],
-  ["Netzach","Malkuth","29 Qoph","Inteligencia Corpórea"],
-  ["Hod","Yesod","30 Resh","Inteligencia Colectiva"],
-  ["Hod","Malkuth","31 Shin","Inteligencia Perpetua"],
-  ["Yesod","Malkuth","32 Tav","Inteligencia Administrativa"]
-];
-
-const svg = document.getElementById("arbol");
-let svgHtml = "";
-SENDEROS.forEach((p, idx) => {
-  const a = SEFIROTH[p[0]], b = SEFIROTH[p[1]];
-  svgHtml += `<line class="pathline" x1="${a.x}" y1="${a.y}" x2="${b.x}" y2="${b.y}" onclick="mostrarSendero(${idx})"></line>`;
-});
-Object.keys(SEFIROTH).forEach(k => {
-  const s = SEFIROTH[k];
-  svgHtml += `<g class="node" data-k="${k}" onclick="mostrar('${k}')"><circle cx="${s.x}" cy="${s.y}" r="48"></circle><text x="${s.x}" y="${s.y + 5}">${k}</text></g>`;
-});
-svg.innerHTML = svgHtml;
-
-function mostrar(k) {
-  document.querySelectorAll(".node").forEach(n => n.classList.remove("active"));
-  document.querySelector(`[data-k="${k}"]`).classList.add("active");
-  const s = SEFIROTH[k];
-  document.getElementById("detalle").innerHTML =
-    `<b>Nodo: ${k}</b><br><br><b>Pilar:</b> ${s.pilar}<br><b>Coordenadas:</b> (${s.x}, ${s.y})<br><b>Función:</b> ${s.desc}`;
-}
-
-function mostrarSendero(idx) {
-  document.querySelectorAll(".node").forEach(n => n.classList.remove("active"));
-  const p = SENDEROS[idx];
-  document.getElementById("detalle").innerHTML =
-    `<b>Sendero ${p[2]}</b><br><br><b>Conexión:</b> ${p[0]} → ${p[1]}<br><b>Atribución:</b> ${p[3]}`;
-}
-
-function clasificar() {
-  const v = document.getElementById("nombre").value.trim().toUpperCase();
-  if (!v) {
-    document.getElementById("resultado").innerHTML = "Escribe un nombre para clasificar.";
-    return;
-  }
-  let r = "";
-  if (v.endsWith("AL") || v.endsWith("EL")) {
-    r = "<b>Sufijo -AL / -EL:</b> Orden angélica masculina individual. Polaridad activa, oficio único, línea de mando definida.";
-  } else if (v.endsWith("IH") || v.endsWith("IAH") || v.endsWith("AH") || v.endsWith("A")) {
-    r = "<b>Sufijo -IH / -AH:</b> Esencia angélica femenina. Polaridad receptiva; presencia que habita y sostiene espacio.";
-  } else if (v.endsWith("IM")) {
-    r = "<b>Sufijo -IM:</b> Legión colectiva (plural hebreo). Coro ordenado con función conjunta; nunca se lee como individuo.";
-  } else if (v.endsWith("ON")) {
-    r = "<b>Sufijo -ON:</b> Entidad titánica de libre albedrío. Eje singular soberano que sostiene un ciclo completo; nunca se lee como coro.";
-  } else {
-    r = "<b>Sin sufijo clasificado (-AL/-EL, -IH/-AH, -IM, -ON):</b> Revisa la terminación morfológica antes de ubicar en el Árbol.";
-  }
-  document.getElementById("resultado").innerHTML = `<b>Diagnóstico de ${v}:</b><br>${r}`;
-}
-
-const LISTA_72 = [
-  ["Vehuiah","Yah","Principio creador y voluntad primordial"],
-  ["Jeliel","El","Armonización y socorro de fuerzas opuestas"],
-  ["Sitael","El","Esperanza y cimiento estructural"],
-  ["Elemiah","Yah","Poder oculto que ordena el destino"],
-  ["Mahasiah","Yah","Rectificación y paz superior"],
-  ["Lelahel","El","Luz que esclarece la ciencia y sana"],
-  ["Achaiah","Yah","Paciencia y lectura de secretos naturales"],
-  ["Cahetel","El","Bendición y abundancia"],
-  ["Haziel","El","Misericordia y reconciliación"],
-  ["Aladiah","Yah","Gracia propicia y restauración"],
-  ["Lauviah","Yah","Victoria y grandeza de espíritu"],
-  ["Hahaiah","Yah","Refugio y revelación interior"],
-  ["Iezalel","El","Fidelidad, memoria y unión"],
-  ["Mebahel","El","Custodia de la verdad y la justicia"],
-  ["Hariel","El","Purificación y síntesis de fe y razón"],
-  ["Hakamiah","Yah","Lealtad, dignidad y soberanía"],
-  ["Lauviah II","Yah","Revelación de altas ciencias"],
-  ["Caliel","El","Justicia pronta en la adversidad"],
-  ["Leuviah","Yah","Expansión de la inteligencia y memoria"],
-  ["Pahaliah","Yah","Redención y vocación espiritual"],
-  ["Nelchael","El","Prevalencia frente al error"],
-  ["Yeiayel","El","Diestra protectora en empresas"],
-  ["Melahel","El","Liberación y sanación por las aguas"],
-  ["Haheuiah","Yah","Amparo y protección del exiliado"],
-  ["Nith-Haiah","Yah","Sabiduría mística y discernimiento"],
-  ["Haaiah","Yah","Orden secreto, diplomacia y justicia"],
-  ["Yeratel","El","Difusión de la luz"],
-  ["Seheiah","Yah","Preservación de la vida y prudencia"],
-  ["Reiyel","El","Liberación de todo asedio"],
-  ["Omael","El","Generación de vida y paciencia"],
-  ["Lecabel","El","Claridad de cálculo y resolución"],
-  ["Vasariah","Yah","Clemencia en el juicio y palabra justa"],
-  ["Yehuiah","Yah","Discernimiento y restauración del deber"],
-  ["Lehahiah","Yah","Serenidad ante la cólera"],
-  ["Chavakiah","Yah","Concordia y reconciliación familiar"],
-  ["Menadel","El","Liberación y trabajo digno"],
-  ["Aniel","El","Ruptura de cadenas y renovación de ciclos"],
-  ["Haamiah","Yah","Verdad en el culto y búsqueda de Dios"],
-  ["Rehael","El","Regeneración y prontitud"],
-  ["Ieiazel","El","Consuelo e inspiración en artes y letras"],
-  ["Hahahel","El","Unidad trina y misión sacerdotal"],
-  ["Mikael","El","Orden jerárquico divino (¿Quién como Dios?)"],
-  ["Veuliah","Yah","Libertad frente a la tiranía"],
-  ["Yelahiah","Yah","Escudo eterno en las pruebas"],
-  ["Sehaliah","Yah","Impulso vital del humilde"],
-  ["Ariel","El","Revelación de tesoros ocultos de la creación"],
-  ["Asaliah","Yah","Elevación hacia la contemplación"],
-  ["Mihael","El","Fecundidad, intuición y paz"],
-  ["Vehuel","El","Grandeza espiritual y alabanza"],
-  ["Daniel","El","Palabra justa y discernimiento misericordioso"],
-  ["Hahasiah","Yah","Medicina universal y sabiduría oculta"],
-  ["Imamiah","Yah","Humildad que vence la sombra"],
-  ["Nanael","El","Sabiduría silenciosa y meditación"],
-  ["Nithael","El","Legitimidad y permanencia eterna"],
-  ["Mebahiah","Yah","Claridad moral y recta conducta"],
-  ["Poyel","El","Sostén del cosmos con modestia"],
-  ["Nemamiah","Yah","Estrategia luminosa y discernimiento"],
-  ["Yeialel","El","Temple y visión mental clara"],
-  ["Harahel","El","Sabiduría, memoria y administración"],
-  ["Mitzrael","El","Rectificación interna del alma"],
-  ["Umabel","El","Afinidad, fraternidad y física celeste"],
-  ["Iah-Hel","El","Ser Supremo en quietud contemplativa"],
-  ["Anauel","El","Unidad de voluntades en el bien"],
-  ["Mehiel","El","Aliento vivificador e inspiración"],
-  ["Damabiah","Yah","Manantial puro de sabiduría"],
-  ["Manakel","El","Calma de pasiones y discernimiento"],
-  ["Eyael","El","Transmutación de la prueba en consuelo"],
-  ["Habuhiah","Yah","Curación integral y fertilidad"],
-  ["Rochel","El","Restitución de lo extraviado"],
-  ["Jabamiah","Yah","Regeneración por el Verbo creador"],
-  ["Haiaiel","El","Soberanía divina y defensa"],
-  ["Mumiah","Yah","Consumación de la obra y renacer"]
-];
-
-function filtrar72() {
-  const q = document.getElementById("filtro72").value.toLowerCase().trim();
-  const suf = document.getElementById("sufijo72").value;
-  const series = ["Serie I · Yod (1–18)", "Serie II · He (19–36)", "Serie III · Vav (37–54)", "Serie IV · He final (55–72)"];
-  let rows = "";
-  LISTA_72.forEach((item, i) => {
-    const num = i + 1;
-    const serie = series[Math.floor(i / 18)];
-    if (suf !== "ALL" && item[1] !== suf) return;
-    if (q && !`${num} ${item[0]} ${item[1]} ${item[2]} ${serie}`.toLowerCase().includes(q)) return;
-    rows += `<tr><td><b>${num}</b></td><td><b>${item[0]}</b></td><td>-${item[1]}</td><td>${serie}</td><td>${item[2]}</td></tr>`;
-  });
-  document.getElementById("cuerpo72").innerHTML = rows;
-}
-
-mostrar("Tiphareth");
-filtrar72();
-</script>
+<footer>DON SALOMONICO · SADV41 · thesteef21.github.io/SADV41/DON_SALOMONICO/</footer>
 </body>
 </html>
