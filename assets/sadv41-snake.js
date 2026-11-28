@@ -6,8 +6,8 @@
   const WA_STEVEN = "https://wa.me/50769362166";
   const IG_STEVEN = "https://instagram.com/stevendioroficial";
   const ARTIST_URL = "https://thesteef21.github.io/SADV41/Artist";
-  const SNAP_DIST = 48;
-  const MIN_GAP = 8;
+  const DOCK_THRESHOLD = 46;
+  const GAP = 8;
 
   const style = document.createElement("style");
   style.textContent = `
@@ -17,29 +17,28 @@
       color: #f8fafc;
       border-bottom: 1px solid #38bdf8;
       border-top: 1px solid #38bdf8;
-      padding: 10px 14px;
+      padding: 8px 12px;
       text-align: center;
       font-family: system-ui, -apple-system, sans-serif;
-      font-size: 13px;
+      font-size: 12px;
       z-index: 9990;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 8px;
     }
     .sadv41-zk-bar a {
       background: #38bdf8;
       color: #090d16;
       font-weight: 800;
-      padding: 5px 12px;
+      padding: 4px 10px;
       border-radius: 999px;
       text-decoration: none;
-      font-size: 12px;
-      transition: transform 0.15s ease;
+      font-size: 11px;
     }
-    .sadv41-zk-bar a:hover { transform: scale(1.05); }
 
+    /* Cápsulas compactas (Verde: menos espacio, cero choque) */
     .sadv41-mag-widget {
       position: fixed !important;
       z-index: 99999 !important;
@@ -48,22 +47,29 @@
       cursor: grab;
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      padding: 10px 14px;
+      justify-content: center;
+      gap: 4px;
+      height: 38px;
+      padding: 0 10px;
       border-radius: 999px;
       font-family: system-ui, -apple-system, sans-serif;
       font-weight: 700;
-      font-size: 13px;
+      font-size: 11px;
       color: #fff;
       text-decoration: none;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.55);
-      border: 2px solid rgba(255,255,255,0.22);
-      transition: box-shadow 0.2s, border-color 0.2s;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.55);
+      border: 1.5px solid rgba(255,255,255,0.28);
+      transition: left 0.22s cubic-bezier(.22,1,.36,1), top 0.22s cubic-bezier(.22,1,.36,1), box-shadow 0.2s, border-color 0.2s;
+      white-space: nowrap;
     }
-    .sadv41-mag-widget:active { cursor: grabbing; }
+    .sadv41-mag-widget.dragging {
+      transition: none !important;
+      cursor: grabbing;
+      transform: scale(1.06);
+    }
     .sadv41-mag-widget.snake-linked {
       border-color: #9bbc0f !important;
-      box-shadow: 0 0 16px #9bbc0f, 0 6px 18px rgba(0,0,0,0.65) !important;
+      box-shadow: 0 0 14px #9bbc0f, 0 4px 12px rgba(0,0,0,0.65) !important;
     }
     #sadv41-snake-modal {
       display: none;
@@ -105,8 +111,8 @@
     const bar = document.createElement("div");
     bar.className = "sadv41-zk-bar sadv41-zk-" + pos;
     bar.innerHTML = `
-      <span>🌌 <strong>Zero-Knowledge Newsletter · SADV41</strong> — Inteligencia y tecnología sin límites</span>
-      <a href="${ZK_URL}" target="_blank" rel="noopener">Suscribirse Ahora ↗</a>
+      <span>🌌 <strong>Zero-Knowledge · SADV41</strong></span>
+      <a href="${ZK_URL}" target="_blank" rel="noopener">Suscribirse ↗</a>
     `;
     return bar;
   }
@@ -117,19 +123,17 @@
   const existingMsg = document.querySelector(".msg-float");
   if (existingMsg) existingMsg.remove();
 
-  // Nodos globales enfocados a StevenDiorOficial / SADV41
+  // 5 Nodos compactos (Penta)
   const nodesData = [
-    { id: "w-st", label: "🎵 StevenDior", href: ARTIST_URL, bg: "#0284c7" },
-    { id: "w-ig", label: "📸 @stevendioroficial", href: IG_STEVEN, bg: "#db2777" },
-    { id: "w-wa", label: "📲 WhatsApp SADV41", href: WA_STEVEN, bg: "#16a34a" },
-    { id: "w-zk", label: "🌌 ZK News", href: ZK_URL, bg: "#4f46e5" },
-    { id: "w-sn", label: "🐍 Nokia Snake", href: "#snake", bg: "#306230" }
+    { id: "w-st", label: "🎵 Dior", href: ARTIST_URL, bg: "#0284c7" },
+    { id: "w-ig", label: "📸 IG", href: IG_STEVEN, bg: "#db2777" },
+    { id: "w-wa", label: "📲 WA", href: WA_STEVEN, bg: "#16a34a" },
+    { id: "w-zk", label: "🌌 ZK", href: ZK_URL, bg: "#4f46e5" },
+    { id: "w-sn", label: "🐍 Snake", href: "#snake", bg: "#306230" }
   ];
 
   const widgets = [];
-  const startY = Math.max(80, window.innerHeight - 310);
-
-  nodesData.forEach((data, idx) => {
+  nodesData.forEach((data) => {
     const el = document.createElement("a");
     el.id = data.id;
     el.className = "sadv41-mag-widget";
@@ -141,64 +145,83 @@
       el.rel = "noopener";
     }
     document.body.appendChild(el);
-
-    const state = {
+    widgets.push({
       el,
-      x: 14,
-      y: startY + idx * 52,
-      w: el.offsetWidth || 145,
-      h: el.offsetHeight || 40,
+      id: data.id,
+      x: 12,
+      y: 120,
+      w: el.offsetWidth || 72,
+      h: 38,
       moved: false
-    };
-    el.style.left = state.x + "px";
-    el.style.top = state.y + "px";
-    widgets.push(state);
+    });
   });
 
-  function resolveCollisionsAndMagnetism(activeWidget) {
-    const maxW = window.innerWidth;
-    const maxH = window.innerHeight;
-
+  function measureAll() {
     widgets.forEach(w => {
-      w.w = w.el.offsetWidth || 145;
-      w.h = w.el.offsetHeight || 40;
-      w.x = Math.max(6, Math.min(maxW - w.w - 6, w.x));
-      w.y = Math.max(6, Math.min(maxH - w.h - 6, w.y));
+      w.w = w.el.offsetWidth || 72;
+      w.h = w.el.offsetHeight || 38;
     });
+  }
 
-    let linkedCount = 0;
+  // Ordenar como Dock en borde (Arriba, Abajo, Izquierda o Derecha)
+  function arrangeAsDock(edge) {
+    measureAll();
+    const W = window.innerWidth;
+    const H = window.innerHeight;
+
+    if (edge === "bottom" || edge === "top") {
+      const totalW = widgets.reduce((acc, w) => acc + w.w, 0) + GAP * (widgets.length - 1);
+      let curX = Math.max(8, (W - totalW) / 2);
+      const targetY = edge === "bottom" ? H - 52 : 44;
+      widgets.forEach(w => {
+        w.x = Math.min(W - w.w - 6, curX);
+        w.y = targetY;
+        curX += w.w + GAP;
+      });
+    } else {
+      const totalH = widgets.reduce((acc, w) => acc + w.h, 0) + GAP * (widgets.length - 1);
+      let curY = Math.max(54, (H - totalH) / 2);
+      widgets.forEach(w => {
+        w.x = edge === "right" ? W - w.w - 8 : 8;
+        w.y = Math.min(H - w.h - 8, curY);
+        curY += w.h + GAP;
+      });
+    }
+    applyPositions(true);
+  }
+
+  // Formación Penta (Estrella de 5 puntas sin colisión) alrededor de un centro (cx, cy)
+  function arrangeAsPenta(cx, cy) {
+    measureAll();
+    const W = window.innerWidth;
+    const H = window.innerHeight;
+    const radius = 64; // Radio compacto que evita que los 5 nodos choquen
+    const safeCx = Math.max(radius + 45, Math.min(W - radius - 45, cx));
+    const safeCy = Math.max(radius + 55, Math.min(H - radius - 55, cy));
+
+    widgets.forEach((w, idx) => {
+      const angle = (-Math.PI / 2) + (idx * (2 * Math.PI / widgets.length));
+      w.x = safeCx + Math.cos(angle) * radius - w.w / 2;
+      w.y = safeCy + Math.sin(angle) * radius - w.h / 2;
+    });
+    applyPositions(true);
+  }
+
+  // Anticolisión estricta mientras se arrastra libremente
+  function preventOverlap(active) {
+    measureAll();
+    const W = window.innerWidth;
+    const H = window.innerHeight;
 
     for (let pass = 0; pass < 4; pass++) {
       for (let i = 0; i < widgets.length; i++) {
         for (let j = i + 1; j < widgets.length; j++) {
           const a = widgets[i];
           const b = widgets[j];
-
-          const dx = (b.x + b.w / 2) - (a.x + a.w / 2);
-          const dy = (b.y + b.h / 2) - (a.y + a.h / 2);
-          const dist = Math.hypot(dx, dy);
-
-          const idealDist = (a.w + b.w) / 2 + MIN_GAP;
-          if (dist < idealDist + SNAP_DIST && dist > 0) {
-            if (pass === 0) linkedCount++;
-            const target = (activeWidget === a) ? b : a;
-            const anchor = (activeWidget === a) ? a : b;
-            if (Math.abs(dx) >= Math.abs(dy)) {
-              const dir = dx >= 0 ? 1 : -1;
-              target.x = anchor.x + dir * (anchor.w + MIN_GAP);
-              target.y = anchor.y;
-            } else {
-              const dir = dy >= 0 ? 1 : -1;
-              target.x = anchor.x;
-              target.y = anchor.y + dir * (anchor.h + MIN_GAP);
-            }
-          }
-
-          const overlapX = (a.w / 2 + b.w / 2 + MIN_GAP) - Math.abs((a.x + a.w / 2) - (b.x + b.w / 2));
-          const overlapY = (a.h / 2 + b.h / 2 + MIN_GAP) - Math.abs((a.y + a.h / 2) - (b.y + b.h / 2));
-
+          const overlapX = (a.w / 2 + b.w / 2 + GAP) - Math.abs((a.x + a.w / 2) - (b.x + b.w / 2));
+          const overlapY = (a.h / 2 + b.h / 2 + GAP) - Math.abs((a.y + a.h / 2) - (b.y + b.h / 2));
           if (overlapX > 0 && overlapY > 0) {
-            const mover = (activeWidget === b) ? a : b;
+            const mover = (active === b) ? a : b;
             const fixed = (mover === a) ? b : a;
             if (overlapX < overlapY) {
               mover.x += (mover.x >= fixed.x ? overlapX : -overlapX);
@@ -206,23 +229,25 @@
               mover.y += (mover.y >= fixed.y ? overlapY : -overlapY);
             }
           }
-
           [a, b].forEach(item => {
-            item.x = Math.max(6, Math.min(maxW - item.w - 6, item.x));
-            item.y = Math.max(6, Math.min(maxH - item.h - 6, item.y));
+            item.x = Math.max(6, Math.min(W - item.w - 6, item.x));
+            item.y = Math.max(6, Math.min(H - item.h - 6, item.y));
           });
         }
       }
     }
+    applyPositions(false);
+  }
 
-    const allLinked = linkedCount >= widgets.length - 1;
+  function applyPositions(linked) {
     widgets.forEach(w => {
-      w.el.style.left = w.x + "px";
-      w.el.style.top = w.y + "px";
-      w.el.classList.toggle("snake-linked", allLinked);
+      w.el.style.left = Math.round(w.x) + "px";
+      w.el.style.top = Math.round(w.y) + "px";
+      w.el.classList.toggle("snake-linked", linked);
     });
   }
 
+  // Eventos de arrastre y auto-ordenamiento Dock / Penta al soltar
   widgets.forEach(w => {
     let dragging = false, offX = 0, offY = 0;
 
@@ -230,6 +255,7 @@
       const pt = e.touches ? e.touches[0] : e;
       dragging = true;
       w.moved = false;
+      w.el.classList.add("dragging");
       offX = pt.clientX - w.x;
       offY = pt.clientY - w.y;
     };
@@ -240,10 +266,34 @@
       w.moved = true;
       w.x = pt.clientX - offX;
       w.y = pt.clientY - offY;
-      resolveCollisionsAndMagnetism(w);
+      preventOverlap(w);
     };
 
-    const onUp = () => { dragging = false; };
+    const onUp = () => {
+      if (!dragging) return;
+      dragging = false;
+      w.el.classList.remove("dragging");
+      if (!w.moved) return;
+
+      const W = window.innerWidth;
+      const H = window.innerHeight;
+      const cx = w.x + w.w / 2;
+      const cy = w.y + w.h / 2;
+
+      // Detectar si se soltó cerca de un borde -> Modo Dock
+      if (cy >= H - DOCK_THRESHOLD - 24) {
+        arrangeAsDock("bottom");
+      } else if (cy <= DOCK_THRESHOLD + 24) {
+        arrangeAsDock("top");
+      } else if (cx <= DOCK_THRESHOLD + 20) {
+        arrangeAsDock("left");
+      } else if (cx >= W - DOCK_THRESHOLD - 20) {
+        arrangeAsDock("right");
+      } else {
+        // Si se suelta en el espacio abierto -> Formación Penta sin choque
+        arrangeAsPenta(cx, cy);
+      }
+    };
 
     w.el.addEventListener("mousedown", onDown);
     window.addEventListener("mousemove", onMove);
@@ -265,9 +315,11 @@
     });
   });
 
-  window.addEventListener("resize", () => resolveCollisionsAndMagnetism(null));
-  setTimeout(() => resolveCollisionsAndMagnetism(null), 150);
+  // Inicio ordenado como Dock inferior compacto sin tapar contenido
+  window.addEventListener("resize", () => arrangeAsDock("bottom"));
+  setTimeout(() => arrangeAsDock("bottom"), 120);
 
+  // Mini-juego Nokia Snake
   function openNokiaSnake() {
     let modal = document.getElementById("sadv41-snake-modal");
     if (!modal) {
