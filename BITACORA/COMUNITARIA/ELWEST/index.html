@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bitácora Comunitaria El West | SADV41</title>
+<style>
+  :root {
+    --bg: #090d16;
+    --card: #111827;
+    --border: #1f2937;
+    --accent: #38bdf8;
+    --gold: #facc15;
+    --text: #f3f4f6;
+    --muted: #9ca3af;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    padding-bottom: 100px;
+  }
+  header {
+    background: linear-gradient(135deg, #0f172a, #1e1b4b);
+    padding: 28px 16px;
+    text-align: center;
+    border-bottom: 2px solid var(--accent);
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(56,189,248,0.15);
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+  h1 { margin: 6px 0; font-size: 24px; color: #fff; }
+  .subtitle { color: var(--muted); font-size: 14px; max-width: 640px; margin: 0 auto; }
+  .container { max-width: 900px; margin: 24px auto; padding: 0 16px; }
+  .search-bar {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--text);
+    font-size: 15px;
+    margin-bottom: 20px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .card:hover { transform: translateY(-2px); border-color: var(--accent); }
+  .tag { font-size: 11px; font-weight: 700; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
+  .card h2 { margin: 0 0 8px; font-size: 18px; color: #fff; }
+  .route {
+    font-family: monospace; font-size: 12px; background: #030712;
+    color: #7dd3fc; padding: 4px 8px; border-radius: 6px; margin-bottom: 10px; word-break: break-all;
+  }
+  .desc { font-size: 14px; color: #d1d5db; margin-bottom: 16px; }
+  .btn {
+    display: block; text-align: center; background: #0284c7; color: #fff;
+    text-decoration: none; padding: 10px 14px; border-radius: 8px; font-weight: 600; font-size: 14px;
+  }
+  .btn:hover { background: #0369a1; }
+  footer {
+    margin-top: 40px; padding: 24px 16px; text-align: center;
+    border-top: 1px solid var(--border); color: var(--muted); font-size: 13px;
+  }
+  footer a { color: var(--accent); text-decoration: none; margin: 0 6px; }
+  .msg-float {
+    position: fixed; right: 16px; bottom: 16px; z-index: 9999;
+    display: flex; align-items: center; gap: 8px;
+    background: #0084ff; color: #fff; text-decoration: none;
+    padding: 12px 18px; border-radius: 999px; font-weight: 700; font-size: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.55); transition: background 0.2s;
+  }
+  .msg-float:hover { background: #0069cc; }
+  .msg-float .icon { font-size: 18px; }
+</style>
+</head>
+<body>
+
+<header>
+  <span class="badge">🇵🇦⚛️ RED COMUNITARIA SADV41 · PANAMÁ OESTE</span>
+  <h1>BITÁCORA COMUNITARIA — EL WEST</h1>
+  <p class="subtitle">Directorio oficial de portales locales, eventos, gastronomía, empleos y cultura digital en Arraiján, Burunga y La Chorrera.</p>
+</header>
+
+<div class="container">
+  <input type="text" id="filtro" class="search-bar"
+    placeholder="🔍 Filtrar módulo (ej. Panadería, Romantic Fest, Foods, Chorrera, Memes)..."
+    oninput="filtrarModulos()">
+
+  <div class="grid" id="listaModulos">
+
+    <div class="card">
+      <div>
+        <div class="tag">😂 Entretenimiento &amp; Cultura</div>
+        <h2>Memes Ampymizados</h2>
+        <div class="route">MEMES/AMPYMIZADOS/</div>
+        <p class="desc">Feed oscuro estilo móvil con categorías (Virales, Panamá, Memazos, Tendencia), tarjetas de memes locales y contacto directo.</p>
+      </div>
+      <a class="btn" href="https://thesteef21.github.io/SADV41/MEMES/AMPYMIZADOS/" target="_blank" rel="noopener">Abrir Módulo ↗</a>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="tag">🎶 Música &amp; Cartelera</div>
+        <h2>La Doce Romantic Fest</h2>
+        <div class="route">Artist/RomanticStyle/</div>
+        <p class="desc">Portal del festival en Arraiján/Burunga con cartelera de artistas (Nigga/Flex, El Roockie, Nando Boom, Aldo Ranks, Princessa) y cronograma en vivo.</p>
+      </div>
+      <a class="btn" href="https://thesteef21.github.io/SADV41/Artist/RomanticStyle/" target="_blank" rel="noopener">Abrir Módulo ↗</a>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="tag">🔴 Cobertura en Vivo</div>
+        <h2>La Doce Fest (En Vivo)</h2>
+        <div class="route">Artist/RomanticStyle/Fest/La12/</div>
+        <p class="desc">Cronograma por horas (7:00 PM a 1:00 AM), ubicación en Google Maps (La 12, Arraiján) y botón de accesos por WhatsApp.</p>
+      </div>
+      <a class="btn" href="https://thesteef21.github.io/SADV41/Artist/RomanticStyle/Fest/La12/" target="_blank" rel="noopener">Abrir Módulo ↗</a>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="tag">🥖 Empleo Local · Burunga</div>
+        <h2>Panadería Canela y Miel (PCM)</h2>
+        <div class="route">AMERICA/GASTRONOMICA/REPOSTERIA/PCM/</div>
+        <p class="desc">Vacante de conductor en Burunga (Licencia Tipo D, zonas aledañas). Reclutamiento directo por WhatsApp (+507 6600-8407).</p>
+      </div>
+      <a class="btn" href="https://thesteef21.github.io/SADV41/AMERICA/GASTRONOMICA/REPOSTERIA/PCM/" target="_blank" rel="noopener">Abrir Módulo ↗</a>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="tag">🥖 Empleo Local · Espejo</div>
+        <h2>Panadería Canela y Miel (PLM)</h2>
+        <div class="route">AMERICA/GASTRONOMICA/REPOSTERÍA/PLM/</div>
+        <p class="desc">Réplica de la convocatoria de conductor bajo la ruta con tilde en REPOSTERÍA/PLM. WhatsApp: +507 6600-8407.</p>
+      </div>
+      <a class="btn" href="https://thesteef21.github.io/SADV41/AMERICA/GASTRONOMICA/REPOSTER%C3%8DA/PLM/" target="_blank" rel="noopener">Abrir Módulo ↗</a>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="tag">🍔 Gastronomía Nocturna</div>
+        <h2>Foods JL (Combo del Día)</h2>
+        <div class="route">FOODS/JL/</div>
+        <p class="desc">Menú completo desde $1.00 hasta $6.50 (hamburguesas, salchipapas, choripapa, tacos, hot dogs, arepas, empanadas). Abierto hasta las 5:00 AM.</p>
+      </div>
+      <a class="btn" href="https://thesteef21.github.io/SADV41/FOODS/JL/" target="_blank" rel="noopener">Abrir Módulo ↗</a>
+    </div>
+
+    <div class="card">
+      <div>
+        <div class="tag">🎺 Desfiles Patrios · 28 Nov</div>
+        <h2>La Gran Chorrera (28 Nov)</h2>
+        <div class="route">EVENTOS/LA_GRAN_CHORRERA/</div>
+        <p class="desc">Desfile del 28 de Noviembre — Independencia de Panamá de España. Punto de encuentro: Parque Libertador, 5:00 PM. Vestimenta de gala.</p>
+      </div>
+      <a class="btn" href="https://thesteef21.github.io/SADV41/EVENTOS/LA_GRAN_CHORRERA/" target="_blank" rel="noopener">Abrir Módulo ↗</a>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <strong>SADV41 · Bitácora Comunitaria El West</strong><br><br>
+  <a href="https://wa.me/50766008407" target="_blank" rel="noopener">WhatsApp +507 6600-8407</a> ·
+  <a href="https://instagram.com/stevendioroficial" target="_blank" rel="noopener">@stevendioroficial</a> ·
+  <a href="https://thesteef21.github.io/SADV41/Artist" target="_blank" rel="noopener">SADV41 Artist</a>
+</footer>
+
+<a class="msg-float" href="https://www.messenger.com/channel/61554018924556" target="_blank" rel="noopener">
+  <span class="icon">💬</span> Messenger SADV41
+</a>
+
+<script>
+function filtrarModulos() {
+  const q = document.getElementById('filtro').value.toLowerCase();
+  document.querySelectorAll('#listaModulos .card').forEach(card => {
+    card.style.display = card.innerText.toLowerCase().includes(q) ? 'flex' : 'none';
+  });
+}
+</script>
+
+</body>
+</html>
